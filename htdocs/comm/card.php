@@ -284,16 +284,16 @@ if ($object->id > 0)
 	// Except for spain and localtax where localtax depends on buyer and not seller
 
 	// VAT is used
-	/*
-	print '<tr>';
-	print '<td class="nowrap">';
-	print $form->textwithpicto($langs->trans('VATIsUsed'),$langs->trans('VATIsUsedWhenSelling'));
-	print '</td>';
-	print '<td>';
-	print yn($object->tva_assuj);
-	print '</td>';
-	print '</tr>';
-	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	if ($mysoc->country_code == 'ES')
 	{
@@ -411,7 +411,7 @@ if ($object->id > 0)
     	$amount_discount = $object->getAvailableDiscounts();
     	if ($amount_discount < 0) dol_print_error($db, $object->error);
     	if ($amount_discount > 0) print '<a href="'.DOL_URL_ROOT.'/comm/remx.php?id='.$object->id.'&backtopage='.urlencode($_SERVER["PHP_SELF"].'?socid='.$object->id).'">'.price($amount_discount, 1, $langs, 1, -1, -1, $conf->currency).'</a>';
-    	//else print $langs->trans("DiscountNone");
+    	
     	print '</td>';
     	print '</tr>';
 	}
@@ -782,8 +782,8 @@ if ($object->id > 0)
 				print '<tr class="liste_titre">';
 				print '<td colspan="4"><table width="100%" class="nobordernopadding"><tr><td>'.$langs->trans("LastCustomerOrders", ($num <= $MAXLIST ? "" : $MAXLIST)).'</td><td class="right"><a class="notasortlink" href="'.DOL_URL_ROOT.'/commande/list.php?socid='.$object->id.'">'.$langs->trans("AllOrders").'<span class="badge marginleftonlyshort">'.$num.'</span></a></td>';
 				print '<td width="20px" class="right"><a href="'.DOL_URL_ROOT.'/commande/stats/index.php?socid='.$object->id.'">'.img_picto($langs->trans("Statistics"), 'stats').'</a></td>';
-				//if($num2 > 0) print '<td width="20px" class="right"><a href="'.DOL_URL_ROOT.'/commande/orderstoinvoice.php?socid='.$object->id.'">'.img_picto($langs->trans("CreateInvoiceForThisCustomer"),'object_bill').'</a></td>';
-				//else print '<td width="20px" class="right"><a href="#">'.img_picto($langs->trans("NoOrdersToInvoice"),'object_bill').'</a></td>';
+				
+				
 				print '</tr></table></td>';
 				print '</tr>';
 			}
@@ -922,7 +922,7 @@ if ($object->id > 0)
 			    print '<tr class="liste_titre">';
 				print '<td colspan="6"><table width="100%" class="nobordernopadding"><tr><td>'.$langs->trans("LastContracts", ($num <= $MAXLIST ? "" : $MAXLIST)).'</td>';
 				print '<td class="right"><a class="notasortlink" href="'.DOL_URL_ROOT.'/contrat/list.php?socid='.$object->id.'">'.$langs->trans("AllContracts").'<span class="badge marginleftonlyshort">'.$num.'</span></a></td>';
-				//print '<td width="20px" class="right"><a href="'.DOL_URL_ROOT.'/contract/stats/index.php?socid='.$object->id.'">'.img_picto($langs->trans("Statistics"),'stats').'</a></td>';
+				
 				print '</tr></table></td>';
 				print '</tr>';
 			}
@@ -1006,7 +1006,7 @@ if ($object->id > 0)
 
 				print '<tr class="oddeven">';
 				print '<td class="nowrap"><a href="'.DOL_URL_ROOT.'/fichinter/card.php?id='.$objp->id.'">'.img_object($langs->trans("ShowPropal"), "propal").' '.$objp->ref.'</a></td>'."\n";
-                //print '<td class="right" width="80px">'.dol_print_date($db->jdate($objp->startdate)).'</td>'."\n";
+                
 				print '<td class="right" style="min-width: 60px">'.convertSecondToTime($objp->duration).'</td>'."\n";
 				print '<td class="nowrap right" style="min-width: 60px">'.$fichinter_static->getLibStatut(5).'</td>'."\n";
 				print '</tr>';
