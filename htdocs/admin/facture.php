@@ -154,7 +154,7 @@ elseif ($action == 'setdoc')
 }
 elseif ($action == 'setmod')
 {
-    // TODO Verifier si module numerotation choisi peut etre active
+    
     // par appel methode canBeActivated
 
     dolibarr_set_const($db, "FACTURE_ADDON", $value, 'chaine', 0, '', $conf->entity);
@@ -345,7 +345,7 @@ foreach ($dirmodels as $reldir)
                             print '</td>'."\n";
 
                             print '<td class="center">';
-                            //print "> ".$conf->global->FACTURE_ADDON." - ".$file;
+                            
                             if ($conf->global->FACTURE_ADDON == $file || $conf->global->FACTURE_ADDON.'.php' == $file)
                             {
                                 print img_picto($langs->trans("Activated"), 'switch_on');
