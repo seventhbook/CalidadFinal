@@ -237,7 +237,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 			$extrafields = new ExtraFields($this->db);
 			$extrafields->fetch_name_optionals_label($ct->table_element, true);
 			$extrafields_num = $ct->fetch_optionals();
-			//dol_syslog(get_class($this)."::get_substitutionarray_project_contacts: ===== Number of Extrafields found: ".$extrafields_num, LOG_DEBUG);
+			
 			foreach ($ct->array_options as $efkey => $efval) {
 				dol_syslog(get_class($this)."::get_substitutionarray_project_contacts: +++++ Extrafield ".$efkey." => ".$efval, LOG_DEBUG);
 				$ret[$pc.$efkey] = $efval; // add nothing else because it already comes as 'options_XX'
@@ -311,7 +311,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 	{
         // phpcs:enable
 		global $conf;
-		//dol_syslog(get_class($this).'::get_substitutionarray_tasksressource taskressource='.var_export($taskressource,true),LOG_DEBUG);
+		
 		return array(
 		'taskressource_rowid'=>$taskressource['rowid'],
 		'taskressource_role'=>$taskressource['libelle'],
@@ -433,9 +433,9 @@ class doc_generic_project_odt extends ModelePDFProjects
 		if (!empty($conf->global->PROJECT_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
+			
 			$texte .= $nbofiles;
-			//$texte.=$nbofiles?'</a>':'';
+			
 			$texte .= '</b>';
 		}
 
@@ -492,7 +492,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -535,7 +535,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
 				$newfiletmp = preg_replace('/modele_/i', '', $newfiletmp);
 				$newfiletmp = $objectref.'_'.$newfiletmp;
-				//$file=$dir.'/'.$newfiletmp.'.'.dol_print_date(dol_now(),'%Y%m%d%H%M%S').'.odt';
+				
 				// Get extension (ods or odt)
 				$newfileformat = substr($newfile, strrpos($newfile, '.') + 1);
 				if (!empty($conf->global->MAIN_DOC_USE_TIMING))
@@ -549,10 +549,10 @@ class doc_generic_project_odt extends ModelePDFProjects
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->societe->dir_temp=".$conf->societe->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->projet->dir_temp);
 
@@ -583,7 +583,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Open and load template
 				require_once ODTPHP_PATH.'odf.php';
@@ -605,8 +605,8 @@ class doc_generic_project_odt extends ModelePDFProjects
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 
 				// Define substitution array
@@ -664,7 +664,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 					foreach ($tasksarray as $task)
 					{
 						$tmparray = $this->get_substitutionarray_tasks($task, $outputlangs);
-						//complete_substitutions_array($tmparray, $outputlangs, $object, $task, "completesubstitutionarray_lines");
+						
 						foreach ($tmparray as $key => $val)
 						{
 							try
@@ -749,7 +749,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 						{
 							$num = $this->db->num_rows($resql);
 							$i = 0;
-							$tasks = array();
+							
 							$row = array();
 							$listlinestasktime = $listlines->__get('taskstimes');
 							if (empty($num)) {
@@ -838,7 +838,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 						foreach ($filearray as $filedetail)
 						{
 							$tmparray = $this->get_substitutionarray_task_file($filedetail, $outputlangs);
-							//dol_syslog(get_class($this).'::main $tmparray'.var_export($tmparray,true));
+							
 							foreach ($tmparray as $key => $val)
 							{
 								try
@@ -882,7 +882,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 
 					foreach ($filearray as $filedetail)
 					{
-						//dol_syslog(get_class($this).'::main $filedetail'.var_export($filedetail,true));
+						
 						$tmparray = $this->get_substitutionarray_project_file($filedetail, $outputlangs);
 
 						foreach ($tmparray as $key => $val)
@@ -1090,7 +1090,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 
 					foreach ($listofreferent as $keyref => $valueref)
 					{
-						$title = $valueref['title'];
+						
 						$tablename = $valueref['table'];
 						$classname = $valueref['class'];
 						$qualified = $valueref['test'];
@@ -1099,8 +1099,8 @@ class doc_generic_project_odt extends ModelePDFProjects
 							$elementarray = $object->get_element_list($keyref, $tablename);
 							if (count($elementarray) > 0 && is_array($elementarray))
 							{
-								$total_ht = 0;
-								$total_ttc = 0;
+								
+								
 								$num = count($elementarray);
 								for ($i = 0; $i < $num; $i++)
 								{
