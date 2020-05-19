@@ -270,7 +270,7 @@ class FormMail extends Form
 			$_SESSION["listofpaths".$keytoavoidconflict] = join(';', $listofpaths);
 			$_SESSION["listofnames".$keytoavoidconflict] = join(';', $listofnames);
 			$_SESSION["listofmimes".$keytoavoidconflict] = join(';', $listofmimes);
-			//var_dump($_SESSION['listofpaths']);
+			
 		}
 	}
 
@@ -448,7 +448,7 @@ class FormMail extends Form
 					}
 					if ($line->lang) $modelmail_array[$line->id] .= ' ('.$line->lang.')';
 					if ($line->private) $modelmail_array[$line->id] .= ' - '.$langs->trans("Private");
-					//if ($line->fk_user != $user->id) $modelmail_array[$line->id].=' - '.$langs->trans("By").' ';
+					
 				}
 			}
 
@@ -493,17 +493,17 @@ class FormMail extends Form
 			if (!empty($this->withsubstit))		// Unset or set ->withsubstit=0 to disable this.
 			{
 				$out .= '<tr><td colspan="2" class="right">';
-				//$out.='<div class="floatright">';
+				
 				if (is_numeric($this->withsubstit)) $out .= $form->textwithpicto($langs->trans("EMailTestSubstitutionReplacedByGenericValues"), $helpforsubstitution, 1, 'help', '', 0, 2, 'substittooltip'); // Old usage
 				else $out .= $form->textwithpicto($langs->trans('AvailableVariables'), $helpforsubstitution, 1, 'help', '', 0, 2, 'substittooltip'); // New usage
 				$out .= "</td></tr>\n";
-				//$out.='</div>';
+				
 			}
 
-			/*var_dump(! empty($this->withfromreadonly));
-			var_dump($this->withfrom);
-			var_dump($this->fromtype);
-			var_dump($this->fromname);*/
+			
+			
+			
+			
 
 			// From
 			if (!empty($this->withfrom))
@@ -617,7 +617,7 @@ class FormMail extends Form
 						if (!empty($hookmanager->resArray['defaultfrom'])) $defaultfrom = $hookmanager->resArray['defaultfrom'];
 
 						// Using combo here make the '<email>' no more visible on list.
-						//$out.= ' '.$form->selectarray('fromtype', $liste, $this->fromtype, 0, 0, 0, '', 0, 0, 0, '', 'fromforsendingprofile maxwidth200onsmartphone', 1, '', $disablebademails);
+						
 						$out .= ' '.$form->selectarray('fromtype', $liste, $defaultfrom, 0, 0, 0, '', 0, 0, 0, '', 'fromforsendingprofile maxwidth200onsmartphone', 0, '', $disablebademails);
 					}
 
@@ -876,7 +876,7 @@ class FormMail extends Form
 							if (!$this->withfilereadonly)
 							{
 								$out .= ' <input type="image" style="border: 0px;" src="'.DOL_URL_ROOT.'/theme/'.$conf->theme.'/img/delete.png" value="'.($key + 1).'" class="removedfile" id="removedfile_'.$key.'" name="removedfile_'.$key.'" />';
-								//$out.= ' <a href="'.$_SERVER["PHP_SELF"].'?removedfile='.($key+1).' id="removedfile_'.$key.'">'.img_delete($langs->trans("Delete").'</a>';
+								
 							}
 							$out .= '<br></div>';
 						}
@@ -1096,7 +1096,7 @@ class FormMail extends Form
 	public function getHtmlForWithErrorsTo()
 	{
 		global $conf, $langs;
-		//if (! $this->errorstomail) $this->errorstomail=$this->frommail;
+		
 		$errorstomail = (!empty($conf->global->MAIN_MAIL_ERRORS_TO) ? $conf->global->MAIN_MAIL_ERRORS_TO : $this->errorstomail);
 		if ($this->witherrorstoreadonly) {
 			$out = '<tr><td>'.$langs->trans("MailErrorsTo").'</td><td>';
@@ -1213,7 +1213,7 @@ class FormMail extends Form
 		if ($languagetosearch) $sql .= $db->order("position,lang,label", "ASC,DESC,ASC"); // We want line with lang set first, then with lang null or ''
 		else $sql .= $db->order("position,lang,label", "ASC,ASC,ASC"); // If no language provided, we give priority to lang not defined
 		$sql .= $db->plimit(1);
-		//print $sql;
+		
 
 		$resql = $db->query($sql);
 		if ($resql)
@@ -1279,7 +1279,7 @@ class FormMail extends Form
 	 */
 	public function isEMailTemplate($type_template, $user, $outputlangs)
 	{
-		$ret = array();
+		
 
 		$sql = "SELECT label, topic, content, lang";
 		$sql .= " FROM ".MAIN_DB_PREFIX.'c_email_templates';
@@ -1288,7 +1288,7 @@ class FormMail extends Form
 		$sql .= " AND (fk_user is NULL or fk_user = 0 or fk_user = ".$user->id.")";
 		if (is_object($outputlangs)) $sql .= " AND (lang = '".$outputlangs->defaultlang."' OR lang IS NULL OR lang = '')";
 		$sql .= $this->db->order("lang,label", "ASC");
-		//print $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -1316,7 +1316,7 @@ class FormMail extends Form
 	 */
 	public function fetchAllEMailTemplate($type_template, $user, $outputlangs, $active = 1)
 	{
-		$ret = array();
+		
 
 		$sql = "SELECT rowid, label, topic, content, content_lines, lang, fk_user, private, position";
 		$sql .= " FROM ".MAIN_DB_PREFIX.'c_email_templates';
@@ -1326,7 +1326,7 @@ class FormMail extends Form
 		if ($active >= 0) $sql .= " AND active = ".$active;
 		//if (is_object($outputlangs)) $sql.= " AND (lang = '".$outputlangs->defaultlang."' OR lang IS NULL OR lang = '')";	// Return all languages
 		$sql .= $this->db->order("position,lang,label", "ASC");
-		//print $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -1485,13 +1485,13 @@ class FormMail extends Form
 			}
 			else
 			{
-				/* No need to show into tooltip help, option is not enabled
-				$vars['__SECUREKEYPAYMENT__']='';
-				$vars['__SECUREKEYPAYMENT_MEMBER__']='';
-				$vars['__SECUREKEYPAYMENT_INVOICE__']='';
-				$vars['__SECUREKEYPAYMENT_ORDER__']='';
-				$vars['__SECUREKEYPAYMENT_CONTRACTLINE__']='';
-				*/
+				
+				
+				
+				
+				
+				
+				
 			}
 		}
 
