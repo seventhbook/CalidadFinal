@@ -767,7 +767,7 @@ if ($socid > 0)
 		$sql .= " AND rc.fk_user = u.rowid";
 		$sql .= " AND rc.discount_type = 0"; // Eliminate supplier discounts
 		$sql .= " ORDER BY dc DESC";
-		//$sql.= " UNION ";
+		
 		// Discount linked to invoices
 		$sql2 = "SELECT rc.rowid, rc.amount_ht, rc.amount_tva, rc.amount_ttc, rc.tva_tx,";
 		$sql2 .= " rc.datec as dc, rc.description, rc.fk_facture_line, rc.fk_facture,";
@@ -944,7 +944,7 @@ if ($socid > 0)
 		$sql .= " AND rc.fk_user = u.rowid";
 		$sql .= " AND rc.discount_type = 1"; // Eliminate customer discounts
 		$sql .= " ORDER BY dc DESC";
-		//$sql.= " UNION ";
+		
 		// Discount linked to invoices
 		$sql2 = "SELECT rc.rowid, rc.amount_ht, rc.amount_tva, rc.amount_ttc, rc.tva_tx,";
 		$sql2 .= " rc.datec as dc, rc.description, rc.fk_invoice_supplier_line, rc.fk_invoice_supplier,";
