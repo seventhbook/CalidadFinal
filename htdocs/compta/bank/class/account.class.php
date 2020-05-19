@@ -1465,11 +1465,11 @@ class Account extends CommonObject
 			$this->error_number = 12;
 			$this->error_message = 'IBANSWIFTControlError';
 		}
-		/*if (! checkBanForAccount($this))
-        {
-            $this->error_number = 12;
-            $this->error_message = 'BANControlError';
-        }*/
+		
+        
+            
+            
+        
 
 		if ($this->error_number == 0)
 		{
@@ -1506,7 +1506,7 @@ class Account extends CommonObject
 		{
 			require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
 			$company = new Societe($this->db);
-			$result = $company->fetch($this->socid);
+			
 			if (!empty($company->country_code)) return $company->country_code;
 		}
 
@@ -1630,7 +1630,7 @@ class Account extends CommonObject
 			$fieldarray[] = 'IBAN';
 			$fieldarray[] = 'BIC';
 		}
-		//}
+		
 
 		//Get the order the properties are shown
 		return $fieldarray;
@@ -2421,38 +2421,38 @@ class AccountLine extends CommonObject
 	{
         // phpcs:enable
 		global $langs;
-		//$langs->load('companies');
-		/*
-        if ($mode == 0)
-        {
-            if ($status==0) return $langs->trans("ActivityCeased");
-            if ($status==1) return $langs->trans("InActivity");
-        }
-        if ($mode == 1)
-        {
-            if ($status==0) return $langs->trans("ActivityCeased");
-            if ($status==1) return $langs->trans("InActivity");
-        }
-        if ($mode == 2)
-        {
-            if ($status==0) return img_picto($langs->trans("ActivityCeased"),'statut5', 'class="pictostatus"').' '.$langs->trans("ActivityCeased");
-            if ($status==1) return img_picto($langs->trans("InActivity"),'statut4', 'class="pictostatus"').' '.$langs->trans("InActivity");
-        }
-        if ($mode == 3)
-        {
-            if ($status==0) return img_picto($langs->trans("ActivityCeased"),'statut5', 'class="pictostatus"');
-            if ($status==1) return img_picto($langs->trans("InActivity"),'statut4', 'class="pictostatus"');
-        }
-        if ($mode == 4)
-        {
-            if ($status==0) return img_picto($langs->trans("ActivityCeased"),'statut5', 'class="pictostatus"').' '.$langs->trans("ActivityCeased");
-            if ($status==1) return img_picto($langs->trans("InActivity"),'statut4', 'class="pictostatus"').' '.$langs->trans("InActivity");
-        }
-        if ($mode == 5)
-        {
-            if ($status==0) return $langs->trans("ActivityCeased").' '.img_picto($langs->trans("ActivityCeased"),'statut5', 'class="pictostatus"');
-            if ($status==1) return $langs->trans("InActivity").' '.img_picto($langs->trans("InActivity"),'statut4', 'class="pictostatus"');
-        }*/
+		
+		
+        
+        
+            
+            
+        
+        
+        
+            
+            
+        
+        
+        
+            
+            
+        
+        
+        
+            
+            
+        
+        
+        
+            
+            
+        
+        
+        
+            
+            
+        
 	}
 
 
