@@ -194,7 +194,7 @@ if (empty($reshook))
 	}
 
 	// Mass actions
-	/*$objectclass='MyObject';
+	/*
     $objectlabel='MyObject';
     $permissiontoread = $user->rights->mymodule->read;
     $permissiontodelete = $user->rights->mymodule->delete;
@@ -319,7 +319,7 @@ if ($resql)
 
 	$varpage = empty($contextpage) ? $_SERVER["PHP_SELF"] : $contextpage;
 	$selectedfields = $form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage); // This also change content of $arrayfields
-	//$selectedfields.=$form->showCheckAddButtons('checkforselect', 1);
+	
 
 	print '<form method="POST" id="searchFormList" action="'.$_SERVER["PHP_SELF"].'">';
 	if ($optioncss != '') print '<input type="hidden" name="optioncss" value="'.$optioncss.'">';
