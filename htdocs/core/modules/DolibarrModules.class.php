@@ -879,7 +879,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
         global $langs;
 
         $langstring="ImportDataset_".$this->import_code[$r];
-        //print "x".$langstring;
+        
         if ($langs->trans($langstring) == $langstring) {
             // Translation not found
             return $langs->transnoentitiesnoconv($this->import_label[$r]);
@@ -1216,7 +1216,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
 
                             foreach ($pos_name as $key2 => $val2)
                             {
-                                    //print 'key2='.$key2.'-val2='.$val2."<br>\n";
+                                
                                 if ($enabledbydefaulton && $val2 != $enabledbydefaulton) { continue;        // Not enabled by default onto this page.
                                 }
 
@@ -1269,13 +1269,13 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
         if (is_array($this->boxes)) {
             foreach ($this->boxes as $key => $value)
             {
-                //$titre = $this->boxes[$key][0];
+                
                 $file  = $this->boxes[$key]['file'];
-                //$note  = $this->boxes[$key][2];
+                
 
-                // TODO If the box is also included by another module and the other module is still on, we should not remove it.
+                
                 // For the moment, we manage this with hard coded exception
-                //print "Remove box ".$file.'<br>';
+                
                 if ($file == 'box_graph_product_distribution.php') {
                     if (! empty($conf->product->enabled) || ! empty($conf->service->enabled)) {
                         dol_syslog("We discard disabling of module ".$file." because another module still active require it.");
@@ -1288,7 +1288,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
 
                 if ($this->db->type == 'sqlite3') {
                     // sqlite doesn't support "USING" syntax.
-                    // TODO: remove this dependency.
+                    
                     $sql = "DELETE FROM ".MAIN_DB_PREFIX."boxes ";
                     $sql .= "WHERE ".MAIN_DB_PREFIX."boxes.box_id IN (";
                     $sql .= "SELECT ".MAIN_DB_PREFIX."boxes_def.rowid ";
@@ -1879,7 +1879,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
             $menu = new Menubase($this->db);
             $menu->menu_handler='all';
 
-            //$menu->module=strtolower($this->name);    TODO When right_class will be same than module name
+            
             $menu->module=empty($this->rights_class)?strtolower($this->name):$this->rights_class;
 
             if (! $this->menu[$key]['fk_menu']) {
@@ -1970,7 +1970,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
 
         $err=0;
 
-        //$module=strtolower($this->name);        TODO When right_class will be same than module name
+        
         $module=empty($this->rights_class)?strtolower($this->name):$this->rights_class;
 
         $sql = "DELETE FROM ".MAIN_DB_PREFIX."menu";
