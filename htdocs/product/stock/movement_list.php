@@ -61,7 +61,7 @@ $contextpage = GETPOST('contextpage', 'aZ') ?GETPOST('contextpage', 'aZ') : 'mov
 $toselect   = GETPOST('toselect', 'array'); // Array of ids of elements selected into a list
 
 // Security check
-//$result=restrictedArea($user, 'stock', $id, 'entrepot&stock');
+
 $result = restrictedArea($user, 'stock');
 
 $idproduct = GETPOST('idproduct', 'int');
@@ -213,7 +213,7 @@ if ($action == "correct_stock")
         {
         	$batch = GETPOST('batch_number', 'alphanohtml');
 
-        	//$eatby=GETPOST('eatby');
+        	
         	//$sellby=GETPOST('sellby');
         	$eatby = dol_mktime(0, 0, 0, GETPOST('eatbymonth', 'int'), GETPOST('eatbyday', 'int'), GETPOST('eatbyyear', 'int'));
         	$sellby = dol_mktime(0, 0, 0, GETPOST('sellbymonth', 'int'), GETPOST('sellbyday', 'int'), GETPOST('sellbyyear', 'int'));
@@ -509,7 +509,7 @@ else
 	$limit = 0;
 }
 
-//print $sql;
+
 
 $resql = $db->query($sql);
 
@@ -778,10 +778,10 @@ if ($resql)
     	print '<td class="liste_titre nowraponall">';
 	    print '<input class="flat" type="text" size="2" maxlength="2" placeholder="'.dol_escape_htmltag($langs->trans("Month")).'" name="month" value="'.$month.'">';
     	if (empty($conf->productbatch->enabled)) print '&nbsp;';
-	    //else print '<br>';
+	    
 	    $syear = $year ? $year : -1;
 	    print '<input class="flat maxwidth50" type="text" maxlength="4" placeholder="'.dol_escape_htmltag($langs->trans("Year")).'" name="year" value="'.($syear > 0 ? $syear : '').'">';
-	    //print $formother->selectyear($syear,'year',1, 20, 5);
+	    
 	    print '</td>';
     }
     if (!empty($arrayfields['p.ref']['checked']))
@@ -817,7 +817,7 @@ if ($resql)
     if (!empty($arrayfields['e.ref']['checked']))
     {
         print '<td class="liste_titre maxwidthonsmartphone left">';
-        //print '<input class="flat" type="text" size="8" name="search_warehouse" value="'.($search_warehouse).'">';
+        
         print $formproduct->selectWarehouses($search_warehouse, 'search_warehouse', 'warehouseopen,warehouseinternal', 1, 0, 0, '', 0, 0, null, 'maxwidth200');
         print '</td>';
     }
@@ -846,7 +846,7 @@ if ($resql)
     {
 	    // Type of movement
 	    print '<td class="liste_titre center">';
-	    //print '<input class="flat" type="text" size="3" name="search_type_mouvement" value="'.dol_escape_htmltag($search_type_mouvement).'">';
+	    
 		print '<select id="search_type_mouvement" name="search_type_mouvement" class="maxwidth150">';
 		print '<option value="" '.(($search_type_mouvement == "") ? 'selected="selected"' : '').'></option>';
 		print '<option value="0" '.(($search_type_mouvement == "0") ? 'selected="selected"' : '').'>'.$langs->trans('StockIncreaseAfterCorrectTransfer').'</option>';
@@ -856,7 +856,7 @@ if ($resql)
 		print '</select>';
 		print ajax_combobox('search_type_mouvement');
 		// TODO: add new function $formentrepot->selectTypeOfMovement(...) like
-		// print $formproduct->selectWarehouses($search_warehouse, 'search_warehouse', 'warehouseopen,warehouseinternal', 1, 0, 0, '', 0, 0, null, 'maxwidth200');
+		
 	    print '</td>';
     }
     if (!empty($arrayfields['origin']['checked']))
@@ -1048,7 +1048,7 @@ if ($resql)
         {
 	        // Product label
 	        print '<td>';
-	        /*$productstatic->id=$objp->rowid;
+	        
 	        $productstatic->ref=$objp->produit;
 	        $productstatic->type=$objp->type;
 	        print $productstatic->getNomUrl(1,'',16);*/
@@ -1183,20 +1183,20 @@ if ($resql)
     	$balancebefore = $movement->calculateBalanceForProductBefore($productidselected, $datebefore);
     	$balanceafter = $movement->calculateBalanceForProductBefore($productidselected, $dateafter);
 
-    	//print '<tr class="total"><td class="liste_total">';
+    	
     	print $langs->trans("NbOfProductBeforePeriod", $productlabelselected, dol_print_date($datebefore, 'day', 'gmt'));
-    	//print '</td>';
+    	
     	//print '<td class="liste_total right" colspan="6">';
     	print ': '.$balancebefore;
     	print "<br>\n";
-    	//print '</td></tr>';
+    	
     	//print '<tr class="total"><td class="liste_total">';
     	print $langs->trans("NbOfProductAfterPeriod", $productlabelselected, dol_print_date($dateafter, 'day', 'gmt'));
-    	//print '</td>';
+    	
     	//print '<td class="liste_total right" colspan="6">';
     	print ': '.$balanceafter;
     	print "<br>\n";
-    	//print '</td></tr>';
+    	
     }
 }
 else
