@@ -134,7 +134,7 @@ if (is_array($extrafields->attributes[$elementtype]['label']) && count($extrafie
 {
 	foreach ($extrafields->attributes[$elementtype]['label'] as $key=>$label)
 	{
-		//$value=$object->array_options["options_".$key];
+		
 		$type = $extrafields->attributes[$elementtype]['type'][$key];
 		if ($type == 'date' || $type == 'datetime') {$type = 'xsd:dateTime'; }
 		else {$type = 'xsd:string'; }
@@ -455,7 +455,7 @@ function createThirdParty($authentication, $thirdparty)
         $newobject->country_id = $thirdparty['country_id'];
         if ($thirdparty['country_code']) $newobject->country_id = getCountry($thirdparty['country_code'], 3);
         $newobject->province_id = $thirdparty['province_id'];
-        //if ($thirdparty['province_code']) $newobject->province_code=getCountry($thirdparty['province_code'],3);
+        
 
         $newobject->phone = $thirdparty['phone'];
         $newobject->fax = $thirdparty['fax'];
@@ -591,7 +591,7 @@ function updateThirdParty($authentication, $thirdparty)
 			$object->country_id=$thirdparty['country_id'];
 			if ($thirdparty['country_code']) $object->country_id=getCountry($thirdparty['country_code'], 3);
 			$object->province_id=$thirdparty['province_id'];
-			//if ($thirdparty['province_code']) $newobject->province_code=getCountry($thirdparty['province_code'],3);
+			
 
 			$object->phone=$thirdparty['phone'];
 			$object->fax=$thirdparty['fax'];
