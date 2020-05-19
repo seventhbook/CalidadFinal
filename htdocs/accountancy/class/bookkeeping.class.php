@@ -261,7 +261,7 @@ class BookKeeping extends CommonObject
 			}
 			else
 			{
-				//$this->errors[]=$langs->trans('ErrorFieldAccountNotDefinedForInvoiceLine', $this->doc_ref,  $this->label_compte);
+				
 				$mesg = $this->doc_ref.', '.$langs->trans("AccountAccounting").': '.$this->numero_compte;
 				if ($this->subledger_account && $this->subledger_account != $this->numero_compte)
 				{
@@ -412,15 +412,15 @@ class BookKeeping extends CommonObject
 			dol_syslog(__METHOD__.' '.join(',', $this->errors), LOG_ERR);
 		}
 
-		// Uncomment this and change MYOBJECT to your own tag if you
-		// want this action to call a trigger.
-		//if (! $error && ! $notrigger) {
+		
+		
+		
 
-		// // Call triggers
-		// $result=$this->call_trigger('MYOBJECT_CREATE',$user);
-		// if ($result < 0) $error++;
-		// // End call triggers
-		//}
+		
+		
+		
+		
+		
 
 		// Commit or rollback
 		if ($error) {
@@ -451,7 +451,7 @@ class BookKeeping extends CommonObject
 		if (!empty($conf->dol_no_mouse_hover)) $notooltip = 1; // Force disable tooltips
 
 		$result = '';
-		$companylink = '';
+		
 
 		$label = '<u>'.$langs->trans("Transaction").'</u>';
 		$label .= '<br>';
@@ -638,15 +638,15 @@ class BookKeeping extends CommonObject
 		if (!$error) {
 			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX.$this->table_element.$mode);
 
-			// Uncomment this and change MYOBJECT to your own tag if you
-			// want this action to call a trigger.
-			//if (! $notrigger) {
+			
+			
+			
 
-			// // Call triggers
-			// $result=$this->call_trigger('MYOBJECT_CREATE',$user);
-			// if ($result < 0) $error++;
-			// // End call triggers
-			//}
+			
+			
+			
+			
+			
 		}
 
 		// Commit or rollback
@@ -1231,15 +1231,15 @@ class BookKeeping extends CommonObject
 			dol_syslog(__METHOD__.' '.join(',', $this->errors), LOG_ERR);
 		}
 
-		// Uncomment this and change MYOBJECT to your own tag if you
-		// want this action calls a trigger.
-		//if (! $error && ! $notrigger) {
+		
+		
+		
 
-		// // Call triggers
-		// $result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-		// if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		// // End call triggers
-		//}
+		
+		
+		
+		
+		
 
 		// Commit or rollback
 		if ($error) {
@@ -1305,15 +1305,15 @@ class BookKeeping extends CommonObject
 
 		$this->db->begin();
 
-		// Uncomment this and change MYOBJECT to your own tag if you
-		// want this action calls a trigger.
-		//if (! $error && ! $notrigger) {
+		
+		
+		
 
-		// // Call triggers
-		// $result=$this->call_trigger('MYOBJECT_DELETE',$user);
-		// if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		// // End call triggers
-		//}
+		
+		
+		
+		
+		
 
 		if (!$error) {
 			$sql = 'DELETE FROM '.MAIN_DB_PREFIX.$this->table_element.$mode;
@@ -1804,16 +1804,16 @@ class BookKeeping extends CommonObject
 			$this->db->rollback();
 			return -1;
 		}
-		/*
-		$sql = "DELETE FROM ";
-		$sql .= " FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab";
-		$sql .= " LEFT JOIN " . MAIN_DB_PREFIX . "accounting_account as aa ON aa.account_number = ab.numero_compte";
-		$sql .= " AND aa.active = 1";
-		$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "accounting_system as asy ON aa.fk_pcg_version = asy.pcg_version";
-		$sql .= " AND asy.rowid = " . $pcgver;
-		$sql .= " AND ab.entity IN (" . getEntity('accountancy') . ")";
-		$sql .= " ORDER BY account_number ASC";
-		*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
