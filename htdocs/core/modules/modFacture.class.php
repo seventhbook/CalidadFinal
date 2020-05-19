@@ -98,16 +98,7 @@ class modFacture extends DolibarrModules
 		$this->const[$r][4] = 0;
 		$r++;
 
-		/*$this->const[$r][0] = "FACTURE_DRAFT_WATERMARK";
-		$this->const[$r][1] = "chaine";
-		$this->const[$r][2] = "__(Draft)__";
-		$this->const[$r][3] = 'Watermark to show on draft invoices';
-		$this->const[$r][4] = 0;
-		$r++;*/
-
-
 		// Boxes
-		//$this->boxes = array(0=>array(1=>'box_factures_imp.php'),1=>array(1=>'box_factures.php'));
 		$this->boxes = array(
 				0=>array('file'=>'box_factures_imp.php', 'enabledbydefaulton'=>'Home'),
 				1=>array('file'=>'box_factures.php', 'enabledbydefaulton'=>'Home'),
