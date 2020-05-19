@@ -233,7 +233,7 @@ class Contact extends CommonObject
 
 		// Translate some data of arrayofkeyval
 		/*if (is_object($langs))
-		{
+		
 			foreach($this->fields as $key => $val)
 			{
 				if (is_array($val['arrayofkeyval']))
@@ -364,7 +364,7 @@ class Contact extends CommonObject
 
 			if (!$error)
             {
-                $result = $this->update_perso($this->id, $user, 1); // TODO Remove function update_perso, should be same than update
+                $result = $this->update_perso($this->id, $user, 1); 
                 if ($result < 0)
                 {
                     $error++;
@@ -553,7 +553,7 @@ class Contact extends CommonObject
 					$tmpobj->socialnetworks = $this->socialnetworks;
 					$usermustbemodified++;
 				}
-				// if ($tmpobj->skype != $this->skype)
+				
 				// {
 				// 	$tmpobj->skype = $this->skype;
 				// 	$usermustbemodified++;
@@ -1067,7 +1067,7 @@ class Contact extends CommonObject
 
 		$error = 0;
 
-		//$this->old_lastname = $obj->lastname;
+		
 		//$this->old_firstname = $obj->firstname;
 
 		$this->db->begin();
@@ -1283,7 +1283,7 @@ class Contact extends CommonObject
 
         $label .= '<u>'.$langs->trans("ShowContact").'</u>';
         $label .= '<br><b>'.$langs->trans("Name").':</b> '.$this->getFullName($langs);
-        //if ($this->civility_id) $label.= '<br><b>' . $langs->trans("Civility") . ':</b> '.$this->civility_id;		// TODO Translate cibilty_id code
+        
         if (!empty($this->poste)) $label .= '<br><b>'.$langs->trans("Poste").':</b> '.$this->poste;
         $label .= '<br><b>'.$langs->trans("EMail").':</b> '.$this->email;
         $phonelist = array();
@@ -1316,7 +1316,7 @@ class Contact extends CommonObject
     	   	$linkclose .= ' class="classfortooltip"';
 
     	   	/*
-    	   	 $hookmanager->initHooks(array('contactdao'));
+    	   	 
     	   	 $parameters=array('id'=>$this->id);
     	   	 $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
     	   	 if ($reshook > 0) $linkclose = $hookmanager->resPrint;
