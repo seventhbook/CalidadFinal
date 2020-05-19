@@ -221,7 +221,7 @@ class pdf_cyan extends ModelePDFPropales
 				if (empty($object->lines[$i]->fk_product)) continue;
 
 				$objphoto->fetch($object->lines[$i]->fk_product);
-                //var_dump($objphoto->ref);exit;
+                
 				if (! empty($conf->global->PRODUCT_USE_OLD_PATH_FOR_PHOTO))
 				{
 					$pdir[0] = get_exdir($objphoto->id, 2, 0, 0, $objphoto, 'product') . $objphoto->id ."/photos/";
@@ -362,7 +362,7 @@ class pdf_cyan extends ModelePDFPropales
                 $heightforsignature = empty($conf->global->PROPAL_DISABLE_SIGNATURE) ? (pdfGetHeightForHtmlContent($pdf, $outputlangs->transnoentities("ProposalCustomerSignature")) + 10) : 0;
                 $heightforfreetext = (isset($conf->global->MAIN_PDF_FREETEXT_HEIGHT) ? $conf->global->MAIN_PDF_FREETEXT_HEIGHT : 5); // Height reserved to output the free text on last page
                 $heightforfooter = $this->marge_basse + (empty($conf->global->MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS) ? 12 : 22); // Height reserved to output the footer (value include bottom margin)
-                //print $heightforinfotot + $heightforsignature + $heightforfreetext + $heightforfooter;exit;
+                
 
 				$top_shift = $this->_pagehead($pdf, $object, 1, $outputlangs);
 				$pdf->SetFont('', '', $default_font_size - 1);
@@ -449,7 +449,7 @@ class pdf_cyan extends ModelePDFPropales
 					        $pagenb++;
 					        if (!empty($tplidx)) $pdf->useTemplate($tplidx);
 					        if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
-					        // $this->_pagefoot($pdf,$object,$outputlangs,1);
+					        
 					        $pdf->setTopMargin($tab_top_newpage);
 					        // The only function to edit the bottom margin of current page to set it.
 					        $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
@@ -473,7 +473,7 @@ class pdf_cyan extends ModelePDFPropales
 					        $pdf->setTopMargin($tab_top_newpage);
 					        // The only function to edit the bottom margin of current page to set it.
 					        $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
-					        //$posyafter = $tab_top_newpage;
+					        
 					    }
 
 
@@ -578,7 +578,7 @@ class pdf_cyan extends ModelePDFPropales
     					{
     						$pdf->AddPage('', '', true);
     						if (! empty($tplidx)) $pdf->useTemplate($tplidx);
-    						//if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
+    						
     						$pdf->setPage($pageposbefore+1);
 
     						$curY = $tab_top_newpage;
@@ -609,20 +609,20 @@ class pdf_cyan extends ModelePDFPropales
     					{
     						$pdf->rollbackTransaction(true);
     						$pageposafter=$pageposbefore;
-    						//print $pageposafter.'-'.$pageposbefore;exit;
+    						
     						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
     						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->getColumnContentWidth('desc'), 3, $this->getColumnContentXStart('desc'), $curY, $hideref, $hidedesc);
 
     						$pageposafter=$pdf->getPage();
     						$posyafter=$pdf->GetY();
-    						//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+    						
     						if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforsignature+$heightforinfotot)))	// There is no space left for total+free text
     						{
     							if ($i == ($nblines-1))	// No more lines, and no space left to show total, so we create a new page
     							{
     								$pdf->AddPage('', '', true);
     								if (! empty($tplidx)) $pdf->useTemplate($tplidx);
-    								//if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
+    								
     								$pdf->setPage($pageposafter+1);
     							}
     						}
@@ -765,7 +765,7 @@ class pdf_cyan extends ModelePDFPropales
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -826,14 +826,6 @@ class pdf_cyan extends ModelePDFPropales
 
 				// Affiche zone totaux
 				$posy = $this->drawTotalTable($pdf, $object, 0, $bottomlasttab, $outputlangs);
-
-				// Affiche zone versements
-				/*
-				if ($deja_regle || $amount_credit_notes_included || $amount_deposits_included)
-				{
-					$posy=$this->drawPaymentsTable($pdf, $object, $posy, $outputlangs);
-				}
-				*/
 
 				// Customer signature area
 				if (empty($conf->global->PROPAL_DISABLE_SIGNATURE))
@@ -1043,22 +1035,6 @@ class pdf_cyan extends ModelePDFPropales
 
 		if (empty($conf->global->PROPOSAL_PDF_HIDE_PAYMENTMODE))
 		{
-			// Check a payment mode is defined
-			/* Not required on a proposal
-			if (empty($object->mode_reglement_code)
-			&& ! $conf->global->FACTURE_CHQ_NUMBER
-			&& ! $conf->global->FACTURE_RIB_NUMBER)
-			{
-				$pdf->SetXY($this->marge_gauche, $posy);
-				$pdf->SetTextColor(200,0,0);
-				$pdf->SetFont('','B', $default_font_size - 2);
-				$pdf->MultiCell(90, 3, $outputlangs->transnoentities("ErrorNoPaiementModeConfigured"),0,'L',0);
-				$pdf->SetTextColor(0,0,0);
-
-				$posy=$pdf->GetY()+1;
-			}
-			*/
-
 			// Show payment mode
 			if ($object->mode_reglement_code
 			&& $object->mode_reglement_code != 'CHQ'
@@ -1199,8 +1175,7 @@ class pdf_cyan extends ModelePDFPropales
 			else
 			{
 				//Local tax 1 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -1209,7 +1184,6 @@ class pdf_cyan extends ModelePDFPropales
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1229,10 +1203,7 @@ class pdf_cyan extends ModelePDFPropales
 						}
 					}
 				}
-	      		//}
-				//Local tax 2 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+	      		
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -1241,9 +1212,6 @@ class pdf_cyan extends ModelePDFPropales
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
-
-
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1263,7 +1231,7 @@ class pdf_cyan extends ModelePDFPropales
 						}
 					}
 				}
-				//}
+				
 				// VAT
 				foreach ($this->tva as $tvakey => $tvaval)
 				{
@@ -1290,8 +1258,7 @@ class pdf_cyan extends ModelePDFPropales
 				}
 
 				//Local tax 1 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1300,7 +1267,6 @@ class pdf_cyan extends ModelePDFPropales
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1320,10 +1286,7 @@ class pdf_cyan extends ModelePDFPropales
 						}
 					}
 				}
-	      		//}
-				//Local tax 2 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+	      		/
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1333,7 +1296,6 @@ class pdf_cyan extends ModelePDFPropales
 					    // retrieve global local tax
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1354,7 +1316,7 @@ class pdf_cyan extends ModelePDFPropales
 						}
 					}
 				}
-				//}
+				
 
 				// Total TTC
 				$index++;
@@ -1370,11 +1332,6 @@ class pdf_cyan extends ModelePDFPropales
 
 		$pdf->SetTextColor(0, 0, 0);
 
-		/*
-		$resteapayer = $object->total_ttc - $deja_regle;
-		if (! empty($object->paye)) $resteapayer=0;
-		*/
-
 		if ($deja_regle > 0)
 		{
 			$index++;
@@ -1384,22 +1341,6 @@ class pdf_cyan extends ModelePDFPropales
 
 			$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 			$pdf->MultiCell($largcol2, $tab2_hl, price($deja_regle, 0, $outputlangs), 0, 'R', 0);
-
-			/*
-			if ($object->close_code == 'discount_vat')
-			{
-				$index++;
-				$pdf->SetFillColor(255,255,255);
-
-				$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-				$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("EscompteOfferedShort"), $useborder, 'L', 1);
-
-				$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
-				$pdf->MultiCell($largcol2, $tab2_hl, price($object->total_ttc - $deja_regle, 0, $outputlangs), $useborder, 'R', 1);
-
-				$resteapayer=0;
-			}
-			*/
 
 			$index++;
 			$pdf->SetTextColor(0, 0, 60);
@@ -1453,7 +1394,6 @@ class pdf_cyan extends ModelePDFPropales
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top-4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1740,8 +1680,6 @@ class pdf_cyan extends ModelePDFPropales
 
 		$posx = 120;
 		$largcol = ($this->page_largeur - $this->marge_droite - $posx);
-		$useborder = 0;
-		$index = 0;
 		// Total HT
 		$pdf->SetFillColor(255, 255, 255);
 		$pdf->SetXY($posx, $tab_top + 0);
@@ -1799,7 +1737,7 @@ class pdf_cyan extends ModelePDFPropales
 	     'align' => 'L', // text alignement :  R,C,L
 	     'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
 	     ),
-	     );
+	     
 	     */
 
 	    $rank = 0; // do not use negative rank
