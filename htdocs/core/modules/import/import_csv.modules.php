@@ -252,7 +252,7 @@ class ImportCsv extends ModeleImports
 		// End of file
 		if ($arrayres === false) return false;
 
-		//var_dump($this->handle);
+		
 		//var_dump($arrayres);exit;
 		$newarrayres = array();
 		if ($arrayres && is_array($arrayres))
@@ -331,19 +331,19 @@ class ImportCsv extends ModeleImports
 		$this->errors = array();
 		$this->warnings = array();
 
-		//dol_syslog("import_csv.modules maxfields=".$maxfields." importid=".$importid);
+		
 
-		//var_dump($array_match_file_to_database);
+		
 		//var_dump($arrayrecord);
 		$array_match_database_to_file = array_flip($array_match_file_to_database);
 		$sort_array_match_file_to_database = $array_match_file_to_database;
 		ksort($sort_array_match_file_to_database);
 
-		//var_dump($sort_array_match_file_to_database);
+		
 
 		if (count($arrayrecord) == 0 || (count($arrayrecord) == 1 && empty($arrayrecord[0]['val'])))
 		{
-			//print 'W';
+			
 			$this->warnings[$warning]['lib'] = $langs->trans('EmptyLine');
 			$this->warnings[$warning]['type'] = 'EMPTY';
 			$warning++;
@@ -378,7 +378,7 @@ class ImportCsv extends ModeleImports
 				}
 				else
 				{
-					//dol_syslog("Table ".$tablename." check for entity into cache is ".$tablewithentity_cache[$tablename]);
+					
 				}
 
 				// array of fields to column index
@@ -417,7 +417,7 @@ class ImportCsv extends ModeleImports
 						    // We convert field if required
 						    if (!empty($objimport->array_import_convertvalue[0][$val]))
 						    {
-                                //print 'Must convert '.$newval.' with rule '.join(',',$objimport->array_import_convertvalue[0][$val]).'. ';
+                                
                                 if ($objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromcodeid'
                                 	|| $objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromref'
                                 	|| $objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromcodeorlabel'
@@ -427,7 +427,7 @@ class ImportCsv extends ModeleImports
                                     $isidorref = 'id';
                                     if (!is_numeric($newval) && $newval != '' && !preg_match('/^id:/i', $newval)) $isidorref = 'ref';
                                     $newval = preg_replace('/^(id|ref):/i', '', $newval); // Remove id: or ref: that was used to force if field is id or ref
-                                    //print 'Val is now '.$newval.' and is type '.$isidorref."<br>\n";
+                                    
 
                                     if ($isidorref == 'ref')    // If value into input import file is a ref, we apply the function defined into descriptor
                                     {
@@ -451,8 +451,8 @@ class ImportCsv extends ModeleImports
                                             $param_array = array('', $newval);
                                             if ($class == 'AccountingAccount')
                                             {
-                                                //var_dump($arrayrecord[0]['val']);
-                                                /*include_once DOL_DOCUMENT_ROOT.'/accountancy/class/accountancysystem.class.php';
+                                                
+                                                /*
                                                  $tmpchartofaccount = new AccountancySystem($this->db);
                                                  $tmpchartofaccount->fetch($conf->global->CHARTOFACCOUNTS);
                                                  var_dump($tmpchartofaccount->ref.' - '.$arrayrecord[0]['val']);
@@ -473,7 +473,7 @@ class ImportCsv extends ModeleImports
                                                 call_user_func_array(array($classinstance, $method), $param_array);
                                             }
                                             $this->cacheconvert[$file.'_'.$class.'_'.$method.'_'][$newval]=$classinstance->id;
-                                            //print 'We have made a '.$class.'->'.$method.' to get id from code '.$newval.'. ';
+                                            
                                             if ($classinstance->id != '')	// id may be 0, it is a found value
                                             {
                                                 $newval=$classinstance->id;
@@ -555,7 +555,7 @@ class ImportCsv extends ModeleImports
                                 		call_user_func_array(array($classinstance, $method), array('', '', $newval, $units));
                                 		$scaleorid = (($objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromcodeunits') ? $classinstance->id : $classinstance->scale);
                                 		$this->cacheconvert[$file.'_'.$class.'_'.$method.'_'.$units][$newval] = $scaleorid;
-                                		//print 'We have made a '.$class.'->'.$method." to get a value from key '".$newval."' and we got '".$scaleorid."'.";exit;
+                                		
                                 		if ($classinstance->id > 0)	// we found record
                                 		{
                                 			$newval = $scaleorid ? $scaleorid : 0;
@@ -576,7 +576,7 @@ class ImportCsv extends ModeleImports
                                     {
                                         $this->thirpartyobject->get_codeclient(0, 0);
                                         $newval = $this->thirpartyobject->code_client;
-                                        //print 'code_client='.$newval;
+                                        
                                     }
                                     if (empty($newval)) $arrayrecord[($key - 1)]['type'] = -1; // If we get empty value, we will use "null"
                                 }
@@ -586,7 +586,7 @@ class ImportCsv extends ModeleImports
                                     {
                                         $newval = $this->thirpartyobject->get_codefournisseur(0, 1);
                                         $newval = $this->thirpartyobject->code_fournisseur;
-                                        //print 'code_fournisseur='.$newval;
+                                        
                                     }
                                     if (empty($newval)) $arrayrecord[($key - 1)]['type'] = -1; // If we get empty value, we will use "null"
                                 }
@@ -596,7 +596,7 @@ class ImportCsv extends ModeleImports
                                     {
                                         $this->thirpartyobject->get_codecompta('customer');
                                         $newval = $this->thirpartyobject->code_compta;
-                                        //print 'code_compta='.$newval;
+                                        
                                     }
                                     if (empty($newval)) $arrayrecord[($key - 1)]['type'] = -1; // If we get empty value, we will use "null"
                                 }
@@ -607,14 +607,14 @@ class ImportCsv extends ModeleImports
                                         $this->thirpartyobject->get_codecompta('supplier');
                                         $newval = $this->thirpartyobject->code_compta_fournisseur;
                                         if (empty($newval)) $arrayrecord[($key - 1)]['type'] = -1; // If we get empty value, we will use "null"
-                                        //print 'code_compta_fournisseur='.$newval;
+                                        
                                     }
                                     if (empty($newval)) $arrayrecord[($key - 1)]['type'] = -1; // If we get empty value, we will use "null"
                                 }
                                 elseif ($objimport->array_import_convertvalue[0][$val]['rule'] == 'getrefifauto')
                                 {
                                     $defaultref = '';
-                                    // TODO provide the $modTask (module of generation of ref) as parameter of import_insert function
+                                    
                                     $obj = empty($conf->global->PROJECT_TASK_ADDON) ? 'mod_task_simple' : $conf->global->PROJECT_TASK_ADDON;
                                     if (!empty($conf->global->PROJECT_TASK_ADDON) && is_readable(DOL_DOCUMENT_ROOT."/core/modules/project/task/".$conf->global->PROJECT_TASK_ADDON.".php"))
                                     {
@@ -651,7 +651,7 @@ class ImportCsv extends ModeleImports
                                     $newval = price2num($newval);
                                 }
 
-                                //print 'Val to use as insert is '.$newval.'<br>';
+                                
 						    }
 
 						    // Test regexp
@@ -707,7 +707,7 @@ class ImportCsv extends ModeleImports
 								}
 								// If test is just a static regex
 								elseif (!preg_match('/'.$objimport->array_import_regex[0][$val].'/i', $newval)) {
-								    //if ($key == 19) print "xxx".$newval."zzz".$objimport->array_import_regex[0][$val]."<br>";
+								    
 									$this->errors[$error]['lib'] = $langs->transnoentitiesnoconv('ErrorWrongValueForField', $key, $newval, $objimport->array_import_regex[0][$val]);
 									$this->errors[$error]['type'] = 'REGEX';
 									$errorforthistable++;
@@ -769,13 +769,13 @@ class ImportCsv extends ModeleImports
     				    }
     				}
 				}
-				//print 'listfields='.$listfields.'<br>listvalues='.$listvalues.'<br>';
+				
 
 				// If no error for this $alias/$tablename, we have a complete $listfields and $listvalues that are defined
 				// so we can try to make the insert or update now.
 				if (!$errorforthistable)
 				{
-					//print "$alias/$tablename/$listfields/$listvalues<br>";
+				
 					if (!empty($listfields))
 					{
 						$updatedone = false;
@@ -814,7 +814,7 @@ class ImportCsv extends ModeleImports
 								}
 								else
 								{
-									//print 'E';
+									
 									$this->errors[$error]['lib'] = $this->db->lasterror();
 									$this->errors[$error]['type'] = 'SQL';
 									$error++;
@@ -843,7 +843,7 @@ class ImportCsv extends ModeleImports
 								}
 								else
 								{
-									//print 'E';
+									
 									$this->errors[$error]['lib'] = $this->db->lasterror();
 									$this->errors[$error]['type'] = 'SQL';
 									$error++;
@@ -874,7 +874,7 @@ class ImportCsv extends ModeleImports
 								}
 								else
 								{
-									//print 'E';
+									
 									$this->errors[$error]['lib'] = $this->db->lasterror();
 									$this->errors[$error]['type'] = 'SQL';
 									$error++;
@@ -909,7 +909,7 @@ class ImportCsv extends ModeleImports
 								}
 								else
 								{
-									//print 'E';
+									
 									$this->errors[$error]['lib'] = $this->db->lasterror();
 									$this->errors[$error]['type'] = 'SQL';
 									$error++;
@@ -918,7 +918,7 @@ class ImportCsv extends ModeleImports
 						}
 					}
 					/*else
-					{
+					
 						dol_print_error('','ErrorFieldListEmptyFor '.$alias."/".$tablename);
 					}*/
 				}
@@ -943,4 +943,4 @@ class ImportCsv extends ModeleImports
 function cleansep($value)
 {
 	return str_replace(array(',', ';'), '/', $value);
-};
+}
