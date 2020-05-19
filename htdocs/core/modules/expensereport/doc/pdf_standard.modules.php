@@ -166,14 +166,14 @@ class pdf_standard extends ModeleExpenseReport
 		// Define position of columns
 		$this->posxpiece=$this->marge_gauche+1;
 		$this->posxcomment=$this->marge_gauche+10;
-		//$this->posxdate=88;
+		
 		//$this->posxtype=107;
 		//$this->posxprojet=120;
 		$this->posxtva=130;
 		$this->posxup=145;
 		$this->posxqty=168;
 		$this->postotalttc=178;
-		// if (empty($conf->projet->enabled)) {
+		
 		//     $this->posxtva-=20;
 		//     $this->posxup-=20;
 		//     $this->posxqty-=20;
@@ -397,7 +397,7 @@ class pdf_standard extends ModeleExpenseReport
 						$this->printLine($pdf, $object, $i, $curY, $default_font_size, $outputlangs, $hidedetails);
 						$pageposafter = $pdf->getPage();
 						$posyafter = $pdf->GetY();
-						//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+						
 						if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))) {
                             // There is no space left for total+free text
 							if ($i == ($nblines-1)) {
@@ -431,22 +431,22 @@ class pdf_standard extends ModeleExpenseReport
                     $pdf->setTopMargin($this->marge_haute);
                     $pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
 
-                    //$nblineFollowComment = 1;
+                    
                     // Search number of lines coming to know if there is enough room
 					// if ($i < ($nblines - 1))	// If it's not last line
-					// {
+			
 					//     //Fetch current description to know on which line the next one should be placed
-					// 	$follow_comment = $object->lines[$i]->comments;
+			
 					// 	$follow_type = $object->lines[$i]->type_fees_code;
 
 					// 	//on compte le nombre de ligne afin de verifier la place disponible (largeur de ligne 52 caracteres)
-					// 	$nbLineCommentNeed = dol_nboflines_bis($follow_comment,52,$outputlangs->charset_output);
+					
 					// 	$nbLineTypeNeed = dol_nboflines_bis($follow_type,4,$outputlangs->charset_output);
 
-                    //     $nblineFollowComment = max($nbLineCommentNeed, $nbLineTypeNeed);
+            
 					// }
 
-                    //$nexY+=$nblineFollowComment*($pdf->getFontSize()*1.3);    // Add space between lines
+            
                     $nexY += ($pdf->getFontSize()*1.3);    // Add space between lines
 
 					// Detect if some page were added automatically and output _tableau for past pages
@@ -511,7 +511,7 @@ class pdf_standard extends ModeleExpenseReport
 
 				if (empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT))
 				{
-				    // TODO Show vat amout per tax level
+				    
 					$posy += 5;
 					$pdf->SetXY(130, $posy);
 					$pdf->SetTextColor(0, 0, 60);
@@ -593,7 +593,7 @@ class pdf_standard extends ModeleExpenseReport
         $pdf->writeHTMLCell($this->posxcomment - $this->posxpiece - 0.8, 4, $this->posxpiece - 1, $curY, $linenumber + 1, 0, 1);
 
         // Date
-        //$pdf->SetXY($this->posxdate -1, $curY);
+        
         //$pdf->MultiCell($this->posxtype-$this->posxdate-0.8, 4, dol_print_date($object->lines[$linenumber]->date,"day",false,$outputlangs), 0, 'C');
 
         // Type
@@ -613,13 +613,13 @@ class pdf_standard extends ModeleExpenseReport
 		if ($expensereporttypecodetoshow == $expensereporttypecode) {
             $expensereporttypecodetoshow = preg_replace('/^(EX_|TF_)/', '', $expensereporttypecodetoshow);
         }
-        //$expensereporttypecodetoshow = dol_trunc($expensereporttypecodetoshow, 9);
+        
 
-        //$pdf->MultiCell($nextColumnPosX-$this->posxtype-0.8, 4, $expensereporttypecodetoshow, 0, 'C');
+        
 
         // Project
         //if (! empty($conf->projet->enabled))
-        //{
+        
         //    $pdf->SetFont('','', $default_font_size - 1);
         //    $pdf->SetXY($this->posxprojet, $curY);
         //    $pdf->MultiCell($this->posxtva-$this->posxprojet-0.8, 4, $object->lines[$linenumber]->projet_ref, 0, 'C');
@@ -667,7 +667,7 @@ class pdf_standard extends ModeleExpenseReport
 	 */
 	protected function _pagehead(&$pdf, $object, $showaddress, $outputlangs)
 	{
-		// global $conf, $langs, $hookmanager;
+		
 		global $user, $langs, $conf, $mysoc, $db, $hookmanager;
 
 		// Load traductions files required by page
@@ -677,7 +677,7 @@ class pdf_standard extends ModeleExpenseReport
 
 		/*
 		// ajout du fondu vert en bas de page à droite
-		$image_fondue = $conf->mycompany->dir_output.'/fondu_vert_.jpg';
+		
 		$pdf->Image($image_fondue,20,107,200,190);
 
 		pdf_pagehead($pdf,$outputlangs,$this->page_hauteur);
@@ -802,7 +802,7 @@ class pdf_standard extends ModeleExpenseReport
 				$pdf->SetFont('', '', $default_font_size - 1);
 				$pdf->MultiCell(80, 4, $expense_receiver, 0, 'L');
 			}
-
+$image_fondue = $conf->mycompany->dir_output.'/fondu_vert_.jpg';
 			// Show recipient
 			$posy=50;
 			$posx=100;
@@ -941,25 +941,25 @@ class pdf_standard extends ModeleExpenseReport
 		}
 
 		// Date
-		//$pdf->line($this->posxdate-1, $tab_top, $this->posxdate-1, $tab_top + $tab_height);
+		
 		//if (empty($hidetop))
-		//{
+		
 		//	$pdf->SetXY($this->posxdate-1, $tab_top+1);
 		//	$pdf->MultiCell($this->posxtype-$this->posxdate-1,2, $outputlangs->transnoentities("Date"),'','C');
 		//}
 
 		// Type
-		//$pdf->line($this->posxtype-1, $tab_top, $this->posxtype-1, $tab_top + $tab_height);
+		
 		//if (empty($hidetop))
-		//{
+		
 		//	$pdf->SetXY($this->posxtype-1, $tab_top+1);
 		//	$pdf->MultiCell($this->posxprojet-$this->posxtype - 1, 2, $outputlangs->transnoentities("Type"), '', 'C');
 		//}
 
         //if (!empty($conf->projet->enabled))
-        //{
+        
         //    // Project
-        //    $pdf->line($this->posxprojet - 1, $tab_top, $this->posxprojet - 1, $tab_top + $tab_height);
+        
     	//	if (empty($hidetop)) {
         //        $pdf->SetXY($this->posxprojet - 1, $tab_top + 1);
         //        $pdf->MultiCell($this->posxtva - $this->posxprojet - 1, 2, $outputlangs->transnoentities("Project"), '', 'C');
@@ -1043,7 +1043,7 @@ class pdf_standard extends ModeleExpenseReport
 		$y=0;
 
 		// Loop on each payment
-		// TODO create method on expensereport class to get payments
+		
 		// Payments already done (from payment on this expensereport)
 		$sql = "SELECT p.rowid, p.num_payment, p.datep as dp, p.amount, p.fk_bank,";
 		$sql.= "c.code as p_code, c.libelle as payment_type,";
