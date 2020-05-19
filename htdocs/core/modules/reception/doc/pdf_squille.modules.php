@@ -128,7 +128,7 @@ class pdf_squille extends ModelePdfReception
         $realpatharray = array();
         if (!empty($conf->global->MAIN_GENERATE_SHIPMENT_WITH_PICTURE))
         {
-            $objphoto = new Product($this->db);
+            
 
             for ($i = 0; $i < $nblines; $i++)
             {
@@ -204,7 +204,7 @@ class pdf_squille extends ModelePdfReception
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook = $hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Set nblines with the new facture lines content after hook
 				$nblines = count($object->lines);
@@ -225,7 +225,7 @@ class pdf_squille extends ModelePdfReception
                 // Set path to the background PDF File
                 if (empty($conf->global->MAIN_DISABLE_FPDI) && !empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                    
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -256,7 +256,7 @@ class pdf_squille extends ModelePdfReception
 				$tab_top = 90;
 				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD) ? 42 : 10);
 				$tab_height = 130;
-				$tab_height_newpage = 150;
+				
 
 				// Incoterm
 				$height_incoterms = 0;
@@ -284,13 +284,13 @@ class pdf_squille extends ModelePdfReception
 				if (!empty($object->note_public) || !empty($object->tracking_number))
 				{
 					$tab_top = 88 + $height_incoterms;
-					$tab_top_alt = $tab_top;
+					
 
 					$pdf->SetFont('', 'B', $default_font_size - 2);
 					$pdf->writeHTMLCell(60, 4, $this->posxdesc - 1, $tab_top - 1, $outputlangs->transnoentities("TrackingNumber")." : ".$object->tracking_number, 0, 1, false, true, 'L');
 
 					$tab_top_alt = $pdf->GetY();
-					//$tab_top_alt += 1;
+					
 
 					// Tracking number
 					if (!empty($object->tracking_number))
@@ -305,7 +305,7 @@ class pdf_squille extends ModelePdfReception
 								$label = '';
 								if ($object->tracking_url != $object->tracking_number) $label .= $outputlangs->trans("LinkToTrackYourPackage")."<br>";
 								$label .= $outputlangs->trans("ReceptionMethod").": ".$outputlangs->trans("ReceptionMethod".strtoupper($code));
-								//var_dump($object->tracking_url != $object->tracking_number);exit;
+								
 								if ($object->tracking_url != $object->tracking_number)
 								{
 									$label .= " : ";
@@ -341,8 +341,8 @@ class pdf_squille extends ModelePdfReception
 					$height_note = 0;
 				}
 
-				$iniY = $tab_top + 7;
-				$curY = $tab_top + 7;
+				
+				
 				$nexY = $tab_top + 7;
 				$fk_commandefourndet = 0;
 				$totalOrdered = 0;
@@ -362,8 +362,8 @@ class pdf_squille extends ModelePdfReception
 					$pageposbefore = $pdf->getPage();
 
 					$showpricebeforepagebreak = 1;
-					$posYAfterImage = 0;
-					$posYAfterDescription = 0;
+					
+					
 
 					// We start with Photo of product line
 					if (isset($imglinesize['width']) && isset($imglinesize['height']) && ($curY + $imglinesize['height']) > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// If photo too high, we moved completely on new page
@@ -400,15 +400,15 @@ class pdf_squille extends ModelePdfReception
 					if ($pageposafter > $pageposbefore)	// There is a pagebreak
 					{
 						$pdf->rollbackTransaction(true);
-						$pageposafter = $pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter); // The only function to edit the bottom margin of current page to set it.
 
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxpicture - $curX, 3, $curX, $curY, $hideref, $hidedesc);
 
 						$pageposafter = $pdf->getPage();
 						$posyafter = $pdf->GetY();
-						//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+						
 						if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// There is no space left for total+free text
 						{
 							if ($i == ($nblines - 1))	// No more lines, and no space left to show total, so we create a new page
@@ -468,7 +468,7 @@ class pdf_squille extends ModelePdfReception
 					}
 
 					$pdf->writeHTMLCell($this->posxqtyordered - $this->posxweightvol + 2, 3, $this->posxweightvol - 1, $curY, $weighttxt.(($weighttxt && $voltxt)?'<br>':'').$voltxt, 0, 0, false, true, 'C');
-					//$pdf->MultiCell(($this->posxqtyordered - $this->posxweightvol), 3, $weighttxt.(($weighttxt && $voltxt)?'<br>':'').$voltxt,'','C');
+					
 
 					if (empty($conf->global->RECEPTION_PDF_HIDE_ORDERED)) {
 					    $pdf->SetXY($this->posxqtyordered, $curY);
@@ -499,7 +499,7 @@ class pdf_squille extends ModelePdfReception
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80, 80, 80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY - 1, $this->page_largeur - $this->marge_droite, $nexY - 1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -552,7 +552,7 @@ class pdf_squille extends ModelePdfReception
 				}
 
 				// Affiche zone totaux
-				$posy = $this->_tableau_tot($pdf, $object, 0, $bottomlasttab, $outputlangs, $totalOrdered);
+				
 
 				// Pied de page
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -609,7 +609,7 @@ class pdf_squille extends ModelePdfReception
 		// phpcs:enable
 		global $conf, $mysoc;
 
-        $sign = 1;
+        
 
         $default_font_size = pdf_getPDFFontSize($outputlangs);
 
@@ -619,14 +619,14 @@ class pdf_squille extends ModelePdfReception
 
 		// Tableau total
 		$col1x = $this->posxweightvol - 50; $col2x = $this->posxweightvol;
-		/*if ($this->page_largeur < 210) // To work with US executive format
-		{
-			$col2x-=20;
-		}*/
+		
+		
+			
+		
 		if (empty($conf->global->RECEPTION_PDF_HIDE_ORDERED)) $largcol2 = ($this->posxqtyordered - $this->posxweightvol);
 		else $largcol2 = ($this->posxqtytoship - $this->posxweightvol);
 
-		$useborder = 0;
+		
 		$index = 0;
 
 		$totalWeighttoshow = '';
@@ -809,7 +809,7 @@ class pdf_squille extends ModelePdfReception
 		$w = 110;
 
 		$posy = $this->marge_haute;
-		$posx = $this->page_largeur - $this->marge_droite - $w;
+		
 
 		$pdf->SetXY($this->marge_gauche, $posy);
 
@@ -839,26 +839,26 @@ class pdf_squille extends ModelePdfReception
 		// Show barcode
 		if (!empty($conf->barcode->enabled))
 		{
-			$posx = 105;
+			
 		}
 		else
 		{
-			$posx = $this->marge_gauche + 3;
+			
 		}
-		//$pdf->Rect($this->marge_gauche, $this->marge_haute, $this->page_largeur-$this->marge_gauche-$this->marge_droite, 30);
+		
 		if (!empty($conf->barcode->enabled))
 		{
 			// TODO Build code bar with function writeBarCode of barcode module for reception ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+			
 		}
 
 		$pdf->SetDrawColor(128, 128, 128);
 		if (!empty($conf->barcode->enabled))
 		{
 			// TODO Build code bar with function writeBarCode of barcode module for reception ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+			
 		}
 
 
@@ -970,7 +970,7 @@ class pdf_squille extends ModelePdfReception
 			if (count($arrayidcontact) > 0)
 			{
 				$usecontact = true;
-				$result = $object->fetch_contact($arrayidcontact[0]);
+				
 			}
 
 			//Recipient name
