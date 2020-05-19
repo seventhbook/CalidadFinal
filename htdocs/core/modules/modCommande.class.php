@@ -97,12 +97,12 @@ class modCommande extends DolibarrModules
 		$this->const[$r][3] = "";
 		$this->const[$r][4] = 0;
 
-		/*$r++;
-		$this->const[$r][0] = "COMMANDE_DRAFT_WATERMARK";
-		$this->const[$r][1] = "chaine";
-		$this->const[$r][2] = "__(Draft)__";
-		$this->const[$r][3] = 'Watermark to show on draft orders';
-		$this->const[$r][4] = 0;*/
+		
+		
+		
+		
+		
+		
 
 		// Boxes
 		$this->boxes = array(
@@ -209,14 +209,14 @@ class modCommande extends DolibarrModules
 		    $this->export_fields_array[$r]['c.multicurrency_total_tva'] = 'MulticurrencyAmountVAT';
 		    $this->export_fields_array[$r]['c.multicurrency_total_ttc'] = 'MulticurrencyAmountTTC';
 		}
-		//$this->export_TypeFields_array[$r]=array(
-		//	's.rowid'=>"List:societe:nom",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','co.label'=>'List:c_country:label:label',
-		//	'co.code'=>'Text','s.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','c.ref'=>"Text",'c.ref_client'=>"Text",
-		//	'c.date_creation'=>"Date",'c.date_commande'=>"Date",'c.amount_ht'=>"Numeric",'c.remise_percent'=>"Numeric",'c.total_ht'=>"Numeric",
-		//	'c.total_ttc'=>"Numeric",'c.facture'=>"Boolean",'c.fk_statut'=>'Status','c.note_public'=>"Text",'c.date_livraison'=>'Date','cd.description'=>"Text",
-		//	'cd.product_type'=>'Boolean','cd.tva_tx'=>"Numeric",'cd.qty'=>"Numeric",'cd.total_ht'=>"Numeric",'cd.total_tva'=>"Numeric",'cd.total_ttc'=>"Numeric",
-		//	'p.rowid'=>'List:product:ref','p.ref'=>'Text','p.label'=>'Text'
-		//);
+		
+		
+		
+		
+		
+		
+		
+		
 		$this->export_TypeFields_array[$r]=array(
 			's.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','co.label'=>'List:c_country:label:label','co.code'=>'Text','s.phone'=>'Text',
 			's.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','c.ref'=>"Text",'c.ref_client'=>"Text",'c.date_creation'=>"Date",
