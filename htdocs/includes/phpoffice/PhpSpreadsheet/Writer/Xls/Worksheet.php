@@ -251,7 +251,7 @@ class Worksheet extends BIFFwriter
         $this->fontHashIndex = [];
 
         // calculate values for DIMENSIONS record
-        $minR = 1;
+        
         $minC = 'A';
 
         $maxR = $this->phpSheet->getHighestRow();
@@ -263,7 +263,7 @@ class Worksheet extends BIFFwriter
         $this->firstColumnIndex = Coordinate::columnIndexFromString($minC);
         $this->lastColumnIndex = Coordinate::columnIndexFromString($maxC);
 
-//        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
+//       
         if ($this->lastColumnIndex > 255) {
             $this->lastColumnIndex = 255;
         }
@@ -566,7 +566,7 @@ class Worksheet extends BIFFwriter
      */
     public function getData()
     {
-        $buffer = 4096;
+        
 
         // Return data stored in memory
         if (isset($this->_data)) {
@@ -834,7 +834,7 @@ class Worksheet extends BIFFwriter
 
         // Parse the formula using the parser in Parser.php
         try {
-            $error = $this->parser->parse($formula);
+            
             $formula = $this->parser->toReversePolish();
 
             $formlen = strlen($formula); // Length of the binary string
@@ -948,7 +948,7 @@ class Worksheet extends BIFFwriter
     public function writeUrlWeb($row1, $col1, $row2, $col2, $url)
     {
         $record = 0x01B8; // Record identifier
-        $length = 0x00000; // Bytes to follow
+        
 
         // Pack the undocumented parts of the hyperlink stream
         $unknown1 = pack('H*', 'D0C9EA79F9BACE118C8200AA004BA90B02000000');
@@ -993,7 +993,7 @@ class Worksheet extends BIFFwriter
     public function writeUrlInternal($row1, $col1, $row2, $col2, $url)
     {
         $record = 0x01B8; // Record identifier
-        $length = 0x00000; // Bytes to follow
+        
 
         // Strip URL type
         $url = preg_replace('/^internal:/', '', $url);
@@ -1048,11 +1048,11 @@ class Worksheet extends BIFFwriter
         // Network drives are different. We will handle them separately
         // MS/Novell network drives and shares start with \\
         if (preg_match('[^external:\\\\]', $url)) {
-            return; //($this->writeUrlExternal_net($row1, $col1, $row2, $col2, $url, $str, $format));
+            return; 
         }
 
         $record = 0x01B8; // Record identifier
-        $length = 0x00000; // Bytes to follow
+        
 
         // Strip URL type and change Unix dir separator to Dos style (if needed)
         //
@@ -1093,14 +1093,14 @@ class Worksheet extends BIFFwriter
 
         // Pack the lengths of the dir strings
         $dir_short_len = pack('V', strlen($dir_short));
-        $dir_long_len = pack('V', strlen($dir_long));
-        $stream_len = pack('V', 0); //strlen($dir_long) + 0x06);
+        
+        $stream_len = pack('V', 0); 
 
         // Pack the undocumented parts of the hyperlink stream
         $unknown1 = pack('H*', 'D0C9EA79F9BACE118C8200AA004BA90B02000000');
         $unknown2 = pack('H*', '0303000000000000C000000000000046');
         $unknown3 = pack('H*', 'FFFFADDE000000000000000000000000000000000000000');
-        $unknown4 = pack('v', 0x03);
+        
 
         // Pack the main data stream
         $data = pack('vvvv', $row1, $row2, $col1, $col2) .
@@ -1111,12 +1111,12 @@ class Worksheet extends BIFFwriter
                             $dir_short_len .
                             $dir_short .
                             $unknown3 .
-                            $stream_len; /*.
-                          $dir_long_len .
-                          $unknown4     .
-                          $dir_long     .
-                          $sheet_len    .
-                          $sheet        ;*/
+                            $stream_len; 
+                          
+                          
+                          
+                          
+                          
 
         // Pack the header data
         $length = strlen($data);
@@ -1206,7 +1206,7 @@ class Worksheet extends BIFFwriter
         $record = 0x023E; // Record identifier
         $length = 0x0012;
 
-        $grbit = 0x00B6; // Option flags
+        
         $rwTop = 0x0000; // Top row visible in window
         $colLeft = 0x0000; // Leftmost column visible in window
 
@@ -1682,7 +1682,7 @@ class Worksheet extends BIFFwriter
         $iPageStart = 0x01; // Starting page number
         $iFitWidth = (int) $this->phpSheet->getPageSetup()->getFitToWidth(); // Fit to number of pages wide
         $iFitHeight = (int) $this->phpSheet->getPageSetup()->getFitToHeight(); // Fit to number of pages high
-        $grbit = 0x00; // Option flags
+        
         $iRes = 0x0258; // Print resolution
         $iVRes = 0x0258; // Vertical print resolution
 
@@ -1734,14 +1734,14 @@ class Worksheet extends BIFFwriter
     {
         $record = 0x0014; // Record identifier
 
-        /* removing for now
-        // need to fix character count (multibyte!)
-        if (strlen($this->phpSheet->getHeaderFooter()->getOddHeader()) <= 255) {
-            $str      = $this->phpSheet->getHeaderFooter()->getOddHeader();       // header string
-        } else {
-            $str = '';
-        }
-        */
+        
+        
+        
+            
+        
+            
+        
+        
 
         $recordData = StringHelper::UTF8toBIFF8UnicodeLong($this->phpSheet->getHeaderFooter()->getOddHeader());
         $length = strlen($recordData);
@@ -1758,14 +1758,14 @@ class Worksheet extends BIFFwriter
     {
         $record = 0x0015; // Record identifier
 
-        /* removing for now
-        // need to fix character count (multibyte!)
-        if (strlen($this->phpSheet->getHeaderFooter()->getOddFooter()) <= 255) {
-            $str = $this->phpSheet->getHeaderFooter()->getOddFooter();
-        } else {
-            $str = '';
-        }
-        */
+        
+        
+        
+            
+        
+            
+        
+        
 
         $recordData = StringHelper::UTF8toBIFF8UnicodeLong($this->phpSheet->getHeaderFooter()->getOddFooter());
         $length = strlen($recordData);
@@ -2908,7 +2908,7 @@ class Worksheet extends BIFFwriter
 
         $rt = 0x088B; // 2
         $grbitFrt = 0x0000; // 2
-        $reserved = 0x0000000000000000; // 8
+        
         $wScalvePLV = $this->phpSheet->getSheetView()->getZoomScale(); // 2
 
         // The options flags that comprise $grbit
