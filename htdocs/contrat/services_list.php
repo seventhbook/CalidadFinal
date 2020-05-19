@@ -216,7 +216,7 @@ $sql.= " cd.total_ht,";
 $sql.= " cd.total_tva,";
 $sql.= " cd.tva_tx,";
 $sql.= " cd.subprice,";
-//$sql.= " cd.date_c as date_creation,";
+
 $sql.= " cd.tms as date_update";
 // Add fields from extrafields
 if (! empty($extrafields->attributes[$object->table_element]['label'])) {
@@ -267,7 +267,7 @@ if (! empty($filter_opcloture) && $filter_opcloture != -1 && $filter_datecloture
 include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 $sql .= $db->order($sortfield, $sortorder);
 
-//print $sql;
+
 
 $nbtotalofrecords = '';
 if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
@@ -283,7 +283,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 
 $sql .= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 dol_syslog("contrat/services_list.php", LOG_DEBUG);
 $resql = $db->query($sql);
 if (!$resql)
@@ -294,14 +294,14 @@ if (!$resql)
 
 $num = $db->num_rows($resql);
 
-/*
-if ($num == 1 && ! empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $search_all)
-{
-    $obj = $db->fetch_object($resql);
-    $id = $obj->id;
-    header("Location: ".DOL_URL_ROOT.'/projet/tasks/task.php?id='.$id.'&withprojet=1');
-    exit;
-}*/
+
+
+
+    
+    
+    
+    
+
 
 llxHeader(null, $langs->trans("Services"));
 
@@ -330,8 +330,8 @@ $arrayofmassactions = array(
 	//'presend'=>$langs->trans("SendByMail"),
 	//'builddoc'=>$langs->trans("PDFMerge"),
 );
-//if ($user->rights->contrat->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
-//if (in_array($massaction, array('presend','predelete'))) $arrayofmassactions=array();
+
+
 $massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 
 print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
