@@ -1366,7 +1366,7 @@ class Engineering
      */
     public static function DECTOOCT($x, $places = null)
     {
-        $xorig = $x;
+        
         $x = Functions::flattenSingleValue($x);
         $places = Functions::flattenSingleValue($places);
 
