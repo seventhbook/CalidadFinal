@@ -373,7 +373,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	$i = 0;
 	foreach ($dirthemes as $dir)
 	{
-		//print $dirroot.$dir;exit;
+		
 		$dirtheme = dol_buildpath($dir, 0); // This include loop on $conf->file->dol_document_root
 		$urltheme = dol_buildpath($dir, 1);
 
@@ -457,7 +457,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '</td>';
 		print '</tr>';
 		/*
-		print '<tr class="oddeven"><td>'.$langs->trans("EnableShowLogo").'</td><td>' . yn($conf->global->MAIN_SHOW_LOGO) . '</td>';
+		
 		print "</tr>";*/
 	}
 
@@ -466,7 +466,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/*
-         print '<tr class="oddeven">';
+         
          print '<td>'.$langs->trans("TopMenuDisableImages").'</td>';
          print '<td>'.($conf->global->THEME_TOPMENU_DISABLE_IMAGE?$conf->global->THEME_TOPMENU_DISABLE_IMAGE:$langs->trans("Default")).'</td>';
          print '<td class="left" class="nowrap" width="20%"><input name="check_THEME_TOPMENU_DISABLE_IMAGE" id="check_THEME_TOPMENU_DISABLE_IMAGE" type="checkbox" '.(! empty($object->conf->THEME_ELDY_TEXTLINK)?" checked":"");
@@ -511,7 +511,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/*
-	    print '<tr class="oddeven">';
+	    
 	    print '<td>'.$langs->trans("TopMenuBackgroundColor").'</td>';
         print '<td>'.($conf->global->THEME_ELDY_TOPMENU_BACK1?$conf->global->THEME_ELDY_TOPMENU_BACK1:$langs->trans("Default")).'</td>';
         print '<td class="nowrap left" width="20%"><input name="check_THEME_ELDY_TOPMENU_BACK1" id="check_THEME_ELDY_TOPMENU_BACK1" type="checkbox" '.(! empty($object->conf->THEME_ELDY_TOPMENU_BACK1)?" checked":"");
@@ -536,7 +536,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '<tr class="oddeven">';
 		print '<td>'.$langs->trans("BackgroundColor").'</td>';
 		print '<td colspan="'.($colspan - 1).'">';
-		//var_dump($conf->global->THEME_ELDY_BACKBODY);
+		
 		if ($edit)
 		{
 			print $formother->selectColor(colorArrayToHex(colorStringToArray($conf->global->THEME_ELDY_BACKBODY, array()), ''), 'THEME_ELDY_BACKBODY', 'formcolor', 1).' ';
@@ -558,7 +558,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/*
-	    print '<tr class="oddeven">';
+	    
 	    print '<td>'.$langs->trans("TopMenuBackgroundColor").'</td>';
         print '<td>'.($conf->global->THEME_ELDY_TOPMENU_BACK1?$conf->global->THEME_ELDY_TOPMENU_BACK1:$langs->trans("Default")).'</td>';
         print '<td class="nowrap left" width="20%"><input name="check_THEME_ELDY_TOPMENU_BACK1" id="check_THEME_ELDY_TOPMENU_BACK1" type="checkbox" '.(! empty($object->conf->THEME_ELDY_TOPMENU_BACK1)?" checked":"");
@@ -606,7 +606,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/*
-		 print '<tr class="oddeven">';
+		 
 		 print '<td>'.$langs->trans("TopMenuBackgroundColor").'</td>';
 		 print '<td>'.($conf->global->THEME_ELDY_TOPMENU_BACK1?$conf->global->THEME_ELDY_VERMENU_BACK1:$langs->trans("Default")).'</td>';
 		 print '<td class="nowrap left" width="20%"><input name="check_THEME_ELDY_VERMENU_BACK1" id="check_THEME_ELDY_VERMENU_BACK1" type="checkbox" '.(! empty($object->conf->THEME_ELDY_TOPMENU_BACK1)?" checked":"");
@@ -791,7 +791,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/*
-	     print '<tr class="oddeven">';
+	     
 	     print '<td>'.$langs->trans("TopMenuBackgroundColor").'</td>';
 	     print '<td>'.($conf->global->THEME_ELDY_TOPMENU_BACK1?$conf->global->THEME_ELDY_TEXTLINK:$langs->trans("Default")).'</td>';
 	     print '<td class="nowrap left" width="20%"><input name="check_THEME_ELDY_TEXTLINK" id="check_THEME_ELDY_TEXTLINK" type="checkbox" '.(! empty($object->conf->THEME_ELDY_TEXTLINK)?" checked":"");
@@ -828,7 +828,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 			if ($color) print '<input type="text" class="colorthumb" disabled="disabled" style="padding: 1px; margin-top: 0; margin-bottom: 0; background-color: #'.$color.'" value="'.$color.'">';
 			else
 			{
-				//print '<input type="text" class="colorthumb" disabled="disabled" style="padding: 1px; margin-top: 0; margin-bottom: 0; background-color: #'.$defaultcolor.'" value="'.$langs->trans("Default").'">';
+				
 				//print '<span style="color: #000078">'.$langs->trans("Default").'</span>';
 				print $langs->trans("Default");
 			}
@@ -844,7 +844,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/* Must first change option to choose color of highlight instead of yes or no.
-	     print '<tr class="oddeven">';
+	     
 	     print '<td>'.$langs->trans("HighlightLinesOnMouseHover").'</td>';
 	     print '<td><input name="check_THEME_ELDY_USE_HOVER" disabled="disabled" type="checkbox" '.($conf->global->THEME_ELDY_USE_HOVER?" checked":"").'></td>';
 	     print '<td class="nowrap left" width="20%"><input name="check_MAIN_THEME"'.($edit?'':' disabled').' type="checkbox" '.($selected_theme?" checked":"").'> '.$langs->trans("UsePersonalValue").'</td>';
@@ -860,7 +860,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '<tr class="oddeven">';
 		print '<td>'.$langs->trans("HighlightLinesColor").'</td>';
 		print '<td colspan="'.($colspan-1).'">';
-		//print '<input name="check_THEME_ELDY_USE_HOVER"'.($edit?'':' disabled').' type="checkbox" '.($hoverdisabled?"":" checked").'>';
+		
 		//print ' &nbsp; ('.$langs->trans("NotSupportedByAllThemes").', '.$langs->trans("PressF5AfterChangingThis").')';
 		if ($edit)
 		{
@@ -889,7 +889,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	if ($foruserprofile)
 	{
 		/* Must first change option to choose color of highlight instead of yes or no.
-	     print '<tr class="oddeven">';
+	     
 	     print '<td>'.$langs->trans("HighlightLinesOnMouseHover").'</td>';
 	     print '<td><input name="check_THEME_ELDY_USE_HOVER" disabled="disabled" type="checkbox" '.($conf->global->THEME_ELDY_USE_HOVER?" checked":"").'></td>';
 	     print '<td class="nowrap left" width="20%"><input name="check_MAIN_THEME"'.($edit?'':' disabled').' type="checkbox" '.($selected_theme?" checked":"").'> '.$langs->trans("UsePersonalValue").'</td>';
@@ -906,7 +906,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '<tr class="oddeven">';
 		print '<td>'.$langs->trans("HighlightLinesChecked").'</td>';
 		print '<td colspan="'.($colspan - 1).'">';
-		//print '<input name="check_THEME_ELDY_USE_HOVER"'.($edit?'':' disabled').' type="checkbox" '.($hoverdisabled?"":" checked").'>';
+		
 		//print ' &nbsp; ('.$langs->trans("NotSupportedByAllThemes").', '.$langs->trans("PressF5AfterChangingThis").')';
 		if ($edit)
 		{
@@ -935,7 +935,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	// Use MAIN_OPTIMIZEFORTEXTBROWSER
 	if ($foruserprofile)
 	{
-	    //$default=yn($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER);
+	    
 	    $default = $langs->trans('No');
 	    print '<tr class="oddeven">';
 	    print '<td>'.$langs->trans("MAIN_OPTIMIZEFORTEXTBROWSER").'</td>';
@@ -963,7 +963,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	}
 	else
 	{
-	    /*var_dump($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER);
+	    
 	    $default=$langs->trans('No');
 	    print '<tr class="oddeven">';
 	    print '<td>'.$langs->trans("MAIN_OPTIMIZEFORTEXTBROWSER").'</td>';
@@ -988,7 +988,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	// Use MAIN_OPTIMIZEFORTEXTBROWSER
 	if ($foruserprofile)
 	{
-		//$default=yn($conf->global->MAIN_OPTIMIZEFORCOLORBLIND);
+		
 		$default = $langs->trans('No');
 		print '<tr class="oddeven">';
 		print '<td>'.$langs->trans("MAIN_OPTIMIZEFORCOLORBLIND").'</td>';
