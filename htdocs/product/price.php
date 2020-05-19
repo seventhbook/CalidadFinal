@@ -161,7 +161,7 @@ if (empty($reshook))
 
 	    if ($error)
 	    {
-	        //$localtaxarray=array('0'=>$localtax1_type,'1'=>$localtax1,'2'=>$localtax2_type,'3'=>$localtax2);
+	        
 	        $localtaxarray = array(); // We do not store localtaxes into product, we will use instead the "vat code" to retreive them.
 	        $object->updatePrice(0, $object->price_base_type, $user, $tva_tx, '', 0, $npr, 0, 0, $localtaxarray, $vatratecode);
 	    }
@@ -764,7 +764,7 @@ if (!empty($conf->global->PRODUIT_MULTIPRICES) || !empty($conf->global->PRODUIT_
 			if (price2num($object->multiprices_localtax2_type[$soc->price_level])) $positiverates .= ($positiverates ? '/' : '').price2num($object->multiprices_localtax2_tx[$soc->price_level]);
 			if (empty($positiverates)) $positiverates = '0';
 			echo vatrate($positiverates.($object->default_vat_code ? ' ('.$object->default_vat_code.')' : ''), '%', $object->tva_npr);
-			//print vatrate($object->multiprices_tva_tx[$soc->price_level], true);
+			
 			print '</td></tr>';
 		}
 		else
@@ -778,12 +778,7 @@ if (!empty($conf->global->PRODUIT_MULTIPRICES) || !empty($conf->global->PRODUIT_
         	if (price2num($object->localtax2_type)) $positiverates .= ($positiverates ? '/' : '').price2num($object->localtax2_tx);
         	if (empty($positiverates)) $positiverates = '0';
         	echo vatrate($positiverates.($object->default_vat_code ? ' ('.$object->default_vat_code.')' : ''), '%', $object->tva_npr);
-			/*
-			if ($object->default_vat_code)
-	        {
-	            print vatrate($object->tva_tx, true) . ' ('.$object->default_vat_code.')';
-	        }
-        	else print vatrate($object->tva_tx . ($object->tva_npr ? '*' : ''), true);*/
+		
         	print '</td></tr>';
 		}
 	}
@@ -807,12 +802,7 @@ if (!empty($conf->global->PRODUIT_MULTIPRICES) || !empty($conf->global->PRODUIT_
 	        if (price2num($object->localtax2_type)) $positiverates .= ($positiverates ? '/' : '').price2num($object->localtax2_tx);
 	        if (empty($positiverates)) $positiverates = '0';
 	        echo vatrate($positiverates.($object->default_vat_code ? ' ('.$object->default_vat_code.')' : ''), '%', $object->tva_npr);
-	        /*
-	        if ($object->default_vat_code)
-	        {
-	            print vatrate($object->tva_tx, true) . ' ('.$object->default_vat_code.')';
-	        }
-	        else print vatrate($object->tva_tx . ($object->tva_npr ? '*' : ''), true);*/
+	        
 	        print '</td></tr>';
 		}
 	    print '</table>';
@@ -965,12 +955,7 @@ else
 	if (price2num($object->localtax2_type)) $positiverates .= ($positiverates ? '/' : '').price2num($object->localtax2_tx);
 	if (empty($positiverates)) $positiverates = '0';
 	echo vatrate($positiverates.($object->default_vat_code ? ' ('.$object->default_vat_code.')' : ''), '%', $object->tva_npr);
-	/*
-	if ($object->default_vat_code)
-	{
-        print vatrate($object->tva_tx, true) . ' ('.$object->default_vat_code.')';
-	}
-	else print vatrate($object->tva_tx, true, $object->tva_npr, true);*/
+	
 	print '</td></tr>';
 
 	// Price
@@ -1008,7 +993,7 @@ else
 		{
 			print '<table width="50%" class="border" summary="List of quantities">';
 			print '<tr class="liste_titre">';
-			//print '<td>' . $langs->trans("PriceByQuantityRange") . '</td>';
+			
 			print '<td>'.$langs->trans("Quantity").'</td>';
 			print '<td class="right">'.$langs->trans("Price").'</td>';
 			print '<td class="right"></td>';
@@ -1027,7 +1012,7 @@ else
 				print '<td><input size="5" type="text" value="1" name="quantity"></td>';
 				print '<td class="right"><input class="width50 right" type="text" value="0" name="price"></td>';
 				print '<td>';
-				//print $object->price_base_type;
+				
 				print '</td>';
 				print '<td class="right">&nbsp;</td>';
 				print '<td class="right"><input type="text" class="width50 right" value="0" name="remise_percent">&nbsp;%</td>';
@@ -1048,7 +1033,7 @@ else
 					print '<td><input size="5" type="text" value="'.$prices['quantity'].'" name="quantity"></td>';
 					print '<td class="right"><input class="width50 right" type="text" value="'.price2num($prices['price'], 'MU').'" name="price"></td>';
 					print '<td class="right">';
-					//print $object->price_base_type;
+					
 					print $prices['price_base_type'];
 					print '</td>';
 					print '<td class="right">&nbsp;</td>';
@@ -1061,7 +1046,7 @@ else
 					print '<td>'.$prices['quantity'].'</td>';
 					print '<td class="right">'.price($prices['price']).'</td>';
 					print '<td class="right">';
-					//print $object->price_base_type;
+					
 					print $prices['price_base_type'];
 					print '</td>';
 					print '<td class="right">'.price($prices['unitprice']).'</td>';
@@ -1321,7 +1306,7 @@ if ($action == 'edit_price' && $object->getRights()->creer)
 		print '<input type="hidden" name="action" value="update_price">';
 		print '<input type="hidden" name="id" value="'.$object->id.'">';
 
-		//dol_fiche_head('', '', '', -1);
+		
 
 		if ((!empty($conf->global->PRODUIT_MULTIPRICES) || !empty($conf->global->PRODUIT_CUSTOMER_PRICES_BY_QTY_MULTIPRICES)) && !empty($conf->global->PRODUIT_MULTIPRICES_ALLOW_AUTOCALC_PRICELEVEL)) {
 			print $langs->trans('UseMultipriceRules').' <input type="checkbox" id="usePriceRules" name="usePriceRules" '.($object->price_autogen ? 'checked' : '').'><br><br>';
@@ -1401,7 +1386,7 @@ if ($action == 'edit_price' && $object->getRights()->creer)
 
 		print '</table>';
 
-		//dol_fiche_end();
+		
 
 		print '<div style="text-align: center">';
 		print '<input type="submit" class="button" value="'.$langs->trans("Save").'">';
@@ -1426,7 +1411,7 @@ if ((empty($conf->global->PRODUIT_CUSTOMER_PRICES) || $action == 'showlog_defaul
     $sql .= " AND p.fk_user_author = u.rowid";
     if (!empty($socid) && !empty($conf->global->PRODUIT_MULTIPRICES)) $sql .= " AND p.price_level = ".$soc->price_level;
     $sql .= " ORDER BY p.date_price DESC, p.rowid DESC, p.price_level ASC";
-    // $sql .= $db->plimit();
+    
 
     $result = $db->query($sql);
     if ($result)
@@ -1441,7 +1426,7 @@ if ((empty($conf->global->PRODUIT_CUSTOMER_PRICES) || $action == 'showlog_defaul
 
     		// Il doit au moins y avoir la ligne de prix initial.
     		// On l'ajoute donc pour remettre a niveau (pb vieilles versions)
-    		//$object->updatePrice($object->price, $object->price_base_type, $user, $object->tva_tx, $object->price_min);
+    		
             if (!empty($conf->global->PRODUIT_MULTIPRICES)) {
             	$object->updatePrice($object->multiprices[1], $object->multiprices_base_type[1], $user, (empty($object->multiprices_tva_tx[1]) ? 0 : $object->multiprices_tva_tx[1]), $object->multiprices_min[1], 1);
             } else {
@@ -1460,8 +1445,7 @@ if ((empty($conf->global->PRODUIT_CUSTOMER_PRICES) || $action == 'showlog_defaul
 
     		if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES)) print_barre_liste($langs->trans("DefaultPrice"), 0, $_SERVER["PHP_SELF"], '', '', '', $backbutton, 0, $num, 'title_accountancy.png');
     		else print_barre_liste($langs->trans("PriceByCustomerLog"), 0, $_SERVER["PHP_SELF"], '', '', '', '', 0, $num, 'title_accountancy.png');
-    	    //if (! empty($conf->global->PRODUIT_CUSTOMER_PRICES)) print_barre_liste($langs->trans("DefaultPrice"),'','','','','',$backbutton, 0, 0, 'title_accountancy.png');
-    		//else print_barre_liste($langs->trans("PriceByCustomerLog"),'','','','','','', 0, 0, 'title_accountancy.png');
+    	    
 
     		print '<div class="div-table-responsive">';
     		print '<table class="noborder centpercent">';
@@ -1530,12 +1514,7 @@ if ((empty($conf->global->PRODUIT_CUSTOMER_PRICES) || $action == 'showlog_defaul
 	    			    if (price2num($objp->localtax2_type)) $positiverates .= ($positiverates ? '/' : '').price2num($objp->localtax2_tx);
 	    			    if (empty($positiverates)) $positiverates = '0';
 	    			    echo vatrate($positiverates.($objp->default_vat_code ? ' ('.$objp->default_vat_code.')' : ''), '%', $objp->tva_npr);
-						/*
-	    			    if ($objp->default_vat_code)
-	    			    {
-	    			        print vatrate($objp->tva_tx, true) . ' ('.$objp->default_vat_code.')';
-	    			    }
-	    			    else print vatrate($objp->tva_tx, true, $objp->recuperableonly);*/
+						
     			    }
 
     			    print "</td>";
@@ -1873,7 +1852,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 			print '<td class="right">'.$langs->trans("HT").'</td>';
 			if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1")
 			{
-				//print '<td class="right">' . $langs->trans("INCVATONLY") . '</td>';
+				
 				print '<td class="right">'.$langs->trans("INCT").'</td>';
 			}
 			else
@@ -1936,7 +1915,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 
 				if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1")
 				{
-					//print '<td class="right">' . price($line->price_ttc) . "</td>";
+					
 					print '<td class="right">'.price($resultarray[2]).'</td>';
 				}
 				else
@@ -1952,7 +1931,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 				$userstatic->fetch($line->fk_user);
 				print '<td class="right">';
 				print $userstatic->getNomUrl(1, '', 0, 0, 24, 0, 'login');
-				//print $userstatic->getLoginUrl(1);
+				
 				print '</td>';
 				print '</tr>';
 			}
@@ -1989,7 +1968,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 		if (count($prodcustprice->lines) > 0 || $search_soc)
 		{
 		    $colspan = 8;
-		    //if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1") $colspan++;
+		    
 
     		print '<tr class="liste_titre">';
     		print '<td class="liste_titre"><input type="text" class="flat" name="search_soc" value="'.$search_soc.'" size="20"></td>';
@@ -2010,7 +1989,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 		print '<td class="right">'.$langs->trans("HT").'</td>';
 		if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1")
 		{
-			//print '<td class="right">' . $langs->trans("INCVATONLY") . '</td>';
+			
 			print '<td class="right">'.$langs->trans("INCT").'</td>';
 		}
 		else
@@ -2059,15 +2038,12 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 		if (empty($positiverates)) $positiverates = '0';
 		echo vatrate($positiverates.($object->default_vat_code ? ' ('.$object->default_vat_code.')' : ''), '%', $object->tva_npr);
 
-		//print vatrate($object->tva_tx, true, $object->tva_npr);
-		//print $object->default_vat_code?' ('.$object->default_vat_code.')':'';
 		print "</td>";
 
 		print '<td class="right">'.price($object->price)."</td>";
 
 		if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1")
 		{
-			//print '<td class="right">' . price($object->price_ttc) . "</td>";
 			print '<td class="right">'.price($resultarray[2]).'</td>';
 		}
 		else
@@ -2146,7 +2122,6 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 
 				if ($mysoc->localtax1_assuj == "1" || $mysoc->localtax2_assuj == "1")
 				{
-					//print '<td class="right">' . price($line->price_ttc) . "</td>";
 					print '<td class="right">'.price($resultarray[2]).'</td>';
 				}
 				else
@@ -2186,14 +2161,6 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 				print "</tr>\n";
 			}
 		}
-		/*else
-		{
-			$colspan=9;
-			if ($user->rights->produit->supprimer || $user->rights->service->supprimer) $colspan+=1;
-			print "<tr ".$bc[false].">";
-			print '<td colspan="'.$colspan.'">'.$langs->trans('None').'</td>';
-			print "</tr>";
-		}*/
 
 		print "</table>";
 
