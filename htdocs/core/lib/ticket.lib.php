@@ -420,7 +420,7 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
         if (is_array($filters) && $filters['search_agenda_label']) $sql .= natural_search('a.label', $filters['search_agenda_label']);
     }
 
-    // Add also event from emailings. TODO This should be replaced by an automatic event ? May be it's too much for very large emailing.
+    
     if (!empty($conf->mailing->enabled) && !empty($objcon->email)
         && (empty($actioncode) || $actioncode == 'AC_OTH_AUTO' || $actioncode == 'AC_EMAILING'))
     {
@@ -448,7 +448,7 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
         $sql = $sql2;
     }
 
-    //TODO Add limit in nb of results
+    
     $sql .= $db->order($sortfield_new, $sortorder);
     dol_syslog("company.lib::show_actions_done", LOG_DEBUG);
     $resql = $db->query($sql);
@@ -470,7 +470,7 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
                     setEventMessage("company.lib::show_actions_done Error fetch ressource", 'errors');
                 }
 
-                //if ($donetodo == 'todo') $sql.= " AND ((a.percent >= 0 AND a.percent < 100) OR (a.percent = -1 AND a.datep > '".$db->idate($now)."'))";
+                
                 //elseif ($donetodo == 'done') $sql.= " AND (a.percent = 100 OR (a.percent = -1 AND a.datep <= '".$db->idate($now)."'))";
                 $tododone = '';
                 if (($obj->percent >= 0 and $obj->percent < 100) || ($obj->percent == -1 && $obj->datep > $now)) $tododone = 'todo';
@@ -568,9 +568,9 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
 
 		$out .= '<tr class="liste_titre">';
 
-		//$out.='<td class="liste_titre">';
+		
 		$out .= getTitleFieldOfList('Date', 0, $_SERVER["PHP_SELF"], 'a.datep', '', $param, '', $sortfield, $sortorder, '')."\n";
-		//$out.='</td>';
+		
 
 		$out .= '<th class="liste_titre"><strong>'.$langs->trans("Search").' : </strong></th>';
 		if ($donetodo)
@@ -608,13 +608,13 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
             $tmp .= ($donetodo != 'done' ? $langs->trans("ActionsToDoShort") : '');
             $tmp .= ($donetodo != 'done' && $donetodo != 'todo' ? ' / ' : '');
             $tmp .= ($donetodo != 'todo' ? $langs->trans("ActionsDoneShort") : '');
-            //$out.=$langs->trans("ActionsToDoShort").' / '.$langs->trans("ActionsDoneShort");
+            
             if (get_class($filterobj) == 'Societe') $tmp .= '</a>';
             $out .= getTitleFieldOfList($tmp);
         }
 
 
-        //require_once DOL_DOCUMENT_ROOT.'/comm/action/class/cactioncomm.class.php';
+        
         //$caction=new CActionComm($db);
         //$arraylist=$caction->liste_array(1, 'code', '', (empty($conf->global->AGENDA_USE_EVENT_TYPE)?1:0), '', 1);
 
@@ -713,7 +713,7 @@ function show_ticket_messaging($conf, $langs, $db, $filterobj, $objcon = '', $no
 			}
 
             //if ($user->rights->agenda->allactions->read || $actionstatic->authorid == $user->id)
-            //{
+            
             //	$out.='<a href="'.$url.'" class="timeline-btn" title="'.$langs->trans('Show').'" ><i class="fa fa-calendar" ></i>'.$langs->trans('Show').'</a>';
             //}
 
