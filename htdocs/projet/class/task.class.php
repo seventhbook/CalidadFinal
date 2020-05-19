@@ -488,7 +488,7 @@ class Task extends CommonObject
 			if ($res < 0)
 			{
 				$this->error = 'ErrorFailToDeleteLinkedContact';
-				//$error++;
+				
 				$this->db->rollback();
 				return 0;
 			}
@@ -749,7 +749,7 @@ class Task extends CommonObject
 
 		$tasks = array();
 
-		//print $usert.'-'.$userp.'-'.$projectid.'-'.$socid.'-'.$mode.'<br>';
+		
 
 		// List of tasks (does not care about permissions. Filtering will be done later)
 		$sql = "SELECT ";
@@ -871,7 +871,7 @@ class Task extends CommonObject
 
 		$sql .= " ORDER BY p.ref, t.rang, t.dateo";
 
-		//print $sql;exit;
+		
 		dol_syslog(get_class($this)."::getTasksArray", LOG_DEBUG);
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -1025,7 +1025,7 @@ class Task extends CommonObject
 			if ($userp) $sql .= " ERROR SHOULD NOT HAPPENS";
 			if ($usert) $sql .= " AND pt.rowid = ".$taskid;
 		}
-		//print $sql;
+		
 
 		dol_syslog(get_class($this)."::getUserRolesForProjectsOrTasks execute request", LOG_DEBUG);
 		$resql = $this->db->query($sql);
@@ -1061,7 +1061,7 @@ class Task extends CommonObject
 	{
 		$contactAlreadySelected = array();
 		$tab = $this->liste_contact(-1, $source);
-		//var_dump($tab);
+		
 		$num = count($tab);
 		$i = 0;
 		while ($i < $num)
@@ -1276,7 +1276,7 @@ class Task extends CommonObject
 			$datefieldname = "task_datehour";
 			$sql .= " AND (".$datefieldname." <= '".$this->db->idate($datee)."' OR ".$datefieldname." IS NULL)";
 		}
-		//print $sql;
+		
 
 		dol_syslog(get_class($this)."::getSumOfAmount", LOG_DEBUG);
 		$resql = $this->db->query($sql);
@@ -1507,7 +1507,7 @@ class Task extends CommonObject
 
 		if ($ret == 1 && ($this->timespent_old_duration != $this->timespent_duration))
 		{
-			$newDuration = $this->timespent_duration - $this->timespent_old_duration;
+			
 
 			$sql = "UPDATE ".MAIN_DB_PREFIX."projet_task";
 			$sql .= " SET duration_effective = (SELECT SUM(task_duration) FROM ".MAIN_DB_PREFIX."projet_task_time as ptt where ptt.fk_task = ".$this->db->escape($this->id).")";
@@ -1573,7 +1573,7 @@ class Task extends CommonObject
 			else
 			{
 				$this->error = $this->db->lasterror();
-				$result = -2;
+				
 			}
 		}
 
@@ -1630,7 +1630,7 @@ class Task extends CommonObject
 		// Load source object
 		$clone_task->fetch($fromid);
 		$clone_task->fetch_optionals();
-		//var_dump($clone_task->array_options);exit;
+		
 
 		$origin_task->fetch($fromid);
 
@@ -1903,26 +1903,26 @@ class Task extends CommonObject
 		}
 		elseif ($mode == 5)
 		{
-			/*if ($status==0) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut0');
-			elseif ($status==1) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut1');
-			elseif ($status==2) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut3');
-			elseif ($status==3) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut6');
-			elseif ($status==4) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut6');
-			elseif ($status==5) return $langs->trans($this->statuts_short[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut5');
-			*/
-			//else return $this->progress.' %';
+			
+			
+			
+			
+			
+			
+			
+			
 			return '&nbsp;';
 		}
 		elseif ($mode == 6)
 		{
-			/*if ($status==0) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut0');
-			elseif ($status==1) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut1');
-			elseif ($status==2) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut3');
-			elseif ($status==3) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut6');
-			elseif ($status==4) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut6');
-			elseif ($status==5) return $langs->trans($this->statuts[$status]).' '.img_picto($langs->trans($this->statuts_short[$status]),'statut5');
-			*/
-			//else return $this->progress.' %';
+			
+			
+			
+			
+			
+			
+			
+			
 			return '&nbsp;';
 		}
 	}
@@ -1972,7 +1972,7 @@ class Task extends CommonObject
 		global $conf, $langs;
 
 		// For external user, no check is done on company because readability is managed by public status of project and assignement.
-		//$socid=$user->socid;
+		
 
 		$projectstatic = new Project($this->db);
 		$projectsListId = $projectstatic->getProjectsAuthorizedForUser($user, 0, 1, $socid);
@@ -1983,7 +1983,7 @@ class Task extends CommonObject
 		$sql .= " t.dateo as date_start, t.datee as datee";
 		$sql .= " FROM ".MAIN_DB_PREFIX."projet as p";
 		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe as s on p.fk_soc = s.rowid";
-		//if (! $user->rights->societe->client->voir && ! $socid) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe_commerciaux as sc ON sc.fk_soc = s.rowid";
+		
 		$sql .= ", ".MAIN_DB_PREFIX."projet_task as t";
 		$sql .= " WHERE p.entity IN (".getEntity('project', 0).')';
 		$sql .= " AND p.fk_statut = 1";
@@ -1991,12 +1991,12 @@ class Task extends CommonObject
 		$sql .= " AND (t.progress IS NULL OR t.progress < 100)"; // tasks to do
 		if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")";
 		// No need to check company, as filtering of projects must be done by getProjectsAuthorizedForUser
-		//if ($socid || ! $user->rights->societe->client->voir)	$sql.= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
+		
 		if ($socid) $sql .= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
 		// No need to check company, as filtering of projects must be done by getProjectsAuthorizedForUser
-		// if (! $user->rights->societe->client->voir && ! $socid) $sql.= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id.") OR (s.rowid IS NULL))";
+		
 
-		//print $sql;
+		
 		$resql = $this->db->query($sql);
 		if ($resql)
 		{
@@ -2060,7 +2060,7 @@ class Task extends CommonObject
 		$sql .= " AND t.fk_projet = p.rowid"; // tasks to do
 		if ($mine || !$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")";
 		// No need to check company, as filtering of projects must be done by getProjectsAuthorizedForUser
-		//if ($socid || ! $user->rights->societe->client->voir)	$sql.= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
+		
 		if ($socid) $sql .= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
 		if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id.") OR (s.rowid IS NULL))";
 
