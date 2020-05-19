@@ -51,7 +51,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
 require_once __DIR__.'/class/mo.class.php';
 
 // for other modules
-//dol_include_once('/othermodule/class/otherobject.class.php');
+
 
 // Load translation files required by the page
 $langs->loadLangs(array("mrp", "other"));
@@ -77,7 +77,7 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
+
 //if (! $sortorder) $sortorder="DESC";
 
 // Initialize technical objects
@@ -100,10 +100,10 @@ if (empty($conf->mrp->enabled)) accessforbidden('Module not enabled');
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'mrp', $id, '');
+
 
 
 // Initialize array of search criterias
@@ -200,7 +200,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_Mo|FR:Module_Mo_FR|ES:Módulo_Mo";
+
 $help_url = '';
 $title = $langs->trans('ListOfManufacturingOrders');
 
@@ -236,7 +236,7 @@ foreach ($search as $key => $val)
 	if ($search[$key] != '') $sql .= natural_search($key, $search[$key], (($key == 'status') ? 2 : $mode_search));
 }
 if ($search_all) $sql .= natural_search(array_keys($fieldstosearchall), $search_all);
-//$sql.= dolSqlDateFilter("t.field", $search_xxxday, $search_xxxmonth, $search_xxxyear);
+
 // Add where from extra fields
 include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 // Add where from hooks
@@ -377,7 +377,7 @@ if ($search_all)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
+/*
 $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
 $moreforfilter.= '</div>';*/
 
