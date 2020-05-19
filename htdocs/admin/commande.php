@@ -502,8 +502,8 @@ foreach ($dirmodels as $reldir)
 					    		$htmltooltip.='<br>'.$langs->trans("PaymentMode").': '.yn($module->option_modereg, 1, 1);
 					    		$htmltooltip.='<br>'.$langs->trans("PaymentConditions").': '.yn($module->option_condreg, 1, 1);
 					    		$htmltooltip.='<br>'.$langs->trans("MultiLanguage").': '.yn($module->option_multilang, 1, 1);
-					    		//$htmltooltip.='<br>'.$langs->trans("Discounts").': '.yn($module->option_escompte,1,1);
-					    		//$htmltooltip.='<br>'.$langs->trans("CreditNote").': '.yn($module->option_credit_note,1,1);
+					    		
+					    		
 					    		$htmltooltip.='<br>'.$langs->trans("WatermarkOnDraftOrders").': '.yn($module->option_draft_watermark, 1, 1);
 
 
@@ -705,85 +705,85 @@ print "</td></tr>\n";
 print '</form>';
 
 // Shippable Icon in List
-/* Kept as hidden feature for the moment, result seems bugged.
-Whet is definition of "shippable" according to all different STOCK_CALCULATE_... options ?
+//Kept as hidden feature for the moment, result seems bugged.
+//Whet is definition of "shippable" according to all different STOCK_CALCULATE_... options ?
 
-print '<tr class="oddeven">';
-print '<td>'.$langs->trans("ShippableOrderIconInList").'</td>';
-print '<td>&nbsp</td>';
-print '<td class="center">';
-if (!empty($conf->global->SHIPPABLE_ORDER_ICON_IN_LIST)) {
-    print '<a href="'.$_SERVER['PHP_SELF'].'?action=setshippableiconinlist&value=0">';
-    print img_picto($langs->trans("Activated"),'switch_on');
-} else {
-    print '<a href="'.$_SERVER['PHP_SELF'].'?action=setshippableiconinlist&value=1">';
-    print img_picto($langs->trans("Disabled"),'switch_off');
-}
-print '</a></td>';
-print '</tr>';
 
-/*
+
+
+
+
+    
+   
+
+    
+    
+
+
+
+
+
 // Seems to be not so used. So kept hidden for the moment to avoid dangerous options inflation.
 // Ask for payment bank during order
-if ($conf->banque->enabled)
-{
 
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("BANK_ASK_PAYMENT_BANK_DURING_ORDER").'</td><td>&nbsp</td><td class="center">';
-    if (! empty($conf->use_javascript_ajax))
-    {
-        print ajax_constantonoff('BANK_ASK_PAYMENT_BANK_DURING_ORDER');
-    }
-    else
-    {
-        if (empty($conf->global->BANK_ASK_PAYMENT_BANK_DURING_ORDER))
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_BANK_ASK_PAYMENT_BANK_DURING_ORDER&amp;value=1">'.img_picto($langs->trans("Disabled"),'switch_off').'</a>';
-        }
-        else
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_BANK_ASK_PAYMENT_BANK_DURING_ORDER&amp;value=0">'.img_picto($langs->trans("Enabled"),'switch_on').'</a>';
-        }
-    }
-    print '</td></tr>';
-}
-else
-{
 
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("BANK_ASK_PAYMENT_BANK_DURING_ORDER").'</td><td>&nbsp;</td><td class="center">'.$langs->trans('NotAvailable').'</td></tr>';
-}
+
+    
+    
+    
+    
+        
+    
+    
+    
+        
+        
+            
+        
+        
+        
+            
+        
+    
+    
+
+
+
+
+    
+    
+
 
 // Ask for warehouse during order
-if ($conf->stock->enabled)
-{
 
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER").'</td><td>&nbsp</td><td class="center">';
-    if (! empty($conf->use_javascript_ajax))
-    {
-        print ajax_constantonoff('WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER');
-    }
-    else
-    {
-        if (empty($conf->global->WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER))
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER&amp;value=1">'.img_picto($langs->trans("Disabled"),'switch_off').'</a>';
-        }
-        else
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER&amp;value=0">'.img_picto($langs->trans("Enabled"),'switch_on').'</a>';
-        }
-    }
-    print '</td></tr>';
-}
-else
-{
 
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("WAREHOUSE_ASK_WAREHOUSE_DURING_ORDER").'</td><td>&nbsp;</td><td class="center">'.$langs->trans('NotAvailable').'</td></tr>';
-}
-*/
+
+   
+    
+    
+    
+        
+    
+    
+    
+        
+        
+            
+        
+        
+        
+           
+        
+    
+    
+
+
+
+
+    
+    
+
+
 
 print '</table>';
 print '<br>';
