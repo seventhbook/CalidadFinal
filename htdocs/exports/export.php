@@ -36,8 +36,8 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 $langs->loadlangs(array('admin', 'exports', 'other', 'users', 'companies', 'projects', 'suppliers', 'products', 'bank', 'bills'));
 
 // Everybody should be able to go on this page
-//if (! $user->admin)
-//  accessforbidden();
+
+
 
 $entitytoicon = array(
 	'invoice'      => 'bill',
@@ -149,7 +149,7 @@ $sqlusedforexport = '';
 
 $upload_dir = $conf->export->dir_temp.'/'.$user->id;
 
-//$usefilters=($conf->global->MAIN_FEATURES_LEVEL > 1);
+
 $usefilters = 1;
 
 
@@ -169,7 +169,7 @@ if ($action == 'selectfield')     // Selection of field at step 2
 		{
 			if (!empty($array_selected[$key])) continue; // If already selected, check next
 			$array_selected[$key] = count($array_selected) + 1;
-		    //print_r($array_selected);
+		   
 		    $_SESSION["export_selected_fields"] = $array_selected;
 		}
     }
@@ -179,9 +179,9 @@ if ($action == 'selectfield')     // Selection of field at step 2
 
         $array_selected[$field] = count($array_selected) + 1; // We tag the key $field as "selected"
         // We check if there is a dependency to activate
-        /*var_dump($field);
-        var_dump($fieldsentitiesarray[$field]);
-        var_dump($fieldsdependenciesarray);*/
+        
+        
+        
         $listofdependencies = array();
         if (!empty($fieldsentitiesarray[$field]) && !empty($fieldsdependenciesarray[$fieldsentitiesarray[$field]]))
         {
@@ -209,7 +209,7 @@ if ($action == 'selectfield')     // Selection of field at step 2
                 }
             }
         }
-	    //print_r($array_selected);
+	    
 	    $_SESSION["export_selected_fields"] = $array_selected;
 
 	    setEventMessages($warnings, null, 'warnings');
@@ -233,7 +233,7 @@ if ($action == 'unselectfield')
 	    {
 	        $i++;
 	        $array_selected[$code] = $i;
-	        //print "x $code x $i y<br>";
+	        
 	    }
 	    $_SESSION["export_selected_fields"] = $array_selected;
     }
@@ -254,7 +254,7 @@ if ($action == 'downfield' || $action == 'upfield')
             break;
         }
     }
-    //print("Switch pos=$pos (code=".$_GET["field"].") and newpos=$newpos (code=$newcode)");
+    
     if ($newcode)   // Si newcode trouve (protection contre resoumission de page)
     {
         $array_selected[$_GET["field"]] = $newpos;
@@ -408,13 +408,13 @@ if ($step == 4 && $action == 'submitFormField')
 		foreach ($objexport->array_export_TypeFields[0] as $code => $type)	// $code: s.fieldname $value: Text|Boolean|List:ccc
 		{
 			$newcode = (string) preg_replace('/\./', '_', $code);
-			//print 'xxx'.$code."=".$newcode."=".$type."=".$_POST[$newcode]."\n<br>";
+			
 			$filterqualified = 1;
 			if (!isset($_POST[$newcode]) || $_POST[$newcode] == '') $filterqualified = 0;
 			elseif (preg_match('/^List/', $type) && (is_numeric($_POST[$newcode]) && $_POST[$newcode] <= 0)) $filterqualified = 0;
 			if ($filterqualified)
 			{
-				//print 'Filter on '.$newcode.' type='.$type.' value='.$_POST[$newcode]."\n";
+				
 				$objexport->array_export_FilterValue[0][$code] = $_POST[$newcode];
 			}
 		}
@@ -459,12 +459,12 @@ if ($step == 1 || !$datatoexport)
     	foreach ($sortedarrayofmodules as $key => $value)
         {
             print '<tr class="oddeven"><td nospan="nospan">';
-	        //print img_object($objexport->array_export_module[$key]->getName(),$export->array_export_module[$key]->picto).' ';
+	        
             print $objexport->array_export_module[$key]->getName();
             print '</td><td>';
 			$icon = preg_replace('/:.*$/', '', $objexport->array_export_icon[$key]);
 			$label = $objexport->array_export_label[$key];
-            //print $value.'-'.$icon.'-'.$label."<br>";
+            
 			print img_object($objexport->array_export_module[$key]->getName(), $icon).' ';
             print $label;
             print '</td><td class="right">';
@@ -514,7 +514,7 @@ if ($step == 2 && $datatoexport)
     // Module
     print '<tr><td class="titlefield">'.$langs->trans("Module").'</td>';
     print '<td>';
-    //print img_object($objexport->array_export_module[0]->getName(),$objexport->array_export_module[0]->picto).' ';
+    
     print $objexport->array_export_module[0]->getName();
     print '</td></tr>';
 
@@ -523,7 +523,7 @@ if ($step == 2 && $datatoexport)
     print '<td>';
 	$icon = preg_replace('/:.*$/', '', $objexport->array_export_icon[0]);
     $label = $objexport->array_export_label[0];
-    //print $value.'-'.$icon.'-'.$label."<br>";
+    
     print img_object($objexport->array_export_module[0]->getName(), $icon).' ';
     print $label;
     print '</td></tr>';
@@ -573,13 +573,13 @@ if ($step == 2 && $datatoexport)
     // Select request if all fields are selected
     $sqlmaxforexport = $objexport->build_sql(0, array(), array());
 
-	//    $this->array_export_module[0]=$module;
-	//    $this->array_export_code[0]=$module->export_code[$r];
-	//    $this->array_export_label[0]=$module->export_label[$r];
-	//    $this->array_export_sql[0]=$module->export_sql[$r];
-	//    $this->array_export_fields[0]=$module->export_fields_array[$r];
-	//    $this->array_export_entities[0]=$module->export_fields_entities[$r];
-	//    $this->array_export_alias[0]=$module->export_fields_alias[$r];
+	
+	
+	
+	
+	
+	
+	
 
     $i = 0;
 
@@ -595,7 +595,7 @@ if ($step == 2 && $datatoexport)
 
         print '<td class="nowrap">';
         // If value of entityicon=entitylang='icon:Label'
-        //print $code.'-'.$label.'-'.$entity;
+       
 
         $tmparray = explode(':', $entityicon);
         if (count($tmparray) >= 2)
@@ -637,18 +637,18 @@ if ($step == 2 && $datatoexport)
             print '<td>&nbsp;</td>';
             print '<td class="center"><a class="reposition" href="'.$_SERVER["PHP_SELF"].'?step=2&datatoexport='.$datatoexport.'&action=unselectfield&field='.$code.'">'.img_left('default', 0, 'style="max-width: 20px"').'</a></td>';
             print '<td>';
-            //print $text.'-'.$htmltext."<br>";
+            
             print $form->textwithpicto($text, $htmltext);
-			//print ' ('.$code.')';
+			
             print '</td>';
         }
         else
         {
         	// Fields not selected
             print '<td>';
-			//print $text.'-'.$htmltext."<br>";
+			
 			print $form->textwithpicto($text, $htmltext);
-			//print ' ('.$code.')';
+			
             print '</td>';
             print '<td class="center"><a class="reposition" href="'.$_SERVER["PHP_SELF"].'?step=2&datatoexport='.$datatoexport.'&action=selectfield&field='.$code.'">'.img_right('default', 0, 'style="max-width: 20px"').'</a></td>';
             print '<td>&nbsp;</td>';
@@ -720,7 +720,7 @@ if ($step == 3 && $datatoexport)
 	// Module
 	print '<tr><td class="titlefield">'.$langs->trans("Module").'</td>';
 	print '<td>';
-	//print img_object($objexport->array_export_module[0]->getName(),$objexport->array_export_module[0]->picto).' ';
+	
 	print $objexport->array_export_module[0]->getName();
 	print '</td></tr>';
 
@@ -729,7 +729,7 @@ if ($step == 3 && $datatoexport)
 	print '<td>';
 	$icon = preg_replace('/:.*$/', '', $objexport->array_export_icon[0]);
 	$label = $objexport->array_export_label[0];
-	//print $value.'-'.$icon.'-'.$label."<br>";
+	
 	print img_object($objexport->array_export_module[0]->getName(), $icon).' ';
 	print $label;
 	print '</td></tr>';
@@ -762,8 +762,8 @@ if ($step == 3 && $datatoexport)
     print '<table class="noborder centpercent">';
 	print '<tr class="liste_titre">';
 	print '<td>'.$langs->trans("Entities").'</td>';
-	//print '<td>'.$langs->trans("ExportableFields").'</td>';
-	//print '<td class="center"></td>';
+	
+	
 	print '<td>'.$langs->trans("ExportableFields").'</td>';
 	print '<td width="25%">'.$langs->trans("FilteredFieldsValues").'</td>';
 	print '</tr>';
@@ -912,7 +912,7 @@ if ($step == 4 && $datatoexport)
     // Module
     print '<tr><td class="titlefield tableforfield">'.$langs->trans("Module").'</td>';
     print '<td>';
-    //print img_object($objexport->array_export_module[0]->getName(),$objexport->array_export_module[0]->picto).' ';
+    
     print $objexport->array_export_module[0]->getName();
     print '</td></tr>';
 
@@ -972,8 +972,8 @@ if ($step == 4 && $datatoexport)
     print '<td>'.$langs->trans("Entities").'</td>';
     print '<td>'.$langs->trans("ExportedFields").'</td>';
     print '<td class="right" colspan="2">'.$langs->trans("Position").'</td>';
-    //print '<td>&nbsp;</td>';
-    //print '<td>'.$langs->trans("FieldsTitle").'</td>';
+    
+    
     print '</tr>';
 
     foreach ($array_selected as $code=>$value)
@@ -1024,7 +1024,7 @@ if ($step == 4 && $datatoexport)
 
         print '<td>';
         print $form->textwithpicto($text, $htmltext);
-		//print ' ('.$code.')';
+		
         print '</td>';
 
         print '<td class="right" width="100">';
@@ -1034,8 +1034,8 @@ if ($step == 4 && $datatoexport)
         if ($value > 1) print '<a href="'.$_SERVER["PHP_SELF"].'?step='.$step.'&datatoexport='.$datatoexport.'&action=upfield&field='.$code.'">'.img_up().'</a>';
         print '</td>';
 
-        //print '<td>&nbsp;</td>';
-        //print '<td>'.$langs->trans($objexport->array_export_fields[0][$code]).'</td>';
+        
+        
 
         print '</tr>';
     }
@@ -1182,7 +1182,7 @@ if ($step == 5 && $datatoexport)
     // Module
     print '<tr><td class="titlefield">'.$langs->trans("Module").'</td>';
     print '<td>';
-    //print img_object($objexport->array_export_module[0]->getName(),$objexport->array_export_module[0]->picto).' ';
+    
     print $objexport->array_export_module[0]->getName();
     print '</td></tr>';
 
@@ -1260,7 +1260,7 @@ if ($step == 5 && $datatoexport)
     $htmltabloflibs .= '</table>';
 
     print '<span class="opacitymedium">'.$form->textwithpicto($langs->trans("NowClickToGenerateToBuildExportFile"), $htmltabloflibs, 1, 'help', '', 0, 2, 'helphonformat').'</span>';
-    //print $htmltabloflibs;
+    
     print '<br>';
 
     print '</div>';
