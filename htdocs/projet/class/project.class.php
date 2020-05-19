@@ -637,7 +637,7 @@ class Project extends CommonObject
 		}
 		if (!$sql) return -1;
 
-        //print $sql;
+        
         dol_syslog(get_class($this)."::get_element_list", LOG_DEBUG);
         $result = $this->db->query($sql);
         if ($result)
@@ -689,7 +689,7 @@ class Project extends CommonObject
             if ($res < 0)
             {
                 $this->error = 'ErrorFailToDeleteLinkedContact';
-                //$error++;
+                
                 $this->db->rollback();
                 return 0;
             }
@@ -1087,14 +1087,14 @@ class Project extends CommonObject
             $linkclose .= ' title="'.dol_escape_htmltag($label, 1).'"';
             $linkclose .= ' class="classfortooltip"';
 
-			/*
-			$hookmanager->initHooks(array('projectdao'));
-			$parameters=array('id'=>$this->id);
-			// Note that $action and $object may have been modified by some hooks
-			$reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);
-			if ($reshook > 0)
-				$linkclose = $hookmanager->resPrint;
-			*/
+			
+			
+			
+			
+			
+			
+				
+			
 		}
 
         $picto = 'projectpub';
@@ -1152,20 +1152,20 @@ class Project extends CommonObject
         $this->usage_bill_time = 1;
         $this->usage_organize_event = 1;
 
-        /*
-        $nbp = mt_rand(1, 9);
-        $xnbp = 0;
-        while ($xnbp < $nbp)
-        {
-            $line = new Task($this->db);
-            $line->fk_project = 0;
-            $line->label = $langs->trans("Label") . " " . $xnbp;
-            $line->description = $langs->trans("Description") . " " . $xnbp;
+        
+        
+        
+        
+        
+            
+            
+            
+            
 
-            $this->lines[]=$line;
-            $xnbp++;
-        }
-        */
+            
+            
+        
+        
     }
 
     /**
@@ -1206,13 +1206,13 @@ class Project extends CommonObject
                     $nblinks++;
                 }
             }
-            //if (empty($nblinks))	// If nobody has permission, we grant creator
-            //{
-            //	if ((!empty($this->user_author_id) && $this->user_author_id == $user->id))
-            //	{
-            //		$userAccess = 1;
-            //	}
-            //}
+            
+            
+            
+            
+            
+            
+            
         }
 
         return ($userAccess ? $userAccess : -1);
@@ -1249,7 +1249,7 @@ class Project extends CommonObject
         }
         $sql.= " WHERE p.entity IN (".getEntity('project').")";
         // Internal users must see project he is contact to even if project linked to a third party he can't see.
-        //if ($socid || ! $user->rights->societe->client->voir)	$sql.= " AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
+        
         if ($socid > 0) $sql.= " AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = " . $socid . ")";
 
         // Get id of types of contacts for projects (This list never contains a lot of elements)
@@ -1289,7 +1289,7 @@ class Project extends CommonObject
         }
 
 		$sql.= $filter;
-        //print $sql;
+        
 
         $resql = $this->db->query($sql);
         if ($resql)
@@ -1382,7 +1382,7 @@ class Project extends CommonObject
 		$defaultref = '';
     	$obj = empty($conf->global->PROJECT_ADDON) ? 'mod_project_simple' : $conf->global->PROJECT_ADDON;
     	// Search template files
-    	$file = ''; $classname = ''; $filefound = 0;
+    	
     	$dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
     	foreach ($dirmodels as $reldir)
     	{
@@ -1557,7 +1557,7 @@ class Project extends CommonObject
 			    	{
 			    		$taskstatic->fk_task_parent = $tab_conv_child_parent[$taskstatic->fk_task_parent];
 			    	}
-			    	$res = $taskstatic->update($user, $notrigger);
+			    	
 			    	if ($result_clone <= 0)
 				    {
 				    	$this->error .= $taskstatic->error;
@@ -1609,7 +1609,7 @@ class Project extends CommonObject
 	    	// Fetch only if update of date will be made
 	    	if ((!empty($tasktoshiftdate->date_start)) || (!empty($tasktoshiftdate->date_end)))
 	    	{
-	    		//dol_syslog(get_class($this)."::shiftTaskDate to_update", LOG_DEBUG);
+	    		
 	    		$to_update=true;
 		    	$task = new Task($this->db);
 		    	$result = $task->fetch($tasktoshiftdate->id);
@@ -1619,7 +1619,7 @@ class Project extends CommonObject
 		    		$this->error.=$task->error;
 		    	}
 	    	}
-			//print "$this->date_start + $tasktoshiftdate->date_start - $old_project_dt_start";exit;
+			
 
 	    	//Calcultate new task start date with difference between old proj start date and origin task start date
 	    	if (!empty($tasktoshiftdate->date_start))
@@ -1763,7 +1763,7 @@ class Project extends CommonObject
 	 */
     public function loadTimeSpent($datestart, $taskid = 0, $userid = 0)
     {
-        $error=0;
+        
 
         $this->weekWorkLoad=array();
         $this->weekWorkLoadPerTask=array();
@@ -1779,7 +1779,7 @@ class Project extends CommonObject
         if ($taskid) $sql.= " AND ptt.fk_task=".$taskid;
         if (is_numeric($userid)) $sql.= " AND ptt.fk_user=".$userid;
 
-        //print $sql;
+        
         $resql=$this->db->query($sql);
         if ($resql)
         {
@@ -1830,7 +1830,7 @@ class Project extends CommonObject
         global $conf, $langs;
 
         // For external user, no check is done on company because readability is managed by public status of project and assignement.
-        //$socid=$user->socid;
+        
 
 		$projectsListId = null;
         if (!$user->rights->projet->all->lire) $projectsListId = $this->getProjectsAuthorizedForUser($user, 0, 1);
@@ -1840,14 +1840,14 @@ class Project extends CommonObject
         $sql .= ")";
         $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe as s on p.fk_soc = s.rowid";
         // For external user, no check is done on company permission because readability is managed by public status of project and assignement.
-        //if (! $user->rights->societe->client->voir && ! $socid) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe_commerciaux as sc ON sc.fk_soc = s.rowid";
+        
         $sql .= " WHERE p.fk_statut = 1";
         $sql .= " AND p.entity IN (".getEntity('project').')';
         if (!empty($projectsListId)) $sql .= " AND p.rowid IN (".$projectsListId.")";
         // No need to check company, as filtering of projects must be done by getProjectsAuthorizedForUser
-        //if ($socid || ! $user->rights->societe->client->voir)	$sql.= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
+        
         // For external user, no check is done on company permission because readability is managed by public status of project and assignement.
-        //if (! $user->rights->societe->client->voir && ! $socid) $sql.= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id.") OR (s.rowid IS NULL))";
+        
 
         //print $sql;
         $resql = $this->db->query($sql);
