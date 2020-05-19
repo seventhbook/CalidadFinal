@@ -336,7 +336,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 
 $sql .= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 $resql = $db->query($sql);
 if ($resql)
 {
@@ -427,14 +427,14 @@ if ($resql)
 
 		print '</div>';
 
-		/*if (empty($conf->global->HOLIDAY_HIDE_BALANCE))
-		{
-			print '<div class="underbanner clearboth"></div>';
+		
+		
+			
 
-			print '<br>';
+			
 
-			showMyBalance($holiday, $user_id);
-		}*/
+			
+		
 
 		dol_fiche_end();
 
@@ -560,16 +560,16 @@ if ($resql)
 	if (!empty($arrayfields['d.date_valid']['checked']))
 	{
     	print '<td class="liste_titre" align="center">';
-    	//print '<input class="flat" type="text" size="1" maxlength="2" name="month_end" value="'.$month_end.'">';
-    	//$formother->select_year($year_end,'year_end',1, $min_year, $max_year);
+    	
+    	
     	print '</td>';
     }
 	// Date approve
 	if (!empty($arrayfields['d.date_approve']['checked']))
 	{
     	print '<td class="liste_titre" align="center">';
-    	//print '<input class="flat" type="text" size="1" maxlength="2" name="month_end" value="'.$month_end.'">';
-    	//$formother->select_year($year_end,'year_end',1, $min_year, $max_year);
+    	
+    	
     	print '</td>';
     }
     // Amount with no tax
