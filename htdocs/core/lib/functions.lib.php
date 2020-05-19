@@ -231,7 +231,6 @@ function GETPOSTISSET($paramname)
 	if (constant('DOL_URL_ROOT')) $relativepathstring = preg_replace('/^'.preg_quote(constant('DOL_URL_ROOT'), '/').'/', '', $relativepathstring);
 	$relativepathstring = preg_replace('/^\//', '', $relativepathstring);
 	$relativepathstring = preg_replace('/^custom\//', '', $relativepathstring);
-	//var_dump($relativepathstring);
 	//var_dump($user->default_values);
 
 	// Code for search criteria persistence.
@@ -307,7 +306,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 	{
 		dol_syslog("Deprecated use of GETPOST, called with 1st param = ".$paramname." and 2nd param is '', when calling page ".$_SERVER["PHP_SELF"], LOG_WARNING);
 		// Enable this line to know who call the GETPOST with '' $check parameter.
-		//var_dump(debug_backtrace()[0]);
 	}
 
 	if (empty($method)) $out = isset($_GET[$paramname]) ? $_GET[$paramname] : (isset($_POST[$paramname]) ? $_POST[$paramname] : '');
@@ -323,7 +321,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 		if (constant('DOL_URL_ROOT')) $relativepathstring = preg_replace('/^'.preg_quote(constant('DOL_URL_ROOT'), '/').'/', '', $relativepathstring);
 		$relativepathstring = preg_replace('/^\//', '', $relativepathstring);
 		$relativepathstring = preg_replace('/^custom\//', '', $relativepathstring);
-		//var_dump($relativepathstring);
 		//var_dump($user->default_values);
 
 		// Code for search criteria persistence.
@@ -393,13 +390,11 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 										if (!in_array($tmpquerytohave, $tmpqueryarraywehave)) $foundintru = 1;
 									}
 									if (!$foundintru) $qualified = 1;
-									//var_dump($defkey.'-'.$qualified);
 								}
 								else $qualified = 1;
 
 								if ($qualified)
 								{
-									//var_dump($user->default_values[$relativepathstring][$defkey]['createform']);
 									if (isset($user->default_values[$relativepathstring]['createform'][$defkey][$paramname]))
 									{
 										$out = $user->default_values[$relativepathstring]['createform'][$defkey][$paramname];
@@ -416,7 +411,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 				{
 					if (!empty($user->default_values))		// $user->default_values defined from menu 'Setup - Default values'
 					{
-						//var_dump($user->default_values[$relativepathstring]);
 						if ($paramname == 'sortfield' || $paramname == 'sortorder')			// Sorted on which fields ? ASC or DESC ?
 						{
 							if (isset($user->default_values[$relativepathstring]['sortorder']))	// Even if paramname is sortfield, data are stored into ['sortorder...']
@@ -434,7 +428,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 											if (!in_array($tmpquerytohave, $tmpqueryarraywehave)) $foundintru = 1;
 										}
 										if (!$foundintru) $qualified = 1;
-										//var_dump($defkey.'-'.$qualified);
 									}
 									else $qualified = 1;
 
@@ -473,7 +466,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 										if (!in_array($tmpquerytohave, $tmpqueryarraywehave)) $foundintru = 1;
 									}
 									if (!$foundintru) $qualified = 1;
-									//var_dump($defkey.'-'.$qualified);
 								}
 								else $qualified = 1;
 
@@ -540,7 +532,6 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 				$newout = $conf->entity;
 			}
 			else $newout = ''; // Key not found, we replace with empty string
-			//var_dump('__'.$reg[1].'__ -> '.$newout);
 			$out = preg_replace('/__'.preg_quote($reg[1], '/').'__/', $newout, $out);
 		}
 	}
@@ -622,11 +613,9 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 	{
 		if (preg_match('/^search_/', $paramname) || in_array($paramname, array('sortorder', 'sortfield')))
 		{
-			//var_dump($paramname.' - '.$out.' '.$user->default_values[$relativepathstring]['filters'][$paramname]);
 
 			// We save search key only if $out not empty that means:
 			// - posted value not empty, or
-			// - if posted value is empty and a default value exists that is not empty (it means we did a filter to an empty value when default was not).
 
 			if ($out != '')		// $out = '0' or 'abc', it is a search criteria to keep
 			{
@@ -781,7 +770,6 @@ function dol_buildpath($path, $type = 0, $returnemptyifnotfound = 0)
 			preg_match('/^([^\?]+(\.css\.php|\.css|\.js\.php|\.js|\.png|\.jpg|\.php)?)/i', $path, $regs); // Take part before '?'
 			if (!empty($regs[1]))
 			{
-				//print $key.'-'.$dirroot.'/'.$path.'-'.$conf->file->dol_url_root[$type].'<br>'."\n";
 				if (file_exists($dirroot.'/'.$regs[1]))
 				{
 					if ($type == 1)
@@ -960,7 +948,6 @@ function dol_string_nospecial($str, $newstr = '_', $badcharstoreplace = '')
 	$forbidden_chars_to_replace = array(" ", "'", "/", "\\", ":", "*", "?", "\"", "<", ">", "|", "[", "]", ",", ";", "=", '°'); // more complete than dol_sanitizeFileName
 	$forbidden_chars_to_remove = array();
 	if (is_array($badcharstoreplace)) $forbidden_chars_to_replace = $badcharstoreplace;
-	//$forbidden_chars_to_remove=array("(",")");
 
 	return str_replace($forbidden_chars_to_replace, $newstr, str_replace($forbidden_chars_to_remove, "", $str));
 }
@@ -1001,7 +988,6 @@ function dol_escape_js($stringtoescape, $mode = 0, $noescapebackslashn = 0)
 function dol_escape_htmltag($stringtoescape, $keepb = 0, $keepn = 0, $keepmoretags = '')
 {
 	if ($keepmoretags == 'common') $keepmoretags = 'html,body,a,em,i,u,ul,li,br,div,img,font,p,span,strong,table,tr,td,th,tbody';
-	// TODO Implement $keepmoretags
 
 	// escape quotes and backslashes, newlines, etc.
 	$tmp = html_entity_decode($stringtoescape, ENT_COMPAT, 'UTF-8'); // TODO Use htmlspecialchars_decode instead, that make only required change for html tags
@@ -1089,7 +1075,6 @@ function dol_syslog($message, $level = LOG_INFO, $ident = 0, $suffixinfilename =
 		    $conf->logbuffer[] = dol_print_date(time(), "%Y-%m-%d %H:%M:%S")." ".$logLevels[$level]." ".$message;
 		}
 
-		//TODO: Remove this. MAIN_ENABLE_LOG_INLINE_HTML should be deprecated and use a log handler dedicated to HTML output
 		// If html log tag enabled and url parameter log defined, we show output log on HTML comments
 		if (!empty($conf->global->MAIN_ENABLE_LOG_INLINE_HTML) && !empty($_GET["log"]))
 		{
@@ -1248,7 +1233,6 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 			}
 			elseif (!empty($links[$i][1]))
 			{
-				//print "x $i $active ".$links[$i][2]." z";
 				if ($isactive)
 				{
 					$out .= '<a'.(!empty($links[$i][2]) ? ' id="'.$links[$i][2].'"' : '').' class="tabactive tab inline-block'.($morecss ? ' '.$morecss : '').'" href="'.$links[$i][0].'">';
@@ -1567,14 +1551,12 @@ function dol_banner_tab($object, $paramid, $morehtml = '', $shownav = 1, $fieldi
 	}
 	elseif ($object->element == 'product')
 	{
-		//$morehtmlstatus.=$langs->trans("Status").' ('.$langs->trans("Sell").') ';
 		if (!empty($conf->use_javascript_ajax) && $user->rights->produit->creer && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
 			$morehtmlstatus .= ajax_object_onoff($object, 'status', 'tosell', 'ProductStatusOnSell', 'ProductStatusNotOnSell');
 		} else {
 			$morehtmlstatus .= '<span class="statusrefsell">'.$object->getLibStatut(6, 0).'</span>';
 		}
 		$morehtmlstatus .= ' &nbsp; ';
-		//$morehtmlstatus.=$langs->trans("Status").' ('.$langs->trans("Buy").') ';
 		if (!empty($conf->use_javascript_ajax) && $user->rights->produit->creer && !empty($conf->global->MAIN_DIRECT_STATUS_UPDATE)) {
 			$morehtmlstatus .= ajax_object_onoff($object, 'status_buy', 'tobuy', 'ProductStatusOnBuy', 'ProductStatusNotOnBuy');
 		} else {
@@ -1798,7 +1780,6 @@ function dol_strftime($fmt, $ts = false, $is_gmt = false)
  *										"day", "daytext", "dayhour", "dayhourldap", "dayhourtext", "dayrfc", "dayhourrfc", "...reduceformat"
  * 	@param	string		$tzoutput		true or 'gmt' => string is for Greenwich location
  * 										false or 'tzserver' => output string is for local PHP server TZ usage
- * 										'tzuser' => output string is for user TZ (current browser TZ with current dst) => In a future, we should have same behaviour than 'tzuserrel'
  *                                      'tzuserrel' => output string is for user TZ (current browser TZ with dst or not, depending on date position) (TODO not implemented yet)
  *	@param	Translate	$outputlangs	Object lang that contains language for text translation.
  *  @param  boolean		$encodetooutput false=no convert into output pagecode
@@ -1841,7 +1822,6 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 	if ($formatwithoutreduce != $format) { $format = $formatwithoutreduce; $reduceformat = 1; }  // so format 'dayreduceformat' is processed like day
 
 	// Change predefined format into computer format. If found translation in lang file we use it, otherwise we use default.
-	// TODO Add format daysmallyear and dayhoursmallyear
 	if ($format == 'day')				$format = ($outputlangs->trans("FormatDateShort") != "FormatDateShort" ? $outputlangs->trans("FormatDateShort") : $conf->format_date_short);
 	elseif ($format == 'hour')			$format = ($outputlangs->trans("FormatHourShort") != "FormatHourShort" ? $outputlangs->trans("FormatHourShort") : $conf->format_hour_short);
 	elseif ($format == 'hourduration')	$format = ($outputlangs->trans("FormatHourShortDuration") != "FormatHourShortDuration" ? $outputlangs->trans("FormatHourShortDuration") : $conf->format_hour_short_duration);
@@ -1895,7 +1875,6 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 	{
 	    // This part of code should not be used.
 	    dol_syslog("Functions.lib::dol_print_date function called with a bad value from page ".$_SERVER["PHP_SELF"], LOG_WARNING);
-	    //if (function_exists('debug_print_backtrace')) debug_print_backtrace();
 	    // Date has format 'YYYY-MM-DD' or 'YYYY-MM-DD HH:MM:SS'
 	    $syear	= (!empty($reg[1]) ? $reg[1] : '');
 	    $smonth = (!empty($reg[2]) ? $reg[2] : '');
@@ -1912,7 +1891,7 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 		// Date is a timestamps
 		if ($time < 100000000000)	// Protection against bad date values
 		{
-			$timetouse = $time + $offsettz + $offsetdst; // TODO Replace this with function Date PHP. We also should not use anymore offsettz and offsetdst but only offsettzstring.
+			$timetouse = $time + $offsettz + $offsetdst; 
 
 			$ret = adodb_strftime($format, $timetouse, $to_gmt);
 		}
@@ -1921,7 +1900,7 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 
 	if (preg_match('/__b__/i', $format))
 	{
-		$timetouse = $time + $offsettz + $offsetdst; // TODO Replace this with function Date PHP. We also should not use anymore offsettz and offsetdst but only offsettzstring.
+		$timetouse = $time + $offsettz + $offsetdst; 
 
 		// Here ret is string in PHP setup language (strftime was used). Now we convert to $outputlangs.
 		$month = adodb_strftime('%m', $timetouse);
@@ -1936,17 +1915,15 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 			$monthtext = $outputlangs->transnoentitiesnoconv('Month'.$month);
 			$monthtextshort = $outputlangs->transnoentitiesnoconv('MonthShort'.$month);
 		}
-		//print 'monthtext='.$monthtext.' monthtextshort='.$monthtextshort;
 		$ret = str_replace('__b__', $monthtextshort, $ret);
 		$ret = str_replace('__B__', $monthtext, $ret);
-		//print 'x'.$outputlangs->charset_output.'-'.$ret.'x';
 		//return $ret;
 	}
 	if (preg_match('/__a__/i', $format))
 	{
-		$timetouse = $time + $offsettz + $offsetdst; // TODO Replace this with function Date PHP. We also should not use anymore offsettz and offsetdst but only offsettzstring.
+		$timetouse = $time + $offsettz + $offsetdst; 
 
-		$w = adodb_strftime('%w', $timetouse); // TODO Replace this with function Date PHP. We also should not use anymore offsettz and offsetdst but only offsettzstring.
+		$w = adodb_strftime('%w', $timetouse); 
 		$dayweek = $outputlangs->transnoentitiesnoconv('Day'.$w);
 		$ret = str_replace('__A__', $dayweek, $ret);
 		$ret = str_replace('__a__', dol_substr($dayweek, 0, 3), $ret);
@@ -1961,7 +1938,6 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
  *  PHP getdate is restricted to the years 1901-2038 on Unix and 1970-2038 on Windows
  *  WARNING: This function always use PHP server timezone to return locale informations !!!
  *  Usage must be avoid.
- *  FIXME: Replace this with PHP date function and a parameter $gm
  *
  *	@param	int			$timestamp      Timestamp
  *	@param	boolean		$fast           Fast mode
@@ -2031,7 +2007,6 @@ function dol_getdate($timestamp, $fast = false)
 function dol_mktime($hour, $minute, $second, $month, $day, $year, $gm = false, $check = 1)
 {
 	global $conf;
-	//print "- ".$hour.",".$minute.",".$second.",".$month.",".$day.",".$year.",".$_SERVER["WINDIR"]." -";
 
 	// Clean parameters
 	if ($hour == -1 || empty($hour)) $hour = 0;
@@ -2083,13 +2058,11 @@ function dol_mktime($hour, $minute, $second, $month, $day, $year, $gm = false, $
 	if (empty($localtz)) {
 		$localtz = new DateTimeZone('UTC');
 	}
-	//var_dump($localtz);
 	//var_dump($year.'-'.$month.'-'.$day.'-'.$hour.'-'.$minute);
 	$dt = new DateTime(null, $localtz);
 	$dt->setDate((int) $year, (int) $month, (int) $day);
 	$dt->setTime((int) $hour, (int) $minute, (int) $second);
 	$date = $dt->getTimestamp(); // should include daylight saving time
-	//var_dump($date);
 	return $date;
 }
 
@@ -2116,7 +2089,7 @@ function dol_now($mode = 'gmt')
 		$tzsecond = getServerTimeZoneInt('now'); // Contains tz+dayling saving time
 		$ret = (int) (dol_now('gmt') + ($tzsecond * 3600));
 	}
-	/*else if ($mode == 'tzref')				// Time for now with parent company timezone is added
+	/*else if ($mode == 'tzref')
 	{
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
 		$tzsecond=getParentCompanyTimeZoneInt();    // Contains tz+dayling saving time
@@ -2124,7 +2097,6 @@ function dol_now($mode = 'gmt')
 	}*/
 	elseif ($mode == 'tzuser')				// Time for now with user timezone added
 	{
-		//print 'time: '.time().'-'.mktime().'-'.gmmktime();
 		$offsettz = (empty($_SESSION['dol_tz']) ? 0 : $_SESSION['dol_tz']) * 60 * 60;
 		$offsetdst = (empty($_SESSION['dol_dst']) ? 0 : $_SESSION['dol_dst']) * 60 * 60;
 		$ret = (int) (dol_now('gmt') + ($offsettz + $offsetdst));
@@ -2794,11 +2766,9 @@ function dolGetCountryCodeFromIp($ip)
 	if (!empty($conf->geoipmaxmind->enabled))
 	{
 		$datafile = $conf->global->GEOIPMAXMIND_COUNTRY_DATAFILE;
-		//$ip='24.24.24.24';
 		//$datafile='/usr/share/GeoIP/GeoIP.dat';    Note that this must be downloaded datafile (not same than datafile provided with ubuntu packages)
 		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
-		//print 'ip='.$ip.' databaseType='.$geoip->gi->databaseType." GEOIP_CITY_EDITION_REV1=".GEOIP_CITY_EDITION_REV1."\n";
 		$countrycode = $geoip->getCountryCodeFromIP($ip);
 	}
 
@@ -2816,13 +2786,11 @@ function dol_user_country()
 {
 	global $conf, $langs, $user;
 
-	//$ret=$user->xxx;
 	$ret = '';
 	if (!empty($conf->geoipmaxmind->enabled))
 	{
 		$ip = getUserRemoteIP();
 		$datafile = $conf->global->GEOIPMAXMIND_COUNTRY_DATAFILE;
-		//$ip='24.24.24.24';
 		//$datafile='E:\Mes Sites\Web\Admin1\awstats\maxmind\GeoIP.dat';
 		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
@@ -2864,7 +2832,6 @@ function dol_print_address($address, $htmlid, $mode, $id, $noprint = 0, $charfor
 
 			$showgmap = $showomap = 0;
 
-			// TODO Add a hook here
 			if (($mode == 'thirdparty' || $mode == 'societe') && !empty($conf->google->enabled) && !empty($conf->global->GOOGLE_ENABLE_GMAPS)) $showgmap = 1;
 			if ($mode == 'contact' && !empty($conf->google->enabled) && !empty($conf->global->GOOGLE_ENABLE_GMAPS_CONTACTS)) $showgmap = 1;
 			if ($mode == 'member' && !empty($conf->google->enabled) && !empty($conf->global->GOOGLE_ENABLE_GMAPS_MEMBERS)) $showgmap = 1;
@@ -2935,7 +2902,6 @@ function isValidMXRecord($domain)
 
 /**
  *  Return true if phone number syntax is ok
- *  TODO Decide what to do with this
  *
  *  @param	string		$phone		phone (Ex: "0601010101")
  *  @return boolean     			true if phone syntax is OK, false if KO or empty string
@@ -3012,7 +2978,6 @@ function dol_substr($string, $start, $length, $stringencoding = '', $trunconbyte
  *	@param	string	$trunc				Where to trunc: right, left, middle (size must be a 2 power), wrap
  * 	@param	string	$stringencoding		Tell what is source string encoding
  *  @param	int		$nodot				Truncation do not add ... after truncation. So it's an exact truncation.
- *  @param  int     $display            Trunc is used to display data and can be changed for small screen. TODO Remove this param (must be dealt with CSS)
  *	@return string						Truncated string. WARNING: length is never higher than $size if $nodot is set, but can be 3 chars higher otherwise.
  */
 function dol_trunc($string, $size = 40, $trunc = 'right', $stringencoding = 'UTF-8', $nodot = 0, $display = 0)
@@ -3032,7 +2997,6 @@ function dol_trunc($string, $size = 40, $trunc = 'right', $stringencoding = 'UTF
 		if (dol_strlen($newstring, $stringencoding) > ($size + ($nodot ? 0 : 3)))    // If nodot is 0 and size is 1,2 or 3 chars more, we don't trunc and don't add ...
 		return dol_substr($newstring, 0, $size, $stringencoding).($nodot ? '' : '...');
 		else
-		//return 'u'.$size.'-'.$newstring.'-'.dol_strlen($newstring,$stringencoding).'-'.$string;
 		return $string;
 	}
 	elseif ($trunc == 'middle')
@@ -3241,12 +3205,10 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 			elseif (!empty($arrayconvpictotofa[$pictowithouttext]))
 			{
 				$fakey = 'fa-'.$arrayconvpictotofa[$pictowithouttext];
-				//$facolor = '#444';
 				$marginleftonlyshort = 0;
 			}
 			else {
 				$fakey = 'fa-'.$pictowithouttext;
-				//$facolor = '#444';
 				$marginleftonlyshort = 0;
 			}
 
@@ -3353,7 +3315,6 @@ function img_weather($titlealt, $picto, $moreatt = '', $pictoisfullpath = 0, $mo
 	if (is_numeric($picto))
 	{
 		$leveltopicto = array(0=>'weather-clear.png', 1=>'weather-few-clouds.png', 2=>'weather-clouds.png', 3=>'weather-many-clouds.png', 4=>'weather-storm.png');
-		//return '<i class="fa fa-weather-level'.$picto.'"></i>';
 		$picto = $leveltopicto[$picto];
 	}
 	elseif (!preg_match('/(\.png|\.gif)$/i', $picto)) $picto .= '.png';
@@ -3517,7 +3478,6 @@ function img_delete($titlealt = 'default', $other = 'class="pictodelete"')
 	if ($titlealt == 'default') $titlealt = $langs->trans('Delete');
 
 	return img_picto($titlealt, 'delete.png', $other);
-	//return '<span class="fa fa-trash fa-2x fa-fw" style="font-size: 1.7em;" title="'.$titlealt.'"></span>';
 }
 
 /**
@@ -3599,7 +3559,6 @@ function img_warning($titlealt = 'default', $moreatt = '', $morecss = 'pictowarn
 
 	if ($titlealt == 'default') $titlealt = $langs->trans('Warning');
 
-	//return '<div class="imglatecoin">'.img_picto($titlealt, 'warning_white.png', 'class="pictowarning valignmiddle"'.($moreatt ? ($moreatt == '1' ? ' style="float: right"' : ' '.$moreatt): '')).'</div>';
 	return img_picto($titlealt, 'warning.png', 'class="'.$morecss.'"'.($moreatt ? ($moreatt == '1' ? ' style="float: right"' : ' '.$moreatt) : ''));
 }
 
@@ -3976,8 +3935,7 @@ function dol_print_error($db = '', $error = '', $errors = null)
 		print $langs->trans("DolibarrHasDetectedError").'. ';
 		print $langs->trans("YouCanSetOptionDolibarrMainProdToZero");
 		define("MAIN_CORE_ERROR", 1);
-	}
-	//else print 'Sorry, an error occured but the parameter $dolibarr_main_prod is defined in conf file so no message is reported to your browser. Please read the log file for error message.';
+	}	
 	dol_syslog("Error ".$syslog, LOG_ERR);
 }
 
@@ -4053,7 +4011,6 @@ function print_liste_field_titre($name, $file = "", $field = "", $begin = "", $m
 function getTitleFieldOfList($name, $thead = 0, $file = "", $field = "", $begin = "", $moreparam = "", $moreattrib = "", $sortfield = "", $sortorder = "", $prefix = "", $disablesortlink = 0, $tooltip = '')
 {
 	global $conf, $langs, $form;
-	//print "$name, $file, $field, $begin, $options, $moreattrib, $sortfield, $sortorder<br>\n";
 
 	if ($moreattrib == 'class="right"') $prefix .= 'right '; // For backward compatibility
 
@@ -4068,8 +4025,7 @@ function getTitleFieldOfList($name, $thead = 0, $file = "", $field = "", $begin 
 	$sortfield1 = trim($tmpsortfield[0]); // If $sortfield is 'd.datep,d.id', it becomes 'd.datep'
 	$tmpfield = explode(',', $field);
 	$field1 = trim($tmpfield[0]); // If $field is 'd.datep,d.id', it becomes 'd.datep'
-
-	//var_dump('field='.$field.' field1='.$field1.' sortfield='.$sortfield.' sortfield1='.$sortfield1);
+	
 	// If field is used as sort criteria we use a specific css class liste_titre_sel
 	// Example if (sortfield,field)=("nom","xxx.nom") or (sortfield,field)=("nom","nom")
 	if ($field1 && ($sortfield1 == $field1 || $sortfield1 == preg_replace("/^[^\.]+\./", "", $field1))) $out .= '<'.$tag.' class="'.$prefix.'liste_titre_sel" '.$moreattrib.'>';
@@ -4126,18 +4082,15 @@ function getTitleFieldOfList($name, $thead = 0, $file = "", $field = "", $begin 
 
 		if (!$sortorder || $field1 != $sortfield1)
 		{
-			//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=asc&begin='.$begin.$options.'">'.img_down("A-Z",0).'</a>';
 			//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",0).'</a>';
 		}
 		else
 		{
 			if (preg_match('/^DESC/', $sortorder)) {
-				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=asc&begin='.$begin.$options.'">'.img_down("A-Z",0).'</a>';
 				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",1).'</a>';
 				$sortimg .= '<span class="nowrap">'.img_up("Z-A", 0).'</span>';
 			}
 			if (preg_match('/^ASC/', $sortorder)) {
-				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=asc&begin='.$begin.$options.'">'.img_down("A-Z",1).'</a>';
 				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",0).'</a>';
 				$sortimg .= '<span class="nowrap">'.img_down("A-Z", 0).'</span>';
 			}
@@ -4262,7 +4215,6 @@ function print_barre_liste($titre, $page, $file, $options = '', $sortfield = '',
 	{
 		$nextpage = 0;
 	}
-	//print 'totalnboflines='.$totalnboflines.'-savlimit='.$savlimit.'-limit='.$limit.'-num='.$num.'-nextpage='.$nextpage;
 
 	print "\n";
 	print "<!-- Begin title '".$titre."' -->\n";
@@ -4366,7 +4318,6 @@ function print_fleche_navigation($page, $file, $options = '', $nextpage = 0, $be
 	{
 		$pagesizechoices = '10:10,15:15,20:20,30:30,40:40,50:50,100:100,250:250,500:500,1000:1000,5000:5000';
 		//$pagesizechoices.=',0:'.$langs->trans("All");     // Not yet supported
-		//$pagesizechoices.=',2:2';
 		if (!empty($conf->global->MAIN_PAGESIZE_CHOICES)) $pagesizechoices = $conf->global->MAIN_PAGESIZE_CHOICES;
 
 		print '<li class="pagination">';
@@ -4464,7 +4415,6 @@ function vatrate($rate, $addpercent = false, $info_bits = 0, $usestarfornpr = 0)
 	if (!preg_match('/\//', $rate)) $ret = price($rate, 0, '', 0, 0).($addpercent ? '%' : '');
 	else
 	{
-		// TODO Split on / and output with a price2num to have clean numbers without ton of 000.
 		$ret = $rate.($addpercent ? '%' : '');
 	}
 	if (($info_bits & 1) && $usestarfornpr >= 0) $ret .= ' *';
@@ -4508,15 +4458,11 @@ function price($amount, $form = 0, $outlangs = '', $trunc = 1, $rounding = -1, $
 	if ($outlangs->transnoentitiesnoconv("SeparatorThousand") != "SeparatorThousand") $thousand = $outlangs->transnoentitiesnoconv("SeparatorThousand");
 	if ($thousand == 'None') $thousand = '';
 	elseif ($thousand == 'Space') $thousand = ' ';
-	//print "outlangs=".$outlangs->defaultlang." amount=".$amount." html=".$form." trunc=".$trunc." nbdecimal=".$nbdecimal." dec='".$dec."' thousand='".$thousand."'<br>";
 
-	//print "amount=".$amount."-";
 	$amount = str_replace(',', '.', $amount); // should be useless
-	//print $amount."-";
 	$datas = explode('.', $amount);
 	$decpart = isset($datas[1]) ? $datas[1] : '';
 	$decpart = preg_replace('/0+$/i', '', $decpart); // Supprime les 0 de fin de partie decimale
-	//print "decpart=".$decpart."<br>";
 	$end = '';
 
 	// We increase nbdecimal if there is more decimal than asked (to not loose information)
@@ -4595,12 +4541,10 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 	if ($langs->transnoentitiesnoconv("SeparatorThousand") != "SeparatorThousand") $thousand = $langs->transnoentitiesnoconv("SeparatorThousand");
 	if ($thousand == 'None') $thousand = '';
 	elseif ($thousand == 'Space') $thousand = ' ';
-	//print "amount=".$amount." html=".$form." trunc=".$trunc." nbdecimal=".$nbdecimal." dec='".$dec."' thousand='".$thousand."'<br>";
 
 	// Convert value to universal number format (no thousand separator, '.' as decimal separator)
 	if ($alreadysqlnb != 1)	// If not a PHP number or unknown, we change format
 	{
-		//print 'PP'.$amount.' - '.$dec.' - '.$thousand.' - '.intval($amount).'<br>';
 
 		// Convert amount to format with dolibarr dec and thousand (this is because PHP convert a number
 		// to format defined by LC_NUMERIC after a calculation and we want source format to be like defined by Dolibarr setup.
@@ -4612,7 +4556,6 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 			$nbofdec = max(0, dol_strlen($temps) - 2); // -2 to remove "0."
 			$amount = number_format($amount, $nbofdec, $dec, $thousand);
 		}
-		//print "QQ".$amount.'<br>';
 
 		// Now make replace (the main goal of function)
 		if ($thousand != ',' && $thousand != '.') $amount = str_replace(',', '.', $amount); // To accept 2 notations for french users
@@ -4629,10 +4572,8 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 		elseif ($rounding == 'MT') $nbofdectoround = $conf->global->MAIN_MAX_DECIMALS_TOT;
 		elseif ($rounding == 'MS') $nbofdectoround = empty($conf->global->MAIN_MAX_DECIMALS_STOCK) ? 5 : $conf->global->MAIN_MAX_DECIMALS_STOCK;
 		elseif (is_numeric($rounding))  $nbofdectoround = $rounding;
-		//print "RR".$amount.' - '.$nbofdectoround.'<br>';
 		if (dol_strlen($nbofdectoround)) $amount = round($amount, $nbofdectoround); // $nbofdectoround can be 0.
 		else return 'ErrorBadParameterProvidedToFunction';
-		//print 'SS'.$amount.' - '.$nbofdec.' - '.$dec.' - '.$thousand.' - '.$nbofdectoround.'<br>';
 
 		// Convert amount to format with dolibarr dec and thousand (this is because PHP convert a number
 		// to format defined by LC_NUMERIC after a calculation and we want source format to be defined by Dolibarr setup.
@@ -4644,7 +4585,6 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 			$nbofdec = max(0, dol_strlen($temps) - 2); // -2 to remove "0."
 			$amount = number_format($amount, min($nbofdec, $nbofdectoround), $dec, $thousand); // Convert amount to format with dolibarr dec and thousand
 		}
-		//print "TT".$amount.'<br>';
 
 		// Always make replace because each math function (like round) replace
 		// with local values and we want a number that has a SQL string format x.y
@@ -4693,7 +4633,7 @@ function showDimensionInBestUnit($dimension, $unit, $type, $outputlangs, $round 
 		$unit = $unit + 3;
 	}
 	// Special case when we want output unit into pound or ounce
-	/* TODO
+	/* 
 	if ($unit < 90 && $type == 'weight' && is_numeric($forceunitoutput) && (($forceunitoutput == 98) || ($forceunitoutput == 99))
 	{
 	    $dimension = // convert dimension from standard unit into ounce or pound
@@ -4739,7 +4679,8 @@ function get_localtax($vatrate, $local, $thirdparty_buyer = "", $thirdparty_sell
 		$vatratecode = $reg[2];
 	}
 
-	/*if ($thirdparty_buyer->country_code != $thirdparty_seller->country_code)
+	/*
+	if ($thirdparty_buyer->country_code != $thirdparty_seller->country_code)
 	{
 		return 0;
 	}*/
@@ -4762,7 +4703,6 @@ function get_localtax($vatrate, $local, $thirdparty_buyer = "", $thirdparty_sell
 
 		if ($local == 2)
 		{
-			//if (! $mysoc->localtax2_assuj || (string) $vatratecleaned == "0") return 0;
 			if (!$mysoc->localtax2_assuj) return 0; // If main vat is 0, IRPF may be different than 0.
 			if ($thirdparty_seller->id == $mysoc->id)
 			{
@@ -4811,7 +4751,6 @@ function get_localtax($vatrate, $local, $thirdparty_buyer = "", $thirdparty_sell
 			if ($thirdparty_seller != $mysoc)
 			{
 				if (!isOnlyOneLocalTax($local))  // TODO We should provide $vatrate to search on correct line and not always on line with highest vat rate
-				// TODO We should also return value defined on thirdparty only if defined
 				{
 					return $thirdparty_seller->localtax2_value;
 				}
