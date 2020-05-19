@@ -590,7 +590,7 @@ class PHPExcel_Calculation_Statistical {
 		//
 		//	This is a PHP version of the original FORTRAN code that can
 		//	be found at http://lib.stat.cmu.edu/apstat/
-		$split1 = 0.425;
+		
 		$split2 = 5;
 		$const1 = 0.180625;
 		$const2 = 1.6;
@@ -1393,7 +1393,7 @@ class PHPExcel_Calculation_Statistical {
 			$PGuess = $UnscaledPGuess / $TotalUnscaledProbability;
 			$CumPGuess = $UnscaledCumPGuess / $TotalUnscaledProbability;
 
-//			$CumPGuessMinus1 = $CumPGuess - $PGuess;
+
 			$CumPGuessMinus1 = $CumPGuess - 1;
 
 			while (True) {
