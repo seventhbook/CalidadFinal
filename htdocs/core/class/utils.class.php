@@ -124,7 +124,7 @@ class Utils
 		{
 		    foreach ($filesarray as $key => $value)
 			{
-				//print "x ".$filesarray[$key]['fullname']."-".$filesarray[$key]['type']."<br>\n";
+				
 			    if ($filesarray[$key]['type'] == 'dir')
 				{
 					$startcount = 0;
@@ -176,7 +176,7 @@ class Utils
 		}
 		dol_mkdir($conf->user->dir_temp);
 
-		//return $count;
+		
 		return 0; // This function can be called by cron so must return 0 if OK
 	}
 
@@ -226,7 +226,7 @@ class Utils
 			$prefix = 'dump';
 			$ext = 'sql';
 			if (in_array($type, array('mysql', 'mysqli'))) { $prefix = 'mysqldump'; $ext = 'sql'; }
-			//if ($label == 'PostgreSQL') { $prefix='pg_dump'; $ext='dump'; }
+			
 			if (in_array($type, array('pgsql'))) { $prefix = 'pg_dump'; $ext = 'sql'; }
 			$file = $prefix.'_'.$dolibarr_main_db_name.'_'.dol_sanitizeFileName(DOL_VERSION).'_'.strftime("%Y%m%d%H%M").'.'.$ext;
 		}
@@ -254,7 +254,7 @@ class Utils
 			$command = preg_replace('/(\$|%)/', '', $command); // We removed chars that can be used to inject vars that contains space inside path of command without seeing there is a space to bypass the escapeshellarg.
 			if (preg_match("/\s/", $command)) $command = escapeshellarg($command); // If there is spaces, we add quotes on command to be sure $command is only a program and not a program+parameters
 
-			//$param=escapeshellarg($dolibarr_main_db_name)." -h ".escapeshellarg($dolibarr_main_db_host)." -u ".escapeshellarg($dolibarr_main_db_user)." -p".escapeshellarg($dolibarr_main_db_pass);
+			
 			$param = $dolibarr_main_db_name." -h ".$dolibarr_main_db_host;
 			$param .= " -u ".$dolibarr_main_db_user;
 			if (!empty($dolibarr_main_db_port)) $param .= " -P ".$dolibarr_main_db_port;
@@ -313,7 +313,7 @@ class Utils
 				$ok = 0;
 				dol_syslog("Utils::dumpDatabase execmethod=".$execmethod." command:".$fullcommandcrypted, LOG_DEBUG);
 
-				// TODO Replace with executeCLI function
+		
 				if ($execmethod == 1)
 				{
 					$output_arr = array(); $retval = null;
@@ -394,7 +394,7 @@ class Utils
 				else
 				{
 					// Renommer fichier sortie en fichier erreur
-					//print "$outputfile -> $outputerror";
+					
 					@dol_delete_file($outputerror, 1, 0, 0, null, false, 0);
 					@rename($outputfile, $outputerror);
 					// Si safe_mode on et command hors du parametre exec, on a un fichier out vide donc errormsg vide
@@ -410,7 +410,7 @@ class Utils
 			$this->output = $errormsg;
 			$this->error = $errormsg;
 			$this->result = array("commandbackuplastdone" => $command." ".$paramcrypted, "commandbackuptorun" => "");
-			//if (empty($this->output)) $this->output=$this->result['commandbackuplastdone'];
+			
 		}
 
 		// MYSQL NO BIN
@@ -458,7 +458,7 @@ class Utils
 			$command = preg_replace('/(\$|%)/', '', $command); // We removed chars that can be used to inject vars that contains space inside path of command without seeing there is a space to bypass the escapeshellarg.
 			if (preg_match("/\s/", $command)) $command = escapeshellarg($command); // If there is spaces, we add quotes on command to be sure $command is only a program and not a program+parameters
 
-			//$param=escapeshellarg($dolibarr_main_db_name)." -h ".escapeshellarg($dolibarr_main_db_host)." -u ".escapeshellarg($dolibarr_main_db_user)." -p".escapeshellarg($dolibarr_main_db_pass);
+			
 			//$param="-F c";
 			$param = "-F p";
 			$param .= " --no-tablespaces --inserts -h ".$dolibarr_main_db_host;
@@ -483,7 +483,7 @@ class Utils
 			$paramcrypted = $param;
 			$paramclear = $param;
 			/*if (! empty($dolibarr_main_db_pass))
-			 {
+			 
 			 $paramcrypted.=" -W".preg_replace('/./i','*',$dolibarr_main_db_pass);
 			 $paramclear.=" -W".$dolibarr_main_db_pass;
 			 }*/
@@ -533,7 +533,7 @@ class Utils
 
 		if (!empty($conf->global->MAIN_EXEC_USE_POPEN)) $execmethod = $conf->global->MAIN_EXEC_USE_POPEN;
 		if (empty($execmethod)) $execmethod = 1;
-		//$execmethod=1;
+		
 
 		dol_syslog("Utils::executeCLI execmethod=".$execmethod." system:".$command, LOG_DEBUG);
 		$output_arr = array();
@@ -706,7 +706,7 @@ class Utils
 
 					include DOL_DOCUMENT_ROOT.'/core/lib/parsemd.lib.php';
 
-					//var_dump($phpfileval['fullname']);
+	
 					$arrayreplacement = array(
 					    'mymodule'=>strtolower($module),
 					    'MyModule'=>$module,
@@ -891,7 +891,7 @@ class Utils
 				$newlog = fopen($logpath.'/'.$logname, 'a+');
 				fclose($newlog);
 
-				//var_dump($logpath.'/'.$logname." - ".octdec(empty($conf->global->MAIN_UMASK)?'0664':$conf->global->MAIN_UMASK));
+				
 				@chmod($logpath.'/'.$logname, octdec(empty($conf->global->MAIN_UMASK) ? '0664' : $conf->global->MAIN_UMASK));
 			}
 		}
@@ -972,7 +972,7 @@ class Utils
 ";
 
 		if (GETPOST("nobin_disable_fk")) $sqlhead .= "SET FOREIGN_KEY_CHECKS=0;\n";
-		//$sqlhead .= "SET SQL_MODE=\"NO_AUTO_VALUE_ON_ZERO\";\n";
+		
 		if (GETPOST("nobin_use_transaction")) $sqlhead .= "SET AUTOCOMMIT=0;\nSTART TRANSACTION;\n";
 
 		fwrite($handle, $sqlhead);
@@ -1000,7 +1000,7 @@ class Utils
 			else
 			{
 				fwrite($handle, $row2[1].";\n");
-				//fwrite($handle,"/*!40101 SET character_set_client = @saved_cs_client */;\n\n");
+				
 
 				// Dumping the data (locking the table and disabling the keys check while doing the process)
 				fwrite($handle, "\n--\n-- Dumping data for table `".$table."`\n--\n");
@@ -1025,7 +1025,7 @@ class Utils
 							$row[$j] = "''";
 						} elseif (is_numeric($row[$j]) && !strcmp($row[$j], $row[$j] + 0)) { // test if it's a numeric type and the numeric version ($nb+0) == string version (eg: if we have 01, it's probably not a number but rather a string, else it would not have any leading 0)
 							// if it's a number, we return it as-is
-							//	                    $row[$j] = $row[$j];
+				
 						} else { // else for all other cases we escape the value and put quotes around
 							$row[$j] = addslashes($row[$j]);
 							$row[$j] = preg_replace("#\n#", "\\n", $row[$j]);
@@ -1042,7 +1042,7 @@ class Utils
 
 		/* Backup Procedure structure*/
 		/*
-		 $result = $db->query('SHOW PROCEDURE STATUS');
+		 
 		 if ($db->num_rows($result) > 0)
 		 {
 		 while ($row = $db->fetch_row($result)) { $procedures[] = $row[1]; }
