@@ -1330,7 +1330,7 @@ class TCPDF_FONTS {
 				$table[$tag]['offset'] = $offset;
 				$offset += $table[$tag]['length'];
 				// check sum is not changed (so keep the following line commented)
-				//$table[$tag]['checkSum'] = self::_getTTFtableChecksum($table[$tag]['data'], $table[$tag]['length']);
+				
 			} else {
 				unset($table[$tag]);
 			}
