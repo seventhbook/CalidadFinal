@@ -44,7 +44,7 @@ if (!empty($conf->tax->enabled))
 // de l'utilisation de la compta ou non. C'est au sein de cet espace que chaque sous fonction
 // est protegee par le droit qui va bien du module concerne.
 //if (!$user->rights->compta->general->lire)
-//  accessforbidden();
+
 
 // Load translation files required by the page
 $langs->loadLangs(array('compta', 'bills'));
@@ -389,9 +389,9 @@ if (!empty($conf->facture->enabled) && $user->rights->facture->lire)
 				$thirdpartystatic->email = $obj->email;
 				$thirdpartystatic->client = 1;
 				$thirdpartystatic->code_client = $obj->code_client;
-				//$thirdpartystatic->code_fournisseur = $obj->code_fournisseur;
+				
 				$thirdpartystatic->code_compta = $obj->code_compta;
-				//$thirdpartystatic->code_compta_fournisseur = $obj->code_compta_fournisseur;
+				
 
 				print '<tr class="oddeven">';
 				print '<td class="nowrap">';
@@ -765,9 +765,9 @@ if (!empty($conf->facture->enabled) && !empty($conf->commande->enabled) && $user
 				$societestatic->country_code = $obj->country_code;
 				$societestatic->client = 1;
 				$societestatic->code_client = $obj->code_client;
-				//$societestatic->code_fournisseur = $obj->code_fournisseur;
+				
 				$societestatic->code_compta = $obj->code_compta;
-				//$societestatic->code_fournisseur = $obj->code_fournisseur;
+				
 
 				$commandestatic->id = $obj->rowid;
 				$commandestatic->ref = $obj->ref;
@@ -801,7 +801,7 @@ if (!empty($conf->facture->enabled) && !empty($conf->commande->enabled) && $user
 				print '</tr>';
 				$tot_ht += $obj->total_ht;
 				$tot_ttc += $obj->total_ttc;
-				//print "x".$tot_ttc."z".$obj->tot_fttc;
+				
 				$tot_tobill += ($obj->total_ttc - $obj->tot_fttc);
 				$i++;
 			}
@@ -1066,7 +1066,7 @@ if (!empty($conf->fournisseur->enabled) && $user->rights->fournisseur->facture->
 
 
 
-// TODO Mettre ici recup des actions en rapport avec la compta
+
 $resql = 0;
 if ($resql)
 {
