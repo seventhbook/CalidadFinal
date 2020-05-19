@@ -82,7 +82,7 @@ if (! isset($_POST['datesrfc']) && ! isset($_POST['datesday']) && ! empty($conf-
 	$new=dol_now();
 	$tmp=dol_getdate($new);
 	//$datee=$now
-	//$dates=dol_time_plus_duree($datee, -1, 'y');
+	
 	$dates=dol_get_first_day($tmp['year'], 1);
 }
 if ($id == '' && $ref == '')
@@ -714,7 +714,7 @@ foreach ($listofreferent as $key => $value)
 			// Each element with at least one line is output
 			$qualifiedforfinalprofit = true;
 			if ($key == 'intervention' && empty($conf->global->PROJECT_INCLUDE_INTERVENTION_AMOUNT_IN_PROFIT)) $qualifiedforfinalprofit = false;
-			//var_dump($key);
+			
 
 			// Calculate margin
 			if ($qualifiedforfinalprofit)
@@ -783,7 +783,7 @@ foreach ($listofreferent as $key => $value)
 	if ($qualified)
 	{
 		// If we want the project task array to have details of users
-		//if ($key == 'project_task') $key = 'project_task_time';
+		
 
 	    if ($langtoload) $langs->load($langtoload);
 
@@ -857,13 +857,13 @@ foreach ($listofreferent as $key => $value)
 		else print $langs->trans("ThirdParty");
 		print '</td>';
 		// Amount HT
-		//if (empty($value['disableamount']) && ! in_array($tablename, array('projet_task'))) print '<td class="right" width="120">'.$langs->trans("AmountHT").'</td>';
-		//elseif (empty($value['disableamount']) && in_array($tablename, array('projet_task'))) print '<td class="right" width="120">'.$langs->trans("Amount").'</td>';
+		
+		
         if ($key == 'loan') print '<td class="right" width="120">'.$langs->trans("LoanCapital").'</td>';
 		elseif (empty($value['disableamount'])) print '<td class="right" width="120">'.$langs->trans("AmountHT").'</td>';
 		else print '<td width="120"></td>';
 		// Amount TTC
-		//if (empty($value['disableamount']) && ! in_array($tablename, array('projet_task'))) print '<td class="right" width="120">'.$langs->trans("AmountTTC").'</td>';
+		
         if ($key == 'loan') print '<td class="right" width="120">'.$langs->trans("RemainderToPay").'</td>';
         elseif (empty($value['disableamount'])) print '<td class="right" width="120">'.$langs->trans("AmountTTC").'</td>';
 		else print '<td width="120"></td>';
@@ -911,7 +911,7 @@ foreach ($listofreferent as $key => $value)
 					$expensereport->fetch($element->fk_expensereport);
 				}
 
-				//print 'xxx'.$tablename.'yyy'.$classname;
+				
 
 				if ($breakline && $saved_third_id != $element->thirdparty->id)
 				{
@@ -1224,7 +1224,7 @@ foreach ($listofreferent as $key => $value)
 					$breakline .= '</tr>';
 				}
 
-				//var_dump($element->thirdparty->name.' - '.$saved_third_id.' - '.$element->thirdparty->id);
+				
 			}
 
 			if ($breakline) print $breakline;
@@ -1241,8 +1241,8 @@ foreach ($listofreferent as $key => $value)
     			print '<td>';
     			print '</td>';
 			}
-			//if (empty($value['disableamount']) && ! in_array($tablename, array('projet_task'))) print '<td class="right" width="100">'.$langs->trans("TotalHT").' : '.price($total_ht).'</td>';
-			//elseif (empty($value['disableamount']) && in_array($tablename, array('projet_task'))) print '<td class="right" width="100">'.$langs->trans("Total").' : '.price($total_ht).'</td>';
+			
+			
 			print '<td class="right">';
 			if (empty($value['disableamount']))
 			{
@@ -1328,7 +1328,7 @@ function sortElementsByClientName($elementarray)
 		}
 	}
 
-	//var_dump($clientname);
+	
 	asort($clientname); // sort on name
 
 	$elementarray = array();
