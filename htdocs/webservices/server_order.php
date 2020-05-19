@@ -124,7 +124,7 @@ if (is_array($extrafields->attributes[$elementtype]['label']) && count($extrafie
 {
 	foreach ($extrafields->attributes[$elementtype]['label'] as $key=>$label)
 	{
-		//$value=$object->array_options["options_".$key];
+		
 		$type = $extrafields->attributes[$elementtype]['type'][$key];
 		if ($type == 'date' || $type == 'datetime') {$type = 'xsd:dateTime'; }
 		else {$type = 'xsd:string'; }
@@ -143,21 +143,21 @@ $server->wsdl->addComplexType(
 		$line_fields
 );
 
-/*$server->wsdl->addComplexType(
-		'LinesArray',
-		'complexType',
-		'array',
-		'',
-		'SOAP-ENC:Array',
-		array(),
-		array(
-				array(
-						'ref'=>'SOAP-ENC:arrayType',
-						'wsdl:arrayType'=>'tns:line[]'
-				)
-		),
-		'tns:line'
-);*/
+
+		
+		
+		
+		
+		
+		
+		
+				
+						
+						
+				
+		
+		
+
 $server->wsdl->addComplexType(
 		'LinesArray2',
 		'complexType',
@@ -228,7 +228,7 @@ if (is_array($extrafields->attributes[$elementtype]['label']) && count($extrafie
 {
 	foreach ($extrafields->attributes[$elementtype]['label'] as $key=>$label)
 	{
-		//$value=$object->array_options["options_".$key];
+		
 		$type = $extrafields->attributes[$elementtype]['type'][$key];
 		if ($type == 'date' || $type == 'datetime') {$type = 'xsd:dateTime'; }
 		else {$type = 'xsd:string'; }
@@ -246,22 +246,22 @@ $server->wsdl->addComplexType(
 		$order_fields
 );
 
-/*
-$server->wsdl->addComplexType(
-		'OrdersArray',
-		'complexType',
-		'array',
-		'',
-		'SOAP-ENC:Array',
-		array(),
-		array(
-				array(
-						'ref'=>'SOAP-ENC:arrayType',
-						'wsdl:arrayType'=>'tns:order[]'
-				)
-		),
-		'tns:order'
-);*/
+
+
+		
+		
+		
+		
+		
+		
+		
+				
+						
+						
+				
+		
+		
+
 $server->wsdl->addComplexType(
 		'OrdersArray2',
 		'complexType',
@@ -399,7 +399,7 @@ function getOrder($authentication, $id = '', $ref = '', $ref_ext = '')
 					$i=0;
 					foreach($order->lines as $line)
 					{
-						//var_dump($line); exit;
+						
 						$linesresp[]=array(
 						'id'=>$line->rowid,
 						'fk_commande'=>$line->fk_commande,
@@ -897,7 +897,7 @@ function updateOrder($authentication, $order)
 {
 	global $db,$conf,$langs;
 
-	$now=dol_now();
+	
 
 	dol_syslog("Function: updateOrder login=".$authentication['login']);
 
