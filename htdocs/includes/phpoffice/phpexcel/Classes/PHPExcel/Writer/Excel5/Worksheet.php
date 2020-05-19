@@ -218,7 +218,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		parent::__construct();
 
 		// change BIFFwriter limit for CONTINUE records
-//		$this->_limit = 8224;
+
 
 
 		$this->_preCalculateFormulas = $preCalculateFormulas;
@@ -230,7 +230,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 		$this->_phpSheet = $phpSheet;
 
-		//$this->ext_sheets		= array();
+		
 		//$this->offset			= 0;
 		$this->_xls_strmax		= 255;
 		$this->_colinfo			= array();
@@ -247,20 +247,20 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$this->_fntHashIndex	= array();
 
 		// calculate values for DIMENSIONS record
-		$minR = 1;
+		
 		$minC = 'A';
 
 		$maxR  = $this->_phpSheet->getHighestRow();
 		$maxC = $this->_phpSheet->getHighestColumn();
 
 		// Determine lowest and highest column and row
-//		$this->_firstRowIndex = ($minR > 65535) ? 65535 : $minR;
+
 		$this->_lastRowIndex = ($maxR > 65535) ? 65535 : $maxR ;
 
 		$this->_firstColumnIndex	= PHPExcel_Cell::columnIndexFromString($minC);
 		$this->_lastColumnIndex		= PHPExcel_Cell::columnIndexFromString($maxC);
 
-//		if ($this->_firstColumnIndex > 255) $this->_firstColumnIndex = 255;
+
 		if ($this->_lastColumnIndex > 255) $this->_lastColumnIndex = 255;
 
 		$this->_countCellStyleXfs = count($phpSheet->getParent()->getCellStyleXfCollection());
@@ -277,7 +277,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	{
 		$_phpSheet = $this->_phpSheet;
 
-		$num_sheets = $_phpSheet->getParent()->getSheetCount();
+		
 
 		// Write BOF record
 		$this->_storeBof(0x0010);
@@ -412,7 +412,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 			$column = PHPExcel_Cell::columnIndexFromString($cell->getColumn()) - 1;
 
 			// Don't break Excel!
-//			if ($row + 1 > 65536 or $column + 1 > 256) {
+
 			if ($row > 65535 || $column > 255) {
 				break;
 			}
@@ -422,7 +422,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 			$cVal = $cell->getValue();
 			if ($cVal instanceof PHPExcel_RichText) {
-				// $this->_writeString($row, $column, $cVal->getPlainText(), $xfIndex);
+				
 				$arrcRun = array();
 				$str_len = PHPExcel_Shared_String::CountCharacters($cVal->getPlainText(), 'UTF-8');
 				$str_pos = 0;
@@ -506,7 +506,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 			} else if ( preg_match('/^(http:|https:|ftp:|mailto:)/', $url) ) {
 				// URL
-				// $url = $url;
+				
 
 			} else {
 				// external (local file)
@@ -588,7 +588,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	 */
 	function getData()
 	{
-		$buffer = 4096;
+		
 
 		// Return data stored in memory
 		if (isset($this->_data)) {
@@ -914,7 +914,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 		// Parse the formula using the parser in Parser.php
 		try {
-			$error = $this->_parser->parse($formula);
+			
 			$formula = $this->_parser->toReversePolish();
 
 			$formlen	= strlen($formula);	// Length of the binary string
@@ -1026,7 +1026,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	function _writeUrlWeb($row1, $col1, $row2, $col2, $url)
 	{
 		$record	  = 0x01B8;					   // Record identifier
-		$length	  = 0x00000;					  // Bytes to follow
+		
 
 		// Pack the undocumented parts of the hyperlink stream
 		$unknown1	= pack("H*", "D0C9EA79F9BACE118C8200AA004BA90B02000000");
@@ -1071,7 +1071,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	function _writeUrlInternal($row1, $col1, $row2, $col2, $url)
 	{
 		$record	  = 0x01B8;					   // Record identifier
-		$length	  = 0x00000;					  // Bytes to follow
+		
 
 		// Strip URL type
 		$url = preg_replace('/^internal:/', '', $url);
@@ -1126,11 +1126,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		// Network drives are different. We will handle them separately
 		// MS/Novell network drives and shares start with \\
 		if (preg_match('[^external:\\\\]', $url)) {
-			return; //($this->_writeUrlExternal_net($row1, $col1, $row2, $col2, $url, $str, $format));
+			return; 
 		}
 
 		$record	  = 0x01B8;					   // Record identifier
-		$length	  = 0x00000;					  // Bytes to follow
+		
 
 		// Strip URL type and change Unix dir separator to Dos style (if needed)
 		//
@@ -1172,14 +1172,14 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 		// Pack the lengths of the dir strings
 		$dir_short_len = pack("V", strlen($dir_short)	  );
-		$dir_long_len  = pack("V", strlen($dir_long)	   );
-		$stream_len	= pack("V", 0);//strlen($dir_long) + 0x06);
+		
+		$stream_len	= pack("V", 0);
 
 		// Pack the undocumented parts of the hyperlink stream
 		$unknown1 = pack("H*",'D0C9EA79F9BACE118C8200AA004BA90B02000000'	   );
 		$unknown2 = pack("H*",'0303000000000000C000000000000046'			   );
 		$unknown3 = pack("H*",'FFFFADDE000000000000000000000000000000000000000');
-		$unknown4 = pack("v",  0x03											);
+											);
 
 		// Pack the main data stream
 		$data		= pack("vvvv", $row1, $row2, $col1, $col2) .
@@ -1195,7 +1195,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 						  $unknown4	 .
 						  $dir_long	 .
 						  $sheet_len	.
-						  $sheet		;*/
+						  $sheet		;
 
 		// Pack the header data
 		$length   = strlen($data);
@@ -1291,7 +1291,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$record		 = 0x023E;	 // Record identifier
 		$length		 = 0x0012;
 
-		$grbit		  = 0x00B6;	 // Option flags
+		
 		$rwTop		  = 0x0000;	 // Top row visible in window
 		$colLeft		= 0x0000;	 // Leftmost column visible in window
 
@@ -1439,7 +1439,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	private function _writeSelection()
 	{
 		// look up the selected cell range
-		$selectedCells = $this->_phpSheet->getSelectedCells();
+		
 		$selectedCells = PHPExcel_Cell::splitRange($this->_phpSheet->getSelectedCells());
 		$selectedCells = $selectedCells[0];
 		if (count($selectedCells) == 2) {
@@ -1822,7 +1822,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$iPageStart   = 0x01;				 // Starting page number
 		$iFitWidth	= (int) $this->_phpSheet->getPageSetup()->getFitToWidth();	// Fit to number of pages wide
 		$iFitHeight	= (int) $this->_phpSheet->getPageSetup()->getFitToHeight();	// Fit to number of pages high
-		$grbit		= 0x00;				 // Option flags
+		
 		$iRes		 = 0x0258;			   // Print resolution
 		$iVRes		= 0x0258;			   // Vertical print resolution
 
@@ -1881,14 +1881,14 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	{
 		$record  = 0x0014;			   // Record identifier
 
-		/* removing for now
-		// need to fix character count (multibyte!)
-		if (strlen($this->_phpSheet->getHeaderFooter()->getOddHeader()) <= 255) {
-			$str	  = $this->_phpSheet->getHeaderFooter()->getOddHeader();	   // header string
-		} else {
-			$str = '';
-		}
-		*/
+		
+	
+		
+			
+		
+	
+		
+		
 
 		$recordData = PHPExcel_Shared_String::UTF8toBIFF8UnicodeLong($this->_phpSheet->getHeaderFooter()->getOddHeader());
 		$length = strlen($recordData);
@@ -1905,14 +1905,14 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	{
 		$record  = 0x0015;			   // Record identifier
 
-		/* removing for now
-		// need to fix character count (multibyte!)
-		if (strlen($this->_phpSheet->getHeaderFooter()->getOddFooter()) <= 255) {
-			$str = $this->_phpSheet->getHeaderFooter()->getOddFooter();
-		} else {
-			$str = '';
-		}
-		*/
+		
+		
+		
+			
+		
+			
+		
+		
 
 		$recordData = PHPExcel_Shared_String::UTF8toBIFF8UnicodeLong($this->_phpSheet->getHeaderFooter()->getOddFooter());
 		$length = strlen($recordData);
@@ -2366,7 +2366,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	function insertBitmap($row, $col, $bitmap, $x = 0, $y = 0, $scale_x = 1, $scale_y = 1)
 	{
 		$bitmap_array = (is_resource($bitmap) ? $this->_processBitmapGd($bitmap) : $this->_processBitmap($bitmap));
-		list($width, $height, $size, $data) = $bitmap_array; //$this->_processBitmap($bitmap);
+		list($width, $height, $size, $data) = $bitmap_array; 
 
 		// Scale the frame of the image.
 		$width  *= $scale_x;
@@ -2673,7 +2673,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 		$compression = unpack("Vcomp", substr($data, 0, 4));
 		$data = substr($data, 4);
 
-		//$compression = 0;
+		
 		if ($compression['comp'] != 0) {
 			throw new PHPExcel_Writer_Exception("$bitmap: compression not supported in bitmap image.\n");
 		}
@@ -2996,7 +2996,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
 		$rt         = 0x088B; // 2
 		$grbitFrt   = 0x0000; // 2
-		$reserved   = 0x0000000000000000; // 8
+		
 		$wScalvePLV = $this->_phpSheet->getSheetView()->getZoomScale(); // 2
 
 		// The options flags that comprise $grbit
