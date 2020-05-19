@@ -260,7 +260,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 
 $sql .= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 $resql = $db->query($sql);
 if ($resql)
 {
@@ -558,10 +558,10 @@ if ($resql)
 		{
 			print '<td class="center">';
 			print dol_print_date($db->jdate($obj->date_livraison), "day");
-			/*$now = time();
-    		if ( ($now - $db->jdate($obj->date_expedition)) > $conf->warnings->lim && $obj->statutid == 1 )
-    		{
-    		}*/
+			
+    		
+    		
+    		
 			print "</td>\n";
 		}
 
