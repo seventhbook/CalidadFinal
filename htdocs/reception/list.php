@@ -225,7 +225,7 @@ if (empty($reshook))
 				}
 
     			$res = $object->create($user);
-				//var_dump($object->error);exit;
+				
     			if ($res > 0) {
 					$nb_bills_created++;
 					$object->id = $res;
@@ -277,7 +277,7 @@ if (empty($reshook))
 	    					if ($discountid > 0)
 	    					{
 	    						$result = $object->insert_discount($discountid);
-	    						//$result=$discount->link_to_invoice($lineid,$id);
+	    						
 	    					}
 	    					else
 	    					{
@@ -497,7 +497,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 $sql .= $db->order($sortfield, $sortorder);
 $sql .= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 $resql = $db->query($sql);
 if ($resql)
 {
@@ -539,7 +539,7 @@ if ($resql)
 	if ($user->rights->fournisseur->facture->creer)$arrayofmassactions['createbills'] = $langs->trans("CreateInvoiceForThisSupplier");
 	if ($massaction == 'createbills') $arrayofmassactions = array();
 	$massactionbutton = $form->selectMassAction('', $arrayofmassactions);
-	//$massactionbutton=$form->selectMassAction('', $massaction == 'presend' ? array() : array('presend'=>$langs->trans("SendByMail"), 'builddoc'=>$langs->trans("PDFMerge")));
+	
 
 	$i = 0;
     print '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">'."\n";
@@ -556,7 +556,7 @@ if ($resql)
 
 	if ($massaction == 'createbills')
 	{
-		//var_dump($_REQUEST);
+		
 		print '<input type="hidden" name="massaction" value="confirm_createbills">';
 
 		print '<table class="noborder" width="100%" >';
@@ -851,10 +851,10 @@ if ($resql)
 		{
     		print '<td class="center">';
     		print dol_print_date($db->jdate($obj->date_livraison), "day");
-    		/*$now = time();
-    		if ( ($now - $db->jdate($obj->date_reception)) > $conf->warnings->lim && $obj->statutid == 1 )
-    		{
-    		}*/
+    		
+    		
+    		
+    		
     		print "</td>\n";
 		}
 
