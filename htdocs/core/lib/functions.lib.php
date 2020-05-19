@@ -4874,8 +4874,6 @@ function getTaxesFromId($vatrate, $buyer = null, $seller = null, $firstparamisid
 		}
 
 		$sql .= ", ".MAIN_DB_PREFIX."c_country as c";
-		/*if ($mysoc->country_code == 'ES') $sql.= " WHERE t.fk_pays = c.rowid AND c.code = '".$buyer->country_code."'";    // vat in spain use the buyer country ??
-		else $sql.= " WHERE t.fk_pays = c.rowid AND c.code = '".$seller->country_code."'";*/
 		$sql .= " WHERE t.fk_pays = c.rowid AND c.code = '".$seller->country_code."'";
 		$sql .= " AND t.taux = ".((float) $vatratecleaned)." AND t.active = 1";
 		if ($vatratecode) $sql .= " AND t.code = '".$vatratecode."'";
@@ -4896,7 +4894,6 @@ function getTaxesFromId($vatrate, $buyer = null, $seller = null, $firstparamisid
 /**
  *  Get type and rate of localtaxes for a particular vat rate/country of a thirdparty.
  *  This does not take into account the seller setup if subject to vat or not, only country.
- *  TODO
  *  This function is ALSO called to retrieve type for building PDF. Such call of function must be removed.
  *  Instead this function must be called when adding a line to get the array of localtax and type, and then
  *  provide it to the function calcul_price_total.
@@ -5003,7 +5000,6 @@ function get_product_vat_for_country($idprod, $thirdparty_seller, $idprodfournpr
 		}
 		else
 		{
-			// TODO Read default product vat according to countrycode and product. Vat for couple countrycode/product is a feature not implemeted yet.
 			// May be usefull/required if hidden option SERVICE_ARE_ECOMMERCE_200238EC is on
 		}
 	}
@@ -5067,15 +5063,9 @@ function get_product_localtax_for_country($idprod, $local, $thirdparty_seller)
 
 		if ($mysoc->country_code == $thirdparty_seller->country_code) // If selling country is ours
 		{
-			/* Not defined yet, so we don't use this
-			if ($local==1) $ret=$product->localtax1_tx;
-			elseif ($local==2) $ret=$product->localtax2_tx;
-			$found=1;
-			*/
 		}
 		else
 		{
-			// TODO Read default product vat according to countrycode and product
 		}
 	}
 
@@ -5144,7 +5134,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 	{
 		if ($seller_in_cee && $buyer_in_cee && !$thirdparty_buyer->isACompany())
 		{
-			//print 'VATRULE 0';
 			return get_product_vat_for_country($idprod, $thirdparty_buyer, $idprodfournprice);
 		}
 	}
@@ -5152,7 +5141,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 	// If seller does not use VAT
 	if (!$seller_use_vat)
 	{
-		//print 'VATRULE 1';
 		return 0;
 	}
 
@@ -5162,7 +5150,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 	if (($seller_country_code == $buyer_country_code)
 	|| (in_array($seller_country_code, array('FR,MC')) && in_array($buyer_country_code, array('FR', 'MC')))) // Warning ->country_code not always defined
 	{
-		//print 'VATRULE 2';
 		return get_product_vat_for_country($idprod, $thirdparty_seller, $idprodfournprice);
 	}
 
@@ -5176,12 +5163,10 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 		$isacompany = $thirdparty_buyer->isACompany();
 		if ($isacompany)
 		{
-			//print 'VATRULE 3';
 			return 0;
 		}
 		else
 		{
-			//print 'VATRULE 4';
 			return get_product_vat_for_country($idprod, $thirdparty_seller, $idprodfournprice);
 		}
 	}
@@ -5193,7 +5178,6 @@ function get_default_tva(Societe $thirdparty_seller, Societe $thirdparty_buyer, 
 
 	// Sinon la TVA proposee par defaut=0. Fin de regle.
 	// Rem: Cela signifie qu'au moins un des 2 est hors Communaute europeenne et que le pays differe
-	//print 'VATRULE 5';
 	return 0;
 }
 
@@ -5352,10 +5336,8 @@ function get_exdir($num, $level, $alpha, $withoutslash, $object, $modulepart)
 	}
 	else
 	{
-		// TODO
 		// We will enhance here a common way of forging path for document storage
 		// Here, object->id, object->ref and modulepart are required.
-		//var_dump($modulepart);
         if (in_array($modulepart, array('thirdparty', 'contact', 'member', 'propal', 'proposal', 'commande', 'order', 'facture', 'invoice',
 			'supplier_order', 'supplier_proposal', 'shipment', 'contract', 'expensereport', 'ficheinter')))
 		{
@@ -5750,7 +5732,6 @@ function dol_string_is_good_iso($s, $clean = 0)
 	for ($scursor = 0; $scursor < $len; $scursor++)
 	{
 		$ordchar = ord($s[$scursor]);
-		//print $scursor.'-'.$ordchar.'<br>';
 		if ($ordchar < 32 && $ordchar != 13 && $ordchar != 10) { $ok = 0; break; }
 		elseif ($ordchar > 126 && $ordchar < 160) { $ok = 0; break; }
 		elseif ($clean) {
@@ -5806,7 +5787,6 @@ function dol_nboflines_bis($text, $maxlinesize = 0, $charset = 'UTF-8')
 		{
 			if (dol_strlen($line) > $maxlinesize)
 			{
-				//$line_dec = html_entity_decode(strip_tags($line));
 				$line_dec = html_entity_decode($line);
 				if (dol_strlen($line_dec) > $maxlinesize)
 				{
@@ -5996,16 +5976,12 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 				$substitutionarray['__MEMBER_CIVILITY__'] = '__MEMBER_CIVILITY__';
 				$substitutionarray['__MEMBER_FIRSTNAME__'] = '__MEMBER_FIRSTNAME__';
 				$substitutionarray['__MEMBER_LASTNAME__'] = '__MEMBER_LASTNAME__';
-				/*$substitutionarray['__MEMBER_NOTE_PUBLIC__'] = '__MEMBER_NOTE_PUBLIC__';
-				$substitutionarray['__MEMBER_NOTE_PRIVATE__'] = '__MEMBER_NOTE_PRIVATE__';*/
 			}
 			if (!empty($conf->projet->enabled))
 			{
 				$substitutionarray['__PROJECT_ID__'] = '__PROJECT_ID__';
 				$substitutionarray['__PROJECT_REF__'] = '__PROJECT_REF__';
 				$substitutionarray['__PROJECT_NAME__'] = '__PROJECT_NAME__';
-				/*$substitutionarray['__PROJECT_NOTE_PUBLIC__'] = '__PROJECT_NOTE_PUBLIC__';
-				$substitutionarray['__PROJECT_NOTE_PRIVATE__'] = '__PROJECT_NOTE_PRIVATE__';*/
 			}
 			if (!empty($conf->contrat->enabled))
 			{
@@ -6241,8 +6217,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 		if ($onlykey != 2 || $mysoc->useLocalTax(1)) $substitutionarray['__AMOUNT_TAX2_FORMATED__']     = is_object($object) ? ($object->total_localtax1 ? price($object->total_localtax1, 0, $outputlangs, 0, 0, -1, $conf->currency) : null) : '';
 		if ($onlykey != 2 || $mysoc->useLocalTax(2)) $substitutionarray['__AMOUNT_TAX3_FORMATED__']     = is_object($object) ? ($object->total_localtax2 ? price($object->total_localtax2, 0, $outputlangs, 0, 0, -1, $conf->currency) : null) : '';
 
-		// TODO Add keys for foreign multicurrency
-
 		// For backward compatibility
 		if ($onlykey != 2)
 		{
@@ -6251,8 +6225,6 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 			$substitutionarray['__TOTAL_VAT__']    = is_object($object) ? ($object->total_vat ? $object->total_vat : $object->total_tva) : '';
 		}
 	}
-
-	//var_dump($substitutionarray['__AMOUNT_FORMATED__']);
 	if (empty($exclude) || !in_array('date', $exclude))
 	{
 		include_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
@@ -6381,18 +6353,6 @@ function complete_substitutions_array(&$substitutionarray, $outputlangs, $object
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
 	// Add a substitution key for each extrafields, using key __EXTRA_XXX__
-	// TODO Remove this. Already available into the getCommonSubstitutionArray used to build the substitution array.
-	/*if (is_object($object) && is_array($object->array_options))
-	{
-		foreach($object->array_options as $key => $val)
-		{
-			$keyshort=preg_replace('/^(options|extra)_/','',$key);
-			$substitutionarray['__EXTRAFIELD_'.$keyshort.'__']=$val;
-			// For backward compatibiliy
-			$substitutionarray['%EXTRA_'.$keyshort.'%']=$val;
-		}
-	}*/
-
 	// Check if there is external substitution to do, requested by plugins
 	$dirsubstitutions = array_merge(array(), (array) $conf->modules_parts['substitutions']);
 
@@ -6555,8 +6515,6 @@ function setEventMessages($mesg, $mesgs, $style = 'mesgs', $messagekey = '')
 	{
 		if ($messagekey)
 		{
-			// Complete message with a js link to set a cookie "DOLHIDEMESSAGE".$messagekey;
-			// TODO
 			$mesg .= '';
 		}
 		if (empty($messagekey) || empty($_COOKIE["DOLHIDEMESSAGE".$messagekey]))
@@ -6943,7 +6901,6 @@ function verifCond($strRights)
 	global $leftmenu;
 	global $rights; // To export to dol_eval function
 
-	//print $strRights."<br>\n";
 	$rights = true;
 	if ($strRights != '')
 	{
@@ -6974,7 +6931,6 @@ function dol_eval($s, $returnvalue = 0, $hideerrors = 1)
 	global $obj; // To get $obj used into list when dol_eval is used for computed fields and $obj is not yet $object
 	global $soc; // For backward compatibility
 
-	//print $s."<br>\n";
 	if ($returnvalue)
 	{
 		if ($hideerrors) return @eval('return '.$s.';');
@@ -7240,7 +7196,6 @@ function getLanguageCodeFromCountryCode($countrycode)
     		$locale_region = locale_get_region($locale);
     		if (strtoupper($countrycode) == $locale_region)
     		{
-    			//var_dump($locale.'-'.$locale_language.'-'.$locale_region);
     			return strtolower($locale_language).'_'.strtoupper($locale_region);
     		}
     	}
@@ -7342,7 +7297,6 @@ function complete_head_from_modules($conf, $langs, $object, &$head, &$h, $type, 
 				foreach ($head as $key => $val)
 				{
 					$condition = (!empty($values[3]) ? verifCond($values[3]) : 1);
-					//var_dump($key.' - '.$tabname.' - '.$head[$key][2].' - '.$values[3].' - '.$condition);
 					if ($head[$key][2] == $tabname && $condition)
 					{
 						unset($head[$key]);
@@ -7422,7 +7376,6 @@ function printCommonFooter($zone = 'private')
 				if (constant('DOL_URL_ROOT')) $relativepathstring = preg_replace('/^'.preg_quote(constant('DOL_URL_ROOT'), '/').'/', '', $relativepathstring);
 				$relativepathstring = preg_replace('/^\//', '', $relativepathstring);
 				$relativepathstring = preg_replace('/^custom\//', '', $relativepathstring);
-				//$tmpqueryarraywehave = explode('&', dol_string_nohtmltag($_SERVER['QUERY_STRING']));
 				if (!empty($user->default_values[$relativepathstring]['focus']))
 				{
 					foreach ($user->default_values[$relativepathstring]['focus'] as $defkey => $defval)
@@ -7435,11 +7388,9 @@ function printCommonFooter($zone = 'private')
 							foreach ($tmpqueryarraytohave as $tmpquerytohave)
 							{
 								$tmpquerytohaveparam = explode('=', $tmpquerytohave);
-								//print "console.log('".$tmpquerytohaveparam[0]." ".$tmpquerytohaveparam[1]." ".GETPOST($tmpquerytohaveparam[0])."');";
 								if (!GETPOSTISSET($tmpquerytohaveparam[0]) || ($tmpquerytohaveparam[1] != GETPOST($tmpquerytohaveparam[0]))) $foundintru = 1;
 							}
 							if (!$foundintru) $qualified = 1;
-							//var_dump($defkey.'-'.$qualified);
 						}
 						else $qualified = 1;
 
@@ -7467,11 +7418,9 @@ function printCommonFooter($zone = 'private')
 							foreach ($tmpqueryarraytohave as $tmpquerytohave)
 							{
 								$tmpquerytohaveparam = explode('=', $tmpquerytohave);
-								//print "console.log('".$tmpquerytohaveparam[0]." ".$tmpquerytohaveparam[1]." ".GETPOST($tmpquerytohaveparam[0])."');";
 								if (!GETPOSTISSET($tmpquerytohaveparam[0]) || ($tmpquerytohaveparam[1] != GETPOST($tmpquerytohaveparam[0]))) $foundintru = 1;
 							}
 							if (!$foundintru) $qualified = 1;
-							//var_dump($defkey.'-'.$qualified);
 						}
 						else $qualified = 1;
 
@@ -7492,7 +7441,6 @@ function printCommonFooter($zone = 'private')
 			print '});'."\n";
 
 			// Google Analytics
-			// TODO Add a hook here
 			if (!empty($conf->google->enabled) && !empty($conf->global->MAIN_GOOGLE_AN_ID))
 			{
 				print "\n";
@@ -7558,12 +7506,10 @@ function printCommonFooter($zone = 'private')
 		{
 			print "\n";
 			print "<!-- Start of log output\n";
-			//print '<div class="hidden">'."\n";
 			foreach ($conf->logbuffer as $logline)
 			{
 				print $logline."<br>\n";
 			}
-			//print '</div>'."\n";
 			print "End of log output -->\n";
 		}
 	}
@@ -7795,7 +7741,6 @@ function natural_search($fields, $value, $mode = 0, $nofirstand = 0)
 		$j++;
 	}
 	$res = ($nofirstand ? "" : " AND ")."(".$res.")";
-	//print 'xx'.$res.'yy';
 	return $res;
 }
 
@@ -7868,8 +7813,6 @@ function getAdvancedPreviewUrl($modulepart, $relativepath, $alldata = 0, $param 
 	if (empty($conf->use_javascript_ajax)) return '';
 
 	$mime_preview = array('bmp', 'jpeg', 'png', 'gif', 'tiff', 'pdf', 'plain', 'css', 'svg+xml');
-	//$mime_preview[]='vnd.oasis.opendocument.presentation';
-	//$mime_preview[]='archive';
 	$num_mime = array_search(dol_mimetype($relativepath, '', 1), $mime_preview);
 
 	if ($alldata == 1)
@@ -8110,9 +8053,6 @@ function colorIsLight($stringcolor)
 function isVisibleToUserType($type_user, &$menuentry, &$listofmodulesforexternal)
 {
 	global $conf;
-
-	//print 'type_user='.$type_user.' module='.$menuentry['module'].' enabled='.$menuentry['enabled'].' perms='.$menuentry['perms'];
-	//print 'ok='.in_array($menuentry['module'], $listofmodulesforexternal);
 	if (empty($menuentry['enabled'])) return 0; // Entry disabled by condition
 	if ($type_user && $menuentry['module'])
 	{
@@ -8191,8 +8131,6 @@ function dolGetBadge($label, $html = '', $type = 'primary', $mode = '', $url = '
         }
     }
 
-    // TODO: add hook
-
     // escape all attribute
     $attr = array_map('dol_escape_htmltag', $attr);
 
@@ -8231,8 +8169,6 @@ function dolGetStatus($statusLabel = '', $statusLabelShort = '', $html = '', $st
     if (!empty($params['badgeParams'])) {
         $dolGetBadgeParams = $params['badgeParams'];
     }
-
-    // TODO : add a hook
 
     if ($displayMode == 0) {
         $return = !empty($html) ? $html : $statusLabel;
@@ -8369,8 +8305,6 @@ function dolGetButtonAction($label, $html = '', $actionType = 'default', $url = 
         unset($attr['href']);
     }
 
-    // TODO : add a hook
-
     // escape all attribute
     $attr = array_map('dol_escape_htmltag', $attr);
 
@@ -8409,7 +8343,6 @@ function dolGetButtonTitle($label, $helpText = '', $iconClass = 'fa fa-file', $u
 
     $class = 'btnTitle';
 
-    // hidden conf keep during button transition TODO: remove this block
     if (!empty($conf->global->MAIN_USE_OLD_TITLE_BUTTON)) {
         $class = 'butActionNew';
     }
@@ -8427,7 +8360,6 @@ function dolGetButtonTitle($label, $helpText = '', $iconClass = 'fa fa-file', $u
     if ($status <= 0) {
         $attr['class'] .= ' refused';
 
-        // hidden conf keep during button transition TODO: remove this block
         if (!empty($conf->global->MAIN_USE_OLD_TITLE_BUTTON)) {
             $attr['class'] = 'butActionNewRefused';
         }
@@ -8469,7 +8401,6 @@ function dolGetButtonTitle($label, $helpText = '', $iconClass = 'fa fa-file', $u
         unset($attr['href']);
     }
 
-    // TODO : add a hook
 
     // escape all attribute
     $attr = array_map('dol_escape_htmltag', $attr);
@@ -8488,7 +8419,6 @@ function dolGetButtonTitle($label, $helpText = '', $iconClass = 'fa fa-file', $u
     $button .= '<span class="valignmiddle text-plus-circle btnTitle-label'.(empty($params['forcenohideoftext']) ? ' hideonsmartphone' : '').'">'.$label.'</span>';
     $button .= '</'.$tag.'>';
 
-    // hidden conf keep during button transition TODO: remove this block
     if (!empty($conf->global->MAIN_USE_OLD_TITLE_BUTTON)) {
         $button = '<'.$tag.' '.$compiledAttributes.' ><span class="text-plus-circle">'.$label.'</span>';
         $button .= '<span class="'.$iconClass.' valignmiddle"></span>';
