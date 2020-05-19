@@ -142,13 +142,13 @@ $title = $langs->trans("VATReport")." ".dol_print_date($date_start)." -> ".dol_p
 llxHeader('', $title, '', '', 0, 0, '', '', $morequerystring);
 
 
-//print load_fiche_titre($langs->trans("VAT"),"");
 
-//$fsearch.='<br>';
+
+
 $fsearch = '<!-- hidden fields for form -->';
 $fsearch .= '<input type="hidden" name="token" value="'.newToken().'">';
 $fsearch .= '<input type="hidden" name="modetax" value="'.$modetax.'">';
-//$fsearch.='  '.$langs->trans("SalesTurnoverMinimum").': ';
+
 //$fsearch.='  <input type="text" name="min" value="'.$min.'">';
 
 
@@ -358,7 +358,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
 	$span = $columns;
 	if ($modetax != 1) $span += 2;
 
-	//print '<tr><td colspan="'.($span+1).'">'..')</td></tr>';
+	
 
 	// Customers invoices
 	print '<tr class="liste_titre">';
@@ -470,9 +470,9 @@ if (!is_array($x_coll) || !is_array($x_paye))
 					print price($fields['totalht']);
 					if (price2num($fields['ftotal_ttc']))
 					{
-						//print $fields['dtotal_ttc']."/".$fields['ftotal_ttc']." - ";
+						
 						$ratiolineinvoice = ($fields['dtotal_ttc'] / $fields['ftotal_ttc']);
-						//print ' ('.round($ratiolineinvoice*100,2).'%)';
+						
 					}
 					print '</td>';
 				}
@@ -482,7 +482,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
 				if ($modetax != 1)
 				{
 					print '<td class="nowrap right">';
-					//print $fields['totalht']."-".$fields['payment_amount']."-".$fields['ftotal_ttc'];
+					
 					if ($fields['payment_amount'] && $fields['ftotal_ttc'])
 					{
 						$payment_static->id = $fields['payment_id'];
@@ -514,7 +514,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
 				print '<td class="nowrap right">';
 				$temp_vat = $fields['vat'] * $ratiopaymentinvoice;
 				print price(price2num($temp_vat, 'MT'), 1);
-				//print price($fields['vat']);
+				
 				print '</td>';
 				print '</tr>';
 
@@ -651,9 +651,9 @@ if (!is_array($x_coll) || !is_array($x_paye))
 					print price($fields['totalht']);
 					if (price2num($fields['ftotal_ttc']))
 					{
-						//print $fields['dtotal_ttc']."/".$fields['ftotal_ttc']." - ";
+						
 						$ratiolineinvoice = ($fields['dtotal_ttc'] / $fields['ftotal_ttc']);
-						//print ' ('.round($ratiolineinvoice*100,2).'%)';
+						
 					}
 					print '</td>';
 				}
@@ -697,7 +697,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
 				print '<td class="nowrap right">';
 				$temp_vat = $fields['vat'] * $ratiopaymentinvoice;
 				print price(price2num($temp_vat, 'MT'), 1);
-				//print price($fields['vat']);
+				
 				print '</td>';
 				print '</tr>';
 
