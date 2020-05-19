@@ -93,7 +93,7 @@ $year_start = $tmps['year'];
 $tmpe = dol_getdate($date_end);
 $year_end = $tmpe['year'];
 $nbofyear = ($year_end - $year_start) + 1;
-//var_dump("year_start=".$year_start." year_end=".$year_end." nbofyear=".$nbofyear." date_start=".dol_print_date($date_start, 'dayhour')." date_end=".dol_print_date($date_end, 'dayhour'));
+
 
 
 // Security check
@@ -132,7 +132,7 @@ if ($modecompta == 'CREANCES-DETTES')
 	if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description .= "<br>".$langs->trans("DepositsAreNotIncluded");
 	else  $description .= "<br>".$langs->trans("DepositsAreIncluded");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta == "RECETTES-DEPENSES") {
 	$name = $langs->trans("ReportInOut").', '.$langs->trans("ByYear");
@@ -144,7 +144,7 @@ elseif ($modecompta == "RECETTES-DEPENSES") {
 	$description = $langs->trans("RulesAmountWithTaxIncluded");
 	$description .= '<br>'.$langs->trans("RulesResultInOut");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta == "BOOKKEEPING")
 {
@@ -157,7 +157,7 @@ elseif ($modecompta == "BOOKKEEPING")
 	$description = $langs->trans("RulesAmountOnInOutBookkeepingRecord");
 	$description .= ' ('.$langs->trans("SeePageForSetup", DOL_URL_ROOT.'/accountancy/admin/account.php?mainmenu=accountancy&leftmenu=accountancy_admin', $langs->transnoentitiesnoconv("Accountancy").' / '.$langs->transnoentitiesnoconv("Setup").' / '.$langs->trans("Chartofaccounts")).')';
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 
 $hselected = 'report';
@@ -212,7 +212,7 @@ if (!empty($conf->facture->enabled) && ($modecompta == 'CREANCES-DETTES' || $mod
 	$sql .= " GROUP BY dm";
 	$sql .= " ORDER BY dm";
 
-	//print $sql;
+	
 	dol_syslog("get customers invoices", LOG_DEBUG);
 	$result = $db->query($sql);
 	if ($result)
@@ -803,10 +803,10 @@ elseif ($modecompta == 'BOOKKEEPING') {
 if (!empty($conf->accounting->enabled) && ($modecompta == 'BOOKKEEPING'))
 {
 	$predefinedgroupwhere = "(";
-	//$predefinedgroupwhere.= " (pcg_type = 'EXPENSE' and pcg_subtype in ('PRODUCT','SERVICE'))";
+	
 	$predefinedgroupwhere .= " (pcg_type = 'EXPENSE')";
 	$predefinedgroupwhere .= " OR ";
-	//$predefinedgroupwhere.= " (pcg_type = 'INCOME' and pcg_subtype in ('PRODUCT','SERVICE'))";
+	
 	$predefinedgroupwhere .= " (pcg_type = 'INCOME')";
 	$predefinedgroupwhere .= ")";
 
@@ -823,7 +823,7 @@ if (!empty($conf->accounting->enabled) && ($modecompta == 'BOOKKEEPING'))
 	if (!empty($date_start) && !empty($date_end))
 		$sql .= " AND b.doc_date >= '".$db->idate($date_start)."' AND b.doc_date <= '".$db->idate($date_end)."'";
 	$sql .= " GROUP BY b.doc_ref, b.numero_compte, b.subledger_account, b.subledger_label, pcg_type, dm";
-	//print $sql;
+	
 
 	$subtotal_ht = 0;
 	$subtotal_ttc = 0;
@@ -897,12 +897,12 @@ for ($annee = $year_start; $annee <= $year_end; $annee++)
 {
 	print '<td class="liste_titre" align="center">';
 	$htmlhelp = '';
-	// if ($modecompta == 'RECETTES-DEPENSES') $htmlhelp=$langs->trans("PurchasesPlusVATEarnedAndDue");
+	
 	print $form->textwithpicto($langs->trans("Outcome"), $htmlhelp);
 	print '</td>';
 	print '<td class="liste_titre" align="center" class="borderrightlight">';
 	$htmlhelp = '';
-	// if ($modecompta == 'RECETTES-DEPENSES') $htmlhelp=$langs->trans("SalesPlusVATToRetreive");
+	
 	print $form->textwithpicto($langs->trans("Income"), $htmlhelp);
 	print '</td>';
 }
@@ -1001,7 +1001,7 @@ for ($annee = $year_start; $annee <= $year_end; $annee++)
 		$in = (isset($totentrees[$annee]) ?price2num($totentrees[$annee], 'MT') : 0);
 		$out = (isset($totsorties[$annee]) ?price2num($totsorties[$annee], 'MT') : 0);
 		print price(price2num($in - $out, 'MT')).'</td>';
-		//  print '<td>&nbsp;</td>';
+		
 	}
 }
 print "</tr>\n";
