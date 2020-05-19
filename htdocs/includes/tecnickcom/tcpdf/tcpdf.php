@@ -1990,7 +1990,6 @@ class TCPDF {
 			// \p{Z}  : any separator
 			// \p{Lo} : Unicode letter or ideograph that does not have lowercase and uppercase variants. Is used to chunk chinese words.
 			// \xa0   : Unicode Character 'NO-BREAK SPACE' (U+00A0)
-			//$this->setSpacesRE('/(?!\xa0)[\s\p{Z}\p{Lo}]/u');
 			$this->setSpacesRE('/(?!\xa0)[\s\p{Z}]/u');
 		} else {
 			// PCRE unicode support is turned OFF
@@ -3020,7 +3019,6 @@ class TCPDF {
 		if (($pnum > 0) AND ($pnum <= $this->numpages)) {
 			$this->state = 2;
 			// save current graphic settings
-			//$gvars = $this->getGraphicVars();
 			$oldpage = $this->page;
 			$this->page = $pnum;
 			$this->wPt = $this->pagedim[$this->page]['w'];
@@ -3035,7 +3033,6 @@ class TCPDF {
 			$this->CurOrientation = $this->pagedim[$this->page]['or'];
 			$this->SetAutoPageBreak($this->AutoPageBreak, $this->bMargin);
 			// restore graphic settings
-			//$this->setGraphicVars($gvars);
 			if ($resetmargins) {
 				$this->lMargin = $this->pagedim[$this->page]['olm'];
 				$this->rMargin = $this->pagedim[$this->page]['orm'];
@@ -6877,7 +6874,6 @@ class TCPDF {
 			// check if file exist and it is valid
 			if (!@TCPDF_STATIC::file_exists($file)) {
 				// DOL CHANGE If we keep this, the image is not visible on pages after the first one.
-				//var_dump($file.' '.(!@TCPDF_STATIC::file_exists($file)));
 				//return false;
 			}
 			if (($imsize = @getimagesize($file)) === FALSE) {
@@ -7799,7 +7795,6 @@ class TCPDF {
 			if (isset($this->imagekeys)) {
 				foreach($this->imagekeys as $file) {
 // @CHANGE DOL
-//					unlink($file);
 				}
 			}
 		}
@@ -8280,7 +8275,6 @@ class TCPDF {
 						$annots .= ' /AP <<';
 						if (is_array($pl['opt']['ap'])) {
 							foreach ($pl['opt']['ap'] as $apmode => $apdef) {
-								// $apmode can be: n = normal; r = rollover; d = down;
 								$annots .= ' /'.strtoupper($apmode);
 								if (is_array($apdef)) {
 									$annots .= ' <<';
@@ -8353,7 +8347,6 @@ class TCPDF {
 					if (isset($pl['opt']['c']) AND (is_array($pl['opt']['c'])) AND !empty($pl['opt']['c'])) {
 						$annots .= ' /C '.TCPDF_COLORS::getColorStringFromArray($pl['opt']['c']);
 					}
-					//$annots .= ' /StructParent ';
 					//$annots .= ' /OC ';
 					$markups = array('text', 'freetext', 'line', 'square', 'circle', 'polygon', 'polyline', 'highlight', 'underline', 'squiggly', 'strikeout', 'stamp', 'caret', 'ink', 'fileattachment', 'sound');
 					if (in_array(strtolower($pl['opt']['subtype']), $markups)) {
@@ -8361,7 +8354,6 @@ class TCPDF {
 						if (isset($pl['opt']['t']) AND is_string($pl['opt']['t'])) {
 							$annots .= ' /T '.$this->_textstring($pl['opt']['t'], $annot_obj_id);
 						}
-						//$annots .= ' /Popup ';
 						if (isset($pl['opt']['ca'])) {
 							$annots .= ' /CA '.sprintf('%F', floatval($pl['opt']['ca']));
 						}
@@ -8369,13 +8361,9 @@ class TCPDF {
 							$annots .= ' /RC '.$this->_textstring($pl['opt']['rc'], $annot_obj_id);
 						}
 						$annots .= ' /CreationDate '.$this->_datestring($annot_obj_id, $this->doc_creation_timestamp);
-						//$annots .= ' /IRT ';
 						if (isset($pl['opt']['subj'])) {
 							$annots .= ' /Subj '.$this->_textstring($pl['opt']['subj'], $annot_obj_id);
 						}
-						//$annots .= ' /RT ';
-						//$annots .= ' /IT ';
-						//$annots .= ' /ExData ';
 					}
 					$lineendings = array('Square', 'Circle', 'Diamond', 'OpenArrow', 'ClosedArrow', 'None', 'Butt', 'ROpenArrow', 'RClosedArrow', 'Slash');
 					// Annotation types
@@ -8456,8 +8444,6 @@ class TCPDF {
 							} else {
 								$annots .= ' /H /I';
 							}
-							//$annots .= ' /PA ';
-							//$annots .= ' /Quadpoints ';
 							break;
 						}
 						case 'freetext': {
@@ -9222,7 +9208,6 @@ class TCPDF {
 						$maxval =(pow(2, $info['bpc']) - 1);
 						for ($i = 0; $i < $count_info; ++$i) {
 							if (($info['trns'][$i] != 0) AND ($info['trns'][$i] != $maxval)) {
-								// this is not a binary type mask @TODO: create a SMask
 								$trns = '';
 								break;
 							} elseif (empty($trns) AND ($info['trns'][$i] == 0)) {
@@ -9724,9 +9709,7 @@ class TCPDF {
 		$oid = $this->_newobj();
 		$out = '<< /Type /Catalog';
 		$out .= ' /Version /'.$this->PDFVersion;
-		//$out .= ' /Extensions <<>>';
 		$out .= ' /Pages 1 0 R';
-		//$out .= ' /PageLabels ' //...;
 		$out .= ' /Names <<';
 		if ((!$this->pdfa_mode) AND !empty($this->n_js)) {
 			$out .= ' /JavaScript '.$this->n_js;
@@ -9753,7 +9736,6 @@ class TCPDF {
 			$out .= ' /Outlines '.$this->OutlineRoot.' 0 R';
 			$out .= ' /PageMode /UseOutlines';
 		}
-		//$out .= ' /Threads []';
 		if ($this->ZoomMode == 'fullpage') {
 			$out .= ' /OpenAction ['.$this->page_obj_id[1].' 0 R /Fit]';
 		} elseif ($this->ZoomMode == 'fullwidth') {
@@ -9763,16 +9745,10 @@ class TCPDF {
 		} elseif (!is_string($this->ZoomMode)) {
 			$out .= sprintf(' /OpenAction ['.$this->page_obj_id[1].' 0 R /XYZ null null %F]', ($this->ZoomMode / 100));
 		}
-		//$out .= ' /AA <<>>';
-		//$out .= ' /URI <<>>';
 		$out .= ' /Metadata '.$xmpobj.' 0 R';
-		//$out .= ' /StructTreeRoot <<>>';
-		//$out .= ' /MarkInfo <<>>';
 		if (isset($this->l['a_meta_language'])) {
 			$out .= ' /Lang '.$this->_textstring($this->l['a_meta_language'], $oid);
 		}
-		//$out .= ' /SpiderInfo <<>>';
-		// set OutputIntent to sRGB IEC61966-2.1 if required
 		if ($this->pdfa_mode OR $this->force_srgb) {
 			$out .= ' /OutputIntents [<<';
 			$out .= ' /Type /OutputIntent';
@@ -9784,7 +9760,6 @@ class TCPDF {
 			$out .= ' /DestOutputProfile '.$iccobj.' 0 R';
 			$out .= ' >>]';
 		}
-		//$out .= ' /PieceInfo <<>>';
 		if (!empty($this->pdflayers)) {
 			$lyrobjs = '';
 			$lyrobjs_off = '';
@@ -9813,8 +9788,6 @@ class TCPDF {
 			$out .= ' ]';
 			$out .= ' /Order ['.$lyrobjs.']';
 			$out .= ' /ListMode /AllPages';
-			//$out .= ' /RBGroups ['..']';
-			//$out .= ' /Locked ['..']';
 			$out .= ' >>';
 			$out .= ' >>';
 		}
@@ -9851,7 +9824,6 @@ class TCPDF {
 					$out .= ' /SigFlags 1';
 				}
 			}
-			//$out .= ' /CO ';
 			if (isset($this->annotation_fonts) AND !empty($this->annotation_fonts)) {
 				$out .= ' /DR <<';
 				$out .= ' /Font <<';
@@ -9863,7 +9835,6 @@ class TCPDF {
 			$font = $this->getFontBuffer('helvetica');
 			$out .= ' /DA (/F'.$font['i'].' 0 Tf 0 g)';
 			$out .= ' /Q '.(($this->rtl)?'2':'0');
-			//$out .= ' /XFA ';
 			$out .= ' >>';
 			// signatures
 			if ($this->sign AND isset($this->signature_data['cert_type'])
@@ -9875,10 +9846,6 @@ class TCPDF {
 				}
 			}
 		}
-		//$out .= ' /Legal <<>>';
-		//$out .= ' /Requirements []';
-		//$out .= ' /Collection <<>>';
-		//$out .= ' /NeedsRendering true';
 		$out .= ' >>';
 		$out .= "\n".'endobj';
 		$this->_out($out);
@@ -12583,7 +12550,6 @@ class TCPDF {
 		}
 		if (strpos($this->javascript, 'this.addField') > 0) {
 			if (!$this->ur['enabled']) {
-				//$this->setUserRights();
 			}
 			// the following two lines are used to avoid form fields duplication after saving
 			// The addField method only works when releasing user rights (UR3)
@@ -12767,17 +12733,6 @@ class TCPDF {
 		$opt['ft'] = 'Tx';
 		$opt['t'] = $name;
 		// Additional annotation's parameters (check _putannotsobj() method):
-		//$opt['f']
-		//$opt['as']
-		//$opt['bs']
-		//$opt['be']
-		//$opt['c']
-		//$opt['border']
-		//$opt['h']
-		//$opt['mk'];
-		//$opt['mk']['r']
-		//$opt['mk']['bc'];
-		//$opt['mk']['bg'];
 		unset($opt['mk']['ca']);
 		unset($opt['mk']['rc']);
 		unset($opt['mk']['ac']);
@@ -12785,19 +12740,7 @@ class TCPDF {
 		unset($opt['mk']['ri']);
 		unset($opt['mk']['ix']);
 		unset($opt['mk']['if']);
-		//$opt['mk']['if']['sw'];
-		//$opt['mk']['if']['s'];
-		//$opt['mk']['if']['a'];
-		//$opt['mk']['if']['fb'];
 		unset($opt['mk']['tp']);
-		//$opt['tu']
-		//$opt['tm']
-		//$opt['ff']
-		//$opt['v']
-		//$opt['dv']
-		//$opt['a']
-		//$opt['aa']
-		//$opt['q']
 		$this->Annotation($x, $y, $w, $h, $name, $opt, 0);
 		if ($this->rtl) {
 			$this->x -= $w;
@@ -13390,10 +13333,6 @@ class TCPDF {
 			}
 			$out .= ' >>'; // close TransformParams
 			// optional digest data (values must be calculated and replaced later)
-			//$out .= ' /Data ********** 0 R';
-			//$out .= ' /DigestMethod/MD5';
-			//$out .= ' /DigestLocation[********** 34]';
-			//$out .= ' /DigestValue<********************************>';
 			$out .= ' >>';
 			$out .= ' ]'; // end of reference
 		}
@@ -13604,7 +13543,6 @@ class TCPDF {
 		if (!$this->tsa_timestamp) {
 			return $signature;
 		}
-		//@TODO: implement this feature
 		return $signature;
 	}
 
@@ -18929,11 +18867,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				if (!isset($tag['height'])) {
 					$tag['height'] = 0;
 				}
-				//if (!isset($tag['attribute']['align'])) {
-					// the only alignment supported is "bottom"
-					// further development is required for other modes.
 					$tag['attribute']['align'] = 'bottom';
-				//}
 				switch($tag['attribute']['align']) {
 					case 'top': {
 						$align = 'T';
@@ -19292,7 +19226,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							break;
 						}
 						$value = 'img';
-						//$opt['mk'] = array('i'=>$img, 'tp'=>1, 'if'=>array('sw'=>'A', 's'=>'A', 'fb'=>false));
 						if (isset($tag['attribute']['onclick']) AND !empty($tag['attribute']['onclick'])) {
 							$jsaction = $tag['attribute']['onclick'];
 						} else {
@@ -20521,8 +20454,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				break;
 			}
 			// ordered types
-			// $this->listcount[$this->listnum];
-			// $textitem
 			case '1':
 			case 'decimal': {
 				$textitem = $this->listcount[$this->listnum];
@@ -20558,33 +20489,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$textitem = TCPDF_FONTS::unichr((945 + $this->listcount[$this->listnum] - 1), $this->isunicode);
 				break;
 			}
-			/*
-			// Types to be implemented (special handling)
-			case 'hebrew': {
-				break;
-			}
-			case 'armenian': {
-				break;
-			}
-			case 'georgian': {
-				break;
-			}
-			case 'cjk-ideographic': {
-				break;
-			}
-			case 'hiragana': {
-				break;
-			}
-			case 'katakana': {
-				break;
-			}
-			case 'hiragana-iroha': {
-				break;
-			}
-			case 'katakana-iroha': {
-				break;
-			}
-			*/
 			default: {
 				$textitem = $this->listcount[$this->listnum];
 			}
@@ -24349,7 +24253,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			case 'text':
 			case 'tspan': {
 				if (isset($this->svgtextmode['text-anchor']) AND !empty($this->svgtext)) {
-					// @TODO: unsupported feature
 				}
 				// only basic support - advanced features must be implemented
 				$this->svgtextmode['invisible'] = $invisible;
