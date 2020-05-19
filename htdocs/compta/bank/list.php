@@ -250,9 +250,9 @@ print '<input type="hidden" name="search_status" value="'.$search_status.'">';
 print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, '', $num, $nbtotalofrecords, 'bank', 0, $newcardbutton, '', $limit, 1);
 
 $topicmail = "Information";
-//$modelmail="subscription";
+
 $objecttmp = new Account($db);
-//$trackid='sub'.$object->id;
+
 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';
 
 if ($sall)
