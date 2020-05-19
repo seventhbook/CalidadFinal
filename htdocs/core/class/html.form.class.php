@@ -47,7 +47,6 @@
  *	Class to manage generation of HTML components
  *	Only common components must be here.
  *
- *  TODO Merge all function load_cache_* and loadCache* (except load_cache_vatrates) into one generic function loadCacheTable
  */
 class Form
 {
@@ -109,7 +108,6 @@ class Form
 
 		$ret = '';
 
-		// TODO change for compatibility
 		if (!empty($conf->global->MAIN_USE_JQUERY_JEDITABLE) && !preg_match('/^select;/', $typeofdata))
 		{
 			if (!empty($perm))
@@ -262,7 +260,6 @@ class Form
 				if (empty($notabletag)) $ret .= '</td>';
 
 				if (empty($notabletag)) $ret .= '<td class="left">';
-				//else $ret.='<div class="clearboth"></div>';
 			   	$ret .= '<input type="submit" class="button'.(empty($notabletag) ? '' : ' ').'" name="modify" value="'.$langs->trans("Modify").'">';
 			   	if (preg_match('/ckeditor|textarea/', $typeofdata) && empty($notabletag)) $ret .= '<br>'."\n";
 			   	$ret .= '<input type="submit" class="button'.(empty($notabletag) ? '' : ' ').'" name="cancel" value="'.$langs->trans("Cancel").'">';
@@ -462,7 +459,6 @@ class Form
 	 *  @param	int			$forcenowrap		Force no wrap between text and picto (works with notabs=2 only)
 	 *	@return	string							Code html du tooltip (texte+picto)
 	 *	@see	textwithpicto() Use thisfunction if you can.
-	 *  TODO Move this as static as soon as everybody use textwithpicto or @Form::textwithtooltip
 	 */
     public function textwithtooltip($text, $htmltext, $tooltipon = 1, $direction = 0, $img = '', $extracss = '', $notabs = 3, $incbefore = '', $noencodehtmltext = 0, $tooltiptrigger = '', $forcenowrap = 0)
 	{
@@ -475,7 +471,6 @@ class Form
 		if ($notabs == 2) $tag = 'div';
 		if ($notabs == 3) $tag = 'span';
 		// Sanitize tooltip
-		//$htmltext=str_replace("\\","\\\\",$htmltext);
 		$htmltext = str_replace("\r", "", $htmltext);
 		$htmltext = str_replace("\n", "", $htmltext);
 
@@ -576,11 +571,6 @@ class Form
 		{
 			if ($type == 'info' || $type == 'infoclickable' || $type == 'help' || $type == 'helpclickable') return $text;
 		}
-		// If info or help with smartphone, show only text (tooltip on click does not works with dialog on smaprtphone)
-		//if (! empty($conf->dol_no_mouse_hover) && ! empty($tooltiptrigger))
-		//{
-			//if ($type == 'info' || $type == 'help') return '<a href="'..'">'.$text.''</a>';
-		//}
 
 		$img = '';
 		if ($type == 'info') $img = img_help(0, $alt);
@@ -724,7 +714,6 @@ class Form
 		$sql = "SELECT rowid, code as code_iso, code_iso as code_iso3, label, favorite";
 		$sql .= " FROM ".MAIN_DB_PREFIX."c_country";
 		$sql .= " WHERE active > 0";
-		//$sql.= " ORDER BY code ASC";
 
 		dol_syslog(get_class($this)."::select_country", LOG_DEBUG);
 		$resql = $this->db->query($sql);
@@ -760,7 +749,6 @@ class Form
 
 				if ($addspecialentries)	// Add dedicated entries for groups of countries
 				{
-					//if ($showempty) $out.= '<option value="" disabled class="selectoptiondisabledwhite">--------------</option>';
 					$out .= '<option value="special_allnotme"'.($selected == 'special_allnotme' ? ' selected' : '').'>'.$langs->trans("CountriesExceptMe", $langs->transnoentitiesnoconv("Country".$mysoc->country_code)).'</option>';
 					$out .= '<option value="special_eec"'.($selected == 'special_eec' ? ' selected' : '').'>'.$langs->trans("CountriesInEEC").'</option>';
 					if ($mysoc->isInEEC()) $out .= '<option value="special_eecnotme"'.($selected == 'special_eecnotme' ? ' selected' : '').'>'.$langs->trans("CountriesInEECExceptMe", $langs->transnoentitiesnoconv("Country".$mysoc->country_code)).'</option>';
@@ -770,7 +758,6 @@ class Form
 
 				foreach ($countryArray as $row)
 				{
-					//if (empty($showempty) && empty($row['rowid'])) continue;
 					if (empty($row['rowid'])) continue;
 
 					if (empty($disablefavorites) && $row['favorite'] && $row['code_iso']) $atleastonefavorite++;
@@ -941,7 +928,6 @@ class Form
 			print '>'.$langs->trans("Service");
 
 			print '</select>';
-			//if ($user->admin) print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"),1);
 		}
 		if ((empty($forceall) && empty($conf->product->enabled) && !empty($conf->service->enabled)) || $forceall == 3)
 		{
@@ -1229,7 +1215,6 @@ class Form
 
 			$textifempty = '';
 			// Do not use textifempty = ' ' or '&nbsp;' here, or search on key will search on ' key'.
-			//if (! empty($conf->use_javascript_ajax) || $forcecombo) $textifempty='';
 			if (!empty($conf->global->COMPANY_USE_SEARCH_TO_SELECT))
 			{
 				if ($showempty && !is_numeric($showempty)) $textifempty = $langs->trans($showempty);
@@ -1835,7 +1820,6 @@ class Form
 		$out = '';
 
 		// Method with no ajax
-		//$out.='<form method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 		if ($action == 'view')
 		{
 			$out .= '';
@@ -1880,15 +1864,12 @@ class Form
 					$out .= '</div>';
 				}
 			}
-			//$out.=' '.($value['mandatory']?$langs->trans("Mandatory"):$langs->trans("Optional"));
-			//$out.=' '.($value['transparency']?$langs->trans("Busy"):$langs->trans("NotBusy"));
 
 			$out .= '</li>';
 			$i++;
 		}
 		if ($nbassignetouser) $out .= '</ul>';
 
-		//$out.='</form>';
 		return $out;
 	}
 
@@ -2294,7 +2275,6 @@ class Form
 
 			$textifempty = '';
 			// Do not use textifempty = ' ' or '&nbsp;' here, or search on key will search on ' key'.
-			//if (! empty($conf->use_javascript_ajax) || $forcecombo) $textifempty='';
 			if (!empty($conf->global->PRODUIT_USE_SEARCH_TO_SELECT))
 			{
 				if ($showempty && !is_numeric($showempty)) $textifempty = $langs->trans($showempty);
@@ -2950,7 +2930,6 @@ class Form
 					}
 					if ($objp->supplier_reputation)
 					{
-						//TODO dictionary
 						$reputations = array(''=>$langs->trans('Standard'), 'FAVORITE'=>$langs->trans('Favorite'), 'NOTTHGOOD'=>$langs->trans('NotTheGoodQualitySupplier'), 'DONOTORDER'=>$langs->trans('DoNotOrderThisProductToThisSupplier'));
 
 						$optlabel .= " - ".$reputations[$objp->supplier_reputation];
@@ -2992,15 +2971,6 @@ class Form
 				// "label" value of json key array is used by jQuery automatically as text for combo box
 				$out .= $opt;
 				array_push($outarray, array('key'=>$outkey, 'value'=>$outref, 'label'=>$outval, 'qty'=>$outqty, 'up'=>$objp->unitprice, 'discount'=>$outdiscount, 'type'=>$outtype, 'duration_value'=>$outdurationvalue, 'duration_unit'=>$outdurationunit, 'disabled'=>(empty($objp->idprodfournprice) ?true:false)));
-				// Exemple of var_dump $outarray
-				// array(1) {[0]=>array(6) {[key"]=>string(1) "2" ["value"]=>string(3) "ppp"
-				//           ["label"]=>string(76) "ppp (<strong>f</strong>ff2) - ppp - 20,00 Euros/1unité (20,00 Euros/unité)"
-				//      	 ["qty"]=>string(1) "1" ["discount"]=>string(1) "0" ["disabled"]=>bool(false)
-				//}
-				//var_dump($outval); var_dump(utf8_check($outval)); var_dump(json_encode($outval));
-				//$outval=array('label'=>'ppp (<strong>f</strong>ff2) - ppp - 20,00 Euros/ Unité (20,00 Euros/unité)');
-				//var_dump($outval); var_dump(utf8_check($outval)); var_dump(json_encode($outval));
-
 				$i++;
 			}
 			$out .= '</select>';
@@ -3428,7 +3398,6 @@ class Form
 		$sql = "SELECT id, code, libelle as label, type, active";
 		$sql .= " FROM ".MAIN_DB_PREFIX."c_paiement";
 		$sql .= " WHERE entity IN (".getEntity('c_paiement').")";
-		//if ($active >= 0) $sql.= " AND active = ".$active;
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -4008,7 +3977,6 @@ class Form
 
 		if ($type === Categorie::TYPE_BANK_LINE)
 		{
-			// TODO Move this into common category feature
 			$cate_arbo = array();
 			$sql = "SELECT c.label, c.rowid";
 			$sql .= " FROM ".MAIN_DB_PREFIX."bank_categ as c";
@@ -4260,7 +4228,6 @@ class Form
 			{
 				foreach ($formquestion as $key => $input)
 				{
-					//print "xx ".$key." rr ".is_array($input)."<br>\n";
 					if (is_array($input) && isset($input['name'])) array_push($inputok, $input['name']);
 					if (isset($input['inputko']) && $input['inputko'] == 1) array_push($inputko, $input['name']);
 				}
@@ -4440,7 +4407,6 @@ class Form
 			{
 				$projet = new Project($this->db);
 				$projet->fetch($selected);
-				//print '<a href="'.DOL_URL_ROOT.'/projet/card.php?id='.$selected.'">'.$projet->title.'</a>';
 				$out .= $projet->getNomUrl(0, '', 1);
 			}
 			else
@@ -5181,7 +5147,6 @@ class Form
 			$defaultcode = $reg[1];
 			$defaulttx = preg_replace('/\s*\(.*\)/', '', $defaulttx);
 		}
-		//var_dump($selectedrate.'-'.$defaulttx.'-'.$defaultnpr.'-'.$defaultcode);
 
 		// Check parameters
 		if (is_object($societe_vendeuse) && !$societe_vendeuse->country_code)
@@ -5196,10 +5161,6 @@ class Form
 			}
 			return $return;
 		}
-
-		//var_dump($societe_acheteuse);
-		//print "name=$name, selectedrate=$selectedrate, seller=".$societe_vendeuse->country_code." buyer=".$societe_acheteuse->country_code." buyer is company=".$societe_acheteuse->isACompany()." idprod=$idprod, info_bits=$info_bits type=$type";
-		//exit;
 
 		// Define list of countries to use to search VAT rates to show
 		// First we defined code_country to use to find list
@@ -5319,7 +5280,6 @@ class Form
 				{
 					$return .= vatrate($rate['label']);
 				}
-				//$return.=($rate['code']?' '.$rate['code']:'');
 				$return .= (empty($rate['code']) && $rate['nprtva']) ? ' *' : ''; // We show the *  (old behaviour only if new vat code is not used)
 
 				$return .= '</option>';
@@ -5474,10 +5434,8 @@ class Form
 			if ($usecalendar != 'combo')
 			{
 				$formated_date = '';
-				//print "e".$set_time." t ".$conf->format_date_short;
 				if (strval($set_time) != '' && $set_time != -1)
 				{
-					//$formated_date=dol_print_date($set_time,$conf->format_date_short);
 					$formated_date = dol_print_date($set_time, $langs->trans("FormatDateShortInput")); // FormatDateShortInput for dol_print_date / FormatDateShortJavaInput that is same for javascript
 				}
 
@@ -5548,15 +5506,7 @@ class Form
 					// Icone calendrier
 					if (!$disabled)
 					{
-						/* Not required. Managed by option buttonImage of jquery
-                		$retstring.=img_object($langs->trans("SelectDate"),'calendarday','id="'.$prefix.'id" class="datecallink"');
-                		$retstring.="<script type='text/javascript'>";
-                		$retstring.="jQuery(document).ready(function() {";
-                		$retstring.='	jQuery("#'.$prefix.'id").click(function() {';
-                		$retstring.="    	jQuery('#".$prefix."').focus();";
-                		$retstring.='    });';
-                		$retstring.='});';
-                		$retstring.="</script>";*/
+
 					}
 					else
 					{
@@ -5576,7 +5526,6 @@ class Form
 			// Show date with combo selects
 			else
 			{
-				//$retstring.='<div class="inline-block">';
 				// Day
 				$retstring .= '<select'.($disabled ? ' disabled' : '').' class="flat valignmiddle maxwidth50imp" id="'.$prefix.'day" name="'.$prefix.'day">';
 
@@ -5622,7 +5571,6 @@ class Form
 					}
 					$retstring .= "</select>\n";
 				}
-				//$retstring.='</div>';
 			}
 		}
 
@@ -5696,22 +5644,10 @@ class Form
                 $reset_scripts .= 'jQuery(\'#'.$prefix.'month\').val(parseInt(d.getMonth().pad()) + 1);';
                 $reset_scripts .= 'jQuery(\'#'.$prefix.'year\').val(d.getFullYear());';
             }
-			/*if ($usecalendar == "eldy")
-            {
-                $base=DOL_URL_ROOT.'/core/';
-                $reset_scripts .= 'resetDP(\''.$base.'\',\''.$prefix.'\',\''.$langs->trans("FormatDateShortJavaInput").'\',\''.$langs->defaultlang.'\');';
-            }
-            else
-            {
-                $reset_scripts .= 'this.form.elements[\''.$prefix.'day\'].value=formatDate(new Date(), \'d\'); ';
-                $reset_scripts .= 'this.form.elements[\''.$prefix.'month\'].value=formatDate(new Date(), \'M\'); ';
-                $reset_scripts .= 'this.form.elements[\''.$prefix.'year\'].value=formatDate(new Date(), \'yyyy\'); ';
-            }*/
 			// Update the hour part
 			if ($h)
 			{
 				if ($fullday) $reset_scripts .= " if (jQuery('#fullday:checked').val() == null) {";
-				//$reset_scripts .= 'this.form.elements[\''.$prefix.'hour\'].value=formatDate(new Date(), \'HH\'); ';
                 if ($addnowlink == 1)
                 {
                     $reset_scripts .= 'jQuery(\'#'.$prefix.'hour\').val(\''.dol_print_date(dol_now(), '%H', 'tzuser').'\');';
@@ -5727,7 +5663,6 @@ class Form
 			if ($m)
 			{
 				if ($fullday) $reset_scripts .= " if (jQuery('#fullday:checked').val() == null) {";
-				//$reset_scripts .= 'this.form.elements[\''.$prefix.'min\'].value=formatDate(new Date(), \'mm\'); ';
                 if ($addnowlink == 1)
                 {
                     $reset_scripts .= 'jQuery(\'#'.$prefix.'min\').val(\''.dol_print_date(dol_now(), '%M', 'tzuser').'\');';
@@ -5869,8 +5804,6 @@ class Form
 
 		if ($typehour != 'text') $retstring .= ' '.$langs->trans('MinuteShort');
 
-		//$retstring.="&nbsp;";
-
 		if (!empty($nooutput)) return $retstring;
 
 		print $retstring;
@@ -5928,7 +5861,6 @@ class Form
 			return 'Error bad setup of type for field '.join(',', $InfoFieldList);
 		}
 
-		//var_dump($objecttmp->filter);
 		$prefixforautocompletemode = $objecttmp->element;
 		if ($prefixforautocompletemode == 'societe') $prefixforautocompletemode = 'company';
 		if ($prefixforautocompletemode == 'product') $prefixforautocompletemode='produit';
@@ -5944,7 +5876,6 @@ class Form
 		    {
 		        $objecttmp->fetch($preselectedvalue);
 		        $selected_input_value = ($prefixforautocompletemode == 'company' ? $objecttmp->name : $objecttmp->ref);
-		        //unset($objecttmp);
 		    }
 
 		    $objectdesc = $classname.':'.$classpath.':'.$addcreatebuttonornot.':'.$filter;
@@ -5977,7 +5908,6 @@ class Form
 	{
 		global $db;
 
-		//dol_syslog("Convert matches ".$matches[1]);
 		if (empty($matches[1])) return '';
 		$tmp = explode(':', $matches[1]);
 		if (count($tmp) < 3) return '';
@@ -6016,8 +5946,6 @@ class Form
     public function selectForFormsList($objecttmp, $htmlname, $preselectedvalue, $showempty = '', $searchkey = '', $placeholder = '', $morecss = '', $moreparams = '', $forcecombo = 0, $outputmode = 0, $disabled = 0)
 	{
 		global $conf, $langs, $user;
-
-		//print "$objecttmp->filter, $htmlname, $preselectedvalue, $showempty = '', $searchkey = '', $placeholder = '', $morecss = '', $moreparams = '', $forcecombo = 0, $outputmode = 0, $disabled";
 
 		$prefixforautocompletemode = $objecttmp->element;
 		if ($prefixforautocompletemode == 'societe') $prefixforautocompletemode = 'company';
@@ -6071,16 +5999,10 @@ class Form
 			if (!$user->rights->societe->client->voir && !$user->socid) $sql .= " AND t.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
 		}
 		if ($objecttmp->filter) {	 // Syntax example "(t.ref:like:'SO-%') and (t.date_creation:<:'20160101')"
-			/*if (! DolibarrApi::_checkFilters($objecttmp->filter))
-			{
-				throw new RestException(503, 'Error when validating parameter sqlfilters '.$objecttmp->filter);
-			}*/
 			$regexstring = '\(([^:\'\(\)]+:[^:\'\(\)]+:[^:\(\)]+)\)';
 			$sql .= " AND (".preg_replace_callback('/'.$regexstring.'/', 'Form::forgeCriteriaCallback', $objecttmp->filter).")";
 		}
 		$sql .= $this->db->order($fieldstoshow, "ASC");
-		//$sql.=$this->db->plimit($limit, 0);
-		//print $sql;
 
 		// Build output string
 		$resql = $this->db->query($sql);
@@ -6098,7 +6020,6 @@ class Form
 			// Warning: Do not use textifempty = ' ' or '&nbsp;' here, or search on key will search on ' key'. Seems it is no more true with selec2 v4
 			$textifempty = '&nbsp;';
 
-			//if (! empty($conf->use_javascript_ajax) || $forcecombo) $textifempty='';
 			if (!empty($conf->global->$confkeyforautocompletemode))
 			{
 				if ($showempty && !is_numeric($showempty)) $textifempty = $langs->trans($showempty);
@@ -6183,8 +6104,6 @@ class Form
 		global $conf, $langs;
 
 		// Do we want a multiselect ?
-		//$jsbeautify = 0;
-		//if (preg_match('/^multi/',$htmlname)) $jsbeautify = 1;
 		$jsbeautify = 1;
 
 		if ($value_as_key) $array = array_combine($array, $array);
@@ -6275,7 +6194,6 @@ class Form
 				    }
 				}
 				$out .= '>';
-				//var_dump($selectOptionValue);
 				$out .= $selectOptionValue;
 				$out .= "</option>\n";
 			}
@@ -6309,7 +6227,6 @@ class Form
 		global $conf, $langs;
 		global $delayedhtmlcontent;
 
-		// TODO Use an internal dolibarr component instead of select2
 		if (empty($conf->global->MAIN_USE_JQUERY_MULTISELECT) && !defined('REQUIRE_JQUERY_MULTISELECT')) return '';
 
 		$out = '<select type="text" class="'.$htmlname.($morecss ? ' '.$morecss : '').'" '.($moreparam ? $moreparam.' ' : '').'name="'.$htmlname.'"></select>';
@@ -6411,7 +6328,6 @@ class Form
 		global $conf, $langs;
 		global $delayedhtmlcontent;
 
-		// TODO Use an internal dolibarr component instead of select2
 		if (empty($conf->global->MAIN_USE_JQUERY_MULTISELECT) && !defined('REQUIRE_JQUERY_MULTISELECT')) return '';
 
 		$out = '<select type="text" class="'.$htmlname.($morecss ? ' '.$morecss : '').'" '.($moreparam ? $moreparam.' ' : '').'name="'.$htmlname.'"><option></option></select>';
@@ -6580,8 +6496,6 @@ class Form
 			elseif ($addjscombo == 2)
 			{
 				// Add other js lib
-				// TODO external lib multiselect/jquery.multi-select.js must have been loaded to use this multiselect plugin
-				// ...
 				$out .= '$(document).ready(function () {
 							$(\'#'.$htmlname.'\').multiSelect({
 								containerHTML: \'<div class="multi-select-container">\',
@@ -6647,8 +6561,6 @@ class Form
 			$tmparray = explode(',', $user->conf->$tmpvar);
 			foreach ($array as $key => $val)
 			{
-				//var_dump($key);
-				//var_dump($tmparray);
 				if (in_array($key, $tmparray)) $array[$key]['checked'] = 1;
 				else $array[$key]['checked'] = 0;
 			}
@@ -6659,9 +6571,6 @@ class Form
 
 		foreach ($array as $key => $val)
 		{
-		    /* var_dump($val);
-            var_dump(array_key_exists('enabled', $val));
-            var_dump(!$val['enabled']);*/
 		    if (array_key_exists('enabled', $val) && isset($val['enabled']) && !$val['enabled'])
 		    {
 			    unset($array[$key]); // We don't want this field
@@ -7038,9 +6947,8 @@ class Form
 				{
 				}
 
-				//$linktoelem.=($linktoelem?' &nbsp; ':'');
 				if ($num > 0) $linktoelemlist .= '<li><a href="#linkto'.$key.'" class="linkto dropdowncloseonclick" rel="'.$key.'">'.$langs->trans($possiblelink['label']).' ('.$num.')</a></li>';
-				//else $linktoelem.=$langs->trans($possiblelink['label']);
+				
 				else $linktoelemlist .= '<li><span class="linktodisabled">'.$langs->trans($possiblelink['label']).' (0)</span></li>';
 			}
 		}
@@ -7208,7 +7116,6 @@ class Form
 		$previous_ref = $next_ref = '';
 		if ($shownav)
 		{
-			//print "paramid=$paramid,morehtml=$morehtml,shownav=$shownav,$fieldid,$fieldref,$morehtmlref,$moreparam";
 			$object->load_previous_next_ref((isset($object->next_prev_filter) ? $object->next_prev_filter : ''), $fieldid, $nodbprefix);
 
 			$navurl = $_SERVER["PHP_SELF"];
@@ -7242,7 +7149,6 @@ class Form
 			$next_ref     = $object->ref_next ? '<a accesskey="n" title="'.$stringforfirstkey.' n" class="classfortooltip" href="'.$navurl.'?'.$paramid.'='.urlencode($object->ref_next).$moreparam.'"><i class="fa fa-chevron-right"></i></a>' : '<span class="inactive"><i class="fa fa-chevron-right opacitymedium"></i></span>';
 		}
 
-		//print "xx".$previous_ref."x".$next_ref;
 		$ret .= '<!-- Start banner content --><div style="vertical-align: middle">';
 
 		// Right part of banner
@@ -7284,7 +7190,6 @@ class Form
 			else $ret .= '<!-- morehtmlleft --><div class="inline-block floatleft">'.$morehtmlleft.'</div>';
 		}
 
-		//if ($conf->browser->layout == 'phone') $ret.='<div class="clearboth"></div>';
 		$ret .= '<div class="inline-block floatleft valignmiddle refid'.(($shownav && ($previous_ref || $next_ref)) ? ' refidpadding' : '').'">';
 
 		// For thirdparty, contact, user, member, the ref is the id, so we show something else
@@ -7501,7 +7406,6 @@ class Form
 					 */
 					global $dolibarr_main_url_root;
 					$ret .= '<!-- Put link to gravatar -->';
-					//$defaultimg=urlencode(dol_buildpath($nophoto,3));
 					$defaultimg = 'mm';
 					$ret .= '<img class="photo'.$modulepart.($cssclass ? ' '.$cssclass : '').'" alt="Gravatar avatar" title="'.$email.' Gravatar avatar" '.($width ? ' width="'.$width.'"' : '').($height ? ' height="'.$height.'"' : '').' src="https://www.gravatar.com/avatar/'.md5(strtolower(trim($email))).'?s='.$width.'&d='.$defaultimg.'">'; // gravatar need md5 hash
 				}
