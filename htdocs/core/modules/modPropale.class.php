@@ -104,11 +104,11 @@ class modPropale extends DolibarrModules
 		$this->const[$r][4] = 0;
 		$r++;
 
-		/*$this->const[$r][0] = "PROPALE_DRAFT_WATERMARK";
-		$this->const[$r][2] = "__(Draft)__";
-		$this->const[$r][3] = 'Watermark to show on draft proposals';
-		$this->const[$r][4] = 0;
-		$r++;*/
+		
+		
+		
+		
+		
 
 		// Boxes
 		$this->boxes = array(
@@ -204,13 +204,13 @@ class modPropale extends DolibarrModules
 		    $this->export_fields_array[$r]['c.multicurrency_total_tva'] = 'MulticurrencyAmountVAT';
 		    $this->export_fields_array[$r]['c.multicurrency_total_ttc'] = 'MulticurrencyAmountTTC';
 		}
-		//$this->export_TypeFields_array[$r]=array(
-		//	's.rowid'=>"List:societe:nom",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','co.code'=>'Text','s.phone'=>'Text',
-		//	's.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','c.ref'=>"Text",'c.ref_client'=>"Text",'c.datec'=>"Date",'c.datep'=>"Date",
-		//	'c.fin_validite'=>"Date",'c.remise_percent'=>"Numeric",'c.total_ht'=>"Numeric",'c.total'=>"Numeric",'c.fk_statut'=>'Status','c.note_public'=>"Text",
-		//	'c.date_livraison'=>'Date','cd.description'=>"Text",'cd.product_type'=>'Boolean','cd.tva_tx'=>"Numeric",'cd.qty'=>"Numeric",'cd.total_ht'=>"Numeric",
-		//	'cd.total_tva'=>"Numeric",'cd.total_ttc'=>"Numeric",'p.rowid'=>'List:product:label','p.ref'=>'Text','p.label'=>'Text'
-		//);
+		
+		
+			
+		
+		
+		
+		
 		$this->export_TypeFields_array[$r]=array(
 			's.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','co.code'=>'Text','s.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text',
 			's.ape'=>'Text','s.idprof4'=>'Text','c.ref'=>"Text",'c.ref_client'=>"Text",'c.datec'=>"Date",'c.datep'=>"Date",'c.fin_validite'=>"Date",
