@@ -573,10 +573,10 @@ if ($action == 'create' && $user->rights->projet->creer)
 		print $form->textwithpicto($langs->trans("BillTime"), $htmltext);
 		print '<br>';
 	}
-	/*
-	print '<input type="checkbox" name="usage_organize_event"'.(GETPOST('usage_organize_event', 'alpha')!=''?' checked="checked"':'').'"> ';
-	$htmltext = $langs->trans("OrganizeEvent");
-	print $form->textwithpicto($langs->trans("OrganizeEvent"), $htmltext);*/
+	
+	
+	
+	
 	print '</td>';
 	print '</tr>';
 
@@ -741,7 +741,7 @@ elseif ($object->id > 0)
 	$userAccess = $object->restrictedProjectArea($user, 'read');
 	$userWrite  = $object->restrictedProjectArea($user, 'write');
 	$userDelete = $object->restrictedProjectArea($user, 'delete');
-	//print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+	
 
 
 	// Confirmation validation
@@ -1039,10 +1039,10 @@ elseif ($object->id > 0)
 
 			// Opportunity Amount
 			print '<tr><td>'.$langs->trans("OpportunityAmount").'</td><td>';
-			/*if ($object->opp_status)
-	        {
-	           print price($obj->opp_amount, 1, $langs, 1, 0, -1, $conf->currency);
-	        }*/
+			
+	        
+	           
+	        
 			if (strcmp($object->opp_amount, '')) print price($object->opp_amount, 0, $langs, 1, 0, -1, $conf->currency);
 			print '</td></tr>';
 		}
@@ -1182,13 +1182,13 @@ elseif ($object->id > 0)
 	{
 		if ($action != "edit" && $action != 'presend')
 		{
-			// Create event
-			/*if ($conf->agenda->enabled && ! empty($conf->global->MAIN_ADD_EVENT_ON_ELEMENT_CARD)) 				// Add hidden condition because this is not a
+			
+			
 				// "workflow" action so should appears somewhere else on
 				// page.
 			{
-				print '<a class="butAction" href="'.DOL_URL_ROOT.'/comm/action/card.php?action=create&amp;origin=' . $object->element . '&amp;originid=' . $object->id . '&amp;socid=' . $object->socid . '&amp;projectid=' . $object->id . '">' . $langs->trans("AddAction") . '</a>';
-			}*/
+				
+			
 
 			// Send
 			if (empty($user->socid)) {
