@@ -592,7 +592,7 @@ class SupplierProposal extends CommonObject
             	$this->line->fk_fournprice = ($fk_fournprice > 0 ? $fk_fournprice : 0);		// If fk_fournprice is -1, we will not use fk_fournprice
             }
             $this->line->pa_ht = $pa_ht;
-            //var_dump($this->line->fk_fournprice);exit;
+            
 
             // Multicurrency
             $this->line->fk_multicurrency			= $this->fk_multicurrency;
@@ -2332,8 +2332,8 @@ class SupplierProposal extends CommonObject
                     }
                 }
                 // TODO Definir regle des propales a facturer en retard
-                // if ($mode == 'signed' && ! count($this->FactureListeArray($obj->rowid))) $this->nbtodolate++;
-            }
+                
+	    }
             return $response;
         }
         else
@@ -2609,8 +2609,8 @@ class SupplierProposal extends CommonObject
         		$result .= '<a href="'.DOL_URL_ROOT.'/supplier_proposal/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow).'">';
         		$result .= img_picto('', 'note');
         		$result .= '</a>';
-        		//$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-        		//$result.='</a>';
+			
+			
         		$result .= '</span>';
         	}
         }
