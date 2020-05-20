@@ -153,7 +153,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 		$this->posxtva=90;
 		$this->posxtotalttc=180;
 
-		//if (! empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT)) $this->posxtva=$this->posxup;
+		
 		if ($this->page_largeur < 210) // To work with US executive format
 		{
 			$this->posxreffacturefourn-=20;
@@ -340,16 +340,16 @@ class pdf_standard extends ModelePDFSuppliersPayments
 					$showpricebeforepagebreak=1;
 
 					$pdf->startTransaction();
-					//pdf_writelinedesc($pdf,$object,$i,$outputlangs,$this->posxtva-$curX,3,$curX,$curY,$hideref,$hidedesc,1);
+					
 					$pdf->writeHTMLCell($this->posxtva-$curX, 4, $curX, $curY, $object->lines[$i]->datef, 0, 1, false, true, 'J', true);
 					$pageposafter=$pdf->getPage();
 					if ($pageposafter > $pageposbefore)	// There is a pagebreak
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
-						//pdf_writelinedesc($pdf,$object,$i,$outputlangs,$this->posxtva-$curX,4,$curX,$curY,$hideref,$hidedesc,1);
+						
 						$pdf->writeHTMLCell($this->posxtva-$curX, 4, $curX, $curY, $object->lines[$i]->datef, 0, 1, false, true, 'J', true);
 						$posyafter=$pdf->GetY();
 						if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot)))	// There is no space left for total+free text
@@ -421,7 +421,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -481,7 +481,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 				$posy=$this->_tableau_cheque($pdf, $object, $bottomlasttab, $outputlangs);
 
 				// Affiche zone totaux
-				//$posy=$this->_tableau_tot($pdf, $object, $deja_regle, $bottomlasttab, $outputlangs);
+				
 
 				// Pied de page
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -647,7 +647,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
 
 		// Do not add the BACKGROUND as this is for suppliers
-		//pdf_pagehead($pdf,$outputlangs,$this->page_hauteur);
+		
 
 		$pdf->SetTextColor(0, 0, 60);
 		$pdf->SetFont('', 'B', $default_font_size + 3);
@@ -680,7 +680,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($text), 0, 'L');
 		}
         /*
-		$pdf->SetFont('','B', $default_font_size + 3);
+		
 		$pdf->SetXY($posx,$posy);
 		$pdf->SetTextColor(0,0,60);
 		$pdf->MultiCell(100, 3, $outputlangs->transnoentities("SupplierInvoice")." ".$outputlangs->convToOutputCharset($object->ref), '', 'R');
