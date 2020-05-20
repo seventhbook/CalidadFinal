@@ -505,7 +505,7 @@ function getContactsForThirdParty($authentication, $idthirdparty)
 		$sql .= " c.fk_departement as state_id,";
 		$sql .= " c.birthday,";
 		$sql .= " c.poste, c.phone, c.phone_perso, c.phone_mobile, c.fax, c.email, c.jabberid,";
-		//$sql.= " c.priv, c.note, c.default_lang, c.canvas,";
+		
 		$sql .= " co.label as country, co.code as country_code,";
 		$sql .= " d.nom as state, d.code_departement as state_code,";
 		$sql .= " u.rowid as user_id, u.login as user_login,";
