@@ -83,7 +83,7 @@ if (!$sortfield) $sortfield = 't.task_date,t.task_datehour,t.rowid';
 if (!$sortorder) $sortorder = 'DESC,DESC,DESC';
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
-//$object = new TaskTime($db);
+
 $hookmanager->initHooks(array('projecttasktime', 'globalcard'));
 
 $object = new Task($db);
@@ -226,7 +226,7 @@ if (($action == 'updateline' || $action == 'updatesplitline') && !$_POST["cancel
 	if (!$error)
 	{
 		$object->fetch($id, $ref);
-		// TODO Check that ($task_time->fk_user == $user->id || in_array($task_time->fk_user, $childids))
+		
 
 		$object->timespent_id = $_POST["lineid"];
 		$object->timespent_note = $_POST["timespent_note_line"];
@@ -264,7 +264,7 @@ if (($action == 'updateline' || $action == 'updatesplitline') && !$_POST["cancel
 if ($action == 'confirm_delete' && $confirm == "yes" && $user->rights->projet->lire)
 {
 	$object->fetchTimeSpent(GETPOST('lineid', 'int'));
-	// TODO Check that ($task_time->fk_user == $user->id || in_array($task_time->fk_user, $childids))
+	
 	$result = $object->delTimeSpent($user);
 
 	if ($result < 0)
@@ -385,7 +385,7 @@ if ($action == 'confirm_generateinvoice')
 			foreach ($arrayoftasks as $userid => $value)
 			{
 				$fuser->fetch($userid);
-				//$pu_ht = $value['timespent'] * $fuser->thm;
+				
 				$username = $fuser->getFullName($langs);
 
 				// Define qty per hour
@@ -418,7 +418,7 @@ if ($action == 'confirm_generateinvoice')
 		{
 		    $urltoinvoice = $tmpinvoice->getNomUrl(0);
 		    setEventMessages($langs->trans("InvoiceGeneratedFromTimeSpent", $urltoinvoice), null, 'mesgs');
-		    //var_dump($tmpinvoice);
+		    
 
 		    $db->commit();
 		}
@@ -560,7 +560,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 
             // Other attributes
             $cols = 2;
-            //include DOL_DOCUMENT_ROOT . '/core/tpl/extrafields_view.tpl.php';
+            
 
             print '</table>';
 
@@ -634,7 +634,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 	        'generateinvoice'=>$langs->trans("GenerateBill"),
 	        //'builddoc'=>$langs->trans("PDFMerge"),
 	    );
-	    //if ($user->rights->projet->creer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
+
 	    if (in_array($massaction, array('presend', 'predelete', 'generateinvoice'))) $arrayofmassactions = array();
 	    $massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 	}
@@ -787,10 +787,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 	    if ($search_note != '') $param .= '&search_note='.urlencode($search_note);
 	    if ($search_duration != '') $param .= '&amp;search_field2='.urlencode($search_duration);
 	    if ($optioncss != '') $param .= '&optioncss='.urlencode($optioncss);
-	    /*
-	     // Add $param from extra fields
-	     include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
-	     */
+	 
+	 
+	 
+	 
 	    if ($id) $param .= '&id='.urlencode($id);
 	    if ($projectid) $param .= '&projectid='.urlencode($projectid);
 	    if ($withproject) $param .= '&withproject='.urlencode($withproject);
@@ -814,7 +814,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 
 	    if ($massaction == 'generateinvoice')
 	    {
-	        //var_dump($_REQUEST);
+	        
 	        print '<input type="hidden" name="massaction" value="confirm_createbills">';
 
 	        print '<table class="noborder" width="100%" >';
@@ -849,14 +849,14 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
     	        print '</td>';
     	        print '</tr>';
 	        }
-	        /*print '<tr>';
-	        print '<td>';
-	        print $langs->trans('ValidateInvoices');
-	        print '</td>';
-	        print '<td>';
-            print $form->selectyesno('validate_invoices', 0, 1);
-	        print '</td>';
-	        print '</tr>';*/
+	        
+	        
+	        
+	        
+	        
+            
+	    
+	    
 	        print '</table>';
 
 	        print '<br>';
@@ -986,7 +986,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 
 			// Date
 			print '<td class="maxwidthonsmartphone">';
-			//$newdate=dol_mktime(12,0,0,$_POST["timemonth"],$_POST["timeday"],$_POST["timeyear"]);
+			
 			$newdate = '';
 			print $form->selectDate($newdate, 'time', ($conf->browser->layout == 'phone' ? 2 : 1), 1, 2, "timespent_date", 1, 0);
 			print '</td>';
@@ -1104,10 +1104,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
         // Value billed
         if (!empty($arrayfields['valuebilled']['checked'])) print '<td class="liste_titre center">'.$form->selectyesno('search_valuebilled', $search_valuebilled, 1, false, 1).'</td>';
 
-        /*
-		// Extra fields
-		include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_input.tpl.php';
-		*/
+       
+	
+	
+	
 		// Fields from hook
 		$parameters = array('arrayfields'=>$arrayfields);
 		$reshook = $hookmanager->executeHooks('printFieldListOption', $parameters); // Note that $action and $object may have been modified by hook
@@ -1131,10 +1131,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 		if (!empty($arrayfields['t.task_duration']['checked']))  print_liste_field_titre($arrayfields['t.task_duration']['label'], $_SERVER['PHP_SELF'], 't.task_duration', '', $param, '', $sortfield, $sortorder, 'right ');
 		if (!empty($arrayfields['value']['checked']))            print_liste_field_titre($arrayfields['value']['label'], $_SERVER['PHP_SELF'], '', '', $param, '', $sortfield, $sortorder, 'right ');
 		if (!empty($arrayfields['valuebilled']['checked']))      print_liste_field_titre($arrayfields['valuebilled']['label'], $_SERVER['PHP_SELF'], 'il.total_ht', '', $param, '', $sortfield, $sortorder, 'center ');
-		/*
-    	// Extra fields
-		include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_title.tpl.php';
-		*/
+		
+    	
+	
+	
 	    // Hook fields
 		$parameters = array('arrayfields'=>$arrayfields, 'param'=>$param, 'sortfield'=>$sortfield, 'sortorder'=>$sortorder);
         $reshook = $hookmanager->executeHooks('printFieldListTitle', $parameters); // Note that $action and $object may have been modified by hook
@@ -1326,10 +1326,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
             	$totalarray['totalvaluebilled'] += $valuebilled;
             }
 
-            /*
-            // Extra fields
-            include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_print_fields.tpl.php';
-            */
+           
+          
+          
+          
 
 			// Fields from hook
 			$parameters = array('arrayfields'=>$arrayfields, 'obj'=>$task_time);
@@ -1514,10 +1514,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 			        print '</td>';
 			    }
 
-			    /*
-			     // Extra fields
-			     include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_print_fields.tpl.php';
-			     */
+			   
+			   
+			   
+			   
 
 			    // Fields from hook
 			    $parameters = array('arrayfields'=>$arrayfields, 'obj'=>$task_time);
@@ -1662,10 +1662,10 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 			        print '</td>';
 			    }
 
-			    /*
-			     // Extra fields
-			     include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_print_fields.tpl.php';
-			     */
+			    
+			    
+			    
+			    
 
 			    // Fields from hook
 			    $parameters = array('arrayfields'=>$arrayfields, 'obj'=>$task_time);
@@ -1683,7 +1683,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 		}
 
 		// Show total line
-		//include DOL_DOCUMENT_ROOT.'/core/tpl/list_print_total.tpl.php';
+		
 		if (isset($totalarray['totaldurationfield']) || isset($totalarray['totalvaluefield']))
 		{
 			print '<tr class="liste_total">';
@@ -1698,7 +1698,7 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 				}
 				elseif ($totalarray['totaldurationfield'] == $i) print '<td class="right">'.convertSecondToTime($totalarray['totalduration'], 'allhourmin').'</td>';
 				elseif ($totalarray['totalvaluefield'] == $i) print '<td class="right">'.price($totalarray['totalvalue']).'</td>';
-				//elseif ($totalarray['totalvaluebilledfield'] == $i) print '<td class="center">'.price($totalarray['totalvaluebilled']).'</td>';
+		
 				else print '<td></td>';
 			}
 			print '</tr>';
