@@ -64,7 +64,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
 require_once __DIR__.'/class/myobject.class.php';
 
 // for other modules
-//dol_include_once('/othermodule/class/otherobject.class.php');
+
 
 // Load translation files required by the page
 $langs->loadLangs(array("mymodule@mymodule", "other"));
@@ -99,7 +99,7 @@ $hookmanager->initHooks(array('myobjectlist')); // Note that conf->hooks_modules
 
 // Fetch optionals attributes and labels
 $extrafields->fetch_name_optionals_label($object->table_element);
-//$extrafields->fetch_name_optionals_label($object->table_element_line);
+
 
 $search_array_options = $extrafields->getOptionalsFromPost($object->table_element, '', 'search_');
 
@@ -112,10 +112,10 @@ if (empty($conf->mymodule->enabled)) accessforbidden('Module not enabled');
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'mymodule', $id, '');
+
 
 // Initialize array of search criterias
 $search_all=trim(GETPOST("search_all", 'alpha'));
@@ -211,7 +211,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_MyObject|FR:Module_MyObject_FR|ES:Módulo_MyObject";
+
 $help_url = '';
 $title = $langs->trans('ListOf', $langs->transnoentitiesnoconv("MyObjects"));
 
@@ -247,7 +247,7 @@ foreach ($search as $key => $val)
 	if ($search[$key] != '') $sql .= natural_search($key, $search[$key], (($key == 'status') ? 2 : $mode_search));
 }
 if ($search_all) $sql .= natural_search(array_keys($fieldstosearchall), $search_all);
-//$sql.= dolSqlDateFilter("t.field", $search_xxxday, $search_xxxmonth, $search_xxxyear);
+
 // Add where from extra fields
 include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 // Add where from hooks
@@ -388,7 +388,7 @@ if ($search_all)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
+/*
 $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
 $moreforfilter.= '</div>';*/
 
