@@ -290,7 +290,7 @@ class pdf_einstein extends ModelePDFCommandes
                 // Set path to the background PDF File
                 if (! empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                	$pagecount = $pdf->setSourceFile($conf->mycompany->multidir_output[$object->entity].'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+               
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -395,7 +395,7 @@ class pdf_einstein extends ModelePDFCommandes
 					$tab_top = $nexY+6;
 				}
 
-				$iniY = $tab_top + 7;
+				
 				$curY = $tab_top + 7;
 				$nexY = $tab_top + 7;
 
@@ -422,7 +422,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxtva-$curX, 4, $curX, $curY, $hideref, $hidedesc);
 						$pageposafter=$pdf->getPage();
@@ -452,7 +452,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						$pdf->commitTransaction();
 					}
-					$posYAfterDescription=$pdf->GetY();
+					
 
 					$nexY = $pdf->GetY();
 					$pageposafter=$pdf->getPage();
@@ -549,7 +549,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -601,18 +601,18 @@ class pdf_einstein extends ModelePDFCommandes
 				$bottomlasttab=$this->page_hauteur - $heightforinfotot - $heightforfreetext - $heightforfooter + 1;
 
 				// Affiche zone infos
-				$posy=$this->_tableau_info($pdf, $object, $bottomlasttab, $outputlangs);
+				
 
 				// Affiche zone totaux
 				$posy=$this->_tableau_tot($pdf, $object, $deja_regle, $bottomlasttab, $outputlangs);
 
 				// Affiche zone versements
-				/*
-				if ($deja_regle)
-				{
-					$posy=$this->_tableau_versements($pdf, $object, $posy, $outputlangs);
-				}
-				*/
+				
+				
+				
+				
+				
+				
 
 				// Pied de page
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -718,31 +718,31 @@ class pdf_einstein extends ModelePDFCommandes
 		}
 
         // Check a payment mode is defined
-        /* Not used with orders
-		if (empty($object->mode_reglement_code)
-        	&& ! $conf->global->FACTURE_CHQ_NUMBER
-        	&& ! $conf->global->FACTURE_RIB_NUMBER)
-		{
-            $pdf->SetXY($this->marge_gauche, $posy);
-            $pdf->SetTextColor(200,0,0);
-            $pdf->SetFont('','B', $default_font_size - 2);
-            $pdf->MultiCell(80, 3, $outputlangs->transnoentities("ErrorNoPaiementModeConfigured"),0,'L',0);
-            $pdf->SetTextColor(0,0,0);
+        
+	
+        
+        
+	
+        
+        
+        
+        
+        
 
-            $posy=$pdf->GetY()+1;
-        }
-		*/
-		/* TODO
-		else if (! empty($object->availability_code))
-		{
-            $pdf->SetXY($this->marge_gauche, $posy);
-            $pdf->SetTextColor(200,0,0);
-            $pdf->SetFont('','B', $default_font_size - 2);
-            $pdf->MultiCell(80, 3, $outputlangs->transnoentities("AvailabilityPeriod").': '.,0,'L',0);
-            $pdf->SetTextColor(0,0,0);
+        
+        
+	
+	
+	
+	
+        
+        
+        
+        
+        
 
-            $posy=$pdf->GetY()+1;
-		}*/
+       
+	
 
 	    // Show planed date of delivery
         if (! empty($object->date_livraison))
@@ -915,8 +915,8 @@ class pdf_einstein extends ModelePDFCommandes
 			else
 			{
 				//Local tax 1 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
+				
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -924,7 +924,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+				
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -944,10 +944,10 @@ class pdf_einstein extends ModelePDFCommandes
 						}
 					}
 				}
-	      		//}
+	      		
 				//Local tax 2 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+			
+			
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -955,7 +955,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -975,7 +975,7 @@ class pdf_einstein extends ModelePDFCommandes
 						}
 					}
 				}
-				//}
+			
 				// VAT
 				foreach($this->tva as $tvakey => $tvaval)
 				{
@@ -1002,8 +1002,8 @@ class pdf_einstein extends ModelePDFCommandes
 				}
 
 				//Local tax 1 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
+			
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1012,7 +1012,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1032,10 +1032,10 @@ class pdf_einstein extends ModelePDFCommandes
 						}
 					}
 				}
-	      		//}
+	      		
 				//Local tax 2 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+			
+			
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1044,7 +1044,7 @@ class pdf_einstein extends ModelePDFCommandes
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1065,7 +1065,7 @@ class pdf_einstein extends ModelePDFCommandes
 						}
 					}
 				}
-				//}
+				
 
 				// Total TTC
 				$index++;
@@ -1083,9 +1083,9 @@ class pdf_einstein extends ModelePDFCommandes
 
         $creditnoteamount=0;
         $depositsamount=0;
-		//$creditnoteamount=$object->getSumCreditNotesUsed();
-		//$depositsamount=$object->getSumDepositsUsed();
-		//print "x".$creditnoteamount."-".$depositsamount;exit;
+		
+		
+		
 		$resteapayer = price2num($total_ttc - $deja_regle - $creditnoteamount - $depositsamount, 'MT');
 		if (! empty($object->paye)) $resteapayer=0;
 
@@ -1151,7 +1151,7 @@ class pdf_einstein extends ModelePDFCommandes
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top-4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1407,7 +1407,7 @@ class pdf_einstein extends ModelePDFCommandes
 			if (count($arrayidcontact) > 0)
 			{
 				$usecontact=true;
-				$result=$object->fetch_contact($arrayidcontact[0]);
+				
 			}
 
 			//Recipient name
