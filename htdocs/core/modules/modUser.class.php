@@ -306,7 +306,6 @@ class modUser extends DolibarrModules
 		    'u.fk_country'=>array('rule'=>'fetchidfromcodeid','classfile'=>'/core/class/ccountry.class.php','class'=>'Ccountry','method'=>'fetch','dict'=>'DictionaryCountry'),
 		    'u.salary'=>array('rule'=>'numeric')
 		);
-		//$this->import_convertvalue_array[$r]=array('s.fk_soc'=>array('rule'=>'lastrowid',table='t');
 		$this->import_regex_array[$r]=array(
 			'u.employee'=>'^[0|1]',
 			'u.datec'=>'^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]( [0-9][0-9]:[0-9][0-9]:[0-9][0-9])?$',
