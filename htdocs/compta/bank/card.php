@@ -368,7 +368,7 @@ if ($action == 'create')
 	$selectedcode = $object->currency_code;
 	if (!$selectedcode) $selectedcode = $conf->currency;
 	print $form->selectCurrency((isset($_POST["account_currency_code"]) ? $_POST["account_currency_code"] : $selectedcode), 'account_currency_code');
-	//print $langs->trans("Currency".$conf->currency);
+	
 	//print '<input type="hidden" name="account_currency_code" value="'.$conf->currency.'">';
 	print '</td></tr>';
 
@@ -832,7 +832,7 @@ else
 
 		dol_fiche_head(array(), 0, '', 0);
 
-		//print '<div class="underbanner clearboth"></div>';
+		
 
 		print '<table class="border centpercent">';
 
@@ -858,7 +858,7 @@ else
 		$selectedcode = $object->currency_code;
 		if (!$selectedcode) $selectedcode = $conf->currency;
 		print $form->selectCurrency((isset($_POST["account_currency_code"]) ? $_POST["account_currency_code"] : $selectedcode), 'account_currency_code');
-		//print $langs->trans("Currency".$conf->currency);
+		
 		//print '<input type="hidden" name="account_currency_code" value="'.$conf->currency.'">';
 		print '</td></tr>';
 
@@ -953,7 +953,7 @@ else
 		print '<br>';
 
 
-		//print '<div class="underbanner clearboth"></div>';
+		
 
 		print '<table class="border centpercent">';
 
@@ -988,7 +988,7 @@ else
 		{
 			print '<br>';
 
-			//print '<div class="underbanner clearboth"></div>';
+			
 
 			print '<table class="border centpercent">';
 
