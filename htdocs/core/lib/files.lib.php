@@ -63,7 +63,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 	global $object;
 
 	dol_syslog("files.lib.php::dol_dir_list path=".$path." types=".$types." recursive=".$recursive." filter=".$filter." excludefilter=".json_encode($excludefilter));
-	//print 'xxx'."files.lib.php::dol_dir_list path=".$path." types=".$types." recursive=".$recursive." filter=".$filter." excludefilter=".json_encode($excludefilter);
+	
 
 	$loaddate = ($mode == 1 || $mode == 2) ?true:false;
 	$loadsize = ($mode == 1 || $mode == 3) ?true:false;
@@ -127,7 +127,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 						$qualified = 0; break;
 					}
 				}
-				//print $fullpathfile.' '.$file.' '.$qualified.'<br>';
+				
 
 				if ($qualified)
 				{
@@ -163,7 +163,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 						{
 							if (empty($donotfollowsymlinks) || !is_link($path."/".$file))
 							{
-								//var_dump('eee '. $path."/".$file. ' '.is_dir($path."/".$file).' '.is_link($path."/".$file));
+								
 								$file_list = array_merge($file_list, dol_dir_list($path."/".$file, $types, $recursive, $filter, $excludefilter, $sortcriteria, $sortorder, $mode, $nohook, ($relativename != '' ? $relativename.'/' : '').$file, $donotfollowsymlinks));
 							}
 						}
@@ -318,8 +318,8 @@ function completeFileArrayWithDatabaseInfo(&$filearray, $relativedir)
 		}
 	}
 
-	//var_dump($filearray);
-	//var_dump($filearrayindatabase);
+	
+	
 
 	// Complete filearray with properties found into $filearrayindatabase
 	foreach ($filearray as $key => $val)
@@ -385,7 +385,7 @@ function completeFileArrayWithDatabaseInfo(&$filearray, $relativedir)
 		}
 	}
 
-	/*var_dump($filearray);*/
+	
 }
 
 
@@ -759,7 +759,7 @@ function dolCopyDir($srcfile, $destfile, $newmask, $overwriteifexists, $arrayrep
 			{
 				if (is_dir($ossrcfile."/".$file))
 				{
-					//var_dump("xxx dolCopyDir $srcfile/$file, $destfile/$file, $newmask, $overwriteifexists");
+					
 					$tmpresult = dolCopyDir($srcfile."/".$file, $destfile."/".$file, $newmask, $overwriteifexists, $arrayreplacement);
 				}
 				else
@@ -870,7 +870,7 @@ function dol_move($srcfile, $destfile, $newmask = 0, $overwriteifexists = 1, $te
 			{
 				$rel_filetorenamebefore = preg_replace('/^[\\/]/', '', $rel_filetorenamebefore);
 				$rel_filetorenameafter = preg_replace('/^[\\/]/', '', $rel_filetorenameafter);
-				//var_dump($rel_filetorenamebefore.' - '.$rel_filetorenameafter);
+				
 
 				dol_syslog("Try to rename also entries in database for full relative path before = ".$rel_filetorenamebefore." after = ".$rel_filetorenameafter, LOG_DEBUG);
 				include_once DOL_DOCUMENT_ROOT.'/ecm/class/ecmfiles.class.php';
@@ -929,7 +929,7 @@ function dol_move($srcfile, $destfile, $newmask = 0, $overwriteifexists = 1, $te
 		$newmaskdec = octdec($newmask);
 		// Currently method is restricted to files (dol_delete_files previously used is for files, and mask usage if for files too)
 		// to allow mask usage for dir, we shoul introduce a new param "isdir" to 1 to complete newmask like this
-		// if ($isdir) $newmaskdec |= octdec('0111');  // Set x bit required for directories
+		
 		@chmod($newpathofdestfile, $newmaskdec);
 	}
 
@@ -1175,7 +1175,7 @@ function dol_delete_file($file, $disableglob = 0, $nophperrors = 0, $nohook = 0,
 	{
 		$error = 0;
 
-		//print "x".$file." ".$disableglob;exit;
+		
 		$file_osencoded = dol_osencode($file); // New filename encoded in OS filesystem encoding charset
 		if (empty($disableglob) && !empty($file_osencoded))
 		{
@@ -1295,7 +1295,7 @@ function dol_delete_dir_recursive($dir, $count = 0, $nophperrors = 0, $onlysub =
 						$result = dol_delete_file("$dir/$item", 1, $nophperrors);
 						$count++;
 						if ($result) $countdeleted++;
-						//else print 'Error on '.$item."\n";
+						
 					}
 				}
 			}
@@ -1306,7 +1306,7 @@ function dol_delete_dir_recursive($dir, $count = 0, $nophperrors = 0, $onlysub =
 				$result = dol_delete_dir($dir, $nophperrors);
 				$count++;
 				if ($result) $countdeleted++;
-				//else print 'Error on '.$dir."\n";
+				
 			}
 		}
 	}
@@ -2450,7 +2450,7 @@ function dol_check_secure_access_document($modulepart, $original_file, $entity, 
 	{
 		$accessallowed=1;
 		// If viewimage is called for barcode, we try to output an image on the fly, with no build of file on disk.
-		//$original_file=$conf->barcode->dir_temp.'/'.$original_file;
+		
 		$original_file='';
 	}
 	// Wrapping pour les icones de background des mailings
