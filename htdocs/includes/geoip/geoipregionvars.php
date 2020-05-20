@@ -1,5 +1,4 @@
 <?php
-// Copyright 2016 MaxMind, Inc. All Rights Reserved
 global $GEOIP_REGION_NAME;
 $GEOIP_REGION_NAME = array (
 	'AD' =>
