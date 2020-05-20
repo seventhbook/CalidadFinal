@@ -197,7 +197,7 @@ class pdf_espadon extends ModelePdfExpedition
 
 				$realpath='';
 
-                foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
+                foreach ($objphoto->liste_photos($dir, 1) )
                 {
                     if (empty($conf->global->CAT_HIGH_QUALITY_IMAGES))		// If CAT_HIGH_QUALITY_IMAGES not defined, we use thumb if defined and then original photo
                     {
@@ -283,7 +283,7 @@ class pdf_espadon extends ModelePdfExpedition
                 // Set path to the background PDF File
                 if (!empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                   
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -314,7 +314,7 @@ class pdf_espadon extends ModelePdfExpedition
 				$tab_top = 90;
 				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD) ? 42 : 10);
 				$tab_height = 130;
-				$tab_height_newpage = 150;
+				
 
 				// Incoterm
 				$height_incoterms = 0;
@@ -348,7 +348,7 @@ class pdf_espadon extends ModelePdfExpedition
 					$pdf->writeHTMLCell(60, 4, $this->posxdesc-1, $tab_top-1, $outputlangs->transnoentities("TrackingNumber")." : " . $object->tracking_number, 0, 1, false, true, 'L');
 
 					$tab_top_alt = $pdf->GetY();
-					//$tab_top_alt += 1;
+					
 
 					// Tracking number
 					if (! empty($object->tracking_number))
@@ -363,7 +363,7 @@ class pdf_espadon extends ModelePdfExpedition
 								$label='';
 								if ($object->tracking_url != $object->tracking_number) $label.=$outputlangs->trans("LinkToTrackYourPackage")."<br>";
 								$label.=$outputlangs->trans("SendingMethod").": ".$outputlangs->trans("SendingMethod".strtoupper($code));
-								//var_dump($object->tracking_url != $object->tracking_number);exit;
+								
 								if ($object->tracking_url != $object->tracking_number)
 								{
 									$label.=" : ";
@@ -409,7 +409,7 @@ class pdf_espadon extends ModelePdfExpedition
 				$pdf->rollbackTransaction(true);
 
 
-				$iniY = $tab_top + $this->tabTitleHeight + 2;
+				
 				$curY = $tab_top + $this->tabTitleHeight + 2;
 				$nexY = $tab_top + $this->tabTitleHeight + 2;
 
@@ -429,8 +429,8 @@ class pdf_espadon extends ModelePdfExpedition
 					$pageposbefore=$pdf->getPage();
 
 					$showpricebeforepagebreak=1;
-					$posYAfterImage=0;
-					$posYAfterDescription=0;
+					
+					
 
 					if($this->getColumnStatus('photo'))
 					{
@@ -439,7 +439,7 @@ class pdf_espadon extends ModelePdfExpedition
 					    {
 					        $pdf->AddPage('', '', true);
 					        if (! empty($tplidx)) $pdf->useTemplate($tplidx);
-					        //if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
+					        
 					        $pdf->setPage($pageposbefore+1);
 
 					        $curY = $tab_top_newpage;
@@ -470,20 +470,20 @@ class pdf_espadon extends ModelePdfExpedition
 					    {
 					        $pdf->rollbackTransaction(true);
 					        $pageposafter=$pageposbefore;
-					        //print $pageposafter.'-'.$pageposbefore;exit;
+					        
 					        $pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 					        pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->getColumnContentWidth('desc'), 3, $this->getColumnContentXStart('desc'), $curY, $hideref, $hidedesc);
 
 					        $pageposafter=$pdf->getPage();
 					        $posyafter=$pdf->GetY();
-					        //var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+					        
 					        if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforsignature+$heightforinfotot)))	// There is no space left for total+free text
 					        {
 					            if ($i == ($nblines-1))	// No more lines, and no space left to show total, so we create a new page
 					            {
 					                $pdf->AddPage('', '', true);
 					                if (! empty($tplidx)) $pdf->useTemplate($tplidx);
-					                //if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
+					               
 					                $pdf->setPage($pageposafter+1);
 					            }
 					        }
@@ -572,7 +572,7 @@ class pdf_espadon extends ModelePdfExpedition
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY-1, $this->page_largeur - $this->marge_droite, $nexY-1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -627,7 +627,7 @@ class pdf_espadon extends ModelePdfExpedition
 				}
 
 				// Display total area
-				$posy=$this->_tableau_tot($pdf, $object, 0, $bottomlasttab, $outputlangs);
+				
 
 				// Pagefoot
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -685,7 +685,7 @@ class pdf_espadon extends ModelePdfExpedition
 		// phpcs:enable
 		global $conf, $mysoc;
 
-        $sign = 1;
+       
 
         $default_font_size = pdf_getPDFFontSize($outputlangs);
 
@@ -694,15 +694,15 @@ class pdf_espadon extends ModelePdfExpedition
 		$pdf->SetFont('', 'B', $default_font_size - 1);
 
 		// Total table
-		$col1x = $this->posxweightvol-50; $col2x = $this->posxweightvol;
-		/*if ($this->page_largeur < 210) // To work with US executive format
-		{
-			$col2x-=20;
-		}*/
+		
+		
+		
+		
+	
 		if (empty($conf->global->SHIPPING_PDF_HIDE_ORDERED)) $largcol2 = ($this->posxqtyordered - $this->posxweightvol);
 		else $largcol2 = ($this->posxqtytoship - $this->posxweightvol);
 
-		$useborder = 0;
+		
 		$index = 0;
 
 		$totalWeighttoshow = '';
@@ -800,7 +800,7 @@ class pdf_espadon extends ModelePdfExpedition
 
 		if (empty($hidetop))
 		{
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -887,20 +887,20 @@ class pdf_espadon extends ModelePdfExpedition
 		{
 			$posx=$this->marge_gauche+3;
 		}
-		//$pdf->Rect($this->marge_gauche, $this->marge_haute, $this->page_largeur-$this->marge_gauche-$this->marge_droite, 30);
+		
 		if (! empty($conf->barcode->enabled))
 		{
-			// TODO Build code bar with function writeBarCode of barcode module for sending ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+		
+		
 		}
 
 		$pdf->SetDrawColor(128, 128, 128);
 		if (!empty($conf->barcode->enabled))
 		{
-			// TODO Build code bar with function writeBarCode of barcode module for sending ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+		
+		
 		}
 
 
@@ -946,7 +946,7 @@ class pdf_espadon extends ModelePdfExpedition
 		$origin 	= $object->origin;
 		$origin_id 	= $object->origin_id;
 
-	    // TODO move to external function
+	    
 		if (! empty($conf->$origin->enabled))     // commonly $origin='commande'
 		{
 			$outputlangs->load('orders');
@@ -1110,23 +1110,23 @@ class pdf_espadon extends ModelePdfExpedition
 	        'padding' => array(0.5, 0, 0.5, 0), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
 	    );
 
-	    /*
-	     * For exemple
-	     $this->cols['theColKey'] = array(
-	     'rank' => $rank, // int : use for ordering columns
-	     'width' => 20, // the column width in mm
-	     'title' => array(
-	     'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
-	     'label' => ' ', // the final label : used fore final generated text
-	     'align' => 'L', // text alignement :  R,C,L
-	     'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
-	     ),
-	     'content' => array(
-	     'align' => 'L', // text alignement :  R,C,L
-	     'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
-	     ),
-	     );
-	     */
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	
+	
+	
+	
+	
 
 	    $rank = 0; // do not use negative rank
 	    $this->cols['desc'] = array(
