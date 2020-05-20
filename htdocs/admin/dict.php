@@ -119,12 +119,12 @@ $tabname[22] = MAIN_DB_PREFIX."c_input_reason";
 $tabname[23] = MAIN_DB_PREFIX."c_revenuestamp";
 $tabname[24] = MAIN_DB_PREFIX."c_type_resource";
 $tabname[25] = MAIN_DB_PREFIX."c_type_container";
-//$tabname[26]= MAIN_DB_PREFIX."c_units";
+
 $tabname[27] = MAIN_DB_PREFIX."c_stcomm";
 $tabname[28] = MAIN_DB_PREFIX."c_holiday_types";
 $tabname[29] = MAIN_DB_PREFIX."c_lead_status";
 $tabname[30] = MAIN_DB_PREFIX."c_format_cards";
-//$tabname[31]= MAIN_DB_PREFIX."accounting_system";
+
 $tabname[32] = MAIN_DB_PREFIX."c_hrm_public_holiday";
 $tabname[33] = MAIN_DB_PREFIX."c_hrm_department";
 $tabname[34] = MAIN_DB_PREFIX."c_hrm_function";
@@ -161,12 +161,12 @@ $tablib[22] = "DictionarySource";
 $tablib[23] = "DictionaryRevenueStamp";
 $tablib[24] = "DictionaryResourceType";
 $tablib[25] = "DictionaryTypeOfContainer";
-//$tablib[26]= "DictionaryUnits";
+
 $tablib[27] = "DictionaryProspectStatus";
 $tablib[28] = "DictionaryHolidayTypes";
 $tablib[29] = "DictionaryOpportunityStatus";
 $tablib[30] = "DictionaryFormatCards";
-//$tablib[31]= "DictionaryAccountancysystem";
+
 $tablib[32] = "DictionaryPublicHolidays";
 $tablib[33] = "DictionaryDepartment";
 $tablib[34] = "DictionaryFunction";
@@ -202,12 +202,12 @@ $tabsql[22] = "SELECT rowid   as rowid, code, label, active FROM ".MAIN_DB_PREFI
 $tabsql[23] = "SELECT t.rowid as rowid, t.taux, t.revenuestamp_type, c.label as country, c.code as country_code, t.fk_pays as country_id, t.note, t.active, t.accountancy_code_sell, t.accountancy_code_buy FROM ".MAIN_DB_PREFIX."c_revenuestamp as t, ".MAIN_DB_PREFIX."c_country as c WHERE t.fk_pays=c.rowid";
 $tabsql[24] = "SELECT rowid   as rowid, code, label, active FROM ".MAIN_DB_PREFIX."c_type_resource";
 $tabsql[25] = "SELECT rowid   as rowid, code, label, active, module FROM ".MAIN_DB_PREFIX."c_type_container as t WHERE t.entity IN (".getEntity('c_type_container').")";
-//$tabsql[26]= "SELECT rowid   as rowid, code, label, short_label, active FROM ".MAIN_DB_PREFIX."c_units";
+
 $tabsql[27] = "SELECT id      as rowid, code, libelle, active FROM ".MAIN_DB_PREFIX."c_stcomm";
 $tabsql[28] = "SELECT h.rowid as rowid, h.code, h.label, h.affect, h.delay, h.newbymonth, h.fk_country as country_id, c.code as country_code, c.label as country, h.active FROM ".MAIN_DB_PREFIX."c_holiday_types as h LEFT JOIN ".MAIN_DB_PREFIX."c_country as c ON h.fk_country=c.rowid";
 $tabsql[29] = "SELECT rowid   as rowid, code, label, percent, position, active FROM ".MAIN_DB_PREFIX."c_lead_status";
 $tabsql[30] = "SELECT rowid, code, name, paper_size, orientation, metric, leftmargin, topmargin, nx, ny, spacex, spacey, width, height, font_size, custom_x, custom_y, active FROM ".MAIN_DB_PREFIX."c_format_cards";
-//$tabsql[31]= "SELECT s.rowid as rowid, pcg_version, s.label, s.active FROM ".MAIN_DB_PREFIX."accounting_system as s";
+
 $tabsql[32] = "SELECT a.id    as rowid, a.entity, a.code, a.fk_country as country_id, c.code as country_code, c.label as country, a.dayrule, a.day, a.month, a.year, a.active FROM ".MAIN_DB_PREFIX."c_hrm_public_holiday as a LEFT JOIN ".MAIN_DB_PREFIX."c_country as c ON a.fk_country=c.rowid AND c.active=1";
 $tabsql[33] = "SELECT rowid, pos, code, label, active FROM ".MAIN_DB_PREFIX."c_hrm_department";
 $tabsql[34] = "SELECT rowid, pos, code, label, c_level, active FROM ".MAIN_DB_PREFIX."c_hrm_function";
@@ -243,12 +243,12 @@ $tabsqlsort[22] = "code ASC, label ASC";
 $tabsqlsort[23] = "country ASC, taux ASC";
 $tabsqlsort[24] = "code ASC, label ASC";
 $tabsqlsort[25] = "t.module ASC, t.code ASC, t.label ASC";
-//$tabsqlsort[26]="code ASC";
+
 $tabsqlsort[27] = "code ASC";
 $tabsqlsort[28] = "country ASC, code ASC";
 $tabsqlsort[29] = "position ASC";
 $tabsqlsort[30] = "code ASC";
-//$tabsqlsort[31]="pcg_version ASC";
+
 $tabsqlsort[32] = "country, year ASC, month ASC, day ASC";
 $tabsqlsort[33] = "code ASC";
 $tabsqlsort[34] = "code ASC";
@@ -284,12 +284,12 @@ $tabfield[22] = "code,label";
 $tabfield[23] = "country_id,country,taux,revenuestamp_type,accountancy_code_sell,accountancy_code_buy,note";
 $tabfield[24] = "code,label";
 $tabfield[25] = "code,label";
-//$tabfield[26]= "code,label,short_label";
+
 $tabfield[27] = "code,libelle";
 $tabfield[28] = "code,label,affect,delay,newbymonth,country_id,country";
 $tabfield[29] = "code,label,percent,position";
 $tabfield[30] = "code,name,paper_size,orientation,metric,leftmargin,topmargin,nx,ny,spacex,spacey,width,height,font_size,custom_x,custom_y";
-//$tabfield[31]= "pcg_version,label";
+
 $tabfield[32] = "code,dayrule,year,month,day,country_id,country";
 $tabfield[33] = "code,label";
 $tabfield[34] = "code,label";
@@ -325,12 +325,12 @@ $tabfieldvalue[22] = "code,label";
 $tabfieldvalue[23] = "country,taux,revenuestamp_type,accountancy_code_sell,accountancy_code_buy,note";
 $tabfieldvalue[24] = "code,label";
 $tabfieldvalue[25] = "code,label";
-//$tabfieldvalue[26]= "code,label,short_label";
+
 $tabfieldvalue[27] = "code,libelle";
 $tabfieldvalue[28] = "code,label,affect,delay,newbymonth,country";
 $tabfieldvalue[29] = "code,label,percent,position";
 $tabfieldvalue[30] = "code,name,paper_size,orientation,metric,leftmargin,topmargin,nx,ny,spacex,spacey,width,height,font_size,custom_x,custom_y";
-//$tabfieldvalue[31]= "pcg_version,label";
+
 $tabfieldvalue[32] = "code,dayrule,day,month,year,country";
 $tabfieldvalue[33] = "code,label";
 $tabfieldvalue[34] = "code,label";
@@ -366,13 +366,13 @@ $tabfieldinsert[22] = "code,label";
 $tabfieldinsert[23] = "fk_pays,taux,revenuestamp_type,accountancy_code_sell,accountancy_code_buy,note";
 $tabfieldinsert[24] = "code,label";
 $tabfieldinsert[25] = "code,label";
-//$tabfieldinsert[26]= "code,label,short_label";
+
 $tabfieldinsert[27] = "code,libelle";
 $tabfieldinsert[28] = "code,label,affect,delay,newbymonth,fk_country";
 $tabfieldinsert[29] = "code,label,percent,position";
 $tabfieldinsert[30] = "code,name,paper_size,orientation,metric,leftmargin,topmargin,nx,ny,spacex,spacey,width,height,font_size,custom_x,custom_y";
-//$tabfieldinsert[31]= "pcg_version,label";
-//$tabfieldinsert[32]= "code,label,range_account,sens,category_type,formula,position,fk_country";
+
+
 $tabfieldinsert[32] = "code,dayrule,day,month,year,fk_country";
 $tabfieldinsert[33] = "code,label";
 $tabfieldinsert[34] = "code,label";
@@ -410,12 +410,12 @@ $tabrowid[22] = "rowid";
 $tabrowid[23] = "";
 $tabrowid[24] = "";
 $tabrowid[25] = "";
-//$tabrowid[26]= "";
+
 $tabrowid[27] = "id";
 $tabrowid[28] = "";
 $tabrowid[29] = "";
 $tabrowid[30] = "";
-//$tabrowid[31]= "";
+
 $tabrowid[32] = "id";
 $tabrowid[33] = "rowid";
 $tabrowid[34] = "rowid";
@@ -451,12 +451,12 @@ $tabcond[22] = (!empty($conf->commande->enabled) || !empty($conf->propal->enable
 $tabcond[23] = true;
 $tabcond[24] = !empty($conf->resource->enabled);
 $tabcond[25] = !empty($conf->website->enabled);
-//$tabcond[26]= ! empty($conf->product->enabled);
+
 $tabcond[27] = !empty($conf->societe->enabled);
 $tabcond[28] = !empty($conf->holiday->enabled);
 $tabcond[29] = !empty($conf->projet->enabled);
 $tabcond[30] = !empty($conf->label->enabled);
-//$tabcond[31]= ! empty($conf->accounting->enabled);
+
 $tabcond[32] = (!empty($conf->holiday->enabled) || !empty($conf->hrm->enabled));
 $tabcond[33] = !empty($conf->hrm->enabled);
 $tabcond[34] = !empty($conf->hrm->enabled);
@@ -492,12 +492,12 @@ $tabhelp[22] = array('code'=>$langs->trans("EnterAnyCode"));
 $tabhelp[23] = array('revenuestamp_type'=>'FixedOfPercent');
 $tabhelp[24] = array('code'=>$langs->trans("EnterAnyCode"));
 $tabhelp[25] = array('code'=>$langs->trans('EnterAnyCode'));
-//$tabhelp[26] = array('code'=>$langs->trans("EnterAnyCode"));
+
 $tabhelp[27] = array('code'=>$langs->trans("EnterAnyCode"));
 $tabhelp[28] = array('affect'=>$langs->trans("FollowedByACounter"), 'delay'=>$langs->trans("MinimumNoticePeriod"), 'newbymonth'=>$langs->trans("NbAddedAutomatically"));
 $tabhelp[29] = array('code'=>$langs->trans("EnterAnyCode"), 'percent'=>$langs->trans("OpportunityPercent"), 'position'=>$langs->trans("PositionIntoComboList"));
 $tabhelp[30] = array('code'=>$langs->trans("EnterAnyCode"), 'name'=>$langs->trans("LabelName"), 'paper_size'=>$langs->trans("LabelPaperSize"));
-//$tabhelp[31] = array('pcg_version'=>$langs->trans("EnterAnyCode"));
+
 $tabhelp[32] = array('code'=>$langs->trans("EnterAnyCode"), 'dayrule'=>"Keep empty for a date defined with month and day (most common case).<br>Use a keyword like 'easter', 'eastermonday', ... for a date predefined by complex rules.", 'country'=>$langs->trans("EnterACountryOnlyIfSpecificToOneCountry"), 'year'=>$langs->trans("ZeroMeansEveryYear"));
 $tabhelp[33] = array('code'=>$langs->trans("EnterAnyCode"));
 $tabhelp[34] = array('code'=>$langs->trans("EnterAnyCode"));
@@ -533,12 +533,12 @@ $tabfieldcheck[22] = array();
 $tabfieldcheck[23] = array();
 $tabfieldcheck[24] = array();
 $tabfieldcheck[25] = array();
-//$tabfieldcheck[26] = array();
+
 $tabfieldcheck[27] = array();
 $tabfieldcheck[28] = array();
 $tabfieldcheck[29] = array();
 $tabfieldcheck[30] = array();
-//$tabfieldcheck[31] = array();
+
 $tabfieldcheck[32] = array();
 $tabfieldcheck[33] = array();
 $tabfieldcheck[34] = array();
@@ -685,11 +685,11 @@ if (GETPOST('actionadd') || GETPOST('actionmodify'))
         	$ok = 0;
     		setEventMessages($langs->transnoentities('ErrorCodeCantContainZero'), null, 'errors');
         }
-        /*if (!is_numeric($_POST['code']))	// disabled, code may not be in numeric base
-    	{
-	    	$ok = 0;
-	    	$msg .= $langs->transnoentities('ErrorFieldFormat', $langs->transnoentities('Code')).'<br>';
-	    }*/
+        
+	    
+	    
+	    
+	    
     }
     if (isset($_POST["country"]) && ($_POST["country"] == '0') && ($id != 2))
     {
@@ -852,7 +852,7 @@ if (GETPOST('actionadd') || GETPOST('actionmodify'))
         if (in_array('entity', $listfieldmodify)) $sql .= " AND entity = '".getEntity($tabname[$id])."'";
 
         dol_syslog("actionmodify", LOG_DEBUG);
-        //print $sql;
+        
         $resql = $db->query($sql);
         if (!$resql)
         {
@@ -1024,7 +1024,7 @@ if ($action == 'delete')
 {
     print $form->formconfirm($_SERVER["PHP_SELF"].'?'.($page ? 'page='.$page.'&' : '').'rowid='.urlencode($rowid).'&code='.urlencode($code).$paramwithsearch, $langs->trans('DeleteLine'), $langs->trans('ConfirmDeleteLine'), 'confirm_delete', '', 0, 1);
 }
-//var_dump($elementList);
+
 
 /*
  * Show a dictionary
@@ -1061,7 +1061,7 @@ if ($id)
     }
     $sql .= $tabsqlsort[$id];
     $sql .= $db->plimit($listlimit + 1, $offset);
-    //print $sql;
+    
 
     if (empty($tabfield[$id]))
     {
@@ -1414,7 +1414,7 @@ if ($id)
             while ($i < $num)
             {
                 $obj = $db->fetch_object($resql);
-                //print_r($obj);
+                
                 print '<tr class="oddeven" id="rowid-'.$obj->rowid.'">';
                 if ($action == 'edit' && ($rowid == (!empty($obj->rowid) ? $obj->rowid : $obj->code)))
                 {
@@ -1452,7 +1452,7 @@ if ($id)
 
                         foreach ($fieldlist as $field => $value)
                         {
-                        	//var_dump($fieldlist);
+                        	
                         	$class = '';
                         	$showfield = 1;
                         	$valuetoshow = $obj->{$fieldlist[$field]};
@@ -1787,10 +1787,10 @@ else
             }
             print '</td>';
             print '<td>';
-            /*if (empty($tabcond[$i]))
-             {
-             print info_admin($langs->trans("DictionaryDisabledSinceNoModuleNeedIt"),1);
-             }*/
+            
+		
+		
+		
             print '</td>';
             print '<td>'.$tabname[$i].'</td></tr>';
             $lastlineisempty = false;
