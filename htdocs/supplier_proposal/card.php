@@ -693,7 +693,7 @@ if (empty($reshook))
 						$date_end
                     );
 
-					//var_dump($tva_tx);var_dump($productsupplier->fourn_pu);var_dump($price_base_type);exit;
+					
 					if ($result < 0)
 					{
 						$error++;
@@ -746,7 +746,7 @@ if (empty($reshook))
 				$pu_ht_devise = price2num($price_ht_devise, 'MU');
 
 				$result = $object->addline($desc, $pu_ht, $qty, $tva_tx, $localtax1_tx, $localtax2_tx, $idprod, $remise_percent, $price_base_type, $pu_ttc, $info_bits, $type, - 1, 0, GETPOST('fk_parent_line'), $fournprice, $buyingprice, $label, $array_options, $ref_supplier, $fk_unit);
-				//$result = $object->addline($desc, $ht, $qty, $tva_tx, $localtax1_tx, $localtax2_tx, 0, 0, '', $remise_percent, $price_base_type, $ttc, $type,'','', $date_start, $date_end, $array_options, $fk_unit);
+	
 			}
 
 
@@ -1258,7 +1258,7 @@ if ($action == 'create')
 	// Lines from source
 	if (!empty($origin) && !empty($originid) && is_object($objectsrc))
 	{
-		// TODO for compatibility
+		
 		if ($origin == 'contrat') {
 			// Calcul contrat->price (HT), contrat->total (TTC), contrat->tva
 			$objectsrc->remise_absolue = $remise_absolue;
@@ -1456,8 +1456,8 @@ if ($action == 'create')
 
 	$morehtmlref = '<div class="refidno">';
 	// Ref supplier
-	//$morehtmlref.=$form->editfieldkey("RefSupplier", 'ref_supplier', $object->ref_supplier, $object, $user->rights->fournisseur->commande->creer, 'string', '', 0, 1);
-	//$morehtmlref.=$form->editfieldval("RefSupplier", 'ref_supplier', $object->ref_supplier, $object, $user->rights->fournisseur->commande->creer, 'string', '', null, null, '', 1);
+	
+	
 	// Thirdparty
 	$morehtmlref .= $langs->trans('ThirdParty').' : '.$object->thirdparty->getNomUrl(1);
 	if (empty($conf->global->MAIN_DISABLE_OTHER_LINK) && $object->thirdparty->id > 0) $morehtmlref .= ' (<a href="'.DOL_URL_ROOT.'/supplier_proposal/list.php?socid='.$object->thirdparty->id.'&search_societe='.urlencode($object->thirdparty->name).'">'.$langs->trans("OtherProposals").'</a>)';
@@ -1472,7 +1472,7 @@ if ($action == 'create')
 				$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 			}
 			if ($action == 'classify') {
-				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+	
 				$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 				$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 				$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1635,19 +1635,19 @@ if ($action == 'create')
 		}
 	}
 
-	/* Not for supplier proposals
-	if ($soc->outstanding_limit)
-	{
-		// Outstanding Bill
-		print '<tr><td>';
-		print $langs->trans('OutstandingBill');
-		print '</td><td class=right colspan="3">';
-		$arrayoutstandingbills = $soc->getOutstandingBills('supplier');
-		$outstandingBills = $arrayoutstandingbills['opened'];
-		print price($soc->outstanding_limit, 0, '', 1, - 1, - 1, $conf->currency);
-		print '</td>';
-		print '</tr>';
-	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
 
 	if (!empty($conf->global->BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL) && !empty($conf->banque->enabled))
 	{
@@ -1732,9 +1732,9 @@ if ($action == 'create')
 	print '</table>';
 
 	// Margin Infos
-	/*if (! empty($conf->margin->enabled)) {
-	   $formmargin->displayMarginInfos($object);
-	}*/
+	
+	
+	
 
 	print '</div>';
 	print '</div>';
@@ -1854,7 +1854,7 @@ if ($action == 'create')
 				) {
 					if (count($object->lines) > 0)
 						print '<div class="inline-block divButAction"><a class="butAction" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&amp;action=validate">'.$langs->trans('Validate').'</a></div>';
-					// else print '<a class="butActionRefused classfortooltip" href="#">'.$langs->trans('Validate').'</a>';
+		
 				}
 
 				// Edit
