@@ -107,8 +107,8 @@ foreach ($_POST as $key => $val)
 
 
 // Define $urlwithroot
-//$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT,'/').'$/i','',trim($dolibarr_main_url_root));
-//$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
+
+		// This is to use external domain name found into config file
 $urlwithroot=DOL_MAIN_URL_ROOT;						// This is to use same domain name than current. For Paypal payment, we can use internal URL like localhost.
 
 $urlok=$urlwithroot.'/public/payment/paymentok.php?';
@@ -224,7 +224,7 @@ if (!empty($conf->global->PAYMENT_SECURITY_TOKEN))
 	if (!$valid)
 	{
 		print '<div class="error">Bad value for key.</div>';
-		//print 'SECUREKEY='.$SECUREKEY.' token='.$token.' valid='.$valid;
+		
 		exit;
 	}
 }
@@ -287,15 +287,15 @@ if ($action == 'dopayment')
 			$mesg = $langs->trans("ErrorFieldRequired", $langs->transnoentitiesnoconv("Amount"));
 			$action = '';
 		}
-		//elseif (empty($EMAIL))          $mesg=$langs->trans("ErrorFieldRequired",$langs->transnoentitiesnoconv("YourEMail"));
-		//elseif (! isValidEMail($EMAIL)) $mesg=$langs->trans("ErrorBadEMail",$EMAIL);
+		
+		
 		elseif (!$origfulltag)
 		{
 			$mesg = $langs->trans("ErrorFieldRequired", $langs->transnoentitiesnoconv("PaymentCode"));
 			$action = '';
 		}
 
-		//var_dump($_POST);
+
 		if (empty($mesg))
 		{
 			dol_syslog("newpayment.php call paypal api and do redirect", LOG_DEBUG);
@@ -501,14 +501,14 @@ if ($action == 'charge' && !empty($conf->stripe->enabled))
     		{
     			$vatcleaned = $vatnumber ? $vatnumber : null;
 
-    			/*$taxinfo = array('type'=>'vat');
-    			if ($vatcleaned)
-    			{
-    				$taxinfo["tax_id"] = $vatcleaned;
-    			}
-    			// We force data to "null" if not defined as expected by Stripe
-    			if (empty($vatcleaned)) $taxinfo=null;
-    			*/
+    			
+    			
+    			
+    			
+    			
+    			
+    			
+    			
 
     			dol_syslog("Create anonymous customer card profile", LOG_DEBUG, 0, '_stripe');
 
@@ -521,19 +521,19 @@ if ($action == 'charge' && !empty($conf->stripe->enabled))
     			// Return $customer = array('id'=>'cus_XXXX', ...)
 
                 // Create the VAT record in Stripe
-                /* We don't know country of customer, so we can't create tax
-                if (! empty($conf->global->STRIPE_SAVE_TAX_IDS))	// We setup to save Tax info on Stripe side. Warning: This may result in error when saving customer
-                {
-                	if (! empty($vatcleaned))
-                	{
-                		$isineec=isInEEC($object);
-                		if ($object->country_code && $isineec)
-                		{
-                			//$taxids = $customer->allTaxIds($customer->id);
-                			$customer->createTaxId($customer->id, array('type'=>'eu_vat', 'value'=>$vatcleaned));
-                		}
-                	}
-                }*/
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+               
 
     			if (!empty($FULLTAG))       $metadata["FULLTAG"] = $FULLTAG;
     			if (!empty($dol_id))        $metadata["dol_id"] = $dol_id;
@@ -672,9 +672,9 @@ if ($action == 'charge' && !empty($conf->stripe->enabled))
         }
         else
         {
-        	// TODO We can alse record the payment mode into llx_societe_rib with stripe $paymentintent->payment_method
+        	
         	// Note that with other old Stripe architecture (using Charge API), the payment mode was not recorded, so it is not mandatory to do it here.
-        	//dol_syslog("Create payment_method for ".$paymentintent->payment_method, LOG_DEBUG, 0, '_stripe');
+        	
         }
     }
 
@@ -766,7 +766,7 @@ $logo = $mysoc->logo;
 $paramlogo = 'ONLINE_PAYMENT_LOGO_'.$suffix;
 if (!empty($conf->global->$paramlogo)) $logosmall = $conf->global->$paramlogo;
 elseif (!empty($conf->global->ONLINE_PAYMENT_LOGO)) $logosmall = $conf->global->ONLINE_PAYMENT_LOGO;
-//print '<!-- Show logo (logosmall='.$logosmall.' logo='.$logo.') -->'."\n";
+
 // Define urllogo
 $urllogo = '';
 $urllogofull = '';
@@ -1200,7 +1200,7 @@ if ($source == 'contractline')
 			$product = new Product($db);
 			$result = $product->fetch($contractline->fk_product);
 
-			// We define price for product (TODO Put this in a method in product class)
+			
 			if (!empty($conf->global->PRODUIT_MULTIPRICES))
 			{
 				$pu_ht = $product->multiprices[$contract->thirdparty->price_level];
@@ -1256,10 +1256,10 @@ if ($source == 'contractline')
 		$text .= '<br>'.$contractline->product->ref.($contractline->product->label ? ' - '.$contractline->product->label : '');
 	}
 	if ($contractline->description) $text .= '<br>'.dol_htmlentitiesbr($contractline->description);
-	//if ($contractline->date_fin_validite) {
-	//	$text.='<br>'.$langs->trans("DateEndPlanned").': ';
-	//	$text.=dol_print_date($contractline->date_fin_validite);
-	//}
+	
+	
+	
+	
 	if ($contractline->date_fin_validite)
 	{
 		$text .= '<br>'.$langs->trans("ExpiredSince").': '.dol_print_date($contractline->date_fin_validite);
@@ -1289,7 +1289,7 @@ if ($source == 'contractline')
 		{
 			$label = $langs->trans("Duration");
 
-			// TODO Put this in a global method
+			
 			if ($contractline->product->duration_value > 1)
 			{
 				$dur = array("h"=>$langs->trans("Hours"), "d"=>$langs->trans("DurationDays"), "w"=>$langs->trans("DurationWeeks"), "m"=>$langs->trans("DurationMonths"), "y"=>$langs->trans("DurationYears"));
@@ -1478,7 +1478,7 @@ if ($source == 'membersubscription')
 	}
 	if (empty($amount) || !is_numeric($amount))
 	{
-		//$valtoshow=price2num(GETPOST("newamount",'alpha'),'MT');
+		
 		if (!empty($conf->global->MEMBER_MIN_AMOUNT) && $valtoshow) $valtoshow = max($conf->global->MEMBER_MIN_AMOUNT, $valtoshow);
 		print '<input type="hidden" name="amount" value="'.GETPOST("amount", 'int').'">';
 		print '<input class="flat maxwidth75" type="text" name="newamount" value="'.$valtoshow.'">';
@@ -1623,7 +1623,7 @@ if ($source == 'donation')
 	}
 	if (empty($amount) || !is_numeric($amount))
 	{
-		//$valtoshow=price2num(GETPOST("newamount",'alpha'),'MT');
+		
 		if (!empty($conf->global->MEMBER_MIN_AMOUNT) && $valtoshow) $valtoshow = max($conf->global->MEMBER_MIN_AMOUNT, $valtoshow);
 		print '<input type="hidden" name="amount" value="'.GETPOST("amount", 'int').'">';
 		print '<input class="flat maxwidth75" type="text" name="newamount" value="'.$valtoshow.'">';
@@ -1774,8 +1774,8 @@ if ($action != 'dopayment')
 				}
 				if ($conf->global->PAYPAL_API_INTEGRAL_OR_PAYPALONLY == 'paypalonly')
 				{
-					//print '<br>';
-					//print '<span class="buttonpaymentsmall">'.$langs->trans("PayPalBalance").'"></span>';
+					
+					
 				}
 				print '</div>';
 				print '<script>
@@ -1892,13 +1892,13 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
 				$noidempotency_key = (GETPOSTISSET('noidempotency') ? GETPOST('noidempotency', 'int') : 0); // By default noidempotency is unset, so we must use a different tag/ref for each payment. If set, we can pay several times the same tag/ref.
 				$paymentintent = $stripe->getPaymentIntent($amount, $currency, $tag, 'Stripe payment: '.$fulltag.(is_object($object) ? ' ref='.$object->ref : ''), $object, $stripecu, $stripeacc, $servicestatus, 0, 'automatic', false, null, 0, $noidempotency_key);
 				// The paymentintnent has status 'requires_payment_method' (even if paymentintent was already payed)
-				//var_dump($paymentintent);
+				
 				if ($stripe->error) setEventMessages($stripe->error, null, 'errors');
 			}
 		}
 
-		//if (empty($conf->global->STRIPE_USE_INTENT_WITH_AUTOMATIC_CONFIRMATION) || ! empty($paymentintent))
-		//{
+		
+		
     	print '
         <table id="dolpaymenttable" summary="Payment form" class="center">
         <tbody><tr><td class="textpublicpayment">';
@@ -1930,7 +1930,7 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
 
         print '</td></tr></tbody>';
         print '</table>';
-		//}
+		
 
 		if (!empty($conf->global->STRIPE_USE_INTENT_WITH_AUTOMATIC_CONFIRMATION))
 		{
@@ -1941,7 +1941,7 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
 		    else
 		    {
 		        print '<input type="hidden" name="paymentintent_id" value="'.$paymentintent->id.'">';
-		        //$_SESSION["paymentintent_id"] = $paymentintent->id;
+		        
 		    }
 		}
 
