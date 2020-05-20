@@ -186,7 +186,7 @@ class pdf_beluga extends ModelePDFProjects
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters=array('file'=>$file,'object'=>$object,'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
+				
 
 				// Create pdf instance
 				$pdf=pdf_getInstance($this->format);
@@ -207,7 +207,7 @@ class pdf_beluga extends ModelePDFProjects
                 // Set path to the background PDF File
                 if (! empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                    
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -222,7 +222,7 @@ class pdf_beluga extends ModelePDFProjects
 				}
 
 				$object->lines=$tasksarray;
-				$nblines=count($object->lines);
+				
 
 				$pdf->Open();
 				$pagenb=0;
@@ -249,7 +249,7 @@ class pdf_beluga extends ModelePDFProjects
 				$tab_top = 50;
 				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)?42:10);
 				$tab_height = 170;
-				$tab_height_newpage = 190;
+				
 
 				// Show public note
 				$notetoshow=empty($object->note_public)?'':$object->note_public;
@@ -280,8 +280,8 @@ class pdf_beluga extends ModelePDFProjects
 				}
 
 				$heightoftitleline = 10;
-				$iniY = $tab_top + $heightoftitleline + 1;
-				$curY = $tab_top + $heightoftitleline + 1;
+				
+				
 				$nexY = $tab_top + $heightoftitleline + 1;
 
                 $listofreferent=array(
@@ -402,7 +402,7 @@ class pdf_beluga extends ModelePDFProjects
 
                     if (! $qualified) continue;
 
-                    //var_dump("$key, $tablename, $datefieldname, $dates, $datee");
+                    
                     $elementarray = $object->get_element_list($key, $tablename, $datefieldname, $dates, $datee, $projectField);
 
                     $num = count($elementarray);
@@ -417,7 +417,7 @@ class pdf_beluga extends ModelePDFProjects
                         $pdf->SetXY($this->posxref, $curY);
                         $pdf->MultiCell($this->posxstatut - $this->posxref, 3, $outputlangs->transnoentities($title), 0, 'L');
 
-                        $selectList = $formproject->select_element($tablename, $project->thirdparty->id, '', -2, $projectField);
+                        
                         $nexY = $pdf->GetY() + 1;
                         $curY = $nexY;
                         $pdf->SetXY($this->posxref, $curY);
@@ -472,7 +472,7 @@ class pdf_beluga extends ModelePDFProjects
                                 $element = new $classname($this->db);
                                 $element->fetch($idofelement);
                                 $element->fetch_thirdparty();
-                                // print $classname;
+                                
 
                                 $qualifiedfortotal = true;
                                 if ($key == 'invoice') {
@@ -490,12 +490,12 @@ class pdf_beluga extends ModelePDFProjects
 					            if ($pageposafter > $pageposbefore)	// There is a pagebreak
 					            {
 						            $pdf->rollbackTransaction(true);
-						            $pageposafter=$pageposbefore;
-						            //print $pageposafter.'-'.$pageposbefore;exit;
+						            
+						            
 						            $pdf->setPageOrientation($this->orientation, 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						            // Label
 						            $pdf->SetXY($this->posxref, $curY);
-						            $posybefore=$pdf->GetY();
+						            
 						            $pdf->MultiCell($this->posxdate - $this->posxref, 3, $element->ref, 1, 'L');
 						            $pageposafter=$pdf->getPage();
 						            $posyafter=$pdf->GetY();
@@ -541,19 +541,19 @@ class pdf_beluga extends ModelePDFProjects
 								            $pdf->SetXY($this->posxref, $curY);
 								            $posybefore=$pdf->GetY();
 								            $pdf->MultiCell($this->posxdate - $this->posxref, 3, $element->ref, 1, 'L');
-								            $pageposafter=$pdf->getPage();
-								            $posyafter=$pdf->GetY();
+								            
+								            
 							            }
 						            }
-						            //var_dump($i.' '.$posybefore.' '.$posyafter.' '.($this->page_hauteur -  ($heightforfooter + $heightforfreetext + $heightforinfotot)).' '.$showpricebeforepagebreak);
+						            
 					            }
 					            else	// No pagebreak
 					            {
 						            $pdf->commitTransaction();
 					            }
-					            $posYAfterDescription=$pdf->GetY();
+					            
 
-					            $nexY = $pdf->GetY();
+					           
 					            $pageposafter=$pdf->getPage();
 					            $pdf->setPage($pageposbefore);
 					            $pdf->setTopMargin($this->marge_haute);
@@ -561,7 +561,7 @@ class pdf_beluga extends ModelePDFProjects
 
 					            // We suppose that a too long description is moved completely on next page
 					            if ($pageposafter > $pageposbefore && empty($showpricebeforepagebreak)) {
-						            //var_dump($pageposbefore.'-'.$pageposafter.'-'.$showpricebeforepagebreak);
+						            
 						            $pdf->setPage($pageposafter); $curY = $tab_top_newpage + $heightoftitleline + 1;
 					            }
 
@@ -629,7 +629,7 @@ class pdf_beluga extends ModelePDFProjects
                                     $total_ttc = $total_ttc + $element->total_ttc;
                                 }
                                 $nexY = $pdf->GetY();
-                                $curY = $nexY;
+                                
                             }
 
                             if (empty($value['disableamount'])) {
@@ -644,7 +644,7 @@ class pdf_beluga extends ModelePDFProjects
                                 $pdf->MultiCell($this->page_largeur - $this->marge_droite - $this->posxstatut, 3, $outputlangs->transnoentities("Nb") . " " . $num, 1, 'L');
                             }
                             $nexY = $pdf->GetY() + 5;
-                            $curY = $nexY;
+                            
                         }
                     }
 
