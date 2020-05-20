@@ -2766,35 +2766,26 @@ class PHPExcel_Calculation {
 		//	The guts of the lexical parser
 		//	Loop through the formula extracting each operator and operand in turn
 		while(TRUE) {
-//echo 'Assessing Expression '.substr($formula, $index),PHP_EOL;
 			$opCharacter = $formula{$index};	//	Get the first character of the value at the current index position
-//echo 'Initial character of expression block is '.$opCharacter,PHP_EOL;
 			if ((isset(self::$_comparisonOperators[$opCharacter])) && (strlen($formula) > $index) && (isset(self::$_comparisonOperators[$formula{$index+1}]))) {
 				$opCharacter .= $formula{++$index};
-//echo 'Initial character of expression block is comparison operator '.$opCharacter.PHP_EOL;
 			}
 
 			//	Find out if we're currently at the beginning of a number, variable, cell reference, function, parenthesis or operand
 			$isOperandOrFunction = preg_match($regexpMatchString, substr($formula, $index), $match);
-//echo '$isOperandOrFunction is '.(($isOperandOrFunction) ? 'True' : 'False').PHP_EOL;
-//var_dump($match);
 
 			if ($opCharacter == '-' && !$expectingOperator) {				//	Is it a negation instead of a minus?
-//echo 'Element is a Negation operator',PHP_EOL;
 				$stack->push('Unary Operator','~');							//	Put a negation on the stack
 				++$index;													//		and drop the negation symbol
 			} elseif ($opCharacter == '%' && $expectingOperator) {
-//echo 'Element is a Percentage operator',PHP_EOL;
 				$stack->push('Unary Operator','%');							//	Put a percentage on the stack
 				++$index;
 			} elseif ($opCharacter == '+' && !$expectingOperator) {			//	Positive (unary plus rather than binary operator plus) can be discarded?
-//echo 'Element is a Positive number, not Plus operator',PHP_EOL;
 				++$index;													//	Drop the redundant plus symbol
 			} elseif ((($opCharacter == '~') || ($opCharacter == '|')) && (!$isOperandOrFunction)) {	//	We have to explicitly deny a tilde or pipe, because they are legal
 				return $this->_raiseFormulaError("Formula Error: Illegal character '~'");				//		on the stack but not in the input expression
 
 			} elseif ((isset(self::$_operators[$opCharacter]) or $isOperandOrFunction) && $expectingOperator) {	//	Are we putting an operator on the stack?
-//echo 'Element with value '.$opCharacter.' is an Operator',PHP_EOL;
 				while($stack->count() > 0 &&
 					($o2 = $stack->last()) &&
 					isset(self::$_operators[$o2['value']]) &&
@@ -2806,33 +2797,23 @@ class PHPExcel_Calculation {
 				$expectingOperator = FALSE;
 
 			} elseif ($opCharacter == ')' && $expectingOperator) {			//	Are we expecting to close a parenthesis?
-//echo 'Element is a Closing bracket',PHP_EOL;
 				$expectingOperand = FALSE;
-				while (($o2 = $stack->pop()) && $o2['value'] != '(') {		//	Pop off the stack back to the last (
+				while (($o2 = $stack->pop()) && $o2['value'] != '(') {	
 					if ($o2 === NULL) return $this->_raiseFormulaError('Formula Error: Unexpected closing brace ")"');
 					else $output[] = $o2;
 				}
 				$d = $stack->last(2);
-				if (preg_match('/^'.self::CALCULATION_REGEXP_FUNCTION.'$/i', $d['value'], $matches)) {	//	Did this parenthesis just close a function?
-					$functionName = $matches[1];										//	Get the function name
-//echo 'Closed Function is '.$functionName,PHP_EOL;
+				if (preg_match('/^'.self::CALCULATION_REGEXP_FUNCTION.'$/i', $d['value'], $matches)) {	
+					$functionName = $matches[1];					
 					$d = $stack->pop();
 					$argumentCount = $d['value'];		//	See how many arguments there were (argument count is the next value stored on the stack)
-//if ($argumentCount == 0) {
-//	echo 'With no arguments',PHP_EOL;
-//} elseif ($argumentCount == 1) {
-//	echo 'With 1 argument',PHP_EOL;
-//} else {
-//	echo 'With '.$argumentCount.' arguments',PHP_EOL;
-//}
+
 					$output[] = $d;						//	Dump the argument count on the output
 					$output[] = $stack->pop();			//	Pop the function and push onto the output
 					if (isset(self::$_controlFunctions[$functionName])) {
-//echo 'Built-in function '.$functionName,PHP_EOL;
 						$expectedArgumentCount = self::$_controlFunctions[$functionName]['argumentCount'];
 						$functionCall = self::$_controlFunctions[$functionName]['functionCall'];
 					} elseif (isset(self::$_PHPExcelFunctions[$functionName])) {
-//echo 'PHPExcel function '.$functionName,PHP_EOL;
 						$expectedArgumentCount = self::$_PHPExcelFunctions[$functionName]['argumentCount'];
 						$functionCall = self::$_PHPExcelFunctions[$functionName]['functionCall'];
 					} else {	// did we somehow push a non-function on the stack? this should never happen
@@ -2842,13 +2823,11 @@ class PHPExcel_Calculation {
 					$argumentCountError = FALSE;
 					if (is_numeric($expectedArgumentCount)) {
 						if ($expectedArgumentCount < 0) {
-//echo '$expectedArgumentCount is between 0 and '.abs($expectedArgumentCount),PHP_EOL;
 							if ($argumentCount > abs($expectedArgumentCount)) {
 								$argumentCountError = TRUE;
 								$expectedArgumentCountString = 'no more than '.abs($expectedArgumentCount);
 							}
 						} else {
-//echo '$expectedArgumentCount is numeric '.$expectedArgumentCount,PHP_EOL;
 							if ($argumentCount != $expectedArgumentCount) {
 								$argumentCountError = TRUE;
 								$expectedArgumentCountString = $expectedArgumentCount;
@@ -2856,8 +2835,6 @@ class PHPExcel_Calculation {
 						}
 					} elseif ($expectedArgumentCount != '*') {
 						$isOperandOrFunction = preg_match('/(\d*)([-+,])(\d*)/',$expectedArgumentCount,$argMatch);
-//print_r($argMatch);
-//echo PHP_EOL;
 						switch ($argMatch[2]) {
 							case '+' :
 								if ($argumentCount < $argMatch[1]) {
@@ -2886,12 +2863,10 @@ class PHPExcel_Calculation {
 				++$index;
 
 			} elseif ($opCharacter == ',') {			//	Is this the separator for function arguments?
-//echo 'Element is a Function argument separator',PHP_EOL;
 				while (($o2 = $stack->pop()) && $o2['value'] != '(') {		//	Pop off the stack back to the last (
 					if ($o2 === NULL) return $this->_raiseFormulaError("Formula Error: Unexpected ,");
 					else $output[] = $o2;	// pop the argument expression stuff and push onto the output
 				}
-				//	If we've a comma when we're expecting an operand, then what we actually have is a null operand;
 				//		so push a null onto the stack
 				if (($expectingOperand) || (!$expectingOperator)) {
 					$output[] = array('type' => 'NULL Value', 'value' => self::$_ExcelConstants['NULL'], 'reference' => NULL);
@@ -2908,7 +2883,6 @@ class PHPExcel_Calculation {
 				++$index;
 
 			} elseif ($opCharacter == '(' && !$expectingOperator) {
-//				echo 'Element is an Opening Bracket<br />';
 				$stack->push('Brace', '(');
 				++$index;
 
@@ -2917,11 +2891,9 @@ class PHPExcel_Calculation {
 				$expectingOperand = FALSE;
 				$val = $match[1];
 				$length = strlen($val);
-//				echo 'Element with value '.$val.' is an Operand, Variable, Constant, String, Number, Cell Reference or Function<br />';
 
 				if (preg_match('/^'.self::CALCULATION_REGEXP_FUNCTION.'$/i', $val, $matches)) {
 					$val = preg_replace('/\s/u','',$val);
-//					echo 'Element '.$val.' is a Function<br />';
 					if (isset(self::$_PHPExcelFunctions[strtoupper($matches[1])]) || isset(self::$_controlFunctions[strtoupper($matches[1])])) {	// it's a function
 						$stack->push('Function', strtoupper($val));
 						$ax = preg_match('/^\s*(\s*\))/ui', substr($formula, $index+$length), $amatch);
@@ -2937,11 +2909,6 @@ class PHPExcel_Calculation {
 						$output[] = array('type' => 'Value', 'value' => $matches[1], 'reference' => NULL);
 					}
 				} elseif (preg_match('/^'.self::CALCULATION_REGEXP_CELLREF.'$/i', $val, $matches)) {
-//					echo 'Element '.$val.' is a Cell reference<br />';
-					//	Watch for this case-change when modifying to allow cell references in different worksheets...
-					//	Should only be applied to the actual cell column, not the worksheet name
-
-					//	If the last entry on the stack was a : operator, then we have a cell range reference
 					$testPrevOp = $stack->last(1);
 					if ($testPrevOp['value'] == ':') {
 						//	If we have a worksheet reference, then we're playing with a 3D reference
@@ -2959,9 +2926,7 @@ class PHPExcel_Calculation {
 					}
 
 					$output[] = array('type' => 'Cell Reference', 'value' => $val, 'reference' => $val);
-//					$expectingOperator = FALSE;
 				} else {	// it's a variable, constant, string, number or boolean
-//					echo 'Element is a Variable, Constant, String, Number or Boolean<br />';
 					//	If the last entry on the stack was a : operator, then we may have a row or column range reference
 					$testPrevOp = $stack->last(1);
 					if ($testPrevOp['value'] == ':') {
@@ -2993,24 +2958,19 @@ class PHPExcel_Calculation {
 
 					$localeConstant = FALSE;
 					if ($opCharacter == '"') {
-//						echo 'Element is a String<br />';
 						//	UnEscape any quotes within the string
 						$val = self::_wrapResult(str_replace('""','"',self::_unwrapResult($val)));
 					} elseif (is_numeric($val)) {
-//						echo 'Element is a Number<br />';
 						if ((strpos($val,'.') !== FALSE) || (stripos($val,'e') !== FALSE) || ($val > PHP_INT_MAX) || ($val < -PHP_INT_MAX)) {
 //							echo 'Casting '.$val.' to float<br />';
 							$val = (float) $val;
 						} else {
-//							echo 'Casting '.$val.' to integer<br />';
 							$val = (integer) $val;
 						}
 					} elseif (isset(self::$_ExcelConstants[trim(strtoupper($val))])) {
 						$excelConstant = trim(strtoupper($val));
-//						echo 'Element '.$excelConstant.' is an Excel Constant<br />';
 						$val = self::$_ExcelConstants[$excelConstant];
 					} elseif (($localeConstant = array_search(trim(strtoupper($val)), self::$_localeBoolean)) !== FALSE) {
-//						echo 'Element '.$localeConstant.' is an Excel Constant<br />';
 						$val = self::$_ExcelConstants[$localeConstant];
 					}
 					$details = array('type' => 'Value', 'value' => $val, 'reference' => NULL);
@@ -3054,10 +3014,8 @@ class PHPExcel_Calculation {
 				}
 				//	If we're expecting an operator, but only have a space between the previous and next operands (and both are
 				//		Cell References) then we have an INTERSECTION operator
-//				echo 'Possible Intersect Operator<br />';
 				if (($expectingOperator) && (preg_match('/^'.self::CALCULATION_REGEXP_CELLREF.'.*/Ui', substr($formula, $index), $match)) &&
 					($output[count($output)-1]['type'] == 'Cell Reference')) {
-//					echo 'Element is an Intersect Operator<br />';
 					while($stack->count() > 0 &&
 						($o2 = $stack->last()) &&
 						isset(self::$_operators[$o2['value']]) &&
@@ -3106,14 +3064,8 @@ class PHPExcel_Calculation {
 
 		//	Loop through each token in turn
 		foreach ($tokens as $tokenData) {
-//			print_r($tokenData);
-//			echo '<br />';
 			$token = $tokenData['value'];
-//			echo '<b>Token is '.$token.'</b><br />';
-			// if the token is a binary operator, pop the top two values off the stack, do the operation, and push the result back on the stack
 			if (isset(self::$_binaryOperators[$token])) {
-//				echo 'Token is a binary operator<br />';
-				//	We must have two operands, error if we don't
 				if (($operand2Data = $stack->pop()) === NULL) return $this->_raiseFormulaError('Internal error - Operand value missing from stack');
 				if (($operand1Data = $stack->pop()) === NULL) return $this->_raiseFormulaError('Internal error - Operand value missing from stack');
 
@@ -3252,15 +3204,11 @@ class PHPExcel_Calculation {
 
 			// if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
 			} elseif (($token === '~') || ($token === '%')) {
-//				echo 'Token is a unary operator<br />';
 				if (($arg = $stack->pop()) === NULL) return $this->_raiseFormulaError('Internal error - Operand value missing from stack');
 				$arg = $arg['value'];
-				if ($token === '~') {
-//					echo 'Token is a negation operator<br />';
 					$this->_debugLog->writeDebugLog('Evaluating Negation of ', $this->_showValue($arg));
 					$multiplier = -1;
 				} else {
-//					echo 'Token is a percentile operator<br />';
 					$this->_debugLog->writeDebugLog('Evaluating Percentile of ', $this->_showValue($arg));
 					$multiplier = 0.01;
 				}
@@ -3282,9 +3230,7 @@ class PHPExcel_Calculation {
 
 			} elseif (preg_match('/^'.self::CALCULATION_REGEXP_CELLREF.'$/i', $token, $matches)) {
 				$cellRef = NULL;
-//				echo 'Element '.$token.' is a Cell reference<br />';
 				if (isset($matches[8])) {
-//					echo 'Reference is a Range of cells<br />';
 					if ($pCell === NULL) {
 //						We can't access the range, so return a REF error
 						$cellValue = PHPExcel_Calculation_Functions::REF();
@@ -3297,7 +3243,6 @@ class PHPExcel_Calculation {
 								return $this->_raiseFormulaError('Unable to access External Workbook');
 							}
 							$matches[2] = trim($matches[2],"\"'");
-//							echo '$cellRef='.$cellRef.' in worksheet '.$matches[2].'<br />';
 							$this->_debugLog->writeDebugLog('Evaluating Cell Range ', $cellRef, ' in worksheet ', $matches[2]);
 							if ($pCellParent !== NULL) {
 								$cellValue = $this->extractCellRange($cellRef, $this->_workbook->getSheetByName($matches[2]), FALSE);
@@ -3305,9 +3250,7 @@ class PHPExcel_Calculation {
 								return $this->_raiseFormulaError('Unable to access Cell Reference');
 							}
 							$this->_debugLog->writeDebugLog('Evaluation Result for cells ', $cellRef, ' in worksheet ', $matches[2], ' is ', $this->_showTypeDetails($cellValue));
-//							$cellRef = $matches[2].'!'.$cellRef;
 						} else {
-//							echo '$cellRef='.$cellRef.' in current worksheet<br />';
 							$this->_debugLog->writeDebugLog('Evaluating Cell Range ', $cellRef, ' in current worksheet');
 							if ($pCellParent !== NULL) {
 								$cellValue = $this->extractCellRange($cellRef, $pCellWorksheet, FALSE);
@@ -3318,7 +3261,6 @@ class PHPExcel_Calculation {
 						}
 					}
 				} else {
-//					echo 'Reference is a single Cell<br />';
 					if ($pCell === NULL) {
 //						We can't access the cell, so return a REF error
 						$cellValue = PHPExcel_Calculation_Functions::REF();
@@ -3330,7 +3272,6 @@ class PHPExcel_Calculation {
 								//	It's a Reference to an external workbook (not currently supported)
 								return $this->_raiseFormulaError('Unable to access External Workbook');
 							}
-//							echo '$cellRef='.$cellRef.' in worksheet '.$matches[2].'<br />';
 							$this->_debugLog->writeDebugLog('Evaluating Cell ', $cellRef, ' in worksheet ', $matches[2]);
 							if ($pCellParent !== NULL) {
 								$cellSheet = $this->_workbook->getSheetByName($matches[2]);
@@ -3344,9 +3285,7 @@ class PHPExcel_Calculation {
 								return $this->_raiseFormulaError('Unable to access Cell Reference');
 							}
 							$this->_debugLog->writeDebugLog('Evaluation Result for cell ', $cellRef, ' in worksheet ', $matches[2], ' is ', $this->_showTypeDetails($cellValue));
-//							$cellRef = $matches[2].'!'.$cellRef;
 						} else {
-//							echo '$cellRef='.$cellRef.' in current worksheet<br />';
 							$this->_debugLog->writeDebugLog('Evaluating Cell ', $cellRef, ' in current worksheet');
 							if ($pCellParent->isDataSet($cellRef)) {
 								$cellValue = $this->extractCellRange($cellRef, $pCellWorksheet, FALSE);
@@ -3362,7 +3301,6 @@ class PHPExcel_Calculation {
 
 			// if the token is a function, pop arguments off the stack, hand them to the function, and push the result back on
 			} elseif (preg_match('/^'.self::CALCULATION_REGEXP_FUNCTION.'$/i', $token, $matches)) {
-//				echo 'Token is a function<br />';
 				$functionName = $matches[1];
 				$argCount = $stack->pop();
 				$argCount = $argCount['value'];
@@ -3380,7 +3318,6 @@ class PHPExcel_Calculation {
 						$passCellReference = isset(self::$_controlFunctions[$functionName]['passCellReference']);
 					}
 					// get the arguments for this function
-//					echo 'Function '.$functionName.' expects '.$argCount.' arguments<br />';
 					$args = $argArrayVals = array();
 					for ($i = 0; $i < $argCount; ++$i) {
 						$arg = $stack->pop();
@@ -3406,38 +3343,12 @@ class PHPExcel_Calculation {
 						$args[] = $cellID;
 						$argArrayVals[] = $this->_showValue($cellID);
 					}
-//					echo 'Arguments are: ';
-//					print_r($args);
-//					echo '<br />';
 					if ($functionName != 'MKMATRIX') {
 						if ($this->_debugLog->getWriteDebugLog()) {
 							krsort($argArrayVals);
 							$this->_debugLog->writeDebugLog('Evaluating ', self::_localeFunc($functionName), '( ', implode(self::$_localeArgumentSeparator.' ',PHPExcel_Calculation_Functions::flattenArray($argArrayVals)), ' )');
 						}
 					}
-					//	Process each argument in turn, building the return value as an array
-//					if (($argCount == 1) && (is_array($args[1])) && ($functionName != 'MKMATRIX')) {
-//						$operand1 = $args[1];
-//						$this->_debugLog->writeDebugLog('Argument is a matrix: ', $this->_showValue($operand1));
-//						$result = array();
-//						$row = 0;
-//						foreach($operand1 as $args) {
-//							if (is_array($args)) {
-//								foreach($args as $arg) {
-//									$this->_debugLog->writeDebugLog('Evaluating ', self::_localeFunc($functionName), '( ', $this->_showValue($arg), ' )');
-//									$r = call_user_func_array($functionCall,$arg);
-//									$this->_debugLog->writeDebugLog('Evaluation Result for ', self::_localeFunc($functionName), '() function call is ', $this->_showTypeDetails($r));
-//									$result[$row][] = $r;
-//								}
-//								++$row;
-//							} else {
-//								$this->_debugLog->writeDebugLog('Evaluating ', self::_localeFunc($functionName), '( ', $this->_showValue($args), ' )');
-//								$r = call_user_func_array($functionCall,$args);
-//								$this->_debugLog->writeDebugLog('Evaluation Result for ', self::_localeFunc($functionName), '() function call is ', $this->_showTypeDetails($r));
-//								$result[] = $r;
-//							}
-//						}
-//					} else {
 					//	Process the argument with the appropriate function call
 						if ($passCellReference) {
 							$args[] = $pCell;
@@ -3451,7 +3362,6 @@ class PHPExcel_Calculation {
 							unset($arg);
 							$result = call_user_func_array($functionCall,$args);
 						}
-//					}
 					if ($functionName != 'MKMATRIX') {
 						$this->_debugLog->writeDebugLog('Evaluation Result for ', self::_localeFunc($functionName), '() function call is ', $this->_showTypeDetails($result));
 					}
@@ -3459,20 +3369,15 @@ class PHPExcel_Calculation {
 				}
 
 			} else {
-				// if the token is a number, boolean, string or an Excel error, push it onto the stack
 				if (isset(self::$_ExcelConstants[strtoupper($token)])) {
 					$excelConstant = strtoupper($token);
-//					echo 'Token is a PHPExcel constant: '.$excelConstant.'<br />';
 					$stack->push('Constant Value',self::$_ExcelConstants[$excelConstant]);
 					$this->_debugLog->writeDebugLog('Evaluating Constant ', $excelConstant, ' as ', $this->_showTypeDetails(self::$_ExcelConstants[$excelConstant]));
 				} elseif ((is_numeric($token)) || ($token === NULL) || (is_bool($token)) || ($token == '') || ($token{0} == '"') || ($token{0} == '#')) {
-//					echo 'Token is a number, boolean, string, null or an Excel error<br />';
 					$stack->push('Value',$token);
-				// if the token is a named range, push the named range name onto the stack
 				} elseif (preg_match('/^'.self::CALCULATION_REGEXP_NAMEDRANGE.'$/i', $token, $matches)) {
-//					echo 'Token is a named range<br />';
+
 					$namedRange = $matches[6];
-//					echo 'Named Range is '.$namedRange.'<br />';
 					$this->_debugLog->writeDebugLog('Evaluating Named Range ', $namedRange);
 					$cellValue = $this->extractNamedRange($namedRange, ((NULL !== $pCell) ? $pCellWorksheet : NULL), FALSE);
 					$pCell->attach($pCellParent);
@@ -3488,11 +3393,8 @@ class PHPExcel_Calculation {
 		$output = $stack->pop();
 		$output = $output['value'];
 
-//		if ((is_array($output)) && (self::$returnArrayAsType != self::RETURN_ARRAY_AS_ARRAY)) {
-//			return array_shift(PHPExcel_Calculation_Functions::flattenArray($output));
-//		}
 		return $output;
-	}	//	function _processTokenStack()
+	}
 
 
 	private function _validateBinaryOperand($cellID, &$operand, &$stack) {
@@ -3749,16 +3651,10 @@ class PHPExcel_Calculation {
 		// Return value
 		$returnValue = array ();
 
-//		echo 'extractCellRange('.$pRange.')',PHP_EOL;
 		if ($pSheet !== NULL) {
 			$pSheetName = $pSheet->getTitle();
-//			echo 'Passed sheet name is '.$pSheetName.PHP_EOL;
-//			echo 'Range reference is '.$pRange.PHP_EOL;
 			if (strpos ($pRange, '!') !== false) {
-//				echo '$pRange reference includes sheet reference',PHP_EOL;
 				list($pSheetName,$pRange) = PHPExcel_Worksheet::extractSheetTitle($pRange, true);
-//				echo 'New sheet name is '.$pSheetName,PHP_EOL;
-//				echo 'Adjusted Range reference is '.$pRange,PHP_EOL;
 				$pSheet = $this->_workbook->getSheetByName($pSheetName);
 			}
 
@@ -3768,7 +3664,6 @@ class PHPExcel_Calculation {
 			if (!isset($aReferences[1])) {
 				//	Single cell in range
 				sscanf($aReferences[0],'%[A-Z]%d', $currentCol, $currentRow);
-				$cellValue = NULL;
 				if ($pSheet->cellExists($aReferences[0])) {
 					$returnValue[$currentRow][$currentCol] = $pSheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
 				} else {
@@ -3807,16 +3702,10 @@ class PHPExcel_Calculation {
 		// Return value
 		$returnValue = array ();
 
-//		echo 'extractNamedRange('.$pRange.')<br />';
 		if ($pSheet !== NULL) {
 			$pSheetName = $pSheet->getTitle();
-//			echo 'Current sheet name is '.$pSheetName.'<br />';
-//			echo 'Range reference is '.$pRange.'<br />';
 			if (strpos ($pRange, '!') !== false) {
-//				echo '$pRange reference includes sheet reference',PHP_EOL;
 				list($pSheetName,$pRange) = PHPExcel_Worksheet::extractSheetTitle($pRange, true);
-//				echo 'New sheet name is '.$pSheetName,PHP_EOL;
-//				echo 'Adjusted Range reference is '.$pRange,PHP_EOL;
 				$pSheet = $this->_workbook->getSheetByName($pSheetName);
 			}
 
@@ -3824,7 +3713,6 @@ class PHPExcel_Calculation {
 			$namedRange = PHPExcel_NamedRange::resolveRange($pRange, $pSheet);
 			if ($namedRange !== NULL) {
 				$pSheet = $namedRange->getWorksheet();
-//				echo 'Named Range '.$pRange.' (';
 				$pRange = $namedRange->getRange();
 				$splitRange = PHPExcel_Cell::splitRange($pRange);
 				//	Convert row and column references
@@ -3833,26 +3721,15 @@ class PHPExcel_Calculation {
 				} elseif(ctype_digit($splitRange[0][0])) {
 					$pRange = 'A' . $splitRange[0][0] . ':' . $namedRange->getWorksheet()->getHighestColumn() . $splitRange[0][1];
 				}
-//				echo $pRange.') is in sheet '.$namedRange->getWorksheet()->getTitle().'<br />';
-
-//				if ($pSheet->getTitle() != $namedRange->getWorksheet()->getTitle()) {
-//					if (!$namedRange->getLocalOnly()) {
-//						$pSheet = $namedRange->getWorksheet();
-//					} else {
-//						return $returnValue;
-//					}
-//				}
 			} else {
 				return PHPExcel_Calculation_Functions::REF();
 			}
 
 			// Extract range
 			$aReferences = PHPExcel_Cell::extractAllCellReferencesInRange($pRange);
-//			var_dump($aReferences);
 			if (!isset($aReferences[1])) {
 				//	Single cell (or single column or row) in range
 				list($currentCol,$currentRow) = PHPExcel_Cell::coordinateFromString($aReferences[0]);
-				$cellValue = NULL;
 				if ($pSheet->cellExists($aReferences[0])) {
 					$returnValue[$currentRow][$currentCol] = $pSheet->getCell($aReferences[0])->getCalculatedValue($resetLog);
 				} else {
@@ -3863,7 +3740,6 @@ class PHPExcel_Calculation {
 				foreach ($aReferences as $reference) {
 					// Extract range
 					list($currentCol,$currentRow) = PHPExcel_Cell::coordinateFromString($reference);
-//					echo 'NAMED RANGE: $currentCol='.$currentCol.' $currentRow='.$currentRow.'<br />';
 					$cellValue = NULL;
 					if ($pSheet->cellExists($reference)) {
 						$returnValue[$currentRow][$currentCol] = $pSheet->getCell($reference)->getCalculatedValue($resetLog);
@@ -3872,8 +3748,6 @@ class PHPExcel_Calculation {
 					}
 				}
 			}
-//				print_r($returnValue);
-//			echo '<br />';
 		}
 
 		// Return
