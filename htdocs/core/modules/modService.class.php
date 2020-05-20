@@ -119,7 +119,7 @@ class modService extends DolibarrModules
 		//-------
 		$this->menu = 1; // This module add menu entries. They are coded into menu manager.
 		/* We can't enable this here because it must be enabled in both product and service module and this creates duplicate inserts
-		 $r=0;
+		 
 		 $this->menu[$r]=array(	'fk_menu'=>'fk_mainmenu=home,fk_leftmenu=admintools',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
 		 'type'=>'left',			                // This is a Left menu entry
 		 'titre'=>'ProductVatMassChange',
@@ -130,7 +130,7 @@ class modService extends DolibarrModules
 		 'perms'=>'1',			                // Use 'perms'=>'$user->rights->mymodule->level1->level2' if you want your menu with a permission rules
 		 'target'=>'',
 		 'user'=>0);				                // 0=Menu for internal users, 1=external users, 2=both
-		 $r++;
+		 
 		 */
 
         // Exports
@@ -226,7 +226,7 @@ class modService extends DolibarrModules
 				//	'p.note'=>"Text",'p.length'=>"Numeric",'p.surface'=>"Numeric",'p.volume'=>"Numeric",'p.weight'=>"Numeric",'p.customcode'=>'Text',
 				//	'p.price_base_type'=>"Text",'p.price'=>"Numeric",'p.price_ttc'=>"Numeric",'p.tva_tx'=>'Numeric','p.tosell'=>"Boolean",'p.tobuy'=>"Boolean",
 				//	'p.datec'=>'Date','p.tms'=>'Date'
-				//);
+				
 				$this->export_entities_array[$r]=array('p.rowid'=>"product",'p.ref'=>"product",
 					'pr.price_base_type'=>"product",'pr.price_level'=>"product",'pr.price'=>"product",
 					'pr.price_ttc'=>"product",
@@ -672,7 +672,7 @@ class modService extends DolibarrModules
 				$this->import_tables_array[$r] = array('l'=>MAIN_DB_PREFIX.'product_lang');
 				// multiline translation, one line per translation
 				$this->import_fields_array[$r] = array('l.fk_product'=>'ProductOrService*', 'l.lang'=>'Language*', 'l.label'=>'TranslatedLabel', 'l.description'=>'TranslatedDescription');
-				//$this->import_fields_array[$r]['l.note']='TranslatedNote';
+				
 				$this->import_convertvalue_array[$r] = array(
 				'l.fk_product'=>array('rule'=>'fetchidfromref', 'classfile'=>'/product/class/product.class.php', 'class'=>'Product', 'method'=>'fetch', 'element'=>'Product')
 				);
