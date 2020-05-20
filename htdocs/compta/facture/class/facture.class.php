@@ -116,7 +116,6 @@ class Facture extends CommonInvoice
 	//Check constants for types
 	public $type = self::TYPE_STANDARD;
 
-	//var $amount;
 	public $remise_absolue;
 	public $remise_percent;
 	public $total_ht = 0;
@@ -458,7 +457,6 @@ class Facture extends CommonInvoice
 
 			require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture-rec.class.php';
 			$_facrec = new FactureRec($this->db);
-			$result = $_facrec->fetch($this->fac_rec);
 			$result = $_facrec->fetchObjectLinked(null, '', null, '', 'OR', 1, 'sourcetype', 0); // This load $_facrec->linkedObjectsIds
 
 			// Define some dates
@@ -472,7 +470,6 @@ class Facture extends CommonInvoice
 			}
 			$this->entity            = $_facrec->entity; // Invoice created in same entity than template
 
-			// Fields coming from GUI (priority on template). TODO Value of template should be used as default value on GUI so we can use here always value from GUI
 			$this->fk_project        = GETPOST('projectid', 'int') > 0 ? ((int) GETPOST('projectid', 'int')) : $_facrec->fk_project;
 			$this->note_public       = GETPOST('note_public', 'none') ? GETPOST('note_public', 'none') : $_facrec->note_public;
 			$this->note_private      = GETPOST('note_private', 'none') ? GETPOST('note_private', 'none') : $_facrec->note_private;
@@ -500,13 +497,8 @@ class Facture extends CommonInvoice
 
 		    $this->array_options = $_facrec->array_options;
 
-			//if (! $this->remise) $this->remise = 0;
 			if (!$this->mode_reglement_id) $this->mode_reglement_id = 0;
 			$this->brouillon = 1;
-
-			$this->linked_objects = $_facrec->linkedObjectsIds;
-			// We do not add link to template invoice or next invoice will be linked to all generated invoices
-			//$this->linked_objects['facturerec'][0] = $this->fac_rec;
 
 			$forceduedate = $this->calculate_date_lim_reglement();
 
@@ -516,8 +508,6 @@ class Facture extends CommonInvoice
 			    dol_syslog("This is a recurring invoice so we set date_last_gen and next date_when");
 			    if (empty($_facrec->date_when)) $_facrec->date_when = $now;
                 $next_date = $_facrec->getNextDate(); // Calculate next date
-                $result = $_facrec->setValueFrom('date_last_gen', $now, '', null, 'date', '', $user, '');
-                //$_facrec->setValueFrom('nb_gen_done', $_facrec->nb_gen_done + 1);		// Not required, +1 already included into setNextDate when second param is 1.
                 $result = $_facrec->setNextDate($next_date, 1);
 			}
 
@@ -551,8 +541,6 @@ class Facture extends CommonInvoice
 			$substitutionarray['__INVOICE_COUNTER_CURRENT__'] = $_facrec->nb_gen_done;
 			$substitutionarray['__INVOICE_COUNTER_MAX__'] = $_facrec->nb_gen_max;
 
-			//var_dump($substitutionarray);exit;
-
 			complete_substitutions_array($substitutionarray, $outputlangs);
 
 			$this->note_public = make_substitutions($this->note_public, $substitutionarray);
@@ -562,10 +550,6 @@ class Facture extends CommonInvoice
 		// Define due date if not already defined
         if (empty($forceduedate)) {
             $duedate = $this->calculate_date_lim_reglement();
-            /*if ($duedate < 0) {	Regression, a date can be negative if before 1970.
-                dol_syslog(__METHOD__ . ' Error in calculate_date_lim_reglement. We got ' . $duedate, LOG_ERR);
-                return -1;
-            }*/
             $this->date_lim_reglement = $duedate;
         } else {
             $this->date_lim_reglement = $forceduedate;
@@ -716,7 +700,6 @@ class Facture extends CommonInvoice
 				{
 				    while ($objcontact = $this->db->fetch_object($resqlcontact))
 				    {
-				        //print $objcontact->code.'-'.$objcontact->source.'-'.$objcontact->fk_socpeople."\n";
 				        $this->add_contact($objcontact->fk_socpeople, $objcontact->code, $objcontact->source); // May failed because of duplicate key or because code of contact type does not exists for new object
 				    }
 				}
@@ -866,14 +849,6 @@ class Facture extends CommonInvoice
 						$res = $prod->fetch($_facrec->lines[$i]->fk_product);
 					}
 
-					// For line from template invoice, we use data from template invoice
-					/*
-					$tva_tx = get_default_tva($mysoc,$soc,$prod->id);
-					$tva_npr = get_default_npr($mysoc,$soc,$prod->id);
-					if (empty($tva_tx)) $tva_npr=0;
-					$localtax1_tx=get_localtax($tva_tx,1,$soc,$mysoc,$tva_npr);
-					$localtax2_tx=get_localtax($tva_tx,2,$soc,$mysoc,$tva_npr);
-					*/
 					$tva_tx = $_facrec->lines[$i]->tva_tx.($_facrec->lines[$i]->vat_src_code ? '('.$_facrec->lines[$i]->vat_src_code.')' : '');
 					$tva_npr = $_facrec->lines[$i]->info_bits;
 					if (empty($tva_tx)) $tva_npr = 0;
@@ -1131,8 +1106,6 @@ class Facture extends CommonInvoice
 			    $object->fk_project = '';
 			    $object->fk_delivery_address = '';
 			}
-
-			// TODO Change product price if multi-prices
 		}
 
 		$object->id = 0;
@@ -1434,14 +1407,11 @@ class Facture extends CommonInvoice
 		    $txttoshow = ($user->socid > 0 ? $this->note_public : $this->note_private);
 		    if ($txttoshow)
 		    {
-                //$notetoshow = $langs->trans("ViewPrivateNote").':<br>'.dol_string_nohtmltag($txttoshow, 1);
 		    	$notetoshow = $langs->trans("ViewPrivateNote").':<br>'.$txttoshow;
     		    $result .= ' <span class="note inline-block">';
     		    $result .= '<a href="'.DOL_URL_ROOT.'/compta/facture/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow, 1, 1).'">';
     		    $result .= img_picto('', 'note');
     		    $result .= '</a>';
-    		    //$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-    		    //$result.='</a>';
     		    $result .= '</span>';
 		    }
 		}
@@ -2120,7 +2090,6 @@ class Facture extends CommonInvoice
 			$sql = 'DELETE FROM '.MAIN_DB_PREFIX.'societe_remise_except';
 			$sql .= ' WHERE fk_facture_source = '.$rowid;
 			$sql .= ' AND fk_facture_line IS NULL';
-			$resql = $this->db->query($sql);
 
 			// If invoice has consumned discounts
 			$this->fetch_lines();
@@ -2196,7 +2165,6 @@ class Facture extends CommonInvoice
 
 							if (!dol_delete_file($file, 0, 0, 0, $this)) // For triggers
 							{
-								$langs->load("errors");
 								$this->error = $langs->trans("ErrorFailToDeleteFile", $file);
 								$this->db->rollback();
 								return 0;
@@ -2892,7 +2860,6 @@ class Facture extends CommonInvoice
 		// Deprecation warning
 		if ($label) {
 			dol_syslog(__METHOD__.": using line label is deprecated", LOG_WARNING);
-			//var_dump(debug_backtrace(false));exit;
 		}
 
 		global $mysoc, $conf, $langs;
@@ -2952,7 +2919,6 @@ class Facture extends CommonInvoice
 			if (!empty($fk_product))
 			{
 				$product = new Product($this->db);
-				$result = $product->fetch($fk_product);
 				$product_type = $product->type;
 
 				if (!empty($conf->global->STOCK_MUST_BE_ENOUGH_FOR_INVOICE) && $product_type == 0 && $product->stock_reel < $qty) {
@@ -3224,7 +3190,6 @@ class Facture extends CommonInvoice
 			if (!empty($line->fk_product))
 			{
 				$product = new Product($this->db);
-				$result = $product->fetch($line->fk_product);
 				$product_type = $product->type;
 
 				if (!empty($conf->global->STOCK_MUST_BE_ENOUGH_FOR_INVOICE) && $product_type == 0 && $product->stock_reel < $qty) {
@@ -3659,7 +3624,6 @@ class Facture extends CommonInvoice
 			 */
 			if ($mode != 'last' && !$numref) {
 				$this->error = $obj->error;
-				//dol_print_error($this->db,"Facture::getNextNumRef ".$obj->error);
 				return "";
 			}
 
@@ -3842,7 +3806,6 @@ class Facture extends CommonInvoice
 				'ref' => $obj->ref,
 				'status' => $obj->fk_statut);
 			}
-			//print_r($return);
 			return $return;
 		}
 		else
@@ -3876,10 +3839,6 @@ class Facture extends CommonInvoice
 		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."facture as ff ON (f.rowid = ff.fk_facture_source AND ff.type=".self::TYPE_REPLACEMENT.")";
 		$sql .= " WHERE f.entity IN (".getEntity('invoice').")";
 		$sql .= " AND f.fk_statut in (".self::STATUS_VALIDATED.",".self::STATUS_CLOSED.")";
-		//  $sql.= " WHERE f.fk_statut >= 1";
-		//	$sql.= " AND (f.paye = 1";				// Classee payee completement
-		//	$sql.= " OR f.close_code IS NOT NULL)";	// Classee payee partiellement
-		$sql .= " AND ff.type IS NULL"; // Renvoi vrai si pas facture de remplacement
 		$sql .= " AND f.type != ".self::TYPE_CREDIT_NOTE; // Type non 2 si facture non avoir
 
 		if (!empty($conf->global->INVOICE_USE_SITUATION_CREDIT_NOTE)) {
@@ -3912,7 +3871,6 @@ class Facture extends CommonInvoice
 				if ($obj->fk_statut == self::STATUS_CLOSED) $qualified = 1;
 				if ($qualified)
 				{
-					//$ref=$obj->ref;
 					$paymentornot = ($obj->fk_paiement ? 1 : 0);
 					$return[$obj->rowid] = array('ref'=>$obj->ref, 'status'=>$obj->fk_statut, 'type'=>$obj->type, 'paye'=>$obj->paye, 'paymentornot'=>$paymentornot);
 				}
@@ -3968,12 +3926,7 @@ class Facture extends CommonInvoice
                     $totalpaye = $this->getSommePaiement();
                     $totalcreditnotes = $this->getSumCreditNotesUsed();
                     $totaldeposits = $this->getSumDepositsUsed();
-                    //print "totalpaye=".$totalpaye." totalcreditnotes=".$totalcreditnotes." totaldeposts=".$totaldeposits;
 
-                    // We can also use bcadd to avoid pb with floating points
-                    // For example print 239.2 - 229.3 - 9.9; does not return 0.
-                    //$resteapayer=bcadd($this->total_ttc,$totalpaye,$conf->global->MAIN_MAX_DECIMALS_TOT);
-                    //$resteapayer=bcadd($resteapayer,$totalavoir,$conf->global->MAIN_MAX_DECIMALS_TOT);
 					if (empty($amount)) $amount = price2num($this->total_ttc - $totalpaye - $totalcreditnotes - $totaldeposits, 'MT');
 
 					if (is_numeric($amount) && $amount != 0)
@@ -5293,13 +5246,6 @@ class FactureLigne extends CommonInvoiceLine
 			return -2;
 		}
 	}
-
-	/**
-	 * 	Delete line in database
-	 *  TODO Add param User $user and notrigger (see skeleton)
-     *
-	 *	@return	    int		           <0 if KO, >0 if OK
-	 */
     public function delete()
 	{
 		global $user;
