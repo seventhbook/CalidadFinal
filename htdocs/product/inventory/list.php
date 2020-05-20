@@ -70,7 +70,7 @@ if (!$sortorder) $sortorder = "ASC";
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
 if (empty($conf->global->MAIN_USE_ADVANCED_PERMS))
@@ -176,7 +176,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_Inventory|FR:Module_Inventory_FR|ES:Módulo_Inventory";
+
 $help_url = '';
 $title = $langs->trans('ListOfInventories');
 
@@ -212,7 +212,7 @@ foreach ($search as $key => $val)
 	if ($search[$key] != '') $sql .= natural_search($key, $search[$key], (($key == 'status') ? 2 : $mode_search));
 }
 if ($search_all) $sql .= natural_search(array_keys($fieldstosearchall), $search_all);
-//$sql.= dolSqlDateFilter("t.field", $search_xxxday, $search_xxxmonth, $search_xxxyear);
+
 // Add where from extra fields
 include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
 // Add where from hooks
@@ -223,7 +223,7 @@ $sql .= $hookmanager->resPrint;
 /* If a group by is required
 $sql.= " GROUP BY "
 foreach($object->fields as $key => $val)
-{
+
     $sql.='t.'.$key.', ';
 }
 // Add fields from extrafields
@@ -338,7 +338,7 @@ if ($search_all)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
+/*
 $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
 $moreforfilter.= '</div>';*/
 
