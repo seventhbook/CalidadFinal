@@ -442,7 +442,7 @@ if (empty($reshook))
 	            $message .= $langs->transnoentities("HolidaysToValidateBody")."\n";
 
 	            $delayForRequest = $object->getConfCP('delayForRequest');
-	            //$delayForRequest = $delayForRequest * (60*60*24);
+	            
 
 	            $nextMonth = dol_time_plus_duree($now, $delayForRequest, 'd');
 
@@ -869,19 +869,19 @@ if (empty($reshook))
 
 	/*
 	// Actions when printing a doc from card
-	include DOL_DOCUMENT_ROOT.'/core/actions_printing.inc.php';
+	
 
 	// Actions to send emails
-	$triggersendname = 'HOLIDAY_SENTBYMAIL';
-	$autocopy='MAIN_MAIL_AUTOCOPY_HOLIDAY_TO';
-	$trackid='leav'.$object->id;
-	include DOL_DOCUMENT_ROOT.'/core/actions_sendmails.inc.php';
+	
+	
+	
+	i
 
 	// Actions to build doc
-	$upload_dir = $conf->holiday->dir_output;
-	$permissiontoadd = $user->rights->holiday->creer;
-	include DOL_DOCUMENT_ROOT.'/core/actions_builddoc.inc.php';
-	*/
+	
+	
+	
+	
 }
 
 
@@ -943,7 +943,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 
 
         $delayForRequest = $object->getConfCP('delayForRequest');
-        //$delayForRequest = $delayForRequest * (60*60*24);
+        
 
         $nextMonth = dol_time_plus_duree($now, $delayForRequest, 'd');
 
@@ -993,7 +993,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 				$nb_holiday += $nb_type;
 
 				$out .= ' - ' . ($langs->trans($val['code']) != $val['code'] ? $langs->trans($val['code']) : $val['label']) .': <strong>'.($nb_type ?price2num($nb_type) : 0).'</strong><br>';
-				//$out .= ' - '.$val['label'].': <strong>'.($nb_type ?price2num($nb_type) : 0).'</strong><br>';
+				
 			}
 	        print $langs->trans('SoldeCPUser', round($nb_holiday, 5)).'<br>';
 			print $out;
@@ -1007,7 +1007,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
 
         dol_fiche_head();
 
-        //print '<span>'.$langs->trans('DelayToRequestCP',$object->getConfCP('delayForRequest')).'</span><br><br>';
+        
 
         print '<table class="border centpercent">';
         print '<tbody>';
@@ -1020,7 +1020,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
         if (empty($user->rights->holiday->write_all))
         {
         	print $form->select_dolusers(($fuserid ? $fuserid : $user->id), 'fuserid', 0, '', 0, 'hierarchyme', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
-        	//print '<input type="hidden" name="fuserid" value="'.($fuserid?$fuserid:$user->id).'">';
+        	
         }
         else print $form->select_dolusers(GETPOST('fuserid', 'int') ?GETPOST('fuserid', 'int') : $user->id, 'fuserid', 0, '', 0, '', '', '0,'.$conf->entity, 0, 0, $morefilter, 0, '', 'maxwidth300');
         print '</td>';
@@ -1149,7 +1149,7 @@ else
             $userRequest = new User($db);
             $userRequest->fetch($object->fk_user);
 
-            //print load_fiche_titre($langs->trans('TitreRequestCP'));
+            
 
             // Si il y a une erreur
             if (GETPOST('error'))
