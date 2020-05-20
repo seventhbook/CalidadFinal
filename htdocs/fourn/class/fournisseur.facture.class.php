@@ -909,8 +909,8 @@ class FactureFournisseur extends CommonInvoice
         if (isset($this->localtax2)) $this->localtax2=trim($this->localtax2);
         if (empty($this->total_ht)) $this->total_ht=0;
         if (empty($this->total_tva)) $this->total_tva=0;
-        //	if (isset($this->total_localtax1)) $this->total_localtax1=trim($this->total_localtax1);
-        //	if (isset($this->total_localtax2)) $this->total_localtax2=trim($this->total_localtax2);
+        
+      
         if (isset($this->total_ttc)) $this->total_ttc=trim($this->total_ttc);
         if (isset($this->statut)) $this->statut=(int) $this->statut;
         if (isset($this->author)) $this->author=trim($this->author);
@@ -1919,7 +1919,7 @@ class FactureFournisseur extends CommonInvoice
 		$pu_ht_devise = price2num($pu_ht_devise);
 
         // Check parameters
-        //if (! is_numeric($pu) || ! is_numeric($qty)) return -1;
+        
         if ($type < 0) return -1;
 
         if ($date_start && $date_end && $date_start > $date_end) {
@@ -2194,7 +2194,7 @@ class FactureFournisseur extends CommonInvoice
 				    'status' => $obj->fk_statut
                 );
 			}
-			//print_r($return);
+			
 			return $return;
 		}
 		else
@@ -2409,8 +2409,8 @@ class FactureFournisseur extends CommonInvoice
         		$result .= '<a href="'.DOL_URL_ROOT.'/fourn/facture/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow).'">';
         		$result .= img_picto('', 'note');
         		$result .= '</a>';
-        		//$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-        		//$result.='</a>';
+        		
+        		
         		$result .= '</span>';
         	}
         }
@@ -2465,7 +2465,7 @@ class FactureFournisseur extends CommonInvoice
         else
         {
             $this->error=$obj->error;
-            //dol_print_error($db,get_class($this)."::getNextNumRef ".$obj->error);
+            
             return false;
         }
     }
@@ -2678,9 +2678,9 @@ class FactureFournisseur extends CommonInvoice
             $error++;
         }
 
-        if (!$error)
-        {
-        }
+        
+        
+        
 
         unset($object->context['createfromclone']);
 
