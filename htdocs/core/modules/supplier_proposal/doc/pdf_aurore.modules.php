@@ -243,10 +243,10 @@ class pdf_aurore extends ModelePDFSupplierProposal
 				}
 
 				$realpath='';
-				foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
+				foreach ($objphoto->liste_photos($dir, 1) as 
 				{
 					$filename=$obj['photo'];
-					//if ($obj['photo_vignette']) $filename='thumbs/'.$obj['photo_vignette'];
+					
 					$realpath = $dir.$filename;
 					break;
 				}
@@ -260,7 +260,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 		{
 			$object->fetch_thirdparty();
 
-			// $deja_regle = 0;
+			
 
 			// Definition of $dir and $file
 			if ($object->specimen)
@@ -295,7 +295,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters=array('file'=>$file,'object'=>$object,'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
+				 
 
 				// Create pdf instance
                 $pdf=pdf_getInstance($this->format);
@@ -315,7 +315,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
                 // Set path to the background PDF File
                 if (! empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                    
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -398,8 +398,8 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					$tab_top = $nexY+6;
 				}
 
-				$iniY = $tab_top + 7;
-				$curY = $tab_top + 7;
+				
+				
 				$nexY = $tab_top + 7;
 
 				// Loop on each lines
@@ -464,14 +464,14 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					if ($pageposafter > $pageposbefore)	// There is a pagebreak
 					{
 						$pdf->rollbackTransaction(true);
-						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $descWidth, 3, $curX, $curY, $hideref, $hidedesc);
 
 						$pageposafter=$pdf->getPage();
 						$posyafter=$pdf->GetY();
-						//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+						
 						if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot)))	// There is no space left for total+free text
 						{
 							if ($i == ($nblines-1))	// No more lines, and no space left to show total, so we create a new page
@@ -514,20 +514,20 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					$pdf->SetFont('', '', $default_font_size - 1);   // On repositionne la police par defaut
 
 					// VAT Rate
-					/*
-					if (empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT))
-					{
-						$vat_rate = pdf_getlinevatrate($object, $i, $outputlangs, $hidedetails);
-						$pdf->SetXY($this->posxtva, $curY);
-						$pdf->MultiCell($this->posxup-$this->posxtva-3, 3, $vat_rate, 0, 'R');
-					}
+					
+					
+					
+					
+					
+					
+					
 
 					// Unit price before discount
-					$up_excl_tax = pdf_getlineupexcltax($object, $i, $outputlangs, $hidedetails);
-					$pdf->SetXY($this->posxup, $curY);
-					if ($up_excl_tax > 0)
-						$pdf->MultiCell($this->posxqty-$this->posxup-0.8, 3, $up_excl_tax, 0, 'R', 0);
-                    */
+					
+					
+					
+					
+                    
 
 					// Quantity
 					$qty = pdf_getlineqty($object, $i, $outputlangs, $hidedetails);
@@ -543,20 +543,20 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					}
 
 					// Discount on line
-					/*
-					if ($object->lines[$i]->remise_percent)
-					{
-						$pdf->SetXY($this->posxdiscount-2, $curY);
-						$remise_percent = pdf_getlineremisepercent($object, $i, $outputlangs, $hidedetails);
-						$pdf->MultiCell($this->postotalht-$this->posxdiscount+2, 3, $remise_percent, 0, 'R');
-					}
+					
+					
+					
+					
+					
+					
+					
 
 					// Total HT line
-					$total_excl_tax = pdf_getlinetotalexcltax($object, $i, $outputlangs, $hidedetails);
-					$pdf->SetXY($this->postotalht, $curY);
-					if ($total_excl_tax > 0)
-						$pdf->MultiCell($this->page_largeur-$this->marge_droite-$this->postotalht, 3, $total_excl_tax, 0, 'R', 0);
-                    */
+					
+					
+					
+					
+                    
 
 					// Collecte des totaux par valeur de tva dans $this->tva["taux"]=total_tva
 					if ($conf->multicurrency->enabled && $object->multicurrency_tx != 1) $tvaligne=$object->lines[$i]->multicurrency_total_tva;
@@ -601,7 +601,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -658,18 +658,18 @@ class pdf_aurore extends ModelePDFSupplierProposal
 				}
 
 				// Affiche zone infos
-				$posy=$this->_tableau_info($pdf, $object, $bottomlasttab, $outputlangs);
+				
 
 				// Affiche zone totaux
-				//$posy=$this->_tableau_tot($pdf, $object, 0, $bottomlasttab, $outputlangs);
+				
 
 				// Affiche zone versements
-				/*
-				if ($deja_regle || $amount_credit_notes_included || $amount_deposits_included)
-				{
-					$posy=$this->_tableau_versements($pdf, $object, $posy, $outputlangs);
-				}
-				*/
+				
+				
+				
+				
+				
+				
 
 				// Pied de page
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -770,27 +770,27 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			$pdf->MultiCell(80, 4, $titre, 0, 'L');
 			$pdf->SetFont('', '', $default_font_size - 2);
 			$pdf->SetXY($posxval, $posy);
-			//$dlp=dol_print_date($object->date_livraison,"daytext",false,$outputlangs,true);
+			
 			$pdf->MultiCell(80, 4, $dlp, 0, 'L');
 
             $posy=$pdf->GetY()+1;
 		}
-        /* PHFAVRE
-		elseif ($object->availability_code || $object->availability)    // Show availability conditions
-		{
-			$pdf->SetFont('','B', $default_font_size - 2);
-			$pdf->SetXY($this->marge_gauche, $posy);
-			$titre = $outputlangs->transnoentities("AvailabilityPeriod").':';
-			$pdf->MultiCell(80, 4, $titre, 0, 'L');
-			$pdf->SetTextColor(0,0,0);
-			$pdf->SetFont('','', $default_font_size - 2);
-			$pdf->SetXY($posxval, $posy);
-			$lib_availability=$outputlangs->transnoentities("AvailabilityType".$object->availability_code)!=('AvailabilityType'.$object->availability_code)?$outputlangs->transnoentities("AvailabilityType".$object->availability_code):$outputlangs->convToOutputCharset($object->availability);
-			$lib_availability=str_replace('\n',"\n",$lib_availability);
-			$pdf->MultiCell(80, 4, $lib_availability, 0, 'L');
+       
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-			$posy=$pdf->GetY()+1;
-		}*/
+		
+		
 
 		// Show payments conditions
 		if (empty($conf->global->SUPPLIER_PROPOSAL_PDF_HIDE_PAYMENTTERMCOND) && ($object->cond_reglement_code || $object->cond_reglement))
@@ -948,9 +948,9 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			}
 			else
 			{
-				//Local tax 1 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
+				
+				
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -959,7 +959,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -979,10 +979,10 @@ class pdf_aurore extends ModelePDFSupplierProposal
 						}
 					}
 				}
-	      		//}
-				//Local tax 2 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+	      		
+			
+			
+			
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('1','3','5'))) continue;
@@ -991,7 +991,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					{
 						if ($tvakey!=0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 
 
@@ -1013,7 +1013,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 						}
 					}
 				}
-				//}
+				
 				// VAT
 				foreach($this->tva as $tvakey => $tvaval)
 				{
@@ -1040,8 +1040,8 @@ class pdf_aurore extends ModelePDFSupplierProposal
 				}
 
 				//Local tax 1 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-				//{
+				
+				
 				foreach($this->localtax1 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1050,7 +1050,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1070,10 +1070,10 @@ class pdf_aurore extends ModelePDFSupplierProposal
 						}
 					}
 				}
-	      		//}
+	      		
 				//Local tax 2 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-				//{
+			
+			
 				foreach($this->localtax2 as $localtax_type => $localtax_rate)
 				{
 					if (in_array((string) $localtax_type, array('2','4','6'))) continue;
@@ -1083,7 +1083,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 					    // retrieve global local tax
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1104,7 +1104,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 						}
 					}
 				}
-				//}
+				
 
 				// Total TTC
 				$index++;
@@ -1120,10 +1120,10 @@ class pdf_aurore extends ModelePDFSupplierProposal
 
 		$pdf->SetTextColor(0, 0, 0);
 
-		/*
-		$resteapayer = $object->total_ttc - $deja_regle;
-		if (! empty($object->paye)) $resteapayer=0;
-		*/
+		
+
+		
+		
 
 		if ($deja_regle > 0)
 		{
@@ -1135,21 +1135,21 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 			$pdf->MultiCell($largcol2, $tab2_hl, price($deja_regle, 0, $outputlangs), 0, 'R', 0);
 
-			/*
-			if ($object->close_code == 'discount_vat')
-			{
-				$index++;
-				$pdf->SetFillColor(255,255,255);
+			
+			
+			
+			
+			
 
-				$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-				$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("EscompteOfferedShort"), $useborder, 'L', 1);
+			
+			
 
-				$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
-				$pdf->MultiCell($largcol2, $tab2_hl, price($object->total_ttc - $deja_regle, 0, $outputlangs), $useborder, 'R', 1);
+			
+			
 
-				$resteapayer=0;
-			}
-			*/
+			
+			
+		
 
 			$index++;
 			$pdf->SetTextColor(0, 0, 60);
@@ -1203,7 +1203,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top-4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1224,7 +1224,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 		if (empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT))
 		{
 			$pdf->line($this->posxtva, $tab_top, $this->posxtva, $tab_top + $tab_height);
-			//$pdf->line($this->posxtva-2, $tab_top, $this->posxtva-2, $tab_top + $tab_height);
+			
 			if (empty($hidetop))
 			{
 				$pdf->SetXY($this->posxtva-5, $tab_top+1);
@@ -1356,10 +1356,10 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("RefCustomer")." : " . $outputlangs->convToOutputCharset($object->ref_client), '', 'R');
 		}
         /* PHFAVRE
-		$posy+=4;
-		$pdf->SetXY($posx,$posy);
-		$pdf->SetTextColor(0,0,60);
-		$pdf->MultiCell(100, 3, $outputlangs->transnoentities("SupplierProposalDate")." : " . dol_print_date($object->date_livraison, "day", false, $outputlangs, true), '', 'R');
+		
+		
+		
+		
         */
 
 		if ($object->thirdparty->code_fournisseur)
@@ -1445,7 +1445,7 @@ class pdf_aurore extends ModelePDFSupplierProposal
 			if (count($arrayidcontact) > 0)
 			{
 				$usecontact=true;
-				$result=$object->fetch_contact($arrayidcontact[0]);
+				
 			}
 
 			// Recipient name
