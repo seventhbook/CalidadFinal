@@ -156,7 +156,7 @@ if ($ok)
     print '<tr><td>'.$langs->trans("ServerVersion").'</td>';
     print '<td class="right">'.$version.'</td></tr>';
     dolibarr_install_syslog("repair: " . $langs->transnoentities("ServerVersion") . ": " . $version);
-    //print '<td class="right">'.join('.',$versionarray).'</td></tr>';
+    
 }
 
 $conf->setValues($db);
@@ -307,7 +307,7 @@ if ($ok && GETPOST('standard', 'alpha'))
 	                	'extra'=>$extra,
 	                	'null'=>$null
 	                );
-	                //var_dump($field_desc);exit;
+	                
 
 	                $result = 0;
 	                if (GETPOST('standard', 'alpha') == 'confirmed')
@@ -406,7 +406,7 @@ if ($ok && GETPOST('standard', 'alpha'))
 						}
 						else
 						{
-							//print '<tr><td>Constant '.$obj->name.' set in entity '.$obj->entity.' with value '.$obj->value.' -> Module found in entity '.$obj->entity.', we keep record</td></tr>';
+							
 						}
 					}
 				}
@@ -479,7 +479,7 @@ if ($ok && GETPOST('standard', 'alpha'))
 						}
 						else
 						{
-							//print '<tr><td>Constant '.$obj->name.' set in entity '.$obj->entity.' with value '.$obj->value.' -> Module found in entity '.$obj->entity.', we keep record</td></tr>';
+						
 						}
 					}
 				}
@@ -496,7 +496,7 @@ if ($ok && GETPOST('standard', 'alpha'))
 // restore_thirdparties_logos: Move logos to correct new directory.
 if ($ok && GETPOST('restore_thirdparties_logos'))
 {
-	//$exts=array('gif','png','jpg');
+	
 
 	$ext='';
 
@@ -514,7 +514,7 @@ if ($ok && GETPOST('restore_thirdparties_logos'))
 			$obj=$db->fetch_object($resql);
 
 			/*
-			$name=preg_replace('/é/','',$obj->name);
+			
 			$name=preg_replace('/ /','_',$name);
 			$name=preg_replace('/\'/','',$name);
 			*/
@@ -581,7 +581,7 @@ if ($ok && GETPOST('restore_thirdparties_logos'))
 // restore_user_pictures: Move pictures to correct new directory.
 if ($ok && GETPOST('restore_user_pictures', 'alpha'))
 {
-	//$exts=array('gif','png','jpg');
+	
 
 	$ext='';
 
@@ -599,7 +599,7 @@ if ($ok && GETPOST('restore_user_pictures', 'alpha'))
 			$obj=$db->fetch_object($resql);
 
 			/*
-			 $name=preg_replace('/é/','',$obj->name);
+			 
 			 $name=preg_replace('/ /','_',$name);
 			 $name=preg_replace('/\'/','',$name);
 			 */
@@ -927,7 +927,7 @@ if ($ok && GETPOST('clean_orphelin_dir', 'alpha'))
                 // Define relative path used to store the file
                 $relativefile=preg_replace('/'.preg_quote($upload_dir.'/', '/').'/', '', $file['fullname']);
 
-                //var_dump($file);
+                
                 $id=0; $ref=''; $object_instance->id=0; $object_instance->ref=''; $label='';
 
                 // To show ref or specific information according to view to show (defined by $module)
@@ -955,9 +955,9 @@ if ($ok && GETPOST('clean_orphelin_dir', 'alpha'))
 
                 if ($id || $ref)
                 {
-                    //print 'Fetch '.$id.' or '.$ref.'<br>';
+                    
                     $result=$object_instance->fetch($id, $ref);
-                    //print $result.'<br>';
+                    
                     if ($result == 0)    // Not found but no error
                     {
                         // Clean of orphelins directories are done into repair.php
@@ -1018,8 +1018,8 @@ if ($ok && GETPOST('clean_product_stock_batch', 'alpha'))
                             $resql2=$db->query($sql2);
                             if (! $resql2)
                             {
-                                // TODO If it fails, we must make update
-                                //$sql2 ="UPDATE ".MAIN_DB_PREFIX."product_batch";
+                                
+                                
                                 //$sql2.=" SET ".$obj->psrowid.", '000000', ".($obj->reel - $obj->reelbatch).")";
                                 //$sql2.=" WHERE fk_product_stock = ".$obj->psrowid"
                             }
@@ -1102,7 +1102,7 @@ if ($ok && GETPOST('clean_product_stock_negative_if_batch', 'alpha'))
                 $obj=$db->fetch_object($resql);
                 print '<tr><td>'.$obj->rowid.'-'.$obj->ref.'-'.$obj->fk_entrepot.' -> '.$obj->psrowid.': '.$obj->reel.' != '.$obj->reelbatch;
 
-                // TODO
+                
             }
         }
     }
@@ -1227,7 +1227,7 @@ if ($ok && GETPOST('force_disable_of_modules_not_found', 'alpha'))
 
 	                    	if ($reloffile)
 	                    	{
-		                    	//var_dump($key.' - '.$value.' - '.$reloffile);
+		                    	
 		                    	try {
 		                        	$result = dol_buildpath($reloffile, 0, 2);
 		                    	}
