@@ -324,9 +324,9 @@ class Expedition extends CommonObject
 		$sql.= ", ".($this->shipping_method_id>0?$this->shipping_method_id:"null");
 		$sql.= ", '".$this->db->escape($this->tracking_number)."'";
 		$sql.= ", ".$this->weight;
-		$sql.= ", ".$this->sizeS;	// TODO Should use this->trueDepth
-		$sql.= ", ".$this->sizeW;	// TODO Should use this->trueWidth
-		$sql.= ", ".$this->sizeH;	// TODO Should use this->trueHeight
+		$sql.= ", ".$this->sizeS;	
+		$sql.= ", ".$this->sizeW;	
+		$sql.= ", ".$this->sizeH;	
 		$sql.= ", ".($this->weight_units != '' ? (int) $this->weight_units : 'NULL');
 		$sql.= ", ".($this->size_units != '' ? (int) $this->size_units : 'NULL');
 		$sql.= ", ".(!empty($this->note_private)?"'".$this->db->escape($this->note_private)."'":"null");
@@ -571,8 +571,8 @@ class Expedition extends CommonObject
 				$this->user_author_id       = $obj->fk_user_author;
 				$this->date_creation        = $this->db->jdate($obj->date_creation);
                 $this->date_valid           = $this->db->jdate($obj->date_valid);
-				$this->date                 = $this->db->jdate($obj->date_expedition);	// TODO deprecated
-				$this->date_expedition      = $this->db->jdate($obj->date_expedition);	// TODO deprecated
+				$this->date                 = $this->db->jdate($obj->date_expedition);	
+				$this->date_expedition      = $this->db->jdate($obj->date_expedition);	
 				$this->date_shipping        = $this->db->jdate($obj->date_expedition);	// Date real
 				$this->date_delivery        = $this->db->jdate($obj->date_delivery);	// Date planed
 				$this->fk_delivery_address  = $obj->fk_address;
@@ -617,8 +617,7 @@ class Expedition extends CommonObject
 				/*
 				 * Thirdparty
 				 */
-				$result = $this->fetch_thirdparty();
-
+				
 				// Retreive extrafields
 				$this->fetch_optionals();
 
@@ -686,7 +685,7 @@ class Expedition extends CommonObject
 		$soc->fetch($this->socid);
 
 		// Class of company linked to order
-		$result = $soc->set_as_client();
+		
 
 		// Define new ref
 		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
@@ -753,7 +752,7 @@ class Expedition extends CommonObject
 					if ($qty <= 0) continue;
 					dol_syslog(get_class($this)."::valid movement index ".$i." ed.rowid=".$obj->rowid." edb.rowid=".$obj->edbrowid);
 
-					//var_dump($this->lines[$i]);
+					
 					$mouvS = new MouvementStock($this->db);
 					$mouvS->origin = &$this;
 
@@ -948,7 +947,7 @@ class Expedition extends CommonObject
 			{
 				// Check must be done for stock of product into warehouse if $entrepot_id defined
 				$product = new Product($this->db);
-				$result = $product->fetch($fk_product);
+				
 
 				if ($entrepot_id > 0) {
 					$product->load_stock('warehouseopen');
@@ -1000,13 +999,13 @@ class Expedition extends CommonObject
 		{
 			$line = new ExpeditionLigne($this->db);
 			$tab = array();
-			foreach ($dbatch['detail'] as $key=>$value)
+			foreach ($dbatch['detail'] )
 			{
 				if ($value['q'] > 0)
 				{
-					// $value['q']=qty to move
-					// $value['id_batch']=id into llx_product_batch of record to move
-					//var_dump($value);
+					
+					
+					
 
 					$linebatch = new ExpeditionLineBatch($this->db);
 					$ret = $linebatch->fetchFromStock($value['id_batch']); // load serial, sellby, eatby
@@ -1034,7 +1033,7 @@ class Expedition extends CommonObject
 						}
 					}
 
-					//var_dump($linebatch);
+					
 				}
 			}
 			$line->entrepot_id = $linebatch->entrepot_id;
@@ -1046,7 +1045,7 @@ class Expedition extends CommonObject
 			if (empty($conf->global->MAIN_EXTRAFIELDS_DISABLED) && is_array($array_options) && count($array_options) > 0) // For avoid conflicts if trigger used
 				$line->array_options = $array_options;
 
-			//var_dump($line);
+			
 			$this->lines[$num] = $line;
 			return 1;
 		}
@@ -1312,7 +1311,7 @@ class Expedition extends CommonObject
 							{
 								// Check if there is no more shipment. If not, we can move back status of order to "validated" instead of "shipment in progress"
 								$this->$origin->loadExpeditions();
-								//var_dump($this->$origin->expeditions);exit;
+								
 								if (count($this->$origin->expeditions) <= 0)
 								{
 									$this->$origin->setStatut(Commande::STATUS_VALIDATED);
@@ -1393,7 +1392,7 @@ class Expedition extends CommonObject
 	{
         // phpcs:enable
 		global $conf, $mysoc;
-		// TODO: recuperer les champs du document associe a part
+
 		$this->lines=array();
 
 		$sql = "SELECT cd.rowid, cd.fk_product, cd.label as custom_label, cd.description, cd.qty as qty_asked, cd.product_type";
@@ -1448,22 +1447,22 @@ class Expedition extends CommonObject
 				$line->details_entrepot[]     = $detail_entrepot;
 
 				$line->line_id          = $obj->line_id;
-				$line->rowid            = $obj->line_id; // TODO deprecated
+				$line->rowid            = $obj->line_id; 
 				$line->id               = $obj->line_id;
 
 				$line->fk_origin = 'orderline';
 				$line->fk_origin_line 	= $obj->fk_origin_line;
-				$line->origin_line_id 	= $obj->fk_origin_line; // TODO deprecated
+				$line->origin_line_id 	= $obj->fk_origin_line; 
 
 				$line->fk_expedition    = $this->id; // id of parent
 
 				$line->product_type     = $obj->product_type;
 				$line->fk_product     	= $obj->fk_product;
 				$line->fk_product_type	= $obj->fk_product_type;
-				$line->ref = $obj->product_ref; // TODO deprecated
+				$line->ref = $obj->product_ref; 
 				$line->product_ref = $obj->product_ref;
 				$line->product_label = $obj->product_label;
-				$line->libelle        	= $obj->product_label; // TODO deprecated
+				$line->libelle        	= $obj->product_label; 
 				$line->product_tobatch = $obj->product_tobatch;
 				$line->label = $obj->custom_label;
 				$line->description    	= $obj->description;
@@ -1590,7 +1589,7 @@ class Expedition extends CommonObject
 
 			if ($line->delete($user) > 0)
 			{
-				//$this->update_price(1);
+				
 
 				$this->db->commit();
 				return 1;
@@ -1641,7 +1640,7 @@ class Expedition extends CommonObject
 			if ($add_save_lastsearch_values) $url .= '&save_lastsearch_values=1';
 		}
 
-		$linkclose = '';
+		
 		if (empty($notooltip))
 		{
 			if (!empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER))
@@ -1921,7 +1920,7 @@ class Expedition extends CommonObject
 		$sql = 'UPDATE '.MAIN_DB_PREFIX.'c_shipment_mode SET active=1';
 		$sql .= ' WHERE rowid='.$id;
 
-		$resql = $this->db->query($sql);
+		
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -1938,7 +1937,7 @@ class Expedition extends CommonObject
 		$sql = 'UPDATE '.MAIN_DB_PREFIX.'c_shipment_mode SET active=0';
 		$sql .= ' WHERE rowid='.$id;
 
-		$resql = $this->db->query($sql);
+		
 	}
 
 
@@ -2041,7 +2040,7 @@ class Expedition extends CommonObject
 				$langs->load("agenda");
 
 				// Loop on each product line to add a stock movement
-				// TODO possibilite d'expedier a partir d'une propale ou autre origine ?
+				
 				$sql = "SELECT cd.fk_product, cd.subprice,";
 				$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 				$sql .= " edb.rowid as edbrowid, edb.eatby, edb.sellby, edb.batch, edb.qty as edbqty, edb.fk_origin_stock";
@@ -2218,7 +2217,7 @@ class Expedition extends CommonObject
 				$langs->load("agenda");
 
 				// Loop on each product line to add a stock movement
-				// TODO possibilite d'expedier a partir d'une propale ou autre origine
+				
 				$sql = "SELECT cd.fk_product, cd.subprice,";
 				$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 				$sql .= " edb.rowid as edbrowid, edb.eatby, edb.sellby, edb.batch, edb.qty as edbqty, edb.fk_origin_stock";
@@ -2247,7 +2246,7 @@ class Expedition extends CommonObject
 						if ($qty <= 0) continue;
 						dol_syslog(get_class($this)."::reopen expedition movement index ".$i." ed.rowid=".$obj->rowid." edb.rowid=".$obj->edbrowid);
 
-						//var_dump($this->lines[$i]);
+						
 						$mouvS = new MouvementStock($this->db);
 						$mouvS->origin = &$this;
 
