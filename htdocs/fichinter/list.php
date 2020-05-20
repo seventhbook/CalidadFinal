@@ -75,7 +75,7 @@ $pagenext = $page + 1;
 if (!$sortorder) $sortorder = "DESC";
 if (!$sortfield)
 {
- 	//if (empty($conf->global->FICHINTER_DISABLE_DETAILS)) $sortfield="fd.date";
+ 	
  	//else
  	$sortfield = "f.ref";
 }
@@ -280,7 +280,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 }
 
 $sql .= $db->plimit($limit + 1, $offset);
-//print $sql;
+
 
 $resql = $db->query($sql);
 if ($resql)
@@ -492,7 +492,7 @@ if ($resql)
 			print '</td>';
 			// Warning
 			$warnornote = '';
-			//if ($obj->fk_statut == 1 && $db->jdate($obj->dfv) < ($now - $conf->fichinter->warning_delay)) $warnornote.=img_warning($langs->trans("Late"));
+			
 			if (!empty($obj->note_private))
 			{
 				$warnornote .= ($warnornote ? ' ' : '');
