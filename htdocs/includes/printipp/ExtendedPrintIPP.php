@@ -79,7 +79,7 @@ class ExtendedPrintIPP extends PrintIPP
             {
                 $this->_parseJobAttributes();
                 $this->_getJobId();
-                //$this->_getPrinterUri();
+                
                 $this->_getJobUri();
                 }
             }
@@ -427,7 +427,7 @@ class ExtendedPrintIPP extends PrintIPP
             if(self::_parseServerOutput())
             {
                 $this->_getJobId();
-                //$this->_getPrinterUri();
+                
                 $this->_getJobUri();
                 $this->_parseJobAttributes();
             }
@@ -485,7 +485,7 @@ class ExtendedPrintIPP extends PrintIPP
             if(self::_parseServerOutput())
             {
                 $this->_getJobId();
-                //$this->_getPrinterUri();
+                
                 $this->_getJobUri();
                 $this->_parseJobAttributes();
             }
@@ -1058,7 +1058,7 @@ class ExtendedPrintIPP extends PrintIPP
                 . self::_giveMeStringLength($deleted_attributes[$i])
                 . $deleted_attributes[$i]
                 . chr(0x0).chr(0x0);
-        } // value-length = 0;
+        } 
 
         $this->stringjob = chr(0x01) . chr(0x01) // 1.1  | version-number
                          . chr(0x00) . chr (0x14) // Set-Job-Attributes | operation-id
@@ -1203,7 +1203,7 @@ class ExtendedPrintIPP extends PrintIPP
                                                 . self::_giveMeStringLength($deleted_attributes[$i])
                                                 . $deleted_attributes[$i]
                                                 . chr(0x0).chr(0x0);
-        } // value-length = 0;
+        } 
 
         $this->stringjob = chr(0x01) . chr(0x01) // 1.1  | version-number
                          . chr(0x00) . chr (0x13) // Set-Printer-Attributes | operation-id
