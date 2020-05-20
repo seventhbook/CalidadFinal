@@ -24,7 +24,7 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
+
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
@@ -176,32 +176,32 @@ class MyObject extends CommonObject
 	/**
 	 * @var int    Name of subtable line
 	 */
-	//public $table_element_line = 'mymodule_myobjectline';
+	
 
 	/**
 	 * @var int    Field with ID of parent key if this field has a parent
 	 */
-	//public $fk_element = 'fk_myobject';
+	
 
 	/**
 	 * @var int    Name of subtable class that manage subtable lines
 	 */
-	//public $class_element_line = 'MyObjectline';
+	
 
 	/**
 	 * @var array	List of child tables. To test if we can delete object.
 	 */
-	//protected $childtables=array();
+	
 
 	/**
 	 * @var array	List of child tables. To know object to delete on cascade.
 	 */
-	//protected $childtablesoncascade=array('mymodule_myobjectdet');
+	
 
 	/**
 	 * @var MyObjectLine[]     Array of subtable lines
 	 */
-	//public $lines = array();
+	
 
 
 
@@ -220,7 +220,7 @@ class MyObject extends CommonObject
 		if (empty($conf->multicompany->enabled) && isset($this->fields['entity'])) $this->fields['entity']['enabled'] = 0;
 
 		// Example to show how to set values of fields definition dynamically
-		/*if ($user->rights->mymodule->myobject->read) {
+		/*
 			$this->fields['myfield']['visible'] = 1;
 			$this->fields['myfield']['noteditable'] = 0;
 		}*/
@@ -286,7 +286,7 @@ class MyObject extends CommonObject
 
 	    // get lines so they will be clone
 	    //foreach($this->lines as $line)
-	    //	$line->fetch_optionals();
+	    
 
 	    // Reset some properties
 	    unset($object->id);
@@ -308,7 +308,7 @@ class MyObject extends CommonObject
 	    		$shortkey = preg_replace('/options_/', '', $key);
 	    		if (!empty($extrafields->attributes[$this->element]['unique'][$shortkey]))
 	    		{
-	    			//var_dump($key); var_dump($clonedObj->array_options[$key]); exit;
+	    			
 	    			unset($object->array_options[$key]);
 	    		}
 	    	}
@@ -483,7 +483,7 @@ class MyObject extends CommonObject
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 
 	/**
@@ -530,7 +530,7 @@ class MyObject extends CommonObject
 
 		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->myobject->create))
 		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->myobject->myobject_advance->validate))))
-		 {
+		 
 		 $this->error='NotEnoughPermissions';
 		 dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
 		 return -1;
@@ -655,7 +655,7 @@ class MyObject extends CommonObject
 
 		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
 		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
+		 
 		 $this->error='Permission denied';
 		 return -1;
 		 }*/
@@ -680,7 +680,7 @@ class MyObject extends CommonObject
 
 		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
 		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
+		 
 		 $this->error='Permission denied';
 		 return -1;
 		 }*/
@@ -705,7 +705,7 @@ class MyObject extends CommonObject
 
 		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
 		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
+		 
 		 $this->error='Permission denied';
 		 return -1;
 		 }*/
@@ -769,7 +769,7 @@ class MyObject extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('myobjectdao'));
@@ -806,7 +806,7 @@ class MyObject extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Draft');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Enabled');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->trans('Disabled');
@@ -816,7 +816,7 @@ class MyObject extends CommonObject
 		}
 
 		$statusType = 'status'.$status;
-		//if ($status == self::STATUS_VALIDATED) $statusType = 'status1';
+		
 		if ($status == self::STATUS_CANCELED) $statusType = 'status6';
 
 		return dolGetStatus($this->labelStatus[$status], $this->labelStatusShort[$status], '', $statusType, $mode);
@@ -959,7 +959,7 @@ class MyObject extends CommonObject
 				else
 				{
 					$this->error = $obj->error;
-					//dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
+					
 					return "";
 				}
 			} else {
@@ -1024,7 +1024,7 @@ class MyObject extends CommonObject
 	{
 		global $conf, $langs;
 
-		//$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlofile.log';
+		
 
 		$error = 0;
 		$this->output = '';
