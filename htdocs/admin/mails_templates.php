@@ -271,7 +271,7 @@ if (empty($reshook))
                 if ($value == 'fk_user' && !($_POST[$keycode] > 0)) $_POST[$keycode] = '';
                 if ($value == 'private' && !is_numeric($_POST[$keycode])) $_POST[$keycode] = '0';
                 if ($value == 'position' && !is_numeric($_POST[$keycode])) $_POST[$keycode] = '1';
-                //var_dump($keycode.' '.$value);
+                
 
                 if ($i) $sql .= ", ";
                 if (GETPOST($keycode) == '' && $keycode != 'langcode')      $sql .= "null"; // langcode must be '' if not defined so the unique key that include lang will work
@@ -348,9 +348,9 @@ if (empty($reshook))
                 $i++;
             }
             $sql .= " WHERE ".$rowidcol." = '".$rowid."'";
-            //print $sql;exit;
+            
             dol_syslog("actionmodify", LOG_DEBUG);
-            //print $sql;
+            
             $resql = $db->query($sql);
             if ($resql)
             {
@@ -438,7 +438,7 @@ if ($action == 'delete')
 {
     print $form->formconfirm($_SERVER["PHP_SELF"].'?'.($page ? 'page='.$page.'&' : '').'sortfield='.$sortfield.'&sortorder='.$sortorder.'&rowid='.$rowid.'&code='.$code.'&id='.$id, $langs->trans('DeleteLine'), $langs->trans('ConfirmDeleteLine'), 'confirm_delete', '', 0, 1);
 }
-//var_dump($elementList);
+
 
 
 $sql = "SELECT rowid as rowid, label, type_template, lang, fk_user, private, position, topic, joinfiles, content_lines, content, enabled, active";
@@ -462,7 +462,7 @@ if ($search_topic) $sql .= natural_search('topic', $search_topic);
 if ($sortfield == 'country') $sortfield = 'country_code';
 $sql .= $db->order($sortfield, $sortorder);
 $sql .= $db->plimit($listlimit + 1, $offset);
-//print $sql;
+
 
 $fieldlist = explode(',', $tabfield[$id]);
 
@@ -580,7 +580,7 @@ foreach ($fieldsforcontent as $tmpfieldlist)
 	else
 	{
 		if ($context != 'hide') {
-			// print '<textarea cols="3" rows="'.ROWS_2.'" class="flat" name="'.$fieldlist[$field].'">'.(! empty($obj->{$fieldlist[$field]})?$obj->{$fieldlist[$field]}:'').'</textarea>';
+			
 			$okforextended = true;
 			if (empty($conf->global->FCKEDITOR_ENABLE_MAIL))
 				$okforextended = false;
@@ -598,7 +598,7 @@ foreach ($fieldsforcontent as $tmpfieldlist)
 		}
 		print '</td>';
 	}
-	// else print '<td></td>';
+	
 	print '</tr>';
 }
 
@@ -666,7 +666,7 @@ if ($resql)
         	print '<td class="liste_titre">';
         	$restrictid = array();
         	if (!$user->admin) $restrictid = array($user->id);
-        	//var_dump($restrictid);
+        	
         	print $form->select_dolusers($search_fk_user, 'search_fk_user', 1, null, 0, 'hierarchyme', null, 0, 0, 1, '', 0, '', 'maxwidth100');
         	print '</td>';
         }
@@ -695,7 +695,7 @@ if ($resql)
         $valuetoshow = '';
         $forcenowrap = 1;
         /*
-        $tmparray=getLabelOfField($fieldlist[$field]);
+        
         $showfield=$tmp['showfield'];
         $valuetoshow=$tmp['valuetoshow'];
         $align=$tmp['align'];
@@ -911,7 +911,7 @@ if ($resql)
                 print '</td>';
 
                 /*
-                $fieldsforcontent = array('content');
+                
                 if (! empty($conf->global->MAIN_EMAIL_TEMPLATES_FOR_OBJECT_LINES))
                 {
                     $fieldsforcontent = array('content', 'content_lines');
@@ -1078,7 +1078,7 @@ function fieldList($fieldlist, $obj = '', $tabname = '', $context = '')
 				}
 				else
 				{
-					//print '<input type="text" '.$size.'class="flat'.($class?' '.$class:'').'" value="1" name="'.$fieldlist[$field].'">';
+					
 					print $form->selectyesno($fieldlist[$field], (isset($obj->{$fieldlist[$field]}) ? $obj->{$fieldlist[$field]}:''), 1);
 				}
 			}
