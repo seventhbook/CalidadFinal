@@ -30,12 +30,6 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-/**
- * \file 	htdocs/compta/facture/card.php
- * \ingroup facture
- * \brief 	Page to create/see an invoice
- */
-
 require '../../main.inc.php';
 require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
 require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture-rec.class.php';
@@ -138,9 +132,6 @@ $fieldid = (!empty($ref) ? 'ref' : 'rowid');
 if ($user->socid) $socid = $user->socid;
 $isdraft = (($object->statut == Facture::STATUS_DRAFT) ? 1 : 0);
 $result = restrictedArea($user, 'facture', $id, '', '', 'fk_soc', $fieldid, $isdraft);
-
-
-
 
 /*
  * Actions
@@ -303,7 +294,6 @@ if (empty($reshook))
 			$array_of_total_ht_per_vat_rate = array();
 			$array_of_total_ht_devise_per_vat_rate = array();
 			foreach ($object->lines as $line) {
-				//$vat_src_code_for_line = $line->vat_src_code;		// TODO We chek sign of total per vat without taking into account the vat code because for the moment the vat code is lost/unknown when we add a down payment.
 				$vat_src_code_for_line = '';
 				if (empty($array_of_total_ht_per_vat_rate[$line->tva_tx.'_'.$vat_src_code_for_line])) $array_of_total_ht_per_vat_rate[$line->tva_tx.'_'.$vat_src_code_for_line] = 0;
 				if (empty($array_of_total_ht_devise_per_vat_rate[$line->tva_tx.'_'.$vat_src_code_for_line])) $array_of_total_ht_devise_per_vat_rate[$line->tva_tx.'_'.$vat_src_code_for_line] = 0;
@@ -311,7 +301,6 @@ if (empty($reshook))
 				$array_of_total_ht_devise_per_vat_rate[$line->tva_tx.'_'.$vat_src_code_for_line] += $line->multicurrency_total_ht;
 			}
 
-			//var_dump($array_of_total_ht_per_vat_rate);exit;
 			foreach($array_of_total_ht_per_vat_rate as $vatrate => $tmpvalue)
 			{
 				$tmp_total_ht = $array_of_total_ht_per_vat_rate[$vatrate];
@@ -506,11 +495,8 @@ if (empty($reshook))
 			$discount = new DiscountAbsolute($db);
 			$discount->fetch($_POST["remise_id_for_payment"]);
 
-			//var_dump($object->getRemainToPay(0));
-			//var_dump($discount->amount_ttc);exit;
 			if (price2num($discount->amount_ttc) > price2num($object->getRemainToPay(0)))
 			{
-				// TODO Split the discount in 2 automatically
 				$error++;
 				setEventMessages($langs->trans("ErrorDiscountLargerThanRemainToPaySplitItBefore"), null, 'errors');
 			}
@@ -590,7 +576,6 @@ if (empty($reshook))
 			}
 			else
 			{
-				//var_dump($conf->global->SOCIETE_EMAIL_MANDATORY);
 				if ($key == 'EMAIL')
 				{
 					// Check for mandatory
@@ -792,7 +777,6 @@ if (empty($reshook))
 	{
 		$object->fetch($id);
 		$object->fetch_thirdparty();
-		//$object->fetch_lines();	// Already done into fetch
 
 		// Check if there is already a discount (protection to avoid duplicate creation when resubmit post)
 		$discountcheck = new DiscountAbsolute($db);
@@ -839,7 +823,6 @@ if (empty($reshook))
 					}
 				}
 			}
-			//var_dump($amount_ht);var_dump($amount_tva);var_dump($amount_ttc);exit;
 
 			// Insert one discount by VAT rate category
 			$discount = new DiscountAbsolute($db);
@@ -1128,7 +1111,7 @@ if (empty($reshook))
 							        {
 							            if ($facture_source->tab_previous_situation_invoice[$lineIndex]->type == Facture::TYPE_SITUATION || $lineIndex < 1)
 							            {
-							                $searchPreviousInvoice = false; // find, exit;
+							                $searchPreviousInvoice = false;
 							                break;
 							            }
 							            else
@@ -1145,7 +1128,6 @@ if (empty($reshook))
 							            {
 							                $maxPrevSituationPercent = max($maxPrevSituationPercent, $prevLine->situation_percent);
 
-							                //$line->subprice  = $line->subprice - $prevLine->subprice;
 							                $line->total_ht  = $line->total_ht - $prevLine->total_ht;
 							                $line->total_tva = $line->total_tva - $prevLine->total_tva;
 							                $line->total_ttc = $line->total_ttc - $prevLine->total_ttc;
@@ -1168,7 +1150,6 @@ if (empty($reshook))
 							$line->fk_parent_line = $fk_parent_line;
 
 							$line->subprice = -$line->subprice; // invert price for object
-							$line->pa_ht = $line->pa_ht; // we choosed to have buy/cost price always positive, so no revert of sign here
 							$line->total_ht = -$line->total_ht;
 							$line->total_tva = -$line->total_tva;
 							$line->total_ttc = -$line->total_ttc;
@@ -1439,7 +1420,7 @@ if (empty($reshook))
 											if (empty($lines[$i]->qty)) $qualified = 0; // We discard qty=0, it is an option
 											if (!empty($lines[$i]->special_code)) $qualified = 0; // We discard special_code (frais port, ecotaxe, option, ...)
 											if ($qualified) {
-												$totalamount += $lines[$i]->total_ht; // Fixme : is it not for the customer ? Shouldn't we take total_ttc ?
+												$totalamount += $lines[$i]->total_ht;
 												$tva_tx = $lines[$i]->tva_tx;
 												$amountdeposit[$tva_tx] += ($lines[$i]->total_ht * $valuedeposit) / 100;
 											}
@@ -1462,7 +1443,6 @@ if (empty($reshook))
 
 								$arraylist = array('amount' => 'FixAmount', 'variable' => 'VarAmount');
 								$descline = '(DEPOSIT)';
-								//$descline.= ' - '.$langs->trans($arraylist[$typeamount]);
 								if ($typeamount == 'amount') {
 									$descline .= ' ('.price($valuedeposit, '', $langs, 0, - 1, - 1, (!empty($object->multicurrency_code) ? $object->multicurrency_code : $conf->currency)).')';
 								} elseif ($typeamount == 'variable') {
@@ -1588,7 +1568,6 @@ if (empty($reshook))
 										if (!empty($lines[$i]->vat_src_code) && !preg_match('/\(/', $tva_tx)) $tva_tx .= ' ('.$lines[$i]->vat_src_code.')';
 
 										// View third's localtaxes for NOW and do not use value from origin.
-										// TODO Is this really what we want ? Yes if source is template invoice but what if proposal or order ?
 										$localtax1_tx = get_localtax($tva_tx, 1, $object->thirdparty);
 										$localtax2_tx = get_localtax($tva_tx, 2, $object->thirdparty);
 
@@ -1621,31 +1600,6 @@ if (empty($reshook))
 						}
 
 						// Now we create same links to contact than the ones found on origin object
-						/* Useless, already into the create
-						if (! empty($conf->global->MAIN_PROPAGATE_CONTACTS_FROM_ORIGIN))
-						{
-    						$originforcontact = $object->origin;
-    						$originidforcontact = $object->origin_id;
-    						if ($originforcontact == 'shipping')     // shipment and order share the same contacts. If creating from shipment we take data of order
-    						{
-    						    $originforcontact=$srcobject->origin;
-    						    $originidforcontact=$srcobject->origin_id;
-    						}
-    						$sqlcontact = "SELECT code, fk_socpeople FROM ".MAIN_DB_PREFIX."element_contact as ec, ".MAIN_DB_PREFIX."c_type_contact as ctc";
-    						$sqlcontact.= " WHERE element_id = ".$originidforcontact." AND ec.fk_c_type_contact = ctc.rowid AND ctc.element = '".$originforcontact."'";
-
-    						$resqlcontact = $db->query($sqlcontact);
-    						if ($resqlcontact)
-    						{
-                                while($objcontact = $db->fetch_object($resqlcontact))
-                                {
-                                    //print $objcontact->code.'-'.$objcontact->fk_socpeople."\n";
-                                    $object->add_contact($objcontact->fk_socpeople, $objcontact->code);
-                                }
-    						}
-    						else dol_print_error($resqlcontact);
-						}*/
-
 						// Hooks
 						$parameters = array('objFrom' => $srcobject);
 						$reshook = $hookmanager->executeHooks('createFrom', $parameters, $object, $action); // Note that $action and $object may have been
@@ -1975,7 +1929,6 @@ if (empty($reshook))
 				$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $tva_tx));
 				$tmpprodvat = price2num(preg_replace('/\s*\(.*\)/', '', $prod->tva_tx));
 
-				// if price ht was forced (ie: from gui when calculated by margin rate and cost price). TODO Why this ?
 				if (!empty($price_ht))
 				{
 					$pu_ht = price2num($price_ht, 'MU');
@@ -2461,7 +2414,7 @@ if (empty($reshook))
                                 {
                                     if ($object->tab_previous_situation_invoice[$lineIndex]->type == Facture::TYPE_SITUATION || $lineIndex < 1)
                                     {
-                                        $searchPreviousInvoice = false; // find, exit;
+                                        $searchPreviousInvoice = false; 
                                         break;
                                     }
                                     else
@@ -2956,7 +2909,6 @@ if ($action == 'create')
 			if ($num > 0)
 			{
 				print '<tr><td>'.$langs->trans('CreateFromRepeatableInvoice').'</td><td>';
-				//print '<input type="hidden" name="fac_rec" id="fac_rec" value="'.GETPOST('fac_rec', 'int').'">';
 				print '<select class="flat" id="fac_rec" name="fac_rec">'; // We may want to change the template to use
 				print '<option value="0" selected></option>';
 				while ($i < $num)
@@ -3208,7 +3160,6 @@ if ($action == 'create')
     			});
     			</script>';
 				$text = '<label>'.$tmp.$langs->transnoentities("InvoiceAvoirAsk").'</label> ';
-				// $text.='<input type="text" value="">';
 				$text .= '<select class="flat valignmiddle" name="fac_avoir" id="fac_avoir"';
 				if (!$optionsav || $invoice_predefined->id > 0)
 					$text .= ' disabled';
@@ -3248,7 +3199,6 @@ if ($action == 'create')
 	print '<div class="tagtr listofinvoicetype"><div class="tagtd listofinvoicetype">';
 	$tmp = '<input type="radio" name="type" id="radio_template" value="0" disabled> ';
 	$text = '<label>'.$tmp.$langs->trans("RepeatableInvoice").'</label> ';
-	//$text.= '('.$langs->trans("YouMustCreateStandardInvoiceFirst").') ';
 	$desc = $form->textwithpicto($text, $langs->transnoentities("YouMustCreateStandardInvoiceFirstDesc"), 1, 'help', '', 0, 3);
 	print $desc;
 	print '</div></div>';
@@ -3501,10 +3451,8 @@ if ($action == 'create')
 		print '</td></tr>';
 	}
 
-	// Lines from source (TODO Show them also when creating invoice from tempalte invoice)
 	if (!empty($origin) && !empty($originid) && is_object($objectsrc))
 	{
-		// TODO for compatibility
 		if ($origin == 'contrat') {
 			// Calcul contrat->price (HT), contrat->total (TTC), contrat->tva
 			$objectsrc->remise_absolue = $remise_absolue;
@@ -3628,13 +3576,7 @@ elseif ($id > 0 || !empty($ref))
 	$totalpaye = $object->getSommePaiement();
 	$totalcreditnotes = $object->getSumCreditNotesUsed();
 	$totaldeposits = $object->getSumDepositsUsed();
-	// print "totalpaye=".$totalpaye." totalcreditnotes=".$totalcreditnotes." totaldeposts=".$totaldeposits."
-	// selleruserrevenuestamp=".$selleruserevenustamp;
 
-	// We can also use bcadd to avoid pb with floating points
-	// For example print 239.2 - 229.3 - 9.9; does not return 0.
-	// $resteapayer=bcadd($object->total_ttc,$totalpaye,$conf->global->MAIN_MAX_DECIMALS_TOT);
-	// $resteapayer=bcadd($resteapayer,$totalavoir,$conf->global->MAIN_MAX_DECIMALS_TOT);
 	$resteapayer = price2num($object->total_ttc - $totalpaye - $totalcreditnotes - $totaldeposits, 'MT');
 
 	if ($object->paye)
@@ -3747,7 +3689,6 @@ elseif ($id > 0 || !empty($ref))
 				$object->date_lim_reglement = $object->calculate_date_lim_reglement();
 			}
 			$numref = $object->getNextNumRef($soc);
-			// $object->date=$savdate;
 		} else {
 			$numref = $object->ref;
 		}
@@ -3975,7 +3916,6 @@ elseif ($id > 0 || !empty($ref))
 				$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 			}
 			if ($action == 'classify') {
-				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
 				$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 				$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 				$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -4602,16 +4542,6 @@ elseif ($id > 0 || !empty($ref))
 
 
 	    if (count($object->tab_next_situation_invoice) > 0) {
-	        // List of next invoices
-	        /*print '<tr class="liste_titre">';
-	         print '<td>' . $langs->trans('ListOfNextSituationInvoices') . '</td>';
-	         print '<td></td>';
-	         print '<td></td>';
-	         if (! empty($conf->banque->enabled)) print '<td class="right"></td>';
-	         print '<td class="right">' . $langs->trans('AmountHT') . '</td>';
-	         print '<td class="right">' . $langs->trans('AmountTTC') . '</td>';
-	         print '<td width="18">&nbsp;</td>';
-	         print '</tr>';*/
 
 	        $total_next_ht = $total_next_ttc = 0;
 
@@ -4680,9 +4610,7 @@ elseif ($id > 0 || !empty($ref))
 	if ($result) {
 		$num = $db->num_rows($result);
 		$i = 0;
-
-		// if ($object->type != 2)
-		// {
+		
 		if ($num > 0) {
 			while ($i < $num) {
 				$objp = $db->fetch_object($result);
@@ -4732,10 +4660,7 @@ elseif ($id > 0 || !empty($ref))
 				$i++;
 			}
 		}
-		/*else {
-            print '<tr class="oddeven"><td colspan="' . $nbcols . '" class="opacitymedium">' . $langs->trans("None") . '</td><td></td><td></td></tr>';
-        }*/
-		// }
+
 		$db->free($result);
 	} else {
 		dol_print_error($db);
@@ -4802,7 +4727,6 @@ elseif ($id > 0 || !empty($ref))
 			print '<tr><td colspan="'.$nbcols.'" class="nowrap right">';
 			print $form->textwithpicto($langs->trans("Abandoned").':', $langs->trans("HelpAbandonBadCustomer"), - 1);
 			print '</td><td class="right">'.price(price2num($object->total_ttc - $creditnoteamount - $depositamount - $totalpaye, 'MT')).'</td><td>&nbsp;</td></tr>';
-			// $resteapayeraffiche=0;
 			$cssforamountpaymentcomplete = 'amountpaymentneutral';
 		}
 		// Paye partiellement ou Abandon 'product_returned'
@@ -4880,11 +4804,6 @@ elseif ($id > 0 || !empty($ref))
 		print ' :</td>';
 		print '<td class="right'.($resteapayeraffiche ? ' amountremaintopayback' : (' '.$cssforamountpaymentcomplete)).'">'.price($sign * $resteapayeraffiche).'</td>';
 		print '<td class="nowrap">&nbsp;</td></tr>';
-
-		// Sold credit note
-		// print '<tr><td colspan="'.$nbcols.'" class="right">'.$langs->trans('TotalTTC').' :</td>';
-		// print '<td class="right" style="border: 1px solid;" bgcolor="#f0f0f0"><b>'.price($sign *
-		// $object->total_ttc).'</b></td><td>&nbsp;</td></tr>';
 	}
 
 	print '</table>';
@@ -5093,14 +5012,6 @@ elseif ($id > 0 || !empty($ref))
 							print '<span class="butActionRefused classfortooltip" title="'.$langs->trans("DisabledBecauseReplacedInvoice").'">'.$langs->trans('MakeWithdrawRequest').'</span>';
 						}
 					}
-					else
-					{
-						//print '<a class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("NotEnoughPermissions")).'">'.$langs->trans("MakeWithdrawRequest").'</a>';
-					}
-				}
-				else
-				{
-					//print '<a class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("AmountMustBePositive")).'">'.$langs->trans("MakeWithdrawRequest").'</a>';
 				}
 			}
 
@@ -5117,11 +5028,7 @@ elseif ($id > 0 || !empty($ref))
 				if ($objectidnext) {
 					print '<span class="butActionRefused classfortooltip" title="'.$langs->trans("DisabledBecauseReplacedInvoice").'">'.$langs->trans('DoPayment').'</span>';
 				} else {
-					//if ($resteapayer == 0) {		// Sometimes we can receive more, so we accept to enter more and will offer a button to convert into discount (but it is not a credit note, just a prepayment done)
-					//	print '<div class="inline-block divButAction"><span class="butActionRefused classfortooltip" title="' . $langs->trans("DisabledBecauseRemainderToPayIsZero") . '">' . $langs->trans('DoPayment') . '</span></div>';
-					//} else {
 						print '<a class="butAction" href="'.DOL_URL_ROOT.'/compta/paiement.php?facid='.$object->id.'&amp;action=create&amp;accountid='.$object->fk_account.'">'.$langs->trans('DoPayment').'</a>';
-					//}
 				}
 			}
 
@@ -5268,7 +5175,6 @@ elseif ($id > 0 || !empty($ref))
 			$isErasable = $object->is_erasable();
 			if ($usercandelete || ($usercancreate && $isErasable == 1))	// isErasable = 1 means draft with temporary ref (draft can always be deleted with no need of permissions)
 			{
-				//var_dump($isErasable);
 				if ($isErasable == -4) {
 					print '<a class="butActionRefused classfortooltip" href="#" title="'.$langs->trans("DisabledBecausePayments").'">'.$langs->trans('Delete').'</a>';
 				}
