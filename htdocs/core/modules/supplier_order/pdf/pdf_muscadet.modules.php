@@ -250,7 +250,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 				foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
 				{
 					$filename=$obj['photo'];
-					//if ($obj['photo_vignette']) $filename='thumbs/'.$obj['photo_vignette'];
+					
 					$realpath = $dir.$filename;
 					break;
 				}
@@ -267,8 +267,8 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 			$deja_regle = 0;
 			$amount_credit_notes_included = 0;
 			$amount_deposits_included = 0;
-			//$amount_credit_notes_included = $object->getSumCreditNotesUsed();
-            //$amount_deposits_included = $object->getSumDepositsUsed();
+			
+            
 
 			// Definition of $dir and $file
 			if ($object->specimen)
@@ -305,7 +305,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters=array('file'=>$file,'object'=>$object,'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
+				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    
 
 				$nblines = count($object->lines);
 
@@ -326,7 +326,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
                 // Set path to the background PDF File
                 if (! empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                    
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -413,7 +413,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 					$tab_top = $nexY+6;
 				}
 
-				$iniY = $tab_top + 7;
+				
 				$curY = $tab_top + 7;
 				$nexY = $tab_top + 7;
 
@@ -480,7 +480,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $descWidth, 3, $curX, $curY, $hideref, $hidedesc, 1);
 						$posyafter=$pdf->GetY();
@@ -605,7 +605,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -897,8 +897,8 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 		}
 		else
 		{
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-			//{
+			
+			
     			//Local tax 1
 			foreach($this->localtax1 as $localtax_type => $localtax_rate)
 			{
@@ -908,7 +908,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 				{
 					if ($tvakey != 0)    // On affiche pas taux 0
 					{
-						//$this->atleastoneratenotnull++;
+						
 
 						$index++;
 						$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -929,8 +929,8 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 				}
 			}
 
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-			//{
+			
+			
     			//Local tax 2
 			foreach($this->localtax2 as $localtax_type => $localtax_rate)
 			{
@@ -940,7 +940,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 				{
 					if ($tvakey != 0)    // On affiche pas taux 0
 					{
-						//$this->atleastoneratenotnull++;
+						
 
 						$index++;
 						$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -977,9 +977,9 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 
         $creditnoteamount=0;
         $depositsamount=0;
-		//$creditnoteamount=$object->getSumCreditNotesUsed();
-		//$depositsamount=$object->getSumDepositsUsed();
-		//print "x".$creditnoteamount."-".$depositsamount;exit;
+		
+		
+		
 		$resteapayer = price2num($total_ttc - $deja_regle - $creditnoteamount - $depositsamount, 'MT');
 		if (! empty($object->paye)) $resteapayer=0;
 
@@ -1045,7 +1045,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top-4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1136,14 +1136,14 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
 
 		// Do not add the BACKGROUND as this is for suppliers
-		//pdf_pagehead($pdf,$outputlangs,$this->page_hauteur);
+		
 
 		//Affiche le filigrane brouillon - Print Draft Watermark
-		/*if($object->statut==0 && (! empty($conf->global->COMMANDE_DRAFT_WATERMARK)) )
-		{
-            pdf_watermark($pdf,$outputlangs,$this->page_hauteur,$this->page_largeur,'mm',$conf->global->COMMANDE_DRAFT_WATERMARK);
-		}*/
-		//Print content
+		
+		
+            
+	
+	
 
 		$pdf->SetTextColor(0, 0, 60);
 		$pdf->SetFont('', 'B', $default_font_size + 3);
@@ -1316,7 +1316,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 			if (count($arrayidcontact) > 0)
 			{
 				$usecontact=true;
-				$result=$object->fetch_contact($arrayidcontact[0]);
+				
 			}
 
 			//Recipient name
