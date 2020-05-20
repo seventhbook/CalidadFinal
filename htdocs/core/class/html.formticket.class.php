@@ -110,7 +110,7 @@ class FormTicket
         $this->withcompany = 1;
         $this->withfromsocid = 0;
         $this->withfromcontactid = 0;
-        //$this->withthreadid=0;
+        
         //$this->withtitletopic='';
         $this->withnotifytiersatcreate = 0;
         $this->withusercreate = 1;
@@ -118,7 +118,7 @@ class FormTicket
         $this->withemail = 0;
         $this->withref = 0;
         $this->withextrafields = 0; // Show extrafields or not
-        //$this->withtopicreadonly=0;
+        
     }
 
     /**
@@ -379,7 +379,7 @@ class FormTicket
             $out = '<tr>';
             $out .= '<td>'.$langs->trans("MailFile").'</td>';
             $out .= '<td>';
-            // TODO Trick to have param removedfile containing nb of image to delete. But this does not works without javascript
+            
             $out .= '<input type="hidden" class="removedfilehidden" name="removedfile" value="">'."\n";
             $out .= '<script type="text/javascript" language="javascript">';
             $out .= 'jQuery(document).ready(function () {';
@@ -1041,7 +1041,7 @@ class FormTicket
             $out = '<tr>';
             $out .= '<td width="180">'.$langs->trans("MailFile").'</td>';
             $out .= '<td colspan="2">';
-            // TODO Trick to have param removedfile containing nb of image to delete. But this does not works without javascript
+            
             $out .= '<input type="hidden" class="removedfilehidden" name="removedfile" value="">'."\n";
             $out .= '<script type="text/javascript" language="javascript">';
             $out .= 'jQuery(document).ready(function () {';
