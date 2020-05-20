@@ -18,7 +18,7 @@
  * See https://medium.com/@lhartikk/a-blockchain-in-200-lines-of-code-963cc1cc0e54
  */
 
-/*ini_set('unserialize_callback_func', 'mycallback');
+/*
 
 function mycallback($classname)
 {
@@ -148,7 +148,7 @@ class BlockedLog
 		if ($conf->facture->enabled) $this->trackedevents['PAYMENT_CUSTOMER_DELETE'] = 'logPAYMENT_CUSTOMER_DELETE';
 
 		/* Supplier
-		if ($conf->fournisseur->enabled) $this->trackedevents['BILL_SUPPLIER_VALIDATE']='BlockedLogSupplierBillValidate';
+		
 		if ($conf->fournisseur->enabled) $this->trackedevents['BILL_SUPPLIER_DELETE']='BlockedLogSupplierBillDelete';
 		if ($conf->fournisseur->enabled) $this->trackedevents['BILL_SUPPLIER_SENTBYMAIL']='BlockedLogSupplierBillSentByEmail'; // Trigger key does not exists, we want just into array to list it as done
 		if ($conf->fournisseur->enabled) $this->trackedevents['SUPPLIER_DOC_DOWNLOAD']='BlockedLogSupplierBillDownload';		// Trigger key does not exists, we want just into array to list it as done
@@ -160,13 +160,13 @@ class BlockedLog
 
 		if ($conf->don->enabled) $this->trackedevents['DON_VALIDATE'] = 'logDON_VALIDATE';
 		if ($conf->don->enabled) $this->trackedevents['DON_DELETE'] = 'logDON_DELETE';
-		//if ($conf->don->enabled) $this->trackedevents['DON_SENTBYMAIL']='logDON_SENTBYMAIL';
+		
 
 		if ($conf->don->enabled) $this->trackedevents['DONATION_PAYMENT_CREATE'] = 'logDONATION_PAYMENT_CREATE';
 		if ($conf->don->enabled) $this->trackedevents['DONATION_PAYMENT_DELETE'] = 'logDONATION_PAYMENT_DELETE';
 
 		/*
-		if ($conf->salary->enabled) $this->trackedevents['PAYMENT_SALARY_CREATE']='BlockedLogSalaryPaymentCreate';
+		
 		if ($conf->salary->enabled) $this->trackedevents['PAYMENT_SALARY_MODIFY']='BlockedLogSalaryPaymentCreate';
 		if ($conf->salary->enabled) $this->trackedevents['PAYMENT_SALARY_DELETE']='BlockedLogSalaryPaymentCreate';
 		*/
@@ -503,9 +503,9 @@ class BlockedLog
 			$this->object_data->date = $datepayment;
 			$this->object_data->type_code = dol_getIdFromCode($this->db, $paymenttypeid, 'c_paiement', 'id', 'code');
 			$this->object_data->payment_num = ($object->num_paiement ? $object->num_paiement : $object->num_payment);
-			//$this->object_data->fk_account = $object->fk_account;
+			
 			$this->object_data->note = $object->note;
-			//var_dump($this->object_data);exit;
+			
 
 			$totalamount = 0;
 
@@ -735,12 +735,12 @@ class BlockedLog
 	public function dolDecodeBlockedData($data, $mode = 0)
 	{
 		try {
-			//include_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
+			
 			//include_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
 			$aaa = unserialize($data);
-			//$aaa = unserialize($data);
+			
 		} catch (Exception $e) {
-			//print $e->getErrs);
+			
 		}
 		return $aaa;
 	}
@@ -813,7 +813,7 @@ class BlockedLog
 		$this->signature_line = dol_hash($keyforsignature, '5'); // Not really usefull
 		$this->signature = dol_hash($previoushash.$keyforsignature, '5');
 		if ($forcesignature) $this->signature = $forcesignature;
-		//var_dump($keyforsignature);var_dump($previoushash);var_dump($this->signature_line);var_dump($this->signature);
+		
 
 		$sql = "INSERT INTO ".MAIN_DB_PREFIX."blockedlog (";
 		$sql .= " date_creation,";
@@ -893,7 +893,7 @@ class BlockedLog
 
 		$signature_line = dol_hash($keyforsignature, '5'); // Not really usefull
 		$signature = dol_hash($previoushash.$keyforsignature, '5');
-		//var_dump($previoushash); var_dump($keyforsignature); var_dump($signature_line); var_dump($signature);
+		
 
 		$res = ($signature === $this->signature);
 
@@ -913,7 +913,7 @@ class BlockedLog
 	 */
 	private function buildKeyForSignature()
 	{
-		//print_r($this->object_data);
+		
 		return $this->date_creation.'|'.$this->action.'|'.$this->amounts.'|'.$this->ref_object.'|'.$this->date_object.'|'.$this->user_fullname.'|'.print_r($this->object_data, true);
 	}
 
