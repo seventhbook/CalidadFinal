@@ -95,15 +95,6 @@ class modFournisseur extends DolibarrModules
 		$this->const[$r][4] = 0;
 		$r++;
 
-		/* For supplier invoice, we must not have default pdf template on. In most cases, we need to join PDF from supplier, not have a document generated.
-		$this->const[$r][0] = "INVOICE_SUPPLIER_ADDON_PDF";
-		$this->const[$r][1] = "chaine";
-		$this->const[$r][2] = "canelle";
-		$this->const[$r][3] = 'Nom du gestionnaire de generation des factures fournisseur en PDF';
-		$this->const[$r][4] = 0;
-		$r++;
-		*/
-
 		$this->const[$r][0] = "INVOICE_SUPPLIER_ADDON_NUMBER";
 		$this->const[$r][1] = "chaine";
 		$this->const[$r][2] = "mod_facture_fournisseur_cactus";
@@ -209,7 +200,7 @@ class modFournisseur extends DolibarrModules
 		{
 			$r++;
 			$this->rights[$r][0] = 1190;
-			$this->rights[$r][1] = 'Approve supplier order (second level)';		// $langs->trans("Permission1190");
+			$this->rights[$r][1] = 'Approve supplier order (second level)';q
 			$this->rights[$r][2] = 'w';
 			$this->rights[$r][3] = 0;
 			$this->rights[$r][4] = 'commande';
@@ -297,12 +288,6 @@ class modFournisseur extends DolibarrModules
 			'p.ref'=>'ProductRef','p.label'=>'ProductLabel','p.accountancy_code_buy'=>'ProductAccountancyBuyCode','project.rowid'=>'ProjectId',
 			'project.ref'=>'ProjectRef','project.title'=>'ProjectLabel'
 		);
-		//$this->export_TypeFields_array[$r]=array(
-		//    's.rowid'=>"List:societe:CompanyName",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','c.code'=>'Text','s.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text',
-		//    's.ape'=>'Text','s.idprof4'=>'Text','s.tva_intra'=>'Text','f.ref'=>"Text",'f.datec'=>"Date",'f.datef'=>"Date",'f.total_ht'=>"Numeric",'f.total_ttc'=>"Numeric",'f.total_tva'=>"Numeric",
-		//    'f.paye'=>"Boolean",'f.fk_statut'=>'Status','f.note_public'=>"Text",'fd.description'=>"Text",'fd.tva_tx'=>"Text",'fd.qty'=>"Numeric",'fd.total_ht'=>"Numeric",'fd.total_ttc'=>"Numeric",
-		//     'fd.tva'=>"Numeric",'fd.product_type'=>'Numeric','fd.fk_product'=>'List:product:label','p.ref'=>'Text','p.label'=>'Text'
-		//);
 		$this->export_TypeFields_array[$r]=array(
 			's.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','c.code'=>'Text','s.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text',
 			's.tva_intra'=>'Text','f.ref'=>"Text",'f.ref_supplier'=>"Text",'f.datec'=>"Date",'f.datef'=>"Date",'f.date_lim_reglement'=>'Date','f.total_ht'=>"Numeric",'f.total_ttc'=>"Numeric",
@@ -423,12 +408,6 @@ class modFournisseur extends DolibarrModules
 			'f.fk_statut'=>'InvoiceStatus','f.note_public'=>"InvoiceNote",'p.rowid'=>'PaymentId','pf.amount'=>'AmountPayment',
 			'p.datep'=>'DatePayment','p.num_paiement'=>'PaymentNumber','p.fk_bank'=>'IdTransaction','project.rowid'=>'ProjectId','project.ref'=>'ProjectRef','project.title'=>'ProjectLabel'
 		);
-		//$this->export_TypeFields_array[$r]=array(
-		//	's.rowid'=>"List:societe:CompanyName",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','c.code'=>'Text','s.phone'=>'Text',
-		//	's.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','s.tva_intra'=>'Text','f.ref'=>"Text",'f.datec'=>"Date",'f.datef'=>"Date",
-		//	'f.total_ht'=>"Numeric",'f.total_ttc'=>"Numeric",'f.total_tva'=>"Numeric",'f.paye'=>"Boolean",'f.fk_statut'=>'Status','f.note_public'=>"Text",
-		//	'pf.amount'=>'Numeric','p.datep'=>'Date','p.num_paiement'=>'Numeric'
-		//);
 		$this->export_TypeFields_array[$r]=array(
 			's.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','c.code'=>'Text','s.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text',
 			's.idprof4'=>'Text','s.tva_intra'=>'Text','f.ref'=>"Text",'f.ref_supplier'=>"Text",'f.datec'=>"Date",'f.datef'=>"Date",'f.total_ht'=>"Numeric",
