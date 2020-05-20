@@ -236,7 +236,7 @@ $companystatic = new Societe($db);
 $formcompany = new FormCompany($db);
 
 $help_url = 'EN:Ask_Price_Supplier|FR:Demande_de_prix_fournisseur';
-//llxHeader('',$langs->trans('CommRequest'),$help_url);
+
 
 $sql = 'SELECT';
 if ($sall || $search_product_category > 0) $sql = 'SELECT DISTINCT';
@@ -509,9 +509,9 @@ if ($resql)
 	if (!empty($arrayfields['sp.date_valid']['checked']))
 	{
 		print '<td class="liste_titre center" colspan="1">';
-		//print $langs->trans('Month').': ';
+		
 		print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="monthvalid" value="'.dol_escape_htmltag($monthvalid).'">';
-		//print '&nbsp;'.$langs->trans('Year').': ';
+		
 		$syearvalid = $yearvalid;
 		$formother->select_year($syearvalid, 'yearvalid', 1, 20, 5);
 		print '</td>';
@@ -520,9 +520,9 @@ if ($resql)
 	if (!empty($arrayfields['sp.date_livraison']['checked']))
 	{
 		print '<td class="liste_titre center" colspan="1">';
-		//print $langs->trans('Month').': ';
+		
 		print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="month" value="'.dol_escape_htmltag($month).'">';
-		//print '&nbsp;'.$langs->trans('Year').': ';
+		
 		$syear = $year;
 		$formother->select_year($syear, 'year', 1, 20, 5);
 		print '</td>';
@@ -643,7 +643,7 @@ if ($resql)
 			print '</td>';
 			// Warning
 			$warnornote = '';
-			//if ($obj->fk_statut == 1 && $db->jdate($obj->date_valid) < ($now - $conf->supplier_proposal->warning_delay)) $warnornote .= img_warning($langs->trans("Late"));
+
 			if ($warnornote)
 			{
 				print '<td style="min-width: 20px" class="nobordernopadding nowrap">';
