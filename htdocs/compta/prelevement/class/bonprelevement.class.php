@@ -502,13 +502,13 @@ class BonPrelevement extends CommonObject
 									$error++;
 								}
 							}
-							//var_dump($paiement->amounts);
+							
 							//var_dump($thirdpartyid);
 							//var_dump($cursoramounts);
 						}
 
 						// Update withdrawal line
-						// TODO: Translate to ligneprelevement.class.php
+						
 						$sql = " UPDATE ".MAIN_DB_PREFIX."prelevement_lignes";
 						$sql .= " SET statut = 2";
 						$sql .= " WHERE fk_prelevement_bons = ".$this->id;
@@ -597,7 +597,7 @@ class BonPrelevement extends CommonObject
 				$message = $langs->trans("InfoTransMessage", $this->ref, dolGetFirstLastname($user->firstname, $user->lastname));
 				$message .= $langs->trans("InfoTransData", price($this->amount), $this->methodes_trans[$this->method_trans], dol_print_date($date, 'day'));
 
-				// TODO Call trigger to create a notification using notification module
+				
 			}
 			else
 			{
@@ -700,7 +700,7 @@ class BonPrelevement extends CommonObject
 		$sql = "SELECT sum(pfd.amount) as nb";
 		$sql .= " FROM ".MAIN_DB_PREFIX."facture as f,";
 		$sql .= " ".MAIN_DB_PREFIX."prelevement_facture_demande as pfd";
-		//$sql.= " ,".MAIN_DB_PREFIX."c_paiement as cp";
+		
 		$sql .= " WHERE f.fk_statut = 1";
 		$sql .= " AND f.entity IN (".getEntity('invoice').")";
 		$sql .= " AND f.rowid = pfd.fk_facture";
@@ -728,7 +728,7 @@ class BonPrelevement extends CommonObject
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *	Get number of invoices to withdrawal
-	 *	TODO delete params banque and agence when not necesary
+	 *	
 	 *
 	 *	@param	int		$banque		dolibarr mysoc bank
 	 *	@param	int		$agence		dolibarr mysoc agence
@@ -773,7 +773,7 @@ class BonPrelevement extends CommonObject
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *	Create a withdraw
-	 *  TODO delete params banque and agence when not necesary
+	 *  
 	 *
 	 *	@param 	int		  $banque		dolibarr mysoc bank
 	 *	@param	int		  $agence		dolibarr mysoc bank office (guichet)
@@ -826,12 +826,12 @@ class BonPrelevement extends CommonObject
 			$sql .= " WHERE f.rowid = pfd.fk_facture";
 			$sql .= " AND f.entity IN (".getEntity('invoice').')';
 			$sql .= " AND s.rowid = f.fk_soc";
-			//if ($banque || $agence) $sql.= " AND s.rowid = sr.fk_soc";
+			
 			$sql .= " AND f.fk_statut = 1";
 			$sql .= " AND f.paye = 0";
 			$sql .= " AND pfd.traite = 0";
 			$sql .= " AND f.total_ttc > 0";
-			//if ($banque) $sql.= " AND sr.code_banque = '".$conf->global->PRELEVEMENT_CODE_BANQUE."'";
+			
 			//if ($agence) $sql.= " AND sr.code_guichet = '".$conf->global->PRELEVEMENT_CODE_GUICHET."'";
 
 			dol_syslog(__METHOD__."::Read invoices, sql=".$sql, LOG_DEBUG);
@@ -895,7 +895,7 @@ class BonPrelevement extends CommonObject
 								/* second tableau necessaire pour BonPrelevement */
 								$factures_prev_id[$i] = $fac[0];
 								$i++;
-								//dol_syslog(__METHOD__."::RIB is ok", LOG_DEBUG);
+								
 							}
 							else
 							{
@@ -925,11 +925,11 @@ class BonPrelevement extends CommonObject
 
 		// Withdraw invoices in factures_prev array
 		$out = count($factures_prev)." invoices will be withdrawn.";
-		//print $out."\n";
+		
 		dol_syslog($out);
 
 		// Return warning
-		/*$i=0;
+		/*
 		 foreach ($this->thirdparty_in_error as $key => $val)
 		 {
 		 if ($i < 10) setEventMessages($val, null, 'warnings');
@@ -945,7 +945,7 @@ class BonPrelevement extends CommonObject
 			}
 			else
 			{
-				print $langs->trans("ModeWarning"); //"Option for real mode was not set, we stop after this simulation\n";
+				print $langs->trans("ModeWarning"); 
 			}
 		}
 
@@ -1102,7 +1102,7 @@ class BonPrelevement extends CommonObject
 				}
 				dol_syslog(__METHOD__."::End withdraw receipt, file ".$this->filename, LOG_DEBUG);
 			}
-			//var_dump($factures_prev);exit;
+			
 
 			/*
 			 * Update total
@@ -1252,7 +1252,7 @@ class BonPrelevement extends CommonObject
 			$linkclose .= ' class="classfortooltip'.($morecss ? ' '.$morecss : '').'"';
 
 			/*
-			 $hookmanager->initHooks(array('myobjectdao'));
+			 
 			 $parameters=array('id'=>$this->id);
 			 $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
 			 if ($reshook > 0) $linkclose = $hookmanager->resPrint;
@@ -1268,7 +1268,7 @@ class BonPrelevement extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('myobjectdao'));
@@ -1384,7 +1384,7 @@ class BonPrelevement extends CommonObject
 	{
 		global $conf, $langs, $mysoc;
 
-		//TODO: Optimize code to read lines in a single function
+		
 
 		$result = 0;
 
@@ -1446,7 +1446,7 @@ class BonPrelevement extends CommonObject
 			$sql .= " AND rib.fk_soc = f.fk_soc";
 			$sql .= " AND rib.default_rib = 1";
 			$sql .= " AND rib.type = 'ban'";
-			//print $sql;
+			
 
 			// Define $fileDebiteurSection. One section DrctDbtTxInf per invoice.
 			$resql = $this->db->query($sql);
@@ -1549,7 +1549,7 @@ class BonPrelevement extends CommonObject
 
 			$langs->load('withdrawals');
 
-			// TODO Add here code to generate a generic file
+			
 			fputs($this->file, $langs->trans('WithdrawalFileNotCapable', $mysoc->country_code));
 		}
 
@@ -1723,7 +1723,7 @@ class BonPrelevement extends CommonObject
 		$XML_DEBITOR .= '					</Id>'.$CrLf;
 		$XML_DEBITOR .= '				</DbtrAcct>'.$CrLf;
 		$XML_DEBITOR .= '				<RmtInf>'.$CrLf;
-		// $XML_DEBITOR .='					<Ustrd>'.($row_ref.'/'.$Rowing.'/'.$Rum).'</Ustrd>'.$CrLf;
+		
 		// $XML_DEBITOR .='					<Ustrd>'.dol_trunc($row_ref, 135).'</Ustrd>'.$CrLf;        // 140 max
 		$XML_DEBITOR .= '					<Ustrd>'.(($conf->global->PRELEVEMENT_USTRD != "") ? $conf->global->PRELEVEMENT_USTRD : dol_trunc($row_ref, 135)).'</Ustrd>'.$CrLf; // 140 max
 		$XML_DEBITOR .= '				</RmtInf>'.$CrLf;
@@ -1834,7 +1834,7 @@ class BonPrelevement extends CommonObject
 			$this->emetteur_iban = $account->iban;
 			$this->emetteur_bic = $account->bic;
 
-			$this->emetteur_ics = $conf->global->PRELEVEMENT_ICS; // Ex: PRELEVEMENT_ICS = "FR78ZZZ123456";
+			$this->emetteur_ics = $conf->global->PRELEVEMENT_ICS; 
 
 			$this->raison_sociale = $account->proprio;
 		}
@@ -2010,7 +2010,7 @@ class BonPrelevement extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('StatusWaiting');
 			$this->labelStatus[self::STATUS_TRANSFERED] = $langs->trans('StatusTrans');
 			$this->labelStatus[self::STATUS_CREDITED] = $langs->trans('StatusCredited');
