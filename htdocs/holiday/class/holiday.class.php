@@ -208,7 +208,7 @@ class Holiday extends CommonObject
 			else
 			{
 				$this->error = $obj->error;
-				//dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
+				
 				return "";
 			}
 		}
@@ -232,7 +232,7 @@ class Holiday extends CommonObject
 		$result = $this->updateSoldeCP();
 
 		// Check nb of users into table llx_holiday_users and update with empty lines
-		//if ($result > 0) $result = $this->verifNbUsers($this->countActiveUsersWithoutCP(), $this->getConfCP('nbUser'));
+		
 
 		if ($result >= 0)
 		{
@@ -1066,11 +1066,11 @@ class Holiday extends CommonObject
 		{
 			if ($infos_CP['statut'] == 4) continue; // ignore not validated holidays
 			if ($infos_CP['statut'] == 5) continue; // ignore not validated holidays
-			/*
-			 var_dump("--");
-			 var_dump("old: ".dol_print_date($infos_CP['date_debut'],'dayhour').' '.dol_print_date($infos_CP['date_fin'],'dayhour').' '.$infos_CP['halfday']);
-			 var_dump("new: ".dol_print_date($dateStart,'dayhour').' '.dol_print_date($dateEnd,'dayhour').' '.$halfday);
-			 */
+			
+			
+			
+			
+			
 
 			if ($halfday == 0)
 			{
@@ -1213,13 +1213,13 @@ class Holiday extends CommonObject
 
 		$url = DOL_URL_ROOT.'/holiday/card.php?id='.$this->id;
 
-		//if ($option != 'nolink')
-		//{
+		
+		
 		// Add param to save lastsearch_values or not
 		$add_save_lastsearch_values = ($save_lastsearch_value == 1 ? 1 : 0);
 		if ($save_lastsearch_value == -1 && preg_match('/list\.php/', $_SERVER["PHP_SELF"])) $add_save_lastsearch_values = 1;
 		if ($add_save_lastsearch_values) $url .= '&save_lastsearch_values=1';
-		//}
+		
 
 		$linkstart = '<a href="'.$url.'" title="'.dol_escape_htmltag($label, 1).'" class="classfortooltip">';
 		$linkend = '</a>';
@@ -1259,7 +1259,7 @@ class Holiday extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('DraftCP');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('ToReviewCP');
 			$this->labelStatus[self::STATUS_APPROVED] = $langs->trans('ApprovedCP');
@@ -1340,14 +1340,14 @@ class Holiday extends CommonObject
 		return false;
 	}
 
-	/**
-	 *  Return value of a conf parameterfor leave module
-	 *  TODO Move this into llx_const table
-	 *
-	 *  @param	string	$name                 Name of parameter
-	 *  @param  string  $createifnotfound     'stringvalue'=Create entry with string value if not found. For example 'YYYYMMDDHHMMSS'.
-	 *  @return string      		          Value of parameter. Example: 'YYYYMMDDHHMMSS' or < 0 if error
-	 */
+	
+	
+	
+	
+	
+	
+	
+
 	public function getConfCP($name, $createifnotfound = '')
 	{
 		$sql = "SELECT value";
@@ -1420,7 +1420,7 @@ class Holiday extends CommonObject
 			// Get month of last update
 			$lastUpdate = $this->getConfCP('lastUpdate', $newdateforlastupdate);
 			$monthLastUpdate = $lastUpdate[4].$lastUpdate[5];
-			//print 'month: '.$month.' lastUpdate:'.$lastUpdate.' monthLastUpdate:'.$monthLastUpdate;exit;
+			
 
 			// Si la date du mois n'est pas la même que celle sauvegardée, on met à jour le timestamp
 			if ($month != $monthLastUpdate)
@@ -1428,7 +1428,7 @@ class Holiday extends CommonObject
 				$this->db->begin();
 
 				$users = $this->fetchUsers(false, false);
-				$nbUser = count($users);
+				
 
 				$sql = "UPDATE ".MAIN_DB_PREFIX."holiday_config SET";
 				$sql .= " value = '".$this->db->escape($newdateforlastupdate)."'";
@@ -1626,7 +1626,7 @@ class Holiday extends CommonObject
 		if ($result)
 		{
 			$obj = $this->db->fetch_object($result);
-			//return number_format($obj->nb_holiday,2);
+			
 			if ($obj) return $obj->nb_holiday;
 			else return null;
 		}
@@ -1798,8 +1798,8 @@ class Holiday extends CommonObject
 						$tab_result[$i]['employee'] = $obj->employee;
 						$tab_result[$i]['photo'] = $obj->photo;
 						$tab_result[$i]['fk_user'] = $obj->fk_user;	// rowid of manager
-						//$tab_result[$i]['type'] = $obj->type;
-						//$tab_result[$i]['nb_holiday'] = $obj->nb_holiday;
+						
+						
 
 						$i++;
 					}
@@ -1876,12 +1876,12 @@ class Holiday extends CommonObject
 
 		$sql = "SELECT DISTINCT ur.fk_user";
 		$sql .= " FROM ".MAIN_DB_PREFIX."user_rights as ur, ".MAIN_DB_PREFIX."rights_def as rd";
-		$sql .= " WHERE ur.fk_id = rd.id and rd.module = 'holiday' AND rd.perms = 'approve'"; // Permission 'Approve';
+		$sql .= " WHERE ur.fk_id = rd.id and rd.module = 'holiday' AND rd.perms = 'approve'"; 
 		$sql .= "UNION";
 		$sql .= " SELECT DISTINCT ugu.fk_user";
 		$sql .= " FROM ".MAIN_DB_PREFIX."usergroup_user as ugu, ".MAIN_DB_PREFIX."usergroup_rights as ur, ".MAIN_DB_PREFIX."rights_def as rd";
-		$sql .= " WHERE ugu.fk_usergroup = ur.fk_usergroup AND ur.fk_id = rd.id and rd.module = 'holiday' AND rd.perms = 'approve'"; // Permission 'Approve';
-		//print $sql;
+		$sql .= " WHERE ugu.fk_usergroup = ur.fk_usergroup AND ur.fk_id = rd.id and rd.module = 'holiday' AND rd.perms = 'approve'"; 
+		
 
 		dol_syslog(get_class($this)."::fetch_users_approver_holiday sql=".$sql);
 		$result = $this->db->query($sql);
@@ -1972,7 +1972,7 @@ class Holiday extends CommonObject
 
 		$prev_solde = price2num($this->getCPforUser($fk_user_update, $fk_type), 5);
 		$new_solde = price2num($new_solde, 5);
-		//print "$prev_solde == $new_solde";
+		
 
 		if ($prev_solde == $new_solde) return 0;
 
