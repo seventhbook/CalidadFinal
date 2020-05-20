@@ -278,7 +278,7 @@ if (empty($reshook))
 						{
 							$product_type = ($lines[$i]->product_type ? $lines[$i]->product_type : 0);
 
-							if ($product_type == 1 || (!empty($conf->global->CONTRACT_SUPPORT_PRODUCTS) && in_array($product_type, array(0, 1)))) { 	// TODO Exclude also deee
+							if ($product_type == 1 || (!empty($conf->global->CONTRACT_SUPPORT_PRODUCTS) && in_array($product_type, array(0, 1)))) { 
 								// service prédéfini
 								if ($lines[$i]->fk_product > 0)
 								{
@@ -729,7 +729,7 @@ if (empty($reshook))
 				}
 			}
 
-			// TODO verifier price_min si fk_product et multiprix
+			
 
 			$result = $objectline->update($user);
 			if ($result < 0)
@@ -1416,7 +1416,7 @@ else
 					$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 				}
 				if ($action == 'classify') {
-					//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+		
 					$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 					$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 					$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1552,9 +1552,9 @@ else
 				print '<td>'.$langs->trans("ServiceNb", $cursorline).'</td>';
 				print '<td width="80" class="center">'.$langs->trans("VAT").'</td>';
 				print '<td width="80" class="right">'.$langs->trans("PriceUHT").'</td>';
-				//if (!empty($conf->multicurrency->enabled)) {
-				//	print '<td width="80" class="right">'.$langs->trans("PriceUHTCurrency").'</td>';
-				//}
+				
+				
+				
 				print '<td width="30" class="center">'.$langs->trans("Qty").'</td>';
 				if ($conf->global->PRODUCT_USE_UNITS) print '<td width="30" class="left">'.$langs->trans("Unit").'</td>';
 				print '<td width="50" class="right">'.$langs->trans("ReductionShort").'</td>';
@@ -1611,9 +1611,9 @@ else
 					// Price
 					print '<td class="right">'.($objp->subprice != '' ? price($objp->subprice) : '')."</td>\n";
 					// Price multicurrency
-					/*if (!empty($conf->multicurrency->enabled)) {
-						print '<td class="linecoluht_currency nowrap right">'.price($objp->multicurrency_subprice).'</td>';
-					}*/
+					
+				
+				
 					// Quantity
 					print '<td class="center">'.$objp->qty.'</td>';
 					// Unit
@@ -1747,9 +1747,9 @@ else
 					print '<td class="right"><input size="5" type="text" name="elprice" value="'.price($objp->subprice).'"></td>';
 
 					// Price multicurrency
-					/*if (!empty($conf->multicurrency->enabled)) {
-					 print '<td class="linecoluht_currency nowrap right">'.price($objp->multicurrency_subprice).'</td>';
-					 }*/
+					
+				
+				
 
 					// Quantity
 					print '<td class="center"><input size="2" type="text" name="elqty" value="'.$objp->qty.'"></td>';
@@ -1837,7 +1837,7 @@ else
 				{
 					$arraycontractid[$contractcursor->id] = $contractcursor->ref;
 				}
-				//var_dump($arraycontractid);
+				
 				// Cree un tableau formulaire
 				$formquestion = array(
 				'text' => $langs->trans("ConfirmMoveToAnotherContractQuestion"),
@@ -2075,7 +2075,7 @@ else
 	   		if ($action != 'editline')
 			{
 				$forcetoshowtitlelines = 1;
-				if (empty($object->multicurrency_code)) $object->multicurrency_code = $conf->currency; // TODO Remove this when multicurrency supported on contracts
+				if (empty($object->multicurrency_code)) $object->multicurrency_code = $conf->currency; 
 
 				// Add free products/services
 				$object->formAddObjectLine(1, $mysoc, $soc);
@@ -2167,13 +2167,13 @@ else
 						print '<div class="inline-block divButAction"><a class="butActionRefused classfortooltip" id="btncloseall" href="#">'.$langs->trans("CloseAllContracts").'</a></div>';
 					}
 
-					//if (! $numactive)
-					//{
-					//}
-					//else
-					//{
-					//	print '<div class="inline-block divButAction"><a class="butActionRefused classfortooltip" href="#" title="'.$langs->trans("CloseRefusedBecauseOneServiceActive").'">'.$langs->trans("Close").'</a></div>';
-					//}
+					
+					
+					
+					
+					
+					
+		
 				}
 
 				// On peut supprimer entite si
@@ -2253,7 +2253,7 @@ $db->close();
 <?php
 if (!empty($conf->margin->enabled) && $action == 'editline')
 {
-		// TODO Why this ? To manage margin on contracts ?
+		
 	?>
 <script type="text/javascript">
 $(document).ready(function() {
