@@ -54,7 +54,7 @@ function societe_prepare_head(Societe $object)
     {
 	    if (empty($conf->global->MAIN_DISABLE_CONTACTS_TAB) && $user->rights->societe->contact->lire)
 		{
-		    //$nbContact = count($object->liste_contact(-1,'internal')) + count($object->liste_contact(-1,'external'));
+		    
 			$nbContact = 0; // TODO
 
 			$sql = "SELECT COUNT(p.rowid) as nb";
@@ -188,13 +188,13 @@ function societe_prepare_head(Societe $object)
 		$foundonexternalonlinesystem = 0;
     	$langs->load("banks");
 
-        //$title = $langs->trans("BankAccounts");
+      
     	$title = $langs->trans("PaymentInformation");
 
 		if (!empty($conf->stripe->enabled))
 		{
-			//$langs->load("stripe");
-			//$title = $langs->trans("BankAccountsAndGateways");
+			
+			
 
 			$servicestatus = 0;
 			if (!empty($conf->global->STRIPE_LIVE) && !GETPOST('forcesandbox', 'alpha')) $servicestatus = 1;
@@ -339,12 +339,6 @@ function societe_prepare_head(Societe $object)
     }
     $head[$h][2] = 'agenda';
     $h++;
-
-    // Log
-    /*$head[$h][0] = DOL_URL_ROOT.'/societe/info.php?socid='.$object->id;
-    $head[$h][1] = $langs->trans("Info");
-    $head[$h][2] = 'info';
-    $h++;*/
 
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'thirdparty', 'remove');
 
@@ -717,7 +711,7 @@ function isInEEC($object)
 
 	$country_code_in_EEC = getCountriesInEEC();
 
-    //print "dd".$this->country_code;
+    
     return in_array($object->country_code, $country_code_in_EEC);
 }
 
@@ -1006,7 +1000,7 @@ function show_contacts($conf, $langs, $db, $object, $backtopage = '')
 
     $varpage = empty($contextpage) ? $_SERVER["PHP_SELF"] : $contextpage;
     $selectedfields = $form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage); // This also change content of $arrayfields
-    //if ($massactionbutton) $selectedfields.=$form->showCheckAddButtons('checkforselect', 1);
+    
 
 	print '<div class="div-table-responsive">'; // You can use div-table-responsive-no-min if you dont need reserved height for your table
     print "\n".'<table class="tagtable liste">'."\n";
@@ -1493,8 +1487,6 @@ function show_actions_done($conf, $langs, $db, $filterobj, $objcon = '', $noprin
 	                    setEventMessage("company.lib::show_actions_done Error fetch ressource", 'errors');
 	                }
 
-	                //if ($donetodo == 'todo') $sql.= " AND ((a.percent >= 0 AND a.percent < 100) OR (a.percent = -1 AND a.datep > '".$db->idate($now)."'))";
-	                //elseif ($donetodo == 'done') $sql.= " AND (a.percent = 100 OR (a.percent = -1 AND a.datep <= '".$db->idate($now)."'))";
 	                $tododone = '';
 	                if (($obj->percent >= 0 and $obj->percent < 100) || ($obj->percent == -1 && $obj->datep > $now)) $tododone = 'todo';
 
@@ -1616,7 +1608,7 @@ function show_actions_done($conf, $langs, $db, $filterobj, $objcon = '', $noprin
             $tmp .= ($donetodo != 'done' ? $langs->trans("ActionsToDoShort") : '');
             $tmp .= ($donetodo != 'done' && $donetodo != 'todo' ? ' / ' : '');
             $tmp .= ($donetodo != 'todo' ? $langs->trans("ActionsDoneShort") : '');
-            //$out.=$langs->trans("ActionsToDoShort").' / '.$langs->trans("ActionsDoneShort");
+            
             if (get_class($filterobj) == 'Societe') $tmp .= '</a>';
             $out .= getTitleFieldOfList($tmp);
 		}
@@ -1664,9 +1656,7 @@ function show_actions_done($conf, $langs, $db, $filterobj, $objcon = '', $noprin
 
             // Author of event
             $out .= '<td class="tdoverflowmax200">';
-            //$userstatic->id=$histo[$key]['userid'];
-            //$userstatic->login=$histo[$key]['login'];
-            //$out.=$userstatic->getLoginUrl(1);
+            
             if ($histo[$key]['userid'] > 0)
             {
             	$userstatic->fetch($histo[$key]['userid']); // TODO Introduce a cache on users fetched
@@ -1700,7 +1690,7 @@ function show_actions_done($conf, $langs, $db, $filterobj, $objcon = '', $noprin
             {
                 $transcode = $langs->trans("Action".$histo[$key]['acode']);
                 $libelle = ($transcode != "Action".$histo[$key]['acode'] ? $transcode : $histo[$key]['alabel']);
-                //$actionstatic->libelle=$libelle;
+                
                 $libelle = $histo[$key]['note'];
                 $actionstatic->id = $histo[$key]['id'];
                 $out .= dol_trunc($libelle, 120);
@@ -1733,7 +1723,7 @@ function show_actions_done($conf, $langs, $db, $filterobj, $objcon = '', $noprin
             $out .= "</td>\n";
 
             // Title of event
-            //$out.='<td>'.dol_trunc($histo[$key]['note'], 40).'</td>';
+
 
             // Linked object
             $out .= '<td>';
