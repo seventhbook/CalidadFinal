@@ -244,6 +244,7 @@ class modExpenseReport extends DolibarrModules
 				"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = 'standard' AND type='expensereport' AND entity = ".$conf->entity,
 				"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('standard','expensereport',".$conf->entity.")"
 		);
+		
 
 		return $this->_init($sql, $options);
 	}
