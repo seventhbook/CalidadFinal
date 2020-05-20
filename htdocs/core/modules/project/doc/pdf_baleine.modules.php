@@ -341,7 +341,7 @@ class pdf_baleine extends ModelePDFProjects
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						// Label
 						$pdf->SetXY($this->posxlabel, $curY);
@@ -395,7 +395,7 @@ class pdf_baleine extends ModelePDFProjects
 								$posyafter=$pdf->GetY();
 							}
 						}
-						//var_dump($i.' '.$posybefore.' '.$posyafter.' '.($this->page_hauteur -  ($heightforfooter + $heightforfreetext + $heightforinfotot)).' '.$showpricebeforepagebreak);
+						
 					}
 					else	// No pagebreak
 					{
@@ -411,7 +411,7 @@ class pdf_baleine extends ModelePDFProjects
 
 					// We suppose that a too long description is moved completely on next page
 					if ($pageposafter > $pageposbefore && empty($showpricebeforepagebreak)) {
-						//var_dump($pageposbefore.'-'.$pageposafter.'-'.$showpricebeforepagebreak);
+						
 						$pdf->setPage($pageposafter); $curY = $tab_top_newpage + $heightoftitleline + 1;
 					}
 
@@ -437,7 +437,7 @@ class pdf_baleine extends ModelePDFProjects
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -649,7 +649,7 @@ class pdf_baleine extends ModelePDFProjects
 
 		// Add list of linked objects
 		/* Removed: A project can have more than thousands linked objects (orders, invoices, proposals, etc....
-		$object->fetchObjectLinked();
+		
 
 	    foreach($object->linkedObjects as $objecttype => $objects)
 	    {
