@@ -3356,7 +3356,6 @@ class Calculation
                     $output[] = $stack->pop(); //    Pop the function and push onto the output
                     if (isset(self::$controlFunctions[$functionName])) {
                         $expectedArgumentCount = self::$controlFunctions[$functionName]['argumentCount'];
-                        $functionCall = self::$controlFunctions[$functionName]['functionCall'];
                     } elseif (isset(self::$phpSpreadsheetFunctions[$functionName])) {
                         $expectedArgumentCount = self::$phpSpreadsheetFunctions[$functionName]['argumentCount'];
                         $functionCall = self::$phpSpreadsheetFunctions[$functionName]['functionCall'];
@@ -3378,7 +3377,6 @@ class Calculation
                             }
                         }
                     } elseif ($expectedArgumentCount != '*') {
-                        $isOperandOrFunction = preg_match('/(\d*)([-+,])(\d*)/', $expectedArgumentCount, $argMatch);
                         switch ($argMatch[2]) {
                             case '+':
                                 if ($argumentCount < $argMatch[1]) {
@@ -3415,8 +3413,7 @@ class Calculation
                     }
                     $output[] = $o2; // pop the argument expression stuff and push onto the output
                 }
-                //    If we've a comma when we're expecting an operand, then what we actually have is a null operand;
-                //        so push a null onto the stack
+
                 if (($expectingOperand) || (!$expectingOperator)) {
                     $output[] = ['type' => 'NULL Value', 'value' => self::$excelConstants['NULL'], 'reference' => null];
                 }
@@ -4350,7 +4347,6 @@ class Calculation
         $returnValue = [];
 
         if ($pSheet !== null) {
-            $pSheetName = $pSheet->getTitle();
             if (strpos($pRange, '!') !== false) {
                 list($pSheetName, $pRange) = Worksheet::extractSheetTitle($pRange, true);
                 $pSheet = $this->spreadsheet->getSheetByName($pSheetName);
