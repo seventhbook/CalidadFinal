@@ -414,7 +414,7 @@ function getListOfGroups($authentication)
 	$arraygroups = array();
 	$errorcode = ''; $errorlabel = '';
 	$error = 0;
-	$fuser = check_authentication($authentication, $error, $errorcode, $errorlabel);
+	
 	// Check parameters
 
 	if (!$error)
@@ -654,7 +654,7 @@ function createUserFromThirdparty($authentication, $thirdpartywithuser)
 					else
 					{
 						$error++;
-						$errors = ($thirdparty->error ? array($thirdparty->error) : $thirdparty->errors);
+						
 					}
 				}
 			}
