@@ -312,7 +312,7 @@ class pdf_soleil extends ModelePDFFicheinter
 				    $text.=($text?' - ':'').$langs->trans("Total").": ".$totaltime;
 				}
 				$desc=dol_htmlentitiesbr($text, 1);
-				//print $outputlangs->convToOutputCharset($desc); exit;
+				
 
 				$pdf->writeHTMLCell(180, 3, 10, $tab_top + 5, $outputlangs->convToOutputCharset($desc), 0, 1);
 				$nexY = $pdf->GetY();
@@ -361,12 +361,12 @@ class pdf_soleil extends ModelePDFFicheinter
 						{
 							$pdf->rollbackTransaction(true);
 							$pageposafter=$pageposbefore;
-							//print $pageposafter.'-'.$pageposbefore;exit;
+							
 							$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 							$pdf->writeHTMLCell(0, 0, $curX, $curY, dol_concatdesc($txt, $desc), 0, 1, 0);
 							$pageposafter=$pdf->getPage();
 							$posyafter=$pdf->GetY();
-							//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+							
 							if ($posyafter > ($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot)))	// There is no space left for total+free text
 							{
 								if ($i == ($nblines-1))	// No more lines, and no space left to show total, so we create a new page
@@ -503,7 +503,7 @@ class pdf_soleil extends ModelePDFFicheinter
 
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
         /*
-		$pdf->SetXY($this->marge_gauche, $tab_top);
+		
 		$pdf->MultiCell(190,8,$outputlangs->transnoentities("Description"),0,'L',0);
 		$pdf->line($this->marge_gauche, $tab_top + 8, $this->page_largeur-$this->marge_droite, $tab_top + 8);
 
