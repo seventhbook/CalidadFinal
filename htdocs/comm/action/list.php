@@ -164,7 +164,7 @@ if (GETPOST("viewcal") || GETPOST("viewweek") || GETPOST("viewday"))
     		$param .= '&'.$key.'='.urlencode($val);
     	}
     }
-	//print $param;
+	
 	header("Location: ".DOL_URL_ROOT.'/comm/action/index.php?'.$param);
 	exit;
 }
@@ -178,7 +178,7 @@ include DOL_DOCUMENT_ROOT.'/core/actions_changeselectedfields.inc.php';
 // Purge search criteria
 if (GETPOST('button_removefilter_x', 'alpha') || GETPOST('button_removefilter.x', 'alpha') || GETPOST('button_removefilter', 'alpha')) // All tests are required to be compatible with all browsers
 {
-    //$actioncode='';
+    
     $search_id = '';
 	$search_title = '';
     $search_note = '';
@@ -355,7 +355,6 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 }
 
 $sql .= $db->plimit($limit + 1, $offset);
-//print $sql;
 
 dol_syslog("comm/action/list.php", LOG_DEBUG);
 $resql = $db->query($sql);
@@ -368,7 +367,7 @@ if ($resql)
 
 	// Local calendar
 	$newtitle = '<div class="nowrap clear inline-block minheight20"><input type="checkbox" id="check_mytasks" name="check_mytasks" checked disabled> '.$langs->trans("LocalAgenda").' &nbsp; </div>';
-	//$newtitle=$langs->trans($title);
+	
 
 	$tabactive = 'cardlist';
 
@@ -386,13 +385,14 @@ if ($resql)
 	print '<input type="hidden" name="type" value="'.$type.'">';
 	$nav = '';
 
-	//if ($actioncode)    $nav.='<input type="hidden" name="actioncode" value="'.$actioncode.'">';
+	
+	
 	//if ($resourceid)      $nav.='<input type="hidden" name="resourceid" value="'.$resourceid.'">';
 	if ($filter)          $nav .= '<input type="hidden" name="search_filter" value="'.$filter.'">';
-	//if ($filtert)         $nav.='<input type="hidden" name="filtert" value="'.$filtert.'">';
+	
 	//if ($socid)           $nav.='<input type="hidden" name="socid" value="'.$socid.'">';
 	if ($showbirthday)    $nav .= '<input type="hidden" name="search_showbirthday" value="1">';
-	//if ($pid)             $nav.='<input type="hidden" name="projectid" value="'.$pid.'">';
+	
 	//if ($usergroup)       $nav.='<input type="hidden" name="usergroup" value="'.$usergroup.'">';
 	print $nav;
 
@@ -404,8 +404,7 @@ if ($resql)
     $link = '';
     /*
     if (empty($conf->use_javascript_ajax))
-    {
-        $newparam=$param;   // newparam is for birthday links
+            $newparam=$param;   // newparam is for birthday links
         $newparam=preg_replace('/showbirthday=[0-1]/i','showbirthday='.(empty($showbirthday)?1:0),$newparam);
         if (! preg_match('/showbirthday=/i',$newparam)) $newparam.='&showbirthday=1';
         $link='<a href="'.$_SERVER['PHP_SELF'];
@@ -438,7 +437,8 @@ if ($resql)
 
         $newparam .= '&month='.str_pad($month, 2, "0", STR_PAD_LEFT).'&year='.$tmpforcreatebutton['year'];
 
-        //$param='month='.$monthshown.'&year='.$year;
+        
+	    
         $hourminsec = '100000';
         $newcardbutton .= dolGetButtonTitle($langs->trans('AddAction'), '', 'fa fa-plus-circle', DOL_URL_ROOT.'/comm/action/card.php?action=create&datep='.sprintf("%04d%02d%02d", $tmpforcreatebutton['year'], $tmpforcreatebutton['mon'], $tmpforcreatebutton['mday']).$hourminsec.'&backtopage='.urlencode($_SERVER["PHP_SELF"].($newparam ? '?'.$newparam : '')));
     }
@@ -705,7 +705,7 @@ if ($resql)
 		// Linked object
 		if (!empty($arrayfields['a.fk_element']['checked'])) {
             print '<td>';
-            //var_dump($obj->fkelement.' '.$obj->elementtype);
+            
             if ($obj->fk_element > 0 && !empty($obj->elementtype)) {
                 include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
                 print dolGetElementUrl($obj->fk_element, $obj->elementtype, 1);
