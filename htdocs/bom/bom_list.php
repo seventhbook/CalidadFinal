@@ -52,8 +52,8 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
-//if (! $sortorder) $sortorder="DESC";
+
+
 
 // Initialize technical objects
 $object = new BOM($db);
@@ -75,10 +75,10 @@ if (empty($conf->bom->enabled)) accessforbidden('Module not enabled');
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'bom', $id, '');
+
 
 // Initialize array of search criterias
 $search_all = trim(GETPOST("search_all", 'alpha'));
@@ -217,7 +217,7 @@ if (empty($reshook))
 			{
 				$db->rollback();
 			}
-			//var_dump($listofobjectthirdparties);exit;
+			
 		}
 	}
 
@@ -272,7 +272,7 @@ if (empty($reshook))
 			{
 				$db->rollback();
 			}
-			//var_dump($listofobjectthirdparties);exit;
+			
 		}
 	}
 }
@@ -286,7 +286,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_BillOfMaterials|FR:Module_BillOfMaterials_FR|ES:Módulo_BillOfMaterials";
+
 $help_url = '';
 $title = $langs->trans('ListOfBOMs');
 
@@ -329,22 +329,22 @@ $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldListWhere', $parameters, $object); // Note that $action and $object may have been modified by hook
 $sql .= $hookmanager->resPrint;
 
-/* If a group by is required
-$sql.= " GROUP BY "
-foreach($object->fields as $key => $val)
-{
-	$sql.='t.'.$key.', ';
-}
-// Add fields from extrafields
-if (! empty($extrafields->attributes[$object->table_element]['label'])) {
-	foreach ($extrafields->attributes[$object->table_element]['label'] as $key => $val) $sql.=($extrafields->attributes[$object->table_element]['type'][$key] != 'separate' ? "ef.".$key.', ' : '');
-}
-// Add where from hooks
-$parameters=array();
-$reshook=$hookmanager->executeHooks('printFieldListGroupBy',$parameters);    // Note that $action and $object may have been modified by hook
-$sql.=$hookmanager->resPrint;
-$sql=preg_replace('/,\s*$/','', $sql);
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $sql .= $db->order($sortfield, $sortorder);
 
@@ -461,9 +461,9 @@ if ($search_all)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
-$moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
-$moreforfilter.= '</div>';*/
+
+
+
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters, $object); // Note that $action and $object may have been modified by hook
