@@ -382,7 +382,7 @@ class User extends CommonObject
 
 				$this->country_id = $obj->country_id;
 				$this->country_code = $obj->country_id ? $obj->country_code : '';
-				//$this->country = $obj->country_id?($langs->trans('Country'.$obj->country_code)!='Country'.$obj->country_code?$langs->transnoentities('Country'.$obj->country_code):$obj->country):'';
+				
 
 				$this->state_id     = $obj->state_id;
 				$this->state_code   = $obj->state_code;
@@ -466,7 +466,7 @@ class User extends CommonObject
 			$sql = "SELECT param, value FROM ".MAIN_DB_PREFIX."user_param";
 			$sql .= " WHERE fk_user = ".$this->id;
 			$sql .= " AND entity = ".$conf->entity;
-			//dol_syslog(get_class($this).'::fetch load personalized conf', LOG_DEBUG);
+			
 			$resql = $this->db->query($sql);
 			if ($resql)
 			{
@@ -508,7 +508,7 @@ class User extends CommonObject
 	{
 		global $conf;
 
-		// Load user->default_values for user. TODO Save this in memcached ?
+		
 		$sql = "SELECT rowid, entity, type, page, param, value";
 		$sql .= " FROM ".MAIN_DB_PREFIX."default_values";
 		$sql .= " WHERE entity IN (".($this->entity > 0 ? $this->entity.", " : "").$conf->entity.")"; // Entity of user (if defined) + current entity
@@ -532,7 +532,7 @@ class User extends CommonObject
 						$pagequeries = $reg[2];
 					}
 					$this->default_values[$pagewithoutquerystring][$obj->type][$pagequeries ? $pagequeries : '_noquery_'][$obj->param] = $obj->value;
-					//if ($pagequeries) $this->default_values[$pagewithoutquerystring][$obj->type.'_queries']=$pagequeries;
+					
 				}
 			}
 			// Sort by key, so _noquery_ is last
@@ -627,7 +627,7 @@ class User extends CommonObject
 		// Ajout des droits trouves grace au critere whereforadd
 		if (!empty($whereforadd))
 		{
-			//print "$module-$perms-$subperms";
+			
 			$sql = "SELECT id";
 			$sql .= " FROM ".MAIN_DB_PREFIX."rights_def";
 			$sql .= " WHERE entity = ".$entity;
@@ -748,7 +748,7 @@ class User extends CommonObject
 		// Suppression des droits selon critere defini dans wherefordel
 		if (!empty($wherefordel))
 		{
-			//print "$module-$perms-$subperms";
+			
 			$sql = "SELECT id";
 			$sql .= " FROM ".MAIN_DB_PREFIX."rights_def";
 			$sql .= " WHERE entity = ".$entity;
