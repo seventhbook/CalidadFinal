@@ -380,7 +380,7 @@ class FormFile
 		$i = 0;
 
 		$out .= "\n".'<!-- Start show_document -->'."\n";
-		//print 'filedir='.$filedir;
+		
 
 		if (preg_match('/massfilesarea_/', $modulepart))
 		{
@@ -867,7 +867,7 @@ class FormFile
 						}
 						if ($printer)
 						{
-							//$out.= '<td class="right">';
+							
 							$out .= '<a class="paddingleft" href="'.$urlsource.(strpos($urlsource, '?') ? '&amp;' : '?').'action=print_file&amp;printer='.$modulepart.'&amp;file='.urlencode($relativepath);
 							$out .= ($param ? '&amp;'.$param : '');
 							$out .= '">'.img_picto($langs->trans("PrintFile", $relativepath), 'printer.png').'</a>';
@@ -937,7 +937,7 @@ class FormFile
 			}
 		}
 		$out .= '<!-- End show_document -->'."\n";
-		//return ($i?$i:$headershown);
+		
 		return $out;
 	}
 
@@ -982,7 +982,7 @@ class FormFile
 		}
 		$file_list = dol_dir_list($filedir, 'files', 0, $filterforfilesearch, '\.meta$|\.png$'); // We also discard .meta and .png preview
 
-		//var_dump($file_list);
+		
 		// For ajax treatment
 		$out .= '<!-- html.formfile::getDocumentsLink -->'."\n";
 		if (!empty($file_list))
@@ -1024,7 +1024,7 @@ class FormFile
 					if ($tmparray && $tmparray['url'])
 					{
 						$tmpout .= '<li><a href="'.$tmparray['url'].'"'.($tmparray['css'] ? ' class="'.$tmparray['css'].'"' : '').($tmparray['mime'] ? ' mime="'.$tmparray['mime'].'"' : '').($tmparray['target'] ? ' target="'.$tmparray['target'].'"' : '').'>';
-						//$tmpout.= img_picto('','detail');
+						
 						$tmpout .= '<i class="fa fa-search-plus paddingright" style="color: gray"></i>';
 						$tmpout .= $langs->trans("Preview").' '.$ext.'</a></li>';
 					}
@@ -1048,7 +1048,7 @@ class FormFile
 		else
 		{
 			// TODO Add link to regenerate doc ?
-			//$out.= '<div id="gen_pdf_'.$modulesubdir.'" class="linkobject hideobject">'.img_picto('', 'refresh').'</div>'."\n";
+			
 		}
 
 		return $out;
@@ -1203,7 +1203,7 @@ class FormFile
 			}
 
 			print '<tr class="liste_titre nodrag nodrop">';
-			//print $url.' sortfield='.$sortfield.' sortorder='.$sortorder;
+			
 			print_liste_field_titre('Documents2', $url, "name", "", $param, '', $sortfield, $sortorder, 'left ');
 			print_liste_field_titre('Size', $url, "size", "", $param, '', $sortfield, $sortorder, 'right ');
 			print_liste_field_titre('Date', $url, "date", "", $param, '', $sortfield, $sortorder, 'center ');
@@ -1218,7 +1218,7 @@ class FormFile
 			{
 				completeFileArrayWithDatabaseInfo($filearray, $relativedir);
 
-				//var_dump($sortfield.' - '.$sortorder);
+				
 				if ($sortfield && $sortorder)	// If $sortfield is for example 'position_name', we will sort on the property 'position_name' (that is concat of position+name)
 				{
 					$filearray = dol_sort_array($filearray, $sortfield, $sortorder);
@@ -1257,7 +1257,7 @@ class FormFile
 					print '">';
 					print img_mime($file['name'], $file['name'].' ('.dol_print_size($file['size'], 0, 0).')', 'inline-block valignbottom paddingright');
 					if ($showrelpart == 1) print $relativepath;
-					//print dol_trunc($file['name'],$maxlength,'middle');
+					
 					if (GETPOST('action', 'aZ09') == 'editfile' && $file['name'] == basename(GETPOST('urlfile', 'alpha')))
 					{
 						print '</a>';
@@ -1307,7 +1307,7 @@ class FormFile
 						        $smallfile = getImageFileNameForSize($file['name'], '_small'); // For new thumbs using same ext (in lower case however) than original
 						    }
 						    if (!dol_is_file($file['path'].'/'.$smallfile)) $smallfile = getImageFileNameForSize($file['name'], '_small', '.png'); // For backward compatibility of old thumbs that were created with filename in lower case and with .png extension
-							//print $file['path'].'/'.$smallfile.'<br>';
+							
 
 							$urlforhref = getAdvancedPreviewUrl($modulepart, $relativepath.$fileinfo['filename'].'.'.strtolower($fileinfo['extension']), 1, '&entity='.(!empty($object->entity) ? $object->entity : $conf->entity));
 							if (empty($urlforhref)) {
@@ -1341,7 +1341,7 @@ class FormFile
 								$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
 								//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
 
-								//print '<span class="opacitymedium">'.$langs->trans("Hash").' : '.$file['share'].'</span>';
+								
 								$forcedownload = 0;
 								$paramlink = '';
 								if (!empty($file['share'])) $paramlink .= ($paramlink ? '&' : '').'hashp='.$file['share']; // Hash for public share
@@ -1352,10 +1352,10 @@ class FormFile
 								print img_picto($langs->trans("FileSharedViaALink"), 'globe').' ';
 								print '<input type="text" class="quatrevingtpercent minwidth200imp" id="downloadlink" name="downloadexternallink" value="'.dol_escape_htmltag($fulllink).'">';
 							}
-							else
-							{
-								//print '<span class="opacitymedium">'.$langs->trans("FileNotShared").'</span>';
-							}
+							
+							
+							
+							
 						}
 					}
 					print '</td>';
@@ -1633,10 +1633,10 @@ class FormFile
 				{
 					preg_match('/(.*)\/[^\/]+$/', $relativefile, $reg); $ref = (isset($reg[1]) ? $reg[1] : '');
 				}
-				else
-				{
-				    //print 'Error: Value for modulepart = '.$modulepart.' is not yet implemented in function list_of_autoecmfiles'."\n";
-				}
+				
+				
+				
+				
 
 				if (!$id && !$ref) continue;
 				$found = 0;
@@ -1646,7 +1646,7 @@ class FormFile
 				}
 				else
 				{
-					//print 'Fetch '.$id." - ".$ref.'<br>';
+					
 
 					if ($id) {
 						$result = $object_instance->fetch($id);
@@ -1674,13 +1674,13 @@ class FormFile
 				if ($found > 0 && is_object($this->cache_objects[$modulepart.'_'.$id.'_'.$ref])) print $this->cache_objects[$modulepart.'_'.$id.'_'.$ref]->getNomUrl(1, 'document');
 				else print $langs->trans("ObjectDeleted", ($id ? $id : $ref));
 
-				//$modulesubdir=dol_sanitizeFileName($ref);
+				
 				$modulesubdir = dirname($relativefile);
 
-				//$filedir=$conf->$modulepart->dir_output . '/' . dol_sanitizeFileName($obj->ref);
+				
 				$filedir = $file['path'];
-				//$urlsource=$_SERVER['PHP_SELF'].'?id='.$obj->rowid;
-				//print $formfile->getDocumentsLink($modulepart, $filename, $filedir);
+				
+			
 
 				print '</td>';
 
@@ -1694,19 +1694,19 @@ class FormFile
 				print dol_trunc($file['name'], $maxlength, 'middle');
 				print '</a>';
 
-				//print $this->getDocumentsLink($modulepart, $modulesubdir, $filedir, '^'.preg_quote($file['name'],'/').'$');
+				
 				print $this->showPreview($file, $modulepart, $file['relativename']);
 
 				print "</td>\n";
 				print '<td class="right">'.dol_print_size($file['size'], 1, 1).'</td>';
 				print '<td class="center">'.dol_print_date($file['date'], "dayhour").'</td>';
 				print '<td class="right">';
-				//if (! empty($useinecm) && $useinecm != 6)  print '<a data-ajax="false" href="'.DOL_URL_ROOT.'/document.php?modulepart='.$modulepart;
-				//if ($forcedownload) print '&attachment=1';
-				//print '&file='.urlencode($relativefile).'">';
-				//print img_view().'</a> &nbsp; ';
-				//if ($permissiontodelete) print '<a href="'.$url.'?id='.$object->id.'&section='.$_REQUEST["section"].'&action=delete&urlfile='.urlencode($file['name']).'">'.img_delete().'</a>';
-				//else print '&nbsp;';
+				
+				
+				
+				
+				
+				
 				print "</td></tr>\n";
 			}
 		}
@@ -1924,10 +1924,10 @@ class FormFile
 			if (count($urladvancedpreview))
 			{
 				$out .= '<a class="pictopreview '.$urladvancedpreview['css'].'" href="'.$urladvancedpreview['url'].'"'.(empty($urladvancedpreview['mime']) ? '' : ' mime="'.$urladvancedpreview['mime'].'"').' '.(empty($urladvancedpreview['target']) ? '' : ' target="'.$urladvancedpreview['target'].'"').'>';
-				//$out.= '<a class="pictopreview">';
+				
 				if (empty($ruleforpicto))
 				{
-					//$out.= img_picto($langs->trans('Preview').' '.$file['name'], 'detail');
+					
 					$out .= '<span class="fa fa-search-plus" style="color: gray"></span>';
 				}
 				else $out .= img_mime($relativepath, $langs->trans('Preview').' '.$file['name']);
