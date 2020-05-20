@@ -142,7 +142,7 @@ class Parsedown
                 foreach ($parts as $part)
                 {
                 	// @CHANGE LDR Fix when mb_strlen is not available
-                	//$shortage = 4 - mb_strlen($line, 'utf-8') % 4;
+                	
                 	if (function_exists('mb_strlen')) $len = mb_strlen($line, 'utf-8');
                 	else $len = strlen($line);
                 	$shortage = 4 - $len % 4;
@@ -1436,7 +1436,7 @@ class Parsedown
             if (isset($Element['handler']))
             {
             	// @CHANGE LDR
-            	//$markup .= $this->{$Element['handler']}($Element['text']);
+            	
             	$markup .= preg_replace('/>{[^}]+}/', '>', $this->{$Element['handler']}($Element['text']));
             }
             else
