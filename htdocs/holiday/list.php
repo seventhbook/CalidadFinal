@@ -61,7 +61,7 @@ $childids = $user->getAllChildIds(1);
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
 $result = restrictedArea($user, 'holiday', '', '');
@@ -346,7 +346,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 $sql .= $db->plimit($limit + 1, $offset);
 
 
-//print $sql;
+
 $resql = $db->query($sql);
 if ($resql)
 {
@@ -543,7 +543,7 @@ if ($resql)
 			foreach ($typeleaves as $key => $val)
 			{
 				$labeltoshow = ($langs->trans($val['code']) != $val['code'] ? $langs->trans($val['code']) : $val['label']);
-				//$labeltoshow .= ($val['delay'] > 0 ? ' ('.$langs->trans("NoticePeriod").': '.$val['delay'].' '.$langs->trans("days").')':'');
+				
 				$arraytypeleaves[$val['rowid']] = $labeltoshow;
 			}
 			print $form->selectarray('search_type', $arraytypeleaves, $search_type, 1);
