@@ -58,7 +58,7 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
+
 //if (! $sortorder) $sortorder="DESC";
 
 // Initialize technical objects
@@ -80,10 +80,10 @@ if (!$sortorder) $sortorder = "ASC";
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'emailcollector', $id, '');
+
 
 // Initialize array of search criterias
 $search_all = trim(GETPOST("search_all", 'alpha'));
@@ -172,7 +172,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_EmailCollector|FR:Module_EmailCollector_FR|ES:Módulo_EmailCollector";
+
 $help_url = '';
 $title = $langs->trans('ListOf', $langs->transnoentitiesnoconv("EmailCollector"));
 
@@ -213,7 +213,7 @@ $sql .= $hookmanager->resPrint;
 /* If a group by is required
 $sql.= " GROUP BY "
 foreach($object->fields as $key => $val)
-{
+
 	$sql.='t.'.$key.', ';
 }
 // Add fields from extrafields
@@ -325,14 +325,14 @@ $linkback = '<a href="'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_valu
 
 $newcardbutton = '';
 //if ($user->rights->emailcollector->creer)
-//{
+
 $newcardbutton .= dolGetButtonTitle($langs->trans('New'), '', 'fa fa-plus-circle', 'emailcollector_card.php?action=create&backtopage='.urlencode($_SERVER['PHP_SELF']));
-//}
+
 
 print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $massactionbutton, $num, $nbtotalofrecords, 'title_companies', 0, $newcardbutton.' '.$linkback, '', $limit);
 
 // Add code for pre mass action (confirmation or email presend form)
-/*$topicmail="";
+/*
 $modelmail="";
 $objecttmp=new EmailCollector($db);
 $trackid='xxxx'.$object->id;*/
@@ -345,7 +345,7 @@ if ($sall)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
+/*
 $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
 $moreforfilter.= '</div>';*/
 
