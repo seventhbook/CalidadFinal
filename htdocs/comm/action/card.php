@@ -101,7 +101,7 @@ if ($id > 0 && $action != 'add') {
 // fetch optionals attributes and labels
 $extrafields->fetch_name_optionals_label($object->table_element);
 
-//var_dump($_POST);
+
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('actioncard', 'globalcard'));
@@ -127,7 +127,7 @@ if (empty($reshook) && (GETPOST('removedassigned') || GETPOST('removedassigned')
 	{
 		if ($val['id'] == $idtoremove || $val['id'] == -1) unset($tmpassigneduserids[$key]);
 	}
-	//var_dump($_POST['removedassigned']);exit;
+	
 	$_SESSION['assignedtouser'] = json_encode($tmpassigneduserids);
 	$donotclearsession = 1;
 	if ($action == 'add') $action = 'create';
@@ -161,7 +161,7 @@ if (empty($reshook) && (GETPOST('addassignedtouser') || GETPOST('updateassignedt
 if (empty($reshook) && $action == 'classin' && ($user->rights->agenda->allactions->create ||
     (($object->authorid == $user->id || $object->userownerid == $user->id) && $user->rights->agenda->myactions->create)))
 {
-    //$object->fetch($id);
+    
     $object->setProject(GETPOST('projectid', 'int'));
 }
 
@@ -175,7 +175,7 @@ if (empty($reshook) && $action == 'confirm_clone' && $confirm == 'yes')
 	else
 	{
 		if ($id > 0) {
-			//$object->fetch($id);
+			
             if (!empty($object->socpeopleassigned)) {
                 reset($object->socpeopleassigned);
                 $object->contactid = key($object->socpeopleassigned);
@@ -499,7 +499,7 @@ if (empty($reshook) && $action == 'update')
 		}
 
 		$object->transparency = $transparency; // We set transparency on event (even if we can also store it on each user, standard says this property is for event)
-		// TODO store also transparency on owner user
+		
 
 		if (!empty($conf->global->AGENDA_ENABLE_DONEBY))
 		{
@@ -647,7 +647,7 @@ if (empty($reshook) && $action == 'confirm_delete' && GETPOST("confirm") == 'yes
 
 /*
  * Action move update, used when user move an event in calendar by drag'n drop
- * TODO Move this into page comm/action/index that trigger this call by the drag and drop of event.
+ 
  */
 if (empty($reshook) && GETPOST('actionmove', 'alpha') == 'mupdate')
 {
@@ -1396,12 +1396,12 @@ if ($id > 0)
 		print '<div class="assignedtouser">';
 		print $form->select_dolusers_forevent(($action == 'create' ? 'add' : 'update'), 'assignedtouser', 1, '', 0, '', '', 0, 0, 0, 'AND u.statut != 0', 1, $listofuserid, $listofcontactid, $listofotherid);
 		print '</div>';
-		/*if (in_array($user->id,array_keys($listofuserid)))
-		{
-			print '<div class="myavailability">';
-			print $langs->trans("MyAvailability").':  <input id="transparency" type="checkbox" name="transparency"'.($listofuserid[$user->id]['transparency']?' checked':'').'>'.$langs->trans("Busy");
-			print '</div>';
-		}*/
+		
+		
+		
+			
+			
+
 		print '</td></tr>';
 
 		// Realised by
@@ -1428,8 +1428,8 @@ if ($id > 0)
 			print '<div class="maxwidth200onsmartphone">';
 			$events = array(); // 'method'=parameter action of url, 'url'=url to call that return new list of contacts
 			$events[] = array('method' => 'getContacts', 'url' => dol_buildpath('/core/ajax/contacts.php?showempty=1', 1), 'htmlname' => 'contactid', 'params' => array('add-customer-contact' => 'disabled'));
-			// TODO Refresh also list of project if $conf->global->PROJECT_ALLOW_TO_LINK_FROM_OTHER_COMPANY not defined with list linked to socid ?
-			// FIXME If we change company, we may get a project that does not match
+			
+	
 			print $form->select_company($object->socid, 'socid', '', 'SelectThirdParty', 1, 0, $events, 0, 'minwidth200');
 			print '</div>';
 			print '</td></tr>';
@@ -1569,16 +1569,16 @@ if ($id > 0)
 		$linkback.=img_picto($langs->trans("ViewPerUser"), 'object_calendarperuser', 'class="hideonsmartphone pictoactionview"');
 		$linkback.='<a href="'.DOL_URL_ROOT.'/comm/action/peruser.php?action=show_peruser&year='.dol_print_date($object->datep, '%Y').'&month='.dol_print_date($object->datep, '%m').'&day='.dol_print_date($object->datep, '%d').'">'.$langs->trans("ViewPerUser").'</a>';
 
-		//$linkback.=$out;
+		
 
 		$morehtmlref='<div class="refidno">';
 		// Thirdparty
-		//$morehtmlref.='<br>'.$langs->trans('ThirdParty') . ' : ' . $object->thirdparty->getNomUrl(1);
+		
 		// Project
 		if (! empty($conf->projet->enabled))
 		{
 		    $langs->load("projects");
-		    //$morehtmlref.='<br>'.$langs->trans('Project') . ' ';
+		    
 		    $morehtmlref.=$langs->trans('Project') . ' ';
     		if ($user->rights->agenda->allactions->create ||
 	       	    (($object->authorid == $user->id || $object->userownerid == $user->id) && $user->rights->agenda->myactions->create))
@@ -1587,7 +1587,7 @@ if ($id > 0)
 					$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
                 }
                 if ($action == 'classify') {
-                    //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+              
                     $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                     $morehtmlref.='<input type="hidden" name="action" value="classin">';
                     $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -1693,16 +1693,16 @@ if ($id > 0)
 		print '<div class="assignedtouser">';
 		print $form->select_dolusers_forevent('view', 'assignedtouser', 1, '', 0, '', '', 0, 0, 0, '', ($object->datep != $object->datef) ? 1 : 0, $listofuserid, $listofcontactid, $listofotherid);
 		print '</div>';
-		/*
-		if ($object->datep != $object->datef && in_array($user->id,array_keys($listofuserid)))
-		{
-			//var_dump($object->userassigned);
-			//var_dump($listofuserid);
-			print '<div class="myavailability">';
-			print $langs->trans("MyAvailability").': '.(($object->userassigned[$user->id]['transparency'] > 0)?$langs->trans("Busy"):$langs->trans("Available"));	// We show nothing if event is assigned to nobody
-			print '</div>';
-		}
-		*/
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
 		print '	</td></tr>';
 
 		// Done by
