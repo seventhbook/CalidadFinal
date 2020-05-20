@@ -252,7 +252,7 @@ if ($action == 'setprofid')
 	$idprof = "SOCIETE_".$value."_UNIQUE";
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
-		//header("Location: ".$_SERVER["PHP_SELF"]);
+		
 		//exit;
 	}
 	else
@@ -269,7 +269,7 @@ if ($action == 'setprofidmandatory')
 	$idprof = "SOCIETE_".$value."_MANDATORY";
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
-		//header("Location: ".$_SERVER["PHP_SELF"]);
+		
 		//exit;
 	}
 	else
@@ -286,7 +286,7 @@ if ($action == 'setprofidinvoicemandatory')
 	$idprof = "SOCIETE_".$value."_INVOICE_MANDATORY";
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
-		//header("Location: ".$_SERVER["PHP_SELF"]);
+		
 		//exit;
 	}
 	else
