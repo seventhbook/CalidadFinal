@@ -289,7 +289,6 @@ if (!GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'aZ
         // Script for 2.8
         $afterversionarray = explode('.', '2.7.9');
         $beforeversionarray = explode('.', '2.8.9');
-        //print $versionto.' '.versioncompare($versiontoarray,$afterversionarray).' '.versioncompare($versiontoarray,$beforeversionarray);
         if (versioncompare($versiontoarray, $afterversionarray) >= 0 && versioncompare($versiontoarray, $beforeversionarray) <= 0)
         {
             migrate_price_facture($db, $langs, $conf); // Code of this function works for 2.8+ because need a field tva_tx
@@ -772,12 +771,10 @@ function migrate_paiements_orphelins_1($db, $langs, $conf)
                 $sql .= " WHERE f.fk_statut in (2,3) AND fk_soc = ".$row[$i]['socid']." AND total_ttc = ".$row[$i]['pamount'];
                 $sql .= " AND pf.fk_facture IS NULL";
                 $sql .= " ORDER BY f.fk_statut";
-                //print $sql.'<br>';
                 $resql = $db->query($sql);
                 if ($resql)
                 {
                     $num = $db->num_rows($resql);
-                    //print 'Nb of invoice found for this amount and company :'.$num.'<br>';
                     if ($num >= 1)
                     {
                         $obj = $db->fetch_object($resql);
@@ -900,12 +897,10 @@ function migrate_paiements_orphelins_2($db, $langs, $conf)
                 $sql .= " WHERE f.fk_statut in (2,3) AND fk_soc = ".$row[$i]['socid']." AND total_ttc = ".$row[$i]['pamount'];
                 $sql .= " AND pf.fk_facture IS NULL";
                 $sql .= " ORDER BY f.fk_statut";
-                //print $sql.'<br>';
                 $resql = $db->query($sql);
                 if ($resql)
                 {
                     $num = $db->num_rows($resql);
-                    //print 'Nb of invoice found for this amount and company :'.$num.'<br>';
                     if ($num >= 1)
                     {
                         $obj = $db->fetch_object($resql);
@@ -997,7 +992,6 @@ function migrate_contracts_det($db, $langs, $conf)
     if ($resql)
     {
         $i = 0;
-        $row = array();
         $num = $db->num_rows($resql);
 
         if ($num)
@@ -1040,7 +1034,6 @@ function migrate_contracts_det($db, $langs, $conf)
 
             if (!$nberr)
             {
-                //      $db->rollback();
                 $db->commit();
                 print $langs->trans('MigrationSuccessfullUpdate')."<br>";
             }
@@ -1058,7 +1051,6 @@ function migrate_contracts_det($db, $langs, $conf)
     else
     {
         print $langs->trans('MigrationContractsFieldDontExist')."<br>\n";
-        //    dol_print_error($db);
     }
 
     print '</td></tr>';
@@ -1093,7 +1085,6 @@ function migrate_links_transfert($db, $langs, $conf)
     if ($resql)
     {
         $i = 0;
-        $row = array();
         $num = $db->num_rows($resql);
 
         if ($num)
@@ -1126,7 +1117,6 @@ function migrate_links_transfert($db, $langs, $conf)
 
             if (!$nberr)
             {
-                //      $db->rollback();
                 $db->commit();
                 print $langs->trans('MigrationSuccessfullUpdate')."<br>";
             }
@@ -1191,7 +1181,6 @@ function migrate_contracts_date2($db, $langs, $conf)
 {
     print '<tr><td colspan="4">';
 
-    $nberr = 0;
 
     print '<br>';
     print '<b>'.$langs->trans('MigrationContractsInvalidDatesUpdate')."</b><br>\n";
@@ -1207,7 +1196,6 @@ function migrate_contracts_date2($db, $langs, $conf)
     if ($resql)
     {
         $i = 0;
-        $row = array();
         $num = $db->num_rows($resql);
 
         if ($num)
@@ -1479,7 +1467,6 @@ function migrate_price_facture($db, $langs, $conf)
     $sql .= " FROM ".MAIN_DB_PREFIX."facturedet as fd, ".MAIN_DB_PREFIX."facture as f";
     $sql .= " WHERE fd.fk_facture = f.rowid";
     $sql .= " AND (((fd.total_ttc = 0 AND fd.remise_percent != 100) or fd.total_ttc IS NULL) or f.total_ttc IS NULL)";
-    //print $sql;
 
     dolibarr_install_syslog("upgrade2::migrate_price_facture");
     $resql = $db->query($sql);
@@ -1530,7 +1517,6 @@ function migrate_price_facture($db, $langs, $conf)
                     {
                         if ($facture->update_price() > 0)
                         {
-                            //print $facture->id;
                         }
                         else
                         {
@@ -1634,26 +1620,6 @@ function migrate_price_propal($db, $langs, $conf)
                 print ". ";
                 $propalligne->update_total();
 
-
-                /* On touche pas a propal mere
-                 $propal = new Propal($db);
-                 $propal->id=$obj->rowid;
-                 if ( $propal->fetch($propal->id) >= 0 )
-                 {
-                 if ( $propal->update_price() > 0 )
-                 {
-                 print ". ";
-                 }
-                 else
-                 {
-                 print "Error id=".$propal->id;
-                 }
-                 }
-                 else
-                 {
-                 print "Error #3";
-                 }
-                 */
                 $i++;
             }
         }
@@ -1831,25 +1797,6 @@ function migrate_price_commande($db, $langs, $conf)
                 print ". ";
                 $commandeligne->update_total();
 
-                /* On touche pas a facture mere
-                 $commande = new Commande($db);
-                 $commande->id = $obj->rowid;
-                 if ( $commande->fetch($commande->id) >= 0 )
-                 {
-                 if ( $commande->update_price() > 0 )
-                 {
-                 print ". ";
-                 }
-                 else
-                 {
-                 print "Error id=".$commande->id;
-                 }
-                 }
-                 else
-                 {
-                 print "Error #3";
-                 }
-                 */
                 $i++;
             }
         }
@@ -1859,16 +1806,6 @@ function migrate_price_commande($db, $langs, $conf)
         }
 
         $db->free($resql);
-
-        /*
-         $sql = "DELETE FROM ".MAIN_DB_PREFIX."commandedet";
-         $sql.= " WHERE price = 0 and total_ttc = 0 and total_tva = 0 and total_ht = 0 AND remise_percent = 0";
-         $resql=$db->query($sql);
-         if (! $resql)
-         {
-         dol_print_error($db);
-         }
-         */
 
         $db->commit();
     }
@@ -1947,26 +1884,6 @@ function migrate_price_commande_fournisseur($db, $langs, $conf)
                 dolibarr_install_syslog("upgrade2: Line ".$rowid.": commandeid=".$obj->rowid." pu=".$pu."  qty=".$qty." vatrate=".$vatrate." remise_percent=".$remise_percent." remise_global=".$remise_percent_global." -> ".$total_ht.", ".$total_tva.", ".$total_ttc);
                 print ". ";
                 $commandeligne->update_total();
-
-                /* On touche pas a facture mere
-                 $commande = new Commande($db);
-                 $commande->id = $obj->rowid;
-                 if ( $commande->fetch($commande->id) >= 0 )
-                 {
-                 if ( $commande->update_price() > 0 )
-                 {
-                 print ". ";
-                 }
-                 else
-                 {
-                 print "Error id=".$commande->id;
-                 }
-                 }
-                 else
-                 {
-                 print "Error #3";
-                 }
-                 */
                 $i++;
             }
         }
@@ -1976,16 +1893,6 @@ function migrate_price_commande_fournisseur($db, $langs, $conf)
         }
 
         $db->free($resql);
-
-        /*
-         $sql = "DELETE FROM ".MAIN_DB_PREFIX."commande_fournisseurdet";
-         $sql.= " WHERE subprice = 0 and total_ttc = 0 and total_tva = 0 and total_ht = 0";
-         $resql=$db->query($sql);
-         if (! $resql)
-         {
-         dol_print_error($db);
-         }
-         */
 
         $db->commit();
     }
@@ -2011,8 +1918,6 @@ function migrate_price_commande_fournisseur($db, $langs, $conf)
  */
 function migrate_modeles($db, $langs, $conf)
 {
-    //print '<br>';
-    //print '<b>'.$langs->trans('UpdateModelsTable')."</b><br>\n";
 
     dolibarr_install_syslog("upgrade2::migrate_modeles");
 
@@ -2054,8 +1959,6 @@ function migrate_modeles($db, $langs, $conf)
             if (!$resql) dol_print_error($db);
         }
     }
-
-    //print $langs->trans("AlreadyDone");
 }
 
 
@@ -2393,6 +2296,7 @@ function migrate_stocks($db, $langs, $conf)
                 $resql2 = $db->query($sql);
                 if ($resql2)
                 {
+			// This if do not anything
                 }
                 else
                 {
@@ -2469,6 +2373,7 @@ function migrate_menus($db, $langs, $conf)
                     $resql2 = $db->query($sql);
                     if ($resql2)
                     {
+			    // This if do not anything
                     }
                     else
                     {
@@ -2652,7 +2557,6 @@ function migrate_restore_missing_links($db, $langs, $conf)
                     $error++;
                     dol_print_error($db);
                 }
-                //print ". ";
                 $i++;
             }
         }
@@ -2717,7 +2621,6 @@ function migrate_restore_missing_links($db, $langs, $conf)
                     $error++;
                     dol_print_error($db);
                 }
-                //print ". ";
                 $i++;
             }
         }
@@ -3496,12 +3399,6 @@ function migrate_actioncomm_element($db, $langs, $conf)
 			if ($resql)
 			{
 				$db->commit();
-
-				// DDL commands must not be inside a transaction
-				// We will drop at next version because a migrate should be runnable several times if it fails.
-				//$sqlDrop = "ALTER TABLE ".MAIN_DB_PREFIX."actioncomm DROP COLUMN ".$field;
-				//$db->query($sqlDrop);
-				//print ". ";
 			}
 			else
 			{
@@ -3764,19 +3661,6 @@ function migrate_categorie_association($db, $langs, $conf)
 
 			if (!$error)
 			{
-				// TODO DROP table in the next release
-				/*
-				$sqlDrop = "DROP TABLE ".MAIN_DB_PREFIX."categorie_association";
-				if ($db->query($sqlDrop))
-				{
-					$db->commit();
-				}
-				else
-				{
-					$db->rollback();
-				}
-				*/
-
 				$db->commit();
 			}
 			else
@@ -3824,7 +3708,6 @@ function migrate_event_assignement($db, $langs, $conf)
 	$sqlSelect .= " LEFT JOIN ".MAIN_DB_PREFIX."actioncomm_resources as ar ON ar.fk_actioncomm = a.id AND ar.element_type = 'user' AND ar.fk_element = a.fk_user_action";
 	$sqlSelect .= " WHERE fk_user_action > 0 AND fk_user_action NOT IN (SELECT fk_element FROM ".MAIN_DB_PREFIX."actioncomm_resources as ar WHERE ar.fk_actioncomm = a.id AND ar.element_type = 'user')";
 	$sqlSelect .= " ORDER BY a.id";
-	//print $sqlSelect;
 
 	$resql = $db->query($sqlSelect);
 	if ($resql)
@@ -3901,7 +3784,6 @@ function migrate_event_assignement_contact($db, $langs, $conf)
 	$sqlSelect .= " LEFT JOIN ".MAIN_DB_PREFIX."actioncomm_resources as ar ON ar.fk_actioncomm = a.id AND ar.element_type = 'socpeople' AND ar.fk_element = a.fk_contact";
 	$sqlSelect .= " WHERE fk_contact > 0 AND fk_contact NOT IN (SELECT fk_element FROM ".MAIN_DB_PREFIX."actioncomm_resources as ar WHERE ar.fk_actioncomm = a.id AND ar.element_type = 'socpeople')";
 	$sqlSelect .= " ORDER BY a.id";
-	//print $sqlSelect;
 
 	$resql = $db->query($sqlSelect);
 	if ($resql)
@@ -3980,9 +3862,7 @@ function migrate_reset_blocked_log($db, $langs, $conf)
 
 	$sqlSelect = "SELECT DISTINCT entity";
 	$sqlSelect .= " FROM ".MAIN_DB_PREFIX."blockedlog";
-
-	//print $sqlSelect;
-
+	
 	$resql = $db->query($sqlSelect);
 	if ($resql)
 	{
@@ -4002,7 +3882,6 @@ function migrate_reset_blocked_log($db, $langs, $conf)
 				if ($resqlSearch)
 				{
 					$objSearch = $db->fetch_object($resqlSearch);
-					//var_dump($objSearch);
 					if ($objSearch && $objSearch->nb == 0)
 					{
 						print ' - Record for entity must be reset...';
@@ -4096,8 +3975,6 @@ function migrate_remise_entity($db, $langs, $conf)
 	$sqlSelect .= " FROM ".MAIN_DB_PREFIX."societe_remise as sr, ".MAIN_DB_PREFIX."societe as s";
 	$sqlSelect .= " WHERE sr.fk_soc = s.rowid and sr.entity != s.entity";
 
-	//print $sqlSelect;
-
 	$resql = $db->query($sqlSelect);
 	if ($resql)
 	{
@@ -4171,7 +4048,6 @@ function migrate_remise_except_entity($db, $langs, $conf)
 
 	$sqlSelect = "SELECT sr.rowid, sr.fk_soc, sr.fk_facture_source, sr.fk_facture, sr.fk_facture_line";
 	$sqlSelect .= " FROM ".MAIN_DB_PREFIX."societe_remise_except as sr";
-	//print $sqlSelect;
 
 	$resql = $db->query($sqlSelect);
 	if ($resql)
@@ -4283,7 +4159,6 @@ function migrate_user_rights_entity($db, $langs, $conf)
 	$sqlSelect = "SELECT u.rowid, u.entity";
 	$sqlSelect .= " FROM ".MAIN_DB_PREFIX."user as u";
 	$sqlSelect .= " WHERE u.entity > 1";
-	//print $sqlSelect;
 
 	$resql = $db->query($sqlSelect);
 	if ($resql)
@@ -4359,7 +4234,6 @@ function migrate_usergroup_rights_entity($db, $langs, $conf)
 	$sqlSelect = "SELECT u.rowid, u.entity";
 	$sqlSelect .= " FROM ".MAIN_DB_PREFIX."usergroup as u";
 	$sqlSelect .= " WHERE u.entity > 1";
-	//print $sqlSelect;
 
 	$resql = $db->query($sqlSelect);
 	if ($resql)
@@ -4502,7 +4376,6 @@ function migrate_delete_old_files($db, $langs, $conf)
     );
 
     foreach ($filetodeletearray as $filetodelete) {
-        //print '<b>'DOL_DOCUMENT_ROOT.$filetodelete."</b><br>\n";
         $result = 1;
         if (file_exists(DOL_DOCUMENT_ROOT.$filetodelete)) {
             $result = dol_delete_file(DOL_DOCUMENT_ROOT.$filetodelete, 0, 0, 0, null, true, false);
@@ -4510,9 +4383,7 @@ function migrate_delete_old_files($db, $langs, $conf)
                 $langs->load("errors");
                 print '<div class="error">'.$langs->trans("Error").': '.$langs->trans("ErrorFailToDeleteFile", DOL_DOCUMENT_ROOT.$filetodelete);
                 print ' '.$langs->trans("RemoveItManuallyAndPressF5ToContinue").'</div>';
-            } else {
-                //print $langs->trans("FileWasRemoved", $filetodelete).'<br>';
-            }
+            } 
         }
     }
     return $result;
@@ -4539,7 +4410,6 @@ function migrate_delete_old_dir($db, $langs, $conf)
     );
 
     foreach ($filetodeletearray as $filetodelete) {
-        //print '<b>'.$filetodelete."</b><br>\n";
         if (file_exists($filetodelete)) {
             $result = dol_delete_dir_recursive($filetodelete);
         }
@@ -4593,7 +4463,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modApi.class.php';
 			if ($res) {
 				$mod = new modApi($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4633,7 +4502,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modProduct.class.php';
 			if ($res) {
 				$mod = new modProduct($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4643,7 +4511,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modService.class.php';
 			if ($res) {
 				$mod = new modService($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4653,7 +4520,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modCommande.class.php';
 			if ($res) {
 				$mod = new modCommande($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4663,7 +4529,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modFacture.class.php';
 			if ($res) {
 				$mod = new modFacture($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4673,7 +4538,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modFournisseur.class.php';
 			if ($res) {
 				$mod = new modFournisseur($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4693,7 +4557,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modDeplacement.class.php';
 			if ($res) {
 				$mod = new modDeplacement($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4703,7 +4566,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 			$res = @include_once DOL_DOCUMENT_ROOT.'/core/modules/modDon.class.php';
 			if ($res) {
 				$mod = new modDon($db);
-				//$mod->remove('noboxes');
 				$mod->init($reloadmode);
 			}
 		}
@@ -4760,7 +4622,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 		else
 		{
 			$reg = array();
-			$tmp = preg_match('/MAIN_MODULE_([a-zA-Z0-9]+)/', $moduletoreload, $reg);
 			if (!empty($reg[1]))
 			{
 				if (strtoupper($moduletoreload) == $moduletoreload)	// If key is un uppercase
@@ -4776,7 +4637,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 				if ($res) {
 					$classname = 'mod'.$moduletoreloadshort;
 					$mod = new $classname($db);
-					//$mod->remove('noboxes');
 					$mod->init($reloadmode);
 				}
 				else
@@ -4787,7 +4647,6 @@ function migrate_reload_modules($db, $langs, $conf, $listofmodule = array(), $fo
 					if ($res) {
 						$classname = 'mod'.$moduletoreloadshort;
 						$mod = new $classname($db);
-						//$mod->remove('noboxes');
 						$mod->init($reloadmode);
 					}
 					else
@@ -4843,7 +4702,6 @@ function migrate_reload_menu($db, $langs, $conf, $versionto)
     {
         print '<tr><td colspan="4">';
 
-        //print "x".$key;
         print '<br>';
         print '<b>'.$langs->trans('Upgrade').'</b>: '.$langs->trans('MenuHandler')." ".$key."<br>\n";
 
@@ -4884,17 +4742,16 @@ function migrate_user_photospath()
 		while ($obj = $db->fetch_object($resql))
 		{
 			$fuser->fetch($obj->uid);
-			//echo '<hr>'.$fuser->id.' -> '.$fuser->entity;
+
 			$entity = (empty($fuser->entity) ? 1 : $fuser->entity);
 			if ($entity > 1) {
 				$dir = DOL_DATA_ROOT.'/'.$entity.'/users';
 			} else {
-				$dir = $conf->user->multidir_output[$entity]; // $conf->user->multidir_output[] for each entity is construct by the multicompany module
+				$dir = $conf->user->multidir_output[$entity];
 			}
 
 			if ($dir)
 			{
-				//print "Process user id ".$fuser->id."<br>\n";
 				$origin = $dir.'/'.get_exdir($fuser->id, 2, 0, 1, $fuser, 'user'); // Use old behaviour to get x/y path
 				$destin = $dir.'/'.$fuser->id;
 
@@ -4902,7 +4759,6 @@ function migrate_user_photospath()
 
 				dol_mkdir($destin);
 
-				//echo '<hr>'.$origin.' -> '.$destin;
 				if (dol_is_dir($origin))
 				{
 					$handle = opendir($origin_osencoded);
@@ -4924,23 +4780,18 @@ function migrate_user_photospath()
 					    				{
 					    					if ($thumb == '.' || $thumb == '..') continue;
 
-					    					//print $origin.'/'.$file.'/'.$thumb.' -> '.$destin.'/'.$file.'/'.$thumb.'<br>'."\n";
 					    					print '.';
 					    					dol_copy($origin.'/'.$file.'/'.$thumb, $destin.'/'.$file.'/'.$thumb, 0, 0);
-					    					//var_dump('aaa');exit;
 					    				}
 					    			}
-									// dol_delete_dir($origin.'/'.$file);
 			        			}
 			    			}
 			    			else								// it is a file
 			    			{
 			    				if (!dol_is_file($destin.'/'.$file))
 			    				{
-			    					//print $origin.'/'.$file.' -> '.$destin.'/'.$file.'<br>'."\n";
 			    					print '.';
 			    					dol_copy($origin.'/'.$file, $destin.'/'.$file, 0, 0);
-			    					//var_dump('eee');exit;
 			    				}
 			    			}
 			    		}
@@ -4955,10 +4806,6 @@ function migrate_user_photospath()
 
 
 /* A faire egalement: Modif statut paye et fk_facture des factures payes completement
-
-On recherche facture incorrecte:
-select f.rowid, f.total_ttc as t1, sum(pf.amount) as t2 from llx_facture as f, llx_paiement_facture as pf where pf.fk_facture=f.rowid and f.fk_statut in(2,3) and paye=0 and close_code is null group by f.rowid
-having  f.total_ttc = sum(pf.amount)
 
 On les corrige:
 update llx_facture set paye=1, fk_statut=2 where close_code is null
@@ -4988,7 +4835,6 @@ function migrate_users_socialnetworks()
     $sql .= " OR googleplus IS NOT NULL OR googleplus <> ''";
     $sql .= " OR youtube IS NOT NULL OR youtube <> ''";
     $sql .= " OR whatsapp IS NOT NULL OR whatsapp <> ''";
-    //print $sql;
     $resql = $db->query($sql);
     if ($resql) {
         while ($obj = $db->fetch_object($resql)) {
@@ -5035,7 +4881,6 @@ function migrate_users_socialnetworks()
             $sqlupd.= ', youtube=null';
             $sqlupd.= ', whatsapp=null';
             $sqlupd.= ' WHERE rowid='.$obj->rowid;
-            //print $sqlupd."<br>";
             $resqlupd = $db->query($sqlupd);
             if (! $resqlupd) {
                 dol_print_error($db);
@@ -5079,7 +4924,6 @@ function migrate_members_socialnetworks()
     $sql .= " OR googleplus IS NOT NULL OR googleplus <> ''";
     $sql .= " OR youtube IS NOT NULL OR youtube <> ''";
     $sql .= " OR whatsapp IS NOT NULL OR whatsapp <> ''";
-    //print $sql;
     $resql = $db->query($sql);
     if ($resql) {
         while ($obj = $db->fetch_object($resql)) {
@@ -5126,7 +4970,6 @@ function migrate_members_socialnetworks()
             $sqlupd.= ', youtube=null';
             $sqlupd.= ', whatsapp=null';
             $sqlupd.= ' WHERE rowid='.$obj->rowid;
-            //print $sqlupd."<br>";
             $resqlupd = $db->query($sqlupd);
             if (! $resqlupd) {
                 dol_print_error($db);
@@ -5170,7 +5013,6 @@ function migrate_contacts_socialnetworks()
     $sql .= " OR googleplus IS NOT NULL OR googleplus <> ''";
     $sql .= " OR youtube IS NOT NULL OR youtube <> ''";
     $sql .= " OR whatsapp IS NOT NULL OR whatsapp <> ''";
-    //print $sql;
     $resql = $db->query($sql);
     if ($resql) {
         while ($obj = $db->fetch_object($resql)) {
@@ -5221,7 +5063,6 @@ function migrate_contacts_socialnetworks()
             $sqlupd.= ', youtube=null';
             $sqlupd.= ', whatsapp=null';
             $sqlupd.= ' WHERE rowid='.$obj->rowid;
-            //print $sqlupd."<br>";
             $resqlupd = $db->query($sqlupd);
             if (! $resqlupd) {
                 dol_print_error($db);
@@ -5264,7 +5105,6 @@ function migrate_thirdparties_socialnetworks()
     $sql .= " OR googleplus IS NOT NULL OR googleplus <> ''";
     $sql .= " OR youtube IS NOT NULL OR youtube <> ''";
     $sql .= " OR whatsapp IS NOT NULL OR whatsapp <> ''";
-    //print $sql;
     $resql = $db->query($sql);
     if ($resql) {
         while ($obj = $db->fetch_object($resql)) {
@@ -5311,7 +5151,6 @@ function migrate_thirdparties_socialnetworks()
             $sqlupd.= ', youtube=null';
             $sqlupd.= ', whatsapp=null';
             $sqlupd.= ' WHERE rowid='.$obj->rowid;
-            //print $sqlupd."<br>";
             $resqlupd = $db->query($sqlupd);
             if (! $resqlupd) {
                 dol_print_error($db);
