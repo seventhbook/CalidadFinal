@@ -119,9 +119,9 @@ $arrayfields = array(
  * Actions
  */
 
-$usercanread = (($user->rights->stock->mouvement->lire));
-$usercancreate = (($user->rights->stock->mouvement->creer));
-$usercandelete = (($user->rights->stock->mouvement->supprimer));
+$usercanread = ($user->rights->stock->mouvement->lire);
+$usercancreate = ($user->rights->stock->mouvement->creer);
+$usercandelete = ($user->rights->stock->mouvement->supprimer);
 
 if (GETPOST('cancel', 'alpha')) { $action = 'list'; $massaction = ''; }
 if (!GETPOST('confirmmassaction', 'alpha') && $massaction != 'presend' && $massaction != 'confirm_presend') { $massaction = ''; }
@@ -188,8 +188,8 @@ if ($action == "correct_stock")
         {
         	$batch = GETPOST('batch_number', 'alpha');
 
-        	//$eatby=GETPOST('eatby');
-        	//$sellby=GETPOST('sellby');
+        	
+        	
         	$eatby = dol_mktime(0, 0, 0, GETPOST('eatbymonth', 'int'), GETPOST('eatbyday', 'int'), GETPOST('eatbyyear', 'int'));
         	$sellby = dol_mktime(0, 0, 0, GETPOST('sellbymonth', 'int'), GETPOST('sellbyday', 'int'), GETPOST('sellbyyear', 'int'));
 
@@ -511,7 +511,7 @@ else
 	$limit = 0;
 }
 
-//print $sql;
+
 
 $resql = $db->query($sql);
 
@@ -702,8 +702,8 @@ if ($resql)
     if ($search_product)         $param .= '&search_product='.urlencode($search_product);
     if ($search_batch)           $param .= '&search_batch='.urlencode($search_batch);
     if ($search_warehouse > 0)   $param .= '&search_warehouse='.urlencode($search_warehouse);
-    if (!empty($sref))           $param .= '&sref='.urlencode($sref); // FIXME $sref is not defined
-    if (!empty($snom))           $param .= '&snom='.urlencode($snom); // FIXME $snom is not defined
+    if (!empty($sref))           $param .= '&sref='.urlencode($sref); 
+    if (!empty($snom))           $param .= '&snom='.urlencode($snom); 
     if ($search_user)            $param .= '&search_user='.urlencode($search_user);
     if ($idproduct > 0)          $param .= '&idproduct='.urlencode($idproduct);
     // Add $param from extra fields
@@ -714,7 +714,7 @@ if ($resql)
 	//    'presend'=>$langs->trans("SendByMail"),
 	//    'builddoc'=>$langs->trans("PDFMerge"),
 	);
-	//if ($user->rights->stock->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
+	
 	if (in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
 	$massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 
@@ -773,10 +773,10 @@ if ($resql)
     	print '<td class="liste_titre nowraponall">';
 	    print '<input class="flat" type="text" size="2" maxlength="2" placeholder="'.dol_escape_htmltag($langs->trans("Month")).'" name="month" value="'.$month.'">';
     	if (empty($conf->productbatch->enabled)) print '&nbsp;';
-	    //else print '<br>';
+	    
 	    $syear = $year ? $year : -1;
 	    print '<input class="flat maxwidth50" type="text" maxlength="4" placeholder="'.dol_escape_htmltag($langs->trans("Year")).'" name="year" value="'.($syear > 0 ? $syear : '').'">';
-	    //print $formother->selectyear($syear,'year',1, 20, 5);
+	    
 	    print '</td>';
     }
     if (!empty($arrayfields['p.ref']['checked']))
@@ -812,7 +812,7 @@ if ($resql)
     if (!empty($arrayfields['e.ref']['checked']))
     {
         print '<td class="liste_titre maxwidthonsmartphone left">';
-        //print '<input class="flat" type="text" size="8" name="search_warehouse" value="'.($search_warehouse).'">';
+        
         print $formproduct->selectWarehouses($search_warehouse, 'search_warehouse', 'warehouseopen,warehouseinternal', 1, 0, 0, '', 0, 0, null, 'maxwidth200');
         print '</td>';
     }
@@ -841,7 +841,7 @@ if ($resql)
     {
 	    // Type of movement
 	    print '<td class="liste_titre center">';
-	    //print '<input class="flat" type="text" size="3" name="search_type_mouvement" value="'.dol_escape_htmltag($search_type_mouvement).'">';
+	 
 		print '<select id="search_type_mouvement" name="search_type_mouvement" class="maxwidth150">';
 		print '<option value="" '.(($search_type_mouvement == "") ? 'selected="selected"' : '').'></option>';
 		print '<option value="0" '.(($search_type_mouvement == "0") ? 'selected="selected"' : '').'>'.$langs->trans('StockIncreaseAfterCorrectTransfer').'</option>';
@@ -850,8 +850,8 @@ if ($resql)
 		print '<option value="3" '.(($search_type_mouvement == "3") ? 'selected="selected"' : '').'>'.$langs->trans('StockIncrease').'</option>';
 		print '</select>';
 		print ajax_combobox('search_type_mouvement');
-		// TODO: add new function $formentrepot->selectTypeOfMovement(...) like
-		// print $formproduct->selectWarehouses($search_warehouse, 'search_warehouse', 'warehouseopen,warehouseinternal', 1, 0, 0, '', 0, 0, null, 'maxwidth200');
+		
+
 	    print '</td>';
     }
     if (!empty($arrayfields['origin']['checked']))
@@ -1012,10 +1012,10 @@ if ($resql)
         {
 	        // Product label
 	        print '<td>';
-	        /*$productstatic->id=$objp->rowid;
-	        $productstatic->ref=$objp->produit;
-	        $productstatic->type=$objp->type;
-	        print $productstatic->getNomUrl(1,'',16);*/
+	        
+	        
+	        
+	        
 	        print $productstatic->label;
 	        print "</td>\n";
         }
@@ -1139,20 +1139,20 @@ if ($resql)
     	$balancebefore = $movement->calculateBalanceForProductBefore($productidselected, $datebefore);
     	$balanceafter = $movement->calculateBalanceForProductBefore($productidselected, $dateafter);
 
-    	//print '<tr class="total"><td class="liste_total">';
+    	
     	print $langs->trans("NbOfProductBeforePeriod", $productlabelselected, dol_print_date($datebefore, 'day', 'gmt'));
-    	//print '</td>';
-    	//print '<td class="liste_total right" colspan="6">';
+    	
+    	
     	print ': '.$balancebefore;
     	print "<br>\n";
-    	//print '</td></tr>';
-    	//print '<tr class="total"><td class="liste_total">';
+    	
+    	
     	print $langs->trans("NbOfProductAfterPeriod", $productlabelselected, dol_print_date($dateafter, 'day', 'gmt'));
-    	//print '</td>';
-    	//print '<td class="liste_total right" colspan="6">';
+    	
+    	
     	print ': '.$balanceafter;
     	print "<br>\n";
-        //print '</td></tr>';
+        
     }
 }
 else
