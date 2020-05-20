@@ -269,17 +269,17 @@ class Cronjob extends CommonObject
             $this->id = $this->db->last_insert_id(MAIN_DB_PREFIX."cronjob");
 
 			//if (! $notrigger)
-			//{
+			
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
 	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
+	            
 	            //$interface=new Interfaces($this->db);
 	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
 	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
 	            //// End call triggers
-			//}
+		
         }
 
         // Commit or rollback
@@ -658,17 +658,17 @@ class Cronjob extends CommonObject
     	if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 
 		//if (! $error && ! $notrigger)
-		//{
+		
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
 	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
+	            
 	            //$interface=new Interfaces($this->db);
 	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
 	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
 	            //// End call triggers
-		//}
+		
 
         // Commit or rollback
 		if ($error)
@@ -767,9 +767,9 @@ class Cronjob extends CommonObject
 		}
 
 		//if (! $error)
-		//{
+		
 
-		//}
+		
 
 		unset($object->context['createfromclone']);
 
@@ -885,7 +885,7 @@ class Cronjob extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		return $result;
 	}
@@ -997,7 +997,7 @@ class Cronjob extends CommonObject
 		{
 			$err = error_reporting();
 			error_reporting(0); // Disable all errors
-			//error_reporting(E_ALL);
+			
 			@set_time_limit($ExecTimeLimit); // Need more than 240 on Windows 7/64
 			error_reporting($err);
 		}
@@ -1253,12 +1253,12 @@ class Cronjob extends CommonObject
 		    {
 		        $this->datenextrun += ($this->frequency * $this->unitfrequency);
 
-		        // TODO For exact frequency (every month, every year, ...), use instead a dol_time_plus_duree($time, $duration_value, $duration_unit)
+		        
 		    }
 		}
 		else
 		{
-			//$this->datenextrun=$this->datenextrun + ($this->frequency * $this->unitfrequency);
+			
 		    dol_syslog(get_class($this)."::reprogram_jobs datenextrun is already in future, we do not change it");
 		}
 
