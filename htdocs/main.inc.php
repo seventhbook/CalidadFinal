@@ -41,7 +41,7 @@ if (!empty($_SERVER['MAIN_SHOW_TUNING_INFO']))
 	list($usec, $sec) = explode(" ", microtime());
 	$micro_start_time = ((float) $usec + (float) $sec);
 	// Add Xdebug code coverage
-	//define('XDEBUGCOVERAGE',1);
+	
 	if (defined('XDEBUGCOVERAGE')) {
 		xdebug_start_code_coverage();
 	}
@@ -101,13 +101,13 @@ function testSqlAndScriptInject($val, $type)
 	$inj += preg_match('/on(keydown|keypress|keyup|load|loadeddata|loadedmetadata|loadstart|offline|online|pagehide|pageshow)\s*=/i', $val);
 	$inj += preg_match('/on(paste|pause|play|playing|progress|ratechange|resize|reset|scroll|search|seeking|select|show|stalled|start|submit|suspend)\s*=/i', $val);
 	$inj += preg_match('/on(timeupdate|toggle|unload|volumechange|waiting)\s*=/i', $val);
-	//$inj += preg_match('/on[A-Z][a-z]+\*=/', $val);   // To lock event handlers onAbort(), ...
+	
 	$inj += preg_match('/&#58;|&#0000058|&#x3A/i', $val); // refused string ':' encoded (no reason to have it encoded) to lock 'javascript:...'
-	//if ($type == 1)
-	//{
-		$inj += preg_match('/javascript:/i', $val);
-		$inj += preg_match('/vbscript:/i', $val);
-	//}
+	
+	
+	$inj += preg_match('/javascript:/i', $val);
+	$inj += preg_match('/vbscript:/i', $val);
+	
 	// For XSS Injection done by adding javascript closing html tags like with onmousemove, etc... (closing a src or href tag with not cleaned param)
 	if ($type == 1) $inj += preg_match('/"/i', $val); // We refused " in GET parameters value
 	if ($type == 2) $inj += preg_match('/[;"]/', $val); // PHP_SELF is a file system path. It can contains spaces.
@@ -191,12 +191,12 @@ if (!empty($_POST["DOL_AUTOSET_COOKIE"]))
 	foreach ($tmplist as $tmpkey)
 	{
 		$postkey = $tmpautoset[0].'_'.$tmpkey;
-		//var_dump('tmpkey='.$tmpkey.' postkey='.$postkey.' value='.$_POST[$postkey]);
+		
 		if (!empty($_POST[$postkey])) $cookiearrayvalue[$tmpkey] = $_POST[$postkey];
 	}
 	$cookiename = $tmpautoset[0];
 	$cookievalue = json_encode($cookiearrayvalue);
-	//var_dump('setcookie cookiename='.$cookiename.' cookievalue='.$cookievalue);
+	
 	setcookie($cookiename, empty($cookievalue) ? '' : $cookievalue, empty($cookievalue) ? 0 : (time() + (86400 * 354)), '/', null, false, true); // keep cookie 1 year and add tag httponly
 	if (empty($cookievalue)) unset($_COOKIE[$cookiename]);
 }
@@ -216,13 +216,13 @@ session_set_cookie_params(0, '/', null, false, true); // Add tag httponly on ses
 if (!defined('NOSESSION'))
 {
 	session_start();
-	/*if (ini_get('register_globals'))    // Deprecated in 5.3 and removed in 5.4. To solve bug in using $_SESSION
-	{
-		foreach ($_SESSION as $key=>$value)
-		{
-			if (isset($GLOBALS[$key])) unset($GLOBALS[$key]);
-		}
-	}*/
+	
+	
+	
+	
+	
+	
+	
 }
 
 // Init the 5 global objects, this include will make the 'new Xxx()' and set properties for: $conf, $db, $langs, $user, $mysoc
@@ -251,7 +251,7 @@ if (isset($_SERVER["HTTP_USER_AGENT"]))
 	$conf->browser->os = $tmp['browseros'];
 	$conf->browser->version = $tmp['browserversion'];
 	$conf->browser->layout = $tmp['layout']; // 'classic', 'phone', 'tablet'
-	//var_dump($conf->browser);
+	
 
 	if ($conf->browser->layout == 'phone') $conf->dol_no_mouse_hover = 1;
 }
@@ -342,7 +342,7 @@ if ((!empty($conf->global->MAIN_VERSION_LAST_UPGRADE) && ($conf->global->MAIN_VE
 	}
 }
 
-//var_dump(GETPOST('token').' '.$_SESSION['token'].' - '.newToken().' '.$_SERVER['SCRIPT_FILENAME']);
+
 
 // Creation of a token against CSRF vulnerabilities
 if (!defined('NOTOKENRENEWAL'))
@@ -355,10 +355,10 @@ if (!defined('NOTOKENRENEWAL'))
 	$_SESSION['newtoken'] = $token;
 }
 
-//var_dump(GETPOST('token').' '.$_SESSION['token'].' - '.newToken().' '.$_SERVER['SCRIPT_FILENAME']);
+
 //$dolibarr_nocsrfcheck=1;
 // Check token
-//var_dump((! defined('NOCSRFCHECK')).' '.empty($dolibarr_nocsrfcheck).' '.(! empty($conf->global->MAIN_SECURITY_CSRF_WITH_TOKEN)).' '.$_SERVER['REQUEST_METHOD'].' '.(! GETPOSTISSET('token')));
+
 if ((!defined('NOCSRFCHECK') && empty($dolibarr_nocsrfcheck) && !empty($conf->global->MAIN_SECURITY_CSRF_WITH_TOKEN))
 	|| defined('CSRFCHECK_WITH_TOKEN'))	// Check validity of token, only if option MAIN_SECURITY_CSRF_WITH_TOKEN enabled or if constant CSRFCHECK_WITH_TOKEN is set
 {
@@ -471,7 +471,7 @@ if (!defined('NOLOGIN'))
 		$dol_optimize_smallscreen = GETPOST('dol_optimize_smallscreen', 'int', 3);
 		$dol_no_mouse_hover = GETPOST('dol_no_mouse_hover', 'int', 3);
 		$dol_use_jmobile = GETPOST('dol_use_jmobile', 'int', 3); // 0=default, 1=to say we use app from a webview app, 2=to say we use app from a webview app and keep ajax
-		//dol_syslog("POST key=".join(array_keys($_POST),',').' value='.join($_POST,','));
+		
 
 		// If in demo mode, we check we go to home page through the public/demo/index.php page
 		if (!empty($dolibarr_main_demo) && $_SERVER['PHP_SELF'] == DOL_URL_ROOT.'/index.php')  // We ask index page
@@ -573,7 +573,7 @@ if (!defined('NOLOGIN'))
 					$datesecond = dol_stringtotime($_POST["dst_second"]);
 					if ($datenow >= $datefirst && $datenow < $datesecond) $dol_dst = 1;
 				}
-				//print $datefirst.'-'.$datesecond.'-'.$datenow.'-'.$dol_tz.'-'.$dol_tzstring.'-'.$dol_dst; exit;
+				
 			}
 
 			if (!$login)
@@ -737,7 +737,7 @@ if (!defined('NOLOGIN'))
    			    if (constant('DOL_URL_ROOT')) $relativepathstring = preg_replace('/^'.preg_quote(constant('DOL_URL_ROOT'), '/').'/', '', $relativepathstring);
 			    $relativepathstring = preg_replace('/^\//', '', $relativepathstring);
 			    $relativepathstring = preg_replace('/^custom\//', '', $relativepathstring);
-			    //var_dump($relativepathstring);
+			    
 
 			    // We click on a link that leave a page we have to save search criteria, contextpage, limit and page. We save them from tmp to no tmp
 			    if (!empty($_SESSION['lastsearch_values_tmp_'.$relativepathstring]))
@@ -937,7 +937,7 @@ if (!defined('NOREQUIRETRAN'))
 		if (!empty($user->conf->MAIN_LANG_DEFAULT))
 		{
 			// If different than current language
-			//print ">>>".$langs->getDefaultLang()."-".$user->conf->MAIN_LANG_DEFAULT;
+			
 			if ($langs->getDefaultLang() != $user->conf->MAIN_LANG_DEFAULT)
 			{
 				$langs->setDefaultLang($user->conf->MAIN_LANG_DEFAULT);
@@ -969,7 +969,7 @@ if (!defined('NOLOGIN'))
 
 dol_syslog("--- Access to ".$_SERVER["PHP_SELF"].' - action='.GETPOST('action', 'aZ09').', massaction='.GETPOST('massaction', 'aZ09'));
 //Another call for easy debugg
-//dol_syslog("Access to ".$_SERVER["PHP_SELF"].' GET='.join(',',array_keys($_GET)).'->'.join(',',$_GET).' POST:'.join(',',array_keys($_POST)).'->'.join(',',$_POST));
+
 
 // Load main languages files
 if (!defined('NOREQUIRETRAN'))
@@ -1140,12 +1140,12 @@ function top_httphead($contenttype = 'text/html', $forcenocache = 0)
 	//header("X-XSS-Protection: 1");      		// XSS filtering protection of some browsers (note: use of Content-Security-Policy is more efficient). Disabled as deprecated.
 	if (!defined('FORCECSP'))
 	{
-		//if (! isset($conf->global->MAIN_HTTP_CONTENT_SECURITY_POLICY))
-		//{
-		//	// A default security policy that keep usage of js external component like ckeditor, stripe, google, working
-		//	$contentsecuritypolicy = "font-src *; img-src *; style-src * 'unsafe-inline' 'unsafe-eval'; default-src 'self' *.stripe.com 'unsafe-inline' 'unsafe-eval'; script-src 'self' *.stripe.com 'unsafe-inline' 'unsafe-eval'; frame-src 'self' *.stripe.com; connect-src 'self';";
-		//}
-		//else $contentsecuritypolicy = $conf->global->MAIN_HTTP_CONTENT_SECURITY_POLICY;
+		
+		
+		
+		
+		
+		
 		$contentsecuritypolicy = $conf->global->MAIN_HTTP_CONTENT_SECURITY_POLICY;
 
 		if (!is_object($hookmanager)) $hookmanager = new HookManager($db);
@@ -1163,7 +1163,7 @@ function top_httphead($contenttype = 'text/html', $forcenocache = 0)
 			// For example, to restrict everything to one domain, except 'object', ...:
 			// default-src https://cdn.example.net; object-src 'none'
 			// For example, to restrict everything to itself except img that can be on other servers:
-			// default-src 'self'; img-src *;
+			
 			// Pre-existing site that uses too much inline code to fix but wants to ensure resources are loaded only over https and disable plugins:
 			// default-src http: https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'
 			header("Content-Security-Policy: ".$contentsecuritypolicy);
@@ -1205,7 +1205,7 @@ function top_htmlhead($head, $title = '', $disablejs = 0, $disablehead = 0, $arr
 
 	if (!empty($conf->global->MAIN_USE_CACHE_MANIFEST)) print '<html lang="'.substr($langs->defaultlang, 0, 2).'" manifest="'.DOL_URL_ROOT.'/cache.manifest">'."\n";
 	else print '<html lang="'.substr($langs->defaultlang, 0, 2).'">'."\n";
-	//print '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">'."\n";
+	
 	if (empty($disablehead))
 	{
 	    if (!is_object($hookmanager)) $hookmanager = new HookManager($db);
@@ -1229,9 +1229,9 @@ function top_htmlhead($head, $title = '', $disablejs = 0, $disablehead = 0, $arr
 		if (!empty($conf->global->MAIN_FAVICON_URL)) $favicon = $conf->global->MAIN_FAVICON_URL;
 		if (empty($conf->dol_use_jmobile)) print '<link rel="shortcut icon" type="image/x-icon" href="'.$favicon.'"/>'."\n"; // Not required into an Android webview
 
-		//if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) print '<link rel="top" title="'.$langs->trans("Home").'" href="'.(DOL_URL_ROOT?DOL_URL_ROOT:'/').'">'."\n";
-		//if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) print '<link rel="copyright" title="GNU General Public License" href="https://www.gnu.org/copyleft/gpl.html#SEC1">'."\n";
-		//if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) print '<link rel="author" title="Dolibarr Development Team" href="https://www.dolibarr.org">'."\n";
+		
+		
+		
 
         // Mobile appli like icon
         $manifest = DOL_URL_ROOT.'/theme/'.$conf->theme.'/manifest.json.php';
