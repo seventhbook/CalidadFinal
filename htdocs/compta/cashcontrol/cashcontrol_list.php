@@ -70,8 +70,8 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
-//if (! $sortorder) $sortorder="DESC";
+
+
 
 // Initialize technical objects
 $object = new CashControl($db);
@@ -92,10 +92,10 @@ if (!$sortorder) $sortorder = "ASC";
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'monmodule', $id, '');
+
 
 // Initialize array of search criterias
 $search_all = trim(GETPOST("search_all", 'alpha'));
@@ -171,8 +171,8 @@ if (empty($reshook))
 	$permissiontoread = ($user->rights->cashdesk->run || $user->rights->takepos->run);
 	$permissiontodelete = ($user->rights->cashdesk->run || $user->rights->takepos->run);
 
-	//$uploaddir = '';
-	//include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
+	
+	
 }
 
 
@@ -185,7 +185,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_pos_cash_fence|FR:Module_pos_cash_fence_FR|ES:Módulo_pos_cash_fence";
+
 $help_url = '';
 $title = $langs->trans('CashControl');
 
@@ -226,19 +226,19 @@ $reshook = $hookmanager->executeHooks('printFieldListWhere', $parameters, $objec
 $sql .= $hookmanager->resPrint;
 
 /* If a group by is required
- $sql.= " GROUP BY "
- foreach($object->fields as $key => $val)
- {
- $sql.='t.'.$key.', ';
- }
+ 
+ 
+ 
+ 
+ 
  // Add fields from extrafields
- if (! empty($extrafields->attributes[$object->table_element]['label'])) {
- foreach ($extrafields->attributes[$object->table_element]['label'] as $key => $val) $sql.=($extrafields->attributes[$object->table_element]['type'][$key] != 'separate' ? "ef.".$key.', ' : '');
+ 
+ 
  // Add where from hooks
- $parameters=array();
- $reshook=$hookmanager->executeHooks('printFieldListGroupBy',$parameters);    // Note that $action and $object may have been modified by hook
- $sql.=$hookmanager->resPrint;
- $sql=preg_replace('/, $/','', $sql);
+ 
+ 
+ 
+ 
  */
 
 $sql .= $db->order($sortfield, $sortorder);
@@ -319,10 +319,10 @@ include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
 
 // List of mass actions available
 $arrayofmassactions = array(
-//'presend'=>$langs->trans("SendByMail"),
-//'builddoc'=>$langs->trans("PDFMerge"),
+
+
 );
-//if ($user->rights->monmodule->delete) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
+
 if (GETPOST('nomassaction', 'int') || in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
 $massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 
@@ -356,9 +356,9 @@ if ($sall)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
- $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
- $moreforfilter.= '</div>';*/
+
+ 
+ 
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters, $object); // Note that $action and $object may have been modified by hook
