@@ -98,7 +98,7 @@ class Categorie extends CommonObject
 	/**
 	 * @var array Foreign keys mapping from type string
 	 *
-	 * @todo Move to const array when PHP 5.6 will be our minimum target
+	 
 	 */
 	protected $MAP_CAT_FK = array(
 		'product'  => 'product',
@@ -279,7 +279,7 @@ class Categorie extends CommonObject
 				$res = $this->db->fetch_array($resql);
 
 				$this->id = $res['rowid'];
-				//$this->ref			= $res['rowid'];
+				
 				$this->fk_parent	= $res['fk_parent'];
 				$this->label		= $res['label'];
 				$this->description = $res['description'];
@@ -1110,7 +1110,7 @@ class Categorie extends CommonObject
 		dol_syslog(get_class($this)."::get_full_arbo call to build_path_from_id_categ", LOG_DEBUG);
 		foreach ($this->cats as $key => $val)
 		{
-			//print 'key='.$key.'<br>'."\n";
+			
 			$this->build_path_from_id_categ($key, 0); // Process a branch from the root category key (this category has no parent)
 		}
 
@@ -1119,7 +1119,7 @@ class Categorie extends CommonObject
         {
             $keyfiltercatid = '(' . implode('|', $markafterid) . ')';
 
-            //print "Look to discard category ".$markafterid."\n";
+            
             $keyfilter1 = '^'.$keyfiltercatid.'$';
             $keyfilter2 = '_'.$keyfiltercatid.'$';
             $keyfilter3 = '^'.$keyfiltercatid.'_';
@@ -1139,7 +1139,7 @@ class Categorie extends CommonObject
 		dol_syslog(get_class($this)."::get_full_arbo dol_sort_array", LOG_DEBUG);
 		$this->cats = dol_sort_array($this->cats, 'fulllabel', 'asc', true, false);
 
-		//$this->debug_cats();
+		
 
 		return $this->cats;
 	}
@@ -1174,16 +1174,16 @@ class Categorie extends CommonObject
 		$this->cats[$id_categ]['fullpath'] = '_'.$id_categ;
 		$this->cats[$id_categ]['fulllabel'] = $this->cats[$id_categ]['label'];
 		$i = 0; $cursor_categ = $id_categ;
-		//print 'Work for id_categ='.$id_categ.'<br>'."\n";
+		
 		while ((empty($protection) || $i < $protection) && !empty($this->motherof[$cursor_categ]))
 		{
-			//print '&nbsp; cursor_categ='.$cursor_categ.' i='.$i.' '.$this->motherof[$cursor_categ].'<br>'."\n";
+			
 			$this->cats[$id_categ]['fullpath'] = '_'.$this->motherof[$cursor_categ].$this->cats[$id_categ]['fullpath'];
 			$this->cats[$id_categ]['fulllabel'] = $this->cats[$this->motherof[$cursor_categ]]['label'].' >> '.$this->cats[$id_categ]['fulllabel'];
-			//print '&nbsp; Result for id_categ='.$id_categ.' : '.$this->cats[$id_categ]['fullpath'].' '.$this->cats[$id_categ]['fulllabel'].'<br>'."\n";
+		
 			$i++; $cursor_categ = $this->motherof[$cursor_categ];
 		}
-		//print 'Result for id_categ='.$id_categ.' : '.$this->cats[$id_categ]['fullpath'].'<br>'."\n";
+		
 
 		// We count number of _ to have level
 		$this->cats[$id_categ]['level'] = dol_strlen(preg_replace('/[^_]/i', '', $this->cats[$id_categ]['fullpath']));
@@ -1206,7 +1206,7 @@ class Categorie extends CommonObject
 			print 'id: '.$this->cats[$key]['id'];
 			print ' label: '.$this->cats[$key]['label'];
 			print ' mother: '.$this->cats[$key]['fk_parent'];
-			//print ' children: '.(is_array($this->cats[$key]['id_children'])?join(',',$this->cats[$key]['id_children']):'');
+			
 			print ' fullpath: '.$this->cats[$key]['fullpath'];
 			print ' fulllabel: '.$this->cats[$key]['fulllabel'];
 			print "<br>\n";
