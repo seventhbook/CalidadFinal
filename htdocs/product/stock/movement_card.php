@@ -1163,7 +1163,7 @@ else
 
 
 /*
- * Documents generes
+ Documents generes
  */
 //Area for doc and last events of warehouse are stored on the main card of warehouse
 $modulepart = 'movement';
