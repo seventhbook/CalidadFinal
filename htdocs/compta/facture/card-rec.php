@@ -36,7 +36,7 @@ require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formother.class.php';
 if (!empty($conf->projet->enabled)) {
 	include_once DOL_DOCUMENT_ROOT.'/projet/class/project.class.php';
-	//include_once DOL_DOCUMENT_ROOT . '/core/class/html.formprojet.class.php';
+	
 }
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formprojet.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
@@ -144,12 +144,12 @@ if (empty($reshook))
 	include DOL_DOCUMENT_ROOT.'/core/actions_lineupdown.inc.php'; // Must be include, not include_once
 
 	// Mass actions
-	/*$objectclass='MyObject';
-    $objectlabel='MyObject';
-    $permissiontoread = $user->rights->mymodule->read;
-    $permissiontodelete = $user->rights->mymodule->delete;
-    $uploaddir = $conf->mymodule->dir_output;
-    include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';*/
+	
+    
+    
+    
+    
+    
 
 	// Create predefined invoice
 	if ($action == 'add')
@@ -168,7 +168,7 @@ if (empty($reshook))
 		$rehour = GETPOST('rehour', 'int');
 		$remin = GETPOST('remin', 'int');
 		$nb_gen_max = GETPOST('nb_gen_max', 'int');
-		//if (empty($nb_gen_max)) $nb_gen_max =0;
+		
 
 		if (GETPOST('frequency', 'int'))
 		{
@@ -293,7 +293,7 @@ if (empty($reshook))
 	// Set bank account
 	elseif ($action == 'setref' && $user->rights->facture->creer)
 	{
-		//var_dump(GETPOST('ref', 'alpha'));exit;
+		
 		$result = $object->setValueFrom('titre', GETPOST('ref', 'alpha'), '', null, 'text', '', $user, 'BILLREC_MODIFY');
 		if ($result > 0)
 		{
@@ -565,7 +565,7 @@ if (empty($reshook))
 				$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $tva_tx));
 				$tmpprodvat = price2num(preg_replace('/\s*\(.*\)/', '', $prod->tva_tx));
 
-				// if price ht was forced (ie: from gui when calculated by margin rate and cost price). TODO Why this ?
+				
 				if (!empty($price_ht))
 				{
 					$pu_ht = price2num($price_ht, 'MU');
@@ -681,23 +681,23 @@ if (empty($reshook))
 				if ($result > 0)
 				{
 					// Define output language and generate document
-					/*if (empty($conf->global->MAIN_DISABLE_PDF_AUTOUPDATE))
-	    			{
-	    			    // Define output language
-	    			    $outputlangs = $langs;
-	    			    $newlang = '';
-	    			    if ($conf->global->MAIN_MULTILANGS && empty($newlang) && GETPOST('lang_id','aZ09')) $newlang = GETPOST('lang_id','aZ09');
-	    			    if ($conf->global->MAIN_MULTILANGS && empty($newlang))	$newlang = $object->thirdparty->default_lang;
-	    			    if (! empty($newlang)) {
-	    				$outputlangs = new Translate("", $conf);
-	    				$outputlangs->setDefaultLang($newlang);
-	    			    }
-	    			    $model=$object->modelpdf;
-	    			    $ret = $object->fetch($id); // Reload to get new records
+					
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
+	    		
+	    		
+	    		
+	    		
+	    		
 
-	    			    $result = $object->generateDocument($model, $outputlangs, $hidedetails, $hidedesc, $hideref);
-	    			    if ($result < 0) setEventMessages($object->error, $object->errors, 'errors');
-	    			}*/
+	    		
+	    		
+	    		
 					$object->fetch($object->id); // Reload lines
 
 					unset($_POST['prod_entry_mode']);
@@ -757,8 +757,8 @@ if (empty($reshook))
 		// Clean parameters
 		$date_start = '';
 		$date_end = '';
-		//$date_start = dol_mktime(GETPOST('date_starthour'), GETPOST('date_startmin'), GETPOST('date_startsec'), GETPOST('date_startmonth'), GETPOST('date_startday'), GETPOST('date_startyear'));
-		//$date_end = dol_mktime(GETPOST('date_endhour'), GETPOST('date_endmin'), GETPOST('date_endsec'), GETPOST('date_endmonth'), GETPOST('date_endday'), GETPOST('date_endyear'));
+		
+
 		$description = dol_htmlcleanlastbr(GETPOST('product_desc', 'none') ? GETPOST('product_desc', 'none') : GETPOST('desc', 'none'));
 		$pu_ht = GETPOST('price_ht');
 		$vat_rate = (GETPOST('tva_tx') ? GETPOST('tva_tx') : 0);
@@ -809,17 +809,17 @@ if (empty($reshook))
 		$special_code = GETPOST('special_code', 'int');
 		if (!GETPOST('qty', 'alpha')) $special_code = 3;
 
-		/*$line = new FactureLigne($db);
-        $line->fetch(GETPOST('lineid'));
-        $percent = $line->get_prev_progress($object->id);
+		
+        
+       
 
-        if (GETPOST('progress') < $percent)
-        {
-                $mesg = '<div class="warning">' . $langs->trans("CantBeLessThanMinPercent") . '</div>';
-                setEventMessages($mesg, null, 'warnings');
-                $error++;
-                $result = -1;
-        }*/
+       
+       
+       
+       
+       
+       
+       	
 
 		// Check minimum price
 		$productid = GETPOST('productid', 'int');
@@ -893,22 +893,22 @@ if (empty($reshook))
 
 			if ($result >= 0)
 			{
-					/*if (empty($conf->global->MAIN_DISABLE_PDF_AUTOUPDATE)) {
-                        // Define output language
-                        $outputlangs = $langs;
-                        $newlang = '';
-                        if ($conf->global->MAIN_MULTILANGS && empty($newlang) && GETPOST('lang_id','aZ09'))
-                            $newlang = GETPOST('lang_id','aZ09');
-                            if ($conf->global->MAIN_MULTILANGS && empty($newlang))
-                                $newlang = $object->thirdparty->default_lang;
-                                if (! empty($newlang)) {
-                                    $outputlangs = new Translate("", $conf);
-                                    $outputlangs->setDefaultLang($newlang);
-                                }
+					
+                        
+                        
+                        
+                       
+                       
+                       
+                       
+                       
+                       
+                       
+                      
 
-                                $ret = $object->fetch($id); // Reload to get new records
-                                $object->generateDocument($object->modelpdf, $outputlangs, $hidedetails, $hidedesc, $hideref);
-                    }*/
+                      
+                      
+                    
 
 				$object->fetch($object->id); // Reload lines
 
@@ -1242,8 +1242,8 @@ else
 
 		$morehtmlref .= '<div class="refidno">';
 		// Ref customer
-		//$morehtmlref.=$form->editfieldkey("RefCustomer", 'ref_client', $object->ref_client, $object, $user->rights->facture->creer, 'string', '', 0, 1);
-		//$morehtmlref.=$form->editfieldval("RefCustomer", 'ref_client', $object->ref_client, $object, $user->rights->facture->creer, 'string', '', null, null, '', 1);
+		
+
 		// Thirdparty
 		$morehtmlref .= $langs->trans('ThirdParty').' : '.$object->thirdparty->getNomUrl(1);
 		// Project
@@ -1257,7 +1257,7 @@ else
 					$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 				}
 				if ($action == 'classify') {
-					//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+					
 					$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 					$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 					$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1510,7 +1510,7 @@ else
 		 * Recurrence
 		 */
 		$title = $langs->trans("Recurrence");
-		//print load_fiche_titre($title, '', 'calendar');
+		
 
 		print '<table class="border centpercent">';
 
@@ -1565,7 +1565,7 @@ else
 		{
 			print $form->editfieldval($langs->trans("NextDateToExecution"), 'date_when', $object->date_when, $object, $user->rights->facture->creer, 'day', $object->date_when, null, '', '', 0, 'strikeIfMaxNbGenReached');
 		}
-		//var_dump(dol_print_date($object->date_when+60, 'dayhour').' - '.dol_print_date($now, 'dayhour'));
+		
 		if (!$object->isMaxNbGenReached())
 		{
 			if (!$object->suspended && $action != 'editdate_when' && $object->frequency > 0 && $object->date_when && $object->date_when < $now) print img_warning($langs->trans("Late"));
@@ -1695,8 +1695,8 @@ else
 		// Show object lines
 		if (!empty($object->lines))
 		{
-			//$disableedit=1;
-			//$disablemove=1;
+			
+			
 			$ret = $object->printObjectLines($action, $mysoc, $object->thirdparty, $lineid, 0); // No date selector for template invoice
 		}
 
