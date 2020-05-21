@@ -312,7 +312,7 @@ class ExpenseReport extends CommonObject
     	            	else {
     	            		$newndfline = $line;
     	            	}
-    	                //$newndfline=new ExpenseReportLine($this->db);
+    	                
     	                $newndfline->fk_expensereport = $this->id;
     	                $result = $newndfline->insert();
         	            if ($result < 0)
@@ -399,7 +399,7 @@ class ExpenseReport extends CommonObject
 
         // get extrafields so they will be clone
         //foreach($this->lines as $line)
-            //$line->fetch_optionals($line->rowid);
+            
 
         // Load source object
         $objFrom = clone $this;
@@ -542,7 +542,7 @@ class ExpenseReport extends CommonObject
         $sql .= " FROM ".MAIN_DB_PREFIX.$this->table_element." as d";
         if ($ref) $sql .= " WHERE d.ref = '".$this->db->escape($ref)."'";
         else $sql .= " WHERE d.rowid = ".$id;
-        //$sql.= $restrict;
+        
 
         dol_syslog(get_class($this)."::fetch sql=".$sql, LOG_DEBUG);
         $resql = $this->db->query($sql);
@@ -927,14 +927,14 @@ class ExpenseReport extends CommonObject
                             print $langs->trans('TripPaid').' '.img_picto($langs->trans('TripPaid'), 'statut4');
                             break;
                     }
-                    /*
-                     if ($status==4) return img_picto($langs->trans('StatusOrderCanceled'),'statut5');
-                    if ($status==1) return img_picto($langs->trans('StatusOrderDraft'),'statut0');
-                    if ($status==2) return img_picto($langs->trans('StatusOrderValidated'),'statut1');
-                    if ($status==2) return img_picto($langs->trans('StatusOrderOnProcess'),'statut3');
-                    if ($status==5) return img_picto($langs->trans('StatusOrderToBill'),'statut4');
-                    if ($status==6) return img_picto($langs->trans('StatusOrderOnProcess'),'statut6');
-                    */
+                    
+                    
+                    
+                    
+                    
+                   
+                    
+                    
                     print '</td>';
                     print '</tr>';
 
@@ -957,7 +957,7 @@ class ExpenseReport extends CommonObject
 
     /**
      * recalculer
-     * TODO Replace this with call to update_price if not already done
+     
      *
      * @param   int         $id     Id of expense report
      * @return  int                 <0 if KO, >0 if OK
@@ -1601,7 +1601,7 @@ class ExpenseReport extends CommonObject
 			{
 				$this->error = $obj->error;
 				$this->errors = $obj->errors;
-            	//dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
+            	
             	return -1;
             }
         }
@@ -1644,13 +1644,13 @@ class ExpenseReport extends CommonObject
             $label .= '<br><b>'.$langs->trans('AmountTTC').':</b> '.price($this->total_ttc, 0, $langs, 0, -1, -1, $conf->currency);
         if ($moretitle) $label .= ' - '.$moretitle;
 
-        //if ($option != 'nolink')
-        //{
+        
+        
         // Add param to save lastsearch_values or not
         	$add_save_lastsearch_values = ($save_lastsearch_value == 1 ? 1 : 0);
         	if ($save_lastsearch_value == -1 && preg_match('/list\.php/', $_SERVER["PHP_SELF"])) $add_save_lastsearch_values = 1;
         	if ($add_save_lastsearch_values) $url .= '&save_lastsearch_values=1';
-        //}
+        
 
         $ref = $this->ref;
         if (empty($ref)) $ref = $this->id;
@@ -1885,7 +1885,7 @@ class ExpenseReport extends CommonObject
 					$this->error = 'ExpenseReportConstraintViolationError';
 					$this->errors[] = $this->error;
 
-					$new_current_total_ttc -= $amount_to_test - $rule->amount; // ex, entered 16€, limit 12€, subtracts 4€;
+					$new_current_total_ttc -= $amount_to_test - $rule->amount; 
 					$rule_warning_message_tab[] = $langs->trans('ExpenseReportConstraintViolationError', $rule->id, price($amount_to_test, 0, $langs, 1, -1, -1, $conf->currency), price($rule->amount, 0, $langs, 1, -1, -1, $conf->currency), $langs->trans('by'.$rule->code_expense_rules_type, price($new_current_total_ttc, 0, $langs, 1, -1, -1, $conf->currency)));
 				}
 				else
@@ -2017,7 +2017,7 @@ class ExpenseReport extends CommonObject
         {
             $this->db->begin();
 
-            $type = 0; // TODO What if type is service ?
+            $type = 0; 
 
             // We don't know seller and buyer for expense reports
             $seller = $mysoc;
@@ -2037,13 +2037,13 @@ class ExpenseReport extends CommonObject
             $tmp = calcul_price_total($qty, $value_unit, 0, $vatrate, 0, 0, 0, 'TTC', 0, $type, $seller, $localtaxes_type);
 
             // calcul total of line
-            //$total_ttc  = price2num($qty*$value_unit, 'MT');
+            
 
             $tx_tva = $vatrate / 100;
             $tx_tva = $tx_tva + 1;
             $total_ht = price2num($total_ttc / $tx_tva, 'MT');
 
-            $total_tva = price2num($total_ttc - $total_ht, 'MT');
+            
             // fin calculs
 
             $this->line = new ExpenseReportLine($this->db);
@@ -2216,11 +2216,11 @@ class ExpenseReport extends CommonObject
 
         $sql = "SELECT DISTINCT ur.fk_user";
         $sql .= " FROM ".MAIN_DB_PREFIX."user_rights as ur, ".MAIN_DB_PREFIX."rights_def as rd";
-        $sql .= " WHERE ur.fk_id = rd.id and rd.module = 'expensereport' AND rd.perms = 'approve'"; // Permission 'Approve';
+        $sql .= " WHERE ur.fk_id = rd.id and rd.module = 'expensereport' AND rd.perms = 'approve'"; 
         $sql .= "UNION";
         $sql .= " SELECT DISTINCT ugu.fk_user";
         $sql .= " FROM ".MAIN_DB_PREFIX."usergroup_user as ugu, ".MAIN_DB_PREFIX."usergroup_rights as ur, ".MAIN_DB_PREFIX."rights_def as rd";
-        $sql .= " WHERE ugu.fk_usergroup = ur.fk_usergroup AND ur.fk_id = rd.id and rd.module = 'expensereport' AND rd.perms = 'approve'"; // Permission 'Approve';
+        $sql .= " WHERE ugu.fk_usergroup = ur.fk_usergroup AND ur.fk_id = rd.id and rd.module = 'expensereport' AND rd.perms = 'approve'"; 
         //print $sql;
 
         dol_syslog(get_class($this)."::fetch_users_approver_expensereport sql=".$sql);
@@ -2640,11 +2640,11 @@ class ExpenseReportLine
      * @param   bool    $fromaddline    false=keep default behavior, true=exclude the update_price() of parent object
      * @return  int                     <0 if KO, >0 if OK
      */
-    public function insert($notrigger = 0, $fromaddline = false)
+    public function insert($fromaddline = false)
     {
         global $langs, $user, $conf;
 
-        $error = 0;
+        
 
         dol_syslog("ExpenseReportLine::Insert rang=".$this->rang, LOG_DEBUG);
 
@@ -2762,11 +2762,11 @@ class ExpenseReportLine
      * @param   User    $user      User
      * @return  int                <0 if KO, >0 if OK
      */
-    public function update(User $user)
+    public function update(User)
     {
         global $langs, $conf;
 
-        $error = 0;
+        
 
         // Clean parameters
         $this->comments = trim($this->comments);
