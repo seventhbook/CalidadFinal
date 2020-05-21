@@ -111,18 +111,18 @@ $server->wsdl->addComplexType(
     )
 );
 
-/*$server->wsdl->addComplexType(
-    'LinesArray',
-    'complexType',
-    'array',
-    '',
-    'SOAP-ENC:Array',
-    array(),
-    array(
-        array('ref'=>'SOAP-ENC:arrayType','wsdl:arrayType'=>'tns:line[]')
-    ),
-    'tns:line'
-);*/
+
+
+
+
+
+
+
+
+
+
+
+
 $server->wsdl->addComplexType(
     'LinesArray2',
     'complexType',
@@ -174,19 +174,19 @@ $server->wsdl->addComplexType(
         'lines' => array('name'=>'lines','type'=>'tns:LinesArray2')
     )
 );
-/*
-$server->wsdl->addComplexType(
-    'InvoicesArray',
-    'complexType',
-    'array',
-    '',
-    'SOAP-ENC:Array',
-    array(),
-    array(
-        array('ref'=>'SOAP-ENC:arrayType','wsdl:arrayType'=>'tns:invoice[]')
-    ),
-    'tns:invoice'
-);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 $server->wsdl->addComplexType(
     'InvoicesArray2',
     'complexType',
@@ -320,7 +320,7 @@ function getInvoice($authentication, $id = '', $ref = '', $ref_ext = '')
 				$i=0;
 				foreach($invoice->lines as $line)
 				{
-					//var_dump($line); exit;
+					
 					$linesresp[]=array(
 						'id'=>$line->id,
 						'type'=>$line->product_type,
@@ -601,8 +601,8 @@ function createInvoice($authentication, $invoice)
             $newline->fk_product=$line['product_id'];
             $new_invoice->lines[]=$newline;
         }
-        //var_dump($newobject->date_lim_reglement); exit;
-        //var_dump($invoice['lines'][0]['type']);
+        
+        
 
         $db->begin();
 
@@ -658,7 +658,7 @@ function createInvoiceFromOrder($authentication, $id_order = '', $ref_order = ''
 {
 	global $db,$conf;
 
-	$now=dol_now();
+	
 
     dol_syslog("Function: createInvoiceFromOrder login=".$authentication['login']." id=".$id_order.
 			", ref=".$ref_order.", ref_ext=".$ref_ext_order);
