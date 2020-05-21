@@ -467,7 +467,7 @@ function getProductOrService($authentication, $id = '', $ref = '', $ref_ext = ''
     {
         $objectresp = array('result'=>array('result_code' => $errorcode, 'result_label' => $errorlabel));
     }
-	//var_dump($objectresp);exit;
+	
     return $objectresp;
 }
 
@@ -545,21 +545,21 @@ function createProductOrService($authentication, $product)
         $newobject->customcode = $product['customcode'];
 
         $newobject->canvas = $product['canvas'];
-        /*foreach($product['lines'] as $line)
-        {
-            $newline=new FactureLigne($db);
-            $newline->type=$line['type'];
-            $newline->desc=$line['desc'];
-            $newline->fk_product=$line['fk_product'];
-            $newline->total_ht=$line['total_net'];
-            $newline->total_vat=$line['total_vat'];
-            $newline->total_ttc=$line['total'];
-            $newline->vat=$line['vat_rate'];
-            $newline->qty=$line['qty'];
-            $newline->fk_product=$line['product_id'];
-        }*/
-        //var_dump($product['ref_ext']);
-        //var_dump($product['lines'][0]['type']);
+        
+        
+        
+        
+        
+        
+       
+       
+       
+       
+       
+       
+       
+       
+       
 
         $elementtype = 'product';
 
@@ -718,21 +718,21 @@ function updateProductOrService($authentication, $product)
         $newobject->customcode = $product['customcode'];
 
         $newobject->canvas = $product['canvas'];
-        /*foreach($product['lines'] as $line)
-        {
-            $newline=new FactureLigne($db);
-            $newline->type=$line['type'];
-            $newline->desc=$line['desc'];
-            $newline->fk_product=$line['fk_product'];
-            $newline->total_ht=$line['total_net'];
-            $newline->total_vat=$line['total_vat'];
-            $newline->total_ttc=$line['total'];
-            $newline->vat=$line['vat_rate'];
-            $newline->qty=$line['qty'];
-            $newline->fk_product=$line['product_id'];
-        }*/
-        //var_dump($product['ref_ext']);
-        //var_dump($product['lines'][0]['type']);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         $elementtype = 'product';
 
@@ -848,7 +848,7 @@ function deleteProductOrService($authentication, $listofidstring)
 {
     global $db, $conf, $langs;
 
-    $now = dol_now();
+    
 
     dol_syslog("Function: deleteProductOrService login=".$authentication['login']);
 
@@ -907,7 +907,7 @@ function deleteProductOrService($authentication, $listofidstring)
 	    if (!$error)
 	    {
 	        $db->commit();
-            //$objectresp=array('result'=>array('result_code'=>'OK', 'result_label'=>''), 'listofid'=>$listofiddeleted);
+           
             $objectresp = array('result'=>array('result_code'=>'OK', 'result_label'=>''), 'nbdeleted'=>count($listofiddeleted));
 	    }
 	    else
@@ -921,12 +921,12 @@ function deleteProductOrService($authentication, $listofidstring)
 
     if ($error)
     {
-        //$objectresp = array('result'=>array('result_code' => $errorcode, 'result_label' => $errorlabel), 'listofid'=>$listofiddeleted);
+        
         $objectresp = array('result'=>array('result_code' => $errorcode, 'result_label' => $errorlabel), 'nbdeleted'=>0);
     }
     elseif (count($listofiddeleted) == 0)
     {
-   		//$objectresp=array('result'=>array('result_code'=>'NOT_FOUND', 'result_label'=>'No product or service with id '.join(',',$listofid).' found'), 'listofid'=>$listofiddeleted);
+   		
    		$objectresp = array('result'=>array('result_code'=>'NOT_FOUND', 'result_label'=>'No product or service with id '.join(',', $listofid).' found'), 'nbdeleted'=>0);
     }
 
@@ -956,7 +956,7 @@ function getListOfProductsOrServices($authentication, $filterproduct)
     $arrayproducts=array();
     $errorcode='';$errorlabel='';
     $error=0;
-    $fuser=check_authentication($authentication, $error, $errorcode, $errorlabel);
+    
     // Check parameters
 
     if (! $error)
