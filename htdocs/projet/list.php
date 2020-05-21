@@ -432,7 +432,7 @@ $arrayofmassactions = array(
     //'builddoc'=>$langs->trans("PDFMerge"),
     //'presend'=>$langs->trans("SendByMail"),
 );
-//if($user->rights->societe->creer) $arrayofmassactions['createbills']=$langs->trans("CreateInvoiceForThisCustomer");
+
 if ($user->rights->projet->creer) $arrayofmassactions['close'] = $langs->trans("Close");
 if ($user->rights->societe->supprimer) $arrayofmassactions['predelete'] = '<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 if (in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
@@ -776,13 +776,13 @@ while ($i < min($num, $limit))
 						$userstatic->statut = $val['statut'];
 						$userstatic->entity = $val['entity'];
 						$userstatic->photo = $val['photo'];
-						//print $userstatic->getNomUrl(1, '', 0, 0, 12);
+						
 						print $userstatic->getNomUrl(-2);
 						$j++;
 						if ($j < $nbofsalesrepresentative) print ' ';
 					}
 				}
-				//else print $langs->trans("NoSalesRepresentativeAffected");
+				
 			}
 			else
 			{
