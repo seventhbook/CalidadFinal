@@ -62,7 +62,7 @@ if (empty($page) || $page == -1) { $page = 0; }     // If $page is not defined, 
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield='s.nom, s.rowid';
+
 if (!$sortorder) $sortorder = 'ASC';
 
 // Date range
@@ -114,7 +114,7 @@ $year_start = $tmps['year'];
 $tmpe = dol_getdate($date_end);
 $year_end = $tmpe['year'];
 $nbofyear = ($year_end - $year_start) + 1;
-//var_dump("year_start=".$year_start." year_end=".$year_end." nbofyear=".$nbofyear." date_start=".dol_print_date($date_start, 'dayhour')." date_end=".dol_print_date($date_end, 'dayhour'));
+
 
 // Define modecompta ('CREANCES-DETTES' or 'RECETTES-DEPENSES' or 'BOOKKEEPING')
 $modecompta = $conf->global->ACCOUNTING_MODE;
@@ -152,7 +152,7 @@ if ($modecompta == "CREANCES-DETTES")
 	if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description .= $langs->trans("DepositsAreNotIncluded");
 	else  $description .= $langs->trans("DepositsAreIncluded");
     $builddate = dol_now();
-    //$exportlink=$langs->trans("NotYetAvailable");
+    
 }
 elseif ($modecompta == "RECETTES-DEPENSES")
 {
@@ -164,7 +164,7 @@ elseif ($modecompta == "RECETTES-DEPENSES")
     $periodlink = ($year_start ? "<a href='".$_SERVER["PHP_SELF"]."?year=".($tmps['year'] - 1)."&modecompta=".$modecompta."'>".img_previous()."</a> <a href='".$_SERVER["PHP_SELF"]."?year=".($tmps['year'] + 1)."&modecompta=".$modecompta."'>".img_next()."</a>" : "");
     $description = $langs->trans("RulesResultInOut");
     $builddate = dol_now();
-    //$exportlink=$langs->trans("NotYetAvailable");
+   
 }
 elseif ($modecompta == "BOOKKEEPING")
 {
@@ -179,7 +179,7 @@ elseif ($modecompta == "BOOKKEEPING")
 	$description = $langs->trans("RulesResultBookkeepingPredefined");
 	$description .= ' ('.$langs->trans("SeePageForSetup", DOL_URL_ROOT.'/accountancy/admin/account.php?mainmenu=accountancy&leftmenu=accountancy_admin', $langs->transnoentitiesnoconv("Accountancy").' / '.$langs->transnoentitiesnoconv("Setup").' / '.$langs->transnoentitiesnoconv("Chartofaccounts")).')';
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 
 $hselected = 'report';
@@ -227,10 +227,10 @@ print "</tr>\n";
 if ($modecompta == 'BOOKKEEPING')
 {
 	$predefinedgroupwhere = "(";
-	//$predefinedgroupwhere.= " (pcg_type = 'EXPENSE' and pcg_subtype in ('PRODUCT','SERVICE'))";
+	
 	$predefinedgroupwhere .= " (pcg_type = 'EXPENSE')";
 	$predefinedgroupwhere .= " OR ";
-	//$predefinedgroupwhere.= " (pcg_type = 'INCOME' and pcg_subtype in ('PRODUCT','SERVICE'))";
+	
 	$predefinedgroupwhere .= " (pcg_type = 'INCOME')";
 	$predefinedgroupwhere .= ")";
 
@@ -284,7 +284,7 @@ if ($modecompta == 'BOOKKEEPING')
 				{
 					$tmppredefinedgroupwhere = "pcg_type = '".$db->escape($objp->pcg_type)."' AND pcg_subtype = '".$db->escape($objp->pcg_subtype)."'";
 					$tmppredefinedgroupwhere .= " AND fk_pcg_version = '".$db->escape($charofaccountstring)."'";
-					//$tmppredefinedgroupwhere.= " AND thirdparty_code = '".$db->escape($objp->name)."'";
+					
 
 					// Get cpts of category/group
 					$cpts = $AccCat->getCptsCat(0, $tmppredefinedgroupwhere);
@@ -1000,9 +1000,9 @@ else
 		                $obj = $db->fetch_object($result);
 
 		                $amount -= $obj->amount;
-		                //$total_ht -= $obj->amount;
+		                
 		                $total_ttc -= $obj->amount;
-		                //$subtotal_ht -= $obj->amount;
+		                
 		                $subtotal_ttc -= $obj->amount;
 		                $i++;
 		            }
@@ -1048,9 +1048,9 @@ else
 		                $obj = $db->fetch_object($result);
 
 		                $amount += $obj->amount;
-		                //$total_ht += $obj->amount;
+		                
 		                $total_ttc += $obj->amount;
-		                //$subtotal_ht += $obj->amount;
+		                
 		                $subtotal_ttc += $obj->amount;
 
 		                $i++;
