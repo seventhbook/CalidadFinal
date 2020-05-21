@@ -311,7 +311,7 @@ class pdf_rouget extends ModelePdfExpedition
                 // Set path to the background PDF File
                 if (!empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                    $pagecount = $pdf->setSourceFile($conf->mycompany->dir_output.'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                    
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -342,7 +342,7 @@ class pdf_rouget extends ModelePdfExpedition
 				$tab_top = 90;
 				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD) ? 42 : 10);
 				$tab_height = 130;
-				$tab_height_newpage = 150;
+				
 
 				// Incoterm
 				$height_incoterms = 0;
@@ -376,7 +376,7 @@ class pdf_rouget extends ModelePdfExpedition
 					$pdf->writeHTMLCell(60, 4, $this->posxdesc - 1, $tab_top - 1, $outputlangs->transnoentities("TrackingNumber")." : ".$object->tracking_number, 0, 1, false, true, 'L');
 
 					$tab_top_alt = $pdf->GetY();
-					//$tab_top_alt += 1;
+					
 
 					// Tracking number
 					if (!empty($object->tracking_number))
@@ -391,7 +391,7 @@ class pdf_rouget extends ModelePdfExpedition
 								$label = '';
 								if ($object->tracking_url != $object->tracking_number) $label .= $outputlangs->trans("LinkToTrackYourPackage")."<br>";
 								$label .= $outputlangs->trans("SendingMethod").": ".$outputlangs->trans("SendingMethod".strtoupper($code));
-								//var_dump($object->tracking_url != $object->tracking_number);exit;
+								
 								if ($object->tracking_url != $object->tracking_number)
 								{
 									$label .= " : ";
@@ -427,7 +427,7 @@ class pdf_rouget extends ModelePdfExpedition
 					$height_note = 0;
 				}
 
-				$iniY = $tab_top + 7;
+				
 				$curY = $tab_top + 7;
 				$nexY = $tab_top + 7;
 
@@ -447,8 +447,8 @@ class pdf_rouget extends ModelePdfExpedition
 					$pageposbefore = $pdf->getPage();
 
 					$showpricebeforepagebreak = 1;
-					$posYAfterImage = 0;
-					$posYAfterDescription = 0;
+					
+					
 
 					// We start with Photo of product line
 					if (isset($imglinesize['width']) && isset($imglinesize['height']) && ($curY + $imglinesize['height']) > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// If photo too high, we moved completely on new page
@@ -486,13 +486,13 @@ class pdf_rouget extends ModelePdfExpedition
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter = $pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter); // The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxpicture - $curX, 3, $curX, $curY, $hideref, $hidedesc);
 
 						$pageposafter = $pdf->getPage();
 						$posyafter = $pdf->GetY();
-						//var_dump($posyafter); var_dump(($this->page_hauteur - ($heightforfooter+$heightforfreetext+$heightforinfotot))); exit;
+						
 						if ($posyafter > ($this->page_hauteur - ($heightforfooter + $heightforfreetext + $heightforinfotot)))	// There is no space left for total+free text
 						{
 							if ($i == ($nblines - 1))	// No more lines, and no space left to show total, so we create a new page
@@ -554,7 +554,7 @@ class pdf_rouget extends ModelePdfExpedition
 					if (empty($conf->global->SHIPPING_PDF_HIDE_WEIGHT_AND_VOLUME))
 					{
 						$pdf->writeHTMLCell($this->posxqtyordered - $this->posxweightvol + 2, 3, $this->posxweightvol - 1, $curY, $weighttxt.(($weighttxt && $voltxt) ? '<br>' : '').$voltxt, 0, 0, false, true, 'C');
-						//$pdf->MultiCell(($this->posxqtyordered - $this->posxweightvol), 3, $weighttxt.(($weighttxt && $voltxt)?'<br>':'').$voltxt,'','C');
+						
 					}
 
 					if (empty($conf->global->SHIPPING_PDF_HIDE_ORDERED))
@@ -586,7 +586,7 @@ class pdf_rouget extends ModelePdfExpedition
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80, 80, 80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY - 1, $this->page_largeur - $this->marge_droite, $nexY - 1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -641,7 +641,7 @@ class pdf_rouget extends ModelePdfExpedition
 				}
 
 				// Affiche zone totaux
-				$posy = $this->_tableau_tot($pdf, $object, 0, $bottomlasttab, $outputlangs);
+				
 
 				// Pied de page
 				$this->_pagefoot($pdf, $object, $outputlangs);
@@ -709,14 +709,14 @@ class pdf_rouget extends ModelePdfExpedition
 
 		// Tableau total
 		$col1x = $this->posxweightvol - 50; $col2x = $this->posxweightvol;
-		/*if ($this->page_largeur < 210) // To work with US executive format
-		{
-			$col2x-=20;
-		}*/
+		
+		
+		
+		
 		if (empty($conf->global->SHIPPING_PDF_HIDE_ORDERED)) $largcol2 = ($this->posxqtyordered - $this->posxweightvol);
 		else $largcol2 = ($this->posxqtytoship - $this->posxweightvol);
 
-		$useborder = 0;
+		
 		$index = 0;
 
 		$totalWeighttoshow = '';
@@ -947,20 +947,20 @@ class pdf_rouget extends ModelePdfExpedition
 		{
 			$posx = $this->marge_gauche + 3;
 		}
-		//$pdf->Rect($this->marge_gauche, $this->marge_haute, $this->page_largeur-$this->marge_gauche-$this->marge_droite, 30);
+		
 		if (!empty($conf->barcode->enabled))
 		{
-			// TODO Build code bar with function writeBarCode of barcode module for sending ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+			
+			
 		}
 
 		$pdf->SetDrawColor(128, 128, 128);
 		if (!empty($conf->barcode->enabled))
 		{
-			// TODO Build code bar with function writeBarCode of barcode module for sending ref $object->ref
-			//$pdf->SetXY($this->marge_gauche+3, $this->marge_haute+3);
-			//$pdf->Image($logo,10, 5, 0, 24);
+			
+			
+			
 		}
 
 
@@ -1006,7 +1006,7 @@ class pdf_rouget extends ModelePdfExpedition
 		$origin = $object->origin;
 		$origin_id = $object->origin_id;
 
-	    // TODO move to external function
+	   
 		if (!empty($conf->$origin->enabled))     // commonly $origin='commande'
 		{
 			$outputlangs->load('orders');
