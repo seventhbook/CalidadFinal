@@ -36,9 +36,9 @@
         - RFC 3380
         - RFC 3382
 */
-/*
-    TODO: beta tests on other servers than Cups
-*/
+
+
+
 
 require_once("BasicIPP.php");
 
@@ -819,7 +819,7 @@ class PrintIPP extends BasicIPP
     // SETUP
     protected function _setOperationId ()
     {
-            $prepend = '';
+           
             $this->operation_id += 1;
             $this->meta->operation_id = self::_integerBuild($this->operation_id);
             self::_putDebug( "operation id is: ".$this->operation_id."\n",2);
@@ -854,8 +854,8 @@ class PrintIPP extends BasicIPP
     // RESPONSE PARSING
     protected function _parsePrinterAttributes()
     {
-        //if (!preg_match('#successful#',$this->serveroutput->status))
-        //   return false;
+        
+        
 
         $k = -1;
         $l = 0;
@@ -904,8 +904,8 @@ class PrintIPP extends BasicIPP
 
     protected function _parseJobsAttributes()
     {
-        //if ($this->serveroutput->status != "successfull-ok")
-        //    return false;
+        
+        
 
         $job = -1;
         $l = 0;
@@ -955,7 +955,7 @@ class PrintIPP extends BasicIPP
                     # This causes incorrect parsing of integer job attributes.
                     # 2010-08-16
                     # bpkroth
-                    #$value = self::_interpretAttribute($name,$type,$this->parsed[$job_nbr][$i][$j]);
+                   
                     $value = $this->parsed[$job_nbr][$i][$j];
                     $index = '_value'.$j;
                     $this->jobs_attributes->$job_index->$php_name->$index = $value;
@@ -1042,12 +1042,12 @@ class PrintIPP extends BasicIPP
                 {
                     $this->attribute_name = $attribute_name;
                 }
-                $value = self::_readValue ($tag,$attributes_type,$j);
+                
                 $this->serveroutput->response[$attributes_type][$j]['value'] = 
                 self::_interpretAttribute($attribute_name,$tag,$this->serveroutput->response[$attributes_type][$j]['value']);
                 break;
         }
-        return;
+        
     }
 
     protected function _readTag($tag)
@@ -1414,8 +1414,8 @@ class PrintIPP extends BasicIPP
 
     protected function _parseJobAttributes()
     {
-        //if (!preg_match('#successful#',$this->serveroutput->status))
-        //    return false;
+       
+       
         $k = -1;
         $l = 0;
         for ($i = 0 ; $i < count($this->serveroutput->response) ; $i++)
@@ -1981,26 +1981,26 @@ class PrintIPP extends BasicIPP
         return;
     }
 
-    /*
-    // NOTICE : HAVE TO READ AGAIN RFC 2911 TO SEE IF IT IS PART OF SERVER'S RESPONSE (CUPS DO NOT)
+    
+    
 
-    protected function _getPrinterUri () {
+    
 
-        for ($i = 0 ; (array_key_exists($i,$this->serveroutput->response)) ; $i ++)
-            if (($this->serveroutput->response[$i]['attributes']) == "job-attributes")
-                for ($j = 0 ; array_key_exists($j,$this->serveroutput->response[$i]) ; $j++)
-                    if ($this->serveroutput->response[$i][$j]['name'] == "printer-uri") {
-                        $this->printers_uri = array_merge($this->printers_uri,array($this->serveroutput->response[$i][$j]['value']));
 
-                        return;
+
+
+
+
+
+
                         
-                        }
 
-        $this->printers_uri = array_merge($this->printers_uri,array(''));
+
+
  
-    }
 
-    */
+
+
 
     // REQUEST BUILDING
     protected function _stringCancel ($job_uri)
