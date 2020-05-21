@@ -183,7 +183,7 @@ class Adherent extends CommonObject
 
     // -1:brouillon, 0:resilie, >=1:valide,paye
     // def in common object
-    //public $status;
+    
 
     public $photo;
 
@@ -328,7 +328,7 @@ class Adherent extends CommonObject
 		$msgishtml = 0;
 		if (dol_textishtml($text, 1)) $msgishtml = 1;
 
-		$infos='';
+		
 		if ($this->civility_id) $infos.= $langs->transnoentities("UserTitle").": ".$this->getCivilityLabel()."\n";
 		$infos.= $langs->transnoentities("id").": ".$this->id."\n";
 		$infos.= $langs->transnoentities("Lastname").": ".$this->lastname."\n";
@@ -678,8 +678,8 @@ class Adherent extends CommonObject
 
 					if ($result >= 0)
 					{
-						//var_dump($this->user_login);exit;
-						//var_dump($this->login);exit;
+						
+						
 
 						// If option ADHERENT_LOGIN_NOT_REQUIRED is on, there is no login of member, so we do not overwrite user login to keep existing one.
 						if (empty($conf->global->ADHERENT_LOGIN_NOT_REQUIRED)) $luser->login=$this->login;
@@ -743,7 +743,7 @@ class Adherent extends CommonObject
 						$lthirdparty->phone=$this->phone;
 						$lthirdparty->state_id=$this->state_id;
 						$lthirdparty->country_id=$this->country_id;
-						//$lthirdparty->phone_mobile=$this->phone_mobile;
+						
 
 						$result=$lthirdparty->update($this->fk_soc, $user, 0, 1, 1, 'update');	// Use sync to 0 to avoid cyclic updates
 
@@ -1006,7 +1006,7 @@ class Adherent extends CommonObject
 		}
 		$sql.= " WHERE rowid = ".$this->id;
 
-		//dol_syslog("Adherent::Password sql=hidden");
+		
 		dol_syslog(get_class($this)."::setPassword", LOG_DEBUG);
 		$result = $this->db->query($sql);
 		if ($result)
@@ -1343,7 +1343,7 @@ class Adherent extends CommonObject
 
 				// Load other properties
 				if ($fetch_subscriptions) {
-					$result=$this->fetch_subscriptions();
+					
 				}
 
 				return $this->id;
@@ -1698,7 +1698,7 @@ class Adherent extends CommonObject
 				{
 					$vattouse=get_default_tva($mysoc, $mysoc, $idprodsubscription);
 				}
-				//print xx".$vattouse." - ".$mysoc." - ".$customer;exit;
+				
 				$result=$invoice->addline($label, 0, 1, $vattouse, 0, 0, $idprodsubscription, 0, $datesubscription, '', 0, 0, '', 'TTC', $amount, 1);
 				if ($result <= 0)
 				{
@@ -1722,7 +1722,7 @@ class Adherent extends CommonObject
 
 			if (! $error)
 			{
-				// TODO Link invoice with subscription ?
+				
 			}
 
 			// Add payment onto invoice
@@ -2453,7 +2453,7 @@ class Adherent extends CommonObject
 		global $conf,$langs;
 
 		$info=array();
-		$keymodified=false;
+		
 
 		// Object classes
 		$info["objectclass"]=explode(',', $conf->global->LDAP_MEMBER_OBJECT_CLASS);
@@ -2514,7 +2514,7 @@ class Adherent extends CommonObject
 		if (! empty($this->pass))
 		{
 			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass;	// this->pass = mot de passe non crypte
-			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass, 4); // Create OpenLDAP MD5 password (TODO add type of encryption)
+			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass, 4); 
 		}
 		// Set LDAP password if possible
 		elseif ($conf->global->LDAP_SERVER_PROTOCOLVERSION !== '3') // If ldap key is modified and LDAPv3 we use ldap_rename function for avoid lose encrypt password
@@ -2535,7 +2535,7 @@ class Adherent extends CommonObject
 			elseif (! empty($this->pass_indatabase))
 			{
 				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass_indatabase;	// $this->pass_indatabase = mot de passe non crypte
-				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass_indatabase, 4); // md5 for OpenLdap TODO add type of encryption
+				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass_indatabase, 4); 
 			}
 		}
 
@@ -2770,7 +2770,7 @@ class Adherent extends CommonObject
 			$datetosearchfor = dol_time_plus_duree(dol_mktime(0, 0, 0, $tmp['mon'], $tmp['mday'], $tmp['year']), $daysbeforeend, 'd');
 
 			$sql = 'SELECT rowid FROM '.MAIN_DB_PREFIX.'adherent';
-			$sql.= " WHERE entity = ".$conf->entity; // Do not use getEntity('adherent').")" here, we want the batch to be on its entity only;
+			$sql.= " WHERE entity = ".$conf->entity; 
 			$sql.= " AND datefin = '".$this->db->idate($datetosearchfor)."'";
 
 			$resql = $this->db->query($sql);
