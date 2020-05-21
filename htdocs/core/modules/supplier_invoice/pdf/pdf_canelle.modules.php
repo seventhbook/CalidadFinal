@@ -169,7 +169,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 			$this->posxqty = 130;
 			$this->posxunit = 147;
 		}
-		//if (! empty($conf->global->MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT)) $this->posxtva=$this->posxup;
+		
 		$this->posxpicture = $this->posxtva - (empty($conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH) ? 20 : $conf->global->MAIN_DOCUMENTS_WITH_PICTURE_WIDTH); // width of images
 		if ($this->page_largeur < 210) // To work with US executive format
 		{
@@ -290,7 +290,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
                 // Set path to the background PDF File
                 if (!empty($conf->global->MAIN_ADD_PDF_BACKGROUND))
                 {
-                	$pagecount = $pdf->setSourceFile($conf->mycompany->multidir_output[$object->entity].'/'.$conf->global->MAIN_ADD_PDF_BACKGROUND);
+                	
                     $tplidx = $pdf->importPage(1);
                 }
 
@@ -382,7 +382,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					$tab_top = $nexY+6;
 				}
 
-				$iniY = $tab_top + 7;
+				
 				$curY = $tab_top + 7;
 				$nexY = $tab_top + 7;
 
@@ -394,7 +394,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					$pdf->SetTextColor(0, 0, 0);
 
 					// Define size of image if we need it
-					$imglinesize=array();
+					
 					if (! empty($realpatharray[$i])) $imglinesize=pdf_getSizeForImage($realpatharray[$i]);
 
 					$pdf->setTopMargin($tab_top_newpage);
@@ -413,7 +413,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxtva-$curX, 4, $curX, $curY, $hideref, $hidedesc, 1);
 						$posyafter=$pdf->GetY();
@@ -524,7 +524,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -738,13 +738,13 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 		}
 		else
 		{
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
-			//{
+			
+			
 			//Local tax 1
 			foreach ($this->localtax1 as $tvakey => $tvaval) {
 				if ($tvakey != 0)    // On affiche pas taux 0
 				{
-					//$this->atleastoneratenotnull++;
+					
 
 					$index++;
 					$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -763,15 +763,15 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					$pdf->MultiCell($largcol2, $tab2_hl, price($tvaval, 0, $outputlangs), 0, 'R', 1);
 				}
 			}
-			//}
+			
 
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
-			//{
+			
+			
 			//Local tax 2
 			foreach ($this->localtax2 as $tvakey => $tvaval) {
 				if ($tvakey != 0)    // On affiche pas taux 0
 				{
-					//$this->atleastoneratenotnull++;
+					
 
 					$index++;
 					$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -790,7 +790,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 					$pdf->MultiCell($largcol2, $tab2_hl, price($tvaval, 0, $outputlangs), 0, 'R', 1);
 				}
 			}
-			//}
+			
 		}
 
 		// Total TTC
@@ -806,7 +806,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 		$pdf->SetTextColor(0, 0, 0);
 		$creditnoteamount = $object->getSumCreditNotesUsed(($conf->multicurrency->enabled && $object->multicurrency_tx != 1) ? 1 : 0); // Warning, this also include excess received
 		$depositsamount = $object->getSumDepositsUsed(($conf->multicurrency->enabled && $object->multicurrency_tx != 1) ? 1 : 0);
-		//print "x".$creditnoteamount."-".$depositsamount;exit;
+		
 		$resteapayer = price2num($total_ttc - $deja_regle - $creditnoteamount - $depositsamount, 'MT');
 		if (!empty($object->paye)) $resteapayer = 0;
 
@@ -895,7 +895,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top - 4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (!empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur - $this->marge_droite - $this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1079,7 +1079,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
 
 		// Do not add the BACKGROUND as this is for suppliers
-		//pdf_pagehead($pdf,$outputlangs,$this->page_hauteur);
+		
 
 		$pdf->SetTextColor(0, 0, 60);
 		$pdf->SetFont('', 'B', $default_font_size + 3);
@@ -1090,28 +1090,28 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 		$pdf->SetXY($this->marge_gauche, $posy);
 
 		// Logo
-		/*
-		$logo=$conf->mycompany->dir_output.'/logos/'.$mysoc->logo;
-		if ($mysoc->logo)
-		{
-			if (is_readable($logo))
-			{
-			    $height=pdf_getHeightForLogo($logo);
-			    $pdf->Image($logo, $this->marge_gauche, $posy, 0, $height);	// width=0 (auto)
-			}
-			else
-			{
-				$pdf->SetTextColor(200,0,0);
-				$pdf->SetFont('','B', $default_font_size - 2);
-				$pdf->MultiCell(100, 3, $outputlangs->transnoentities("ErrorLogoFileNotFound",$logo), 0, 'L');
-				$pdf->MultiCell(100, 3, $outputlangs->transnoentities("ErrorGoToModuleSetup"), 0, 'L');
-			}
-		}
-		else
-		{*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	
 			$text = $this->emetteur->name;
 			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($text), 0, 'L');
-		//}
+		
 
 		$pdf->SetFont('', 'B', $default_font_size + 3);
 		$pdf->SetXY($posx, $posy);
@@ -1228,7 +1228,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 			if (count($arrayidcontact) > 0)
 			{
 				$usecontact = true;
-				$result = $object->fetch_contact($arrayidcontact[0]);
+				
 			}
 
 			//Recipient name
