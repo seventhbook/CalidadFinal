@@ -215,7 +215,7 @@ $selectedfields = $form->multiSelectArrayWithCheckbox('selectedfields', $arrayfi
 
 
 $title = $langs->trans("Activities");
-//if ($search_task_user == $user->id) $title=$langs->trans("MyActivities");
+
 
 if ($id)
 {
@@ -225,7 +225,7 @@ if ($id)
 
 // Get list of project id allowed to user (in a string list separated by coma)
 if (!$user->rights->projet->all->lire) $projectsListId = $projectstatic->getProjectsAuthorizedForUser($user, 0, 1, $socid);
-//var_dump($projectsListId);
+
 
 // Get id of types of contacts for projects (This list never contains a lot of elements)
 $listofprojectcontacttype = array();
@@ -402,7 +402,7 @@ $arrayofmassactions = array(
 //    'presend'=>$langs->trans("SendByMail"),
 //    'builddoc'=>$langs->trans("PDFMerge"),
 );
-//if($user->rights->societe->creer) $arrayofmassactions['createbills']=$langs->trans("CreateInvoiceForThisCustomer");
+
 if ($user->rights->societe->supprimer) $arrayofmassactions['predelete'] = '<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 if (in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
 $massactionbutton = $form->selectMassAction('', $arrayofmassactions);
@@ -723,14 +723,14 @@ while ($i < min($num, $limit))
 		{
 			print '<td class="center">';
 			$fullhour = convertSecondToTime($obj->planned_workload, $plannedworkloadoutputformat);
-			$workingdelay = convertSecondToTime($obj->planned_workload, 'all', 86400, 7); // TODO Replace 86400 and 7 to take account working hours per day and working day per weeks
+			$workingdelay = convertSecondToTime($obj->planned_workload, 'all', 86400, 7); 
 			if ($obj->planned_workload != '')
 			{
 				print $fullhour;
-				// TODO Add delay taking account of working hours per day and working day per week
-				//if ($workingdelay != $fullhour) print '<br>('.$workingdelay.')';
+				
+				
 			}
-			//else print '--:--';
+			
 			print '</td>';
 			if (! $i) $totalarray['nbfield']++;
 			if (! $i) $totalarray['pos'][$totalarray['nbfield']]='t.planned_workload';
@@ -856,11 +856,11 @@ while ($i < min($num, $limit))
 			if (! $i) $totalarray['nbfield']++;
 		}
 		// Status
-		/*if (! empty($arrayfields['p.fk_statut']['checked']))
-		{
-    		$projectstatic->statut = $obj->fk_statut;
-    		print '<td class="right">'.$projectstatic->getLibStatut(5).'</td>';
-		}*/
+		
+		
+    		
+    		
+		
 		// Action column
 		print '<td class="nowrap center">';
 		if ($massactionbutton || $massaction)   // If we are in select mode (massactionbutton defined) or if we have already selected and sent an action ($massaction) defined
@@ -874,13 +874,13 @@ while ($i < min($num, $limit))
 
 		print "</tr>\n";
 
-		//print projectLinesa();
+		
 	}
 
 	$i++;
 }
 // Show total line
-//include DOL_DOCUMENT_ROOT.'/core/tpl/list_print_total.tpl.php';
+
 if (isset($totalarray['totaldurationeffectivefield']) || isset($totalarray['totalplannedworkloadfield']) || isset($totalarray['totalprogress_calculatedfield'])
 	|| isset($totalarray['totaltobill']) || isset($totalarray['totalbilled']))
 {
