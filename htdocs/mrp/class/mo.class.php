@@ -24,8 +24,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class for Mo
@@ -294,7 +294,7 @@ class Mo extends CommonObject
 
 	    // get lines so they will be clone
 	    //foreach($this->lines as $line)
-	    //	$line->fetch_optionals();
+	   
 
 	    // Reset some properties
 	    unset($object->id);
@@ -315,7 +315,7 @@ class Mo extends CommonObject
 	    		$shortkey = preg_replace('/options_/', '', $key);
 	    		if (!empty($extrafields->attributes[$this->element]['unique'][$shortkey]))
 	    		{
-	    			//var_dump($key); var_dump($clonedObj->array_options[$key]); exit;
+	    			
 	    			unset($object->array_options[$key]);
 	    		}
 	    	}
@@ -575,7 +575,7 @@ class Mo extends CommonObject
 		// Insert lines in mrp_production table from BOM data
 		if (!$error)
 		{
-			// TODO Check that production has not started. If yes, we stop here.
+			
 
 			$sql = 'DELETE FROM '.MAIN_DB_PREFIX.'mrp_production WHERE fk_mo = '.$this->id;
 			$this->db->query($sql);
@@ -662,7 +662,7 @@ class Mo extends CommonObject
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 
 	/**
@@ -730,7 +730,7 @@ class Mo extends CommonObject
 			else
 			{
 				$this->error = $obj->error;
-				//dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
+				
 				return "";
 			}
 		}
@@ -763,13 +763,13 @@ class Mo extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mrp->create))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mrp->mrp_advance->validate))))
-		 {
-		 $this->error='NotEnoughPermissions';
-		 dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
-		 return -1;
-		 }*/
+		
+		
+		
+		
+		
+		
+		
 
 		$now = dol_now();
 
@@ -886,12 +886,12 @@ class Mo extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+	
+	
+	
+	
+
 
 		return $this->setStatusCommon($user, self::STATUS_DRAFT, $notrigger, 'MO_UNVALIDATE');
 	}
@@ -911,12 +911,12 @@ class Mo extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+		
+		
+		
+		
+		
 
 		return $this->setStatusCommon($user, self::STATUS_CANCELED, $notrigger, 'MO_CLOSE');
 	}
@@ -936,12 +936,12 @@ class Mo extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->mymodule->mymodule_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+		 
+		 
+		 
+		 
+		 
 
 		return $this->setStatusCommon($user, self::STATUS_VALIDATED, $notrigger, 'MO_REOPEN');
 	}
@@ -1002,7 +1002,7 @@ class Mo extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('modao'));
@@ -1039,7 +1039,7 @@ class Mo extends CommonObject
 		if (empty($this->labelStatus))
 		{
 			global $langs;
-			//$langs->load("mrp");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Draft');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Validated').' ('.$langs->trans("ToProduce").')';
 			$this->labelStatus[self::STATUS_INPROGRESS] = $langs->trans('InProgress');
@@ -1169,7 +1169,7 @@ class Mo extends CommonObject
 		$langs->load("mrp");
 
 		if (!dol_strlen($modele)) {
-			//$modele = 'standard';
+			
 			$modele = '';					// Remove this once a pdf_standard.php exists.
 
 			if ($this->modelpdf) {
@@ -1197,7 +1197,7 @@ class Mo extends CommonObject
 	{
 		global $conf, $langs;
 
-		//$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlofile.log';
+		
 
 		$error = 0;
 		$this->output = '';
@@ -1205,7 +1205,7 @@ class Mo extends CommonObject
 
 		dol_syslog(__METHOD__, LOG_DEBUG);
 
-		$now = dol_now();
+		
 
 		$this->db->begin();
 
@@ -1218,7 +1218,7 @@ class Mo extends CommonObject
 
 	/**
 	 * 	Return HTML table table of source object lines
-	 *  TODO Move this and previous function into output html class file (htmlline.class.php).
+	 
 	 *  If lines are into a template, title must also be into a template
 	 *  But for the moment we don't know if it's possible, so we keep the method available on overloaded objects.
 	 *
@@ -1235,8 +1235,8 @@ class Mo extends CommonObject
 		print '<td class="right">'.$langs->trans('Qty').'</td>';
 		print '<td class="center">'.$langs->trans('QtyFrozen').'</td>';
 		print '<td class="center">'.$langs->trans('DisableStockChange').'</td>';
-		//print '<td class="right">'.$langs->trans('Efficiency').'</td>';
-		//print '<td class="center">'.$form->showCheckAddButtons('checkforselect', 1).'</td>';
+		
+		
 		print '<td class="center"></td>';
 		print '</tr>';
 		$i = 0;
@@ -1245,19 +1245,19 @@ class Mo extends CommonObject
 		{
 			foreach ($this->lines as $line)
 			{
-				/*if (is_object($hookmanager) && (($line->product_type == 9 && !empty($line->special_code)) || !empty($line->fk_parent_line)))
-				{
-					if (empty($line->fk_parent_line))
-					{
-						$parameters = array('line'=>$line, 'i'=>$i);
-						$action = '';
-						$result = $hookmanager->executeHooks('printOriginObjectLine', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
-					}
-				}
-				else
-				{*/
+			
+			
+			
+			
+			
+			
+			
+		
+		
+		
+		
 					$this->printOriginLine($line, '', $restrictlist, '/core/tpl', $selectedLines);
-				//}
+				
 
 				$i++;
 			}
@@ -1267,7 +1267,7 @@ class Mo extends CommonObject
 
 	/**
 	 * 	Return HTML with a line of table array of source object lines
-	 *  TODO Move this and previous function into output html class file (htmlline.class.php).
+	 
 	 *  If lines are into a template, title must also be into a template
 	 *  But for the moment we don't know if it's possible as we keep a method available on overloaded objects.
 	 *
@@ -1290,21 +1290,21 @@ class Mo extends CommonObject
 			$productstatic = new Product($this->db);
 			$productstatic->fetch($line->fk_product);
 			$this->tpl['label'] .= $productstatic->getNomUrl(1);
-			//$this->tpl['label'].= ' - '.$productstatic->label;
+			
 		}
 		else
 		{
 			// If origin MRP line is not a product, but another MRP
-			// TODO
+			
 		}
 
 		$this->tpl['qty'] = $line->qty;
 		$this->tpl['qty_frozen'] = $line->qty_frozen;
 		$this->tpl['disable_stock_change'] = $line->disable_stock_change;
-		//$this->tpl['efficiency'] = $line->efficiency;
+		
 
 		$tpl = DOL_DOCUMENT_ROOT.'/mrp/tpl/originproductline.tpl.php';
-		$res = include $tpl;
+		
 	}
 }
 
@@ -1542,6 +1542,6 @@ class MoLine extends CommonObjectLine
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 }
