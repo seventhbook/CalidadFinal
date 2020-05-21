@@ -281,7 +281,7 @@ if ($search_dfyear > 0 && $search_op2df)
 	else $sql .= " HAVING MIN(".$db->ifsql("cd.statut=4", "cd.date_fin_validite", "null").") <= '".$db->idate(dol_get_last_day($search_dfyear, $search_dfmonth, false))."' AND MIN(".$db->ifsql("cd.statut=4", "cd.date_fin_validite", "null").") >= '".$db->idate(dol_get_first_day($search_dfyear, $search_dfmonth, false))."'";
 }
 $sql .= $db->order($sortfield, $sortorder);
-//print $sql;
+
 
 $totalnboflines = 0;
 $result = $db->query($sql);
@@ -512,10 +512,10 @@ if (!empty($arrayfields['c.date_contrat']['checked']))
 {
 	// Date contract
 	print '<td class="liste_titre center nowraponall">';
-	//print $langs->trans('Month').': ';
+	
 	if (!empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="day" value="'.$day.'">';
 	print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="month" value="'.$month.'">';
-	//print '&nbsp;'.$langs->trans('Year').': ';
+	
 	$syear = $year;
 	print $formother->selectyear($syear, 'year', 1, 20, 5);
 	print '</td>';
@@ -643,7 +643,7 @@ while ($i < min($num, $limit))
 	if (!empty($arrayfields['s.nom']['checked']))
 	{
 		print '<td>';
-		//print '<a href="../comm/card.php?socid='.$obj->socid.'">'.img_object($langs->trans("ShowCompany"),"company").' '.$obj->name.'</a>';
+		
 		if ($obj->socid > 0)
 		{
 			print $socstatic->getNomUrl(1, '');
@@ -725,10 +725,10 @@ while ($i < min($num, $limit))
 					print $userstatic->getNomUrl(-2);
 					$j++;
 					if ($j < $nbofsalesrepresentative) print ' ';
-					//print '</div>';
+					
 				}
 			}
-			//else print $langs->trans("NoSalesRepresentativeAffected");
+			
 		}
 		else
 		{
