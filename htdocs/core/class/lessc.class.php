@@ -132,7 +132,7 @@ class Lessc {
 
 		// copy mixins into scope, set their parents
 		// bring blocks from import into current block
-		// TODO: need to mark the source parser these came from this file
+		
 		foreach ($root->children as $childName => $child) {
 			if (isset($parentBlock->children[$childName])) {
 				$parentBlock->children[$childName] = array_merge(
@@ -157,7 +157,7 @@ class Lessc {
 
 		$oldImport = $this->importDir;
 
-		// TODO: this is because the importDir api is stupid
+		
 		$this->importDir = (array)$this->importDir;
 		array_unshift($this->importDir, $importDir);
 
@@ -700,7 +700,7 @@ class Lessc {
 				$orderedArgs = array();
 				$keywordArgs = array();
 				foreach ((array)$args as $arg) {
-					$argval = null;
+					
 					switch ($arg[0]) {
 						case "arg":
 							if (!isset($arg[2])) {
@@ -1256,7 +1256,7 @@ class Lessc {
 	}
 
 	// mixes two colors by weight
-	// mix(@color1, @color2, [@weight: 50%]);
+	
 	// http://sass-lang.com/docs/yardoc/Sass/Script/Functions.html#mix-instance_method
 	protected function lib_mix($args) {
 		if ($args[0] != "list" || count($args[2]) < 2)
@@ -1467,7 +1467,7 @@ class Lessc {
 			$b = $this->toRGB_helper($H - 1/3, $temp1, $temp2);
 		}
 
-		// $out = array('color', round($r*255), round($g*255), round($b*255));
+		
 		$out = array('color', $r*255, $g*255, $b*255);
 		if (count($color) > 4) {
 			// copy alpha
@@ -2096,7 +2096,7 @@ class Lessc {
 				}
 			}
 		} else {
-			// TODO: Throw an exception? We got neither a string nor something
+			
 			// that looks like a compatible lessphp cache structure.
 			return null;
 		}
@@ -2472,10 +2472,10 @@ class lessc_parser {
 		$this->seenComments = array();
 
 		// trim whitespace on head
-		// if (preg_match('/^\s+/', $this->buffer, $m)) {
-		//  $this->line += substr_count($m[0], "\n");
-			//  $this->buffer = ltrim($this->buffer);
-			// }
+		
+		
+		
+		
 			$this->whitespace();
 
 			// parse the entire file
@@ -2486,7 +2486,7 @@ class lessc_parser {
 				$this->throwError('parse error count '.$this->count.' != len buffer '.strlen($this->buffer));
 			}
 
-			// TODO report where the block was opened
+			
 			if (!property_exists($this->env, 'parent') || !is_null($this->env->parent))
 			{
 				throw new exception('parse error: unclosed block');
@@ -2677,14 +2677,14 @@ class lessc_parser {
 								$this->seek($s);
 							}
 
-							// spare ;
+							
 							if ($this->literal(';')) return true;
 
 							return false; // got nothing, throw error
 		}
 
 		protected function isDirective($dirname, $directives) {
-			// TODO: cache pattern in parser
+			
 			$pattern = implode("|",
 				array_map(array("lessc", "preg_quote"), $directives));
 			$pattern = '/^(-[a-z-]+-)?(' . $pattern . ')$/i';
@@ -2896,9 +2896,9 @@ class lessc_parser {
 		protected function import(&$out) {
 			if (!$this->literal('@import')) return false;
 
-			// @import "something.css" media;
-			// @import url("something.css") media;
-			// @import url(something.css) media;
+			
+			
+			
 
 			if ($this->propertyValue($value)) {
 				$out = array("import", $value);
@@ -2974,7 +2974,7 @@ class lessc_parser {
 
 			$stop = array("'", '"', "@{", $end);
 			$stop = array_map(array("lessc", "preg_quote"), $stop);
-			// $stop[] = self::$commentMulti;
+			
 
 			if (!is_null($rejectStrs)) {
 				$stop = array_merge($stop, $rejectStrs);
@@ -3489,9 +3489,9 @@ class lessc_parser {
 			if ($this->literal(';', false)) {
 				return true;
 			} elseif ($this->count == strlen($this->buffer) || $this->buffer[$this->count] == '}') {
-				// if there is end of file or a closing block next then we don't need a ;
+				
 				return true;
-			}
+			
 			return false;
 		}
 
@@ -3520,7 +3520,7 @@ class lessc_parser {
 		}
 
 		// a bunch of guards that are and'd together
-		// TODO rename to guardGroup
+		
 		protected function guardGroup(&$guardGroup) {
 			$s = $this->seek();
 			$guardGroup = array();
@@ -3679,7 +3679,7 @@ class lessc_parser {
 				$loc = "line: $line";
 			}
 
-			// TODO this depends on $this->count
+			
 			if ($this->peek("(.*?)(\n|$)", $m, $count)) {
 				throw new exception("$msg: failed at `$m[1]` $loc");
 			} else {
@@ -3694,7 +3694,7 @@ class lessc_parser {
 			$b->type = $type;
 			$b->id = self::$nextBlockId++;
 
-			$b->isVararg = false; // TODO: kill me from here
+			$b->isVararg = false; 
 			$b->tags = $selectors;
 
 			$b->props = array();
@@ -3723,7 +3723,7 @@ class lessc_parser {
 		}
 
 		// remove comments from $text
-		// todo: make it work for all functions, not just url
+		
 		protected function removeComments($text) {
 			$look = array(
 				'url(', '//', '/*', '"', "'"
