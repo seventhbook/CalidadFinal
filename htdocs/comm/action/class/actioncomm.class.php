@@ -387,11 +387,11 @@ class ActionComm extends CommonObject
         if (empty($this->punctual))     $this->punctual = 0;
         if (empty($this->transparency)) $this->transparency = 0;
         if ($this->percentage > 100) $this->percentage = 100;
-        //if ($this->percentage == 100 && ! $this->dateend) $this->dateend = $this->date;
+        
         if (!empty($this->datep) && !empty($this->datef))   $this->durationp = ($this->datef - $this->datep); // deprecated
-        //if (! empty($this->date)  && ! empty($this->dateend)) $this->durationa=($this->dateend - $this->date);
+        
         if (!empty($this->datep) && !empty($this->datef) && $this->datep > $this->datef) $this->datef = $this->datep;
-        //if (! empty($this->date)  && ! empty($this->dateend) && $this->date > $this->dateend) $this->dateend=$this->date;
+        
         if (!isset($this->fk_project) || $this->fk_project < 0) $this->fk_project = 0;
         // For backward compatibility
         if ($this->elementtype == 'facture')  $this->elementtype = 'invoice';
@@ -406,8 +406,8 @@ class ActionComm extends CommonObject
         }
 
 
-        $userownerid = $this->userownerid;
-        $userdoneid = $this->userdoneid;
+        
+       
 
         // Be sure assigned user is defined as an array of array('id'=>,'mandatory'=>,...).
         if (empty($this->userassigned) || count($this->userassigned) == 0 || !is_array($this->userassigned))
@@ -437,7 +437,7 @@ class ActionComm extends CommonObject
                 return -1;
             }
         }
-        $code = empty($this->code) ? $this->type_code : $this->code;
+        
 
         // Check parameters
         if (!$this->type_id)
@@ -517,7 +517,7 @@ class ActionComm extends CommonObject
             // Now insert assigned users
 			if (!$error)
 			{
-				//dol_syslog(var_export($this->userassigned, true));
+				
 				foreach ($this->userassigned as $key => $val)
 				{
 			        if (!is_array($val))	// For backward compatibility when val=id
@@ -537,7 +537,7 @@ class ActionComm extends CommonObject
 							dol_syslog('Error to process userassigned: '.$this->db->lasterror(), LOG_ERR);
 			           		$this->errors[] = $this->db->lasterror();
 						}
-						//var_dump($sql);exit;
+						
 			        }
 				}
 			}
@@ -625,7 +625,7 @@ class ActionComm extends CommonObject
 		// fetch optionals attributes and labels
 		$this->fetch_optionals();
 
-		//$this->fetch_userassigned();
+		
 		$this->fetchResources();
 
         $this->id = 0;
@@ -833,7 +833,7 @@ class ActionComm extends CommonObject
     /**
      *    Initialize this->userassigned array with list of id of user assigned to event
      *
-     *    @param    bool    $override   Override $this->userownerid when empty. TODO This should be false by default. True is here to fix corrupted data.
+     
      *    @return   int                 <0 if KO, >0 if OK
      */
     public function fetch_userassigned($override = true)
@@ -981,11 +981,11 @@ class ActionComm extends CommonObject
         if (empty($this->transparency))  $this->transparency = 0;
         if (empty($this->fulldayevent))  $this->fulldayevent = 0;
         if ($this->percentage > 100) $this->percentage = 100;
-        //if ($this->percentage == 100 && ! $this->dateend) $this->dateend = $this->date;
+       
         if ($this->datep && $this->datef)   $this->durationp = ($this->datef - $this->datep); // deprecated
-        //if ($this->date  && $this->dateend) $this->durationa=($this->dateend - $this->date);
+       
         if ($this->datep && $this->datef && $this->datep > $this->datef) $this->datef = $this->datep;
-        //if ($this->date  && $this->dateend && $this->date > $this->dateend) $this->dateend=$this->date;
+       
         if ($this->fk_project < 0) $this->fk_project = 0;
 
         // Check parameters
@@ -995,10 +995,10 @@ class ActionComm extends CommonObject
             return -1;
         }
 
-        $socid = (($this->socid > 0) ? $this->socid : 0);
-        $contactid = (($this->contactid > 0) ? $this->contactid : 0);
-		$userownerid = ($this->userownerid ? $this->userownerid : 0);
-		$userdoneid = ($this->userdoneid ? $this->userdoneid : 0);
+        
+        
+	
+	
 
         $this->db->begin();
 
@@ -1027,7 +1027,7 @@ class ActionComm extends CommonObject
         dol_syslog(get_class($this)."::update", LOG_DEBUG);
         if ($this->db->query($sql))
         {
-			$action = 'update';
+			
 
         	// Actions on extra fields
        		if (empty($conf->global->MAIN_EXTRAFIELDS_DISABLED)) // For avoid conflicts if trigger used
@@ -1060,7 +1060,7 @@ class ActionComm extends CommonObject
 						$error++;
 		           		$this->errors[] = $this->db->lasterror();
 					}
-					//var_dump($sql);exit;
+					
 				}
 			}
 
@@ -1116,7 +1116,7 @@ class ActionComm extends CommonObject
 
     /**
      *  Load all objects with filters.
-     *  @todo WARNING: This make a fetch on all records instead of making one request with a join.
+     
      *
      *  @param		DoliDb	$db				Database handler
      *  @param		int		$socid			Filter by thirdparty
@@ -1402,7 +1402,7 @@ class ActionComm extends CommonObject
             $option = 'nolink';
 		}
 
-        $label = $this->label;
+       
 		if (empty($label)) $label = $this->libelle; // For backward compatibility
 
 		$result = '';
@@ -1443,12 +1443,11 @@ class ActionComm extends CommonObject
 		    $linkclose .= ' title="'.dol_escape_htmltag($tooltip, 1).'"';
 		    $linkclose .= ' class="'.$classname.' classfortooltip"';
 
-		    /*
-		    $hookmanager->initHooks(array('actiondao'));
-		    $parameters=array('id'=>$this->id);
-		    $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-		    $linkclose = ($hookmanager->resPrint ? $hookmanager->resPrint : $linkclose);
-		    */
+		    
+		    
+		    
+		    
+		    
 		}
 		else $linkclose .= ' class="'.$classname.'"';
 
@@ -1597,7 +1596,7 @@ class ActionComm extends CommonObject
             $sql.= " LEFT JOIN ".MAIN_DB_PREFIX."societe as s on s.rowid = a.fk_soc";
 
 			$parameters=array('filters' => $filters);
-			$reshook=$hookmanager->executeHooks('printFieldListFrom', $parameters);    // Note that $action and $object may have been modified by hook
+			
 			$sql.=$hookmanager->resPrint;
 
 			// We must filter on assignement table
@@ -1653,7 +1652,7 @@ class ActionComm extends CommonObject
 			$sql.=$hookmanager->resPrint;
 
             $sql.= " ORDER by datep";
-            //print $sql;exit;
+            
 
             dol_syslog(get_class($this)."::build_exportfile select events", LOG_DEBUG);
             $resql=$this->db->query($sql);
@@ -1707,7 +1706,7 @@ class ActionComm extends CommonObject
                     $event['created']=$this->db->jdate($obj->datec)-(empty($conf->global->AGENDA_EXPORT_FIX_TZ)?0:($conf->global->AGENDA_EXPORT_FIX_TZ*3600));
                     $event['modified']=$this->db->jdate($obj->datem)-(empty($conf->global->AGENDA_EXPORT_FIX_TZ)?0:($conf->global->AGENDA_EXPORT_FIX_TZ*3600));
 
-                    // TODO: find a way to call "$this->fetch_userassigned();" without override "$this" properties
+                    
                     $this->id = $obj->id;
                     $this->fetch_userassigned(false);
 
@@ -1896,7 +1895,7 @@ class ActionComm extends CommonObject
 
     	$this->db->begin();
 
-        // TODO Scan events of type 'email' into table llx_actioncomm_reminder with status todo, send email, then set status to done
+        
 
         // Delete also very old past events (we do not keep more than 1 month record in past)
         $sql = "DELETE FROM ".MAIN_DB_PREFIX."actioncomm_reminder WHERE dateremind < '".$this->db->jdate($now - (3600 * 24 * 32))."'";
