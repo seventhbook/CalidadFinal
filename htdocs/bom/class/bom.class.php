@@ -23,8 +23,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class for BOM
@@ -154,7 +154,7 @@ class BOM extends CommonObject
 	/**
 	 * @var array	List of child tables. To test if we can delete object.
 	 */
-	//protected $childtables=array();
+	
 
 	/**
 	 * @var array	List of child tables. To know object to delete on cascade.
@@ -242,7 +242,7 @@ class BOM extends CommonObject
 
 	    // Get lines so they will be clone
 	    //foreach($object->lines as $line)
-	    //	$line->fetch_optionals();
+	    
 
 	    // Reset some properties
 	    unset($object->id);
@@ -263,7 +263,7 @@ class BOM extends CommonObject
 	    		$shortkey = preg_replace('/options_/', '', $key);
 	    		if (!empty($extrafields->attributes[$this->element]['unique'][$shortkey]))
 	    		{
-	    			//var_dump($key); var_dump($clonedObj->array_options[$key]); exit;
+	    			
 	    			unset($object->array_options[$key]);
 	    		}
 	    	}
@@ -395,7 +395,7 @@ class BOM extends CommonObject
 
 		$resql = $this->db->query($sql);
 		if ($resql) {
-			$num = $this->db->num_rows($resql);
+			
 
 			while ($obj = $this->db->fetch_object($resql))
 			{
@@ -439,7 +439,7 @@ class BOM extends CommonObject
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 
 	/**
@@ -506,7 +506,7 @@ class BOM extends CommonObject
 	        else
 	        {
 	            $this->error = $obj->error;
-	            //dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
+	           
 	            return "";
 	        }
 	    }
@@ -539,13 +539,13 @@ class BOM extends CommonObject
 	        return 0;
 	    }
 
-	    /*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->create))
-	        || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->bom_advance->validate))))
-	    {
-	        $this->error='NotEnoughPermissions';
-	        dol_syslog(get_class($this)."::valid ".$this->error, LOG_ERR);
-	        return -1;
-	    }*/
+	    
+	    
+	    
+	    
+	   
+	   
+	   
 
 	    $now = dol_now();
 
@@ -662,12 +662,12 @@ class BOM extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->bom_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+		
+		
+	
+
+		
 
 		return $this->setStatusCommon($user, self::STATUS_DRAFT, $notrigger, 'BOM_UNVALIDATE');
 	}
@@ -687,12 +687,12 @@ class BOM extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->bom_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+		
+	
+	
+	
+	
 
 		return $this->setStatusCommon($user, self::STATUS_CANCELED, $notrigger, 'BOM_CLOSE');
 	}
@@ -712,12 +712,12 @@ class BOM extends CommonObject
 			return 0;
 		}
 
-		/*if (! ((empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->write))
-		 || (! empty($conf->global->MAIN_USE_ADVANCED_PERMS) && ! empty($user->rights->bom->bom_advance->validate))))
-		 {
-		 $this->error='Permission denied';
-		 return -1;
-		 }*/
+		
+		
+		
+		
+	
+	
 
 		return $this->setStatusCommon($user, self::STATUS_VALIDATED, $notrigger, 'BOM_REOPEN');
 	}
@@ -771,12 +771,12 @@ class BOM extends CommonObject
             $linkclose .= ' title="'.dol_escape_htmltag($label, 1).'"';
             $linkclose .= ' class="classfortooltip'.($morecss ? ' '.$morecss : '').'"';
 
-            /*
-             $hookmanager->initHooks(array('bomdao'));
-             $parameters=array('id'=>$this->id);
-             $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-             if ($reshook > 0) $linkclose = $hookmanager->resPrint;
-             */
+            
+            
+            
+            
+            
+            
         }
         else $linkclose = ($morecss ? ' class="'.$morecss.'"' : '');
 
@@ -788,7 +788,7 @@ class BOM extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('bomdao'));
@@ -825,7 +825,7 @@ class BOM extends CommonObject
 		if (empty($this->labelStatus))
 		{
 			global $langs;
-			//$langs->load("mrp");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Draft');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Enabled');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->trans('Disabled');
@@ -973,7 +973,7 @@ class BOM extends CommonObject
 	{
 		global $conf, $langs;
 
-		//$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlofile.log';
+		
 
 		$error = 0;
 		$this->output = '';
@@ -1133,7 +1133,7 @@ class BOMLine extends CommonObjectLine
 	public function fetch($id, $ref = null)
 	{
 		$result = $this->fetchCommon($id, $ref);
-		//if ($result > 0 && ! empty($this->table_element_line)) $this->fetchLines();
+		
 		return $result;
 	}
 
@@ -1192,7 +1192,7 @@ class BOMLine extends CommonObjectLine
 
 		$resql = $this->db->query($sql);
 		if ($resql) {
-			$num = $this->db->num_rows($resql);
+			
 
 			while ($obj = $this->db->fetch_object($resql))
 			{
@@ -1236,7 +1236,7 @@ class BOMLine extends CommonObjectLine
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 
 	/**
@@ -1282,12 +1282,12 @@ class BOMLine extends CommonObjectLine
             $linkclose .= ' title="'.dol_escape_htmltag($label, 1).'"';
             $linkclose .= ' class="classfortooltip'.($morecss ? ' '.$morecss : '').'"';
 
-            /*
-             $hookmanager->initHooks(array('bomlinedao'));
-             $parameters=array('id'=>$this->id);
-             $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-             if ($reshook > 0) $linkclose = $hookmanager->resPrint;
-             */
+            
+            
+            
+            
+            
+            
         }
         else $linkclose = ($morecss ? ' class="'.$morecss.'"' : '');
 
@@ -1299,7 +1299,7 @@ class BOMLine extends CommonObjectLine
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('bomlinedao'));
