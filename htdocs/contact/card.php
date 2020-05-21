@@ -196,11 +196,11 @@ if (empty($reshook))
         $object->town = GETPOST("town", 'alpha');
         $object->country_id = GETPOST("country_id", 'int');
         $object->state_id = GETPOST("state_id", 'int');
-        //$object->jabberid		= GETPOST("jabberid", 'alpha');
-        //$object->skype		= GETPOST("skype", 'alpha');
-        //$object->twitter		= GETPOST("twitter", 'alpha');
-        //$object->facebook		= GETPOST("facebook", 'alpha');
-        //$object->linkedin		= GETPOST("linkedin", 'alpha');
+        
+        
+       
+        
+        
         $object->socialnetworks = array();
         if (!empty($conf->socialnetworks->enabled)) {
             foreach ($socialnetworks as $key => $value) {
@@ -398,11 +398,11 @@ if (empty($reshook))
 
             $object->email = GETPOST("email", 'alpha');
             $object->no_email = GETPOST("no_email", "int");
-            //$object->jabberid		= GETPOST("jabberid", 'alpha');
-            //$object->skype		= GETPOST("skype", 'alpha');
-            //$object->twitter		= GETPOST("twitter", 'alpha');
-            //$object->facebook		= GETPOST("facebook", 'alpha');
-            //$object->linkedin		= GETPOST("linkedin", 'alpha');
+            
+            
+            
+            
+           
             if (!empty($conf->socialnetworks->enabled)) {
                 foreach ($socialnetworks as $key => $value) {
                     if (GETPOSTISSET($key) && GETPOST($key, 'alphanohtml') != '') {
@@ -746,7 +746,7 @@ else
             	if (empty($noemail) && !empty($object->email))
             	{
             		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-            		//print $sql;
+            		
             		$resql = $db->query($sql);
             		if ($resql)
             		{
@@ -776,39 +776,39 @@ else
                     }
                 }
             }
-            // if (! empty($conf->socialnetworks->enabled))
-            // {
-            // 	// Jabber
-            // 	if (! empty($conf->global->SOCIALNETWORKS_JABBER))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Jabber', 'jabberid', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="jabberid" id="jabberid" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("jabberid")?GETPOST("jabberid", 'alpha'):$object->jabberid).'"></td></tr>';
-            // 	}
-            // 	// Skype
-            // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="skype" id="skype" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("skype")?GETPOST("skype", 'alpha'):$object->skype).'"></td></tr>';
-            // 	}
-            // 	// Twitter
-            // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-            // 	{
-            // 		print '<tr><td><label for="twitter">'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="twitter" id="twitter" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("twitter")?GETPOST("twitter", 'alpha'):$object->twitter).'"></td></tr>';
-            // 	}
-            // 	// Facebook
-            // 	if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-            // 	{
-            // 		print '<tr><td><label for="facebook">'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</label></td>';
-            // 		print '<td colspan="3"><input type="text" name="facebook" id="facebook" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("facebook")?GETPOST("facebook", 'alpha'):$object->facebook).'"></td></tr>';
-            // 	}
-            //     // LinkedIn
-            //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-            //     {
-            //         print '<tr><td><label for="linkedin">'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</label></td>';
-            //         print '<td colspan="3"><input type="text" name="linkedin" id="linkedin" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("linkedin")?GETPOST("linkedin", 'alpha'):$object->linkedin).'"></td></tr>';
-            //     }
-            // }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           
+           
+           
+          
 
             // Visibility
             print '<tr><td><label for="priv">'.$langs->trans("ContactVisibility").'</label></td><td colspan="3">';
@@ -1060,7 +1060,7 @@ else
             	if (empty($noemail) && !empty($object->email))
             	{
             		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-            		//print $sql;
+            		
             		$resql = $db->query($sql);
             		if ($resql)
             		{
@@ -1092,39 +1092,39 @@ else
                     }
                 }
             }
-            // if (! empty($conf->socialnetworks->enabled))
-            // {
-            // 	// Jabber ID
-            // 	if (! empty($conf->global->SOCIALNETWORKS_JABBER))
-            // 	{
-            // 		print '<tr><td><label for="jabberid">'.$form->editfieldkey('Jabber', 'jabberid', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="jabberid" id="jabberid" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("jabberid")?GETPOST("jabberid", 'alpha'):$object->jabberid).'"></td></tr>';
-            // 	}
-            // 	// Skype
-            // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-            // 	{
-            // 		print '<tr><td><label for="skype">'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="skype" id="skype" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("skype")?GETPOST("skype", 'alpha'):$object->skype).'"></td></tr>';
-            // 	}
-            // 	// Twitter
-            // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-            // 	{
-            // 		print '<tr><td><label for="twitter">'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</label></td>';
-            // 		print '<td><input type="text" name="twitter" id="twitter" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOSTISSET("twitter")?GETPOST("twitter", 'alpha'):$object->twitter).'"></td></tr>';
-            // 	}
-            // 	// Facebook
-            //     if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-            //     {
-            //         print '<tr><td><label for="facebook">'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</label></td>';
-            //         print '<td><input type="text" name="facebook" id="facebook" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOST("facebook")?GETPOST("facebook", 'alpha'):$object->facebook).'"></td></tr>';
-            //     }
-            //     // LinkedIn
-            //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-            //     {
-            //         print '<tr><td><label for="linkedin">'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</label></td>';
-            //         print '<td><input type="text" name="linkedin" id="linkedin" class="minwidth100" maxlength="80" value="'.dol_escape_htmltag(GETPOST("linkedin")?GETPOST("linkedin", 'alpha'):$object->linkedin).'"></td></tr>';
-            //     }
-            // }
+            
+           
+           
+           
+           
+           
+           
+           
+          
+          
+          
+          
+          
+          
+          
+        
+        
+          
+          
+            
+            
+            
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
 
             // Visibility
             print '<tr><td><label for="priv">'.$langs->trans("ContactVisibility").'</label></td><td colspan="3">';
@@ -1232,7 +1232,7 @@ else
             }
             print '<table class="nobordernopadding">';
             if ($object->photo) print '<tr><td><input type="checkbox" class="flat photodelete" name="deletephoto" id="photodelete"> '.$langs->trans("Delete").'<br><br></td></tr>';
-            //print '<tr><td>'.$langs->trans("PhotoFile").'</td></tr>';
+            
             print '<tr><td><input type="file" class="flat" name="photo" id="photoinput"></td></tr>';
             print '</table>';
 
@@ -1271,7 +1271,7 @@ else
             $login = dol_buildlogin($object->lastname, $object->firstname);
 
             $generated_password = '';
-            if (!$ldap_sid) // TODO ldap_sid ?
+            if (!$ldap_sid) 
             {
                 require_once DOL_DOCUMENT_ROOT.'/core/lib/security2.lib.php';
                 $generated_password = getRandomPassword(false);
@@ -1334,12 +1334,12 @@ else
         // Unsubscribe opt-out
         if (!empty($conf->mailing->enabled))
         {
-        	//print 'eee'.$object->email;
+        	
         	$noemail = $object->no_email;
         	if (empty($noemail) && !empty($object->email))
         	{
         		$sql = "SELECT COUNT(*) as nb FROM ".MAIN_DB_PREFIX."mailing_unsubscribe WHERE entity IN (".getEntity('mailing').") AND email = '".$db->escape($object->email)."'";
-        		//print $sql;
+        		
         		$resql = $db->query($sql);
         		if ($resql)
         		{
