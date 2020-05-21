@@ -251,9 +251,9 @@ class Reception extends CommonObject
 		$sql .= ", ".($this->shipping_method_id > 0 ? $this->shipping_method_id : "null");
 		$sql .= ", '".$this->db->escape($this->tracking_number)."'";
 		$sql .= ", ".$this->weight;
-		$sql .= ", ".$this->sizeS; // TODO Should use this->trueDepth
-		$sql .= ", ".$this->sizeW; // TODO Should use this->trueWidth
-		$sql .= ", ".$this->sizeH; // TODO Should use this->trueHeight
+		$sql .= ", ".$this->sizeS; 
+		$sql .= ", ".$this->sizeW;
+		$sql .= ", ".$this->sizeH;
 		$sql .= ", ".$this->weight_units;
 		$sql .= ", ".$this->size_units;
 		$sql .= ", ".(!empty($this->note_private) ? "'".$this->db->escape($this->note_private)."'" : "null");
@@ -300,7 +300,7 @@ class Reception extends CommonObject
 				}
 
 				// Actions on extra fields (by external module or standard code)
-				// TODO le hook fait double emploi avec le trigger !!
+				
 				$action = 'add';
 				$hookmanager->initHooks(array('receptiondao'));
 				$parameters = array('socid'=>$this->id);
@@ -418,8 +418,8 @@ class Reception extends CommonObject
 				$this->statut               = $obj->fk_statut;
 				$this->user_author_id       = $obj->fk_user_author;
 				$this->date_creation        = $this->db->jdate($obj->date_creation);
-				$this->date                 = $this->db->jdate($obj->date_reception); // TODO deprecated
-				$this->date_reception = $this->db->jdate($obj->date_reception); // TODO deprecated
+				$this->date                 = $this->db->jdate($obj->date_reception);
+				$this->date_reception = $this->db->jdate($obj->date_reception); 
 				$this->date_reception = $this->db->jdate($obj->date_reception); // Date real
 				$this->date_delivery        = $this->db->jdate($obj->date_delivery); // Date planed
 				$this->fk_delivery_address  = $obj->fk_address;
@@ -575,7 +575,7 @@ class Reception extends CommonObject
 			$langs->load("agenda");
 
 			// Loop on each product line to add a stock movement
-			// TODO in future, reception lines may not be linked to order line
+			
 			$sql = "SELECT cd.fk_product, cd.subprice,";
 			$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 			$sql .= " ed.eatby, ed.sellby, ed.batch";
@@ -598,7 +598,7 @@ class Reception extends CommonObject
 					if ($qty <= 0) continue;
 					dol_syslog(get_class($this)."::valid movement index ".$i." ed.rowid=".$obj->rowid." edb.rowid=".$obj->edbrowid);
 
-					//var_dump($this->lines[$i]);
+					
 					$mouvS = new MouvementStock($this->db);
 					$mouvS->origin = &$this;
 
@@ -976,7 +976,7 @@ class Reception extends CommonObject
 						    {
                                 // Check if there is no more reception. If not, we can move back status of order to "validated" instead of "reception in progress"
 						        $this->$origin->loadReceptions();
-						        //var_dump($this->$origin->receptions);exit;
+						        
 						        if (count($this->$origin->receptions) <= 0)
 						        {
                                     $this->$origin->setStatut(3); // ordered
@@ -1127,7 +1127,7 @@ class Reception extends CommonObject
 
 		if ($short) return $url;
 
-		$linkclose = '';
+		
 		if (empty($notooltip))
 		{
 		    if (!empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER))
@@ -1406,7 +1406,7 @@ class Reception extends CommonObject
         $sql = 'UPDATE '.MAIN_DB_PREFIX.'c_shipment_mode SET active=1';
         $sql .= ' WHERE rowid='.$id;
 
-        $resql = $this->db->query($sql);
+        
     }
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -1423,7 +1423,7 @@ class Reception extends CommonObject
         $sql = 'UPDATE '.MAIN_DB_PREFIX.'c_shipment_mode SET active=0';
         $sql .= ' WHERE rowid='.$id;
 
-        $resql = $this->db->query($sql);
+        
     }
 
 
@@ -1520,7 +1520,7 @@ class Reception extends CommonObject
 				$langs->load("agenda");
 
 				// Loop on each product line to add a stock movement
-				// TODO possibilite de receptionner a partir d'une propale ou autre origine ?
+				
 				$sql = "SELECT cd.fk_product, cd.subprice,";
 				$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 				$sql .= " ed.eatby, ed.sellby, ed.batch";
@@ -1684,7 +1684,7 @@ class Reception extends CommonObject
 				$langs->load("agenda");
 
 				// Loop on each product line to add a stock movement
-				// TODO possibilite de receptionner a partir d'une propale ou autre origine
+				
 				$sql = "SELECT ed.fk_product, cd.subprice,";
 				$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 				$sql .= " ed.eatby, ed.sellby, ed.batch";
@@ -1708,7 +1708,7 @@ class Reception extends CommonObject
 
 						dol_syslog(get_class($this)."::reopen reception movement index ".$i." ed.rowid=".$obj->rowid);
 
-						//var_dump($this->lines[$i]);
+						
 						$mouvS = new MouvementStock($this->db);
 						$mouvS->origin = &$this;
 
@@ -1819,7 +1819,7 @@ class Reception extends CommonObject
 				$langs->load("agenda");
 
 				// Loop on each product line to add a stock movement
-				// TODO possibilite de receptionner a partir d'une propale ou autre origine
+				
 				$sql = "SELECT cd.fk_product, cd.subprice,";
 				$sql .= " ed.rowid, ed.qty, ed.fk_entrepot,";
 				$sql .= " ed.eatby, ed.sellby, ed.batch";
@@ -1843,7 +1843,7 @@ class Reception extends CommonObject
 						if ($qty <= 0) continue;
 						dol_syslog(get_class($this)."::reopen reception movement index ".$i." ed.rowid=".$obj->rowid." edb.rowid=".$obj->edbrowid);
 
-						//var_dump($this->lines[$i]);
+						
 						$mouvS = new MouvementStock($this->db);
 						$mouvS->origin = &$this;
 
@@ -1907,7 +1907,7 @@ class Reception extends CommonObject
 									break;
 								}
 							}
-							//var_dump($this->$origin->receptions);exit;
+							
 							if ($setStatut)
 							{
 								$this->$origin->setStatut(3); // ordered
