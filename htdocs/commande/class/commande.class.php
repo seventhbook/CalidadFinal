@@ -409,7 +409,6 @@ class Commande extends CommonOrder
 			else
 			{
 				$this->error = $obj->error;
-				//dol_print_error($this->db,get_class($this)."::getNextNumRef ".$obj->error);
 				return "";
 			}
 		}
@@ -1070,7 +1069,7 @@ class Commande extends CommonOrder
 
 					if (!empty($this->linkedObjectsIds) && empty($this->linked_objects))	// To use new linkedObjectsIds instead of old linked_objects
 					{
-						$this->linked_objects = $this->linkedObjectsIds; // TODO Replace linked_objects with linkedObjectsIds
+						$this->linked_objects = $this->linkedObjectsIds;
 					}
 
 					// Add object linked
@@ -1133,7 +1132,6 @@ class Commande extends CommonOrder
 						{
 							while ($objcontact = $this->db->fetch_object($resqlcontact))
 							{
-								//print $objcontact->code.'-'.$objcontact->source.'-'.$objcontact->fk_socpeople."\n";
 								$this->add_contact($objcontact->fk_socpeople, $objcontact->code, $objcontact->source); // May failed because of duplicate key or because code of contact type does not exists for new object
 							}
 						}
@@ -1217,8 +1215,6 @@ class Commande extends CommonOrder
 				$this->fk_project = 0;
 				$this->fk_delivery_address = 0;
 			}
-
-			// TODO Change product price if multi-prices
 		}
 
 		$this->id = 0;
@@ -1516,7 +1512,6 @@ class Commande extends CommonOrder
 			if (!empty($fk_product))
 			{
 				$product = new Product($this->db);
-				$result = $product->fetch($fk_product);
 				$product_type = $product->type;
 
 				if (!empty($conf->global->STOCK_MUST_BE_ENOUGH_FOR_ORDER) && $product_type == 0 && $product->stock_reel < $qty)
@@ -1547,14 +1542,6 @@ class Commande extends CommonOrder
 
 			$tabprice = calcul_price_total($qty, $pu, $remise_percent, $txtva, $txlocaltax1, $txlocaltax2, 0, $price_base_type, $info_bits, $product_type, $mysoc, $localtaxes_type, 100, $this->multicurrency_tx, $pu_ht_devise);
 
-			/*var_dump($txlocaltax1);
-			 var_dump($txlocaltax2);
-			 var_dump($localtaxes_type);
-			 var_dump($tabprice);
-			 var_dump($tabprice[9]);
-			 var_dump($tabprice[10]);
-			 exit;*/
-
 			$total_ht  = $tabprice[0];
 			$total_tva = $tabprice[1];
 			$total_ttc = $tabprice[2];
@@ -1576,7 +1563,6 @@ class Commande extends CommonOrder
 				$ranktouse = $rangmax + 1;
 			}
 
-			// TODO A virer
 			// Anciens indicateurs: $price, $remise (a ne plus utiliser)
 			$price = $pu;
 			$remise = 0;
@@ -1634,8 +1620,6 @@ class Commande extends CommonOrder
 			$this->line->multicurrency_total_tva 	= $multicurrency_total_tva;
 			$this->line->multicurrency_total_ttc 	= $multicurrency_total_ttc;
 
-			// TODO Ne plus utiliser
-			$this->line->price=$price;
 			$this->line->remise=$remise;
 
 			if (is_array($array_options) && count($array_options)>0) {
@@ -1676,22 +1660,6 @@ class Commande extends CommonOrder
 		}
 	}
 
-
-	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
-	/**
-	 *	Add line into array
-	 *	$this->client must be loaded
-	 *
-	 *	@param  int     $idproduct          Product Id
-	 *	@param  float   $qty                Quantity
-	 *	@param  float   $remise_percent     Product discount relative
-	 * 	@param  int     $date_start         Start date of the line
-	 * 	@param  int     $date_end           End date of the line
-	 * 	@return void
-	 *
-	 *	TODO	Remplacer les appels a cette fonction par generation objet Ligne
-	 *			insere dans tableau $this->products
-	 */
 	public function add_product($idproduct, $qty, $remise_percent = 0.0, $date_start = '', $date_end = '')
 	{
         // phpcs:enable
@@ -2173,7 +2141,6 @@ class Commande extends CommonOrder
 		$sql .= ' WHERE';
 		$sql .= ' ed.fk_origin_line = cd.rowid';
 		$sql .= ' AND cd.fk_commande ='.$this->id;
-		//print $sql;
 
 		dol_syslog(get_class($this)."::getNbOfShipments", LOG_DEBUG);
 		$resql = $this->db->query($sql);
@@ -2215,7 +2182,6 @@ class Commande extends CommonOrder
 		if ($this->fk_product > 0) $sql .= ' AND cd.fk_product = '.$this->fk_product;
 		if ($filtre_statut >= 0) $sql .= ' AND e.fk_statut >= '.$filtre_statut;
 		$sql .= ' GROUP BY cd.rowid, cd.fk_product';
-		//print $sql;
 
 		dol_syslog(get_class($this)."::loadExpeditions", LOG_DEBUG);
 		$resql = $this->db->query($sql);
@@ -2238,15 +2204,6 @@ class Commande extends CommonOrder
 			return -1;
 		}
 	}
-
-	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
-	/**
-	 * Returns a array with expeditions lines number
-	 *
-	 * @return	int		Nb of shipments
-	 *
-	 * TODO deprecate, move to Shipping class
-	 */
 	public function nb_expedition()
 	{
         // phpcs:enable
@@ -2265,16 +2222,6 @@ class Commande extends CommonOrder
 		}
 		else dol_print_error($this->db);
 	}
-
-	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
-	/**
-	 *	Return a array with the pending stock by product
-	 *
-	 *	@param      int		$filtre_statut      Filtre sur statut
-	 *	@return     int                 		0 si OK, <0 si KO
-	 *
-	 *	TODO		FONCTION NON FINIE A FINIR
-	 */
 	public function stock_array($filtre_statut = self::STATUS_CANCELED)
 	{
         // phpcs:enable
@@ -2283,8 +2230,6 @@ class Commande extends CommonOrder
 		// Tableau des id de produit de la commande
 		$array_of_product = array();
 
-		// Recherche total en stock pour chaque produit
-		// TODO $array_of_product est défini vide juste au dessus !!
 		if (count($array_of_product))
 		{
 			$sql = "SELECT fk_product, sum(ps.reel) as total";
@@ -3133,7 +3078,6 @@ class Commande extends CommonOrder
 			$total_localtax1 = $tabprice[9];
 			$total_localtax2 = $tabprice[10];
 			$pu_ht  = $tabprice[3];
-			$pu_tva = $tabprice[4];
 			$pu_ttc = $tabprice[5];
 
 			// MultiCurrency
@@ -3167,7 +3111,6 @@ class Commande extends CommonOrder
 			if (!empty($line->fk_product))
 			{
 				$product = new Product($this->db);
-				$result = $product->fetch($line->fk_product);
 				$product_type = $product->type;
 
 				if (!empty($conf->global->STOCK_MUST_BE_ENOUGH_FOR_ORDER) && $product_type == 0 && $product->stock_reel < $qty)
@@ -3229,8 +3172,6 @@ class Commande extends CommonOrder
 			$this->line->multicurrency_total_ht 	= $multicurrency_total_ht;
 			$this->line->multicurrency_total_tva 	= $multicurrency_total_tva;
 			$this->line->multicurrency_total_ttc 	= $multicurrency_total_ttc;
-
-			// TODO deprecated
 			$this->line->price = $price;
 			$this->line->remise = $remise;
 
@@ -3529,7 +3470,6 @@ class Commande extends CommonOrder
 			$clause = " AND";
 		}
 		$sql.= $clause." c.entity IN (".getEntity('commande').")";
-		//$sql.= " AND c.fk_statut IN (1,2,3) AND c.facture = 0";
 		$sql.= " AND ((c.fk_statut IN (".self::STATUS_VALIDATED.",".self::STATUS_SHIPMENTONPROCESS.")) OR (c.fk_statut = ".self::STATUS_CLOSED." AND c.facture = 0))";    // If status is 2 and facture=1, it must be selected
 		if ($user->socid) $sql.=" AND c.fk_soc = ".$user->socid;
 
@@ -3747,8 +3687,6 @@ class Commande extends CommonOrder
 				$result .= '<a href="'.DOL_URL_ROOT.'/commande/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow).'">';
 				$result .= img_picto('', 'note');
 				$result .= '</a>';
-				//$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-				//$result.='</a>';
 				$result .= '</span>';
 			}
 		}
