@@ -1062,9 +1062,6 @@ class Product extends CommonObject
                         $olddir = $conf->product->dir_output."/".dol_sanitizeFileName($this->oldcopy->ref);
                         $newdir = $conf->product->dir_output."/".dol_sanitizeFileName($this->ref);
                         if (file_exists($olddir)) {
-                            //include_once DOL_DOCUMENT_ROOT . '/core/lib/files.lib.php';
-                            //$res = dol_move($olddir, $newdir);
-                            // do not use dol_move with directory
                             $res = @rename($olddir, $newdir);
                             if (!$res) {
                                 $langs->load("errors");
@@ -1505,7 +1502,6 @@ class Product extends CommonObject
         if ($result) {
             while ($obj = $this->db->fetch_object($result))
             {
-                //print 'lang='.$obj->lang.' current='.$current_lang.'<br>';
                 if ($obj->lang == $current_lang)  // si on a les traduct. dans la langue courante on les charge en infos principales.
                 {
                     $this->label        = $obj->label;
@@ -1581,7 +1577,6 @@ class Product extends CommonObject
         // phpcs:enable
         $sql = "DELETE FROM ".MAIN_DB_PREFIX."product_price_by_qty";
         $sql .= " WHERE fk_product_price=".$rowid;
-        $resql = $this->db->query($sql);
 
         $sql = "DELETE FROM ".MAIN_DB_PREFIX."product_price";
         $sql .= " WHERE rowid=".$rowid;
@@ -1929,7 +1924,6 @@ class Product extends CommonObject
                     $price_min = price2num($newminprice, 'MU');
                     $price_min_ttc = price2num($newminprice) * (1 + ($newvat / 100));
                     $price_min_ttc = price2num($price_min_ttc, 'MU');
-                    //print 'X'.$newminprice.'-'.$price_min;
                 }
                 else
                 {
@@ -1937,7 +1931,6 @@ class Product extends CommonObject
                     $price_min_ttc = 0;
                 }
             }
-            //print 'x'.$id.'-'.$newprice.'-'.$newpricebase.'-'.$price.'-'.$price_ttc.'-'.$price_min.'-'.$price_min_ttc;
 
             if (count($localtaxes_array) > 0) {
                 $localtaxtype1 = $localtaxes_array['0'];
@@ -2215,44 +2208,8 @@ class Product extends CommonObject
                             $this->multiprices_min_ttc[$i] = $result["price_min_ttc"];
                             $this->multiprices_base_type[$i] = $result["price_base_type"];
                             // Next two fields are used only if PRODUIT_MULTIPRICES_USE_VAT_PER_LEVEL is on
-                            $this->multiprices_tva_tx[$i] = $result["tva_tx"]; // TODO Add ' ('.$result['default_vat_code'].')'
+                            $this->multiprices_tva_tx[$i] = $result["tva_tx"];
                             $this->multiprices_recuperableonly[$i] = $result["recuperableonly"];
-
-                            // Price by quantity
-                            /*
-                            $this->prices_by_qty[$i]=$result["price_by_qty"];
-                            $this->prices_by_qty_id[$i]=$result["rowid"];
-                            // Récuperation de la liste des prix selon qty si flag positionné
-                            if ($this->prices_by_qty[$i] == 1)
-                            {
-                            $sql = "SELECT rowid, price, unitprice, quantity, remise_percent, remise, price_base_type";
-                            $sql.= " FROM ".MAIN_DB_PREFIX."product_price_by_qty";
-                            $sql.= " WHERE fk_product_price = ".$this->prices_by_qty_id[$i];
-                            $sql.= " ORDER BY quantity ASC";
-                            $resultat=array();
-                            $resql = $this->db->query($sql);
-                            if ($resql)
-                            {
-                            $ii=0;
-                            while ($result= $this->db->fetch_array($resql)) {
-                            $resultat[$ii]=array();
-                            $resultat[$ii]["rowid"]=$result["rowid"];
-                            $resultat[$ii]["price"]= $result["price"];
-                            $resultat[$ii]["unitprice"]= $result["unitprice"];
-                            $resultat[$ii]["quantity"]= $result["quantity"];
-                            $resultat[$ii]["remise_percent"]= $result["remise_percent"];
-                            $resultat[$ii]["remise"]= $result["remise"];                    // deprecated
-                            $resultat[$ii]["price_base_type"]= $result["price_base_type"];
-                            $ii++;
-                            }
-                            $this->prices_by_qty_list[$i]=$resultat;
-                            }
-                            else
-                            {
-                            dol_print_error($this->db);
-                            return -1;
-                            }
-                            }*/
                         }
                         else
                         {
@@ -2338,7 +2295,7 @@ class Product extends CommonObject
                             $this->multiprices_min_ttc[$i] = $result["price_min_ttc"];
                             $this->multiprices_base_type[$i] = $result["price_base_type"];
                             // Next two fields are used only if PRODUIT_MULTIPRICES_USE_VAT_PER_LEVEL is on
-                            $this->multiprices_tva_tx[$i] = $result["tva_tx"]; // TODO Add ' ('.$result['default_vat_code'].')'
+                            $this->multiprices_tva_tx[$i] = $result["tva_tx"];
                             $this->multiprices_recuperableonly[$i] = $result["recuperableonly"];
 
                             // Price by quantity
@@ -2441,7 +2398,6 @@ class Product extends CommonObject
         if (!$user->rights->societe->client->voir && !$socid) {
             $sql .= " AND p.fk_soc = sc.fk_soc AND sc.fk_user = ".$user->id;
         }
-        //$sql.= " AND pr.fk_statut != 0";
         if ($socid > 0) {
             $sql .= " AND p.fk_soc = ".$socid;
         }
@@ -2511,7 +2467,6 @@ class Product extends CommonObject
         $sql .= " AND pd.fk_product = ".$this->id;
         if (!$user->rights->societe->client->voir && !$socid) { $sql .= " AND p.fk_soc = sc.fk_soc AND sc.fk_user = ".$user->id;
         }
-        //$sql.= " AND pr.fk_statut != 0";
         if ($socid > 0) {    $sql .= " AND p.fk_soc = ".$socid;
         }
 
@@ -2865,9 +2820,6 @@ class Product extends CommonObject
 		    		$this->stats_mrptoconsume['qty'] += ($obj->qty ? $obj->qty : 0);
 	    		}
 	    		if ($obj->role == 'consumed') {
-	    			//$this->stats_mrptoconsume['customers'] += $obj->nb_customers;
-	    			//$this->stats_mrptoconsume['nb'] += $obj->nb;
-	    			//$this->stats_mrptoconsume['rows'] += $obj->nb_rows;
 	    			$this->stats_mrptoconsume['qty'] -= ($obj->qty ? $obj->qty : 0);
 	    		}
 	    		if ($obj->role == 'toproduce') {
@@ -2877,9 +2829,6 @@ class Product extends CommonObject
 	    			$this->stats_mrptoproduce['qty'] += ($obj->qty ? $obj->qty : 0);
 	    		}
 	    		if ($obj->role == 'produced') {
-	    			//$this->stats_mrptoproduce['customers'] += $obj->nb_customers;
-	    			//$this->stats_mrptoproduce['nb'] += $obj->nb;
-	    			//$this->stats_mrptoproduce['rows'] += $obj->nb_rows;
 	    			$this->stats_mrptoproduce['qty'] -= ($obj->qty ? $obj->qty : 0);
 	    		}
     		}
@@ -2925,7 +2874,6 @@ class Product extends CommonObject
         if (!$user->rights->societe->client->voir && !$socid) {
             $sql .= " AND c.fk_soc = sc.fk_soc AND sc.fk_user = ".$user->id;
         }
-        //$sql.= " AND c.statut != 0";
         if ($socid > 0) {
             $sql .= " AND c.fk_soc = ".$socid;
         }
@@ -2994,7 +2942,6 @@ class Product extends CommonObject
         if (!$user->rights->societe->client->voir && !$socid) {
             $sql .= " AND f.fk_soc = sc.fk_soc AND sc.fk_user = ".$user->id;
         }
-        //$sql.= " AND f.fk_statut != 0";
         if ($socid > 0) {
             $sql .= " AND f.fk_soc = ".$socid;
         }
@@ -3064,7 +3011,6 @@ class Product extends CommonObject
         if (!$user->rights->societe->client->voir && !$socid) {
             $sql .= " AND f.fk_soc = sc.fk_soc AND sc.fk_user = ".$user->id;
         }
-        //$sql.= " AND f.fk_statut != 0";
         if ($socid > 0) {
             $sql .= " AND f.fk_soc = ".$socid;
         }
@@ -3132,10 +3078,8 @@ class Product extends CommonObject
         for ($j = 0; $j < 12; $j++)
         {
             $idx = ucfirst(dol_trunc(dol_print_date(dol_mktime(12, 0, 0, $month, 1, $year), "%b"), 3, 'right', 'UTF-8', 1));
-            $monthnum = sprintf("%02s", $month);
 
             $result[$j] = array($idx, isset($tab[$year.$month]) ? $tab[$year.$month] : 0);
-            //            $result[$j] = array($monthnum,isset($tab[$year.$month])?$tab[$year.$month]:0);
 
             $month = "0".($month - 1);
             if (dol_strlen($month) == 3) {
@@ -3958,19 +3902,6 @@ class Product extends CommonObject
 
         $now = dol_now();
 
-        // les fournisseurs
-        /*$sql = "INSERT ".MAIN_DB_PREFIX."product_fournisseur ("
-        . " datec, fk_product, fk_soc, ref_fourn, fk_user_author )"
-        . " SELECT '".$this->db->idate($now)."', ".$toId.", fk_soc, ref_fourn, fk_user_author"
-        . " FROM ".MAIN_DB_PREFIX."product_fournisseur"
-        . " WHERE fk_product = ".$fromId;
-
-        if ( ! $this->db->query($sql ) )
-        {
-        $this->db->rollback();
-        return -1;
-        }*/
-
         // les prix de fournisseurs.
         $sql = "INSERT ".MAIN_DB_PREFIX."product_fournisseur_price (";
         $sql .= " datec, fk_product, fk_soc, price, quantity, fk_user)";
@@ -4009,7 +3940,6 @@ class Product extends CommonObject
         global $conf, $langs;
 
         $tmpproduct = null;
-        //var_dump($prod);
         foreach ($prod as $id_product => $desc_pere)    // $id_product is 0 (first call starting with root top) or an id of a sub_product
         {
             if (is_array($desc_pere))    // If desc_pere is an array, this means it's a child
@@ -4022,13 +3952,9 @@ class Product extends CommonObject
 
                 if ($multiply < 1) { $multiply = 1;
                 }
-
-                //print "XXX We add id=".$id." - label=".$label." - nb=".$nb." - multiply=".$multiply." fullpath=".$compl_path.$label."\n";
                 if (is_null($tmpproduct)) $tmpproduct = new Product($this->db); // So we initialize tmpproduct only once for all loop.
                 $tmpproduct->fetch($id); // Load product to get ->ref
                 $tmpproduct->load_stock('nobatch,novirtual'); // Load stock to get true ->stock_reel
-                //$this->fetch($id);        				   // Load product to get ->ref
-                //$this->load_stock('nobatch,novirtual');    // Load stock to get true ->stock_reel
                 $this->res[] = array(
 	                'id'=>$id, // Id product
 	                'id_parent'=>$id_parent,
@@ -4048,7 +3974,6 @@ class Product extends CommonObject
 
                 // Recursive call if there is childs to child
                 if (is_array($desc_pere['childs'])) {
-                       //print 'YYY We go down for '.$desc_pere[3]." -> \n";
                        $this->fetch_prod_arbo($desc_pere['childs'], $compl_path.$desc_pere[3]." -> ", $desc_pere[1] * $multiply, $level + 1, $id);
                 }
             }
@@ -4074,7 +3999,6 @@ class Product extends CommonObject
                 }
             }
         }
-        //var_dump($this->res);
         return $this->res;
     }
 
@@ -4234,8 +4158,6 @@ class Product extends CommonObject
                  3=>$this->db->escape($rec['label']),
                  4=>$rec['incdec']
                 );
-                //$prods[$this->db->escape($rec['label'])]= array(0=>$rec['id'],1=>$rec['qty'],2=>$rec['fk_product_type']);
-                //$prods[$this->db->escape($rec['label'])]= array(0=>$rec['id'],1=>$rec['qty']);
                 if (empty($firstlevelonly)) {
                        $listofchilds = $this->getChildsArbo($rec['rowid'], 0, $level + 1);
                     foreach ($listofchilds as $keyChild => $valueChild)
@@ -4968,8 +4890,6 @@ class Product extends CommonObject
         	$dir .= '/'.get_exdir(0, 0, 0, 0, $this, 'product').dol_sanitizeFileName($this->ref).'/';
         }
 
-        $nbphoto = 0;
-
         $dir_osencoded = dol_osencode($dir);
         if (file_exists($dir_osencoded)) {
             $handle = opendir($dir_osencoded);
@@ -5114,7 +5034,6 @@ class Product extends CommonObject
         // Add where from hooks
         if (is_object($hookmanager)) {
             $parameters = array();
-            $reshook = $hookmanager->executeHooks('printFieldListWhere', $parameters); // Note that $action and $object may have been modified by hook
             $sql .= $hookmanager->resPrint;
         }
         $sql .= ' GROUP BY fk_product_type';
@@ -5362,8 +5281,6 @@ class Product extends CommonObject
             	$c->add_type($this, Categorie::TYPE_PRODUCT);
             }
         }
-
-        return;
     }
 
     /**
