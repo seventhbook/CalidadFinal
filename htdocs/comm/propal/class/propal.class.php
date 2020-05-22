@@ -326,7 +326,7 @@ class Propal extends CommonObject
 	/**
 	 * Billed or processed quote
 	 */
-	const STATUS_BILLED = 4; // Todo rename into STATUS_CLOSE ?
+	const STATUS_BILLED = 4;
 
 
 	/**
@@ -350,20 +350,6 @@ class Propal extends CommonObject
 		$this->duree_validite = $conf->global->PROPALE_VALIDITY_DURATION;
 	}
 
-
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
-	/**
-	 *  Add line into array products
-	 *  $this->thirdparty should be loaded
-	 *
-	 * 	@param  int		$idproduct       	Product Id to add
-	 * 	@param  int		$qty             	Quantity
-	 * 	@param  int		$remise_percent  	Discount effected on Product
-	 *  @return	int							<0 if KO, >0 if OK
-	 *
-	 *	TODO	Replace calls to this function by generation objet Ligne
-	 *			inserted into table $this->products
-	 */
     public function add_product($idproduct, $qty, $remise_percent = 0)
 	{
         // phpcs:enable
@@ -383,9 +369,6 @@ class Propal extends CommonObject
 			$tva_npr = get_default_npr($mysoc, $this->thirdparty, $prod->id);
 			if (empty($tva_tx)) $tva_npr = 0;
 			$vat_src_code = ''; // May be defined into tva_tx
-
-			$localtax1_tx = get_localtax($tva_tx, 1, $mysoc, $this->thirdparty, $tva_npr);
-			$localtax2_tx = get_localtax($tva_tx, 2, $mysoc, $this->thirdparty, $tva_npr);
 
 			// multiprices
 			if ($conf->global->PRODUIT_MULTIPRICES && $this->thirdparty->price_level)
@@ -459,7 +442,6 @@ class Propal extends CommonObject
 			$line->rang = -1;
 			$line->info_bits = 2;
 
-			// TODO deprecated
 			$line->price = -$remise->amount_ht;
 
 			$line->total_ht  = -$remise->amount_ht;
@@ -583,7 +565,6 @@ class Propal extends CommonObject
 			if (!empty($fk_product))
 			{
 				$product = new Product($this->db);
-				$result = $product->fetch($fk_product);
 				$product_type = $product->type;
 
 				if (!empty($conf->global->STOCK_MUST_BE_ENOUGH_FOR_PROPOSAL) && $product_type == 0 && $product->stock_reel < $qty) {
@@ -617,7 +598,6 @@ class Propal extends CommonObject
 			$total_localtax1 = $tabprice[9];
 			$total_localtax2 = $tabprice[10];
 			$pu_ht  = $tabprice[3];
-			$pu_tva = $tabprice[4];
 			$pu_ttc = $tabprice[5];
 
 			// MultiCurrency
@@ -634,7 +614,6 @@ class Propal extends CommonObject
 				$ranktouse = $rangmax + 1;
 			}
 
-			// TODO A virer
 			// Anciens indicateurs: $price, $remise (a ne plus utiliser)
 			$price = $pu;
 			$remise = 0;
@@ -696,7 +675,6 @@ class Propal extends CommonObject
 			// Mise en option de la ligne
 			if (empty($qty) && empty($special_code)) $this->line->special_code = 3;
 
-			// TODO deprecated
 			$this->line->price = $price;
 			$this->line->remise = $remise;
 
@@ -821,8 +799,6 @@ class Propal extends CommonObject
 			$total_localtax1 = $tabprice[9];
 			$total_localtax2 = $tabprice[10];
 			$pu_ht  = $tabprice[3];
-			$pu_tva = $tabprice[4];
-			$pu_ttc = $tabprice[5];
 
 			// MultiCurrency
 			$multicurrency_total_ht  = $tabprice[16];
@@ -888,7 +864,6 @@ class Propal extends CommonObject
 			$this->line->date_start = $date_start;
 			$this->line->date_end = $date_end;
 
-			// TODO deprecated
 			$this->line->price = $price;
 			$this->line->remise = $remise;
 
@@ -1123,7 +1098,7 @@ class Propal extends CommonObject
 
                 if (!empty($this->linkedObjectsIds) && empty($this->linked_objects))	// To use new linkedObjectsIds instead of old linked_objects
                 {
-                	$this->linked_objects = $this->linkedObjectsIds; // TODO Replace linked_objects with linkedObjectsIds
+                	$this->linked_objects = $this->linkedObjectsIds;
                 }
 
                 // Add object linked
@@ -1224,25 +1199,12 @@ class Propal extends CommonObject
 					}
 				}
 
-				// Set delivery address
-				/*if (! $error && $this->fk_delivery_address)
-				{
-					$sql = "UPDATE ".MAIN_DB_PREFIX."propal";
-					$sql.= " SET fk_delivery_address = ".$this->fk_delivery_address;
-					$sql.= " WHERE ref = '".$this->db->escape($this->ref)."'";
-					$sql.= " AND entity = ".setEntity($this);
-
-					$result=$this->db->query($sql);
-				}*/
-
 				if (!$error)
 				{
 					// Mise a jour infos denormalisees
 					$resql = $this->update_price(1);
 					if ($resql)
 					{
-						$action = 'update';
-
 						// Actions on extra fields
 						if (!$error)
 						{
@@ -1353,23 +1315,11 @@ class Propal extends CommonObject
 			    $object->mode_reglement_id	= (!empty($objsoc->mode_reglement_id) ? $objsoc->mode_reglement_id : 0);
 			    $object->fk_delivery_address = '';
 
-				/*if (!empty($conf->projet->enabled))
-                {
-                    $project = new Project($db);
-    				if ($this->fk_project > 0 && $project->fetch($this->fk_project)) {
-    					if ($project->socid <= 0) $clonedObj->fk_project = $this->fk_project;
-    					else $clonedObj->fk_project = '';
-    				} else {
-    					$clonedObj->fk_project = '';
-    				}
-                }*/
 			    $object->fk_project = ''; // A cloned proposal is set by default to no project.
 			}
 
 			// reset ref_client
 			$object->ref_client = '';
-
-			// TODO Change product price if multi-prices
 		}
 		else
 		{
@@ -1515,7 +1465,7 @@ class Propal extends CommonObject
 				$this->remise               = $obj->remise;
 				$this->remise_percent       = $obj->remise_percent;
 				$this->remise_absolue       = $obj->remise_absolue;
-				$this->total                = $obj->total; // TODO deprecated
+				$this->total                = $obj->total;
 				$this->total_ht             = $obj->total_ht;
 				$this->total_tva            = $obj->tva;
 				$this->total_localtax1		= $obj->localtax1;
@@ -1525,14 +1475,14 @@ class Propal extends CommonObject
 				$this->fk_project           = $obj->fk_project;
 				$this->modelpdf             = $obj->model_pdf;
 				$this->last_main_doc = $obj->last_main_doc;
-				$this->note                 = $obj->note_private; // TODO deprecated
+				$this->note                 = $obj->note_private;
 				$this->note_private         = $obj->note_private;
 				$this->note_public          = $obj->note_public;
 				$this->statut               = (int) $obj->fk_statut;
 				$this->statut_libelle       = $obj->statut_label;
 
-				$this->datec                = $this->db->jdate($obj->datec); // TODO deprecated
-				$this->datev                = $this->db->jdate($obj->datev); // TODO deprecated
+				$this->datec                = $this->db->jdate($obj->datec);
+				$this->datev                = $this->db->jdate($obj->datev);
 				$this->date_creation = $this->db->jdate($obj->datec); //Creation date
 				$this->date_validation = $this->db->jdate($obj->datev); //Validation date
 				$this->date_modification = $this->db->jdate($obj->date_modification); // tms
@@ -1770,7 +1720,7 @@ class Propal extends CommonObject
 				$line->subprice         = $objp->subprice;
 				$line->fk_remise_except = $objp->fk_remise_except;
 				$line->remise_percent   = $objp->remise_percent;
-				$line->price            = $objp->price; // TODO deprecated
+				$line->price            = $objp->price;
 
 				$line->info_bits        = $objp->info_bits;
 				$line->total_ht         = $objp->total_ht;
@@ -1822,8 +1772,6 @@ class Propal extends CommonObject
         		}
 
 				$this->lines[$i] = $line;
-				//dol_syslog("1 ".$line->fk_product);
-				//print "xx $i ".$this->lines[$i]->fk_product;
 				$i++;
 			}
 
@@ -3414,8 +3362,6 @@ class Propal extends CommonObject
 						$response->nbtodolate++;
 					}
 				}
-				// TODO Definir regle des propales a facturer en retard
-				// if ($mode == 'signed' && ! count($this->FactureListeArray($obj->rowid))) $this->nbtodolate++;
 			}
 
 			return $response;
@@ -3616,7 +3562,6 @@ class Propal extends CommonObject
 			else
 			{
 				$this->error = $obj->error;
-				//dol_print_error($db,"Propale::getNextNumRef ".$obj->error);
 				return "";
 			}
 		}
@@ -3715,8 +3660,6 @@ class Propal extends CommonObject
 				$result .= '<a href="'.DOL_URL_ROOT.'/comm/propal/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow).'">';
 				$result .= img_picto('', 'note');
 				$result .= '</a>';
-				//$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-				//$result.='</a>';
 				$result .= '</span>';
 			}
 		}
@@ -4227,8 +4170,8 @@ class PropaleLigne extends CommonObjectLine
 		if (empty($this->localtax2_type)) $this->localtax2_type = 0;
 		if (empty($this->marque_tx)) $this->marque_tx = 0;
 		if (empty($this->marge_tx)) $this->marge_tx = 0;
-		if (empty($this->price)) $this->price = 0; // TODO A virer
-		if (empty($this->remise)) $this->remise = 0; // TODO A virer
+		if (empty($this->price)) $this->price = 0;
+		if (empty($this->remise)) $this->remise = 0;
 		if (empty($this->remise_percent)) $this->remise_percent = 0;
 		if (empty($this->info_bits)) $this->info_bits = 0;
 		if (empty($this->special_code)) $this->special_code = 0;
@@ -4266,8 +4209,8 @@ class PropaleLigne extends CommonObjectLine
 		$sql .= ", qty='".price2num($this->qty)."'";
 		$sql .= ", subprice=".price2num($this->subprice)."";
 		$sql .= ", remise_percent=".price2num($this->remise_percent)."";
-		$sql .= ", price=".price2num($this->price).""; // TODO A virer
-		$sql .= ", remise=".price2num($this->remise).""; // TODO A virer
+		$sql .= ", price=".price2num($this->price)."";
+		$sql .= ", remise=".price2num($this->remise)."";
 		$sql .= ", info_bits='".$this->db->escape($this->info_bits)."'";
 		if (empty($this->skip_update_total))
 		{
