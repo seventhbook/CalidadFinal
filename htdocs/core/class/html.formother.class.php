@@ -230,7 +230,6 @@ class FormOther
                     else
                     {
                         print '<option value="'.$obj->rowid.'">';
-                        //print '<option onmouseover="showtip(\''.$obj->label.'\')" onMouseout="hidetip()" value="'.$obj->rowid.'">';
                     }
                     $selectOptionValue = $obj->code.' - '.$obj->label.' : '.price($obj->price).' '.$langs->trans("HT").' ('.$obj->organization.')';
                     print $selectOptionValue;
@@ -290,7 +289,6 @@ class FormOther
     				else
     				{
     					$out .= '<option value="'.$obj->taux.($obj->revenuestamp_type == 'percent' ? '%' : '').'"'.($obj->revenuestamp_type == 'percent' ? ' data-type="percent"' : '').'>';
-    					//print '<option onmouseover="showtip(\''.$obj->libelle.'\')" onMouseout="hidetip()" value="'.$obj->rowid.'">';
     				}
     				$out .= $obj->taux.($obj->revenuestamp_type == 'percent' ? '%' : '');
     				$out .= '</option>';
@@ -487,7 +485,6 @@ class FormOther
             $sql_usr.= " AND u2.rowid = sc.fk_user AND sc.fk_soc=".$user->socid;
         }
 	    $sql_usr.= " ORDER BY statut DESC, lastname ASC";  // Do not use 'ORDER BY u.statut' here, not compatible with the UNION.
-        //print $sql_usr;exit;
 
         $resql_usr = $this->db->query($sql_usr);
         if ($resql_usr)
@@ -561,8 +558,6 @@ class FormOther
         global $user, $langs;
 
         require_once DOL_DOCUMENT_ROOT.'/projet/class/task.class.php';
-
-        //print $modeproject.'-'.$modetask;
         $task = new Task($this->db);
         $tasksarray = $task->getTasksArray($modetask ? $user : 0, $modeproject ? $user : 0, $projectid, 0, $mode, '', $filteronprojstatus);
         if ($tasksarray)
@@ -623,7 +618,6 @@ class FormOther
                         {
                             print ' ('.$langs->trans("Visibility").': '.$langs->trans("SharedProject").')';
                         }
-                        //print '-'.$parent.'-'.$lines[$i]->fk_project.'-'.$lastprojectid;
                         print "</option>\n";
 
                         $lastprojectid = $lines[$i]->fk_project;
@@ -801,7 +795,6 @@ class FormOther
 	             </script>';
             }
             $out .= '<select id="colorpicker'.$prefix.'" class="flat'.($morecss ? ' '.$morecss : '').'" name="'.$prefix.'">';
-            //print '<option value="-1">&nbsp;</option>';
             foreach ($arrayofcolors as $val)
             {
                 $out .= '<option value="'.$val.'"';
@@ -848,7 +841,6 @@ class FormOther
         $bleu  = hexdec(substr($color, 4, 2)); //conversion du canal bleu
 
         $couleur = imagecolorallocate($image, $rouge, $vert, $bleu);
-        //print $rouge.$vert.$bleu;
         imagefill($image, 0, 0, $couleur); //on remplit l'image
         // On cree la couleur et on l'attribue a une variable pour ne pas la perdre
         ImagePng($image, $file); //renvoie une image sous format png
@@ -1035,9 +1027,6 @@ class FormOther
 
         $confuserzone = 'MAIN_BOXES_'.$areacode;
 
-        // $boxactivated will be array of boxes enabled into global setup
-        // $boxidactivatedforuser will be array of boxes choosed by user
-
         $selectboxlist = '';
         $boxactivated = InfoBox::listBoxes($db, 'activated', $areacode, (empty($user->conf->$confuserzone) ?null:$user), array(), 0); // Search boxes of common+user (or common only if user has no specific setup)
 
@@ -1057,7 +1046,6 @@ class FormOther
         	{
         		if (!empty($boxidactivatedforuser[$box->id])) continue; // Already visible for user
         		$label = $langs->transnoentitiesnoconv($box->boxlabel);
-        		//if (preg_match('/graph/',$box->class)) $label.=' ('.$langs->trans("Graph").')';
         		if (preg_match('/graph/', $box->class) && $conf->browser->layout != 'phone')
         		{
         			$label = $label.' <span class="fa fa-bar-chart"></span>';
@@ -1069,8 +1057,6 @@ class FormOther
        			if (empty($boxorder)) $boxorder .= 'A:';
   				$boxorder .= $boxid.',';
         	}
-
-        	//var_dump($boxidactivatedforuser);
 
         	// Class Form must have been already loaded
         	$selectboxlist .= '<!-- Form with select box list -->'."\n";
@@ -1184,9 +1170,6 @@ class FormOther
             	if (preg_match('/^A/i', $box->box_order)) // column A
                 {
                     $ii++;
-                    //print 'box_id '.$boxactivated[$ii]->box_id.' ';
-                    //print 'box_order '.$boxactivated[$ii]->box_order.'<br>';
-                    // Show box
                     $box->loadBox($box_max_lines);
                     $boxlista .= $box->outputBox();
                 }
@@ -1211,9 +1194,6 @@ class FormOther
             	if (preg_match('/^B/i', $box->box_order)) // colonne B
                 {
                     $ii++;
-                    //print 'box_id '.$boxactivated[$ii]->box_id.' ';
-                    //print 'box_order '.$boxactivated[$ii]->box_order.'<br>';
-                    // Show box
                     $box->loadBox($box_max_lines);
                     $boxlistb .= $box->outputBox();
                 }
