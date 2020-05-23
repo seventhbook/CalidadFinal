@@ -234,8 +234,7 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters=array('file'=>$file,'object'=>$object,'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
-
+				
 				$nblines = count($object->lines);
 
 				// Create pdf instance
@@ -262,7 +261,6 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 
 				// We get the shipment that is the origin of delivery receipt
 				$expedition=new Expedition($this->db);
-				$result = $expedition->fetch($object->origin_id);
 				// Now we get the order that is origin of shipment
 				$commande = new Commande($this->db);
 				if ($expedition->origin == 'commande')
@@ -286,26 +284,7 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 
 				$pdf->SetMargins($this->marge_gauche, $this->marge_haute, $this->marge_droite);   // Left, Top, Right
 
-				/*
-				// Positionne $this->atleastonediscount si on a au moins une remise
-				for ($i = 0 ; $i < $nblines ; $i++)
-				{
-				 	if ($object->lines[$i]->remise_percent)
-				 	{
-				 		$this->atleastonediscount++;
-				 	}
-				}
- 				if (empty($this->atleastonediscount))
-				{
-					$this->posxpicture+=($this->postotalht - $this->posxdiscount);
-					$this->posxtva+=($this->postotalht - $this->posxdiscount);
-					$this->posxup+=($this->postotalht - $this->posxdiscount);
-					$this->posxqty+=($this->postotalht - $this->posxdiscount);
-					$this->posxdiscount+=($this->postotalht - $this->posxdiscount);
-					//$this->postotalht;
-				}
-				*/
-
+	
 				// New page
 				$pdf->AddPage();
 				if (! empty($tplidx)) $pdf->useTemplate($tplidx);
@@ -392,7 +371,6 @@ class pdf_typhon extends ModelePDFDeliveryOrder
                     {
                     	$pdf->rollbackTransaction(true);
                     	$pageposafter=$pageposbefore;
-                    	//print $pageposafter.'-'.$pageposbefore;exit;
                     	$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
                     	pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxcomm-$curX, 4, $curX, $curY, $hideref, $hidedesc);
                     	$posyafter=$pdf->GetY();
@@ -435,17 +413,6 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 
 					$pdf->SetFont('', '', $default_font_size - 1);   // On repositionne la police par defaut
 
-					/*
-					 // TVA
-					 $pdf->SetXY($this->posxcomm, $curY);
-					 $pdf->MultiCell(10, 4, ($object->lines[$i]->tva_tx < 0 ? '*':'').abs($object->lines[$i]->tva_tx), 0, 'R');
-
-					 // Prix unitaire HT avant remise
-					 $pdf->SetXY($this->posxup, $curY);
-					 $pdf->MultiCell(20, 4, price($object->lines[$i]->subprice), 0, 'R', 0);
-					 */
-					// Quantity
-					//$qty = pdf_getlineqty($object, $i, $outputlangs, $hidedetails);
 					$pdf->SetXY($this->posxqty, $curY);
 					$pdf->MultiCell($this->posxremainingqty - $this->posxqty, 3, $object->lines[$i]->qty_shipped, 0, 'R');
 
@@ -453,32 +420,12 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 					$pdf->SetXY($this->posxremainingqty, $curY);
 					$qtyRemaining = $object->lines[$i]->qty_asked - $object->commande->expeditions[$object->lines[$i]->fk_origin_line];
 					$pdf->MultiCell($this->page_largeur-$this->marge_droite - $this->posxremainingqty, 3, $qtyRemaining, 0, 'R');
-					/*
-					 // Remise sur ligne
-					 $pdf->SetXY($this->posxdiscount, $curY);
-					 if ($object->lines[$i]->remise_percent)
-					 {
-					 $pdf->MultiCell(14, 3, $object->lines[$i]->remise_percent."%", 0, 'R');
-					 }
-
-					 // Total HT ligne
-					 $pdf->SetXY($this->postotalht, $curY);
-					 $total = price($object->lines[$i]->price * $object->lines[$i]->qty);
-					 $pdf->MultiCell(23, 3, $total, 0, 'R', 0);
-
-					 // Collecte des totaux par valeur de tva
-					 // dans le tableau tva["taux"]=total_tva
-					 $tvaligne=$object->lines[$i]->price * $object->lines[$i]->qty;
-					 if ($object->remise_percent) $tvaligne-=($tvaligne*$object->remise_percent)/100;
-					 $this->tva[ (string) $object->lines[$i]->tva_tx ] += $tvaligne;
-					 */
 
 					// Add line
 					if (! empty($conf->global->MAIN_PDF_DASH_BETWEEN_LINES) && $i < ($nblines - 1))
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -542,66 +489,6 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 
 				if (method_exists($pdf, 'AliasNbPages')) $pdf->AliasNbPages();
 
-				// Check product remaining to be delivered
-				// TODO doit etre modifie
-				//$waitingDelivery = $object->getRemainingDelivered();
-				/*
-				$waitingDelivery='';
-
-				if (is_array($waitingDelivery) & !empty($waitingDelivery))
-				{
-					$pdf->AddPage();
-
-					$this->_pagehead($pdf, $object, 1, $outputlangs);
-					$pdf-> SetY(90);
-
-					$w=array(40,100,50);
-					$header=array($outputlangs->transnoentities('Reference'),
-								  $outputlangs->transnoentities('Label'),
-								  $outputlangs->transnoentities('Qty')
-								  );
-
-    				// Header
-    				$num = count($header);
-   					for($i = 0; $i < $num; $i++)
-   					{
-   						$pdf->Cell($w[$i],7,$header[$i],1,0,'C');
-   					}
-
-			    	$pdf->Ln();
-
-			    	// Data
-					foreach($waitingDelivery as $value)
-					{
-						$pdf->Cell($w[0], 6, $value['ref'], 1, 0, 'L');
-						$pdf->Cell($w[1], 6, $value['label'], 1, 0, 'L');
-						$pdf->Cell($w[2], 6, $value['qty'], 1, 1, 'R');
-
-						if ($pdf->GetY() > 250)
-						{
-							$this->_pagefoot($pdf,$object,$outputlangs,1);
-
-							$pdf->AddPage('P', 'A4');
-
-							$pdf->SetFont('','', $default_font_size - 1);
-							$this->_pagehead($pdf, $object, 0, $outputlangs);
-
-							$pdf-> SetY(40);
-
-							$num = count($header);
-							for($i = 0; $i < $num; $i++)
-							{
-								$pdf->Cell($w[$i],7,$header[$i],1,0,'C');
-							}
-
-							$pdf->Ln();
-						}
-					}
-
-					$this->_pagefoot($pdf,$object,$outputlangs);
-
-					if (method_exists($pdf,'AliasNbPages')) $pdf->AliasNbPages();
-				}*/
 
 				$pdf->Close();
 
@@ -897,7 +784,6 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 			$pdf->SetTextColor(0, 0, 0);
 			$pdf->SetFont('', '', $default_font_size - 2);
 			$pdf->SetXY($posx+2, $posy-5);
-			//$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo").":",0,'L');
 			$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre);
 
 			// Show recipient name
