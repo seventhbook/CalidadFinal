@@ -345,7 +345,6 @@ class FactureRec extends CommonInvoice
 
 	    $sql = "UPDATE ".MAIN_DB_PREFIX."facture_rec SET";
 	    $sql .= " fk_soc = ".$this->fk_soc;
-        // TODO Add missing fields
 	    $sql .= " WHERE rowid = ".$this->id;
 
 	    dol_syslog(get_class($this)."::update", LOG_DEBUG);
@@ -406,19 +405,12 @@ class FactureRec extends CommonInvoice
         $sql .= ", f.fk_multicurrency, f.multicurrency_code, f.multicurrency_tx, f.multicurrency_total_ht, f.multicurrency_total_tva, f.multicurrency_total_ttc";
         $sql .= ', p.code as mode_reglement_code, p.libelle as mode_reglement_libelle';
 		$sql .= ', c.code as cond_reglement_code, c.libelle as cond_reglement_libelle, c.libelle_facture as cond_reglement_libelle_doc';
-		//$sql.= ', el.fk_source';
 		$sql .= ' FROM '.MAIN_DB_PREFIX.'facture_rec as f';
 		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'c_payment_term as c ON f.fk_cond_reglement = c.rowid';
 		$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX.'c_paiement as p ON f.fk_mode_reglement = p.id';
-		//$sql.= " LEFT JOIN ".MAIN_DB_PREFIX."element_element as el ON el.fk_target = f.rowid AND el.targettype = 'facture'";
 		$sql .= ' WHERE f.entity IN ('.getEntity('invoice').')';
 		if ($rowid) $sql .= ' AND f.rowid='.$rowid;
 		elseif ($ref) $sql .= " AND f.titre='".$this->db->escape($ref)."'";
-		/* This field are not used for template invoice
-		if ($ref_ext) $sql.= " AND f.ref_ext='".$this->db->escape($ref_ext)."'";
-		if ($ref_int) $sql.= " AND f.ref_int='".$this->db->escape($ref_int)."'";
-		*/
-
 		$result = $this->db->query($sql);
 		if ($result)
 		{
@@ -552,10 +544,7 @@ class FactureRec extends CommonInvoice
 		$sql = 'SELECT l.rowid, l.fk_product, l.product_type, l.label as custom_label, l.description, l.product_type, l.price, l.qty, l.vat_src_code, l.tva_tx, ';
 		$sql .= ' l.localtax1_tx, l.localtax2_tx, l.localtax1_type, l.localtax2_type, l.remise, l.remise_percent, l.subprice,';
 		$sql .= ' l.info_bits, l.date_start_fill, l.date_end_fill, l.total_ht, l.total_tva, l.total_ttc, l.fk_product_fournisseur_price as fk_fournprice, l.buy_price_ht as pa_ht,';
-		//$sql.= ' l.situation_percent, l.fk_prev_id,';
-		//$sql.= ' l.localtax1_tx, l.localtax2_tx, l.localtax1_type, l.localtax2_type, l.remise_percent, l.fk_remise_except, l.subprice,';
 		$sql .= ' l.rang, l.special_code,';
-		//$sql.= ' l.info_bits, l.total_ht, l.total_tva, l.total_localtax1, l.total_localtax2, l.total_ttc, l.fk_code_ventilation, l.fk_product_fournisseur_price as fk_fournprice, l.buy_price_ht as pa_ht,';
 		$sql .= ' l.fk_unit, l.fk_contract_line,';
 		$sql .= ' l.fk_multicurrency, l.multicurrency_code, l.multicurrency_subprice, l.multicurrency_total_ht, l.multicurrency_total_tva, l.multicurrency_total_ttc,';
 		$sql .= ' p.ref as product_ref, p.fk_product_type as fk_product_type, p.label as product_label, p.description as product_desc';
@@ -1127,7 +1116,6 @@ class FactureRec extends CommonInvoice
 		if ($restrictioninvoiceid > 0)
 			$sql .= ' AND rowid = '.$restrictioninvoiceid;
 		$sql .= $db->order('entity', 'ASC');
-		//print $sql;exit;
 		$parameters = array(
 			'restrictioninvoiceid' => $restrictioninvoiceid,
 			'forcevalidation' => $forcevalidation,
@@ -1337,8 +1325,6 @@ class FactureRec extends CommonInvoice
 
 		$labelStatus = $langs->trans('Active');
 		$statusType = 'status0';
-
-		//print "$recur,$status,$mode,$alreadypaid,$type";
 		if ($mode == 0)
 		{
 			$prefix = '';
