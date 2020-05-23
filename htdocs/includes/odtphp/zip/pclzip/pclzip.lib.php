@@ -28,17 +28,6 @@
   if (!defined('PCLZIP_READ_BLOCK_SIZE')) {
     define( 'PCLZIP_READ_BLOCK_SIZE', 2048 );
   }
-  
-  // ----- File list separator
-  // In version 1.x of PclZip, the separator for file list is a space
-  // (which is not a very smart choice, specifically for windows paths !).
-  // A better separator should be a comma (,). This constant gives you the
-  // abilty to change that.
-  // However notice that changing this value, may have impact on existing
-  // scripts, using space separated filenames.
-  // Recommanded values for compatibility with older versions :
-  //define( 'PCLZIP_SEPARATOR', ' ' );
-  // Recommanded values for smart separation of filenames.
   if (!defined('PCLZIP_SEPARATOR')) {
     define( 'PCLZIP_SEPARATOR', ',' );
   }
@@ -52,15 +41,6 @@
     define( 'PCLZIP_ERROR_EXTERNAL', 0 );
   }
 
-  // ----- Optional static temporary directory
-  //       By default temporary files are generated in the script current
-  //       path.
-  //       If defined :
-  //       - MUST BE terminated by a '/'.
-  //       - MUST be a valid, already created directory
-  //       Samples :
-  // define( 'PCLZIP_TEMPORARY_DIR', '/temp/' );
-  // define( 'PCLZIP_TEMPORARY_DIR', 'C:/Temp/' );
   if (!defined('PCLZIP_TEMPORARY_DIR')) {
     define( 'PCLZIP_TEMPORARY_DIR', '' );
   }
@@ -72,7 +52,6 @@
   //       threshold = memory_limit * ratio.
   //       Recommended values are under 0.5. Default 0.47.
   //       Samples :
-  // define( 'PCLZIP_TEMPORARY_FILE_RATIO', 0.5 );
   if (!defined('PCLZIP_TEMPORARY_FILE_RATIO')) {
     define( 'PCLZIP_TEMPORARY_FILE_RATIO', 0.47 );
   }
@@ -141,9 +120,6 @@
   define( 'PCLZIP_OPT_EXTRACT_IN_OUTPUT', 77015 );
   define( 'PCLZIP_OPT_REPLACE_NEWER', 77016 );
   define( 'PCLZIP_OPT_STOP_ON_ERROR', 77017 );
-  // Having big trouble with crypt. Need to multiply 2 long int
-  // which is not correctly supported by PHP ...
-  //define( 'PCLZIP_OPT_CRYPT', 77018 );
   define( 'PCLZIP_OPT_EXTRACT_DIR_RESTRICTION', 77019 );
   define( 'PCLZIP_OPT_TEMP_FILE_THRESHOLD', 77020 );
   define( 'PCLZIP_OPT_ADD_TEMP_FILE_THRESHOLD', 77020 ); // alias
@@ -165,12 +141,6 @@
   define( 'PCLZIP_CB_POST_EXTRACT', 78002 );
   define( 'PCLZIP_CB_PRE_ADD', 78003 );
   define( 'PCLZIP_CB_POST_ADD', 78004 );
-  /* For futur use
-  define( 'PCLZIP_CB_PRE_LIST', 78005 );
-  define( 'PCLZIP_CB_POST_LIST', 78006 );
-  define( 'PCLZIP_CB_PRE_DELETE', 78007 );
-  define( 'PCLZIP_CB_POST_DELETE', 78008 );
-  */
 
   // --------------------------------------------------------------------------------
   // Class : PclZip
@@ -374,8 +344,6 @@
         if ($v_string != '') {
           $v_att_list[][PCLZIP_ATT_FILE_NAME] = $v_string;
         }
-        else {
-        }
       }
     }
     
@@ -501,9 +469,6 @@
       // Here we need to support the first historic synopsis of the
       // method.
       else {
-
-        // ----- Get the first argument
-        $v_options[PCLZIP_OPT_ADD_PATH] = $v_add_path = $v_arg_list[0];
 
         // ----- Look for the optional second argument
         if ($v_size == 2) {
@@ -641,7 +606,6 @@
   // --------------------------------------------------------------------------------
   function listContent()
   {
-    $v_result=1;
 
     // ----- Reset the error handler
     $this->privErrorReset();
@@ -710,7 +674,6 @@
 
     // ----- Set default values
     $v_options = array();
-//    $v_path = "./";
     $v_path = '';
     $v_remove_path = "";
     $v_remove_all_path = false;
@@ -867,7 +830,6 @@
 
     // ----- Set default values
     $v_options = array();
-//    $v_path = "./";
     $v_path = '';
     $v_remove_path = "";
     $v_remove_all_path = false;
@@ -930,8 +892,6 @@
         }
         if (!isset($v_options[PCLZIP_OPT_EXTRACT_AS_STRING])) {
           $v_options[PCLZIP_OPT_EXTRACT_AS_STRING] = FALSE;
-        }
-        else {
         }
       }
 
@@ -1525,8 +1485,6 @@
             $v_result_list[$p_options_list[$i]] = PclZipUtilTranslateWinPath($p_options_list[$i+1], FALSE);
             $i++;
           }
-          else {
-          }
         break;
 
         // ----- Look for options that request an array of string for value
@@ -1805,11 +1763,6 @@
         }
       }
     }
-    
-    // ----- Look for default values
-    if (!isset($v_result_list[PCLZIP_OPT_TEMP_FILE_THRESHOLD])) {
-      
-    }
 
     // ----- Return
     return $v_result;
@@ -1837,10 +1790,8 @@
     $last = strtolower(substr($v_memory_limit, -1));
  
     if($last == 'g')
-        //$v_memory_limit = $v_memory_limit*1024*1024*1024;
         $v_memory_limit = $v_memory_limit*1073741824;
     if($last == 'm')
-        //$v_memory_limit = $v_memory_limit*1024*1024;
         $v_memory_limit = $v_memory_limit*1048576;
     if($last == 'k')
         $v_memory_limit = $v_memory_limit*1024;
@@ -2098,8 +2049,6 @@
           // ----- Concat the resulting list
           $v_result_list = array_merge($v_result_list, $v_dirlist_descr);
         }
-        else {
-        }
           
         // ----- Free local array
         unset($v_dirlist_descr);
@@ -2123,7 +2072,6 @@
   function privCreate($p_filedescr_list, &$p_result_list, &$p_options)
   {
     $v_result=1;
-    $v_list_detail = array();
     
     // ----- Magic quotes trick
     $this->privDisableMagicQuotes();
@@ -2158,7 +2106,6 @@
   function privAdd($p_filedescr_list, &$p_result_list, &$p_options)
   {
     $v_result=1;
-    $v_list_detail = array();
 
     // ----- Look if the archive exists or is empty
     if ((!is_file($this->zipname)) || (filesize($this->zipname) == 0))
@@ -2319,9 +2266,6 @@
     // TBC : I should test the result ...
     @unlink($this->zipname);
 
-    // ----- Rename the temporary file
-    // TBC : I should test the result ...
-    //@rename($v_zip_temp_name, $this->zipname);
     PclZipUtilRename($v_zip_temp_name, $this->zipname);
 
     // ----- Return
@@ -2536,16 +2480,6 @@
       // ----- Return
       return PclZip::errorCode();
     }
-  
-    // ----- Look for a stored different filename 
-    /* TBC : Removed
-    if (isset($p_filedescr['stored_filename'])) {
-      $v_stored_filename = $p_filedescr['stored_filename'];
-    }
-    else {
-      $v_stored_filename = $p_filedescr['stored_filename'];
-    }
-    */
 
     // ----- Set the file properties
     clearstatcache();
@@ -2561,7 +2495,6 @@
     $p_header['internal'] = 0;
     $p_header['offset'] = 0;
     $p_header['filename'] = $p_filename;
-// TBC : Removed    $p_header['stored_filename'] = $v_stored_filename;
     $p_header['stored_filename'] = $p_filedescr['stored_filename'];
     $p_header['extra'] = '';
     $p_header['status'] = 'ok';
@@ -2615,10 +2548,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_header, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_PRE_ADD].'(PCLZIP_CB_PRE_ADD, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_PRE_ADD](PCLZIP_CB_PRE_ADD, $v_local_header);
       if ($v_result == 0) {
         // ----- Change the file status
@@ -2769,10 +2698,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_header, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_POST_ADD].'(PCLZIP_CB_POST_ADD, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_POST_ADD](PCLZIP_CB_POST_ADD, $v_local_header);
       if ($v_result == 0) {
         // ----- Ignored
@@ -2796,7 +2721,6 @@
   // --------------------------------------------------------------------------------
   function privAddFileUsingTempFile($p_filedescr, &$p_header, &$p_options)
   {
-    $v_result=PCLZIP_ERR_NO_ERROR;
     
     // ----- Working variable
     $p_filename = $p_filedescr['filename'];
@@ -2821,7 +2745,6 @@
     while ($v_size != 0) {
       $v_read_size = ($v_size < PCLZIP_READ_BLOCK_SIZE ? $v_size : PCLZIP_READ_BLOCK_SIZE);
       $v_buffer = @fread($v_file, $v_read_size);
-      //$v_binary_data = pack('a'.$v_read_size, $v_buffer);
       @gzputs($v_file_compressed, $v_buffer, $v_read_size);
       $v_size -= $v_read_size;
     }
@@ -2856,7 +2779,6 @@
 
     // ----- Set the attributes
     $p_header['compression'] = ord($v_data_header['cm']);
-    //$p_header['mtime'] = $v_data_header['mtime'];
     $p_header['crc'] = $v_data_footer['crc'];
     $p_header['compressed_size'] = filesize($v_gzip_temp_name)-18;
 
@@ -2882,7 +2804,6 @@
     {
       $v_read_size = ($v_size < PCLZIP_READ_BLOCK_SIZE ? $v_size : PCLZIP_READ_BLOCK_SIZE);
       $v_buffer = @fread($v_file_compressed, $v_read_size);
-      //$v_binary_data = pack('a'.$v_read_size, $v_buffer);
       @fwrite($this->zip_fd, $v_buffer, $v_read_size);
       $v_size -= $v_read_size;
     }
@@ -3066,10 +2987,6 @@
   function privWriteCentralFileHeader(&$p_header)
   {
     $v_result=1;
-
-    // TBC
-    //for(reset($p_header); $key = key($p_header); next($p_header)) {
-    //}
 
     // ----- Transform UNIX mtime to DOS format mdate/mtime
     $v_date = getdate($p_header['mtime']);
@@ -3300,7 +3217,6 @@
     {
       $p_remove_path .= '/';
     }
-    $p_remove_path_size = strlen($p_remove_path);
 
     // ----- Open the zip file
     if (($v_result = $this->privOpenFd('rb')) != 1)
@@ -3385,19 +3301,6 @@
               }
           }
       }
-
-      // ----- Look for extract by ereg rule
-      // ereg() is deprecated with PHP 5.3
-      /* 
-      else if (   (isset($p_options[PCLZIP_OPT_BY_EREG]))
-               && ($p_options[PCLZIP_OPT_BY_EREG] != "")) {
-
-          if (ereg($p_options[PCLZIP_OPT_BY_EREG], $v_header['stored_filename'])) {
-              $v_extract = true;
-          }
-      }
-      */
-
       // ----- Look for extract by preg rule
       else if (   (isset($p_options[PCLZIP_OPT_BY_PREG]))
                && ($p_options[PCLZIP_OPT_BY_PREG] != "")) {
@@ -3692,10 +3595,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_entry, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_PRE_EXTRACT].'(PCLZIP_CB_PRE_EXTRACT, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_PRE_EXTRACT](PCLZIP_CB_PRE_EXTRACT, $v_local_header);
       if ($v_result == 0) {
         // ----- Change the file status
@@ -3788,8 +3687,6 @@
 		      }
 		    }
       }
-      else {
-      }
     }
 
     // ----- Check the directory availability and create it if necessary
@@ -3803,11 +3700,8 @@
 
         if (($v_result = $this->privDirCheck($v_dir_to_check, (($p_entry['external']&0x00000010)==0x00000010))) != 1) {
   
-          // ----- Change the file status
           $p_entry['status'] = "path_creation_fail";
   
-          // ----- Return
-          //return $v_result;
           $v_result = 1;
         }
       }
@@ -3840,10 +3734,6 @@
           {
             $v_read_size = ($v_size < PCLZIP_READ_BLOCK_SIZE ? $v_size : PCLZIP_READ_BLOCK_SIZE);
             $v_buffer = @fread($this->zip_fd, $v_read_size);
-            /* Try to speed up the code
-            $v_binary_data = pack('a'.$v_read_size, $v_buffer);
-            @fwrite($v_dest_file, $v_binary_data, $v_read_size);
-            */
             @fwrite($v_dest_file, $v_buffer, $v_read_size);            
             $v_size -= $v_read_size;
           }
@@ -3939,10 +3829,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_entry, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_POST_EXTRACT].'(PCLZIP_CB_POST_EXTRACT, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_POST_EXTRACT](PCLZIP_CB_POST_EXTRACT, $v_local_header);
 
       // ----- Look for abort result
@@ -3985,7 +3871,6 @@
     {
       $v_read_size = ($v_size < PCLZIP_READ_BLOCK_SIZE ? $v_size : PCLZIP_READ_BLOCK_SIZE);
       $v_buffer = @fread($this->zip_fd, $v_read_size);
-      //$v_binary_data = pack('a'.$v_read_size, $v_buffer);
       @fwrite($v_dest_file, $v_buffer, $v_read_size);
       $v_size -= $v_read_size;
     }
@@ -4017,7 +3902,6 @@
     while ($v_size != 0) {
       $v_read_size = ($v_size < PCLZIP_READ_BLOCK_SIZE ? $v_size : PCLZIP_READ_BLOCK_SIZE);
       $v_buffer = @gzread($v_src_file, $v_read_size);
-      //$v_binary_data = pack('a'.$v_read_size, $v_buffer);
       @fwrite($v_dest_file, $v_buffer, $v_read_size);
       $v_size -= $v_read_size;
     }
@@ -4060,10 +3944,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_entry, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_PRE_EXTRACT].'(PCLZIP_CB_PRE_EXTRACT, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_PRE_EXTRACT](PCLZIP_CB_PRE_EXTRACT, $v_local_header);
       if ($v_result == 0) {
         // ----- Change the file status
@@ -4128,10 +4008,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_entry, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_POST_EXTRACT].'(PCLZIP_CB_POST_EXTRACT, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_POST_EXTRACT](PCLZIP_CB_POST_EXTRACT, $v_local_header);
 
       // ----- Look for abort result
@@ -4175,10 +4051,6 @@
       $v_local_header = array();
       $this->privConvertHeader2FileInfo($p_entry, $v_local_header);
 
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_PRE_EXTRACT].'(PCLZIP_CB_PRE_EXTRACT, $v_local_header);');
       $v_result = $p_options[PCLZIP_CB_PRE_EXTRACT](PCLZIP_CB_PRE_EXTRACT, $v_local_header);
       if ($v_result == 0) {
         // ----- Change the file status
@@ -4245,11 +4117,7 @@
       // ----- Swap the content to header
       $v_local_header['content'] = $p_string;
       $p_string = '';
-
-      // ----- Call the callback
-      // Here I do not use call_user_func() because I need to send a reference to the
-      // header.
-//      eval('$v_result = '.$p_options[PCLZIP_CB_POST_EXTRACT].'(PCLZIP_CB_POST_EXTRACT, $v_local_header);');
+	    
       $v_result = $p_options[PCLZIP_CB_POST_EXTRACT](PCLZIP_CB_POST_EXTRACT, $v_local_header);
 
       // ----- Swap back the content to header
@@ -4355,9 +4223,6 @@
       $p_header['mtime'] = time();
     }
 
-    // TBC
-    //for(reset($v_data); $key = key($v_data); next($v_data)) {
-    //}
 
     // ----- Set the stored filename
     $p_header['stored_filename'] = $p_header['filename'];
@@ -4466,7 +4331,6 @@
 
     // ----- Look if it is a directory
     if (substr($p_header['filename'], -1) == '/') {
-      //$p_header['external'] = 0x41FF0010;
       $p_header['external'] = 0x00000010;
     }
 
@@ -4474,16 +4338,7 @@
     // ----- Return
     return $v_result;
   }
-  // --------------------------------------------------------------------------------
 
-  // --------------------------------------------------------------------------------
-  // Function : privCheckFileHeaders()
-  // Description :
-  // Parameters :
-  // Return Values :
-  //   1 on success,
-  //   0 on error;
-  // --------------------------------------------------------------------------------
   function privCheckFileHeaders(&$p_local_header, &$p_central_header)
   {
     $v_result=1;
@@ -4565,7 +4420,7 @@
 
     // ----- Go back to the maximum possible size of the Central Dir End Record
     if (!$v_found) {
-      $v_maximum_size = 65557; // 0xFFFF + 22;
+      $v_maximum_size = 65557;
       if ($v_maximum_size > $v_size)
         $v_maximum_size = $v_size;
       @fseek($this->zip_fd, $v_size-$v_maximum_size);
@@ -4586,10 +4441,6 @@
         // ----- Read a byte
         $v_byte = @fread($this->zip_fd, 1);
 
-        // -----  Add the byte
-        //$v_bytes = ($v_bytes << 8) | Ord($v_byte);
-        // Note we mask the old value down such that once shifted we can never end up with more than a 32bit number 
-        // Otherwise on systems where we have 64bit integers the check below for the magic number will fail. 
         $v_bytes = ( ($v_bytes & 0xFFFFFF) << 8) | Ord($v_byte); 
 
         // ----- Compare the bytes
@@ -4663,11 +4514,6 @@
     $p_central_dir['disk'] = $v_data['disk'];
     $p_central_dir['disk_start'] = $v_data['disk_start'];
 
-    // TBC
-    //for(reset($p_central_dir); $key = key($p_central_dir); next($p_central_dir)) {
-    //}
-
-    // ----- Return
     return $v_result;
   }
   // --------------------------------------------------------------------------------
@@ -4681,7 +4527,6 @@
   function privDeleteByRule(&$p_result_list, &$p_options)
   {
     $v_result=1;
-    $v_list_detail = array();
 
     // ----- Open the zip file
     if (($v_result=$this->privOpenFd('rb')) != 1)
@@ -4766,18 +4611,6 @@
               }
           }
       }
-
-      // ----- Look for extract by ereg rule
-      // ereg() is deprecated with PHP 5.3
-      /*
-      else if (   (isset($p_options[PCLZIP_OPT_BY_EREG]))
-               && ($p_options[PCLZIP_OPT_BY_EREG] != "")) {
-
-          if (ereg($p_options[PCLZIP_OPT_BY_EREG], $v_header_list[$v_nb_extracted]['stored_filename'])) {
-              $v_found = true;
-          }
-      }
-      */
 
       // ----- Look for extract by preg rule
       else if (   (isset($p_options[PCLZIP_OPT_BY_PREG]))
@@ -4948,9 +4781,6 @@
         // TBC : I should test the result ...
         @unlink($this->zipname);
 
-        // ----- Rename the temporary file
-        // TBC : I should test the result ...
-        //@rename($v_zip_temp_name, $this->zipname);
         PclZipUtilRename($v_zip_temp_name, $this->zipname);
     
         // ----- Destroy the temporary archive
@@ -5212,9 +5042,6 @@
     // TBC : I should test the result ...
     @unlink($this->zipname);
 
-    // ----- Rename the temporary file
-    // TBC : I should test the result ...
-    //@rename($v_zip_temp_name, $this->zipname);
     PclZipUtilRename($v_zip_temp_name, $this->zipname);
 
     // ----- Return
