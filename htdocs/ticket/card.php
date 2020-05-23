@@ -95,9 +95,6 @@ if ($id || $track_id || $ref) {
 // Store current page url
 $url_page_current = DOL_URL_ROOT.'/ticket/card.php';
 
-// Security check - Protection if external user
-//if ($user->socid > 0) accessforbidden();
-//if ($user->socid > 0) $socid = $user->socid;
 $result = restrictedArea($user, 'ticket', $object->id);
 
 $triggermodname = 'TICKET_MODIFY';
@@ -323,12 +320,6 @@ if ($action == "assign_user" && GETPOST('btn_assign_user', 'alpha') && $user->ri
     $object->fetch('', '', GETPOST("track_id", 'alpha'));
     $useroriginassign = $object->fk_user_assign;
     $usertoassign = GETPOST('fk_user_assign', 'int');
-
-    /*if (! ($usertoassign > 0)) {
-     $error++;
-     array_push($object->errors, $langs->trans("ErrorFieldRequired", $langs->transnoentities("AssignedTo")));
-     $action = 'view';
-     }*/
 
     if (!$error)
     {
@@ -668,7 +659,6 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
         // Confirmation status change
         if ($action == 'set_status') {
             $new_status = GETPOST('new_status');
-            //var_dump($url_page_current . "?track_id=" . $object->track_id);
             print $form->formconfirm($url_page_current."?track_id=".$object->track_id."&new_status=".GETPOST('new_status'), $langs->trans("TicketChangeStatus"), $langs->trans("TicketConfirmChangeStatus", $langs->transnoentities($object->statuts_short[$new_status])), "confirm_set_status", '', '', 1);
         }
 
@@ -679,11 +669,7 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
                 $projectstat->fetch_thirdparty();
 
                 // To verify role of users
-                //$userAccess = $object->restrictedProjectArea($user,'read');
                 $userWrite = $projectstat->restrictedProjectArea($user, 'write');
-                //$userDelete = $object->restrictedProjectArea($user,'delete');
-                //print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
-
                 $head = project_prepare_head($projectstat);
                 dol_fiche_head($head, 'ticket', $langs->trans("Project"), 0, ($projectstat->public ? 'projectpub' : 'project'));
 
@@ -797,7 +783,6 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
         			$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a>';
        			$morehtmlref .= ' : ';
        			if ($action == 'classify') {
-       				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
        				$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
        				$morehtmlref .= '<input type="hidden" name="action" value="classin">';
        				$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1111,11 +1096,9 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
 	                print dol_print_phone($tab[$i]['phone'], '', '', '', 'AC_TEL').'<br>';
 
 	                if (!empty($tab[$i]['phone_perso'])) {
-	                    //print img_picto($langs->trans('PhonePerso'),'object_phoning.png','',0,0,0).' ';
 	                    print '<br>'.dol_print_phone($tab[$i]['phone_perso'], '', '', '', 'AC_TEL').'<br>';
 	                }
 	                if (!empty($tab[$i]['phone_mobile'])) {
-	                    //print img_picto($langs->trans('PhoneMobile'),'object_phoning.png','',0,0,0).' ';
 	                    print dol_print_phone($tab[$i]['phone_mobile'], '', '', '', 'AC_TEL').'<br>';
 	                }
 	                print '</div>';
@@ -1300,7 +1283,6 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
 			// Tableau des parametres complementaires du post
 			$formticket->param['models'] = $modelmail;
 			$formticket->param['models_id'] = GETPOST('modelmailselected', 'int');
-			//$formticket->param['socid']=$object->fk_soc;
 			$formticket->param['returnurl'] = $_SERVER["PHP_SELF"].'?track_id='.$object->track_id;
 
 			$formticket->withsubstit = 1;
