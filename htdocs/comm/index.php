@@ -887,7 +887,6 @@ if (!empty($conf->commande->enabled) && $user->rights->commande->lire)
 				print $orderstatic->getNomUrl(1);
 				print '</td>';
 				print '<td width="18" class="nobordernopadding nowrap">';
-				//if ($db->jdate($obj->dfv) < ($now - $conf->propal->cloture->warning_delay)) print img_warning($langs->trans("Late"));
 				print '</td>';
 				print '<td width="16" align="center" class="nobordernopadding">';
 				$filename = dol_sanitizeFileName($obj->ref);
