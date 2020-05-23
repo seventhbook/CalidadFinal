@@ -118,8 +118,6 @@ class Xlsx extends BaseReader
         $zip = new ZipArchive();
         $zip->open($pFilename);
 
-        //    The files we're looking at here are small enough that simpleXML is more efficient than XMLReader
-        //~ http://schemas.openxmlformats.org/package/2006/relationships");
         $rels = simplexml_load_string(
             $this->securityScanner->scan($this->getFromZipArchive($zip, '_rels/.rels'))
         );
@@ -1117,8 +1115,6 @@ class Xlsx extends BaseReader
                                         if ($filterColumn->customFilters) {
                                             $column->setFilterType(Column::AUTOFILTER_FILTERTYPE_CUSTOMFILTER);
                                             $customFilters = $filterColumn->customFilters;
-                                            //    Custom filters can an AND or an OR join;
-                                            //        and there should only ever be one or two entries
                                             if ((isset($customFilters['and'])) && ($customFilters['and'] == 1)) {
                                                 $column->setJoin(Column::AUTOFILTER_COLUMN_JOIN_AND);
                                             }
@@ -1579,8 +1575,6 @@ class Xlsx extends BaseReader
                                     }
                                 }
                             }
-
-                            // TODO: Autoshapes from twoCellAnchors!
                             if ($zip->locateName(dirname("$dir/$fileWorksheet") . '/_rels/' . basename($fileWorksheet) . '.rels')) {
                                 //~ http://schemas.openxmlformats.org/package/2006/relationships"
                                 $relsWorksheet = simplexml_load_string(
