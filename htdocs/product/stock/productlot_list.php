@@ -176,7 +176,6 @@ $now = dol_now();
 $form = new Form($db);
 $productstatic = new Product($db);
 
-//$help_url="EN:Module_Customers_Orders|FR:Module_Commandes_Clients|ES:Módulo_Pedidos_de_clientes";
 $help_url = '';
 $title = $langs->trans('LotSerialList');
 llxHeader('', $title, $help_url);
@@ -246,7 +245,6 @@ $parameters=array();
 $reshook=$hookmanager->executeHooks('printFieldListWhere', $parameters);    // Note that $action and $object may have been modified by hook
 $sql.=$hookmanager->resPrint;
 $sql.=$db->order($sortfield, $sortorder);
-//$sql.= $db->plimit($conf->liste_limit+1, $offset);
 
 // Count total nb of records
 $nbtotalofrecords = '';
@@ -286,10 +284,7 @@ if ($resql)
 	include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
 
 	$arrayofmassactions = array(
-		//'presend'=>$langs->trans("SendByMail"),
-		//'builddoc'=>$langs->trans("PDFMerge"),
 	);
-	//if ($user->rights->stock->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 	if (in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
 	$massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 
@@ -315,12 +310,6 @@ if ($resql)
 		foreach ($fieldstosearchall as $key => $val) $fieldstosearchall[$key] = $langs->trans($val);
 		print '<div class="divsearchfieldfilter">'.$langs->trans("FilterOnInto", $sall).join(', ', $fieldstosearchall).'</div>';
 	}
-
-	/*$moreforfilter = '';
-    $moreforfilter.='<div class="divsearchfield">';
-    $moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
-    $moreforfilter.= '</div>';*/
-
 	$parameters = array();
 	$reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters); // Note that $action and $object may have been modified by hook
 	if (empty($reshook)) $moreforfilter .= $hookmanager->resPrint;
@@ -368,13 +357,6 @@ if ($resql)
 		print '<td class="liste_titre">';
 		print '</td>';
 	}
-	/*if (! empty($arrayfields['u.statut']['checked']))
-     {
-     // Status
-     print '<td class="liste_titre center">';
-     print $form->selectarray('search_statut', array('-1'=>'','0'=>$langs->trans('Disabled'),'1'=>$langs->trans('Enabled')),$search_statut);
-     print '</td>';
-     }*/
 	// Action column
 	print '<td class="liste_titre maxwidthsearch">';
 	$searchpicto = $form->showFilterAndCheckAddButtons($massactionbutton ? 1 : 0, 'checkforselect', 1);
@@ -404,9 +386,6 @@ if ($resql)
     if (!empty($arrayfields['t.tms']['checked'])) {
         print_liste_field_titre($arrayfields['t.tms']['label'], $_SERVER["PHP_SELF"], "t.tms", "", $param, '', $sortfield, $sortorder, 'center nowrap ');
     }
-    //if (! empty($arrayfields['t.status']['checked'])) {
-    //    print_liste_field_titre($arrayfields['t.status']['label'], $_SERVER["PHP_SELF"], "t.status", "", $param, '', $sortfield, $sortorder, 'center ');
-    //}
     print_liste_field_titre($selectedfields, $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, 'center maxwidthsearch ');
     print '</tr>'."\n";
 
@@ -496,12 +475,6 @@ if ($resql)
 				if (!$i) $totalarray['nbfield']++;
 			}
 			// Status
-			/*
-            if (! empty($arrayfields['u.statut']['checked']))
-            {
-    		  $userstatic->statut=$obj->statut;
-              print '<td class="center">'.$userstatic->getLibStatut(3).'</td>';
-            }*/
 
 			// Action column
 			print '<td class="nowrap center">';
@@ -533,21 +506,7 @@ if ($resql)
 
 	print '</form>'."\n";
 
-	/*
-	$hidegeneratedfilelistifempty=1;
-	if ($massaction == 'builddoc' || $action == 'remove_file' || $show_files) $hidegeneratedfilelistifempty=0;
-
-    // Show list of available documents
-	$urlsource=$_SERVER['PHP_SELF'].'?sortfield='.$sortfield.'&sortorder='.$sortorder;
-	$urlsource.=str_replace('&amp;','&',$param);
-
-	$filedir=$diroutputmassaction;
-	$genallowed=$user->rights->facture->lire;
-	$delallowed=$user->rights->facture->creer;
-
-	print $formfile->showdocuments('massfilesarea_orders','',$filedir,$urlsource,0,$delallowed,'',1,1,0,48,1,$param,$title,'','','',null,$hidegeneratedfilelistifempty);
-	*/
-}
+	
 else
 {
 	$error++;
