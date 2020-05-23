@@ -93,13 +93,6 @@ class modProduct extends DolibarrModules
 		$this->const[$r][4] = 0;
 		$r++;
 
-		/*$this->const[$r][0] = "PRODUCT_ADDON_PDF";
-		$this->const[$r][1] = "chaine";
-		$this->const[$r][2] = "standard";
-		$this->const[$r][3] = 'Default module for document generation';
-		$this->const[$r][4] = 0;
-		$r++;*/
-
 		// Boxes
 		$this->boxes = array(
 			0=>array('file'=>'box_produits.php', 'enabledbydefaulton'=>'Home'),
@@ -151,21 +144,6 @@ class modProduct extends DolibarrModules
         //-------
 
         $this->menu = 1; // This module adds menu entries. They are coded into menu manager.
-		/* We can't enable this here because it must be enabled in both product and service module and this creates duplicate inserts
-		$r=0;
-		$this->menu[$r]=array(	'fk_menu'=>'fk_mainmenu=home,fk_leftmenu=admintools',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
-								'type'=>'left',			                // This is a Left menu entry
-								'titre'=>'ProductVatMassChange',
-								'url'=>'/product/admin/product_tools.php?mainmenu=home&leftmenu=admintools',
-								'langs'=>'products',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
-								'position'=>300,
-								'enabled'=>'$conf->product->enabled && preg_match(\'/^(admintools|all)/\',$leftmenu)',   // Define condition to show or hide menu entry. Use '$conf->mymodule->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-								'perms'=>'1',			                // Use 'perms'=>'$user->rights->mymodule->level1->level2' if you want your menu with a permission rules
-								'target'=>'',
-								'user'=>0);				                // 0=Menu for internal users, 1=external users, 2=both
-		$r++;
-		*/
-
 		// Exports
 		//--------
 		$r=0;
@@ -253,12 +231,6 @@ class modProduct extends DolibarrModules
 				'pr.tva_tx'=>'PriceLevelVATRate',
 				'pr.date_price'=>'DateCreation');
 			if (is_object($mysoc) && $mysoc->useNPR()) $this->export_fields_array[$r]['pr.recuperableonly']='NPR';
-			//$this->export_TypeFields_array[$r]=array(
-			//	'p.ref'=>"Text",'p.label'=>"Text",'p.description'=>"Text",'p.url'=>"Text",'p.accountancy_code_sell'=>"Text",'p.accountancy_code_buy'=>"Text",
-			//	'p.note'=>"Text",'p.length'=>"Numeric",'p.surface'=>"Numeric",'p.volume'=>"Numeric",'p.weight'=>"Numeric",'p.customcode'=>'Text',
-			//	'p.price_base_type'=>"Text",'p.price'=>"Numeric",'p.price_ttc'=>"Numeric",'p.tva_tx'=>'Numeric','p.tosell'=>"Boolean",'p.tobuy'=>"Boolean",
-			//	'p.datec'=>'Date','p.tms'=>'Date'
-			//);
 			$this->export_entities_array[$r]=array('p.rowid'=>"product",'p.ref'=>"product",
 				'pr.price_base_type'=>"product",'pr.price_level'=>"product",'pr.price'=>"product",
 				'pr.price_ttc'=>"product",
@@ -645,7 +617,6 @@ class modProduct extends DolibarrModules
             $this->import_examplevalues_array[$r] = array_merge($this->import_examplevalues_array[$r], array(
                 'sp.price' => "50.00",
                 'sp.unitprice' => '10',
-                // TODO Make this field not required and calculate it from price and qty
                 'sp.remise_percent' => '20'
             ));
             if ($conf->multicurrency->enabled)
@@ -655,7 +626,6 @@ class modProduct extends DolibarrModules
                     'sp.multicurrency_code'=>'GBP',
                     'sp.multicurrency_tx'=>'1.12345',
                     'sp.multicurrency_unitprice'=>'',
-                    // TODO Make this field not required and calculate it from price and qty
                     'sp.multicurrency_price'=>''
                 ));
             }
@@ -704,7 +674,6 @@ class modProduct extends DolibarrModules
 		    $this->import_tables_array[$r] = array('l'=>MAIN_DB_PREFIX.'product_lang');
 			// multiline translation, one line per translation
 			$this->import_fields_array[$r] = array('l.fk_product'=>'ProductOrService*', 'l.lang'=>'Language*', 'l.label'=>'TranslatedLabel', 'l.description'=>'TranslatedDescription');
-			//$this->import_fields_array[$r]['l.note']='TranslatedNote';
 			$this->import_convertvalue_array[$r] = array(
 					'l.fk_product'=>array('rule'=>'fetchidfromref', 'classfile'=>'/product/class/product.class.php', 'class'=>'Product', 'method'=>'fetch', 'element'=>'Product')
 			);
