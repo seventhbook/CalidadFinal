@@ -279,19 +279,16 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
         $sql .= " WHERE ".$rowidcol." = '".$rowid."'";
 
         dol_syslog("actionmodify", LOG_DEBUG);
-        //print $sql;
         $resql = $db->query($sql);
         if (!$resql)
         {
             setEventMessages($db->error(), null, 'errors');
         }
     }
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
 }
 
 if (GETPOST('actioncancel', 'alpha'))
 {
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
 }
 
 if ($action == 'confirm_delete' && $confirm == 'yes')       // delete
@@ -419,7 +416,6 @@ if ($action == 'delete')
 {
     print $form->formconfirm($_SERVER["PHP_SELF"].'?'.($page ? 'page='.$page.'&' : '').'sortfield='.$sortfield.'&sortorder='.$sortorder.'&rowid='.$rowid.'&code='.$code.'&id='.$id.($search_country_id > 0 ? '&search_country_id='.$search_country_id : ''), $langs->trans('DeleteLine'), $langs->trans('ConfirmDeleteLine'), 'confirm_delete', '', 0, 1);
 }
-//var_dump($elementList);
 
 /*
  * Show a dictionary
@@ -440,7 +436,6 @@ if ($id)
     if ($sortfield == 'country') $sortfield = 'country_code';
     $sql .= $db->order($sortfield, $sortorder);
     $sql .= $db->plimit($listlimit + 1, $offset);
-    //print $sql;
 
     $fieldlist = explode(',', $tabfield[$id]);
 
@@ -707,7 +702,6 @@ if ($id)
             while ($i < $num)
             {
                 $obj = $db->fetch_object($resql);
-                //print_r($obj);
                 print '<tr class="oddeven" id="rowid-'.$obj->rowid.'">';
                 if ($action == 'edit' && ($rowid == (!empty($obj->rowid) ? $obj->rowid : $obj->code)))
                 {
