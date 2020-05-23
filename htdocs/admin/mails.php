@@ -739,17 +739,7 @@ else
 
 	if ($conf->global->MAIN_MAIL_SENDMODE == 'mail' && empty($conf->global->MAIN_FIX_FOR_BUGGED_MTA))
 	{
-		/*
-		 // Warning 1
-		 if ($linuxlike)
-		 {
-		 $sendmailoption=ini_get('mail.force_extra_parameters');
-		 if (empty($sendmailoption) || ! preg_match('/ba/',$sendmailoption))
-		 {
-		 print info_admin($langs->trans("SendmailOptionNotComplete"));
-		 }
-		 }*/
-		// Warning 2
+		
 		print info_admin($langs->trans("SendmailOptionMayHurtBuggedMTA"));
 	}
 
