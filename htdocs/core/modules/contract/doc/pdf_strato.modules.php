@@ -372,7 +372,6 @@ class pdf_strato extends ModelePDFContract
 						{
 							$pdf->rollbackTransaction(true);
 							$pageposafter=$pageposbefore;
-							//print $pageposafter.'-'.$pageposbefore;exit;
 							$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 							$pdf->writeHTMLCell(0, 0, $curX, $curY, dol_concatdesc($txtpredefinedservice, dol_concatdesc($txt, $desc)), 0, 1, 0);
 							$pageposafter=$pdf->getPage();
@@ -534,32 +533,6 @@ class pdf_strato extends ModelePDFContract
 		if ($hidetop) $hidetop=-1;
 
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
-        /*
-		$pdf->SetXY($this->marge_gauche, $tab_top);
-		$pdf->MultiCell(190,8,$outputlangs->transnoentities("Description"),0,'L',0);
-		$pdf->line($this->marge_gauche, $tab_top + 8, $this->page_largeur-$this->marge_droite, $tab_top + 8);
-
-		$pdf->SetFont('','', $default_font_size - 1);
-
-		$pdf->MultiCell(0, 3, '');		// Set interline to 3
-		$pdf->SetXY($this->marge_gauche, $tab_top + 8);
-		$text=$object->description;
-		if ($object->duree > 0)
-		{
-			$totaltime=convertSecondToTime($object->duree,'all',$conf->global->MAIN_DURATION_OF_WORKDAY);
-			$text.=($text?' - ':'').$langs->trans("Total").": ".$totaltime;
-		}
-		$desc=dol_htmlentitiesbr($text,1);
-		//print $outputlangs->convToOutputCharset($desc); exit;
-
-		$pdf->writeHTMLCell(180, 3, 10, $tab_top + 8, $outputlangs->convToOutputCharset($desc), 0, 1);
-		$nexY = $pdf->GetY();
-
-		$pdf->line($this->marge_gauche, $nexY, $this->page_largeur-$this->marge_droite, $nexY);
-
-		$pdf->MultiCell(0, 3, '');		// Set interline to 3. Then writeMultiCell must use 3 also.
-        */
-
 		// Output Rect
 		$this->printRect($pdf, $this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_gauche-$this->marge_droite, $tab_height+3);	// Rect takes a length in 3rd parameter and 4th parameter
 	}
