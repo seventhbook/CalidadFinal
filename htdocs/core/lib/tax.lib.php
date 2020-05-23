@@ -226,7 +226,6 @@ function tax_by_thirdparty($type, $db, $y, $date_start, $date_end, $modetax, $di
     	$resql = $db->query($sql);
     	if ($resql)
     	{
-    		$company_id = -1;
     		$oldrowid='';
     		while($assoc = $db->fetch_array($resql))
     		{
@@ -695,7 +694,6 @@ function tax_by_rate($type, $db, $y, $q, $date_start, $date_end, $modetax, $dire
         $resql = $db->query($sql);
         if ($resql)
         {
-            $rate = -1;
             $oldrowid='';
             while($assoc = $db->fetch_array($resql))
             {
