@@ -447,7 +447,7 @@ if ($limit > 0 && $limit != $conf->liste_limit) $param .= '&limit='.urlencode($l
 $param .= '&id='.$rowid;
 if ($optioncss != '')     $param .= '&optioncss='.urlencode($optioncss);
 // Add $param from extra fields
-//include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
+
 
 
 if ($rowid > 0)
@@ -826,7 +826,7 @@ if ($rowid > 0)
 
         if ($conf->use_javascript_ajax)
         {
-        	//var_dump($bankdirect.'-'.$bankviainvoice.'-'.$invoiceonly.'-'.empty($conf->global->ADHERENT_BANK_USE));
+        	
             print "\n".'<script type="text/javascript" language="javascript">';
             print '$(document).ready(function () {
                         $(".bankswitchclass, .bankswitchclass2").'.(($bankdirect || $bankviainvoice) ? 'show()' : 'hide()').';
@@ -898,8 +898,6 @@ if ($rowid > 0)
                     'moreattr' => 'maxlength="128"',
                 );
 			}
-			// @todo Add other extrafields mandatory for thirdparty creation
-
 			print $form->formconfirm($_SERVER["PHP_SELF"]."?rowid=".$object->id, $langs->trans("CreateDolibarrThirdParty"), $langs->trans("ConfirmCreateThirdParty"), "confirm_create_thirdparty", $formquestion, 1);
 		}
 
@@ -979,7 +977,7 @@ if ($rowid > 0)
                 }
 
                 // Title payments
-                //print '<tr><td colspan="2"><b>'.$langs->trans("Payment").'</b></td></tr>';
+                
 
                 // No more action
                 print '<tr><td class="tdtop fieldrequired">'.$langs->trans('MoreActions');
@@ -996,8 +994,7 @@ if ($rowid > 0)
                 if (!empty($conf->societe->enabled) && !empty($conf->facture->enabled))
                 {
                     print '<input type="radio" class="moreaction" id="invoiceonly" name="paymentsave" value="invoiceonly"'.(!empty($invoiceonly) ? ' checked' : '');
-                    //if (empty($object->fk_soc)) print ' disabled';
-                    print '> '.$langs->trans("MoreActionInvoiceOnly");
+                            print '> '.$langs->trans("MoreActionInvoiceOnly");
                     if ($object->fk_soc) print ' ('.$langs->trans("ThirdParty").': '.$company->getNomUrl(1).')';
                     else
 					{
@@ -1021,7 +1018,7 @@ if ($rowid > 0)
                 if (!empty($conf->banque->enabled) && !empty($conf->societe->enabled) && !empty($conf->facture->enabled))
                 {
                     print '<input type="radio" class="moreaction" id="bankviainvoice" name="paymentsave" value="bankviainvoice"'.(!empty($bankviainvoice) ? ' checked' : '');
-                    //if (empty($object->fk_soc)) print ' disabled';
+			
                     print '> '.$langs->trans("MoreActionBankViaInvoice");
                     if ($object->fk_soc) print ' ('.$langs->trans("ThirdParty").': '.$company->getNomUrl(1).')';
                     else
@@ -1156,8 +1153,6 @@ if ($rowid > 0)
         print "\n<!-- End form subscription -->\n\n";
     }
 
-    //print '</td></tr>';
-    //print '</table>';
 }
 else
 {
