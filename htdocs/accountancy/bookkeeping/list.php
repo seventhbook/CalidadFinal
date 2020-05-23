@@ -53,7 +53,6 @@ $search_date_modification_end = dol_mktime(0, 0, 0, GETPOST('date_modification_e
 $search_date_export_start = dol_mktime(0, 0, 0, GETPOST('date_export_startmonth', 'int'), GETPOST('date_export_startday', 'int'), GETPOST('date_export_startyear', 'int'));
 $search_date_export_end = dol_mktime(0, 0, 0, GETPOST('date_export_endmonth', 'int'), GETPOST('date_export_endday', 'int'), GETPOST('date_export_endyear', 'int'));
 
-//var_dump($search_date_start);exit;
 if (GETPOST("button_delmvt_x") || GETPOST("button_delmvt.x") || GETPOST("button_delmvt")) {
 	$action = 'delbookkeepingyear';
 }
@@ -459,13 +458,10 @@ if (count($sqlwhere) > 0) {
 if (!empty($sortfield)) {
 	$sql .= $db->order($sortfield, $sortorder);
 }
-//print $sql;
-
 
 // Export into a file with format defined into setup (FEC, CSV, ...)
 // Must be after definition of $sql
 if ($action == 'export_file' && $user->rights->accounting->mouvements->export) {
-	// TODO Replace the fetchAll + ->export later that consume too much memory on large export with the query($sql) and loop on each line to export them.
 	$result = $object->fetchAll($sortorder, $sortfield, 0, 0, $filter, 'AND', $conf->global->ACCOUNTING_REEXPORT);
 
 	if ($result < 0)
@@ -511,7 +507,6 @@ if ($action == 'export_file' && $user->rights->accounting->mouvements->export) {
             if (!$error)
             {
             	$db->commit();
-            	// setEventMessages($langs->trans("AllExportedMovementsWereRecordedAsExported"), null, 'mesgs');
             }
             else
             {
@@ -706,7 +701,6 @@ if (!empty($arrayfields['t.subledger_account']['checked']))
 	print '<td class="liste_titre">';
 	print '<div class="nowrap">';
 	print $langs->trans('From').' ';
-	// TODO For the moment we keep a free input text instead of a combo. The select_auxaccount has problem because it does not
 	// use setup of keypress to select thirdparty and this hang browser on large database.
 	if (!empty($conf->global->ACCOUNTANCY_COMBO_FOR_AUX))
 	{
@@ -719,8 +713,6 @@ if (!empty($arrayfields['t.subledger_account']['checked']))
 	print '</div>';
 	print '<div class="nowrap">';
 	print $langs->trans('to').' ';
-	// TODO For the moment we keep a free input text instead of a combo. The select_auxaccount has problem because it does not
-	// use setup of keypress to select thirdparty and this hang browser on large database.
 	if (!empty($conf->global->ACCOUNTANCY_COMBO_FOR_AUX))
 	{
 		print $formaccounting->select_auxaccount($search_accountancy_aux_code_end, 'search_accountancy_aux_code_end', 1);
@@ -1017,7 +1009,7 @@ include DOL_DOCUMENT_ROOT.'/core/tpl/list_print_total.tpl.php';
 print "</table>";
 print '</div>';
 
-// TODO Replace this with mass delete action
+
 if ($user->rights->accounting->mouvements->supprimer_tous) {
     print '<div class="tabsAction tabsActionNoBottom">'."\n";
     print '<a class="butActionDelete" name="button_delmvt" href="'.$_SERVER["PHP_SELF"].'?action=delbookkeepingyear'.($param ? '&'.$param : '').'">'.$langs->trans("DeleteMvt").'</a>';
