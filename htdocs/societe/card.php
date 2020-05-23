@@ -141,7 +141,6 @@ if (empty($reshook))
 
 			if (!$error)
 			{
-			    // TODO Move the merge function into class of object.
 
 				$db->begin();
 
@@ -409,10 +408,6 @@ if (empty($reshook))
 	        $object->town = GETPOST('town', 'alpha');
 	        $object->country_id = GETPOST('country_id', 'int');
 	        $object->state_id = GETPOST('state_id', 'int');
-	        //$object->skype					= GETPOST('skype', 'alpha');
-	        //$object->twitter				= GETPOST('twitter', 'alpha');
-	        //$object->facebook				= GETPOST('facebook', 'alpha');
-            //$object->linkedin				= GETPOST('linkedin', 'alpha');
             $object->socialnetworks = array();
             if (!empty($conf->socialnetworks->enabled)) {
                 foreach ($socialnetworks as $key => $value) {
@@ -620,7 +615,7 @@ if (empty($reshook))
                 }
                 else
 				{
-				    if ($db->lasterrno() == 'DB_ERROR_RECORD_ALREADY_EXISTS') // TODO Sometime errors on duplicate on profid and not on code, so we must manage this case
+				    if ($db->lasterrno() == 'DB_ERROR_RECORD_ALREADY_EXISTS') 
 					{
 						$duplicate_code_error = true;
 						$object->code_fournisseur = null;
@@ -680,7 +675,6 @@ if (empty($reshook))
                 // To not set code if third party is not concerned. But if it had values, we keep them.
                 if (empty($object->client) && empty($object->oldcopy->code_client))          $object->code_client = '';
                 if (empty($object->fournisseur) && empty($object->oldcopy->code_fournisseur)) $object->code_fournisseur = '';
-                //var_dump($object);exit;
 
                 $result = $object->update($socid, $user, 1, $object->oldcopy->codeclient_modifiable(), $object->oldcopy->codefournisseur_modifiable(), 'update', 0);
 
@@ -985,10 +979,6 @@ else
         $object->zip = GETPOST('zipcode', 'alpha');
         $object->town = GETPOST('town', 'alpha');
         $object->state_id = GETPOST('state_id', 'int');
-        //$object->skype				= GETPOST('skype', 'alpha');
-        //$object->twitter			= GETPOST('twitter', 'alpha');
-        //$object->facebook			= GETPOST('facebook', 'alpha');
-        //$object->linkedin			= GETPOST('linkedin', 'alpha');
         $object->socialnetworks = array();
         if (!empty($conf->socialnetworks->enabled)) {
             foreach ($socialnetworks as $key => $value) {
@@ -1357,42 +1347,6 @@ else
             }
         }
 
-        // if (! empty($conf->socialnetworks->enabled))
-        // {
-        // 	// Skype
-        // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-        // 	{
-        // 		print '<tr><td>'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</td>';
-		// 		print '<td colspan="3">';
-		// 		print '<input type="text" name="skype" class="minwidth100" maxlength="80" id="skype" value="'.dol_escape_htmltag(GETPOSTISSET("skype")?GETPOST("skype", 'alpha'):$object->skype).'">';
-		// 		print '</td></tr>';
-        // 	}
-        // 	// Twitter
-        // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-        // 	{
-        // 		print '<tr><td>'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</td>';
-		// 		print '<td colspan="3">';
-		// 		print '<input type="text" name="twitter" class="minwidth100" maxlength="80" id="twitter" value="'.dol_escape_htmltag(GETPOSTISSET("twitter")?GETPOST("twitter", 'alpha'):$object->twitter).'">';
-		// 		print '</td></tr>';
-        // 	}
-        // 	// Facebook
-        //     if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-        //     {
-        //         print '<tr><td>'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</td>';
-        //         print '<td colspan="3">';
-        //         print '<input type="text" name="facebook" class="minwidth100" maxlength="80" id="facebook" value="'.dol_escape_htmltag(GETPOSTISSET("facebook")?GETPOST("facebook", 'alpha'):$object->facebook).'">';
-        //         print '</td></tr>';
-        //     }
-        //     // LinkedIn
-        //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-        //     {
-        //         print '<tr><td>'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</td>';
-        //         print '<td colspan="3">';
-        //         print '<input type="text" name="linkedin" class="minwidth100" maxlength="80" id="linkedin" value="'.dol_escape_htmltag(GETPOSTISSET("linkedin")?GETPOST("linkedin", 'alpha'):$object->linkedin).'">';
-        //         print '</td></tr>';
-        //     }
-        // }
-
         // Prof ids
         $i = 1; $j = 0; $NBCOLS = ($conf->browser->layout == 'phone' ? 1 : 2);
         while ($i <= 6)
@@ -1454,8 +1408,6 @@ else
         print '</td>';
         print '</tr>';
 
-        // Local Taxes
-        //TODO: Place into a function to control showing by country or study better option
         if ($mysoc->localtax1_assuj == "1" && $mysoc->localtax2_assuj == "1")
         {
             print '<tr><td>'.$langs->transcountry("LocalTax1IsUsed", $mysoc->country_code).'</td><td>';
@@ -1530,21 +1482,15 @@ else
 		{
 			$langs->load('categories');
 
-			// Customer
-			//if ($object->prospect || $object->client || (! $object->fournisseur && ! empty($conf->global->THIRDPARTY_CAN_HAVE_CATEGORY_EVEN_IF_NOT_CUSTOMER_PROSPECT_SUPPLIER))) {
 			print '<tr class="visibleifcustomer"><td class="toptd">'.$form->editfieldkey('CustomersProspectsCategoriesShort', 'custcats', '', $object, 0).'</td><td colspan="3">';
 			$cate_arbo = $form->select_all_categories(Categorie::TYPE_CUSTOMER, null, 'parent', null, null, 1);
 			print $form->multiselectarray('custcats', $cate_arbo, GETPOST('custcats', 'array'), null, null, null, null, "90%");
 			print "</td></tr>";
-			//}
 
-			// Supplier
-			//if ($object->fournisseur) {
 			print '<tr class="visibleifsupplier"><td class="toptd">'.$form->editfieldkey('SuppliersCategoriesShort', 'suppcats', '', $object, 0).'</td><td colspan="3">';
 			$cate_arbo = $form->select_all_categories(Categorie::TYPE_SUPPLIER, null, 'parent', null, null, 1);
 			print $form->multiselectarray('suppcats', $cate_arbo, GETPOST('suppcats', 'array'), null, null, null, null, "90%");
 			print "</td></tr>";
-			//}
 		}
 
 		// Multicurrency
@@ -1601,12 +1547,10 @@ else
     }
     elseif ($action == 'edit')
     {
-        //print load_fiche_titre($langs->trans("EditCompany"));
 
         if ($socid)
         {
         	$res = $object->fetch_optionals();
-            //if ($res < 0) { dol_print_error($db); exit; }
 
 	        $head = societe_prepare_head($object);
 
@@ -1662,10 +1606,6 @@ else
                 $object->town = GETPOST('town', 'alpha');
                 $object->country_id = GETPOST('country_id') ?GETPOST('country_id', 'int') : $mysoc->country_id;
                 $object->state_id = GETPOST('state_id', 'int');
-                //$object->skype				= GETPOST('skype', 'alpha');
-                //$object->twitter				= GETPOST('twitter', 'alpha');
-                //$object->facebook				= GETPOST('facebook', 'alpha');
-                //$object->linkedin				= GETPOST('linkedin', 'alpha');
                 $object->socialnetworks = array();
                 if (!empty($conf->socialnetworks->enabled)) {
                     foreach ($socialnetworks as $key => $value) {
@@ -1996,35 +1936,7 @@ else
                     }
                 }
             }
-	        // if (! empty($conf->socialnetworks->enabled))
-	        // {
-	        // 	// Skype
-	        // 	if (! empty($conf->global->SOCIALNETWORKS_SKYPE))
-	        // 	{
-	        // 		print '<tr><td>'.$form->editfieldkey('Skype', 'skype', '', $object, 0).'</td>';
-	        // 		print '<td colspan="3"><input type="text" name="skype" id="skype" value="'.$object->skype.'"></td></tr>';
-	        // 	}
-	        // 	// Twitter
-	        // 	if (! empty($conf->global->SOCIALNETWORKS_TWITTER))
-	        // 	{
-	        // 		print '<tr><td>'.$form->editfieldkey('Twitter', 'twitter', '', $object, 0).'</td>';
-	        // 		print '<td colspan="3"><input type="text" name="twitter" id="twitter" value="'.$object->twitter.'"></td></tr>';
-	        // 	}
-	        // 	// Facebook
-	        // 	if (! empty($conf->global->SOCIALNETWORKS_FACEBOOK))
-	        // 	{
-	        // 		print '<tr><td>'.$form->editfieldkey('Facebook', 'facebook', '', $object, 0).'</td>';
-	        // 		print '<td colspan="3"><input type="text" name="facebook" id="facebook" value="'.$object->facebook.'"></td></tr>';
-	        // 	}
-            //     // LinkedIn
-            //     if (! empty($conf->global->SOCIALNETWORKS_LINKEDIN))
-            //     {
-            //         print '<tr><td>'.$form->editfieldkey('LinkedIn', 'linkedin', '', $object, 0).'</td>';
-            //         print '<td colspan="3"><input type="text" name="linkedin" id="linkedin" value="'.$object->linkedin.'"></td></tr>';
-            //     }
-	        // }
 
-            // Prof ids
             $i = 1; $j = 0;
             while ($i <= 6)
             {
@@ -2051,8 +1963,6 @@ else
             print $form->selectyesno('assujtva_value', $object->tva_assuj, 1);
             print '</td></tr>';
 
-            // Local Taxes
-            //TODO: Place into a function to control showing by country or study better option
             if ($mysoc->localtax1_assuj == "1" && $mysoc->localtax2_assuj == "1")
             {
                 print '<tr><td>'.$form->editfieldkey($langs->transcountry("LocalTax1IsUsed", $mysoc->country_code), 'localtax1assuj_value', '', $object, 0).'</td><td>';
@@ -2236,7 +2146,6 @@ else
                 if ($object->logo) print "<br>\n";
                 print '<table class="nobordernopadding">';
                 if ($object->logo) print '<tr><td><input type="checkbox" class="flat photodelete" name="deletephoto" id="photodelete"> '.$langs->trans("Delete").'<br><br></td></tr>';
-                //print '<tr><td>'.$langs->trans("PhotoFile").'</td></tr>';
                 print '<tr><td><input type="file" class="flat" name="photo" id="photoinput"></td></tr>';
                 print '</table>';
             }
@@ -2274,8 +2183,6 @@ else
          */
 
         if (!empty($object->id)) $res = $object->fetch_optionals();
-        //if ($res < 0) { dol_print_error($db); exit; }
-
 
         $head = societe_prepare_head($object);
 
@@ -2372,7 +2279,6 @@ else
             $idprof = $langs->transcountry('ProfId'.$i, $object->country_code);
             if ($idprof != '-')
             {
-                //if (($j % 2) == 0) print '<tr>';
                 print '<tr>';
             	print '<td>'.$idprof.'</td><td>';
                 $key = 'idprof'.$i;
@@ -2383,13 +2289,11 @@ else
                     else print ' <font class="error">('.$langs->trans("ErrorWrongValue").')</font>';
                 }
                 print '</td>';
-                //if (($j % 2) == 1) print '</tr>';
                 print '</tr>';
                 $j++;
             }
             $i++;
         }
-        //if ($j % 2 == 1)  print '<td colspan="2"></td></tr>';
 
 
         // This fields are used to know VAT to include in an invoice when the thirdparty is making a sale, so when it is a supplier.
@@ -2586,8 +2490,6 @@ else
         {
             require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
             print '<tr><td>'.$langs->trans("DefaultLang").'</td><td>';
-            //$s=picto_from_langcode($object->default_lang);
-            //print ($s?$s.' ':'');
             $langs->load("languages");
             $labellang = ($object->default_lang ? $langs->trans('Language_'.$object->default_lang) : '');
             print $labellang;
