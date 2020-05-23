@@ -683,7 +683,6 @@ class DateTime
         $endMonths = $PHPEndDateObject->format('n');
         $endYears = $PHPEndDateObject->format('Y');
 
-        $retVal = Functions::NAN();
         switch ($unit) {
             case 'D':
                 $retVal = (int) $difference;
