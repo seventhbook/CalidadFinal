@@ -539,7 +539,6 @@ function adodb_date_test()
 		$ts = 3600.0*((rand()%60000)+(rand()%60000))+(rand()%60000);
 		$s1 = date($fmt,$ts);
 		$s2 = adodb_date($fmt,$ts);
-		//print "$s1 <br>$s2 <p>";
 		$pos = strcmp($s1,$s2);
 
 		if (($s1) != ($s2)) {
@@ -740,21 +739,11 @@ global $ADODB_DATETIME_CLASS;
 		$dt->setISODate($y,$m,$d);
 		if (empty($tzo)) {
 			$tzo = new DateTimeZone(date_default_timezone_get());
-		#	$tzt = timezone_transitions_get( $tzo );
 		}
 		return -$tzo->getOffset($dt);
 	} else {
 		if (isset($TZ)) return $TZ;
 		$y = date('Y');
-		/*
-		if (function_exists('date_default_timezone_get') && function_exists('timezone_offset_get')) {
-			$tzonename = date_default_timezone_get();
-			if ($tzonename) {
-				$tobj = new DateTimeZone($tzonename);
-				$TZ = -timezone_offset_get($tobj,new DateTime("now",$tzo));
-			}
-		}
-		*/
 		if (empty($TZ)) $TZ = mktime(0,0,0,12,2,$y) - gmmktime(0,0,0,12,2,$y);
 	}
 	return $TZ;
@@ -774,26 +763,6 @@ function adodb_getdate($d=false,$fast=false)
 	}
 	return _adodb_getdate($d);
 }
-
-/*
-// generate $YRS table for _adodb_getdate()
-function adodb_date_gentable($out=true)
-{
-
-	for ($i=1970; $i >= 1600; $i-=10) {
-		$s = adodb_gmmktime(0,0,0,1,1,$i);
-		echo "$i => $s,<br>";
-	}
-}
-adodb_date_gentable();
-
-for ($i=1970; $i > 1500; $i--) {
-
-echo "<hr />$i ";
-	adodb_date_test_date($i,1,1);
-}
-
-*/
 
 
 $_month_table_normal = array("",31,28,31,30,31,30,31,31,30,31,30,31);
@@ -890,21 +859,7 @@ global $_month_table_normal,$_month_table_leaf;
 		# old algorithm iterates through all years. new algorithm does it in
 		# 10 year blocks
 
-		/*
-		# old algo
-		for ($a = 1970 ; --$a >= 0;) {
-			$lastd = $d;
-
-			if ($leaf = _adodb_is_leap_year($a)) $d += $d366;
-			else $d += $d365;
-
-			if ($d >= 0) {
-				$year = $a;
-				break;
-			}
-		}
-		*/
-
+		
 		$lastsecs = 0;
 		$lastyear = 1970;
 		foreach($YRS as $year => $secs) {
@@ -918,8 +873,6 @@ global $_month_table_normal,$_month_table_leaf;
 
 		$d -= $lastsecs;
 		if (!isset($a)) $a = $lastyear;
-
-		//echo ' yr=',$a,' ', $d,'.';
 
 		for (; --$a >= 0;) {
 			$lastd = $d;
@@ -1017,12 +970,6 @@ global $_month_table_normal,$_month_table_leaf;
 		0 => $origd
 	);
 }
-/*
-		if ($isphp5)
-				$dates .= sprintf('%s%04d',($gmt<=0)?'+':'-',abs($gmt)/36);
-			else
-				$dates .= sprintf('%s%04d',($gmt<0)?'+':'-',abs($gmt)/36);
-			break;*/
 function adodb_tz_offset($gmt,$isphp5)
 {
 	$zhrs = abs($gmt)/3600;
@@ -1265,13 +1212,6 @@ function adodb_mktime($hr,$min,$sec,$mon=false,$day=false,$year=false,$is_dst=fa
 
 	$gmt_different = ($is_gmt) ? 0 : adodb_get_gmt_diff($year,$mon,$day);
 
-	/*
-	# disabled because some people place large values in $sec.
-	# however we need it for $mon because we use an array...
-	$hr = intval($hr);
-	$min = intval($min);
-	$sec = intval($sec);
-	*/
 	$mon = intval($mon);
 	$day = intval($day);
 	$year = intval($year);
@@ -1343,7 +1283,6 @@ function adodb_mktime($hr,$min,$sec,$mon=false,$day=false,$year=false,$is_dst=fa
 		if ($ret < -12220185600) $ret += 10*86400; // if earlier than 5 Oct 1582 - gregorian correction
 		else if ($ret < -12219321600) $ret = -12219321600; // if in limbo, reset to 15 Oct 1582.
 	}
-	//print " dmy=$day/$mon/$year $hr:$min:$sec => " .$ret;
 	return $ret;
 }
 
@@ -1366,11 +1305,7 @@ global $ADODB_DATE_LOCALE;
 	}
 
 	if (empty($ADODB_DATE_LOCALE)) {
-	/*
-		$tstr = strtoupper(gmstrftime('%c',31366800)); // 30 Dec 1970, 1 am
-		$sep = substr($tstr,2,1);
-		$hasAM = strrpos($tstr,'M') !== false;
-	*/
+	
 		# see http://phplens.com/lens/lensforum/msgs.php?id=14865 for reasoning, and changelog for version 0.24
 		$dstr = gmstrftime('%x',31366800); // 30 Dec 1970, 1 am
 		$sep = substr($dstr,2,1);
@@ -1451,7 +1386,6 @@ global $ADODB_DATE_LOCALE;
 		else
 			$fmtdate .= $ch;
 	}
-	//echo "fmt=",$fmtdate,"<br>";
 	if ($ts === false) $ts = time();
 	$ret = adodb_date($fmtdate, $ts, $is_gmt);
 	return $ret;
