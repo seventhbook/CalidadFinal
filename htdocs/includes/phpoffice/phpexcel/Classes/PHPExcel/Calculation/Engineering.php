@@ -2296,7 +2296,6 @@ class PHPExcel_Calculation_Engineering {
 		$a = $n = 1;
 		$b = $c = $x;
 		$d = ($x * $x) + 0.5;
-		$q1 = $q2 = $b / $d;
 		$t = 0;
 		do {
 			$t = $a * $n + $b * $x;
