@@ -176,16 +176,6 @@ class soap_transport_http extends nusoap_base {
 	function connect($connection_timeout=0,$response_timeout=30){
 	  	// For PHP 4.3 with OpenSSL, change https scheme to ssl, then treat like
 	  	// "regular" socket.
-	  	// TODO: disabled for now because OpenSSL must be *compiled* in (not just
-	  	//       loaded), and until PHP5 stream_get_wrappers is not available.
-//	  	if ($this->scheme == 'https') {
-//		  	if (version_compare(phpversion(), '4.3.0') >= 0) {
-//		  		if (extension_loaded('openssl')) {
-//		  			$this->scheme = 'ssl';
-//		  			$this->debug('Using SSL over OpenSSL');
-//		  		}
-//		  	}
-//		}
 		$this->debug("connect connection_timeout $connection_timeout, response_timeout $response_timeout, scheme $this->scheme, host $this->host, port $this->port");
 	  if ($this->io_method() == 'socket') {
 		if (!is_array($this->proxy)) {
@@ -239,8 +229,7 @@ class soap_transport_http extends nusoap_base {
 		$this->debug('socket connected');
 		return true;
 	  } else if ($this->io_method() == 'curl') {
-		if (!extension_loaded('curl')) {
-//			$this->setError('cURL Extension, or OpenSSL extension w/ PHP version >= 4.3 is required for HTTPS');
+		if (!extension_loaded('curl')) {			
 			$this->setError('The PHP cURL Extension is required for HTTPS or NLTM.  You will need to re-build or update your PHP to include cURL or change php.ini to load the PHP cURL extension.');
 			return false;
 		}
@@ -294,16 +283,12 @@ class soap_transport_http extends nusoap_base {
 		$this->setCurlOption(CURLOPT_RETURNTRANSFER, 1);
 		// encode
 		// We manage this ourselves through headers and encoding
-//		if(function_exists('gzuncompress')){
-//			$this->setCurlOption(CURLOPT_ENCODING, 'deflate');
-//		}
 		// persistent connection
 		if ($this->persistentConnection) {
 			// I believe the following comment is now bogus, having applied to
 			// the code when it used CURLOPT_CUSTOMREQUEST to send the request.
 			// The way we send data, we cannot use persistent connections, since
 			// there will be some "junk" at the end of our request.
-			//$this->setCurlOption(CURL_HTTP_VERSION_1_1, true);
 			$this->persistentConnection = false;
 			$this->setHeader('Connection', 'close');
 		}
@@ -319,8 +304,7 @@ class soap_transport_http extends nusoap_base {
 			$this->debug('set cURL SSL verify options');
 			// recent versions of cURL turn on peer/host checking by default,
 			// while PHP binaries are not compiled with a default location for the
-			// CA cert bundle, so disable peer/host checking.
-			//$this->setCurlOption(CURLOPT_CAINFO, 'f:\php-4.3.2-win32\extensions\curl-ca-bundle.crt');		
+			// CA cert bundle, so disable peer/host checking.		
 			$this->setCurlOption(CURLOPT_SSL_VERIFYPEER, 0);
 			$this->setCurlOption(CURLOPT_SSL_VERIFYHOST, 0);
 	
@@ -849,7 +833,6 @@ class soap_transport_http extends nusoap_base {
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {
-					// TODO: allow multiple cookies from parseCookie
 					$cookie = $this->parseCookie(trim($arr[1]));
 					if ($cookie) {
 						$this->incoming_cookies[] = $cookie;
@@ -945,16 +928,7 @@ class soap_transport_http extends nusoap_base {
 			return false;
 		}
 		
-		// decode transfer-encoding
-//		if(isset($this->incoming_headers['transfer-encoding']) && strtolower($this->incoming_headers['transfer-encoding']) == 'chunked'){
-//			if(!$data = $this->decodeChunked($data, $lb)){
-//				$this->setError('Decoding of chunked data failed');
-//				return false;
-//			}
-			//print "<pre>\nde-chunked:\n---------------\n$data\n\n---------------\n</pre>";
-			// set decoded payload
-//			$this->incoming_payload = $header_data.$lb.$lb.$data;
-//		}
+			}
 	
 	  } else if ($this->io_method() == 'curl') {
 		// send and receive
@@ -965,7 +939,6 @@ class soap_transport_http extends nusoap_base {
         $cErr = curl_error($this->ch);
 		if ($cErr != '') {
         	$err = 'cURL ERROR: '.curl_errno($this->ch).': '.$cErr.'<br>';
-        	// TODO: there is a PHP bug that can cause this to SEGV for CURLINFO_CONTENT_TYPE
 			foreach(curl_getinfo($this->ch) as $k => $v){
 				$err .= "$k: $v<br>";
 			}
@@ -974,9 +947,6 @@ class soap_transport_http extends nusoap_base {
 			curl_close($this->ch);
 	    	return false;
 		} else {
-			//echo '<pre>';
-			//var_dump(curl_getinfo($this->ch));
-			//echo '</pre>';
 		}
 		// close curl
 		$this->debug('No cURL error, closing cURL');
@@ -1027,7 +997,6 @@ class soap_transport_http extends nusoap_base {
 				$header_name = strtolower(trim($arr[0]));
 				$this->incoming_headers[$header_name] = trim($arr[1]);
 				if ($header_name == 'set-cookie') {
-					// TODO: allow multiple cookies from parseCookie
 					$cookie = $this->parseCookie(trim($arr[1]));
 					if ($cookie) {
 						$this->incoming_cookies[] = $cookie;
@@ -1098,7 +1067,6 @@ class soap_transport_http extends nusoap_base {
 			if(strtolower($this->incoming_headers['content-encoding']) == 'deflate' || strtolower($this->incoming_headers['content-encoding']) == 'gzip'){
     			// if decoding works, use it. else assume data wasn't gzencoded
     			if(function_exists('gzinflate')){
-					//$timer->setMarker('starting decoding of gzip/deflated content');
 					// IIS 5 requires gzinflate instead of gzuncompress (similar to IE 5 and gzdeflate v. gzcompress)
 					// this means there are no Zlib headers, although there should be
 					$this->debug('The gzinflate function exists');
@@ -1136,8 +1104,6 @@ class soap_transport_http extends nusoap_base {
 							$this->setError('Error using gzinflate to un-gzip the payload');
 	    				}
 					}
-					//$timer->setMarker('finished decoding of gzip/deflated content');
-					//print "<xmp>\nde-inflated:\n---------------\n$data\n-------------\n</xmp>";
 					// set decoded payload
 					$this->incoming_payload = $header_data.$lb.$lb.$data;
     			} else {
@@ -1194,9 +1160,6 @@ class soap_transport_http extends nusoap_base {
 	 * @param	string $cookie_str content of cookie
 	 * @return	array with data of that cookie
 	 * @access	private
-	 */
-	/*
-	 * TODO: allow a Set-Cookie string to be parsed into multiple cookies
 	 */
 	function parseCookie($cookie_str) {
 		$cookie_str = str_replace('; ', ';', $cookie_str) . ';';
