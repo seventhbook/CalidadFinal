@@ -227,7 +227,6 @@ class CMailFile
 		// Define $urlwithroot
 		$urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 		$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-		//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
 
 		// Replace relative /viewimage to absolute path
 		$msg = preg_replace('/src="'.preg_quote(DOL_URL_ROOT, '/').'\/viewimage\.php/ims', 'src="'.$urlwithroot.'/viewimage.php', $msg, -1);
@@ -316,7 +315,6 @@ class CMailFile
 			// This avoid also empty lines at end that can be interpreted as mail injection by email servers.
 			$this->headers = preg_replace("/([\r\n]+)$/i", "", $this->headers);
 
-			//$this->message = $this->eol.'This is a message with multiple parts in MIME format.'.$this->eol;
 			$this->message = 'This is a message with multiple parts in MIME format.'.$this->eol;
 			$this->message .= $text_body.$files_encoded;
 			$this->message .= "--".$this->mixed_boundary."--".$this->eol;
@@ -461,7 +459,6 @@ class CMailFile
 			{
 				foreach ($this->images_encoded as $img)
 				{
-					//$img['fullpath'],$img['image_encoded'],$img['name'],$img['content_type'],$img['cid']
 					$attachment = Swift_Image::fromPath($img['fullpath']);
 					// embed image
 					$imgcid = $this->message->embed($attachment);
@@ -484,7 +481,6 @@ class CMailFile
 			{
 				foreach ($filename_list as $i => $val)
 				{
-					//$this->message->attach(Swift_Attachment::fromPath($filename_list[$i],$mimetype_list[$i]));
 					$attachment = Swift_Attachment::fromPath($filename_list[$i], $mimetype_list[$i]);
 					$this->message->attach($attachment);
 				}
@@ -492,7 +488,6 @@ class CMailFile
 
 			if (!empty($addr_cc)) $this->message->setCc($this->getArrayAddress($addr_cc));
 			if (!empty($addr_bcc)) $this->message->setBcc($this->getArrayAddress($addr_bcc));
-			//if (! empty($errors_to)) $this->message->setErrorsTo($this->getArrayAddress($errors_to);
 			if (isset($deliveryreceipt) && $deliveryreceipt == 1) $this->message->setReadReceiptTo($this->getArrayAddress($from));
 		}
 		else
@@ -544,7 +539,6 @@ class CMailFile
 			    // List of sending methods
 			    $listofmethods = array();
 			    $listofmethods['mail'] = 'PHP mail function';
-			    //$listofmethods['simplemail']='Simplemail class';
 			    $listofmethods['smtps'] = 'SMTP/SMTPS socket library';
 
 			    // EMailing feature may be a spam problem, so when you host several users/instance, having this option may force each user to use their own SMTP agent.
@@ -1033,7 +1027,6 @@ class CMailFile
 		$host = dol_getprefix('email');
 
 		// Sender
-		//$out.= "Sender: ".getValidAddress($this->addr_from,2)).$this->eol2;
 		$out .= "From: ".$this->getValidAddress($this->addr_from, 3, 1).$this->eol2;
 		if (!empty($conf->global->MAIN_MAIL_SENDMAIL_FORCE_BA))
 		{
@@ -1050,8 +1043,6 @@ class CMailFile
 
 		// Delivery receipt
 		if (isset($this->deliveryreceipt) && $this->deliveryreceipt == 1) $out .= "Disposition-Notification-To: ".$this->getValidAddress($this->addr_from, 2).$this->eol2;
-
-		//$out.= "X-Priority: 3".$this->eol2;
 
 		$out .= 'Date: '.date("r").$this->eol2;
 
@@ -1073,9 +1064,6 @@ class CMailFile
 		if (!empty($_SERVER['REMOTE_ADDR'])) $out .= "X-RemoteAddr: ".$_SERVER['REMOTE_ADDR'].$this->eol2;
 		$out .= "X-Mailer: Dolibarr version ".DOL_VERSION." (using php mail)".$this->eol2;
 		$out .= "Mime-Version: 1.0".$this->eol2;
-
-		//$out.= "From: ".$this->getValidAddress($this->addr_from,3,1).$this->eol;
-
 		$out .= "Content-Type: multipart/mixed;".$this->eol2." boundary=\"".$this->mixed_boundary."\"".$this->eol2;
 		$out .= "Content-Transfer-Encoding: 8bit".$this->eol2; // TODO Seems to be ignored. Header is 7bit once received.
 
@@ -1167,7 +1155,6 @@ class CMailFile
 			if ($this->atleastoneimage)
 			{
 				$out .= "Content-Type: text/plain; charset=".$conf->file->character_set_client.$this->eol;
-				//$out.= "Content-Transfer-Encoding: 7bit".$this->eol;
 				$out .= $this->eol.($strContentAltText ? $strContentAltText : strip_tags($strContent)).$this->eol; // Add plain text message
 				$out .= "--".$this->alternative_boundary.$this->eol;
 				$out .= "Content-Type: multipart/related;".$this->eol." boundary=\"".$this->related_boundary."\"".$this->eol;
@@ -1181,13 +1168,11 @@ class CMailFile
 				$out .= $this->eol;
 				$out .= "--".$this->alternative_boundary.$this->eol;
 				$out .= "Content-Type: text/plain; charset=".$conf->file->character_set_client.$this->eol;
-				//$out.= "Content-Transfer-Encoding: 7bit".$this->eol;
 				$out .= $this->eol.$strContentAltText.$this->eol;
 				$out .= "--".$this->alternative_boundary.$this->eol;
 			}
 
 			$out .= "Content-Type: text/html; charset=".$conf->file->character_set_client.$this->eol;
-			//$out.= "Content-Transfer-Encoding: 7bit".$this->eol;	// TODO Use base64
 			$out .= $this->eol.$strContent.$this->eol;
 
 			if (!$this->atleastoneimage && $strContentAltText && !empty($conf->global->MAIN_MAIL_USE_MULTI_PART))    // Add plain text message part after html part
@@ -1198,7 +1183,6 @@ class CMailFile
 		else
 		{
 			$out .= "Content-Type: text/plain; charset=".$conf->file->character_set_client.$this->eol;
-			//$out.= "Content-Transfer-Encoding: 7bit".$this->eol;
 			$out .= $this->eol.$strContent.$this->eol;
 		}
 
@@ -1253,7 +1237,6 @@ class CMailFile
 					$out .= $this->eol;
 					$out .= $encoded;
 					$out .= $this->eol;
-					//$out.= $this->eol;
 				}
 				else
 				{
@@ -1336,7 +1319,6 @@ class CMailFile
 			// If we use SSL/TLS
 			if (!empty($conf->global->$keyfortls) && function_exists('openssl_open')) $host = 'ssl://'.$host;
 			// tls smtp start with no encryption
-			//if (! empty($conf->global->MAIN_MAIL_EMAIL_STARTTLS) && function_exists('openssl_open')) $host='tls://'.$host;
 
 			dol_syslog("Try socket connection to host=".$host." port=".$port);
 			//See if we can connect to the SMTP server
