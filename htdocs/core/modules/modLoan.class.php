@@ -146,7 +146,8 @@ class modLoan extends DolibarrModules
 		//--------
 		$r=0;
 	}
-
+         
+	
 
 	/**
 	 *  Function called when module is enabled.
