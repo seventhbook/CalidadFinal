@@ -402,7 +402,6 @@ class Thirdparties extends DolibarrApi
 				if (!$errors && !$object_name::replaceThirdparty($db, $soc_origin->id, $object->id))
 				{
 					$errors++;
-					//setEventMessages($db->lasterror(), null, 'errors');
 				}
 			}
 		}
@@ -417,7 +416,6 @@ class Thirdparties extends DolibarrApi
 
 			if ($reshook < 0)
 			{
-				//setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 				$errors++;
 			}
 		}
@@ -431,7 +429,6 @@ class Thirdparties extends DolibarrApi
 			$result = $object->call_trigger('COMPANY_MODIFY', $user);
 			if ($result < 0)
 			{
-				//setEventMessages($object->error, $object->errors, 'errors');
 				$error++;
 			}
 			// End call triggers
@@ -979,11 +976,6 @@ class Thirdparties extends DolibarrApi
 			throw new RestException(401, 'Access not allowed for login '.DolibarrApiAccess::$user->login);
 		}
 
-		/*$result = $this->thirdparty->fetch($id);
-		 if( ! $result ) {
-		 throw new RestException(404, 'Thirdparty not found');
-		 }*/
-
 		$invoice = new Facture($this->db);
 		$result = $invoice->list_replacable_invoices($id);
 		if ($result < 0) {
@@ -1020,12 +1012,7 @@ class Thirdparties extends DolibarrApi
 		if (!DolibarrApi::_checkAccessToResource('societe', $id)) {
 			throw new RestException(401, 'Access not allowed for login '.DolibarrApiAccess::$user->login);
 		}
-
-		/*$result = $this->thirdparty->fetch($id);
-		 if( ! $result ) {
-		 throw new RestException(404, 'Thirdparty not found');
-		 }*/
-
+	    
 		$invoice = new Facture($this->db);
 		$result = $invoice->list_qualified_avoir_invoices($id);
 		if ($result < 0) {
