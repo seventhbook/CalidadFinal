@@ -509,3 +509,6 @@ print '</form>';
 // End of page
 llxFooter();
 $db->close();
+
+JUAN ES PUTO Y SE LA COME CRUDA
+	
