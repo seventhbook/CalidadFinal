@@ -743,8 +743,6 @@ class SMTPs
     {
         // This feature is not yet implemented
         return true;
-
-        //if ( $_path ) $this->_mailPath = $_path;
     }
 
     /**
@@ -1303,11 +1301,6 @@ class SMTPs
          * So it is included into the function sendMsg() but not here.
          * http://stackoverflow.com/questions/2750211/sending-bcc-emails-using-a-smtp-server
          */
-        /*
-        if ( $this->getBCC() )
-        $_header .= 'Bcc: ' . $this->getBCC()  . "\r\n";
-        */
-
         $host=dol_getprefix('email');
 
         //NOTE: Message-ID should probably contain the username of the user who sent the msg
@@ -1329,10 +1322,6 @@ class SMTPs
         if (! empty($_SERVER['REMOTE_ADDR'])) $_header .= "X-RemoteAddr: " . $_SERVER['REMOTE_ADDR']. "\r\n";
         if ( $this->getMoreInHeader() )
             $_header .= $this->getMoreInHeader();     // Value must include the "\r\n";
-
-        //$_header .=
-        //                 'Read-Receipt-To: '   . $this->getFrom( 'org' ) . "\r\n"
-        //                 'Return-Receipt-To: ' . $this->getFrom( 'org' ) . "\r\n";
 
         if ( $this->getSensitivity() )
         $_header .= 'Sensitivity: ' . $this->getSensitivity()  . "\r\n";
@@ -1366,8 +1355,6 @@ class SMTPs
      */
     public function setBodyContent($strContent, $strType = 'plain')
     {
-        //if ( $strContent )
-        //{
         if ( $strType == 'html' )
         $strMimeType = 'text/html';
         else
@@ -1386,8 +1373,7 @@ class SMTPs
             $strContentAltText = trim(wordwrap($strContentAltText, 75, "\r\n"));
         }
 
-        // Make RFC2045 Compliant
-        //$strContent = rtrim(chunk_split($strContent));    // Function chunck_split seems ko if not used on a base64 content
+        // Function chunck_split seems ko if not used on a base64 content
         $strContent = rtrim(wordwrap($strContent, 75, "\r\n"));   // TODO Using this method creates unexpected line break on text/plain content.
 
         $this->_msgContent[$strType] = array();
@@ -1398,7 +1384,6 @@ class SMTPs
 
         if ( $this->getMD5flag() )
         $this->_msgContent[$strType]['md5']      = dol_hash($strContent, 3);
-        //}
     }
 
     /**
@@ -1464,9 +1449,6 @@ class SMTPs
                 $content .= "\r\n";
                 $content .= "--" . $this->_getBoundary('alternative') . "\r\n";
             }
-
-
-            // $this->_msgContent must be sorted with key 'text' or 'html' first then 'image' then 'attachment'
 
 
             // Loop through message content array
@@ -1538,16 +1520,8 @@ class SMTPs
                     }
 
                     $content .= 'Content-Type: ' . $_content['mimeType'] . '; '
-                    //                             . 'charset="' . $this->getCharSet() . '"';
                     . 'charset=' . $this->getCharSet() . '';
-
-                    //                    $content .= ( $type == 'html') ? '; name="HTML Part"' : '';
                     $content .=  "\r\n";
-                    //                    $content .= 'Content-Transfer-Encoding: ';
-                    //                    $content .= ($type == 'html') ? 'quoted-printable' : $this->getTransEncodeType();
-                    //                    $content .=  "\r\n"
-                    //                             . 'Content-Disposition: inline'  . "\r\n"
-                    //                             . 'Content-Description: ' . $type . ' message' . "\r\n";
 
                     if ( $this->getMD5flag() )
                     $content .= 'Content-MD5: ' . $_content['md5'] . "\r\n";
@@ -1564,7 +1538,6 @@ class SMTPs
             }
 
             // Close message boundries
-            //            $content .= "\r\n--" . $this->_getBoundary() . '--' . "\r\n" ;
             $content .= "--" . $this->_getBoundary('mixed') . '--' . "\r\n" ;
         }
 
