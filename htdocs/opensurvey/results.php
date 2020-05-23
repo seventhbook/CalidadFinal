@@ -370,7 +370,6 @@ for ($i = 0; $i < $nbcolonnes; $i++)
 			$sql2 = 'UPDATE '.MAIN_DB_PREFIX.'opensurvey_user_studs';
 			$sql2 .= " SET reponses = '".$db->escape($newcar)."'";
 			$sql2 .= " WHERE id_users = '".$db->escape($obj->id_users)."'";
-			//print $sql2;
 			dol_syslog('sql='.$sql2);
 			$resql2 = $db->query($sql2);
 
@@ -477,7 +476,7 @@ print '<tr><td>'.img_picto('', 'globe').' '.$langs->trans("UrlForSurvey", '').'<
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+// This is to use same domain name than current
 
 $url = $urlwithouturlroot.dol_buildpath('/public/opensurvey/studs.php', 1).'?sondage='.$object->id_sondage;
 $urllink = '<input type="text" style="width: 60%" '.($action == 'edit' ? 'disabled' : '').' id="opensurveyurl" name="opensurveyurl" value="'.$url.'">';
@@ -805,8 +804,6 @@ while ($compteur < $num)
 		for ($i = 0; $i < $nbcolonnes; $i++)
 		{
 			$car = substr($ensemblereponses, $i, 1);
-			//print 'xx'.$i."-".$car.'-'.$listofanswers[$i]['format'].'zz';
-
 			if (empty($listofanswers[$i]['format']) || !in_array($listofanswers[$i]['format'], array('yesno', 'foragainst')))
 			{
 				if (((string) $car) == "1") print '<td class="ok">OK</td>'."\n";
@@ -1055,7 +1052,6 @@ for ($i = 0; $i < $nbcolonnes; $i++)
 
 		if ($object->format == "D") {
 			$meilleursujetexport = $toutsujet[$i];
-			//var_dump($toutsujet);
             if (strpos($toutsujet[$i], '@') !== false) {
 				$toutsujetdate = explode("@", $toutsujet[$i]);
 				$meilleursujet .= dol_print_date($toutsujetdate[0], 'daytext').($toutsujetdate[0] ? ' ('.dol_print_date($toutsujetdate[0], '%A').')' : '').' - '.$toutsujetdate[1];
