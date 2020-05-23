@@ -145,7 +145,6 @@ if ($action == "view_ticketlist") {
     }
 }
 
-//$object->doActions($action);
 
 
 
@@ -365,7 +364,6 @@ if ($action == "view_ticketlist")
                 }
             }
         }
-        //$sql .= " GROUP BY t.track_id";
         $sql .= " ORDER BY ".$sortfield.' '.$sortorder;
 
         $resql = $db->query($sql);
@@ -462,7 +460,6 @@ if ($action == "view_ticketlist")
                 if (!empty($arrayfields['t.fk_statut']['checked'])) {
                     print '<td class="liste_titre">';
                     $selected = ($search_fk_status != "non_closed" ? $search_fk_status : '');
-                    //$object->printSelectStatus($selected);
                     print '</td>';
                 }
 
@@ -685,8 +682,6 @@ if ($action == "view_ticketlist")
     print '<form method="post" name="form_view_ticketlist"  enctype="multipart/form-data" action="'.$_SERVER['PHP_SELF'].'">';
     print '<input type="hidden" name="token" value="'.newToken().'">';
     print '<input type="hidden" name="action" value="view_ticketlist">';
-    //print '<input type="hidden" name="search_fk_status" value="non_closed">';
-
     print '<p><label for="track_id" style="display: inline-block; width: 30%; "><span class="fieldrequired">'.$langs->trans("OneOfTicketTrackId").'</span></label>';
     print '<input size="30" id="track_id" name="track_id" value="'.(GETPOST('track_id', 'alpha') ? GETPOST('track_id', 'alpha') : '').'" />';
     print '</p>';
