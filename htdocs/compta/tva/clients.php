@@ -187,7 +187,6 @@ if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) {
 }
 if (!empty($conf->global->MAIN_MODULE_ACCOUNTING)) $description .= '<br>'.$langs->trans("ThisIsAnEstimatedValue");
 
-//$periodlink=($year_start?"<a href='".$_SERVER["PHP_SELF"]."?year=".($year_start-1)."&modetax=".$modetax."'>".img_previous()."</a> <a href='".$_SERVER["PHP_SELF"]."?year=".($year_start+1)."&modetax=".$modetax."'>".img_next()."</a>":"");
 $description .= ($description ? '<br>' : '').$fsearch;
 if (!empty($conf->global->TAX_REPORT_EXTRA_REPORT))
 {
@@ -365,7 +364,6 @@ if (!is_array($x_coll) || !is_array($x_paye))
     $span = $columns;
     if ($modetax != 1) $span += 2;
 
-    //print '<tr><td colspan="'.($span+1).'">'..')</td></tr>';
 
     // Customers invoices
     print '<tr class="liste_titre">';
@@ -485,9 +483,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
                         print '<td class="nowrap right">';
                         print price($fields['totalht']);
                         if (price2num($fields['ftotal_ttc'])) {
-                            //print $fields['dtotal_ttc']."/".$fields['ftotal_ttc']." - ";
                             $ratiolineinvoice = ($fields['dtotal_ttc'] / $fields['ftotal_ttc']);
-                            //print ' ('.round($ratiolineinvoice*100,2).'%)';
                         }
                         print '</td>';
                     }
@@ -496,7 +492,6 @@ if (!is_array($x_coll) || !is_array($x_paye))
                     $ratiopaymentinvoice = 1;
                     if ($modetax != 1) {
                         print '<td class="nowrap right">';
-                        //print $fields['totalht']."-".$fields['payment_amount']."-".$fields['ftotal_ttc'];
                         if ($fields['payment_amount'] && $fields['ftotal_ttc']) {
                             $payment_static->id = $fields['payment_id'];
                             print $payment_static->getNomUrl(2);
@@ -526,7 +521,6 @@ if (!is_array($x_coll) || !is_array($x_paye))
                     print '<td class="nowrap right">';
                     $temp_vat = $fields['vat'] * $ratiopaymentinvoice;
                     print price(price2num($temp_vat, 'MT'), 1);
-                    //print price($fields['vat']);
                     print '</td>';
                     print '</tr>';
 
@@ -671,9 +665,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
                         print '<td class="nowrap right">';
                         print price($fields['totalht']);
                         if (price2num($fields['ftotal_ttc'])) {
-                            //print $fields['dtotal_ttc']."/".$fields['ftotal_ttc']." - ";
                             $ratiolineinvoice = ($fields['dtotal_ttc'] / $fields['ftotal_ttc']);
-                            //print ' ('.round($ratiolineinvoice*100,2).'%)';
                         }
                         print '</td>';
                     }
@@ -717,7 +709,6 @@ if (!is_array($x_coll) || !is_array($x_paye))
                     print '<td class="nowrap right">';
                     $temp_vat = $fields['vat'] * $ratiopaymentinvoice;
                     print price(price2num($temp_vat, 'MT'), 1);
-                    //print price($fields['vat']);
                     print '</td>';
                     print '</tr>';
 
