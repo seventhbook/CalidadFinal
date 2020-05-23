@@ -644,8 +644,6 @@ class PHPExcel_Calculation_DateTime {
 		$endDays = $PHPEndDateObject->format('j');
 		$endMonths = $PHPEndDateObject->format('n');
 		$endYears = $PHPEndDateObject->format('Y');
-
-		$retVal = PHPExcel_Calculation_Functions::NaN();
 		switch ($unit) {
 			case 'D':
 				$retVal = intval($difference);
@@ -1195,7 +1193,6 @@ class PHPExcel_Calculation_DateTime {
 		// Execute function
 		$PHPDateObject = PHPExcel_Shared_Date::ExcelToPHPObject($dateValue);
 		$dayOfYear = $PHPDateObject->format('z');
-		$dow = $PHPDateObject->format('w');
 		$PHPDateObject->modify('-'.$dayOfYear.' days');
 		$dow = $PHPDateObject->format('w');
 		$daysInFirstWeek = 7 - (($dow + (2 - $method)) % 7);
