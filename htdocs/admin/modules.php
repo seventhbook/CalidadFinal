@@ -41,7 +41,6 @@ $langs->loadLangs(array("errors", "admin", "modulebuilder"));
 $mode = GETPOST('mode', 'alpha');
 if (empty($mode)) $mode = 'common';
 $action = GETPOST('action', 'alpha');
-//var_dump($_POST);exit;
 $value = GETPOST('value', 'alpha');
 $page_y = GETPOST('page_y', 'int');
 $search_keyword = GETPOST('search_keyword', 'alpha');
@@ -185,7 +184,6 @@ if ($action == 'install')
                 if (!dol_is_dir($modulenamedir))
                 {
                 	$modulenamedir = $conf->admin->dir_temp.'/'.$tmpdir.'/htdocs/'.$modulename; // Example ./htdocs/mymodule
-                    //var_dump($modulenamedir);
                     if (!dol_is_dir($modulenamedir))
                     {
                     	setEventMessages($langs->trans("ErrorModuleFileSeemsToHaveAWrongFormat").'<br>'.$langs->trans("ErrorModuleFileSeemsToHaveAWrongFormat2", $modulename, 'htdocs/'.$modulename), null, 'errors');
@@ -195,7 +193,6 @@ if ($action == 'install')
 
                 if (!$error)
                 {
-                	// TODO Make more test
                 }
 
                 dol_syslog("Uncompress of module file is a success.");
@@ -207,7 +204,6 @@ if ($action == 'install')
                 	$modulenamearrays = explode("\n", $metafile);
                 }
                 $modulenamearrays[$modulename] = $modulename;
-                //var_dump($modulenamearrays);exit;
 
                 foreach ($modulenamearrays as $modulenameval) {
                 	if (strpos($modulenameval, '#') === 0) continue; // Discard comments
@@ -250,7 +246,6 @@ if ($action == 'set' && $user->admin)
     if (!empty($resarray['errors'])) setEventMessages('', $resarray['errors'], 'errors');
 	else
 	{
-	    //var_dump($resarray);exit;
 	    if ($resarray['nbperms'] > 0)
 	    {
 	        $tmpsql = "SELECT COUNT(rowid) as nb FROM ".MAIN_DB_PREFIX."user WHERE admin <> 1";
@@ -319,14 +314,12 @@ $modNameLoaded = array();
 foreach ($modulesdir as $dir)
 {
 	// Load modules attributes in arrays (name, numero, orders) from dir directory
-	//print $dir."\n<br>";
 	dol_syslog("Scan directory ".$dir." for module descriptor files (modXXX.class.php)");
 	$handle = @opendir($dir);
 	if (is_resource($handle))
 	{
 		while (($file = readdir($handle)) !== false)
 		{
-			//print "$i ".$file."\n<br>";
 		    if (is_readable($dir.$file) && substr($file, 0, 3) == 'mod' && substr($file, dol_strlen($file) - 10) == '.class.php')
 		    {
 		        $modName = substr($file, 0, dol_strlen($file) - 10);
@@ -414,14 +407,10 @@ foreach ($modulesdir as $dir)
 		    			            $familyposition = $familyinfo[$familykey]['position'];
 		    			            if ($external)
 		    			            {
-		    			            	// TODO Find a solution so modules with their own family are always at end
-		    			            	//var_dump($familyposition);
-		    			            	//$familyposition += 100;
 		    			            }
 
 		    			            $orders[$i] = $familyposition."_".$familykey."_".$moduleposition."_".$j; // Sort by family, then by module position then number
 		    						$dirmod[$i] = $dir;
-		    						//print $i.'-'.$dirmod[$i].'<br>';
 		    			            // Set categ[$i]
 		    						$specialstring = 'unknown';
 		    			            if ($objMod->version == 'development' || $objMod->version == 'experimental') $specialstring = 'expdev';
@@ -472,9 +461,6 @@ if ($action == 'reset_confirm' && $user->admin)
 print $formconfirm;
 
 asort($orders);
-//var_dump($orders);
-//var_dump($categ);
-//var_dump($modules);
 
 $nbofactivatedmodules = count($conf->modules);
 $moreinfo = $langs->trans("TotalNumberOfActivatedModules", ($nbofactivatedmodules - 1), count($modules));
@@ -564,7 +550,6 @@ if ($mode == 'common')
         $modName = $filename[$key];
     	$objMod = $modules[$modName];
 
-    	//print $objMod->name." - ".$key." - ".$objMod->version."<br>";
     	if ($mode == 'expdev' && $objMod->version != 'development' && $objMod->version != 'experimental') continue; // Discard if not for current tab
 
         if (!$objMod->getName())
@@ -604,7 +589,6 @@ if ($mode == 'common')
             if (preg_match('/^external/', $search_nature) && $objMod->isCoreOrExternalModule() != 'external') continue;
             if (preg_match('/^external_(.*)$/', $search_nature, $reg))
             {
-                //print $reg[1].'-'.dol_escape_htmltag($objMod->getPublisher());
                 $publisher = dol_escape_htmltag($objMod->getPublisher());
                 if ($reg[1] && dol_escape_htmltag($reg[1]) != $publisher) continue;
                 if (!$reg[1] && !empty($publisher)) continue;
@@ -675,8 +659,6 @@ if ($mode == 'common')
         // Picto + Name of module
         print '  <td width="200px">';
         $alttext = '';
-        //if (is_array($objMod->need_dolibarr_version)) $alttext.=($alttext?' - ':'').'Dolibarr >= '.join('.',$objMod->need_dolibarr_version);
-        //if (is_array($objMod->phpmin)) $alttext.=($alttext?' - ':'').'PHP >= '.join('.',$objMod->phpmin);
         if (!empty($objMod->picto))
         {
         	if (preg_match('/^\//i', $objMod->picto)) print img_picto($alttext, $objMod->picto, 'class="valignmiddle pictomodule"', 1);
@@ -696,7 +678,6 @@ if ($mode == 'common')
 
         // Help
         print '<td class="center nowrap" style="width: 82px;">';
-        //print $form->textwithpicto('', $text, 1, $imginfo, 'minheight20', 0, 2, 1);
         print '<a href="javascript:document_preview(\''.DOL_URL_ROOT.'/admin/modulehelp.php?id='.$objMod->numero.'\',\'text/html\',\''.dol_escape_js($langs->trans("Module")).'\')">'.img_picto($langs->trans("ClickToShowDescription"), $imginfo).'</a>';
         print '</td>';
 
@@ -736,7 +717,6 @@ if ($mode == 'common')
         		if (method_exists($objMod, 'alreadyUsed') && $objMod->alreadyUsed()) print $langs->trans("Used");
         		else {
         			print img_picto($langs->trans("Required"), 'switch_on', '', false, 0, 0, '', 'opacitymedium');
-        			//print $langs->trans("Required");
         		}
         		if (!empty($conf->multicompany->enabled) && $user->entity) $disableSetup++;
         	}
@@ -775,7 +755,6 @@ if ($mode == 'common')
         				if ($i++)
         				{
         					print '<a href="'.$urlpage.'" title="'.$langs->trans($page).'">'.img_picto(ucfirst($page), "setup").'</a>';
-        					//    print '<a href="'.$page.'">'.ucfirst($page).'</a>&nbsp;';
         				}
         				else
         				{
@@ -916,8 +895,6 @@ if ($mode == 'marketplace')
 
     if (empty($conf->global->MAIN_DISABLE_DOLISTORE_SEARCH) && $conf->global->MAIN_FEATURES_LEVEL >= 1)
     {
-    	// $options is array with filter criterias
-    	//var_dump($options);
     	$dolistore->getRemoteCategories();
     	$dolistore->getRemoteProducts($options);
 
@@ -960,7 +937,11 @@ if ($mode == 'marketplace')
 	            </ul>
 	        </div>
 	        <div id="listing-content">
-	            <table summary="list_of_modules" id="list_of_modules" class="productlist centpercent">
+			
+	            <table>
+			    <th summary="list_of_modules" </th>
+				<th id="list_of_modules" </th>
+				<th class="productlist centpercent"</th>
 	                <tbody id="listOfModules">
 	                    <?php echo $dolistore->get_products($categorie); ?>
 	                </tbody>
@@ -1020,7 +1001,6 @@ if ($mode == 'deploy')
 	{
 		print $langs->trans("SomethingMakeInstallFromWebNotPossible");
 		print $message;
-		//print $langs->trans("SomethingMakeInstallFromWebNotPossible2");
 		print '<br>';
 	}
 
@@ -1030,7 +1010,6 @@ if ($mode == 'deploy')
 	{
 		if ($allowfromweb == 1)
 		{
-			//print $langs->trans("ThisIsProcessToFollow").'<br>';
 		}
 		else
 		{
@@ -1154,15 +1133,12 @@ if ($mode == 'develop')
 	// Marketplace
 	print "<table summary=\"list_of_modules\" class=\"noborder\" width=\"100%\">\n";
 	print "<tr class=\"liste_titre\">\n";
-	//print '<td>'.$langs->trans("Logo").'</td>';
 	print '<td colspan="2">'.$langs->trans("DevelopYourModuleDesc").'</td>';
 	print '<td>'.$langs->trans("URL").'</td>';
 	print '</tr>';
 
 	print '<tr class="oddeven" height="80">'."\n";
 	print '<td class="left">';
-	//span class="fa fa-bug"></span>
-	//print '<img border="0" class="imgautosize imgmaxwidth180" src="'.DOL_URL_ROOT.'/theme/dolibarr_preferred_partner_int.png">';
 	print '<div class="imgmaxheight50 logo_setup"></div>';
 	print '</td>';
 	print '<td>'.$langs->trans("TryToUseTheModuleBuilder", $langs->transnoentitiesnoconv("ModuleBuilder")).'</td>';
