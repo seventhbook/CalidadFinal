@@ -119,7 +119,6 @@ class pdf_timespent extends ModelePDFProjects
 
 		if ($conf->projet->dir_output)
 		{
-			//$nblines = count($object->lines);  // This is set later with array of tasks
 
 			$objectref = dol_sanitizeFileName($object->ref);
 			$dir = $conf->projet->dir_output;
@@ -256,7 +255,6 @@ class pdf_timespent extends ModelePDFProjects
 					// Description of line
 					$ref=$object->lines[$i]->ref;
 					$libelleline=$object->lines[$i]->label;
-					//$progress=($object->lines[$i]->progress?$object->lines[$i]->progress.'%':'');
 					$datestart=dol_print_date($object->lines[$i]->date_start, 'day');
 					$dateend=dol_print_date($object->lines[$i]->date_end, 'day');
 					$duration=convertSecondToTime((int) $object->lines[$i]->duration, 'allhourmin');
@@ -272,7 +270,6 @@ class pdf_timespent extends ModelePDFProjects
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter=$pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
 						$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 						// Label
 						$pdf->SetXY($this->posxlabel, $curY);
@@ -326,14 +323,12 @@ class pdf_timespent extends ModelePDFProjects
 								$posyafter=$pdf->GetY();
 							}
 						}
-						//var_dump($i.' '.$posybefore.' '.$posyafter.' '.($this->page_hauteur -  ($heightforfooter + $heightforfreetext + $heightforinfotot)).' '.$showpricebeforepagebreak);
 					}
 					else	// No pagebreak
 					{
 						$pdf->commitTransaction();
 					}
 					$posYAfterDescription=$pdf->GetY();
-
 					$nexY = $pdf->GetY();
 					$pageposafter=$pdf->getPage();
 					$pdf->setPage($pageposbefore);
@@ -342,7 +337,6 @@ class pdf_timespent extends ModelePDFProjects
 
 					// We suppose that a too long description is moved completely on next page
 					if ($pageposafter > $pageposbefore && empty($showpricebeforepagebreak)) {
-						//var_dump($pageposbefore.'-'.$pageposafter.'-'.$showpricebeforepagebreak);
 						$pdf->setPage($pageposafter); $curY = $tab_top_newpage + $heightoftitleline + 1;
 					}
 
@@ -355,8 +349,6 @@ class pdf_timespent extends ModelePDFProjects
 					$pdf->SetXY($this->posxtimespent, $curY);
 					$pdf->MultiCell($this->posxdatestart-$this->posxtimespent, 3, $duration?$duration:'', 0, 'R');
 					// Progress
-					//$pdf->SetXY($this->posxprogress, $curY);
-					//$pdf->MultiCell($this->posxdatestart-$this->posxprogress, 3, $progress, 0, 'R');
 					// Date
 					$pdf->SetXY($this->posxdatestart, $curY);
 					$pdf->MultiCell($this->posxdateend-$this->posxdatestart, 3, $datestart, 0, 'C');
@@ -368,7 +360,6 @@ class pdf_timespent extends ModelePDFProjects
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1','color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -498,10 +489,6 @@ class pdf_timespent extends ModelePDFProjects
 
 		$pdf->SetXY($this->posxtimespent, $tab_top+1);
 		$pdf->MultiCell($this->posxdatestart-$this->posxtimespent, 3, $outputlangs->transnoentities("TimeSpent"), 0, 'R');
-
-		//$pdf->SetXY($this->posxprogress, $tab_top+1);
-		//$pdf->MultiCell($this->posxdatestart-$this->posxprogress, 3, '%', 0, 'R');
-
 		$pdf->SetXY($this->posxdatestart, $tab_top+1);
 		$pdf->MultiCell($this->posxdateend-$this->posxdatestart, 3, $outputlangs->transnoentities("Date"), 0, 'C');
 
@@ -580,27 +567,7 @@ class pdf_timespent extends ModelePDFProjects
 
 		// Add list of linked objects
 		/* Removed: A project can have more than thousands linked objects (orders, invoices, proposals, etc....
-		$object->fetchObjectLinked();
-
-	    foreach($object->linkedObjects as $objecttype => $objects)
-	    {
-	        var_dump($objects);exit;
-	    	if ($objecttype == 'commande')
-	    	{
-	    		$outputlangs->load('orders');
-	    		$num=count($objects);
-	    		for ($i=0;$i<$num;$i++)
-	    		{
-	    			$posy+=4;
-	    			$pdf->SetXY($posx,$posy);
-	    			$pdf->SetFont('','', $default_font_size - 1);
-	    			$text=$objects[$i]->ref;
-	    			if ($objects[$i]->ref_client) $text.=' ('.$objects[$i]->ref_client.')';
-	    			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("RefOrder")." : ".$outputlangs->transnoentities($text), '', 'R');
-	    		}
-	    	}
-	    }
-        */
+		
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
