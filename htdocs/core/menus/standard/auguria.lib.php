@@ -96,15 +96,12 @@ function print_auguria_menu($db, $atarget, $type_user, &$tabMenu, &$menu, $noout
 			    {
 			        $param.=($param?'&':'').'leftmenu=';
 			    }
-				//$url.="idmenu=".$newTabMenu[$i]['rowid'];    // Already done by menuLoad
 				$url = dol_buildpath($url, 1).($param?'?'.$param:'');
-				//$shorturl = $shorturl.($param?'?'.$param:'');
 				$shorturl = $url;
 
 				if (DOL_URL_ROOT) $shorturl = preg_replace('/^'.preg_quote(DOL_URL_ROOT, '/').'/', '', $shorturl);
 			}
 
-			// TODO Find a generic solution
 			if (preg_match('/search_project_user=__search_project_user__/', $shorturl))
 			{
 			    $search_project_user = GETPOST('search_project_user', 'int');
@@ -129,7 +126,6 @@ function print_auguria_menu($db, $atarget, $type_user, &$tabMenu, &$menu, $noout
 	// Show logo company
 	if (empty($conf->global->MAIN_MENU_INVERT) && empty($noout) && ! empty($conf->global->MAIN_SHOW_LOGO) && empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER))
 	{
-		//$mysoc->logo_mini=(empty($conf->global->MAIN_INFO_SOCIETE_LOGO_MINI)?'':$conf->global->MAIN_INFO_SOCIETE_LOGO_MINI);
 		$mysoc->logo_squarred_mini=(empty($conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI)?'':$conf->global->MAIN_INFO_SOCIETE_LOGO_SQUARRED_MINI);
 		if (! empty($mysoc->logo_squarred_mini) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_squarred_mini))
 		{
@@ -195,7 +191,6 @@ function print_start_menu_entry_auguria($idsel, $classname, $showmode)
 	if ($showmode)
 	{
 		print '<li '.$classname.' id="mainmenutd_'.$idsel.'">';
-		//print '<div class="tmenuleft tmenusep"></div>';
 		print '<div class="tmenucenter">';
 	}
 }
@@ -412,35 +407,6 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 		else dol_print_error($db);
 		$db->free($resql);
 
-		/*
-		$sql = "SELECT rowid, label, accountancy_journal";
-		$sql.= " FROM ".MAIN_DB_PREFIX."bank_account";
-		$sql.= " WHERE entity = ".$conf->entity;
-		$sql.= " AND clos = 0";
-		$sql.= " ORDER BY label";
-
-		$resql = $db->query($sql);
-		if ($resql)
-		{
-			$numr = $db->num_rows($resql);
-			$i = 0;
-
-			if ($numr > 0)
-			while ($i < $numr)
-			{
-				$objp = $db->fetch_object($resql);
-				$newmenu->add('/accountancy/journal/bankjournal.php?id_account='.$objp->rowid, $langs->trans("Journal").' - '.$objp->label, 1, $user->rights->accounting->comptarapport->lire,'','accountancy','accountancy_journal');
-				$i++;
-			}
-		}
-		else dol_print_error($db);
-		$db->free($resql);
-
-		// Add other journal
-		$newmenu->add("/accountancy/journal/sellsjournal.php?leftmenu=journal",$langs->trans("SellsJournal"),1,$user->rights->accounting->comptarapport->lire,'','accountancy','accountancy_journal');
-		$newmenu->add("/accountancy/journal/purchasesjournal.php?leftmenu=journal",$langs->trans("PurchasesJournal"),1,$user->rights->accounting->comptarapport->lire,'','accountancy','accountancy_journal');
-		$newmenu->add("/accountancy/journal/expensereportsjournal.php?leftmenu=journal",$langs->trans("ExpenseReportsJournal"),1,$user->rights->accounting->comptarapport->lire,'','accountancy','accountancy_journal');
-		*/
 	}
 
 	if (! empty($conf->ftp->enabled) && $mainmenu == 'ftp')	// Entry for FTP
@@ -450,7 +416,6 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 		while ($i <= $MAXFTP)
 		{
 			$paramkey = 'FTP_NAME_'.$i;
-			//print $paramkey;
 			if (!empty($conf->global->$paramkey))
 			{
 				$link = "/ftp/index.php?idmenu=".$_SESSION["idmenu"]."&numero_ftp=".$i;
@@ -463,12 +428,9 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 
 
 	// Build final $menu_array = $menu_array_before +$newmenu->liste + $menu_array_after
-	//var_dump($menu_array_before);exit;
-	//var_dump($menu_array_after);exit;
 	$menu_array = $newmenu->liste;
 	if (is_array($menu_array_before)) $menu_array = array_merge($menu_array_before, $menu_array);
 	if (is_array($menu_array_after))  $menu_array = array_merge($menu_array, $menu_array_after);
-	//var_dump($menu_array);exit;
 	if (!is_array($menu_array)) return 0;
 
 	// Show menu
@@ -517,7 +479,6 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 
 			$menu_array[$i]['url'] = make_substitutions($menu_array[$i]['url'], $substitarray);
 
-			$url = $shorturl = $shorturlwithoutparam = $menu_array[$i]['url'];
 			if (!preg_match("/^(http:\/\/|https:\/\/)/i", $menu_array[$i]['url']))
 			{
 				$tmp = explode('?', $menu_array[$i]['url'], 2);
@@ -623,8 +584,6 @@ function dol_auguria_showmenu($type_user, &$menuentry, &$listofmodulesforexterna
 {
 	global $conf;
 
-	//print 'type_user='.$type_user.' module='.$menuentry['module'].' enabled='.$menuentry['enabled'].' perms='.$menuentry['perms'];
-	//print 'ok='.in_array($menuentry['module'], $listofmodulesforexternal);
 	if (empty($menuentry['enabled'])) return 0; // Entry disabled by condition
 	if ($type_user && $menuentry['module'])
 	{
