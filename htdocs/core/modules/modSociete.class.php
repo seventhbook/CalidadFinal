@@ -105,15 +105,6 @@ class modSociete extends DolibarrModules
 		$this->const[$r][4] = 0;
 		$r++;
 
-		/*
-		$this->const[$r][0] = "COMPANY_HIDE_INACTIVE_IN_COMBOBOX";
-		$this->const[$r][1] = "chaine";
-		$this->const[$r][2] = "0";
-		$this->const[$r][3] = "hide thirdparty customer inative in combobox";
-		$this->const[$r][4] = 1;
-		$r++;
-		*/
-
 		$this->const[$r][0] = "SOCIETE_ADD_REF_IN_LIST";
 		$this->const[$r][1] = "yesno";
 		$this->const[$r][2] = "0";
@@ -148,46 +139,12 @@ class modSociete extends DolibarrModules
 		$this->rights[$r][3] = 0; // La permission est-elle une permission par defaut
 		$this->rights[$r][4] = 'lire';
 
-        /*$r++;
-		$this->rights[$r][0] = 241;
-		$this->rights[$r][1] = 'Read thirdparties customers';
-		$this->rights[$r][2] = 'r';
-		$this->rights[$r][3] = 0;
-		$this->rights[$r][4] = 'thirparty_customer_advance';      // Visible if option MAIN_USE_ADVANCED_PERMS is on
-		$this->rights[$r][5] = 'read';
-
-		$r++;
-		$this->rights[$r][0] = 242;
-		$this->rights[$r][1] = 'Read thirdparties suppliers';
-		$this->rights[$r][2] = 'r';
-		$this->rights[$r][3] = 0;
-		$this->rights[$r][4] = 'thirdparty_supplier_advance';      // Visible if option MAIN_USE_ADVANCED_PERMS is on
-		$this->rights[$r][5] = 'read';
-        */
-
 		$r++;
 		$this->rights[$r][0] = 122; // id de la permission
 		$this->rights[$r][1] = 'Create and update third parties'; // libelle de la permission
 		$this->rights[$r][2] = 'w'; // type de la permission (deprecie a ce jour)
 		$this->rights[$r][3] = 0; // La permission est-elle une permission par defaut
 		$this->rights[$r][4] = 'creer';
-
-        /* $r++;
-		$this->rights[$r][0] = 251;
-		$this->rights[$r][1] = 'Create thirdparties customers';
-		$this->rights[$r][2] = 'r';
-		$this->rights[$r][3] = 0;
-		$this->rights[$r][4] = 'thirparty_customer_advance';      // Visible if option MAIN_USE_ADVANCED_PERMS is on
-		$this->rights[$r][5] = 'read';
-
-		$r++;
-		$this->rights[$r][0] = 252;
-		$this->rights[$r][1] = 'Create thirdparties suppliers';
-		$this->rights[$r][2] = 'r';
-		$this->rights[$r][3] = 0;
-		$this->rights[$r][4] = 'thirdparty_supplier_advance';      // Visible if option MAIN_USE_ADVANCED_PERMS is on
-		$this->rights[$r][5] = 'read';
-        */
 
 		$r++;
 		$this->rights[$r][0] = 125; // id de la permission
@@ -280,14 +237,6 @@ class modSociete extends DolibarrModules
 		$keyforselect='societe'; $keyforelement='company'; $keyforaliasextra='extra';
 		include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
 		$this->export_fields_array[$r]+=array('u.login'=>'SaleRepresentativeLogin','u.firstname'=>'SaleRepresentativeFirstname', 'u.lastname'=>'SaleRepresentativeLastname');
-		//$this->export_TypeFields_array[$r]=array(
-		//	's.rowid'=>"List:societe:nom",'s.nom'=>"Text",'s.status'=>"Text",'s.client'=>"Boolean",'s.fournisseur'=>"Boolean",'s.datec'=>"Date",'s.tms'=>"Date",
-		//	's.code_client'=>"Text",'s.code_fournisseur'=>"Text",'s.address'=>"Text",'s.zip'=>"Text",'s.town'=>"Text",'c.label'=>"List:c_country:label:label",
-		//	'c.code'=>"Text",'s.phone'=>"Text",'s.fax'=>"Text",'s.url'=>"Text",'s.email'=>"Text",'s.default_lang'=>"Text",'s.siret'=>"Text",'s.siren'=>"Text",
-		//	's.ape'=>"Text",'s.idprof4'=>"Text",'s.idprof5'=>"Text",'s.idprof6'=>"Text",'s.tva_intra'=>"Text",'s.capital'=>"Numeric",'s.note'=>"Text",
-		//	't.libelle'=>"Text",'ce.code'=>"List:c_effectif:libelle:code","cfj.libelle"=>"Text",'s.fk_prospectlevel'=>'List:c_prospectlevel:label:code',
-		//	's.fk_stcomm'=>'List:c_stcomm:libelle:code','d.nom'=>'List:c_departements:nom:rowid'
-		//);
 		$this->export_TypeFields_array[$r]=array(
 			's.rowid'=>"Numeric", 's.nom'=>"Text",'s.name_alias'=>"Text",'s.status'=>"Numeric",'s.client'=>"Numeric",'s.fournisseur'=>"Boolean",'s.datec'=>"Date",'s.tms'=>"Date",
 			's.code_client'=>"Text",'s.code_fournisseur'=>"Text",'s.code_compta'=>"Text",'s.code_compta_fournisseur'=>"Text",'s.address'=>"Text",'s.zip'=>"Text",
@@ -494,7 +443,6 @@ class modSociete extends DolibarrModules
             's.capital' => array('rule' => 'numeric'),
             's.fk_stcomm' => array('rule' => 'zeroifnull'),
         );
-        //$this->import_convertvalue_array[$r]=array('s.fk_soc'=>array('rule'=>'lastrowid',table='t');
         $this->import_regex_array[$r] = array(//field order as per structure of table llx_societe
             's.status' => '^[0|1]',
             's.fk_typent' => 'id@'.MAIN_DB_PREFIX.'c_typent',
@@ -636,7 +584,6 @@ class modSociete extends DolibarrModules
                 'dict' => 'DictionaryCountry'
             ),
         );
-        //$this->import_convertvalue_array[$r]=array('s.fk_soc'=>array('rule'=>'lastrowid',table='t');
         $this->import_regex_array[$r] = array(
             's.birthday' => '^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$',
             's.datec' => '^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]( [0-9][0-9]:[0-9][0-9]:[0-9][0-9])?$'
@@ -747,9 +694,6 @@ class modSociete extends DolibarrModules
     public function init($options = '')
     {
 		global $conf, $langs;
-
-		// We disable this to prevent pb of modules not correctly disabled
-		//$this->remove($options);
 
 		//ODT template
 		$src = DOL_DOCUMENT_ROOT.'/install/doctemplates/thirdparties/template_thirdparty.odt';
