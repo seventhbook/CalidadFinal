@@ -70,11 +70,6 @@ class modAccounting extends DolibarrModules
 		$this->need_dolibarr_version = array(3, 9); // Minimum version of Dolibarr required by module
 		$this->langfiles = array("accountancy", "compta");
 
-		// Constants
-		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
-		// Example: $this->const=array(0=>array('MYMODULE_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
-		//                             1=>array('MYMODULE_MYNEWCONST2','chaine','myvalue','This is another constant to add',0, 'current', 1)
-		// );
 		$this->const = array();
 		$this->const[1] = array(
 				"MAIN_COMPANY_CODE_ALWAYS_REQUIRED",
