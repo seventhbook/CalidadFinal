@@ -261,8 +261,6 @@ if (empty($reshook))
 							if (empty($conf->global->PAYPAL_SECURITY_TOKEN_UNIQUE)) $substitutionarray['__SECUREKEYPAYPAL_CONTRACTLINE__'] = dol_hash($conf->global->PAYPAL_SECURITY_TOKEN, 2);
 							else $substitutionarray['__SECUREKEYPAYPAL_CONTRACTLINE__'] = dol_hash($conf->global->PAYPAL_SECURITY_TOKEN.'contractline'.$obj->source_id, 2);
 						}
-						//$substitutionisok=true;
-
 	                    complete_substitutions_array($substitutionarray, $langs);
 						$newsubject = make_substitutions($subject, $substitutionarray);
 						$newmessage = make_substitutions($message, $substitutionarray);
@@ -291,12 +289,7 @@ if (empty($reshook))
 						{
 							$res = 0;
 						}
-						/*if (! $substitutionisok)
-						{
-							$mail->error='Some substitution failed';
-							$res=0;
-						}*/
-
+		
 						// Send mail
 						if ($res)
 						{
@@ -642,7 +635,6 @@ if (empty($reshook))
 			$result = $object->setStatut(0);
             if ($result > 0)
             {
-    			//setEventMessages($langs->trans("MailingSuccessfullyValidated"), null, 'mesgs');
     			header("Location: ".$_SERVER['PHP_SELF']."?id=".$object->id);
     			exit;
             }
@@ -738,7 +730,6 @@ if ($action == 'create')
 
 
 	$availablelink = $form->textwithpicto($langs->trans("AvailableVariables"), $htmltext, 1, 'help', '', 0, 2, 'availvar');
-	//print '<a href="javascript:document_preview(\''.DOL_URL_ROOT.'/admin/modulehelp.php?id='.$objMod->numero.'\',\'text/html\',\''.dol_escape_js($langs->trans("Module")).'\')">'.img_picto($langs->trans("ClickToShowDescription"), $imginfo).'</a>';
 
 
 	// Print mail form
@@ -828,9 +819,6 @@ else
 				if (empty($sendingmode)) $sendingmode=$conf->global->MAIN_MAIL_SENDMODE;
 				if (empty($sendingmode)) $sendingmode='mail';	// If not defined, we use php mail function
 
-				// MAILING_NO_USING_PHPMAIL may be defined or not.
-				// MAILING_LIMIT_SENDBYWEB is always defined to something != 0 (-1=forbidden).
-				// MAILING_LIMIT_SENDBYCLI may be defined ot not (-1=forbidden, 0 or undefined=no limit).
 				if (! empty($conf->global->MAILING_NO_USING_PHPMAIL) && $sendingmode == 'mail')
 				{
 					// EMailing feature may be a spam problem, so when you host several users/instance, having this option may force each user to use their own SMTP agent.
@@ -1007,8 +995,6 @@ else
 					if (!empty($conf->use_javascript_ajax)) print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?action=edithtml&amp;id='.$object->id.'">'.$langs->trans("EditHTMLSource").'</a>';
 				}
 
-				//print '<a class="butAction" href="card.php?action=test&amp;id='.$object->id.'">'.$langs->trans("PreviewMailing").'</a>';
-
 				if (!empty($conf->global->MAIN_USE_ADVANCED_PERMS) && !$user->rights->mailing->mailing_advance->send)
 				{
 					print '<a class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->transnoentitiesnoconv("NotEnoughPermissions")).'">'.$langs->trans("TestMailing").'</a>';
@@ -1161,10 +1147,6 @@ else
 			print '</td></tr>';
 
             // Background color
-            /*print '<tr><td width="15%">'.$langs->trans("BackgroundColorByDefault").'</td><td colspan="3">';
-            print $htmlother->selectColor($object->bgcolor,'bgcolor','',0);
-            print '</td></tr>';*/
-
 			print '</table>';
 
 		    // Message
@@ -1201,14 +1183,6 @@ else
 			print '<div class="underbanner clearboth"></div>';
 
 			print '<table class="border centpercent">';
-
-			/*
-			print '<tr><td class="titlefield">'.$langs->trans("Ref").'</td>';
-			print '<td colspan="3">';
-			print $form->showrefnav($object,'id', $linkback);
-			print '</td></tr>';
-			*/
-
 			// Topic
 			print '<tr><td class="titlefield">'.$langs->trans("MailTitle").'</td><td colspan="3">'.$object->titre.'</td></tr>';
 			// From
@@ -1287,7 +1261,7 @@ else
 			// Subject
 			print '<tr><td class="fieldrequired titlefield">'.$langs->trans("MailTopic").'</td><td colspan="3"><input class="flat quatrevingtpercent" type="text" name="sujet" value="'.$object->sujet.'"></td></tr>';
 
-			$trackid = ''; // TODO To avoid conflicts with 2 mass emailing, we should set a trackid here, even if we use another one into email header.
+			$trackid = ''; 
 			dol_init_file_process($upload_dir, $trackid);
 
 			// Joined files
@@ -1296,8 +1270,6 @@ else
 			print '<td colspan="3">';
 			// List of files
 			$listofpaths = dol_dir_list($upload_dir, 'all', 0, '', '', 'name', SORT_ASC, 0);
-
-			// TODO Trick to have param removedfile containing nb of image to delete. But this does not works without javascript
 			$out .= '<input type="hidden" class="removedfilehidden" name="removedfile" value="">'."\n";
 			$out .= '<script type="text/javascript" language="javascript">';
 			$out .= 'jQuery(document).ready(function () {';
