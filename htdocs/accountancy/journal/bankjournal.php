@@ -134,7 +134,7 @@ if ($in_bookkeeping == 'notyet')
 	$sql .= " AND (b.rowid NOT IN (SELECT fk_doc FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab  WHERE ab.doc_type='bank') )";
 }
 $sql .= " ORDER BY b.datev";
-//print $sql;
+
 
 $object = new Account($db);
 $paymentstatic = new Paiement($db);
@@ -168,7 +168,6 @@ dol_syslog("accountancy/journal/bankjournal.php", LOG_DEBUG);
 $result = $db->query($sql);
 if ($result) {
 	$num = $db->num_rows($result);
-	//print $sql;
 
 	// Variables
 	$account_supplier			= (($conf->global->ACCOUNTING_ACCOUNT_SUPPLIER != "") ? $conf->global->ACCOUNTING_ACCOUNT_SUPPLIER : 'NotDefined');	// NotDefined is a reserved word
@@ -210,9 +209,7 @@ if ($result) {
 		{
 			if ($obj->typeop_payment == 'payment') $lineisasale = 1;
 		}
-		//var_dump($obj->type_payment); var_dump($obj->type_payment_supplier);
-		//var_dump($lineisapurchase); //var_dump($lineisasale);
-
+		
 		// Set accountancy code for bank
 		$compta_bank = $obj->account_number;
 
@@ -293,7 +290,7 @@ if ($result) {
 				if ($links[$key]['type'] == 'payment') {
 					$paymentstatic->id = $links[$key]['url_id'];
 					$paymentstatic->ref = $links[$key]['url_id'];
-					$tabpay[$obj->rowid]["lib"] .= ' ' . $paymentstatic->getNomUrl(2, '', '');		// TODO Do not include list of invoice in tooltip, the dol_string_nohtmltag is ko with this
+					$tabpay[$obj->rowid]["lib"] .= ' ' . $paymentstatic->getNomUrl(2, '', '');		
 					$tabpay[$obj->rowid]["paymentid"] = $paymentstatic->id;
 				} elseif ($links[$key]['type'] == 'payment_supplier') {
 					$paymentsupplierstatic->id = $links[$key]['url_id'];
@@ -393,7 +390,6 @@ if ($result) {
 					$paymentloanstatic->fk_loan = $links[$key]['url_id'];
 					$tabpay[$obj->rowid]["lib"] .= ' ' . $paymentloanstatic->getNomUrl(2);
 					$tabpay[$obj->rowid]["paymentloanid"] = $paymentloanstatic->id;
-					//$tabtp[$obj->rowid][$account_pay_loan] += $obj->amount;
 					$sqlmid = 'SELECT pl.amount_capital, pl.amount_insurance, pl.amount_interest, l.accountancy_account_capital, l.accountancy_account_insurance, l.accountancy_account_interest';
 					$sqlmid.= ' FROM '.MAIN_DB_PREFIX.'payment_loan as pl, '.MAIN_DB_PREFIX.'loan as l';
 					$sqlmid.= ' WHERE l.rowid = pl.fk_loan AND pl.fk_bank = '.$obj->rowid;
@@ -443,27 +439,7 @@ if ($result) {
 		// If no links were found to know the amount on thirdparty, we init it to account 'NotDefined'.
 		if (empty($tabtp[$obj->rowid])) $tabtp[$obj->rowid]['NotDefined'] = $tabbq[$obj->rowid][$compta_bank];
 
-		// Check account number is ok
-		/*if ($action == 'writebookkeeping')		// Make test now in such a case
-		{
-			reset($tabbq[$obj->rowid]);
-			$first_key_tabbq = key($tabbq[$obj->rowid]);
-			if (empty($first_key_tabbq))
-			{
-				$error++;
-				setEventMessages($langs->trans('ErrorAccountancyCodeOnBankAccountNotDefined', $obj->baref), null, 'errors');
-			}
-			reset($tabtp[$obj->rowid]);
-			$first_key_tabtp = key($tabtp[$obj->rowid]);
-			if (empty($first_key_tabtp))
-			{
-				$error++;
-				setEventMessages($langs->trans('ErrorAccountancyCodeOnThirdPartyNotDefined'), null, 'errors');
-			}
-		}*/
-
-		// if($obj->socid)$tabtp[$obj->rowid][$compta_soc] += $obj->amount;
-
+		
 		$i++;
 	}
 } else {
@@ -471,11 +447,6 @@ if ($result) {
 }
 
 
-/*var_dump($tabpay);
-var_dump($tabcompany);
-var_dump($tabbq);
-var_dump($tabtp);
-var_dump($tabtype);*/
 
 // Write bookkeeping
 if (! $error && $action == 'writebookkeeping') {
@@ -494,11 +465,6 @@ if (! $error && $action == 'writebookkeeping') {
 		$totaldebit = 0;
 
 		$db->begin();
-
-		// Introduce a protection. Total of tabtp must be total of tabbq
-		/*var_dump($tabpay);
-		var_dump($tabtp);
-		var_dump($tabbq);exit;*/
 
 		// Bank
 		if (! $errorforline && is_array($tabbq[$key]))
@@ -773,7 +739,6 @@ if (! $error && $action == 'writebookkeeping') {
 		}
 		else
 		{
-			//print 'KO for line '.$key.' '.$error.'<br>';
 			$db->rollback();
 
 			$MAXNBERRORS=5;
@@ -956,7 +921,6 @@ if (empty($action) || $action == 'view') {
 
 	$nom = $langs->trans("FinanceJournal") . ' | ' . $accountingjournalstatic->getNomUrl(0, 1, 1, '', 1);
 	$builddate=dol_now();
-	//$description = $langs->trans("DescFinanceJournal") . '<br>';
 	$description.= $langs->trans("DescJournalOnlyBindedVisible").'<br>';
 
 	$listofchoices=array('notyet'=>$langs->trans("NotYetInGeneralLedger"), 'already'=>$langs->trans("AlreadyInGeneralLedger"));
@@ -1007,7 +971,6 @@ if (empty($action) || $action == 'view') {
 
 	print '</div>';
 
-	// TODO Avoid using js. We can use a direct link with $param
 	print '
 	<script type="text/javascript">
 		function launch_export() {
@@ -1061,7 +1024,6 @@ if (empty($action) || $action == 'view') {
 				$reflabel.= $langs->trans("Bank").' '.$val['bank_account_ref'];
 				if (! empty($val['soclib'])) $reflabel .= " - " . $val['soclib'];
 
-				//var_dump($tabpay[$key]);
 				print '<!-- Bank bank.rowid='.$key.' type='.$tabpay[$key]['type'].' ref='.$tabpay[$key]['ref'].'-->';
 				print '<tr class="oddeven">';
 				print "<td>" . $date . "</td>";
@@ -1077,12 +1039,6 @@ if (empty($action) || $action == 'view') {
 				print "</td>";
 				// Subledger account
 				print "<td>";
-				/*$accounttoshow = length_accountg($k);
-				if (empty($accounttoshow) || $accounttoshow == 'NotDefined')
-				{
-					print '<span class="error">'.$langs->trans("BankAccountNotDefined").'</span>';
-				}
-				else print $accounttoshow;*/
 				print "</td>";
 				print "<td>";
 				print $reflabel;
@@ -1165,10 +1121,7 @@ if (empty($action) || $action == 'view') {
 						{
 							if (empty($accounttoshowsubledger) || $accounttoshowsubledger == 'NotDefined')
 							{
-								/*var_dump($tabpay[$key]);
-								var_dump($tabtype[$key]);
-								var_dump($tabbq[$key]);*/
-								//print '<span class="error">'.$langs->trans("ThirdpartyAccountNotDefined").'</span>';
+					
 								if (! empty($tabcompany[$key]['code_compta']))
 								{
 									if (in_array($tabtype[$key], array('payment_various'))) {
@@ -1208,20 +1161,10 @@ if (empty($action) || $action == 'view') {
 					print "<td>" . $ref . "</td>";
 					// Ledger account
 					print "<td>";
-					/*if (empty($accounttoshow) || $accounttoshow == 'NotDefined')
-					{
-						print '<span class="error">'.$langs->trans("WaitAccountNotDefined").'</span>';
-					}
 					else */ print length_accountg($conf->global->ACCOUNTING_ACCOUNT_SUSPENSE);
 					print "</td>";
 					// Subledger account
 					print "<td>";
-					/*if (empty($accounttoshowsubledger) || $accounttoshowsubledger == 'NotDefined')
-					{
-						print '<span class="error">'.$langs->trans("WaitAccountNotDefined").'</span>';
-					}
-					else print length_accountg($conf->global->ACCOUNTING_ACCOUNT_SUSPENSE);
-					*/
 					print "</td>";
 					print "<td>" . $reflabel . "</td>";
 					print '<td class="center">' . $val["type_payment"] . "</td>";
