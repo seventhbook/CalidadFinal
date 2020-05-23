@@ -982,7 +982,6 @@ SCRIPT;
 						// Unit price
 						print '<td class="right">';
 						print price($productfourn->fourn_unitprice);
-						//print $objp->unitprice? price($objp->unitprice) : ($objp->quantity?price($objp->price/$objp->quantity):"&nbsp;");
 						print '</td>';
 
                         if ($conf->multicurrency->enabled) {
