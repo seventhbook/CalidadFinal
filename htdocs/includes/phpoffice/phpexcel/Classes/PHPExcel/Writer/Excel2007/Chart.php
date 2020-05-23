@@ -334,11 +334,6 @@ class PHPExcel_Writer_Excel2007_Chart extends
         $objWriter->endElement();
       }
 
-      //	Generate 2 unique numbers to use for axId values
-      //					$id1 = $id2 = rand(10000000,99999999);
-      //					do {
-      //						$id2 = rand(10000000,99999999);
-      //					} while ($id1 == $id2);
       $id1 = '75091328';
       $id2 = '75089408';
 
@@ -490,7 +485,6 @@ class PHPExcel_Writer_Excel2007_Chart extends
         $caption = $caption[0];
       }
       $objWriter->startElement('a:t');
-      //										$objWriter->writeAttribute('xml:space', 'preserve');
       $objWriter->writeRawData(PHPExcel_Shared_String::ControlCharacterPHP2OOXML($caption));
       $objWriter->endElement();
 
@@ -840,7 +834,6 @@ class PHPExcel_Writer_Excel2007_Chart extends
       }
 
       $objWriter->startElement('a:t');
-      //										$objWriter->writeAttribute('xml:space', 'preserve');
       $objWriter->writeRawData(PHPExcel_Shared_String::ControlCharacterPHP2OOXML($caption));
       $objWriter->endElement();
 
