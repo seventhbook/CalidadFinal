@@ -227,8 +227,6 @@ elseif ($action == 'setdoc')
 
 elseif ($action == 'setmod')
 {
-	// TODO Verifier si module numerotation choisi peut etre active
-	// par appel methode canBeActivated
 
 	dolibarr_set_const($db, "PROPALE_ADDON", $value, 'chaine', 0, '', $conf->entity);
 }
@@ -244,7 +242,7 @@ $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
 
 llxHeader('', $langs->trans("PropalSetup"));
 
-//if ($mesg) print $mesg;
+
 
 $linkback = '<a href="'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans("BackToModuleList").'</a>';
 print load_fiche_titre($langs->trans("PropalSetup"), $linkback, 'title_setup');
@@ -478,9 +476,7 @@ foreach ($dirmodels as $reldir)
 								$htmltooltip .= '<br>'.$langs->trans("Logo").': '.yn($module->option_logo, 1, 1);
 								$htmltooltip .= '<br>'.$langs->trans("PaymentMode").': '.yn($module->option_modereg, 1, 1);
 								$htmltooltip .= '<br>'.$langs->trans("PaymentConditions").': '.yn($module->option_condreg, 1, 1);
-								$htmltooltip .= '<br>'.$langs->trans("MultiLanguage").': '.yn($module->option_multilang, 1, 1);
-								//$htmltooltip.='<br>'.$langs->trans("Discounts").': '.yn($module->option_escompte,1,1);
-								//$htmltooltip.='<br>'.$langs->trans("CreditNote").': '.yn($module->option_credit_note,1,1);
+								$htmltooltip .= '<br>'.$langs->trans("MultiLanguage").': '.yn($module->option_multilang, 1, 
 								$htmltooltip .= '<br>'.$langs->trans("WatermarkOnDraftProposal").': '.yn($module->option_draft_watermark, 1, 1);
 
 
@@ -653,20 +649,6 @@ print '<td class="right"><input type="submit" class="button" value="'.$langs->tr
 print '</tr>';
 print '</form>';
 
-/*
-print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
-print '<input type="hidden" name="token" value="'.newToken().'">';
-print '<input type="hidden" name="action" value="setusecustomercontactasrecipient">';
-print '<tr class="oddeven"><td>';
-print $langs->trans("UseCustomerContactAsPropalRecipientIfExist");
-print '</td><td width="60" align="center">';
-print $form->selectyesno("value",$conf->global->PROPALE_USE_CUSTOMER_CONTACT_AS_RECIPIENT,1);
-print '</td><td class="right">';
-print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
-print "</td></tr>\n";
-print '</form>';
-*/
-
 $substitutionarray = pdf_getSubstitutionArray($langs, null, null, 2);
 $substitutionarray['__(AnyTranslationKey)__'] = $langs->trans("Translation");
 $htmltext = '<i>'.$langs->trans("AvailableVariables").':<br>';
@@ -706,37 +688,6 @@ print '</td><td class="right">';
 print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 print "</td></tr>\n";
 print '</form>';
-
-/* Seems to be not so used. So kept hidden for the moment to avoid dangerous options inflation.
-if ($conf->banque->enabled)
-{
-
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL").'</td><td>&nbsp</td><td class="right">';
-    if (! empty($conf->use_javascript_ajax))
-    {
-        print ajax_constantonoff('BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL');
-    }
-    else
-    {
-        if (empty($conf->global->BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL))
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL&amp;value=1">'.img_picto($langs->trans("Disabled"),'switch_off').'</a>';
-        }
-        else
-        {
-            print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL&amp;value=0">'.img_picto($langs->trans("Enabled"),'switch_on').'</a>';
-        }
-    }
-    print '</td></tr>';
-}
-else
-{
-
-    print '<tr class="oddeven"><td>';
-    print $langs->trans("BANK_ASK_PAYMENT_BANK_DURING_PROPOSAL").'</td><td>&nbsp;</td><td align="center">'.$langs->trans('NotAvailable').'</td></tr>';
-}
-*/
 
 print '</table>';
 
