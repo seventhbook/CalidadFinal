@@ -106,7 +106,6 @@ foreach ($object->fields as $key => $val)
 $arrayfields = array();
 foreach ($object->fields as $key => $val)
 {
-	// If $val['visible']==0, then we never show the field
 	if (!empty($val['visible'])) $arrayfields['t.'.$key] = array('label'=>$val['label'], 'checked'=>(($val['visible'] < 0) ? 0 : 1), 'enabled'=>$val['enabled'], 'position'=>$val['position']);
 }
 // Extra fields
@@ -120,9 +119,6 @@ if (is_array($extrafields->attributes[$object->table_element]['label']) && count
 }
 $object->fields = dol_sort_array($object->fields, 'position');
 $arrayfields = dol_sort_array($arrayfields, 'position');
-//if ($socid > 0) $arrayfields['t.fk_soc']['enabled']=0;
-//if ($projectid > 0) $arrayfields['t.fk_project']['enabled']=0;
-
 
 // Security check
 if (!$user->rights->ticket->read) {
@@ -370,10 +366,7 @@ if ($projectid > 0 || $project_ref) {
         $object = $projectstat;
 
         // To verify role of users
-        //$userAccess = $object->restrictedProjectArea($user,'read');
         $userWrite = $projectstat->restrictedProjectArea($user, 'write');
-        //$userDelete = $object->restrictedProjectArea($user,'delete');
-        //print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
 
         $head = project_prepare_head($projectstat);
         dol_fiche_head($head, 'ticket', $langs->trans("Project"), -1, ($projectstat->public ? 'projectpub' : 'project'));
@@ -489,10 +482,6 @@ if ($search_all)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
-$moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
-$moreforfilter.= '</div>';*/
-
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters, $object); // Note that $action and $object may have been modified by hook
 if (empty($reshook)) $moreforfilter .= $hookmanager->resPrint;
@@ -549,7 +538,6 @@ foreach ($object->fields as $key => $val)
 		        if ($key2 == '6') $arrayofstatus['closeall'] = '-- '.$langs->trans('ClosedAll').' --';
 		    }
 		    print '<td class="liste_titre'.($cssforfield ? ' '.$cssforfield : '').'">';
-		    //var_dump($arrayofstatus);var_dump($search['fk_statut']);var_dump(array_values($search[$key]));
 		    $selectedarray = null;
 		    if ($search[$key]) $selectedarray = array_values($search[$key]);
 			print Form::multiselectarray('search_fk_statut', $arrayofstatus, $selectedarray, 0, 0, 'minwidth150', 1, 0, '', '', '');
