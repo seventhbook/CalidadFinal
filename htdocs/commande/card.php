@@ -540,7 +540,6 @@ if (empty($reshook))
 	}
 
 	elseif ($action == 'setdate' && $usercancreate) {
-		// print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
 		$date = dol_mktime(0, 0, 0, GETPOST('order_month'), GETPOST('order_day'), GETPOST('order_year'));
 
 		$result = $object->set_date($user, $date);
@@ -550,7 +549,6 @@ if (empty($reshook))
 	}
 
 	elseif ($action == 'setdate_livraison' && $usercancreate) {
-		// print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
 		$datelivraison = dol_mktime(0, 0, 0, GETPOST('liv_month'), GETPOST('liv_day'), GETPOST('liv_year'));
 
 		$result = $object->set_date_livraison($user, $datelivraison);
@@ -847,7 +845,6 @@ if (empty($reshook))
 				$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $tva_tx));
 				$tmpprodvat = price2num(preg_replace('/\s*\(.*\)/', '', $prod->tva_tx));
 
-				// if price ht is forced (ie: calculated by margin rate and cost price). TODO Why this ?
 				if (!empty($price_ht)) {
 					$pu_ht = price2num($price_ht, 'MU');
 					$pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
@@ -1549,7 +1546,7 @@ if ($action == 'create' && $usercancreate)
 			$ref_client = (!empty($objectsrc->ref_client) ? $objectsrc->ref_client : '');
 
 			$soc = $objectsrc->thirdparty;
-			$cond_reglement_id	= (!empty($objectsrc->cond_reglement_id) ? $objectsrc->cond_reglement_id : (!empty($soc->cond_reglement_id) ? $soc->cond_reglement_id : 0)); // TODO maybe add default value option
+			$cond_reglement_id	= (!empty($objectsrc->cond_reglement_id) ? $objectsrc->cond_reglement_id : (!empty($soc->cond_reglement_id) ? $soc->cond_reglement_id : 0));
 			$mode_reglement_id	= (!empty($objectsrc->mode_reglement_id) ? $objectsrc->mode_reglement_id : (!empty($soc->mode_reglement_id) ? $soc->mode_reglement_id : 0));
 			$fk_account         = (!empty($objectsrc->fk_account) ? $objectsrc->fk_account : (!empty($soc->fk_account) ? $soc->fk_account : 0));
 			$availability_id = (!empty($objectsrc->availability_id) ? $objectsrc->availability_id : (!empty($soc->availability_id) ? $soc->availability_id : 0));
@@ -1800,7 +1797,6 @@ if ($action == 'create' && $usercancreate)
 
 	$doleditor = new DolEditor('note_public', $note_public, '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 	print $doleditor->Create(1);
-	// print '<textarea name="note_public" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_public.'</textarea>';
 	print '</td></tr>';
 
 	// Note private
@@ -1811,13 +1807,11 @@ if ($action == 'create' && $usercancreate)
 
 		$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 		print $doleditor->Create(1);
-		// print '<textarea name="note" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'</textarea>';
 		print '</td></tr>';
 	}
 
 	if (!empty($origin) && !empty($originid) && is_object($objectsrc))
 	{
-		// TODO for compatibility
 		if ($origin == 'contrat') {
 			// Calcul contrat->price (HT), contrat->total (TTC), contrat->tva
 			$objectsrc->remise_absolue = $remise_absolue;
@@ -2096,7 +2090,6 @@ if ($action == 'create' && $usercancreate)
 				if ($action != 'classify')
 					$morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 				if ($action == 'classify') {
-					//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
 					$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 					$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 					$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -2336,20 +2329,6 @@ if ($action == 'create' && $usercancreate)
 		}
 		print '</td></tr>';
 
-		// TODO Order mode (how we receive order). Not yet implemented
-		/*
-		print '<tr><td>';
-		$editenable = $usercancreate;
-		print $form->editfieldkey("SourceMode", 'inputmode', '', $object, $editenable);
-		print '</td><td>';
-		if ($action == 'editinputmode') {
-			$form->formInputMode($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->source, 'input_mode_id', 1);
-		} else {
-			$form->formInputMode($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->source, 'none');
-		}
-		print '</td></tr>';
-		*/
-
 		$tmparray = $object->getTotalWeightVolume();
 		$totalWeight = $tmparray['weight'];
 		$totalVolume = $tmparray['volume'];
@@ -2365,9 +2344,6 @@ if ($action == 'create' && $usercancreate)
 			print showDimensionInBestUnit($totalVolume, 0, "volume", $langs, isset($conf->global->MAIN_VOLUME_DEFAULT_ROUND) ? $conf->global->MAIN_VOLUME_DEFAULT_ROUND : -1, isset($conf->global->MAIN_VOLUME_DEFAULT_UNIT) ? $conf->global->MAIN_VOLUME_DEFAULT_UNIT : 'no');
 			print '</td></tr>';
 		}
-
-		// TODO How record was recorded OrderMode (llx_c_input_method)
-
 		// Incoterms
 		if (!empty($conf->incoterm->enabled)) {
 			print '<tr><td>';
@@ -2456,9 +2432,6 @@ if ($action == 'create' && $usercancreate)
 
 		// Total TTC
 		print '<tr><td>'.$langs->trans('AmountTTC').'</td><td>'.price($object->total_ttc, 1, '', 1, - 1, - 1, $conf->currency).'</td></tr>';
-
-		// Statut
-		//print '<tr><td>' . $langs->trans('Status') . '</td><td>' . $object->getLibStatut(4) . '</td></tr>';
 
 		print '</table>';
 
@@ -2566,14 +2539,6 @@ if ($action == 'create' && $usercancreate)
 				if ($object->statut == Commande::STATUS_VALIDATED && $usercancreate) {
 					print '<a class="butAction" href="card.php?id='.$object->id.'&amp;action=modif">'.$langs->trans('Modify').'</a>';
 				}
-				// Create event
-				/*if ($conf->agenda->enabled && ! empty($conf->global->MAIN_ADD_EVENT_ON_ELEMENT_CARD))
-				{
-					// Add hidden condition because this is not a
-					// "workflow" action so should appears somewhere else on
-					// page.
-					print '<a class="butAction" href="' . DOL_URL_ROOT . '/comm/action/card.php?action=create&amp;origin=' . $object->element . '&amp;originid=' . $object->id . '&amp;socid=' . $object->socid . '">' . $langs->trans("AddAction") . '</a>';
-				}*/
 
 				// Create a purchase order
 				if (!empty($conf->global->WORKFLOW_CAN_CREATE_PURCHASE_ORDER_FROM_SALE_ORDER))
