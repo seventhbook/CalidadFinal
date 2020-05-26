@@ -119,15 +119,12 @@ if ($date_start && $date_end)
 if ($in_bookkeeping == 'already')
 {
 	$sql .= " AND f.rowid IN (SELECT fk_doc FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab WHERE ab.doc_type='customer_invoice')";
-	//	$sql .= " AND fd.rowid IN (SELECT fk_docdet FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab WHERE ab.doc_type='customer_invoice')";		// Useless, we save one line for all products with same account
 }
 if ($in_bookkeeping == 'notyet')
 {
 	$sql .= " AND f.rowid NOT IN (SELECT fk_doc FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab WHERE ab.doc_type='customer_invoice')";
-    // $sql .= " AND fd.rowid NOT IN (SELECT fk_docdet FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as ab WHERE ab.doc_type='customer_invoice')";		// Useless, we save one line for all products with same account
 }
 $sql .= " ORDER BY f.datef";
-//print $sql;
 
 dol_syslog('accountancy/journal/sellsjournal.php', LOG_DEBUG);
 $result = $db->query($sql);
@@ -197,7 +194,6 @@ if ($result) {
 		$tabfac[$obj->rowid]["type"] = $obj->type;
 		$tabfac[$obj->rowid]["description"] = $obj->label_compte;
 		$tabfac[$obj->rowid]["close_code"] = $obj->close_code; // close_code = 'replaced' for replacement invoices (not used in most european countries)
-		//$tabfac[$obj->rowid]["fk_facturedet"] = $obj->fdid;
 
 		// Avoid warnings
 		if (!isset($tabttc[$obj->rowid][$compta_soc])) $tabttc[$obj->rowid][$compta_soc] = 0;
@@ -243,7 +239,6 @@ foreach ($tabfac as $key => $val) {		// Loop on each invoice
 	}
 	else dol_print_error($db);
 }
-//var_dump($errorforinvoice);exit;
 
 
 // Bookkeeping Write
@@ -341,7 +336,6 @@ if ($action == 'writebookkeeping') {
 						$error++;
 						$errorforline++;
 						$errorforinvoice[$key]='alreadyjournalized';
-						//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
 					}
 					else
 					{
@@ -393,7 +387,6 @@ if ($action == 'writebookkeeping') {
 							$error++;
 							$errorforline++;
 							$errorforinvoice[$key] = 'alreadyjournalized';
-							//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
 						}
 						else
 						{
@@ -455,7 +448,6 @@ if ($action == 'writebookkeeping') {
 								$error++;
 								$errorforline++;
 								$errorforinvoice[$key] = 'alreadyjournalized';
-								//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
 							}
 							else
 							{
@@ -580,7 +572,7 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 
 		// Third party
 		foreach ($tabttc[$key] as $k => $mt) {
-			//if ($mt) {
+			if ($mt) {
 				print '"'.$key.'"'.$sep;
 				print '"'.$date.'"'.$sep;
 				print '"'.$val["ref"].'"'.$sep;
@@ -594,14 +586,14 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 				print '"'.($mt < 0 ? price(-$mt) : '').'"'.$sep;
 				print '"'.$journal.'"';
 				print "\n";
-			//}
+			}
 		}
 
 		// Product / Service
 		foreach ($tabht[$key] as $k => $mt) {
 			$accountingaccount = new AccountingAccount($db);
 			$accountingaccount->fetch(null, $k, true);
-			//if ($mt) {
+			if ($mt) {
 				print '"'.$key.'"'.$sep;
 				print '"'.$date.'"'.$sep;
 				print '"'.$val["ref"].'"'.$sep;
@@ -615,7 +607,7 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 				print '"'.($mt >= 0 ? price($mt) : '').'"'.$sep;
 				print '"'.$journal.'"';
 				print "\n";
-			//}
+			}
 		}
 
 		// VAT
@@ -687,7 +679,6 @@ if (empty($action) || $action == 'view') {
 	}
 	print '</div>';
 
-	// TODO Avoid using js. We can use a direct link with $param
 	print '
 	<script type="text/javascript">
 		function launch_export() {
