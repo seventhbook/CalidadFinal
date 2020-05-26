@@ -162,7 +162,6 @@ class doc_generic_contract_odt extends ModelePDFContract
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>'.count($listoffiles).'</b>';
 		}
 
-		// Add select to upload a new template file. TODO Copy this feature on other admin pages.
 		$texte .= '<div>'.$langs->trans("UploadNewTemplate").' <input type="file" name="uploadfile">';
 		$texte .= '<input type="hidden" value="CONTRACT_ADDON_PDF_ODT_PATH" name="keyforuploaddir">';
 		$texte .= '<input type="submit" class="button" value="'.dol_escape_htmltag($langs->trans("Upload")).'" name="upload">';
@@ -214,7 +213,6 @@ class doc_generic_contract_odt extends ModelePDFContract
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load traductions files required by page
@@ -272,10 +270,6 @@ class doc_generic_contract_odt extends ModelePDFContract
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->contrat->dir_temp=".$conf->contrat->dir_temp;
 
 				dol_mkdir($conf->contrat->dir_temp);
 
@@ -328,7 +322,6 @@ class doc_generic_contract_odt extends ModelePDFContract
 
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
 
 				// Line of free text
 				$newfreetext = '';
@@ -358,13 +351,6 @@ class doc_generic_contract_odt extends ModelePDFContract
 					dol_syslog($e->getMessage(), LOG_INFO);
 					return -1;
 				}
-				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
-
-
 				// Make substitutions into odt of freetext
 				try {
 					$odfHandler->setVars('free_text', $newfreetext, true, 'UTF-8');
