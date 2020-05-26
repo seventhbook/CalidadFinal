@@ -65,8 +65,8 @@ function getURLContent($url, $postorget = 'GET', $param = '', $followlocation = 
 	//curl_setopt($ch, CURLOPT_SSLVERSION, 6); for tls 1.2
 
     //turning off the server and peer verification(TrustManager Concept).
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, TRUE);
 
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, empty($conf->global->MAIN_USE_CONNECT_TIMEOUT)?5:$conf->global->MAIN_USE_CONNECT_TIMEOUT);
     curl_setopt($ch, CURLOPT_TIMEOUT, empty($conf->global->MAIN_USE_RESPONSE_TIMEOUT)?30:$conf->global->MAIN_USE_RESPONSE_TIMEOUT);
