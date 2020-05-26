@@ -252,62 +252,57 @@ $permissiontoadd = $user->rights->don->creer;
 include DOL_DOCUMENT_ROOT.'/core/actions_builddoc.inc.php';
 
 
-// Remove file in doc form
-/*if ($action == 'remove_file')
-{
-	$object = new Don($db, 0, $_GET['id']);
-	if ($object->fetch($id))
-	{
-		require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
-
-		$object->fetch_thirdparty();
-
-		$langs->load("other");
-		$upload_dir = $conf->don->dir_output;
-		$file = $upload_dir . '/' . GETPOST('file');
-		$ret=dol_delete_file($file,0,0,0,$object);
-		if ($ret) setEventMessages($langs->trans("FileWasRemoved", GETPOST('urlfile')), null, 'mesgs');
-		else setEventMessages($langs->trans("ErrorFailToDeleteFile", GETPOST('urlfile')), null, 'errors');
-		$action='';
-	}
-}
-*/
-
-/*
- * Build doc
- */
-/*
-if ($action == 'builddoc')
-{
-	$object = new Don($db);
-	$result=$object->fetch($id);
-
-	// Save last template used to generate document
-	if (GETPOST('model')) $object->setDocModel($user, GETPOST('model','alpha'));
-
-	// Define output language
-	$outputlangs = $langs;
-	$newlang='';
-	if ($conf->global->MAIN_MULTILANGS && empty($newlang) && ! empty($_REQUEST['lang_id'])) $newlang=$_REQUEST['lang_id'];
-	if ($conf->global->MAIN_MULTILANGS && empty($newlang)) $newlang=$object->thirdparty->default_lang;
-	if (! empty($newlang))
-	{
-		$outputlangs = new Translate("",$conf);
-		$outputlangs->setDefaultLang($newlang);
-	}
-	$result=don_create($db, $object->id, '', $object->modelpdf, $outputlangs);
-	if ($result <= 0)
-	{
-		dol_print_error($db,$result);
-		exit;
-	}
-}
-*/
 
 
-/*
- * View
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 llxHeader('', $langs->trans("Donation"), 'EN:Module_Donations|FR:Module_Dons|ES:M&oacute;dulo_Donaciones');
 
@@ -648,7 +643,7 @@ if (!empty($id) && $action != 'edit')
                 $morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
             }
             if ($action == 'classify') {
-                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                
                 $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                 $morehtmlref.='<input type="hidden" name="action" value="classin">';
                 $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -735,7 +730,12 @@ if (!empty($id) && $action != 'edit')
 	$sql .= " AND p.fk_typepayment = c.id";
 	$sql .= " ORDER BY dp";
 
-	//print $sql;
+	
+	
+	
+	
+	
+	
 	$resql = $db->query($sql);
 	if ($resql)
 	{
