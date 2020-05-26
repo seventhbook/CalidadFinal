@@ -174,8 +174,8 @@ if ($action == 'setseuil_stock_alerte' && !empty($user->rights->produit->creer))
     $result = $object->update($object->id, $user, 0, 'update');
     if ($result < 0)
     	setEventMessages($object->error, $object->errors, 'errors');
-    //else
-    //	setEventMessages($lans->trans("SavedRecordSuccessfully"), null, 'mesgs');
+    
+    
     $action = '';
 }
 
@@ -702,7 +702,7 @@ if ($id > 0 || $ref)
 			print $form->textwithpicto($langs->trans("VirtualStock"), $langs->trans("VirtualStockDesc"));
 			print '</td>';
 			print "<td>";
-			//print (empty($stocktheo)?0:$stocktheo);
+			
 			print $form->textwithpicto((empty($stocktheo) ? 0 : $stocktheo), $helpondiff);
 			if ($object->seuil_stock_alerte != '' && ($object->stock_theorique < $object->seuil_stock_alerte)) print ' '.img_warning($langs->trans("StockLowerThanLimit", $object->seuil_stock_alerte));
 			print '</td>';
@@ -928,8 +928,8 @@ if (!$variants) {
 						print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&amp;id_entrepot='.$entrepotstatic->id.'&amp;action=transfert&amp;pdluoid='.$pdluo->id.'">'.$langs->trans("TransferStock").'</a>';
 						// Disabled, because edition of stock content must use the "Correct stock menu".
 						// Do not use this, or data will be wrong (bad tracking of movement label, inventory code, ...
-						//print '<a href="'.$_SERVER["PHP_SELF"].'?id='.$id.'&amp;action=editline&amp;lineid='.$pdluo->id.'#'.$pdluo->id.'">';
-						//print img_edit().'</a></td>';
+						
+						
 						print '<td class="right">';
 						print $product_lot_static->getNomUrl(1);
 						print '</td>';
