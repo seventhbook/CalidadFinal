@@ -206,7 +206,6 @@ else
 			}
 			$datamin[$i] = $object->min_desired;
 			$dataall[$i] = $object->min_allowed;
-			//$labels[$i] = strftime("%d",$day);
 			$labels[$i] = $xday;
 
 			$day += 86400;
@@ -217,12 +216,6 @@ else
 
 			$i++;
 		}
-		// If we are the first of month, only $datas[0] is defined to an int value, others are defined to ""
-		// and this may make graph lib report a warning.
-		//$datas[0]=100; KO
-		//$datas[0]=100; $datas[1]=90; OK
-		//var_dump($datas);
-		//exit;
 
 		// Fabrication tableau 1
 		$file = $conf->bank->dir_temp."/balance".$account."-".$year.$month.".png";
@@ -448,12 +441,10 @@ else
 
 		$day = $min;
 		$textdate = strftime("%Y%m%d", $day);
-		//print "x".$textdate;
 		$i = 0;
 		while ($day <= ($max + 86400))	// On va au dela du dernier jour
 		{
 			$subtotal = $subtotal + (isset($amounts[$textdate]) ? $amounts[$textdate] : 0);
-			//print strftime ("%e %d %m %y",$day)." ".$subtotal."\n<br>";
 			if ($day > ($max + 86400))
 			{
 				$datas[$i] = ''; // Valeur speciale permettant de ne pas tracer le graph
@@ -772,7 +763,6 @@ if ($account)
 		{
 			$morehtml = '<a href="'.$_SERVER["PHP_SELF"].'?account='.$account.$moreparam.'">'.$langs->trans("BackToAccount").'</a>';
 			print $langs->trans("AllAccounts");
-			//print $morehtml;
 		}
 	}
 	else
