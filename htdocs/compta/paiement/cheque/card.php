@@ -71,7 +71,6 @@ if ($action == 'setdate' && $user->rights->banque->cheque)
     $result = $object->fetch(GETPOST('id', 'int'));
     if ($result > 0)
     {
-        //print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
         $date = dol_mktime(0, 0, 0, $_POST['datecreate_month'], $_POST['datecreate_day'], $_POST['datecreate_year']);
 
         $result = $object->set_date($user, $date);
@@ -138,7 +137,6 @@ if ($action == 'create' && $_POST["accountid"] > 0 && $user->rights->banque->che
 	    	    $outputlangs = $langs;
 	            $newlang = '';
 	            if ($conf->global->MAIN_MULTILANGS && empty($newlang) && !empty($_REQUEST['lang_id'])) $newlang = $_REQUEST['lang_id'];
-	            //if ($conf->global->MAIN_MULTILANGS && empty($newlang)) $newlang=$object->client->default_lang;
 	            if (!empty($newlang))
 	            {
 	                $outputlangs = new Translate("", $conf);
@@ -202,7 +200,6 @@ if ($action == 'confirm_valide' && $confirm == 'yes' && $user->rights->banque->c
         $outputlangs = $langs;
         $newlang = '';
         if ($conf->global->MAIN_MULTILANGS && empty($newlang) && !empty($_REQUEST['lang_id'])) $newlang = $_REQUEST['lang_id'];
-        //if ($conf->global->MAIN_MULTILANGS && empty($newlang)) $newlang=$object->client->default_lang;
         if (!empty($newlang))
         {
             $outputlangs = new Translate("", $conf);
@@ -244,13 +241,9 @@ if ($action == 'builddoc' && $user->rights->banque->cheque)
 {
 	$result = $object->fetch($id);
 
-	// Save last template used to generate document
-	//if (GETPOST('model')) $object->setDocModel($user, GETPOST('model','alpha'));
-
     $outputlangs = $langs;
     $newlang = '';
     if ($conf->global->MAIN_MULTILANGS && empty($newlang) && !empty($_REQUEST['lang_id'])) $newlang = $_REQUEST['lang_id'];
-    //if ($conf->global->MAIN_MULTILANGS && empty($newlang)) $newlang=$object->client->default_lang;
     if (!empty($newlang))
     {
         $outputlangs = new Translate("", $conf);
@@ -328,9 +321,6 @@ else
 	$head[$h][1] = $langs->trans("CheckReceipt");
 	$hselected = $h;
 	$h++;
-	//  $head[$h][0] = DOL_URL_ROOT.'/compta/paiement/cheque/info.php?id='.$object->id;
-	//  $head[$h][1] = $langs->trans("Info");
-	//  $h++;
 
 	dol_fiche_head($head, $hselected, $langs->trans("Cheques"), -1, 'payment');
 
@@ -382,7 +372,6 @@ if ($action == 'new')
 	dol_fiche_head();
 
 	print '<table class="border centpercent">';
-	//print '<tr><td width="30%">'.$langs->trans('Date').'</td><td width="70%">'.dol_print_date($now,'day').'</td></tr>';
 	// Filter
 	print '<tr><td class="titlefieldcreate">'.$langs->trans("DateChequeReceived").'</td><td>';
 	print $form->selectDate($filterdate, 'fd', 0, 0, 1, '', 1, 1);
@@ -487,13 +476,6 @@ if ($action == 'new')
 		{
 			foreach ($lines[$bid] as $lid => $value)
 			{
-				//$account_id = $bid; FIXME not used
-
-				// FIXME $accounts[$bid] is a label !
-				/*if (! isset($accounts[$bid]))
-					$accounts[$bid]=0;
-				$accounts[$bid] += 1;*/
-
 				print '<tr class="oddeven">';
 				print '<td>'.dol_print_date($value["date"], 'day').'</td>';
 				print '<td>'.$value["numero"]."</td>\n";
@@ -595,34 +577,6 @@ else
 	print '</td>';
 	print '</tr>';
 
-	// External ref
-	/* Ext ref are not visible field on standard usage
-	print '<tr><td>';
-
-	print '<table class="nobordernopadding" width="100%"><tr><td>';
-    print $langs->trans('RefExt');
-    print '</td>';
-    if ($action != 'editrefext') print '<td class="right"><a class="editfielda" href="'.$_SERVER["PHP_SELF"].'?action=editrefext&amp;id='.$object->id.'">'.img_edit($langs->trans('SetRefExt'),1).'</a></td>';
-    print '</tr></table>';
-    print '</td><td colspan="2">';
-    if ($action == 'editrefext')
-    {
-        print '<form name="setrefext" action="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'" method="post">';
-        print '<input type="hidden" name="token" value="'.newToken().'">';
-        print '<input type="hidden" name="action" value="setrefext">';
-        print '<input type="text" name="ref_ext" value="'.$object->ref_ext.'">';
-        print '<input type="submit" class="button" value="'.$langs->trans('Modify').'">';
-        print '</form>';
-    }
-    else
-    {
-        print $object->ref_ext;
-    }
-
-	print '</td>';
-	print '</tr>';
-	*/
-
 	print '<tr><td>'.$langs->trans('Account').'</td><td colspan="2">';
 	print $accountstatic->getNomUrl(1);
 	print '</td></tr>';
@@ -635,10 +589,6 @@ else
 	print '<tr><td>'.$langs->trans('Total').'</td><td colspan="2">';
 	print price($object->amount);
 	print '</td></tr>';
-
-	/*print '<tr><td>'.$langs->trans('Status').'</td><td colspan="2">';
-	print $object->getLibStatut(4);
-	print '</td></tr>';*/
 
 	print '</table><br>';
 
@@ -750,7 +700,6 @@ else
 			// Show warning that some records were removed.
 			$langs->load("errors");
 			print info_admin($langs->trans("WarningSomeBankTransactionByChequeWereRemovedAfter"), 0, 0, 'warning');
-			// TODO Fix data ->nbcheque and ->amount
 		}
 
 		print "</div>";
