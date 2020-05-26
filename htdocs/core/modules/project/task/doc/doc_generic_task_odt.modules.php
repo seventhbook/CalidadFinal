@@ -275,7 +275,7 @@ class doc_generic_task_odt extends ModelePDFTask
 	{
         // phpcs:enable
 		global $conf;
-		//dol_syslog(get_class($this).'::get_substitutionarray_tasksressource taskressource='.var_export($taskressource,true),LOG_DEBUG);
+		
 		return array(
 		'taskressource_rowid'=>$taskressource['rowid'],
 		'taskressource_role'=>$taskressource['libelle'],
@@ -393,9 +393,9 @@ class doc_generic_task_odt extends ModelePDFTask
 		if (!empty($conf->global->PROJECT_TASK_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
+			
 			$texte .= $nbofiles;
-			//$texte.=$nbofiles?'</a>':'';
+			
 			$texte .= '</b>';
 		}
 
@@ -443,7 +443,7 @@ class doc_generic_task_odt extends ModelePDFTask
 		}
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -484,18 +484,18 @@ class doc_generic_task_odt extends ModelePDFTask
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.(ods|odt)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
 				$newfiletmp = preg_replace('/modele_/i', '', $newfiletmp);
 				$newfiletmp = $objectref.'_'.$newfiletmp;
-				//$file=$dir.'/'.$newfiletmp.'.'.dol_print_date(dol_now(),'%Y%m%d%H%M%S').'.odt';
+				
 				$file = $dir.'/'.$newfiletmp.'.odt';
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->societe->dir_temp=".$conf->societe->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->projet->dir_temp);
 
@@ -509,7 +509,7 @@ class doc_generic_task_odt extends ModelePDFTask
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Open and load template
 				require_once ODTPHP_PATH.'odf.php';
@@ -532,8 +532,8 @@ class doc_generic_task_odt extends ModelePDFTask
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 
 				// Define substitution array
@@ -647,7 +647,7 @@ class doc_generic_task_odt extends ModelePDFTask
 					{
 						$num = $this->db->num_rows($resql);
 						$i = 0;
-						$tasks = array();
+						
 						$listlinestasktime = $odfHandler->setSegment('taskstimes');
 						while ($i < $num)
 						{
@@ -697,7 +697,7 @@ class doc_generic_task_odt extends ModelePDFTask
 					foreach ($filearray as $filedetail)
 					{
 						$tmparray = $this->get_substitutionarray_task_file($filedetail, $outputlangs);
-						//dol_syslog(get_class($this).'::main $tmparray'.var_export($tmparray,true));
+						
 						foreach ($tmparray as $key => $val)
 						{
 							try
@@ -715,7 +715,7 @@ class doc_generic_task_odt extends ModelePDFTask
 						}
 						$listtasksfiles->merge();
 					}
-					//$listlines->merge();
+					
 
 					$odfHandler->mergeSegment($listtasksfiles);
 				}
@@ -739,7 +739,7 @@ class doc_generic_task_odt extends ModelePDFTask
 
 					foreach ($filearray as $filedetail)
 					{
-						//dol_syslog(get_class($this).'::main $filedetail'.var_export($filedetail,true));
+						
 						$tmparray = $this->get_substitutionarray_project_file($filedetail, $outputlangs);
 
 						foreach ($tmparray as $key => $val)
