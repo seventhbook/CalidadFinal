@@ -376,7 +376,7 @@ if (function_exists("ldap_connect"))
 		$object=new User($db);
 		$object->initAsSpecimen();
 
-		// TODO Mutualize code following with other ldap_xxxx.php pages
+		
 
 		// Test synchro
 		$ldap=new Ldap();
@@ -426,7 +426,7 @@ if (function_exists("ldap_connect"))
 		$object=new User($db);
 		$object->initAsSpecimen();
 
-		// TODO Mutualize code following with other ldap_xxxx.php pages
+		
 
 		// Test synchro
 		$ldap=new Ldap();
@@ -458,7 +458,7 @@ if (function_exists("ldap_connect"))
 
 			// Get from LDAP database an array of results
 			$ldapusers = $ldap->getRecords('*', $conf->global->LDAP_USER_DN, $conf->global->LDAP_KEY_USERS, $required_fields, 1);
-			//$ldapusers = $ldap->getRecords('*', $conf->global->LDAP_USER_DN, $conf->global->LDAP_KEY_USERS, '', 1);
+			
 
 			if (is_array($ldapusers))
 			{
