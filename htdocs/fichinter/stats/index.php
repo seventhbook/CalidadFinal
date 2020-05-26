@@ -43,7 +43,6 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
 $startyear=$year-1;
 $endyear=$year;
 
@@ -316,10 +315,6 @@ print '<table class="border centpercent"><tr class="pair nohover"><td class="cen
 if ($mesg) { print $mesg; }
 else {
     print $px1->show();
-    /*print "<br>\n";
-    print $px2->show();
-    print "<br>\n";
-    print $px3->show();*/
 }
 print '</td></tr></table>';
 
