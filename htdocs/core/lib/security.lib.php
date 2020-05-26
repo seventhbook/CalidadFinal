@@ -183,10 +183,10 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 	global $db, $conf;
 	global $hookmanager;
 
-	//dol_syslog("functions.lib:restrictedArea $feature, $objectid, $dbtablename,$feature2,$dbt_socfield,$dbt_select");
-	//print "user_id=".$user->id.", features=".$features.", feature2=".$feature2.", objectid=".$objectid;
-	//print ", dbtablename=".$dbtablename.", dbt_socfield=".$dbt_keyfield.", dbt_select=".$dbt_select;
-	//print ", perm: ".$features."->".$feature2."=".($user->rights->$features->$feature2->lire)."<br>";
+	
+	
+	
+	
 
 	// Get more permissions checks from hooks
 	$parameters = array('features'=>$features, 'objectid'=>$objectid, 'idtype'=>$dbt_select);
@@ -275,7 +275,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 	if (preg_match('/\|/', $features) && $nbko < count($featuresarray)) $readok = 1;
 
 	if (!$readok) accessforbidden();
-	//print "Read access is ok";
+	
 
 	// Check write permission from module (we need to know write permission to create but also to delete drafts record)
 	$createok = 1; $nbko = 0;
@@ -328,7 +328,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 			}
 			elseif (!empty($feature))														// This is for permissions on 2 levels ('creer' or 'write')
 			{
-				//print '<br>feature='.$feature.' creer='.$user->rights->$feature->creer.' write='.$user->rights->$feature->write;
+				
 				if (empty($user->rights->$feature->creer)
 				&& empty($user->rights->$feature->write)
 				&& empty($user->rights->$feature->create)) {
@@ -342,7 +342,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 		if (preg_match('/\|/', $features) && $nbko < count($featuresarray)) $createok = 1;
 
 		if ((GETPOST('action', 'aZ09') == 'create' || GETPOST('action', 'aZ09') == 'update') && !$createok) accessforbidden();
-		//print "Write access is ok";
+		
 	}
 
 	// Check create user permission
@@ -352,7 +352,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 		if (!$user->rights->user->user->creer) $createuserok = 0;
 
 		if (!$createuserok) accessforbidden();
-		//print "Create user access is ok";
+		
 	}
 
 	// Check delete permission from module
@@ -406,7 +406,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 			}
 			elseif (!empty($feature))							// This is used for permissions on 1 level
 			{
-				//print '<br>feature='.$feature.' creer='.$user->rights->$feature->supprimer.' write='.$user->rights->$feature->delete;
+				
 				if (empty($user->rights->$feature->supprimer)
 					&& empty($user->rights->$feature->delete)
 					&& empty($user->rights->$feature->run)) $deleteok = 0;
@@ -417,7 +417,7 @@ function restrictedArea($user, $features, $objectid = 0, $tableandshare = '', $f
 		if (preg_match('/\|/', $features) && $nbko < count($featuresarray)) $deleteok = 1;
 
 		if (!$deleteok && !($isdraft && $createok)) accessforbidden();
-		//print "Delete access is ok";
+		
 	}
 
 	// If we have a particular object to check permissions on, we check this object
