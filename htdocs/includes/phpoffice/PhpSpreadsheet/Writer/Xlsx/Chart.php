@@ -25,7 +25,7 @@ class Chart extends WriterPart
 
     /**
      * Write charts to XML format.
-     *
+     
      * @param \PhpOffice\PhpSpreadsheet\Chart\Chart $pChart
      * @param mixed $calculateCellValues
      *
