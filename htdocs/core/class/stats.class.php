@@ -467,8 +467,6 @@ abstract class Stats
 			if ($format == 0) $month=$langs->transnoentitiesnoconv('MonthShort'.sprintf("%02d", $i));
 			elseif ($format == 1) $month=$i;
 			elseif ($format == 2) $month=$langs->transnoentitiesnoconv('MonthVeryShort'.sprintf("%02d", $i));
-			//$month=dol_print_date(dol_mktime(12,0,0,$i,1,$year),($format?"%m":"%b"));
-			//$month=dol_substr($month,0,3);
 			$data[$i-1] = array($month, $res[$i]);
 		}
 
@@ -525,8 +523,6 @@ abstract class Stats
 			if ($format == 0) $month=$langs->transnoentitiesnoconv('MonthShort'.sprintf("%02d", $i));
 			elseif ($format == 1) $month=$i;
 			elseif ($format == 2) $month=$langs->transnoentitiesnoconv('MonthVeryShort'.sprintf("%02d", $i));
-			//$month=dol_print_date(dol_mktime(12,0,0,$i,1,$year),($format?"%m":"%b"));
-			//$month=dol_substr($month,0,3);
 			$data[$i-1] = array($month, $res[$i]);
 		}
 
@@ -581,8 +577,6 @@ abstract class Stats
 			if ($format == 0) $month=$langs->transnoentitiesnoconv('MonthShort'.sprintf("%02d", $i));
 			elseif ($format == 1) $month=$i;
 			elseif ($format == 2) $month=$langs->transnoentitiesnoconv('MonthVeryShort'.sprintf("%02d", $i));
-			//$month=dol_print_date(dol_mktime(12,0,0,$i,1,$year),($format?"%m":"%b"));
-			//$month=dol_substr($month,0,3);
 			$data[$i-1] = array($month, $res[$i]);
 		}
 
