@@ -27,8 +27,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 
 /**
@@ -128,8 +128,8 @@ class EmailSenderProfile extends CommonObject
 
 
 	public $tms;
-	//public $fk_user_creat;
-	//public $fk_user_modif;
+	
+	
 	public $signature;
 	public $position;
 	public $active;
@@ -142,23 +142,23 @@ class EmailSenderProfile extends CommonObject
 	/**
 	 * @var int    Name of subtable line
 	 */
-	//public $table_element_line = 'emailsenderprofiledet';
+	
 	/**
 	 * @var int    Field with ID of parent key if this field has a parent
 	 */
-	//public $fk_element = 'fk_emailsenderprofile';
+	
 	/**
 	 * @var int    Name of subtable class that manage subtable lines
 	 */
-	//public $class_element_line = 'EmailSenderProfileline';
+	
 	/**
 	 * @var array	List of child tables. To test if we can delete object.
 	 */
-	//protected $childtables=array();
+	
 	/**
 	 * @var EmailSenderProfileLine[]     Array of subtable lines
 	 */
-	//public $lines = array();
+	
 
 
 
@@ -305,12 +305,12 @@ class EmailSenderProfile extends CommonObject
 		global $menumanager;
 
 		$result = '';
-		$companylink = '';
+		
 
         $label = $this->label;
 
-        $url = '';
-		//$url = dol_buildpath('/monmodule/emailsenderprofile_card.php',1).'?id='.$this->id;
+        
+	
 
 		$linkstart = '';
 		$linkend = '';
@@ -448,12 +448,12 @@ class EmailSenderProfile extends CommonObject
  */
 /*
 class EmailSenderProfileLine
-{
-	// @var int ID
-	public $id;
-	// @var mixed Sample line property 1
-	public $prop1;
-	// @var mixed Sample line property 2
-	public $prop2;
-}
+
+
+
+
+
+
+
+
 */
