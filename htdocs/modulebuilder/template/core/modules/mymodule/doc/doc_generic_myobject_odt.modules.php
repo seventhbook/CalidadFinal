@@ -162,9 +162,9 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 		if (!empty($conf->global->MYMODULE_MYOBJECT_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
+			
 			$texte .= count($listoffiles);
-			//$texte.=$nbofiles?'</a>':'';
+			
 			$texte .= '</b>';
 		}
 
@@ -224,7 +224,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		$outputlangs->loadLangs(array("main", "dict", "companies", "bills"));
@@ -260,13 +260,13 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
 				$newfiletmp = preg_replace('/modele_/i', '', $newfiletmp);
 				$newfiletmp = $objectref.'_'.$newfiletmp;
-				//$file=$dir.'/'.$newfiletmp.'.'.dol_print_date(dol_now(),'%Y%m%d%H%M%S').'.odt';
+				
 				// Get extension (ods or odt)
 				$newfileformat = substr($newfile, strrpos($newfile, '.') + 1);
 				if (!empty($conf->global->MAIN_DOC_USE_TIMING))
@@ -280,10 +280,10 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->societe->dir_temp=".$conf->societe->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->mymodule->dir_temp);
 
@@ -325,7 +325,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Line of free text
 				$newfreetext = '';
@@ -357,8 +357,8 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 
 				// Make substitutions into odt of freetext
