@@ -84,14 +84,11 @@ $arrayfields = array(
 	'd.login'=>array('label'=>$langs->trans("Login"), 'checked'=>1),
 	't.libelle'=>array('label'=>$langs->trans("Label"), 'checked'=>1),
 	'd.bank'=>array('label'=>$langs->trans("BankAccount"), 'checked'=>1, 'enabled'=>(!empty($conf->banque->enabled))),
-	/*'d.note_public'=>array('label'=>$langs->trans("NotePublic"), 'checked'=>0),
-	 'd.note_private'=>array('label'=>$langs->trans("NotePrivate"), 'checked'=>0),*/
 	'c.dateadh'=>array('label'=>$langs->trans("DateSubscription"), 'checked'=>1, 'position'=>100),
 	'c.datef'=>array('label'=>$langs->trans("EndSubscription"), 'checked'=>1, 'position'=>101),
 	'd.amount'=>array('label'=>$langs->trans("Amount"), 'checked'=>1, 'position'=>102),
 	'c.datec'=>array('label'=>$langs->trans("DateCreation"), 'checked'=>0, 'position'=>500),
 	'c.tms'=>array('label'=>$langs->trans("DateModificationShort"), 'checked'=>0, 'position'=>500),
-//	'd.statut'=>array('label'=>$langs->trans("Status"), 'checked'=>1, 'position'=>1000)
 );
 
 // Security check
