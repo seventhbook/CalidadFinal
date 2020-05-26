@@ -155,7 +155,6 @@ if (GETPOST('target') == 'remote')
     if (!$xmlarray['curl_error_no'] && $xmlarray['http_code'] != '404')
     {
         $xmlfile = $xmlarray['content'];
-        //print "xmlfilestart".$xmlfile."xmlfileend";
         $xml = simplexml_load_string($xmlfile);
     }
     else
@@ -222,7 +221,6 @@ if (!$error && $xml)
     // Scan htdocs
     if (is_object($xml->dolibarr_htdocs_dir[0]))
     {
-        //var_dump($xml->dolibarr_htdocs_dir[0]['includecustom']);exit;
         $includecustom = (empty($xml->dolibarr_htdocs_dir[0]['includecustom']) ? 0 : $xml->dolibarr_htdocs_dir[0]['includecustom']);
 
         // Defined qualified files (must be same than into generate_filelist_xml.php)
@@ -406,24 +404,9 @@ if (!$error && $xml)
     }
 
 
-    // Scan scripts
-    /*
-    if (is_object($xml->dolibarr_script_dir[0]))
-    {
-        $file_list = array();
-        $ret = getFilesUpdated($file_list, $xml->dolibarr_htdocs_dir[0], '', ???, $checksumconcat);		// Fill array $file_list
-    }*/
-
-
     asort($checksumconcat); // Sort list of checksum
-    //var_dump($checksumconcat);
     $checksumget = md5(join(',', $checksumconcat));
     $checksumtoget = trim((string) $xml->dolibarr_htdocs_dir_checksum);
-
-    /*var_dump(count($file_list['added']));
-    var_dump($checksumget);
-    var_dump($checksumtoget);
-    var_dump($checksumget == $checksumtoget);*/
 
     $outexpectedchecksum = ($checksumtoget ? $checksumtoget : $langs->trans("Unknown"));
     if ($checksumget == $checksumtoget)
