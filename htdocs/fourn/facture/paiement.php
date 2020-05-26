@@ -162,7 +162,7 @@ if (empty($reshook))
 		            if ($datepaye && ($datepaye < $tmpinvoice->date))
 		            {
 		            	$langs->load("errors");
-		                //$error++;
+		                
 		                setEventMessages($langs->transnoentities("WarningPaymentDateLowerThanInvoiceDate", dol_print_date($datepaye, 'day'), dol_print_date($tmpinvoice->date, 'day'), $tmpinvoice->ref), null, 'warnings');
 		            }
 	            }
@@ -190,7 +190,7 @@ if (empty($reshook))
 		            if ($datepaye && ($datepaye < $tmpinvoice->date))
 		            {
 		            	$langs->load("errors");
-		                //$error++;
+		                
 		                setEventMessages($langs->transnoentities("WarningPaymentDateLowerThanInvoiceDate", dol_print_date($datepaye, 'day'), dol_print_date($tmpinvoice->date, 'day'), $tmpinvoice->ref), null, 'warnings');
 		            }
 	            }
@@ -281,8 +281,8 @@ if (empty($reshook))
             }
         }
 
-		//var_dump($amounts);
-        //var_dump($multicurrency_amounts);
+	
+        
         //exit;
 
 	    if (!$error)
@@ -1021,12 +1021,12 @@ if (empty($action) || $action == 'list')
             if (!$i) $totalarray['pos'][$totalarray['nbfield']] = 'amount';
             $totalarray['val']['amount'] += $objp->pamount;
 
-            // Ref invoice
-            /*$invoicesupplierstatic->ref=$objp->ref_supplier;
-            $invoicesupplierstatic->id=$objp->facid;
-            print '<td class="nowrap">';
-            print $invoicesupplierstatic->getNomUrl(1);
-            print '</td>';*/
+            
+            
+            
+            
+            
+            
 
 			print '<td></td>';
 			if (!$i) $totalarray['nbfield']++;
