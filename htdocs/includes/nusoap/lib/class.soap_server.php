@@ -665,10 +665,6 @@ class nusoap_server extends nusoap_base {
 			    	$opParams = $this->methodreturn;
 			    } elseif (sizeof($this->opData['output']['parts']) == 1) {
 					$this->debug('exactly one output part, so wrap the method return in a simple array');
-					// TODO: verify that it is not already wrapped!
-			    	//foreach ($this->opData['output']['parts'] as $name => $type) {
-					//	$this->debug('wrap in element named ' . $name);
-			    	//}
 			    	$opParams = array($this->methodreturn);
 			    }
 			    $return_val = $this->wsdl->serializeRPCParameters($this->methodname,'output',$opParams);
@@ -754,11 +750,6 @@ class nusoap_server extends nusoap_base {
 			$this->outgoing_headers[] = "Status: 500 Internal Server Error";
 		} else {
 			$payload = $this->responseSOAP;
-			// Some combinations of PHP+Web server allow the Status
-			// to come through as a header.  Since OK is the default
-			// just do nothing.
-			// $this->outgoing_headers[] = "HTTP/1.0 200 OK";
-			// $this->outgoing_headers[] = "Status: 200 OK";
 		}
         // add debug data if in debug mode
 		if(isset($this->debug_flag) && $this->debug_flag){
@@ -768,7 +759,6 @@ class nusoap_server extends nusoap_base {
 		preg_match('/\$Revisio' . 'n: ([^ ]+)/', $this->revision, $rev);
 		$this->outgoing_headers[] = "X-SOAP-Server: $this->title/$this->version (".$rev[1].")";
 		// Let the Web server decide about this
-		//$this->outgoing_headers[] = "Connection: Close\r\n";
 		$payload = $this->getHTTPBody($payload);
 		$type = $this->getHTTPContentType();
 		$charset = $this->getHTTPContentTypeCharset();
