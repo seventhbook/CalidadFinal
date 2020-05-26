@@ -76,7 +76,7 @@ $formfile = new FormFile($db);
 
 $label=$db::LABEL;
 $type=$db->type;
-//var_dump($db);
+
 
 $help_url='EN:Backups|FR:Sauvegardes|ES:Copias_de_seguridad';
 llxHeader('', '', $help_url);
@@ -122,7 +122,7 @@ print "});\n";
 print "</script>\n";
 
 print load_fiche_titre($langs->trans("Backup"), '', 'title_setup');
-//print_barre_liste($langs->trans("Backup"), '', '', '', '', '', $langs->trans("BackupDesc",DOL_DATA_ROOT), 0, 0, 'title_setup');
+
 
 print '<div class="center opacitymedium">';
 print $langs->trans("BackupDesc", DOL_DATA_ROOT);
@@ -136,7 +136,7 @@ print '<input type="hidden" name="export_type" value="server" />';
 print '<fieldset id="fieldsetexport"><legend class="legendforfieldsetstep" style="font-size: 3em">1</legend>';
 
 print $langs->trans("BackupDesc3", $dolibarr_main_db_name).'<br>';
-//print $langs->trans("BackupDescY").'<br>';
+
 print '<br>';
 
 print '<div id="backupdatabaseleft" class="fichehalfleft" >';
@@ -396,10 +396,10 @@ if (in_array($type, array('mysql', 'mysqli'))) {
 	$prefix='mysqldump';
 	$ext='sql';
 }
-//if ($label == 'PostgreSQL') {
-//	$prefix='pg_dump';
-//	$ext='dump';
-//}
+
+
+
+
 if (in_array($type, array('pgsql'))) {
 	$prefix='pg_dump';
 	$ext='sql';
@@ -417,12 +417,12 @@ if (in_array($type, array('mysql', 'mysqli'))) {
 		'id' => 'radio_compression_gzip',
 		'label' => $langs->trans("Gzip")
 	);
-	// Not open source format. Must implement dol_compress function
-	// $compression['zip']= array(
-	//     'function' => 'dol_compress',
-	//     'id' => 'radio_compression_zip',
-	//     'label' => $langs->trans("FormatZip")
-	// );
+	
+	
+	
+	
+	
+	
     $compression['bz'] = array(
 		'function' => 'bzopen',
 		'id' => 'radio_compression_bzip',
@@ -493,7 +493,7 @@ if (! empty($_SESSION["commandbackuplastdone"]))
     print '<textarea rows="'.ROWS_2.'" class="centpercent">'.$_SESSION["commandbackuplastdone"].'</textarea><br>'."\n";
     print '<br>';
 
-    //print $paramclear;
+    
 
     // Now show result
     print '<b>'.$langs->trans("BackupResult").':</b> ';
@@ -510,7 +510,7 @@ if (! empty($_SESSION["commandbackuptorun"]))
 	print ajax_autoselect("commandbackuptoruntext", 0);
 	print '<br>';
 
-	//print $paramclear;
+	
 
 	$_SESSION["commandbackuplastdone"]='';
 	$_SESSION["commandbackuptorun"]='';
