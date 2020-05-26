@@ -675,12 +675,6 @@ if ($rowid > 0)
 		        print "<td>".$objp->login."</td>\n";
 
 		        // Type
-		        /*print '<td class="nowrap">';
-		        $membertypestatic->id=$objp->type_id;
-		        $membertypestatic->label=$objp->type;
-		        print $membertypestatic->getNomUrl(1,12);
-		        print '</td>';
-				*/
 
 		        // Moral/Physique
 		        print "<td>".$adh->getmorphylib($objp->morphy)."</td>\n";
