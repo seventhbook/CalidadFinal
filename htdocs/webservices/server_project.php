@@ -173,7 +173,6 @@ if (is_array($extrafields->attributes[$elementtype]['label']) && count($extrafie
 {
 	foreach ($extrafields->attributes[$elementtype]['label'] as $key=>$label)
 	{
-	    //$value=$object->array_options["options_".$key];
 	    $type = $extrafields->attributes[$elementtype]['type'][$key];
 	    if ($type == 'date' || $type == 'datetime') {$type = 'xsd:dateTime'; }
 	    else {$type = 'xsd:string'; }
