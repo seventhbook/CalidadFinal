@@ -190,8 +190,6 @@ function getCategory($authentication, $id)
 {
 	global $db,$conf,$langs;
 
-	$nbmax = 10;
-
 	dol_syslog("Function: getCategory login=".$authentication['login']." id=".$id);
 
 	if ($authentication['entity']) $conf->entity=$authentication['entity'];
