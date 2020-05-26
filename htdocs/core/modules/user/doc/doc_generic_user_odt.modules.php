@@ -236,7 +236,6 @@ class doc_generic_user_odt extends ModelePDFUser
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -294,10 +293,6 @@ class doc_generic_user_odt extends ModelePDFUser
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->user->dir_temp=".$conf->user->dir_temp;
 
 				dol_mkdir($conf->user->dir_temp);
 
@@ -361,7 +356,6 @@ class doc_generic_user_odt extends ModelePDFUser
 				$object->fetch_optionals();
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$tmparray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
 				foreach ($tmparray as $key=>$value)
 				{
 					try {
