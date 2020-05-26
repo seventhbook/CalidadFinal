@@ -1850,7 +1850,7 @@ class TCPDF_STATIC {
 		curl_setopt($crs, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($crs, CURLOPT_TIMEOUT, 30);
 		curl_setopt($crs, CURLOPT_SSL_VERIFYPEER, TRUE);
-		curl_setopt($crs, CURLOPT_SSL_VERIFYHOST, TRUE);
+		curl_setopt($crs, CURLOPT_SSL_VERIFYHOST, 2);
 		curl_setopt($crs, CURLOPT_USERAGENT, 'tc-lib-file');
 		curl_exec($crs);
 		$code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
