@@ -428,7 +428,6 @@ class FormCompany extends Form
 		return $out;
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *    Retourne la liste deroulante des formes juridiques tous pays confondus ou pour un pays donne.
 	 *    Dans le cas d'une liste tous pays confondu, on affiche une rupture sur le pays.
@@ -586,11 +585,6 @@ class FormCompany extends Form
 
 
 			$events = array();
-			// Add an entry 'method' to say 'yes, we must execute url with param action = method';
-			// Add an entry 'url' to say which url to execute
-			// Add an entry htmlname to say which element we must change once url is called
-			// Add entry params => array('cssid' => 'attr') to say to remov or add attribute attr if answer of url return  0 or >0 lines
-			// To refresh contacts list on thirdparty list change
 			$events[] = array('method' => 'getContacts', 'url' => dol_buildpath('/core/ajax/contacts.php', 1), 'htmlname' => 'contactid', 'params' => array('add-customer-contact' => 'disabled'));
 
 			if (count($events))	// If there is some ajax events to run once selection is done, we add code here to run events
