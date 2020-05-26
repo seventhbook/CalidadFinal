@@ -102,7 +102,7 @@ if (empty($reshook))
 		$datev = dol_mktime(12, 0, 0, GETPOST("datevmonth", 'int'), GETPOST("datevday", 'int'), GETPOST("datevyear", 'int'));
 		if (empty($datev)) $datev = $datep;
 
-		$object->ref = ''; // TODO
+		$object->ref = '';
 		$object->accountid = GETPOST("accountid", 'int') > 0 ? GETPOST("accountid", "int") : 0;
 		$object->datev = $datev;
 		$object->datep = $datep;
@@ -144,7 +144,6 @@ if (empty($reshook))
 			setEventMessages($langs->trans("ErrorFieldRequired", $langs->transnoentitiesnoconv("BankAccount")), null, 'errors');
 			$error++;
 		}
-		// TODO Remove this and allow instead to edit a various payment to enter accounting code
 		if (!empty($conf->accounting->enabled) && !$object->accountancy_code)
 		{
 			$langs->load('errors');
@@ -370,7 +369,6 @@ if ($action == 'create')
 	// Accountancy account
 	if (!empty($conf->accounting->enabled))
 	{
-		// TODO Remove the fieldrequired and allow instead to edit a various payment to enter accounting code
 		print '<tr><td class="titlefieldcreate fieldrequired">'.$langs->trans("AccountAccounting").'</td>';
         print '<td>';
 		print $formaccounting->select_account($accountancy_code, 'accountancy_code', 1, null, 1, 1);
@@ -445,7 +443,6 @@ if ($id)
 				$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
 			}
 			if ($action == 'classify') {
-				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
 				$morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 				$morehtmlref.='<input type="hidden" name="action" value="classin">';
 				$morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -550,9 +547,6 @@ if ($id)
 	 * Action buttons
 	 */
 	print '<div class="tabsAction">'."\n";
-
-	// TODO
-	// Add button modify
 
 	// Delete
 	if (empty($object->rappro))
