@@ -434,15 +434,6 @@ if ($object->id > 0)
 	$MAXLIST = $conf->global->MAIN_SIZE_SHORTLIST_LIMIT;
 
 	// Lien recap
-	/*
-	print '<table class="noborder centpercent">';
-	print '<tr class="liste_titre">';
-	print '<td colspan="4"><table width="100%" class="nobordernopadding"><tr><td>'.$langs->trans("Summary").'</td>';
-	print '<td class="right"><a class="notasortlink" href="'.DOL_URL_ROOT.'/fourn/recap-fourn.php?socid='.$object->id.'">'.$langs->trans("ShowSupplierPreview").'</a></td></tr></table></td>';
-	print '</tr>';
-	print '</table>';
-	print '<br>';
-    */
 
 	/*
 	 * List of products
@@ -494,9 +485,7 @@ if ($object->id > 0)
 				print '<td class="maxwidthonsmartphone">';
 				print dol_trunc(dol_htmlentities($objp->label), 30);
 				print '</td>';
-				//print '<td class="right" class="nowrap">'.dol_print_date($objp->tms, 'day').'</td>';
 				print '<td class="right">';
-				//print (isset($objp->unitprice) ? price($objp->unitprice) : '');
 				if (isset($objp->price))
 				{
     				print price($objp->price);
@@ -614,7 +603,6 @@ if ($object->id > 0)
 		$sql2 .= " AND c.billed = 0";
 		// Find order that are not already invoiced
 		// just need to check received status because we have the billed status now
-		//$sql2 .= " AND c.rowid NOT IN (SELECT fk_source FROM " . MAIN_DB_PREFIX . "element_element WHERE targettype='invoice_supplier')";
 		$resql2 = $db->query($sql2);
 		if ($resql2) {
 			$orders2invoice = $db->num_rows($resql2);
@@ -623,7 +611,6 @@ if ($object->id > 0)
 			setEventMessages($db->lasterror(), null, 'errors');
 		}
 
-		// TODO move to DAO class
 		$sql = "SELECT count(p.rowid) as total";
 		$sql .= " FROM ".MAIN_DB_PREFIX."commande_fournisseur as p";
 		$sql .= " WHERE p.fk_soc =".$object->id;
@@ -705,7 +692,6 @@ if ($object->id > 0)
 
 	if ($user->rights->fournisseur->facture->lire)
 	{
-		// TODO move to DAO class
 		$sql = 'SELECT f.rowid, f.libelle as label, f.ref, f.ref_supplier, f.fk_statut, f.datef as df, f.total_ht, f.total_tva, f.total_ttc as amount,f.paye,';
 		$sql.= ' SUM(pf.amount) as am';
 		$sql.= ' FROM '.MAIN_DB_PREFIX.'facture_fourn as f';
@@ -863,7 +849,6 @@ if ($object->id > 0)
 	{
     	print load_fiche_titre($langs->trans("ActionsOnCompany"), '', '');
 
-    	// List of todo actions
     	show_actions_todo($conf, $langs, $db, $object);
 
     	// List of done actions
