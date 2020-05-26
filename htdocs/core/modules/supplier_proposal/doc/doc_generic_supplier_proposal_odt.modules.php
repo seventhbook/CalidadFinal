@@ -167,9 +167,7 @@ class doc_generic_supplier_proposal_odt extends ModelePDFSupplierProposal
 		if (!empty($conf->global->SUPPLIER_PROPOSAL_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
 			$texte .= count($listoffiles);
-			//$texte.=$nbofiles?'</a>':'';
 			$texte .= '</b>';
 		}
 
@@ -291,7 +289,6 @@ class doc_generic_supplier_proposal_odt extends ModelePDFSupplierProposal
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -312,10 +309,6 @@ class doc_generic_supplier_proposal_odt extends ModelePDFSupplierProposal
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->propal->dir_temp=".$conf->propal->dir_temp;
 
 				dol_mkdir($conf->supplier_proposal->dir_temp);
 
@@ -381,11 +374,6 @@ class doc_generic_supplier_proposal_odt extends ModelePDFSupplierProposal
 					dol_syslog($e->getMessage(), LOG_INFO);
 					return -1;
 				}
-				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
 
 
 				// Make substitutions into odt of freetext
