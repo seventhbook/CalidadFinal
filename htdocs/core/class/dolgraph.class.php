@@ -129,7 +129,6 @@ class DolGraph
 			if (isset($theme_datacolor))   $this->datacolor   = $theme_datacolor;
 			if (isset($theme_bgcolor))     $this->bgcolor     = $theme_bgcolor;
 		}
-		//print 'bgcolor: '.join(',',$this->bgcolor).'<br>';
 	}
 
 
@@ -496,7 +495,6 @@ class DolGraph
 		{
 			if ($bg_color == 'onglet')
 			{
-				//print 'ee'.join(',',$theme_bgcoloronglet);
 				$this->bgcolor = $theme_bgcoloronglet;
 			}
 			else
@@ -526,7 +524,6 @@ class DolGraph
 		{
 			if ($bg_colorgrid == 'onglet')
 			{
-				//print 'ee'.join(',',$theme_bgcoloronglet);
 				$this->bgcolorgrid = $theme_bgcoloronglet;
 			}
 			else
@@ -626,8 +623,6 @@ class DolGraph
 
 		$res = 0;
 		if (is_numeric($max)) $res = ceil($max / $factor) * $factor;
-
-		//print "max=".$max." res=".$res;
 		return $res;
 	}
 
@@ -651,8 +646,6 @@ class DolGraph
 		}
 
 		$res = floor($min / $factor) * $factor;
-
-		//print "min=".$min." res=".$res;
 		return $res;
 	}
 
@@ -719,7 +712,6 @@ class DolGraph
 		$colortrans = new Color(0, 0, 0, 100);
 		$colorsemitrans = new Color(255, 255, 255, 60);
 		$colorgradient = new LinearGradient(new Color(235, 235, 235), new Color(255, 255, 255), 0);
-		$colorwhite = new Color(255, 255, 255);
 
 		// Graph
 		$graph = new Graph($this->width, $this->height);
@@ -728,7 +720,6 @@ class DolGraph
 		if (isset($this->title))
 		{
 			$graph->title->set($this->title);
-			//print $artichow_defaultfont;exit;
 			$graph->title->setFont(new $artichow_defaultfont(10));
 		}
 
@@ -736,7 +727,6 @@ class DolGraph
 		else $graph->setBackgroundGradient($colorgradient);
 
 		$group = new PlotGroup;
-		//$group->setSpace(5, 5, 0, 0);
 
 		$paddleft = 50;
 		$paddright = 10;
@@ -780,21 +770,16 @@ class DolGraph
 
 			if ($this->type[0] == 'bars')
 			{
-				//print "Lot de donnees $i<br>";
-				//print_r($values);
-				//print '<br>';
 
 				$color = new Color($this->datacolor[$i][0], $this->datacolor[$i][1], $this->datacolor[$i][2], 20);
 				$colorbis = new Color(min($this->datacolor[$i][0] + 50, 255), min($this->datacolor[$i][1] + 50, 255), min($this->datacolor[$i][2] + 50, 255), 50);
 
 				$colorgrey = new Color(100, 100, 100);
-				$colorborder = new Color($this->datacolor[$i][0], $this->datacolor[$i][1], $this->datacolor[$i][2]);
 
 				if ($this->mode == 'side')  $plot = new BarPlot($newvalues, $i + 1, $nblot);
 				if ($this->mode == 'depth') $plot = new BarPlot($newvalues, 1, 1, ($nblot - $i - 1) * 5);
 
 				$plot->barBorder->setColor($colorgrey);
-				//$plot->setBarColor($color);
 				$plot->setBarGradient(new LinearGradient($colorbis, $color, 90));
 
 				if ($this->mode == 'side')  $plot->setBarPadding(0.1, 0.1);
@@ -806,8 +791,6 @@ class DolGraph
 				$plot->barShadow->setPosition(SHADOW_RIGHT_TOP);
 				$plot->barShadow->setColor(new Color(160, 160, 160, 50));
 				$plot->barShadow->smooth(true);
-				//$plot->setSize(1, 0.96);
-				//$plot->setCenter(0.5, 0.52);
 
 				// Le mode automatique est plus efficace
 				$plot->SetYMax($this->MaxValue);
@@ -821,8 +804,6 @@ class DolGraph
 				$colorter = new Color(min($this->datacolor[$i][0] + 50, 255), min($this->datacolor[$i][1] + 50, 255), min($this->datacolor[$i][2] + 50, 255), 90);
 
 				$plot = new LinePlot($newvalues);
-				//$plot->setSize(1, 0.96);
-				//$plot->setCenter(0.5, 0.52);
 
 				$plot->setColor($color);
 				$plot->setThickness(1);
@@ -835,8 +816,6 @@ class DolGraph
 				// Le mode automatique est plus efficace
 				$plot->SetYMax($this->MaxValue);
 				$plot->SetYMin($this->MinValue);
-				//$plot->setYAxis(0);
-				//$plot->hideLine(true);
 			}
 
 			//$plot->reduce(80);		// Evite temps d'affichage trop long et nombre de ticks absisce satures
@@ -856,7 +835,6 @@ class DolGraph
 		$group->axis->bottom->setLabelText($legends);
 		$group->axis->bottom->label->setFont(new $artichow_defaultfont(7));
 
-		//print $group->axis->bottom->getLabelNumber();
 		if ($this->labelInterval > 0) $group->axis->bottom->setLabelInterval($this->labelInterval);
 
 		$graph->add($group);
@@ -924,7 +902,6 @@ class DolGraph
 				$x++;
 			}
 
-			// TODO Avoid push by adding generated long array...
 			if (isset($this->type[$firstlot]) && $this->type[$firstlot] == 'pie')
 			{
 				foreach($values as $x => $y) {
@@ -976,7 +953,7 @@ class DolGraph
 			$datacolor=array();
 			foreach($this->datacolor as $val) $datacolor[]="#".sprintf("%02x%02x%02x", $val[0], $val[1], $val[2]);
 
-			$urltemp='';	// TODO Add support for url link into labels
+			$urltemp='';
 			$showlegend=$this->showlegend;
 			$showpointvalue=$this->showpointvalue;
 			$showpercent=$this->showpercent;
@@ -1034,8 +1011,6 @@ class DolGraph
 		// Other cases, graph of type 'bars', 'lines'
 		else
 		{
-			// Add code to support tooltips
-		    // TODO: remove js css and use graph-tooltip-inner class instead by adding css in each themes
 			$this->stringtoshow .= '
 			function showTooltip_'.$tag.'(x, y, contents) {
 				$(\'<div class="graph-tooltip-inner" id="tooltip_'.$tag.'">\' + contents + \'</div>\').css({
@@ -1117,7 +1092,6 @@ class DolGraph
 			$color1 = sprintf("%02x%02x%02x", $this->bgcolorgrid[0], $this->bgcolorgrid[0], $this->bgcolorgrid[2]);
 			$color2 = sprintf("%02x%02x%02x", $this->bgcolorgrid[0], $this->bgcolorgrid[1], $this->bgcolorgrid[2]);
 			$this->stringtoshow .= ', grid: { hoverable: true, backgroundColor: { colors: ["#'.$color1.'", "#'.$color2.'"] }, borderWidth: 1, borderColor: \'#e6e6e6\', tickColor  : \'#e6e6e6\' }'."\n";
-			//$this->stringtoshow.=', shadowSize: 20'."\n";    TODO Uncommet this
 			$this->stringtoshow .= '});'."\n";
 			$this->stringtoshow .= '}'."\n";
 		}
