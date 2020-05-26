@@ -1373,4 +1373,4 @@ class PHPExcel_Calculation_MathTrig {
 		return (intval($value * $adjust)) / $adjust;
 	}	//	function TRUNC()
 
-}	//	class PHPExcel_Calculation_MathTrig
+}	//	class PHPExcel_Calculation_MathTrig  
