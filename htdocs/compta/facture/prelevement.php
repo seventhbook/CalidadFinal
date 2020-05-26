@@ -142,8 +142,6 @@ if ($object->id > 0)
 
 	// We can also use bcadd to avoid pb with floating points
 	// For example print 239.2 - 229.3 - 9.9; does not return 0.
-	//$resteapayer=bcadd($object->total_ttc,$totalpaye,$conf->global->MAIN_MAX_DECIMALS_TOT);
-	//$resteapayer=bcadd($resteapayer,$totalavoir,$conf->global->MAIN_MAX_DECIMALS_TOT);
 	$resteapayer = price2num($object->total_ttc - $totalpaye - $totalcreditnotes - $totaldeposits, 'MT');
 
 	if ($object->paye) $resteapayer = 0;
@@ -190,11 +188,9 @@ if ($object->id > 0)
 	    if ($user->rights->facture->creer)
 	    {
 	        if ($action != 'classify') {
-	        	//$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
 				$morehtmlref.=' : ';
 			}
         	if ($action == 'classify') {
-                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
                 $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                 $morehtmlref.='<input type="hidden" name="action" value="classin">';
                 $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -259,14 +255,6 @@ if ($object->id > 0)
 		}
 		print ')';
 	}
-	/*
-	if ($facidnext > 0)
-	{
-		$facthatreplace=new Facture($db);
-		$facthatreplace->fetch($facidnext);
-		print ' ('.$langs->transnoentities("ReplacedByInvoice",$facthatreplace->getNomUrl(1)).')';
-	}
-	*/
 	print '</td></tr>';
 
 	// Discounts
@@ -471,7 +459,6 @@ if ($object->id > 0)
 
     $resteapayer = price2num($object->total_ttc - $totalpaye - $totalcreditnotes - $totaldeposits, 'MT');
 
-    // TODO Replace this by an include with same code to show already done payment visible in invoice card
     print '<tr><td>'.$langs->trans('RemainderToPay').'</td><td class="nowrap">'.price($resteapayer, 1, '', 1, - 1, - 1, $conf->currency).'</td></tr>';
 
 	print '</table>';
