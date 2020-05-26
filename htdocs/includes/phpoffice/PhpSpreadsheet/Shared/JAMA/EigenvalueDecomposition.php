@@ -203,7 +203,6 @@ class EigenvalueDecomposition
             // If m == l, $this->d[l] is an eigenvalue,
             // otherwise, iterate.
             if ($m > $l) {
-                $iter = 0;
                 do {
                     // Could check iteration count here.
                     $iter += 1;
@@ -629,10 +628,10 @@ class EigenvalueDecomposition
                             $this->V[$i][$k] = $this->V[$i][$k] - $p;
                             $this->V[$i][$k + 1] = $this->V[$i][$k + 1] - $p * $q;
                         }
-                    }  // ($s != 0)
-                }  // k loop
-            }  // check convergence
-        }  // while ($n >= $low)
+                    } 
+                } 
+            } 
+        }
 
         // Backsubstitute to find vectors of upper triangular form
         if ($norm == 0.0) {
@@ -700,7 +699,6 @@ class EigenvalueDecomposition
                 $this->H[$n][$n - 1] = 0.0;
                 $this->H[$n][$n] = 1.0;
                 for ($i = $n - 2; $i >= 0; --$i) {
-                    // double ra,sa,vr,vi;
                     $ra = 0.0;
                     $sa = 0.0;
                     for ($j = $l; $j <= $n; ++$j) {
