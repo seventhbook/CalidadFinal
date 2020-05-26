@@ -408,7 +408,7 @@ class Worksheet extends BIFFwriter
             $cVal = $cell->getValue();
             if ($cVal instanceof RichText) {
                 $arrcRun = [];
-                $str_len = StringHelper::countCharacters($cVal->getPlainText(), 'UTF-8');
+                
                 $str_pos = 0;
                 $elements = $cVal->getRichTextElements();
                 foreach ($elements as $element) {
@@ -506,11 +506,11 @@ class Worksheet extends BIFFwriter
         $arrConditionalStyles = $phpSheet->getConditionalStylesCollection();
         if (!empty($arrConditionalStyles)) {
             $arrConditional = [];
-            // @todo CFRule & CFHeader
+            
             // Write CFHEADER record
             $this->writeCFHeader();
             // Write ConditionalFormattingTable records
-            foreach ($arrConditionalStyles as $cellCoordinate => $conditionalStyles) {
+            foreach ($arrConditionalStyles) {
                 foreach ($conditionalStyles as $conditional) {
                     if ($conditional->getConditionType() == Conditional::CONDITION_EXPRESSION
                         || $conditional->getConditionType() == Conditional::CONDITION_CELLIS) {
@@ -1241,7 +1241,7 @@ class Worksheet extends BIFFwriter
         $header = pack('vv', $record, $length);
         $data = pack('vvv', $grbit, $rwTop, $colLeft);
 
-        // FIXME !!!
+        
         $rgbHdr = 0x0040; // Row/column heading and gridline color index
         $zoom_factor_page_break = ($fPageBreakPreview ? $this->phpSheet->getSheetView()->getZoomScale() : 0x0000);
         $zoom_factor_normal = $this->phpSheet->getSheetView()->getZoomScaleNormal();
@@ -3008,10 +3008,10 @@ class Worksheet extends BIFFwriter
         // Alignment
         $bAlignHz = ($conditional->getStyle()->getAlignment()->getHorizontal() == null ? 1 : 0);
         $bAlignVt = ($conditional->getStyle()->getAlignment()->getVertical() == null ? 1 : 0);
-        $bAlignWrapTx = ($conditional->getStyle()->getAlignment()->getWrapText() == false ? 1 : 0);
+        $bAlignWrapTx = ($conditional->getStyle()->getAlignment()->getWrapText() ==  1 : 0);
         $bTxRotation = ($conditional->getStyle()->getAlignment()->getTextRotation() == null ? 1 : 0);
         $bIndent = ($conditional->getStyle()->getAlignment()->getIndent() == 0 ? 1 : 0);
-        $bShrinkToFit = ($conditional->getStyle()->getAlignment()->getShrinkToFit() == false ? 1 : 0);
+        $bShrinkToFit = ($conditional->getStyle()->getAlignment()->getShrinkToFit() ==  1 : 0);
         if ($bAlignHz == 0 || $bAlignVt == 0 || $bAlignWrapTx == 0 || $bTxRotation == 0 || $bIndent == 0 || $bShrinkToFit == 0) {
             $bFormatAlign = 1;
         } else {
@@ -3456,7 +3456,7 @@ class Worksheet extends BIFFwriter
 
                     break;
             }
-            if ($conditional->getStyle()->getAlignment()->getWrapText() == true) {
+            if ($conditional->getStyle()->getAlignment()->getWrapText()) {
                 $blockAlign |= 1 << 3;
             } else {
                 $blockAlign |= 0 << 3;
@@ -3486,7 +3486,7 @@ class Worksheet extends BIFFwriter
 
             // Indentation
             $blockIndent = $conditional->getStyle()->getAlignment()->getIndent();
-            if ($conditional->getStyle()->getAlignment()->getShrinkToFit() == true) {
+            if ($conditional->getStyle()->getAlignment()->getShrinkToFit()) {
                 $blockIndent |= 1 << 4;
             } else {
                 $blockIndent |= 0 << 4;
@@ -3732,14 +3732,14 @@ class Worksheet extends BIFFwriter
 
                     break;
             }
-            //@todo writeCFRule() => $blockLineStyle => Index Color for left line
-            //@todo writeCFRule() => $blockLineStyle => Index Color for right line
-            //@todo writeCFRule() => $blockLineStyle => Top-left to bottom-right on/off
-            //@todo writeCFRule() => $blockLineStyle => Bottom-left to top-right on/off
+            
+            
+            
+            
             $blockColor = 0;
-            //@todo writeCFRule() => $blockColor => Index Color for top line
-            //@todo writeCFRule() => $blockColor => Index Color for bottom line
-            //@todo writeCFRule() => $blockColor => Index Color for diagonal line
+            
+            
+            
             switch ($conditional->getStyle()->getBorders()->getDiagonal()->getBorderStyle()) {
                 case Border::BORDER_NONE:
                     $blockColor |= 0x00 << 21;
