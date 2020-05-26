@@ -738,39 +738,39 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 
 		// Start styles
 		if ($generateSurroundingHTML) {
-			// html { }
+			
 			$css['html']['font-family']	  = 'Calibri, Arial, Helvetica, sans-serif';
 			$css['html']['font-size']		= '11pt';
 			$css['html']['background-color'] = 'white';
 		}
 
 
-		// table { }
+		
 		$css['table']['border-collapse']  = 'collapse';
 	    if (!$this->_isPdf) {
 			$css['table']['page-break-after'] = 'always';
 		}
 
-		// .gridlines td { }
+		
 		$css['.gridlines td']['border'] = '1px dotted black';
 		$css['.gridlines th']['border'] = '1px dotted black';
 
-		// .b {}
+		
 		$css['.b']['text-align'] = 'center'; // BOOL
 
-		// .e {}
+		
 		$css['.e']['text-align'] = 'center'; // ERROR
 
-		// .f {}
+		
 		$css['.f']['text-align'] = 'right'; // FORMULA
 
-		// .inlineStr {}
+		
 		$css['.inlineStr']['text-align'] = 'left'; // INLINE
 
-		// .n {}
+		
 		$css['.n']['text-align'] = 'right'; // NUMERIC
 
-		// .s {}
+		
 		$css['.s']['text-align'] = 'left'; // STRING
 
 		// Calculate cell style hashes
@@ -822,7 +822,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 			// Default row height
 			$rowDimension = $sheet->getDefaultRowDimension();
 
-			// table.sheetN tr { }
+			
 			$css['table.sheet' . $sheetIndex . ' tr'] = array();
 
 			if ($rowDimension->getRowHeight() == -1) {
@@ -840,7 +840,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 			foreach ($sheet->getRowDimensions() as $rowDimension) {
 				$row = $rowDimension->getRowIndex() - 1;
 
-				// table.sheetN tr.rowYYYYYY { }
+				
 				$css['table.sheet' . $sheetIndex . ' tr.row' . $row] = array();
 
 				if ($rowDimension->getRowHeight() == -1) {
@@ -970,7 +970,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 	 */
 	private function _createCSSStyleBorder(PHPExcel_Style_Border $pStyle) {
 		// Create CSS
-//		$css = $this->_mapBorderStyle($pStyle->getBorderStyle()) . ' #' . $pStyle->getColor()->getRGB();
+
 		//	Create CSS - add !important to non-none border styles for merged cells  
 		$borderStyle = $this->_mapBorderStyle($pStyle->getBorderStyle());  
 		$css = $borderStyle . ' #' . $pStyle->getColor()->getRGB() . (($borderStyle == 'none') ? '' : ' !important'); 
@@ -1200,8 +1200,8 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 						}
 					}
 
-					// Converts the cell content so that spaces occuring at beginning of each new line are replaced by &nbsp;
-					// Example: "  Hello\n to the world" is converted to "&nbsp;&nbsp;Hello\n&nbsp;to the world"
+					
+					
 					$cellData = preg_replace("/(?m)(?:^|\\G) /", '&nbsp;', $cellData);
 
 					// convert newline "\n" to '<br>'
@@ -1242,8 +1242,8 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 							&& $this->_isSpannedCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum] );
 
 				// Colspan and Rowspan
-				$colspan = 1;
-				$rowspan = 1;
+				
+				
 				if (isset($this->_isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum])) {
 					$spans = $this->_isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum];
 					$rowSpan = $spans['rowspan'];
