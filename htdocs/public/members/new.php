@@ -43,7 +43,7 @@ if (!defined('NOIPCHECK'))		define('NOIPCHECK', '1'); // Do not check IP defined
 
 // For MultiCompany module.
 // Do not use GETPOST here, function is not defined and define must be done before including main.inc.php
-// TODO This should be useless. Because entity must be retrieve from object ref and not from url.
+
 $entity = (!empty($_GET['entity']) ? (int) $_GET['entity'] : (!empty($_POST['entity']) ? (int) $_POST['entity'] : 1));
 if (is_numeric($entity)) define("DOLENTITY", $entity);
 
@@ -324,11 +324,11 @@ if ($action == 'add')
 
             		$result = $object->send_an_email($texttosend, $subjecttosend, array(), array(), array(), "", "", 0, -1, '', $moreinheader);
             	}
-            	/*if ($result < 0)
-            	{
-            		$error++;
-            		setEventMessages($object->error, $object->errors, 'errors');
-            	}*/
+            	
+            	
+            	
+            	
+            	
             }
 
             // Send email to the foundation to say a new member subscribed with autosubscribe form
@@ -374,7 +374,7 @@ if ($action == 'add')
             elseif (!empty($conf->global->MEMBER_URL_REDIRECT_SUBSCRIPTION))
             {
                 $urlback = $conf->global->MEMBER_URL_REDIRECT_SUBSCRIPTION;
-                // TODO Make replacement of __AMOUNT__, etc...
+                
             }
             else $urlback = $_SERVER["PHP_SELF"]."?action=added";
 
@@ -532,7 +532,7 @@ print '<input type="hidden" name="action" value="add" />';
 print '<br>';
 
 print '<br><span class="opacitymedium">'.$langs->trans("FieldsWithAreMandatory", '*').'</span><br>';
-//print $langs->trans("FieldsWithIsForPublic",'**').'<br>';
+
 
 dol_fiche_head('');
 
@@ -625,11 +625,11 @@ if (!$country_id && !empty($conf->global->MEMBER_NEWFORM_FORCECOUNTRYCODE)) $cou
 if (!$country_id && !empty($conf->geoipmaxmind->enabled))
 {
     $country_code = dol_user_country();
-    //print $country_code;
+    
     if ($country_code)
     {
         $new_country_id = getCountry($country_code, 3, $db, $langs);
-        //print 'xxx'.$country_code.' - '.$new_country_id;
+        
         if ($new_country_id) $country_id = $new_country_id;
     }
 }
