@@ -261,7 +261,7 @@ if (!function_exists('str_split')) {
 	function str_split($string, $split_length=1) {
 		if ((strlen($string) > $split_length) OR (!$split_length)) {
 			do {
-				$c = strlen($string);
+				
 				$parts[] = substr($string, 0, $split_length);
 				$string = substr($string, $split_length);
 			} while ($string !== false);
@@ -1220,7 +1220,7 @@ class QRcode {
 	 */
 	 protected function mask($width, $frame, $level) {
 		$minDemerit = PHP_INT_MAX;
-		$bestMaskNum = 0;
+		
 		$bestMask = array();
 		$checked_masks = array(0, 1, 2, 3, 4, 5, 6, 7);
 		if (QR_FIND_FROM_RANDOM !== false) {
@@ -1717,7 +1717,7 @@ class QRcode {
 		if (($index <= 0) OR ($index > MAX_STRUCTURED_SYMBOLS)) {
 			return -1;
 		}
-		$buf = array($size, $index, $parity);
+		
 		$entry = $this->newInputItem(QR_MODE_ST, 3, buf);
 		array_unshift($items, $entry);
 		return $items;
