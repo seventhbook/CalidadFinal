@@ -146,7 +146,6 @@ class pdf_ban extends ModeleBankAccountDoc
 				$hookmanager->initHooks(array('pdfgeneration'));
 				$parameters=array('file'=>$file,'object'=>$object,'outputlangs'=>$outputlangs);
 				global $action;
-				$reshook=$hookmanager->executeHooks('beforePDFCreation', $parameters, $object, $action);    // Note that $action and $object may have been modified by some hooks
 
                 $pdf=pdf_getInstance($this->format);
                 $default_font_size = pdf_getPDFFontSize($outputlangs);	// Must be after pdf_getInstance
@@ -187,7 +186,6 @@ class pdf_ban extends ModeleBankAccountDoc
 				$tab_top = 50;
 				$tab_height = 200;
 				$tab_top_newpage = 40;
-                $tab_height_newpage = 210;
 
 				// Affiche notes
 				if (! empty($object->note_public))
@@ -209,9 +207,7 @@ class pdf_ban extends ModeleBankAccountDoc
 					$height_note=0;
 				}
 
-				$iniY = $tab_top + 7;
 				$curY = $tab_top + 7;
-				$nexY = $tab_top + 7;
 
 				$pdf->SetXY($this->marge_gauche, $curY);
 				$pdf->MultiCell(200, 3, $outputlangs->trans("BAN").' : '.$object->account_number, 0, 'L');
@@ -222,7 +218,6 @@ class pdf_ban extends ModeleBankAccountDoc
 				if ($pagenb == 1)
 				{
 					$this->_tableau($pdf, $tab_top, $this->page_hauteur - $tab_top - $heightforinfotot - $heightforfreetext - $heightforfooter, 0, $outputlangs, 0, 0);
-					$bottomlasttab=$this->page_hauteur - $heightforinfotot - $heightforfreetext - $heightforfooter + 1;
 				}
 				else
 				{
@@ -293,7 +288,6 @@ class pdf_ban extends ModeleBankAccountDoc
 		// phpcs:enable
 		global $conf,$mysoc;
 
-        $default_font_size = pdf_getPDFFontSize($outputlangs);
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
@@ -352,36 +346,8 @@ class pdf_ban extends ModeleBankAccountDoc
 		$pdf->SetXY($posx, $posy);
 		$pdf->SetTextColor(0, 0, 60);
 		$pdf->MultiCell(100, 4, $outputlangs->transnoentities("Date")." : " . dol_print_date(dol_now(), 'day', false, $outputlangs, true), '', 'R');
-		/*$posy+=6;
-		$pdf->SetXY($posx,$posy);
-		$pdf->MultiCell(100, 4, $outputlangs->transnoentities("DateEnd")." : " . dol_print_date($object->date_end,'day',false,$outputlangs,true), '', 'R');
-		*/
 
 		$pdf->SetTextColor(0, 0, 60);
-
-		// Add list of linked objects
-		/* Removed: A project can have more than thousands linked objects (orders, invoices, proposals, etc....
-		$object->fetchObjectLinked();
-
-	    foreach($object->linkedObjects as $objecttype => $objects)
-	    {
-	        var_dump($objects);exit;
-	    	if ($objecttype == 'commande')
-	    	{
-	    		$outputlangs->load('orders');
-	    		$num=count($objects);
-	    		for ($i=0;$i<$num;$i++)
-	    		{
-	    			$posy+=4;
-	    			$pdf->SetXY($posx,$posy);
-	    			$pdf->SetFont('','', $default_font_size - 1);
-	    			$text=$objects[$i]->ref;
-	    			if ($objects[$i]->ref_client) $text.=' ('.$objects[$i]->ref_client.')';
-	    			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("RefOrder")." : ".$outputlangs->transnoentities($text), '', 'R');
-	    		}
-	    	}
-	    }
-        */
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
@@ -399,7 +365,5 @@ class pdf_ban extends ModeleBankAccountDoc
 		// phpcs:enable
 		global $conf;
 
-		$showdetails=$conf->global->MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS;
-		//return pdf_pagefoot($pdf,$outputlangs,'BANK_FREE_TEXT',$this->emetteur,$this->marge_basse,$this->marge_gauche,$this->page_hauteur,$object,$showdetails,$hidefreetext);
 	}
 }
