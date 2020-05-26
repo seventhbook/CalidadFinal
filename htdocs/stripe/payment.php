@@ -149,7 +149,7 @@ if (empty($reshook))
 		            if ($datepaye && ($datepaye < $tmpinvoice->date))
 		            {
 		            	$langs->load("errors");
-		                //$error++;
+		                
 		                setEventMessages($langs->transnoentities("WarningPaymentDateLowerThanInvoiceDate", dol_print_date($datepaye, 'day'), dol_print_date($tmpinvoice->date, 'day'), $tmpinvoice->ref), null, 'warnings');
 		            }
 	            }
@@ -177,7 +177,7 @@ if (empty($reshook))
 		            if ($datepaye && ($datepaye < $tmpinvoice->date))
 		            {
 		            	$langs->load("errors");
-		                //$error++;
+		                
 		                setEventMessages($langs->transnoentities("WarningPaymentDateLowerThanInvoiceDate", dol_print_date($datepaye, 'day'), dol_print_date($tmpinvoice->date, 'day'), $tmpinvoice->ref), null, 'warnings');
 		            }
 	            }
@@ -187,11 +187,11 @@ if (empty($reshook))
 	    }
 
         // Check parameters
-        /*if (! GETPOST('paiementcode'))
-        {
-            setEventMessages($langs->transnoentities('ErrorFieldRequired',$langs->transnoentities('PaymentMode')), null, 'errors');
-            $error++;
-        }*/
+        
+        
+            
+           
+       
 
 	    if (!empty($conf->banque->enabled))
 	    {
@@ -209,11 +209,11 @@ if (empty($reshook))
 	        $error++;
 	    }
 
-        /*if (empty($datepaye))
-        {
-            setEventMessages($langs->transnoentities('ErrorFieldRequired',$langs->transnoentities('Date')), null, 'errors');
-            $error++;
-        }*/
+        
+        
+            
+            
+        
 
 		// Check if payments in both currency
 		if ($totalpayment > 0 && $multicurrency_totalpayment > 0)
@@ -568,10 +568,10 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
 		print '<table class="border centpercent">';
 
 		// Invoice
-		/*if ($facture->id > 0)
-		{
-			print '<tr><td class="titlefieldcreate"><span class="fieldrequired">'.$langs->trans('Invoice').'</span></td><td>'.$facture->getNomUrl(4)."</td></tr>\n";
-		}*/
+		
+		
+			
+		
 
         // Third party
         print '<tr><td class="titlefieldcreate"><span class="fieldrequired">'.$langs->trans('Company').'</span></td><td>'.$facture->thirdparty->getNomUrl(4)."</td></tr>\n";
@@ -579,7 +579,7 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
         // Bank account
         if (!empty($conf->banque->enabled))
         {
-            //$form->select_comptes($accountid,'accountid',0,'',2);
+            
             print '<input name="accountid" type="hidden" value="'.$conf->global->STRIPE_BANK_ACCOUNT_FOR_PAYMENTS.'">';
         }
         else
@@ -588,22 +588,22 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
         }
 
         // Cheque number
-        //print '<tr><td>'.$langs->trans('Numero');
-        //print ' <em>('.$langs->trans("ChequeOrTransferNumber").')</em>';
-        //print '</td>';
-        //print '<td><input name="num_paiement" type="text" value="'.$paymentnum.'"></td></tr>';
+        
+        
+        
+        
 
         // Check transmitter
-        //print '<tr><td class="'.(GETPOST('paiementcode')=='CHQ'?'fieldrequired ':'').'fieldrequireddyn">'.$langs->trans('CheckTransmitter');
-        //print ' <em>('.$langs->trans("ChequeMaker").')</em>';
-        //print '</td>';
-        //print '<td><input id="fieldchqemetteur" name="chqemetteur" size="30" type="text" value="'.GETPOST('chqemetteur').'"></td></tr>';
+        
+        
+        
+        
 
         // Bank name
-        //print '<tr><td>'.$langs->trans('Bank');
-        //print ' <em>('.$langs->trans("ChequeBank").')</em>';
-        //print '</td>';
-        //print '<td><input name="chqbank" size="30" type="text" value="'.GETPOST('chqbank').'"></td></tr>';
+        
+        
+        
+        
 
 		// Comments
 		print '<tr><td>'.$langs->trans('Comments').'</td>';
@@ -707,9 +707,9 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
             print '</tr>';
         }
         // TODO more dolibarize with new stripe function and stripeconnect
-        //if ($stripe->getStripeCustomerAccount($facture->socid)) {
-        //    $account=\Stripe\Account::retrieve("".$stripe->getStripeCustomerAccount($facture->socid)."");
-        //}
+        
+        
+        
 
         if (($account->type == 'custom' or $account->type == 'express') && $entity == 1) {
             print '<tr class="oddeven">';
@@ -748,11 +748,11 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
                 print'class="opacitymedium"';
             }
             print'>';
-            //if (($customer->default_source!=$src->id)) {
-            //    print img_picto($langs->trans("Disabled"),'off');
-            //} else {
-            //    print img_picto($langs->trans("Default"),'on');
-            //}
+            
+            
+            
+            
+            
             print '</td>';
             print '</tr>';
         }
@@ -922,7 +922,7 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
 
                     // Remain to take or to pay back
                     print '<td class="right">'.price($sign * $remaintopay).'</td>';
-                    //$test= price(price2num($objp->total_ttc - $paiement - $creditnotes - $deposits));
+                    
 
                     // Amount
                     print '<td class="right">';
@@ -977,7 +977,7 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
 
                     // Warning
                     print '<td class="center" width="16">';
-                    //print "xx".$amounts[$invoice->id]."-".$amountsresttopay[$invoice->id]."<br>";
+                    
                     if ($amounts[$invoice->id] && (abs($amounts[$invoice->id]) > abs($amountsresttopay[$invoice->id]))
                     	|| $multicurrency_amounts[$invoice->id] && (abs($multicurrency_amounts[$invoice->id]) > abs($multicurrency_amountsresttopay[$invoice->id])))
                     {
@@ -1020,7 +1020,7 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
                     print "</tr>\n";
                 }
                 print "</table>";
-                //print "</td></tr>\n";
+                
             }
             $db->free($resql);
         }
@@ -1040,11 +1040,11 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
 
         	print '<br><div class="center">';
         	print '<input type="checkbox" checked name="closepaidinvoices"> '.$checkboxlabel;
-            /*if (! empty($conf->prelevement->enabled))
-            {
-                $langs->load("withdrawals");
-                if (! empty($conf->global->WITHDRAW_DISABLE_AUTOCREATE_ONPAYMENTS)) print '<br>'.$langs->trans("IfInvoiceNeedOnWithdrawPaymentWontBeClosed");
-            }*/
+            
+            
+                
+                
+            
             print '<br><input type="submit" class="button" value="'.dol_escape_htmltag($buttontitle).'"><br><br>';
             print '</div>';
         }
