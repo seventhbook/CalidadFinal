@@ -1882,10 +1882,10 @@ class Financial
 
         $rate = $guess;
         if (abs($rate) < self::FINANCIAL_PRECISION) {
-            $y = $pv * (1 + $nper * $rate) + $pmt * (1 + $rate * $type) * $nper + $fv;
+            
         } else {
             $f = exp($nper * log(1 + $rate));
-            $y = $pv * $f + $pmt * (1 / $rate + $type) * ($f - 1) + $fv;
+            
         }
         $y0 = $pv + $pmt * $nper + $fv;
         $y1 = $pv * $f + $pmt * (1 / $rate + $type) * ($f - 1) + $fv;
