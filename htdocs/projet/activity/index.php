@@ -37,7 +37,7 @@ if ($search_project_user == $user->id) $mine = 1;
 // Security check
 $socid = 0;
 if ($user->socid > 0) $socid = $user->socid;
-//$result = restrictedArea($user, 'projet', $projectid);
+
 if (!$user->rights->projet->lire) accessforbidden();
 
 $hookmanager = new HookManager($db);
@@ -66,7 +66,7 @@ $taskstatic = new Task($db);
 $tasktmp = new Task($db);
 
 $title = $langs->trans("Activities");
-//if ($mine) $title=$langs->trans("MyActivities");
+
 
 llxHeader("", $title);
 
@@ -86,7 +86,7 @@ $morehtml .= '</SELECT>';
 $morehtml .= '<input type="submit" class="button" name="refresh" value="'.$langs->trans("Refresh").'">';
 
 print_barre_liste($title, 0, $_SERVER["PHP_SELF"], '', '', '', '', 0, -1, 'project', 0, $morehtml);
-//print load_fiche_titre($title, '', 'project');
+
 
 if ($mine) print $langs->trans("MyTasksDesc").'<br><br>';
 else
@@ -243,65 +243,65 @@ print '</div>';
 
 
 
-/*
-if ($db->type != 'pgsql')
-{
-    print '<br>';
 
-    // Affichage de la liste des projets de la semaine
-    print '<div class="div-table-responsive-no-min">';
-    print '<table class="noborder centpercent">';
-    print '<tr class="liste_titre">';
-    print '<td>'.$langs->trans("ActivityOnProjectThisWeek").'</td>';
-    print '<td class="right">'.$langs->trans("Time").'</td>';
-    print "</tr>\n";
 
-    $sql = "SELECT p.rowid, p.ref, p.title, p.public, SUM(tt.task_duration) as nb";
-    $sql.= " FROM ".MAIN_DB_PREFIX."projet as p";
-    $sql.= " , ".MAIN_DB_PREFIX."projet_task as t";
-    $sql.= " , ".MAIN_DB_PREFIX."projet_task_time as tt";
-    $sql.= " WHERE t.fk_projet = p.rowid";
-    $sql.= " AND p.entity = ".$conf->entity;
-    $sql.= " AND tt.fk_task = t.rowid";
-    $sql.= " AND tt.fk_user = ".$user->id;
-    $sql.= " AND task_date >= '".$db->idate(dol_get_first_day($year, $month)).'" AND ...";
-    $sql.= " AND p.rowid in (".$projectsListId.")";
-    $sql.= " GROUP BY p.rowid, p.ref, p.title";
 
-    $resql = $db->query($sql);
-    if ( $resql )
-    {
-    	$total = 0;
 
-    	while ($row = $db->fetch_object($resql))
-    	{
-    		print '<tr class="oddeven">';
-    		print '<td>';
-    		$projectstatic->id=$row->rowid;
-    		$projectstatic->ref=$row->ref;
-    		$projectstatic->title=$row->title;
-    		$projectstatic->public=$row->public;
-    		print $projectstatic->getNomUrl(1, '', 1);
-    		print '</td>';
-    		print '<td class="right">'.convertSecondToTime($row->nb, 'allhourmin').'</td>';
-    		print "</tr>\n";
-    		$total += $row->nb;
-    	}
 
-    	$db->free($resql);
-    }
-    else
-    {
-    	dol_print_error($db);
-    }
-    print '<tr class="liste_total">';
-    print '<td>'.$langs->trans('Total').'</td>';
-    print '<td class="right">'.convertSecondToTime($total, 'allhourmin').'</td>';
-    print "</tr>\n";
-    print "</table></div><br>";
 
-}
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Affichage de la liste des projets du mois */
 if (!empty($conf->global->PROJECT_TASK_TIME_MONTH))
@@ -476,12 +476,12 @@ if (empty($conf->global->PROJECT_HIDE_TASKS) && !empty($conf->global->PROJECT_SH
 		$num = $db->num_rows($resql);
 		$i = 0;
 
-		//print load_fiche_titre($langs->trans("TasksOnOpenedProject"),'','').'<br>';
+		
 
         print '<div class="div-table-responsive-no-min">';
 		print '<table class="noborder centpercent">';
 		print '<tr class="liste_titre">';
-		//print '<th>'.$langs->trans('TaskRessourceLinks').'</th>';
+		
 		print '<th>'.$langs->trans('OpenedProjects').'</th>';
 		if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES)) print '<th>'.$langs->trans('OpportunityStatus').'</th>';
 		print '<th>'.$langs->trans('Task').'</th>';
@@ -520,7 +520,7 @@ if (empty($conf->global->PROJECT_HIDE_TASKS) && !empty($conf->global->PROJECT_SH
 			if ($userstatic->id) $username = $userstatic->getNomUrl(0, 0);
 
 			print '<tr class="oddeven">';
-			//print '<td>'.$username.'</td>';
+			
 			print '<td>';
 			print $projectstatic->getNomUrl(1, '', 0, '', '<br>');
 			print '</td>';
