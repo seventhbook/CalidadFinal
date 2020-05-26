@@ -192,7 +192,7 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 				$tab_top = 50;
 				$tab_height = 200;
 				$tab_top_newpage = 40;
-                $tab_height_newpage = 210;
+                
 
 				// Show notes
 				if (! empty($object->note_public))
@@ -214,7 +214,7 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 					$height_note=0;
 				}
 
-				$iniY = $tab_top + 7;
+				
 				$curY = $tab_top + 7;
 				$nexY = $tab_top + 7;
 
@@ -364,11 +364,11 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 					$bottomlasttab=$this->page_hauteur - $heightforinfotot - $heightforfreetext - $heightforfooter + 1;
 				}
 
-				/*var_dump($tab_top);
-				var_dump($heightforinfotot);
-				var_dump($heightforfreetext);
-				var_dump($heightforfooter);
-				var_dump($bottomlasttab);*/
+				
+				
+				
+				
+				
 
 				// Affiche zone infos
 				$posy=$this->_tableau_info($pdf, $object, $bottomlasttab, $outputlangs);
@@ -436,7 +436,7 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 		// phpcs:enable
 		global $conf,$mysoc;
 
-        $default_font_size = pdf_getPDFFontSize($outputlangs);
+        
 	}
 
 
@@ -507,8 +507,8 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 
 	    $posx = 120;
 	    $largcol = ($this->page_largeur - $this->marge_droite - $posx);
-	    $useborder=0;
-	    $index = 0;
+	    
+	    
 	    // Total HT
 	    $pdf->SetFillColor(255, 255, 255);
 	    $pdf->SetXY($posx, $tab_top + 0);
@@ -583,35 +583,35 @@ class pdf_sepamandate extends ModeleBankAccountDoc
 		}
 		else $daterum = dol_print_date($object->datec, 'day', false, $outputlangs, true);   // For old record, the date_rum was not saved.
 		$pdf->MultiCell(100, 4, $outputlangs->transnoentities("Date")." : " . $daterum, '', 'R');
-		/*$posy+=6;
-		$pdf->SetXY($posx,$posy);
-		$pdf->MultiCell(100, 4, $outputlangs->transnoentities("DateEnd")." : " . dol_print_date($object->date_end,'day',false,$outputlangs,true), '', 'R');
-		*/
+		
+		
+		
+		
 
 		$pdf->SetTextColor(0, 0, 60);
 
 		// Add list of linked objects
 		/* Removed: A project can have more than thousands linked objects (orders, invoices, proposals, etc....
-		$object->fetchObjectLinked();
+		
 
-	    foreach($object->linkedObjects as $objecttype => $objects)
-	    {
-	        var_dump($objects);exit;
-	    	if ($objecttype == 'commande')
-	    	{
-	    		$outputlangs->load('orders');
-	    		$num=count($objects);
-	    		for ($i=0;$i<$num;$i++)
-	    		{
-	    			$posy+=4;
-	    			$pdf->SetXY($posx,$posy);
-	    			$pdf->SetFont('','', $default_font_size - 1);
-	    			$text=$objects[$i]->ref;
-	    			if ($objects[$i]->ref_client) $text.=' ('.$objects[$i]->ref_client.')';
-	    			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("RefOrder")." : ".$outputlangs->transnoentities($text), '', 'R');
-	    		}
-	    	}
-	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    	
+	    	
+	    
         */
 	}
 
