@@ -344,7 +344,7 @@ class SimpleOpenID
         $curl = curl_init($url . ($method == "GET" && $params != "" ? "?" . $params : ""));
         @curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_HEADER, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($curl, CURLOPT_HTTPGET, ($method == "GET"));
         curl_setopt($curl, CURLOPT_POST, ($method == "POST"));
         if ($method == "POST") curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
