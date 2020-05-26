@@ -347,10 +347,10 @@ if ($id > 0 || !empty($ref))
 
 
 	// To verify role of users
-	//$userAccess = $object->restrictedProjectArea($user,'read');
+	
 	$userWrite = $object->restrictedProjectArea($user, 'write');
-	//$userDelete = $object->restrictedProjectArea($user,'delete');
-	//print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+	
+	
 
 
 	$tab = GETPOST('tab') ?GETPOST('tab') : 'tasks';
@@ -667,7 +667,7 @@ elseif ($id > 0 || !empty($ref))
 	$title = $langs->trans("ListOfTasks");
 	$linktotasks = dolGetButtonTitle($langs->trans('GoToGanttView'), '', 'fa fa-stream paddingleft imgforviewmode', DOL_URL_ROOT.'/projet/ganttview.php?id='.$object->id.'&withproject=1', '', 1, array('morecss'=>'reposition'));
 
-	//print_barre_liste($title, 0, $_SERVER["PHP_SELF"], '', $sortfield, $sortorder, $linktotasks, $num, $totalnboflines, 'generic', 0, '', '', 0, 1);
+	
 	print load_fiche_titre($title, $linktotasks.' &nbsp; '.$linktocreatetask, 'generic');
 
 	// Get list of tasks in tasksarray and taskarrayfiltered
@@ -679,8 +679,8 @@ elseif ($id > 0 || !empty($ref))
 	if ($search_user_id > 0) $tmpuser->fetch($search_user_id);
 
 	$tasksrole = ($tmpuser->id > 0 ? $taskstatic->getUserRolesForProjectsOrTasks(0, $tmpuser, $object->id, 0) : '');
-	//var_dump($tasksarray);
-	//var_dump($tasksrole);
+	
+	
 
 	if (!empty($conf->use_javascript_ajax))
 	{
@@ -770,7 +770,7 @@ elseif ($id > 0 || !empty($ref))
 	print "</tr>\n";
 
 	print '<tr class="liste_titre nodrag nodrop">';
-	// print '<td>'.$langs->trans("Project").'</td>';
+	
 	print_liste_field_titre("RefTask", $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, '');
 	print_liste_field_titre("LabelTask", $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, '');
 	print_liste_field_titre("DateStart", $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, 'center ');
@@ -809,7 +809,7 @@ elseif ($id > 0 || !empty($ref))
 
 
 	// Test if database is clean. If not we clean it.
-	//print 'mode='.$_REQUEST["mode"].' $nboftaskshown='.$nboftaskshown.' count($tasksarray)='.count($tasksarray).' count($tasksrole)='.count($tasksrole).'<br>';
+	
 	if (!empty($user->rights->projet->all->lire))	// We make test to clean only if user has permission to see all (test may report false positive otherwise)
 	{
 		if ($search_user_id == $user->id)
