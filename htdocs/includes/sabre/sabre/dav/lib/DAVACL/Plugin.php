@@ -962,27 +962,11 @@ class Plugin extends DAV\ServerPlugin {
 
     }
 
-    /**
-     * Triggered before a node is unlocked.
-     *
-     * @param string $uri
-     * @param DAV\Locks\LockInfo $lock
-     * @TODO: not yet implemented
-     * @return void
-     */
     function beforeUnlock($uri, DAV\Locks\LockInfo $lock) {
 
 
     }
 
-    /**
-     * Triggered before properties are looked up in specific nodes.
-     *
-     * @param DAV\PropFind $propFind
-     * @param DAV\INode $node
-     * @TODO really should be broken into multiple methods, or even a class.
-     * @return bool
-     */
     function propFind(DAV\PropFind $propFind, DAV\INode $node) {
 
         $path = $propFind->getPath();
@@ -1240,10 +1224,6 @@ class Plugin extends DAV\ServerPlugin {
         return false;
 
     }
-
-    /* }}} */
-
-    /* Reports {{{ */
 
     /**
      * The principal-match report is defined in RFC3744, section 9.3.
@@ -1580,9 +1560,6 @@ class Plugin extends DAV\ServerPlugin {
         );
 
     }
-
-
-    /* }}} */
 
     /**
      * This method is used to generate HTML output for the
