@@ -78,7 +78,6 @@ if ($action == 'add_prod' && ($user->rights->produit->creer || $user->rights->se
 		{
 			if ($object->add_sousproduit($id, GETPOST("prod_id_".$i, 'int'), $qty, GETPOST("prod_incdec_".$i, 'int')) > 0)
 			{
-				//var_dump($i.' '.GETPOST("prod_id_".$i, 'int'), $qty, GETPOST("prod_incdec_".$i, 'int'));
 				$action = 'edit';
 			}
 			else
@@ -286,7 +285,7 @@ if ($id > 0 || ! empty($ref))
 			foreach($prodsfather as $value)
 			{
 				$idprod= $value["id"];
-				$productstatic->id=$idprod;// $value["id"];
+				$productstatic->id=$idprod;
 				$productstatic->type=$value["fk_product_type"];
 				$productstatic->ref=$value['ref'];
 				$productstatic->label=$value['label'];
@@ -412,7 +411,6 @@ if ($id > 0 || ! empty($ref))
 
 					print '<tr class="oddeven'.$hide.'" id="sub-'.$value['id_parent'].'">';
 
-					//$productstatic->ref=$value['label'];
 					$productstatic->ref=$value['ref'];
 					print '<td>';
 					for ($i=0; $i < $value['level']; $i++)	print ' &nbsp; &nbsp; ';	// Add indentation
@@ -481,10 +479,6 @@ if ($id > 0 || ! empty($ref))
 
 		print '</table>';
 
-		/*if($user->rights->produit->creer || $user->rights->service->creer) {
-			print '<input type="submit" class="button" value="'.$langs->trans('Save').'">';
-		}*/
-
 		print '</form>';
 		print '</div>';
 
@@ -533,7 +527,6 @@ if ($id > 0 || ! empty($ref))
 			print '<tr class="liste_titre">';
 			print '<th class="liste_titre">'.$langs->trans("ComposedProduct").'</td>';
 			print '<th class="liste_titre">'.$langs->trans("Label").'</td>';
-			//print '<th class="liste_titre center">'.$langs->trans("IsInPackage").'</td>';
 			print '<th class="liste_titre right">'.$langs->trans("Qty").'</td>';
 			print '<th class="center">'.$langs->trans('ComposedProductIncDecStock').'</th>';
 			print '</tr>';
@@ -596,20 +589,14 @@ if ($id > 0 || ! empty($ref))
 
 						if($object->is_sousproduit($id, $objp->rowid))
 						{
-							//$addchecked = ' checked';
 							$qty=$object->is_sousproduit_qty;
 							$incdec=$object->is_sousproduit_incdec;
 						}
 						else
 						{
-							//$addchecked = '';
 							$qty=0;
 							$incdec=0;
 						}
-						// Contained into package
-						/*print '<td class="center"><input type="hidden" name="prod_id_'.$i.'" value="'.$objp->rowid.'">';
-						print '<input type="checkbox" '.$addchecked.'name="prod_id_chk'.$i.'" value="'.$objp->rowid.'"></td>';*/
-						// Qty
 						print '<td class="right"><input type="hidden" name="prod_id_'.$i.'" value="'.$objp->rowid.'"><input type="text" size="2" name="prod_qty_'.$i.'" value="'.($qty?$qty:'').'"></td>';
 
 						// Inc Dec
@@ -617,9 +604,7 @@ if ($id > 0 || ! empty($ref))
 						if ($qty) print '<input type="checkbox" name="prod_incdec_'.$i.'" value="1" '.($incdec?'checked':'').'>';
 						else
 						{
-							// TODO Hide field and show it when setting a qty
 							print '<input type="checkbox" name="prod_incdec_'.$i.'" value="1" checked>';
-							//print '<input type="checkbox" disabled name="prod_incdec_'.$i.'" value="1" checked>';
 						}
 						print '</td>';
 
