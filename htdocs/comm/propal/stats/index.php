@@ -50,7 +50,6 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
 $startyear=$year-1;
 $endyear=$year;
 
@@ -237,9 +236,6 @@ dol_fiche_head($head, 'byyear', $langs->trans("Statistics"), -1);
 
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
-
-//if (empty($socid))
-//{
 	// Show filter box
 	print '<form name="stats" method="POST" action="'.$_SERVER["PHP_SELF"].'">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
@@ -271,7 +267,6 @@ print '<div class="fichecenter"><div class="fichethirdleft">';
 	print '</table>';
 	print '</form>';
 	print '<br><br>';
-//}
 
 print '<div class="div-table-responsive-no-min">';
 print '<table class="noborder centpercent">';
