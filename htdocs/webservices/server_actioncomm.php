@@ -422,7 +422,7 @@ function createActionComm($authentication, $actioncomm)
 {
 	global $db, $conf, $langs;
 
-	$now = dol_now();
+	
 
 	dol_syslog("Function: createActionComm login=".$authentication['login']);
 
@@ -510,7 +510,7 @@ function updateActionComm($authentication, $actioncomm)
 {
 	global $db,$conf,$langs;
 
-	$now=dol_now();
+	
 
 	dol_syslog("Function: updateActionComm login=".$authentication['login']);
 
