@@ -64,7 +64,6 @@ $cancel     = GETPOST('cancel', 'aZ09');
 $contextpage = GETPOST('contextpage', 'aZ') ?GETPOST('contextpage', 'aZ') : 'mocard'; // To manage different context of search
 $backtopage = GETPOST('backtopage', 'alpha');
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
-//$lineid   = GETPOST('lineid', 'int');
 
 // Initialize technical objects
 $object = new Mo($db);
@@ -103,12 +102,6 @@ if (GETPOST('fk_bom', 'int'))
 		$_POST['note_private'] = $objectbom->note_private;
 	}
 }
-
-// Security check - Protection if external user
-//if ($user->socid > 0) accessforbidden();
-//if ($user->socid > 0) $socid = $user->socid;
-//$isdraft = (($object->statut == $object::STATUS_DRAFT) ? 1 : 0);
-//$result = restrictedArea($user, 'mrp', $object->id, '', '', 'fk_soc', 'rowid', $isdraft);
 
 $permissionnote = $user->rights->mrp->write; // Used by the include of actions_setnotes.inc.php
 $permissiondellink = $user->rights->mrp->write; // Used by the include of actions_dellink.inc.php
@@ -373,13 +366,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 		}
 
 		$text = $langs->trans('ConfirmValidateMo', $numref);
-		/*if (! empty($conf->notification->enabled))
-		 {
-		 require_once DOL_DOCUMENT_ROOT . '/core/class/notify.class.php';
-		 $notify = new Notify($db);
-		 $text .= '<br>';
-		 $text .= $notify->confirmMessage('BOM_VALIDATE', $object->socid, $object);
-		 }*/
 
 		$formquestion = array();
 		if (!empty($conf->mrp->enabled))
@@ -421,11 +407,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	$linkback = '<a href="'.dol_buildpath('/mrp/mo_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
-	/*
-	// Ref bis
-	$morehtmlref.=$form->editfieldkey("RefBis", 'ref_client', $object->ref_client, $object, $user->rights->mrp->creer, 'string', '', 0, 1);
-	$morehtmlref.=$form->editfieldval("RefBis", 'ref_client', $object->ref_client, $object, $user->rights->mrp->creer, 'string', '', null, null, '', 1);*/
-	// Thirdparty
 	$morehtmlref .= $langs->trans('ThirdParty').' : '.(is_object($object->thirdparty) ? $object->thirdparty->getNomUrl(1) : '');
 	// Project
 	if (!empty($conf->projet->enabled))
@@ -437,7 +418,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 	        if ($action != 'classify')
 	            $morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
             if ($action == 'classify') {
-                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->fk_soc, $object->fk_project, 'projectid', 0, 0, 1, 1);
                 $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                 $morehtmlref .= '<input type="hidden" name="action" value="classin">';
                 $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -492,8 +472,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	if (!empty($object->table_element_line))
 	{
-    	// Show object lines
-		//$result = $object->getLinesArray();
 		$object->fetchLines();
 
     	print '	<form name="addproduct" id="addproduct" action="'.$_SERVER["PHP_SELF"].'?id='.$object->id.(($action != 'editline') ? '#addline' : '#line_'.GETPOST('lineid', 'int')).'" method="POST">
@@ -503,9 +481,6 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
     	<input type="hidden" name="id" value="' . $object->id.'">
     	';
 
-    	/*if (!empty($conf->use_javascript_ajax) && $object->status == 0) {
-    	    include DOL_DOCUMENT_ROOT.'/core/tpl/ajaxrow.tpl.php';
-    	}*/
 
     	if (!empty($object->lines))
     	{
@@ -573,17 +548,12 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
     	if (empty($reshook))
     	{
-    	    // Send
-    		//if (empty($user->socid)) {
-    		//	print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&mode=init#formmailbeforetitle">' . $langs->trans('SendMail') . '</a>'."\n";
-    		//}
 
     		// Back to draft
     		if ($object->status == $object::STATUS_VALIDATED)
     		{
 	    		if ($permissiontoadd)
 	    		{
-	    			// TODO Add test that production has not started
 	    			print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&action=confirm_setdraft&confirm=yes">'.$langs->trans("SetToDraft").'</a>';
 	    		}
     		}
