@@ -175,16 +175,10 @@ class PaymentSocialContribution extends CommonObject
 							$contrib = new ChargeSociales($this->db);
 							$contrib->fetch($contribid);
 							$paiement = $contrib->getSommePaiement();
-							//$creditnotes=$contrib->getSumCreditNotesUsed();
 							$creditnotes = 0;
-							//$deposits=$contrib->getSumDepositsUsed();
 							$deposits = 0;
 							$alreadypayed = price2num($paiement + $creditnotes + $deposits, 'MT');
 							$remaintopay = price2num($contrib->amount - $paiement - $creditnotes - $deposits, 'MT');
-							if ($remaintopay == 0)
-							{
-								$result = $contrib->set_paid($user);
-							}
 							else dol_syslog("Remain to pay for conrib ".$contribid." not null. We do nothing.");
 						}
 					}
@@ -241,7 +235,6 @@ class PaymentSocialContribution extends CommonObject
 		$sql.= " FROM ".MAIN_DB_PREFIX."paiementcharge as t LEFT JOIN ".MAIN_DB_PREFIX."c_paiement as pt ON t.fk_typepaiement = pt.id";
 		$sql.= ' LEFT JOIN '.MAIN_DB_PREFIX.'bank as b ON t.fk_bank = b.rowid';
 		$sql.= " WHERE t.rowid = ".$id;
-		// TODO link on entity of tax;
 
 		dol_syslog(get_class($this)."::fetch", LOG_DEBUG);
 		$resql=$this->db->query($sql);
@@ -336,22 +329,6 @@ class PaymentSocialContribution extends CommonObject
 		$resql = $this->db->query($sql);
 		if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 
-		//if (! $error)
-		//{
-		//	if (! $notrigger)
-		//	{
-				// Uncomment this and change MYOBJECT to your own tag if you
-				// want this action call a trigger.
-
-				//// Call triggers
-				//include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				//$interface=new Interfaces($this->db);
-				//$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-				//if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				//// End call triggers
-		//	}
-		//}
-
 		// Commit or rollback
 		if ($error)
 		{
@@ -407,22 +384,6 @@ class PaymentSocialContribution extends CommonObject
 			$resql = $this->db->query($sql);
 			if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 		}
-
-		//if (! $error)
-		//{
-		//	if (! $notrigger)
-		//	{
-				// Uncomment this and change MYOBJECT to your own tag if you
-				// want this action call a trigger.
-
-				//// Call triggers
-				//include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				//$interface=new Interfaces($this->db);
-				//$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-				//if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				//// End call triggers
-		//	}
-		//}
 
 		// Commit or rollback
 		if ($error)
@@ -666,41 +627,6 @@ class PaymentSocialContribution extends CommonObject
 		global $langs; // TODO Renvoyer le libelle anglais et faire traduction a affichage
 
 		$langs->load('compta');
-		/*if ($mode == 0)
-			{
-			if ($status == 0) return $langs->trans('ToValidate');
-			if ($status == 1) return $langs->trans('Validated');
-			}
-			if ($mode == 1)
-			{
-			if ($status == 0) return $langs->trans('ToValidate');
-			if ($status == 1) return $langs->trans('Validated');
-			}
-			if ($mode == 2)
-			{
-			if ($status == 0) return img_picto($langs->trans('ToValidate'),'statut1').' '.$langs->trans('ToValidate');
-			if ($status == 1) return img_picto($langs->trans('Validated'),'statut4').' '.$langs->trans('Validated');
-			}
-			if ($mode == 3)
-			{
-			if ($status == 0) return img_picto($langs->trans('ToValidate'),'statut1');
-			if ($status == 1) return img_picto($langs->trans('Validated'),'statut4');
-			}
-			if ($mode == 4)
-			{
-			if ($status == 0) return img_picto($langs->trans('ToValidate'),'statut1').' '.$langs->trans('ToValidate');
-			if ($status == 1) return img_picto($langs->trans('Validated'),'statut4').' '.$langs->trans('Validated');
-			}
-			if ($mode == 5)
-			{
-			if ($status == 0) return $langs->trans('ToValidate').' '.img_picto($langs->trans('ToValidate'),'statut1');
-			if ($status == 1) return $langs->trans('Validated').' '.img_picto($langs->trans('Validated'),'statut4');
-			}
-			if ($mode == 6)
-			{
-			if ($status == 0) return $langs->trans('ToValidate').' '.img_picto($langs->trans('ToValidate'),'statut1');
-			if ($status == 1) return $langs->trans('Validated').' '.img_picto($langs->trans('Validated'),'statut4');
-			}*/
 		return '';
 	}
 
