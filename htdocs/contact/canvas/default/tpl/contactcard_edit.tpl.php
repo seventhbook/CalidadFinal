@@ -51,7 +51,8 @@ echo $this->control->tpl['ajax_selectcountry'];
 <input type="hidden" name="socid" value="<?php echo $this->control->tpl['company_id']; ?>">
 <?php } ?>
 
-<table class="border allwidth">
+<table>
+	<th class="border allwidth"</th>
 
 <tr>
 	<td><?php echo $langs->trans("Ref"); ?></td>
