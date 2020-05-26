@@ -165,9 +165,9 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 		if (!empty($conf->global->PROPALE_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
+			
 			$texte .= count($listoffiles);
-			//$texte.=$nbofiles?'</a>':'';
+			
 			$texte .= '</b>';
 		}
 
@@ -252,7 +252,7 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -310,10 +310,10 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->propal->dir_temp=".$conf->propal->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->propal->multidir_temp[$object->entity]);
 
@@ -354,7 +354,7 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Line of free text
 				$newfreetext = '';
@@ -386,8 +386,8 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 				$object->fetch_optionals();
 
