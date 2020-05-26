@@ -241,7 +241,6 @@ $arrayofmassactions = array(
 	//'presend'=>$langs->trans("SendByMail"),
 	//'builddoc'=>$langs->trans("PDFMerge"),
 );
-//if ($user->rights->adherent->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 if (in_array($massaction, array('presend', 'predelete'))) $arrayofmassactions = array();
 $massactionbutton = $form->selectMassAction('', $arrayofmassactions);
 
@@ -494,7 +493,6 @@ while ($i < min($num, $limit))
 		{
 			$accountstatic->id = $obj->fk_account;
 			$accountstatic->fetch($obj->fk_account);
-			//$accountstatic->label=$obj->label;
 			print $accountstatic->getNomUrl(1);
 		}
 		print "</td>\n";
