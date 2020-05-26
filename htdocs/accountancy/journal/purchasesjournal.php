@@ -179,7 +179,7 @@ if ($result) {
 		$tabfac[$obj->rowid]["type"] = $obj->type;
 		$tabfac[$obj->rowid]["description"] = $obj->description;
 		$tabfac[$obj->rowid]["close_code"] = $obj->close_code; // close_code = 'replaced' for replacement invoices (not used in most european countries)
-		//$tabfac[$obj->rowid]["fk_facturefourndet"] = $obj->fdid;
+		
 
 		// Avoid warnings
 		if (!isset($tabttc[$obj->rowid][$compta_soc])) $tabttc[$obj->rowid][$compta_soc] = 0;
@@ -229,7 +229,7 @@ foreach ($tabfac as $key => $val) {		// Loop on each invoice
 	}
 	else dol_print_error($db);
 }
-//var_dump($errorforinvoice);exit;
+
 
 
 
@@ -330,7 +330,7 @@ if ($action == 'writebookkeeping') {
 						$error++;
 						$errorforline++;
 						$errorforinvoice[$key]='alreadyjournalized';
-						//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
+						
 					}
 					else
 					{
@@ -382,7 +382,7 @@ if ($action == 'writebookkeeping') {
 							$error++;
 							$errorforline++;
 							$errorforinvoice[$key]='alreadyjournalized';
-							//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
+							
 						}
 						else
 						{
@@ -397,7 +397,7 @@ if ($action == 'writebookkeeping') {
 		}
 
 		// VAT
-		// var_dump($tabtva);
+		
 		if (! $errorforline)
 		{
 			$listoftax=array(0, 1, 2);
@@ -445,7 +445,7 @@ if ($action == 'writebookkeeping') {
 								$error++;
 								$errorforline++;
 								$errorforinvoice[$key]='alreadyjournalized';
-								//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
+								
 							}
 							else
 							{
@@ -461,7 +461,7 @@ if ($action == 'writebookkeeping') {
 		}
 
 		// Counterpart of VAT for VAT NPR
-		// var_dump($tabother);
+		
 		if (! $errorforline && is_array($tabother[$key]))
 		{
 			foreach ($tabother[$key] as $k => $mt) {
@@ -498,7 +498,7 @@ if ($action == 'writebookkeeping') {
 							$error++;
 							$errorforline++;
 							$errorforinvoice[$key] = 'alreadyjournalized';
-							//setEventMessages('Transaction for ('.$bookkeeping->doc_type.', '.$bookkeeping->fk_doc.', '.$bookkeeping->fk_docdet.') were already recorded', null, 'warnings');
+							
 						}
 						else
 						{
@@ -622,7 +622,7 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 
 		// Third party
 		foreach ($tabttc[$key] as $k => $mt) {
-			//if ($mt) {
+			
 				print '"'.$key.'"'.$sep;
 				print '"'.$date.'"'.$sep;
 				print '"'.$val["refsologest"].'"'.$sep;
@@ -636,14 +636,14 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 				print '"'.($mt >= 0 ? price($mt) : '').'"'.$sep;
 				print '"'.$journal.'"';
 				print "\n";
-			//}
+			
 		}
 
 		// Product / Service
 		foreach ($tabht[$key] as $k => $mt) {
 			$accountingaccount = new AccountingAccount($db);
 			$accountingaccount->fetch(null, $k, true);
-			//if ($mt) {
+			
 				print '"'.$key.'"'.$sep;
 				print '"'.$date.'"'.$sep;
 				print '"'.$val["refsologest"].'"'.$sep;
@@ -657,7 +657,7 @@ if ($action == 'exportcsv') {		// ISO and not UTF8 !
 				print '"'.($mt < 0 ? price(-$mt) : '').'"'.$sep;
 				print '"'.$journal.'"';
 				print "\n";
-			//}
+			
 		}
 
 		// VAT
