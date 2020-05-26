@@ -24,7 +24,7 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
+
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
@@ -193,28 +193,28 @@ class CompanyPaymentMode extends CommonObject
 
 
 
-	// If this object has a subtable with lines
+	
 
 	/**
 	 * @var int    Name of subtable line
 	 */
-	//public $table_element_line = 'companypaymentmodedet';
+	
 	/**
 	 * @var int    Field with ID of parent key if this field has a parent
 	 */
-	//public $fk_element = 'fk_companypaymentmode';
+	
 	/**
 	 * @var int    Name of subtable class that manage subtable lines
 	 */
-	//public $class_element_line = 'CompanyPaymentModeline';
+	
 	/**
      * @var array	List of child tables. To test if we can delete object.
 	 */
-	//protected $childtables=array();
+	
 	/**
 	 * @var CompanyPaymentModeLine[]     Array of subtable lines
 	 */
-	//public $lines = array();
+	
 
 
 
@@ -314,7 +314,7 @@ class CompanyPaymentMode extends CommonObject
 		if ($type)  $morewhere.= " AND type = '".$this->db->escape($type)."'";
 
 		$result = $this->fetchCommon($id, $ref, $morewhere);
-		//if ($result > 0 && ! empty($this->table_element_line)) $this->fetchLines();
+		
 		return $result;
 	}
 
@@ -323,14 +323,14 @@ class CompanyPaymentMode extends CommonObject
 	 *
 	 * @return int         <0 if KO, 0 if not found, >0 if OK
 	 */
-	/*public function fetchLines()
-	{
-		$this->lines=array();
+	
+	
+		
 
-		// Load lines with object CompanyPaymentModeLine
+		
 
-		return count($this->lines)?1:0;
-	}*/
+		
+	
 
 	/**
 	 * Update object into database
@@ -375,7 +375,7 @@ class CompanyPaymentMode extends CommonObject
         if (! empty($conf->dol_no_mouse_hover)) $notooltip=1;   // Force disable tooltips
 
         $result = '';
-        $companylink = '';
+        
 
         $label = '<u>' . $langs->trans("CompanyPaymentMode") . '</u>';
         $label.= '<br>';
@@ -412,7 +412,7 @@ class CompanyPaymentMode extends CommonObject
 		if ($withpicto) $result.=img_object(($notooltip?'':$label), ($this->picto?$this->picto:'generic'), ($notooltip?(($withpicto != 2) ? 'class="paddingright"' : ''):'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip?0:1);
 		if ($withpicto != 2) $result.= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		return $result;
 	}
@@ -503,7 +503,7 @@ class CompanyPaymentMode extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_ENABLED] = $langs->trans('Enabled');
 			$this->labelStatus[self::STATUS_CANCELED] = $langs->trans('Disabled');
 			$this->labelStatusShort[self::STATUS_ENABLED] = $langs->trans('Enabled');
