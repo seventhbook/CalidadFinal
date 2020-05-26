@@ -161,9 +161,6 @@ class UserGroup extends CommonObject
 				// fetch optionals attributes and labels
 				$this->fetch_optionals();
 
-
-				// Sav current LDAP Current DN
-				//$this->ldap_dn = $this->_load_ldap_dn($this->_load_ldap_info(),0);
 			}
 			$this->db->free($result);
 			return 1;
@@ -341,10 +338,6 @@ class UserGroup extends CommonObject
 			// Ajout des droits induits
 			if ($subperms)   $whereforadd.=" OR (module='$module' AND perms='$perms' AND (subperms='lire' OR subperms='read'))";
 			elseif ($perms) $whereforadd.=" OR (module='$module' AND (perms='lire' OR perms='read') AND subperms IS NULL)";
-
-			// Pour compatibilite, si lowid = 0, on est en mode ajout de tout
-			// TODO A virer quand sera gere par l'appelant
-			//if (substr($rid,-1,1) == 0) $whereforadd="module='$module'";
 		}
 		else {
 			// Where pour la liste des droits a ajouter
@@ -365,7 +358,6 @@ class UserGroup extends CommonObject
 		// Ajout des droits de la liste whereforadd
 		if (! empty($whereforadd))
 		{
-			//print "$module-$perms-$subperms";
 			$sql = "SELECT id";
 			$sql.= " FROM ".MAIN_DB_PREFIX."rights_def";
 			$sql.= " WHERE entity = ".$entity;
@@ -467,9 +459,6 @@ class UserGroup extends CommonObject
 			if ($subperms=='lire' || $subperms=='read') $wherefordel.=" OR (module='$module' AND perms='$perms' AND subperms IS NOT NULL)";
 			if ($perms=='lire' || $perms=='read')    $wherefordel.=" OR (module='$module')";
 
-			// Pour compatibilite, si lowid = 0, on est en mode suppression de tout
-			// TODO A virer quand sera gere par l'appelant
-			//if (substr($rid,-1,1) == 0) $wherefordel="module='$module'";
 		} else {
 			// Where pour la liste des droits a supprimer
 			if (! empty($allmodule))
@@ -489,7 +478,6 @@ class UserGroup extends CommonObject
 		// Suppression des droits de la liste wherefordel
 		if (! empty($wherefordel))
 		{
-			//print "$module-$perms-$subperms";
 			$sql = "SELECT id";
 			$sql.= " FROM ".MAIN_DB_PREFIX."rights_def";
 			$sql.= " WHERE entity = ".$entity;
@@ -721,8 +709,6 @@ class UserGroup extends CommonObject
 
 			if ($this->update(1) < 0) return -2;
 
-			$action='create';
-
 			// Actions on extra fields (by external module or standard code)
 			if (empty($conf->global->MAIN_EXTRAFIELDS_DISABLED)) // For avoid conflicts if trigger used
 			{
@@ -784,7 +770,6 @@ class UserGroup extends CommonObject
 		$resql = $this->db->query($sql);
 		if ($resql)
 		{
-			$action='update';
 
 			// Actions on extra fields (by external module or standard code)
 			if (empty($conf->global->MAIN_EXTRAFIELDS_DISABLED)) // For avoid conflicts if trigger used
@@ -900,12 +885,6 @@ class UserGroup extends CommonObject
 			$linkclose.= ' title="'.dol_escape_htmltag($label, 1, 1).'"';
 			$linkclose.= ' class="classfortooltip'.($morecss?' '.$morecss:'').'"';
 
-			/*
-			 $hookmanager->initHooks(array('groupdao'));
-			 $parameters=array('id'=>$this->id);
-			 $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-			 if ($reshook > 0) $linkclose = $hookmanager->resPrint;
-			 */
 		}
 
 		$linkstart = '<a href="'.$url.'"';
@@ -969,7 +948,6 @@ class UserGroup extends CommonObject
 
 		// Champs
 		if ($this->name && ! empty($conf->global->LDAP_GROUP_FIELD_FULLNAME)) $info[$conf->global->LDAP_GROUP_FIELD_FULLNAME] = $this->name;
-		//if ($this->name && ! empty($conf->global->LDAP_GROUP_FIELD_NAME)) $info[$conf->global->LDAP_GROUP_FIELD_NAME] = $this->name;
 		if ($this->note && ! empty($conf->global->LDAP_GROUP_FIELD_DESCRIPTION)) $info[$conf->global->LDAP_GROUP_FIELD_DESCRIPTION] = dol_string_nohtmltag($this->note, 2);
 		if (! empty($conf->global->LDAP_GROUP_FIELD_GROUPMEMBERS))
 		{
