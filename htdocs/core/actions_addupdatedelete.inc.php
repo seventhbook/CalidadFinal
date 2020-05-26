@@ -34,8 +34,8 @@ if (!empty($permissionedit) && empty($permissiontoadd)) $permissiontoadd = $perm
 
 if ($cancel)
 {
-	/*var_dump($cancel);
-	var_dump($backtopage);exit;*/
+	
+	
 	if (!empty($backtopageforcancel))
 	{
 		header("Location: ".$backtopageforcancel);
@@ -81,7 +81,7 @@ if ($action == 'add' && !empty($permissiontoadd))
 		if (preg_match('/^integer:/i', $object->fields[$key]['type']) && $value == '-1') $value = ''; // This is an implicit foreign key field
 		if (!empty($object->fields[$key]['foreignkey']) && $value == '-1') $value = ''; // This is an explicit foreign key field
 
-		//var_dump($key.' '.$value.' '.$object->fields[$key]['type']);
+		
 		$object->$key = $value;
 		if ($val['notnull'] > 0 && $object->$key == '' && !is_null($val['default']) && $val['default'] == '(PROV)')
 		{
@@ -376,7 +376,7 @@ if ($action == 'confirm_clone' && $confirm == 'yes' && !empty($permissiontoadd))
 	else
 	{
 	    $objectutil = dol_clone($object, 1); // To avoid to denaturate loaded object when setting some properties for clone or if createFromClone modifies the object. We use native clone to keep this->db valid.
-		//$objectutil->date = dol_mktime(12, 0, 0, GETPOST('newdatemonth', 'int'), GETPOST('newdateday', 'int'), GETPOST('newdateyear', 'int'));
+		
         // ...
 	    $result = $objectutil->createFromClone($user, (($object->id > 0) ? $object->id : $id));
 	    if (is_object($result) || $result > 0)
