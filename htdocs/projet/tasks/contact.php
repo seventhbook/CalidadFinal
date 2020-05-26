@@ -42,8 +42,6 @@ $project_ref=GETPOST('project_ref', 'alpha');
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
-//$result = restrictedArea($user, 'projet', $id, 'projet_task');
 if (! $user->rights->projet->lire) accessforbidden();
 
 $object = new Task($db);
@@ -273,7 +271,6 @@ if ($id > 0 || ! empty($ref))
 
             // Other attributes
             $cols = 2;
-            //include DOL_DOCUMENT_ROOT . '/core/tpl/extrafields_view.tpl.php';
 
             print '</table>';
 
@@ -308,11 +305,6 @@ if ($id > 0 || ! empty($ref))
 
     		print '<br>';
 		}
-
-
-		// To verify role of users
-		//$userAccess = $projectstatic->restrictedProjectArea($user); // We allow task affected to user even if a not allowed project
-		//$arrayofuseridoftask=$object->getListContactId('internal');
 
 		$head = task_prepare_head($object);
 		dol_fiche_head($head, 'task_contact', $langs->trans("Task"), -1, 'projecttask', 0, '', 'reposition');
@@ -353,22 +345,6 @@ if ($id > 0 || ! empty($ref))
 
 		dol_fiche_end();
 
-		/*
-		 * Lines of contacts
-		 */
-		/*
-		// Contacts lines (modules that overwrite templates must declare this into descriptor)
-		$dirtpls=array_merge($conf->modules_parts['tpl'],array('/core/tpl'));
-		foreach($dirtpls as $reldir)
-		{
-		    $res=@include dol_buildpath($reldir.'/contacts.tpl.php');
-		    if ($res) break;
-		}
-		*/
-
-		/*
-		 * Add a new contact line
-		 */
 		print '<table class="noborder centpercent">';
 
 		if ($action != 'editline' && $user->rights->projet->creer)
