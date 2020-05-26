@@ -220,14 +220,14 @@ if (!$error && $massaction == 'confirm_presend')
 			}
 			$sendtocc = implode(',', $tmparray);
 
-			//var_dump($listofobjectref);exit;
+			
 			$listofqualifiedobj = array();
 			$listofqualifiedref = array();
 			$thirdpartywithoutemail = array();
 
 			foreach ($listofobjectref[$thirdpartyid] as $objectid => $objectobj)
 			{
-				//var_dump($thirdpartyid.' - '.$objectid.' - '.$objectobj->statut);
+				
 				if ($objectclass == 'Propal' && $objectobj->statut == Propal::STATUS_DRAFT)
 				{
 					$langs->load("errors");
@@ -297,7 +297,7 @@ if (!$error && $massaction == 'confirm_presend')
 						$objectobj->thirdparty = $objectobj;	// Hack so following code is comaptible when objectobj is a thirdparty
 					}
 
-				   	//print "No recipient for thirdparty ".$objectobj->thirdparty->name;
+				   	
 				   	$nbignored++;
 				   	if (empty($thirdpartywithoutemail[$objectobj->thirdparty->id]))
 					{
@@ -315,7 +315,7 @@ if (!$error && $massaction == 'confirm_presend')
 					$filename = dol_sanitizeFileName($objectobj->ref).'.pdf';
 					$subdir = '';
 					// TODO Set subdir to be compatible with multi levels dir trees
-					// $subdir = get_exdir($objectobj->id, 2, 0, 0, $objectobj, $objectobj->element)
+					
 					$filedir = $uploaddir.'/'.$subdir.dol_sanitizeFileName($objectobj->ref);
 					$file = $filedir.'/'.$filename;
 
@@ -352,7 +352,7 @@ if (!$error && $massaction == 'confirm_presend')
 				$listofqualifiedref[$objectid] = $objectobj->ref;
 
 
-				//var_dump($listofqualifiedref);
+				
 			}
 
 			// Send email if there is at least one qualified object for current thirdparty
@@ -419,9 +419,9 @@ if (!$error && $massaction == 'confirm_presend')
 					$objectforloop->thirdparty = $thirdparty; // Force thirdparty on object (even if object was not loaded)
 					$looparray[0] = $objectforloop;
 				}
-				//var_dump($looparray);exit;
+				
                 dol_syslog("We have set an array of ".count($looparray)." emails to send. oneemailperrecipient=".$oneemailperrecipient);
-                //var_dump($oneemailperrecipient); var_dump($listofqualifiedobj); var_dump($listofqualifiedref);
+                
                 foreach ($looparray as $objectid => $objecttmp)		// $objecttmp is a real object or an empty object if we choose to send one email per thirdparty instead of one per object
 				{
 					// Make substitution in email content
@@ -495,9 +495,9 @@ if (!$error && $massaction == 'confirm_presend')
 
 					    $trackid .= $objecttmp->id;
 					}
-					//var_dump($filepath);
-					//var_dump($trackid);exit;
-					//var_dump($subjectreplaced);
+					
+					
+					
 
 					if (empty($sendcontext)) $sendcontext = 'standard';
 
@@ -524,12 +524,12 @@ if (!$error && $massaction == 'confirm_presend')
 
                                 dol_syslog("Try to insert email event into agenda for objid=".$objid2." => objectobj=".get_class($objectobj2));
 
-								/*if ($objectclass == 'Propale') $actiontypecode='AC_PROP';
-	                            if ($objectclass == 'Commande') $actiontypecode='AC_COM';
-	                            if ($objectclass == 'Facture') $actiontypecode='AC_FAC';
-	                            if ($objectclass == 'Supplier_Proposal') $actiontypecode='AC_SUP_PRO';
-	                            if ($objectclass == 'CommandeFournisseur') $actiontypecode='AC_SUP_ORD';
-	                            if ($objectclass == 'FactureFournisseur') $actiontypecode='AC_SUP_INV';*/
+								
+	                            
+	                            
+	                            
+	                            
+	                            
 
 								$actionmsg = $langs->transnoentities('MailSentBy').' '.$from.' '.$langs->transnoentities('To').' '.$sendto;
 								if ($message)
@@ -604,13 +604,13 @@ if (!$error && $massaction == 'confirm_presend')
 		if ($nbsent)
 		{
 			$action = ''; // Do not show form post if there was at least one successfull sent
-			//setEventMessages($langs->trans("EMailSentToNRecipients", $nbsent.'/'.count($toselect)), null, 'mesgs');
+			
 			setEventMessages($langs->trans("EMailSentForNElements", $nbsent.'/'.count($toselect)), null, 'mesgs');
 			setEventMessages($resaction, null, 'mesgs');
 		}
 		else
 		{
-			//setEventMessages($langs->trans("EMailSentToNRecipients", 0), null, 'warnings');  // May be object has no generated PDF file
+			
 			setEventMessages($resaction, null, 'warnings');
 		}
 
@@ -723,7 +723,7 @@ if ($massaction == 'confirm_createbills')   // Create bills from orders
 						if ($discountid > 0)
 						{
 							$result = $objecttmp->insert_discount($discountid);
-							//$result=$discount->link_to_invoice($lineid,$id);
+							
 						}
 						else
 						{
@@ -1150,8 +1150,8 @@ if (!$error && $massaction == 'validate' && $permissiontoadd)
 			$result = $objecttmp->fetch($toselectid);
 			if ($result > 0)
 			{
-				//if (in_array($objecttmp->element, array('societe','member'))) $result = $objecttmp->delete($objecttmp->id, $user, 1);
-				//else
+				
+				
 				$result = $objecttmp->validate($user);
 				if ($result == 0)
 				{
@@ -1186,7 +1186,7 @@ if (!$error && $massaction == 'validate' && $permissiontoadd)
 		{
 			$db->rollback();
 		}
-		//var_dump($listofobjectthirdparties);exit;
+		
 	}
 }
 
@@ -1289,7 +1289,7 @@ if (!$error && ($massaction == 'delete' || ($action == 'delete' && $confirm == '
 	{
 		$db->rollback();
 	}
-	//var_dump($listofobjectthirdparties);exit;
+	
 }
 
 // Generate document foreach object according to model linked to object
