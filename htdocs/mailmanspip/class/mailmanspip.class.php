@@ -159,7 +159,7 @@ class MailmanSpip
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, empty($conf->global->MAIN_USE_CONNECT_TIMEOUT)?5:$conf->global->MAIN_USE_CONNECT_TIMEOUT);
         curl_setopt($ch, CURLOPT_TIMEOUT, empty($conf->global->MAIN_USE_RESPONSE_TIMEOUT)?30:$conf->global->MAIN_USE_RESPONSE_TIMEOUT);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, TRUE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
         $result = curl_exec($ch);
         dol_syslog('result curl_exec='.$result);
