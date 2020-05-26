@@ -104,7 +104,7 @@ if (empty($reshook))
 
     if ($action == 'setdatedelivery' && $user->rights->commande->creer)
     {
-    	//print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
+    	
     	$datelivraison = dol_mktime(0, 0, 0, GETPOST('liv_month', 'int'), GETPOST('liv_day', 'int'), GETPOST('liv_year', 'int'));
 
     	$object = new Commande($db);
@@ -113,16 +113,16 @@ if (empty($reshook))
     	if ($result < 0)
     		setEventMessages($object->error, $object->errors, 'errors');
     }
-    /*
-    if ($action == 'setdeliveryaddress' && $user->rights->commande->creer)
-    {
-    	$object = new Commande($db);
-    	$object->fetch($id);
-    	$object->setDeliveryAddress(GETPOST('delivery_address_id','int'));
-    	if ($result < 0)
-    		setEventMessages($object->error, $object->errors, 'errors');
-    }
-    */
+    
+    
+    
+    	
+    	
+    	
+    	
+    		
+    
+    
     if ($action == 'setmode' && $user->rights->commande->creer)
     {
     	$object = new Commande($db);
@@ -292,7 +292,7 @@ if ($id > 0 || !empty($ref))
 					$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
                 }
                 if ($action == 'classify') {
-                    //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                    
                     $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                     $morehtmlref.='<input type="hidden" name="action" value="classin">';
                     $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -386,9 +386,9 @@ if ($id > 0 || !empty($ref))
 		}
 		print '</td>';
 		// Note on several rows
-		//print '<td rowspan="'.$nbrow.'" valign="top">'.$langs->trans('NotePublic').' :<br>';
-		//print nl2br($object->note_public);
-		//print '</td>';
+		
+		
+		
 		print '</tr>';
 
         // Shipping Method
@@ -429,44 +429,44 @@ if ($id > 0 || !empty($ref))
             print '</tr>';
         }
 
-		// Terms of payment
-		/*
-		print '<tr><td height="10">';
-		print '<table class="nobordernopadding" width="100%"><tr><td>';
-		print $langs->trans('PaymentConditionsShort');
-		print '</td>';
+		
+		
 
-		if ($action != 'editconditions' && $object->statut == Expedition::STATUS_VALIDATED) print '<td class="right"><a class="editfielda" href="'.$_SERVER["PHP_SELF"].'?action=editconditions&amp;id='.$object->id.'">'.img_edit($langs->trans('SetConditions'),1).'</a></td>';
-		print '</tr></table>';
-		print '</td><td colspan="2">';
-		if ($action == 'editconditions')
-		{
-			$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id,$object->cond_reglement_id,'cond_reglement_id');
-		}
-		else
-		{
-			$form->form_conditions_reglement($_SERVER['PHP_SELF'].'?id='.$object->id,$object->cond_reglement_id,'none');
-		}
-		print '</td></tr>';
-
-		// Mode of payment
-		print '<tr><td>';
-		print '<table class="nobordernopadding" width="100%"><tr><td>';
-		print $langs->trans('PaymentMode');
-		print '</td>';
-		if ($action != 'editmode' && $object->statut == Expedition::STATUS_VALIDATED) print '<td class="right"><a class="editfielda" href="'.$_SERVER["PHP_SELF"].'?action=editmode&amp;id='.$object->id.'">'.img_edit($langs->trans('SetMode'),1).'</a></td>';
-		print '</tr></table>';
-		print '</td><td colspan="2">';
-		if ($action == 'editmode')
-		{
-			$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id,$object->mode_reglement_id,'mode_reglement_id');
-		}
-		else
-		{
-			$form->form_modes_reglement($_SERVER['PHP_SELF'].'?id='.$object->id,$object->mode_reglement_id,'none');
-		}
-		print '</td></tr>';*/
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// Availability
 		print '<tr><td height="10">';
 		print '<table class="nobordernopadding" width="100%"><tr><td>';
@@ -627,7 +627,7 @@ if ($id > 0 || !empty($ref))
 		$sql.= " WHERE cd.fk_commande = ".$object->id;
 		$sql.= " ORDER BY cd.rang, cd.rowid";
 
-		//print $sql;
+		
 		dol_syslog("shipment.php", LOG_DEBUG);
 		$resql = $db->query($sql);
 		if ($resql)
@@ -810,11 +810,11 @@ if ($id > 0 || !empty($ref))
 					{
 						// Set tree of subproducts in product->sousprods
 						$product->get_sousproduits_arbo();
-						//var_dump($product->sousprods);exit;
+						
 
 						// Define a new tree with quantiies recalculated
 						$prods_arbo = $product->get_arbo_each_prod($qtyProdCom);
-						//var_dump($prods_arbo);
+						
 						if (count($prods_arbo) > 0)
 						{
 							foreach ($prods_arbo as $key => $value)
@@ -891,44 +891,44 @@ if ($id > 0 || !empty($ref))
 		{
 			if ($user->rights->expedition->creer)
 			{
-				//print load_fiche_titre($langs->trans("CreateShipment"));
+				
                 print '<div class="tabsAction">';
 
 				print '<form method="GET" action="'.DOL_URL_ROOT.'/expedition/card.php">';
 				print '<input type="hidden" name="action" value="create">';
-				//print '<input type="hidden" name="id" value="'.$object->id.'">';
+				
                 print '<input type="hidden" name="shipping_method_id" value="'.$object->shipping_method_id.'">';
 				print '<input type="hidden" name="origin" value="commande">';
 				print '<input type="hidden" name="origin_id" value="'.$object->id.'">';
 				print '<input type="hidden" name="projectid" value="'.$object->fk_project.'">';
-				//print '<table class="border centpercent">';
+				
 
 				$langs->load("stocks");
 
-				//print '<tr>';
+				
 
 				if (!empty($conf->stock->enabled))
 				{
-					//print '<td>';
+					
 					print $langs->trans("WarehouseSource");
-					//print '</td>';
-					//print '<td>';
+					
+					
 					print $formproduct->selectWarehouses(!empty($object->warehouse_id) ? $object->warehouse_id : 'ifone', 'entrepot_id', '', 1, 0, 0, '', 0, 0, array(), 'minwidth200');
 					if (count($formproduct->cache_warehouses) <= 0)
 					{
 						print ' &nbsp; '.$langs->trans("WarehouseSourceNotDefined").' <a href="'.DOL_URL_ROOT.'/product/stock/card.php?action=create">'.$langs->trans("AddOne").'</a>';
 					}
-					//print '</td>';
+					
 				}
-				//print '<td class="center">';
+				
 				print '<input type="submit" class="butAction" named="save" value="'.$langs->trans("CreateShipment").'">';
 				if ($toBeShippedTotal <= 0)
 				{
 					print ' '.img_warning($langs->trans("WarningNoQtyLeftToSend"));
 				}
-				//print '</td></tr>';
+				
 
-				//print "</table>";
+				
 				print "</form>\n";
 
 				print '</div>';
