@@ -68,7 +68,7 @@ session_start();    // To be able to keep info into session (used for not losing
 
 // Save a flag to tell to restore input value if we go back
 $_SESSION['dol_save_pass']=$db_pass;
-//$_SESSION['dol_save_passroot']=$passroot;
+
 
 // Now we load forced values from install.forced.php file.
 $useforcedwizard=false;
@@ -236,12 +236,12 @@ if (! $error) {
                     $databasefortest='master';
                 }
             }
-            //print $_POST["db_type"].",".$_POST["db_host"].",$userroot,$passroot,$databasefortest,".$_POST["db_port"];
+         
 
             $db=getDoliDBInstance($db_type, $db_host, $userroot, $passroot, $databasefortest, $db_port);
 
             dol_syslog("databasefortest=" . $databasefortest . " connected=" . $db->connected . " database_selected=" . $db->database_selected, LOG_DEBUG);
-            //print "databasefortest=".$databasefortest." connected=".$db->connected." database_selected=".$db->database_selected;
+          
 
 			if (empty($db_create_database) && $db->connected && !$db->database_selected) {
                 print '<div class="error">'.$langs->trans("ErrorConnectedButDatabaseNotFound", $db_name).'</div>';
@@ -254,9 +254,9 @@ if (! $error) {
                 if ($db->error == "No such file or directory") print '<div class="error">'.$langs->trans("ErrorToConnectToMysqlCheckInstance").'</div>';
                 else print '<div class="error">'.$db->error.'</div>';
                 if (! $db->connected) print $langs->trans("BecauseConnectionFailedParametersMayBeWrong").'<br><br>';
-                //print '<a href="#" onClick="javascript: history.back();">';
+                
                 print $langs->trans("ErrorGoBackAndCorrectParameters");
-                //print '</a>';
+                
                 $error++;
             }
         }
@@ -268,9 +268,9 @@ if (! $error) {
             {
                 print '<div class="error">'.$db->error.'</div>';
                 if (! $db->connected) print $langs->trans("BecauseConnectionFailedParametersMayBeWrong").'<br><br>';
-                //print '<a href="#" onClick="javascript: history.back();">';
+                
                 print $langs->trans("ErrorGoBackAndCorrectParameters");
-                //print '</a>';
+                
                 $error++;
             }
         }
@@ -279,9 +279,9 @@ if (! $error) {
     {
         print "<br>\nFailed to include_once(\"".$main_dir."/core/db/".$db_type.".class.php\")<br>\n";
         print '<div class="error">'.$langs->trans("ErrorWrongValueForParameter", $langs->transnoentities("WebPagesDirectory")).'</div>';
-        //print '<a href="#" onClick="javascript: history.back();">';
+        
         print $langs->trans("ErrorGoBackAndCorrectParameters");
-        //print '</a>';
+        
         $error++;
     }
 }
@@ -325,7 +325,7 @@ if (! $error && $db->connected)
     }
 
     // Force to avoid utf8mb4 because index on field char 255 reach limit of 767 char for indexes (example with mysql 5.6.34 = mariadb 10.0.29)
-    // TODO Remove this when utf8mb4 is supported
+    
     if ($defaultCharacterSet == 'utf8mb4' || $defaultDBSortingCollation == 'utf8mb4_unicode_ci')
     {
         $defaultCharacterSet = 'utf8';
@@ -541,7 +541,7 @@ if (! $error && $db->connected && $action == "set")
         if (isset($db_create_user) && ($db_create_user == "1" || $db_create_user == "on")) {
             dolibarr_install_syslog("step1: create database user: " . $dolibarr_main_db_user);
 
-            //print $conf->db->host." , ".$conf->db->name." , ".$conf->db->user." , ".$conf->db->port;
+            
             $databasefortest=$conf->db->name;
             if ($conf->db->type == 'mysql' || $conf->db->type == 'mysqli')
             {
@@ -645,7 +645,7 @@ if (! $error && $db->connected && $action == "set")
         if (!$error && (isset($db_create_database) && ($db_create_database == "1" || $db_create_database == "on"))) {
             dolibarr_install_syslog("step1: create database: " . $dolibarr_main_db_name . " " . $dolibarr_main_db_character_set . " " . $dolibarr_main_db_collation . " " . $dolibarr_main_db_user);
         	$newdb=getDoliDBInstance($conf->db->type, $conf->db->host, $userroot, $passroot, '', $conf->db->port);
-            //print 'eee'.$conf->db->type." ".$conf->db->host." ".$userroot." ".$passroot." ".$conf->db->port." ".$newdb->connected." ".$newdb->forcecharset;exit;
+            
 
             if ($newdb->connected)
             {
@@ -665,8 +665,8 @@ if (! $error && $db->connected && $action == "set")
                     dolibarr_install_syslog('step1: new database is using charset=' . $check1 . ' collation=' . $check2);
 
                     // If values differs, we save conf file again
-                    //if ($check1 != $dolibarr_main_db_character_set) dolibarr_install_syslog('step1: value for character_set is not the one asked for database creation', LOG_WARNING);
-                    //if ($check2 != $dolibarr_main_db_collation)     dolibarr_install_syslog('step1: value for collation is not the one asked for database creation', LOG_WARNING);
+                    
+                    
                 }
                 else
                 {
@@ -708,7 +708,7 @@ if (! $error && $db->connected && $action == "set")
         if (! $error)
         {
             dolibarr_install_syslog("step1: connection type=" . $conf->db->type . " on host=" . $conf->db->host . " port=" . $conf->db->port . " user=" . $conf->db->user . " name=" . $conf->db->name);
-            //print "connexion de type=".$conf->db->type." sur host=".$conf->db->host." port=".$conf->db->port." user=".$conf->db->user." name=".$conf->db->name;
+            	
 
             $db=getDoliDBInstance($conf->db->type, $conf->db->host, $conf->db->user, $conf->db->pass, $conf->db->name, $conf->db->port);
 
