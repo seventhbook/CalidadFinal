@@ -40,7 +40,7 @@ if (!isset($mode) || $mode != 'noajax')    // For ajax call
 	include_once DOL_DOCUMENT_ROOT.'/core/class/html.form.class.php';
 	include_once DOL_DOCUMENT_ROOT.'/ecm/class/ecmdirectory.class.php';
 
-	//if (GETPOST('preopened')) { $_GET['dir'] = $_POST['dir'] = '/bbb/'; }
+	
 
 	$openeddir = GETPOST('openeddir');
 	$modulepart = GETPOST('modulepart');
@@ -52,7 +52,7 @@ if (!isset($mode) || $mode != 'noajax')    // For ajax call
 }
 else    // For no ajax call
 {
-	//if (GETPOST('preopened')) { $_GET['dir'] = $_POST['dir'] = GETPOST('preopened'); }
+	
 
 	$openeddir = GETPOST('openeddir');
 	$modulepart = GETPOST('modulepart');
@@ -111,7 +111,7 @@ if (!isset($mode) || $mode != 'noajax')	// if ajax mode
 	top_httphead();
 }
 
-//print '<!-- selecteddir (relative dir we click on) = '.$selecteddir.', openeddir = '.$openeddir.', modulepart='.$modulepart.', preopened='.$preopened.' -->'."\n";
+
 $userstatic = new User($db);
 $form = new Form($db);
 $ecmdirstatic = new EcmDirectory($db);
@@ -123,7 +123,7 @@ if (empty($sqltree)) $sqltree = $ecmdirstatic->get_full_arbo(0);
 $current_ecmdir_id = -1;
 foreach ($sqltree as $keycursor => $val)
 {
-    //print $val['fullrelativename']." == ".$selecteddir;
+    
     if ($val['fullrelativename'] == $selecteddir)
     {
         $current_ecmdir_id = $keycursor;
@@ -134,7 +134,7 @@ if (!empty($conf->use_javascript_ajax) && empty($conf->global->MAIN_ECM_DISABLE_
 {
 	treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, $modulepart, $websitekey, $pageid, $preopened, $fullpathpreopened);
 
-	// TODO Find a solution to not output this code for each leaf we open
+	
 	// Enable jquery handlers on new generated HTML objects (same code than into lib_footer.js.php)
 	// Because the content is reloaded by ajax call, we must also reenable some jquery hooks
 	print "\n<!-- JS CODE TO ENABLE Tooltips on all object with class classfortooltip (reload into ajaxdirtree) -->\n";
@@ -152,9 +152,9 @@ if (!empty($conf->use_javascript_ajax) && empty($conf->global->MAIN_ECM_DISABLE_
 	            	</script>';
 
 	// This ajax service is called only when a directory $selecteddir is opened but not when closed.
-	//print '<script language="javascript">';
-	//print "loadandshowpreview('".dol_escape_js($selecteddir)."');";
-	//print '</script>';
+	
+	
+	
 }
 
 
@@ -173,14 +173,14 @@ if (empty($conf->use_javascript_ajax) || !empty($conf->global->MAIN_ECM_DISABLE_
 	$fullpathselected = '';
 	foreach ($sqltree as $key => $val)
 	{
-		//print $val['id']."-".$section."<br>";
+		
 		if ($val['id'] == $section)
 		{
 			$fullpathselected = $val['fullpath'];
 			break;
 		}
 	}
-	//print "fullpathselected=".$fullpathselected."<br>";
+	
 
 	// Update expandedsectionarray in session
 	$expandedsectionarray = array();
@@ -206,12 +206,12 @@ if (empty($conf->use_javascript_ajax) || !empty($conf->global->MAIN_ECM_DISABLE_
 		$expandedsectionarray = array(); // Reset
 		foreach ($oldexpandedsectionarray as $sectioncursor)
 		{
-			// TODO is_in_subtree(fulltree,sectionparent,sectionchild) does nox exists. Enable or remove this...
-			//if ($sectioncursor && ! is_in_subtree($sqltree,$section,$sectioncursor)) $expandedsectionarray[]=$sectioncursor;
+			
+			
 		}
 		$_SESSION['dol_ecmexpandedsectionarray'] = join(',', $expandedsectionarray);
 	}
-	//print $_SESSION['dol_ecmexpandedsectionarray'].'<br>';
+	
 
 	$nbofentries = 0;
 	$oldvallevel = 0;
@@ -230,7 +230,7 @@ if (empty($conf->use_javascript_ajax) || !empty($conf->global->MAIN_ECM_DISABLE_
 			$val['cachenbofdoc'] = $result;
 		}
 
-		//$fullpathparent=preg_replace('/(_[^_]+)$/i','',$val['fullpath']);
+		
 
 		// Define showline
 		$showline = 0;
@@ -248,7 +248,7 @@ if (empty($conf->use_javascript_ajax) || !empty($conf->global->MAIN_ECM_DISABLE_
 		{
 			if (in_array($val['id'], $expandedsectionarray)) $option = 'indexexpanded';
 			else $option = 'indexnotexpanded';
-			//print $option;
+			
 
 			print '<li class="directory collapsed">';
 
@@ -368,7 +368,7 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 					// Loop on all database entries (sqltree) to find the one matching the subdir found into dir to scan
 					foreach ($sqltree as $key => $tmpval)
 					{
-						//print "-- key=".$key." - ".$tmpval['fullrelativename']." vs ".(($selecteddir != '/'?$selecteddir.'/':'').$file)."<br>\n";
+						
 						if ($tmpval['fullrelativename'] == (($selecteddir != '/' ? $selecteddir.'/' : '').$file))		// We found equivalent record into database
 						{
 							$val = $tmpval;
@@ -391,7 +391,7 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 						}
 					}
 
-					//print 'modulepart='.$modulepart.' fullpathselecteddir='.$fullpathselecteddir.' - val[fullrelativename] (in database)='.$val['fullrelativename'].' - val[id]='.$val['id'].' - is_dir='.dol_is_dir($fullpathselecteddir . $file).' - file='.$file."\n";
+					
 					if ($file != '.' && $file != '..' && ((!empty($val['fullrelativename']) && $val['id'] >= 0) || dol_is_dir($fullpathselecteddir.(preg_match('/\/$/', $fullpathselecteddir) ? '' : '/').$file)))
 					{
 						if (empty($val['fullrelativename']))	// If we did not find entry into database, but found a directory (dol_is_dir was ok at previous test)
@@ -419,9 +419,9 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 
 						print '<table class="nobordernopadding"><tr>';
 
-						/*print '<td class="left">';
-						 print dol_escape_htmltag($file);
-						 print '</td>';*/
+						
+						
+						
 
 						// Nb of docs
 						print '<td class="right">';
@@ -438,8 +438,8 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 						print '">'.img_edit($langs->trans("Edit").' - '.$langs->trans("View"), 0, 'class="valignmiddle opacitymedium"').'</a></td>';
 
 						// Add link
-						//print '<td class="right"><a href="'.DOL_URL_ROOT.'/ecm/dir_add_card.php?action=create&amp;catParent='.$val['id'].'">'.img_edit_add().'</a></td>';
-						//print '<td class="right" width="14">&nbsp;</td>';
+						
+						
 
 						// Info
 						if ($modulepart == 'ecm')
@@ -462,10 +462,10 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 						print "</tr></table>\n";
 						print '</div>';
 
-						//print 'selecteddir='.$selecteddir.' preopened='.$preopened.' $val[\'fullrelativename\']='.$val['fullrelativename']."<br>\n";
+						
 						if (preg_match('/^'.preg_quote($val['fullrelativename'].'/', '/').'/', $preopened))
 						{
-							//print 'modulepart='.$modulepart.' fullpathselecteddir='.$fullpathselecteddir.' - val[fullrelativename] (in database)='.$val['fullrelativename'].' - val[id]='.$val['id'].' - is_dir='.dol_is_dir($fullpathselecteddir . $file).' - file='.$file."\n";
+							
 							$newselecteddir = $val['fullrelativename'];
 							$newfullpathselecteddir = '';
 							if ($modulepart == 'ecm')
