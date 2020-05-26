@@ -213,7 +213,6 @@ class EmailCollectorFilter extends CommonObject
 	    		$shortkey = preg_replace('/options_/', '', $key);
 	    		if (! empty($extrafields->attributes[$this->element]['unique'][$shortkey]))
 	    		{
-	    			//var_dump($key); var_dump($clonedObj->array_options[$key]); exit;
 	    			unset($object->array_options[$key]);
 	    		}
 	    	}
@@ -254,27 +253,6 @@ class EmailCollectorFilter extends CommonObject
 		return $result;
 	}
 
-	/**
-	 * Load object lines in memory from the database
-	 *
-	 * @return int         <0 if KO, 0 if not found, >0 if OK
-	 */
-	/*public function fetchLines()
-	{
-		$this->lines=array();
-
-		// Load lines with object EmailcollectorFilterLine
-
-		return count($this->lines)?1:0;
-	}*/
-
-	/**
-	 * Update object into database
-	 *
-	 * @param  User $user      User that modifies
-	 * @param  bool $notrigger false=launch triggers after, true=disable triggers
-	 * @return int             <0 if KO, >0 if OK
-	 */
 	public function update(User $user, $notrigger = false)
 	{
 		return $this->updateCommon($user, $notrigger);
@@ -338,12 +316,6 @@ class EmailCollectorFilter extends CommonObject
             $linkclose .= ' title="'.dol_escape_htmltag($label, 1).'"';
             $linkclose .= ' class="classfortooltip'.($morecss ? ' '.$morecss : '').'"';
 
-            /*
-             $hookmanager->initHooks(array('emailcollectorfilterdao'));
-             $parameters=array('id'=>$this->id);
-             $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-             if ($reshook > 0) $linkclose = $hookmanager->resPrint;
-             */
         }
         else $linkclose = ($morecss ? ' class="'.$morecss.'"' : '');
 
@@ -355,7 +327,6 @@ class EmailCollectorFilter extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
 
 		global $action, $hookmanager;
 		$hookmanager->initHooks(array('emailcollectorfilterdao'));
@@ -392,7 +363,6 @@ class EmailCollectorFilter extends CommonObject
 		if (empty($this->labelStatus))
 		{
 			global $langs;
-			//$langs->load("emailcollector");
 			$this->labelStatus[1] = $langs->trans('Enabled');
 			$this->labelStatus[0] = $langs->trans('Disabled');
 		}
