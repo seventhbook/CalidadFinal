@@ -205,16 +205,16 @@ class AccountancyCategory // extends CommonObject
 
 			// Uncomment this and change MYOBJECT to your own tag if you
 			// want this action call a trigger.
-			//if (! $notrigger)
-			//{
+			
+			
 
-			//	// Call triggers
-			//	include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-			//	$interface=new Interfaces($this->db);
-			//	$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-			//	if ($result < 0) { $error++; $this->errors=$interface->errors; }
-			//	// End call triggers
-			//}
+			
+			
+			
+			
+			
+			
+			
 		}
 
 		// Commit or rollback
@@ -304,7 +304,7 @@ class AccountancyCategory // extends CommonObject
 	 *  @param      int		$notrigger	 0=launch triggers after, 1=disable triggers
 	 *  @return     int     		   	 <0 if KO, >0 if OK
 	 */
-	public function update($user = null, $notrigger = 0)
+	public function update()
 	{
 		global $conf, $langs;
 		$error=0;
@@ -343,20 +343,20 @@ class AccountancyCategory // extends CommonObject
 		$resql = $this->db->query($sql);
 		if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
 
-		//if (! $error)
-		//{
-			// Uncomment this and change MYOBJECT to your own tag if you
-			// want this action call a trigger.
-			//if (! $notrigger)
-			//{
-			//	// Call triggers
-			//	include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-			//	$interface=new Interfaces($this->db);
-			//	$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-			//	if ($result < 0) { $error++; $this->errors=$interface->errors; }
-			//	// End call triggers
-			//}
-		//}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		// Commit or rollback
 		if ($error)
@@ -398,20 +398,19 @@ class AccountancyCategory // extends CommonObject
 		$resql = $this->db->query($sql);
 		if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
 
-		//if (! $error)
-		//{
-			// Uncomment this and change MYOBJECT to your own tag if you
-			// want this action call a trigger.
-			//if (! $notrigger)
-			//{
-			//	// Call triggers
-			//	include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-			//	$interface=new Interfaces($this->db);
-			//	$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-			//	if ($result < 0) { $error++; $this->errors=$interface->errors; }
-			//	// End call triggers
-			//}
-		//}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 		// Commit or rollback
 		if ($error)
@@ -746,7 +745,7 @@ class AccountancyCategory // extends CommonObject
 		$sql = "SELECT SUM(t.debit) as debit, SUM(t.credit) as credit";
 		if (is_array($cpt)) $sql.=", t.numero_compte as accountancy_account";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "accounting_bookkeeping as t";
-		//if (in_array($this->db->type, array('mysql', 'mysqli'))) $sql.=' USE INDEX idx_accounting_bookkeeping_doc_date';
+		
 		$sql .= " WHERE t.entity = ".$conf->entity;
 		if (is_array($cpt))
 		{
@@ -772,7 +771,7 @@ class AccountancyCategory // extends CommonObject
 			$sql .= " AND t.thirdparty_code = '".$this->db->escape($thirdparty_code)."'";
 		}
 		if (is_array($cpt)) $sql.=" GROUP BY t.numero_compte";
-		//print $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -890,7 +889,7 @@ class AccountancyCategory // extends CommonObject
 			$sql .= " AND t.entity = " . $conf->entity;
 			$sql .= " ORDER BY t.account_number";
 		}
-		//echo $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql) {
