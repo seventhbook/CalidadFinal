@@ -161,8 +161,8 @@ if (!empty($conf->tax->enabled) && $user->rights->tax->charges->lire)
 		$sql .= ")";
 	}
 	if (preg_match('/^cs\./', $sortfield) || preg_match('/^c\./', $sortfield) || preg_match('/^pc\./', $sortfield) || preg_match('/^pct\./', $sortfield)) $sql .= $db->order($sortfield, $sortorder);
-	//$sql.= $db->plimit($limit+1,$offset);
-	//print $sql;
+	
+	
 
 	dol_syslog("compta/charges/index.php: select payment", LOG_DEBUG);
 	$resql = $db->query($sql);
@@ -209,7 +209,7 @@ if (!empty($conf->tax->enabled) && $user->rights->tax->charges->lire)
 		        print '<td>';
 		        if ($obj->fk_bank > 0)
 		        {
-		        	//$accountstatic->fetch($obj->fk_bank);
+		        	
 		            $accountstatic->id = $obj->bid;
 		            $accountstatic->ref = $obj->bref;
 		            $accountstatic->number = $obj->bnumber;
@@ -326,7 +326,7 @@ if (!empty($conf->tax->enabled) && $user->rights->tax->charges->lire)
 			        print '<td>';
 			        if ($obj->fk_bank > 0)
 			        {
-			        	//$accountstatic->fetch($obj->fk_bank);
+			        	
 			            $accountstatic->id = $obj->bid;
 			            $accountstatic->ref = $obj->bref;
 			            $accountstatic->number = $obj->bnumber;
@@ -538,7 +538,7 @@ if (!empty($conf->salaries->enabled) && !empty($user->rights->salaries->read))
 			        print '<td>';
 			        if ($obj->fk_bank > 0)
 			        {
-			        	//$accountstatic->fetch($obj->fk_bank);
+			        	
 			            $accountstatic->id = $obj->bid;
 			            $accountstatic->ref = $obj->bref;
 			            $accountstatic->number = $obj->bnumber;
