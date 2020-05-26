@@ -181,11 +181,6 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
 			$ok=0;
 			setEventMessages($langs->transnoentities('ErrorCodeCantContainZero'), null, 'errors');
 		}
-		/*if (!is_numeric($_POST['code']))	// disabled, code may not be in numeric base
-    	{
-	    	$ok = 0;
-	    	$msg .= $langs->transnoentities('ErrorFieldFormat', $langs->transnoentities('Code')).'<br>';
-	    }*/
 	}
 	if (isset($_POST["country"]) && ($_POST["country"]=='0') && ($id != 2))
 	{
@@ -289,19 +284,16 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
 		$sql.= " WHERE ".$rowidcol." = '".$rowid."'";
 
 		dol_syslog("actionmodify", LOG_DEBUG);
-		//print $sql;
 		$resql = $db->query($sql);
 		if (! $resql)
 		{
 			setEventMessages($db->error(), null, 'errors');
 		}
 	}
-	//$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
 }
 
 if (GETPOST('actioncancel', 'alpha'))
 {
-	//$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
 }
 
 if ($action == 'confirm_delete' && $confirm == 'yes')       // delete
@@ -448,7 +440,6 @@ if ($id)
 	if ($sortfield == 'country') $sortfield='country_code';
 	$sql.=$db->order($sortfield, $sortorder);
 	$sql.=$db->plimit($listlimit+1, $offset);
-	//print $sql;
 
 	$fieldlist=explode(',', $tabfield[$id]);
 
@@ -753,7 +744,6 @@ function fieldListAccountModel($fieldlist, $obj = '', $tabname = '', $context = 
 			if (in_array('region_id', $fieldlist))
 			{
 				print '<td>';
-				//print join(',',$fieldlist);
 				print '</td>';
 				continue;
 			}	// For state page, we do not show the country input (we link to region, not country)
