@@ -84,7 +84,6 @@ class modTicket extends DolibarrModules
         );
 
         // Data directories to create when module is enabled.
-        // Example: this->dirs = array("/ticket/temp");
         $this->dirs = array();
 
         // Config pages. Put here list of php pages
