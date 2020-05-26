@@ -68,7 +68,7 @@ class DoliDBMysqli extends DoliDB
 
         $this->transaction_opened=0;
 
-        //print "Name DB: $host,$user,$pass,$name<br>";
+        
 
         if (! class_exists('mysqli'))
         {
@@ -200,8 +200,8 @@ class DoliDBMysqli extends DoliDB
 		dol_syslog(get_class($this) . "::connect host=$host, port=$port, login=$login, passwd=--hidden--, name=$name", LOG_DEBUG);
 
 		// Can also be
-		// mysqli::init(); mysql::options(MYSQLI_INIT_COMMAND, 'SET AUTOCOMMIT = 0'); mysqli::options(MYSQLI_OPT_CONNECT_TIMEOUT, 5);
-		// return mysqli::real_connect($host, $user, $pass, $db, $port);
+		
+		
 		return new mysqli($host, $login, $passwd, $name, $port);
     }
 
@@ -286,7 +286,7 @@ class DoliDBMysqli extends DoliDB
 
 				if ($conf->global->SYSLOG_LEVEL < LOG_DEBUG) dol_syslog(get_class($this)."::query SQL Error query: ".$query, LOG_ERR);	// Log of request was not yet done previously
                 dol_syslog(get_class($this)."::query SQL Error message: ".$this->lasterrno." ".$this->lasterror, LOG_ERR);
-                //var_dump(debug_print_backtrace());
+                
             }
             $this->lastquery=$query;
             $this->_results = $ret;
@@ -628,7 +628,7 @@ class DoliDBMysqli extends DoliDB
         $like = '';
         if ($table) $like = "LIKE '".$table."'";
         $sql="SHOW TABLES FROM ".$database." ".$like.";";
-        //print $sql;
+        
         $result = $this->query($sql);
         if ($result)
         {
@@ -682,10 +682,10 @@ class DoliDBMysqli extends DoliDB
     public function DDLCreateTable($table, $fields, $primary_key, $type, $unique_keys = null, $fulltext_keys = null, $keys = null)
     {
         // phpcs:enable
-	    // FIXME: $fulltext_keys parameter is unused
+	    
 
         // cles recherchees dans le tableau des descriptions (fields) : type,value,attribute,null,default,extra
-        // ex. : $fields['rowid'] = array('type'=>'int','value'=>'11','null'=>'not null','extra'=> 'auto_increment');
+  
         $sql = "CREATE TABLE ".$table."(";
         $i=0;
 	    $sqlfields=array();
@@ -801,7 +801,7 @@ class DoliDBMysqli extends DoliDB
     {
         // phpcs:enable
         // cles recherchees dans le tableau des descriptions (field_desc) : type,value,attribute,null,default,extra
-        // ex. : $field_desc = array('type'=>'int','value'=>'11','null'=>'not null','extra'=> 'auto_increment');
+    
         $sql= "ALTER TABLE ".$table." ADD ".$field_name." ";
         $sql.= $field_desc['type'];
         if (preg_match("/^[^\s]/i", $field_desc['value']))
