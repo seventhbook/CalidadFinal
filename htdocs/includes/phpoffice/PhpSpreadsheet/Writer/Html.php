@@ -795,7 +795,7 @@ class Html extends BaseWriter
 
         // Start styles
         if ($generateSurroundingHTML) {
-            // html { }
+            
             $css['html']['font-family'] = 'Calibri, Arial, Helvetica, sans-serif';
             $css['html']['font-size'] = '11pt';
             $css['html']['background-color'] = 'white';
@@ -820,32 +820,32 @@ class Html extends BaseWriter
 
         $css['div.comment']['display'] = 'none';
 
-        // table { }
+        
         $css['table']['border-collapse'] = 'collapse';
         if (!$this->isPdf) {
             $css['table']['page-break-after'] = 'always';
         }
 
-        // .gridlines td { }
+        
         $css['.gridlines td']['border'] = '1px dotted black';
         $css['.gridlines th']['border'] = '1px dotted black';
 
-        // .b {}
+        
         $css['.b']['text-align'] = 'center'; // BOOL
 
-        // .e {}
+        
         $css['.e']['text-align'] = 'center'; // ERROR
 
-        // .f {}
+        
         $css['.f']['text-align'] = 'right'; // FORMULA
 
-        // .inlineStr {}
+        
         $css['.inlineStr']['text-align'] = 'left'; // INLINE
 
-        // .n {}
+        
         $css['.n']['text-align'] = 'right'; // NUMERIC
 
-        // .s {}
+        
         $css['.s']['text-align'] = 'left'; // STRING
 
         // Calculate cell style hashes
@@ -897,7 +897,7 @@ class Html extends BaseWriter
             // Default row height
             $rowDimension = $sheet->getDefaultRowDimension();
 
-            // table.sheetN tr { }
+            
             $css['table.sheet' . $sheetIndex . ' tr'] = [];
 
             if ($rowDimension->getRowHeight() == -1) {
@@ -915,7 +915,7 @@ class Html extends BaseWriter
             foreach ($sheet->getRowDimensions() as $rowDimension) {
                 $row = $rowDimension->getRowIndex() - 1;
 
-                // table.sheetN tr.rowYYYYYY { }
+                
                 $css['table.sheet' . $sheetIndex . ' tr.row' . $row] = [];
 
                 if ($rowDimension->getRowHeight() == -1) {
@@ -1276,14 +1276,14 @@ class Html extends BaseWriter
                     }
                 }
 
-                // Converts the cell content so that spaces occuring at beginning of each new line are replaced by &nbsp;
-                // Example: "  Hello\n to the world" is converted to "&nbsp;&nbsp;Hello\n&nbsp;to the world"
+                
+                
                 $cellData = preg_replace('/(?m)(?:^|\\G) /', '&nbsp;', $cellData);
 
-                // convert newline "\n" to '<br>'
+                
                 $cellData = nl2br($cellData);
 
-                // Extend CSS class?
+                
                 if (!$this->useInlineCss) {
                     $cssClass .= ' style' . $cell->getXfIndex();
                     $cssClass .= ' ' . $cell->getDataType();
@@ -1318,8 +1318,8 @@ class Html extends BaseWriter
                 && $this->isSpannedCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum]);
 
             // Colspan and Rowspan
-            $colspan = 1;
-            $rowspan = 1;
+            
+            
             if (isset($this->isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum])) {
                 $spans = $this->isBaseCell[$pSheet->getParent()->getIndex($pSheet)][$pRow + 1][$colNum];
                 $rowSpan = $spans['rowspan'];
