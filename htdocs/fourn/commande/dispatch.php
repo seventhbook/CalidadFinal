@@ -408,11 +408,11 @@ if ($id > 0 || !empty($ref)) {
 	    if ($user->rights->fournisseur->commande->creer)
 	    {
 	        if ($action != 'classify') {
-	            //$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
+	            
 				$morehtmlref .= ' : ';
             }
 	        if ($action == 'classify') {
-                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                
                 $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                 $morehtmlref .= '<input type="hidden" name="action" value="classin">';
                 $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -470,7 +470,7 @@ if ($id > 0 || !empty($ref)) {
 
 	print '</div>';
 
-	// if ($mesg) print $mesg;
+	
 	print '<br>';
 
 	$disabled = 1;
@@ -625,8 +625,8 @@ if ($id > 0 || !empty($ref)) {
 						$nbproduct++;
 
 						// To show detail cref and description value, we must make calculation by cref
-						// print ($objp->cref?' ('.$objp->cref.')':'');
-						// if ($objp->description) print '<br>'.nl2br($objp->description);
+						
+						
 						$suffix = '_0_'.$i;
 
 						print "\n";
@@ -682,7 +682,7 @@ if ($id > 0 || !empty($ref)) {
 							print '<td class="right">';
 							print '</td>'; // Qty to dispatch
 							print '<td>';
-							//print img_picto($langs->trans('AddDispatchBatchLine'), 'split.png', 'onClick="addDispatchLine(' . $i . ',\'' . $type . '\')"');
+							
 							print '</td>'; // Dispatch column
 							print '<td></td>'; // Warehouse column
 
@@ -738,7 +738,7 @@ if ($id > 0 || !empty($ref)) {
 							print '<td class="right">';
 							print '</td>'; // Qty to dispatch
 							print '<td>';
-							//print img_picto($langs->trans('AddStockLocationLine'), 'split.png', 'onClick="addDispatchLine(' . $i . ',\'' . $type . '\')"');
+							
 							print '</td>'; // Dispatch column
 							print '<td></td>'; // Warehouse column
 
@@ -786,7 +786,7 @@ if ($id > 0 || !empty($ref)) {
 						print '<td>';
 						if (! empty($conf->productbatch->enabled) && $objp->tobatch == 1) {
 						    $type = 'batch';
-						    //print img_picto($langs->trans('AddDispatchBatchLine'), 'split.png', 'class="splitbutton" onClick="addDispatchLine(' . $i . ',\'' . $type . '\')"');
+						    
 						    print img_picto($langs->trans('AddStockLocationLine'), 'split.png', 'class="splitbutton" onClick="addDispatchLine(' . $i . ',\'' . $type . '\')"');
 						}
 						else
@@ -999,7 +999,7 @@ if ($id > 0 || !empty($ref)) {
 				if (!empty($conf->global->SUPPLIER_ORDER_USE_DISPATCH_STATUS) && empty($reception->rowid)) {
 					print '<td class="right">';
 					$supplierorderdispatch->status = (empty($objp->status) ? 0 : $objp->status);
-					// print $supplierorderdispatch->status;
+					
 					print $supplierorderdispatch->getLibStatut(5);
 					print '</td>';
 
