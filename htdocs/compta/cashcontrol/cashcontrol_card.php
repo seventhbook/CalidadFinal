@@ -66,7 +66,7 @@ $arrayofpaymentmode = array('cash'=>'Cash', 'cheque'=>'Cheque', 'card'=>'CreditC
 $arrayofposavailable = array();
 if (!empty($conf->cashdesk->enabled)) $arrayofposavailable['cashdesk'] = $langs->trans('CashDesk').' (cashdesk)';
 if (!empty($conf->takepos->enabled))  $arrayofposavailable['takepos'] = $langs->trans('TakePOS').' (takepos)';
-// TODO Add hook here to allow other POS to add themself
+
 
 $object = new CashControl($db);
 $extrafields = new ExtraFields($db);
@@ -191,7 +191,7 @@ if ($action == 'confirm_delete' && !empty($permissiontodelete))
     }
 
     $result = $object->delete($user);
-    //var_dump($result);
+    
     if ($result > 0)
     {
         // Delete OK
@@ -248,7 +248,7 @@ if ($action == "create" || $action == "start")
 			$vartouse = 'CASHDESK_ID_BANKACCOUNT_CASH'.$terminaltouse;
 			$bankid = $conf->global->$vartouse; // This value is ok for 'Terminal 0' for module 'CashDesk' and 'TakePos' (they manage only 1 terminal)
 			// Hook to get the good bank id according to posmodule and posnumber.
-			// @todo add hook here
+			
 
 			if ($bankid > 0)
 			{
@@ -277,7 +277,7 @@ if ($action == "create" || $action == "start")
 		// Calculate $theoricalamountforterminal for terminal 0
 		foreach ($arrayofpaymentmode as $key => $val)
 		{
-			/*$sql = "SELECT SUM(amount) as total FROM ".MAIN_DB_PREFIX."bank";
+			
 			$sql.= " WHERE fk_account = ".$bankid;*/
 			$sql = "SELECT SUM(pf.amount) as total, COUNT(*) as nb";
 			$sql .= " FROM ".MAIN_DB_PREFIX."paiement_facture as pf, ".MAIN_DB_PREFIX."facture as f, ".MAIN_DB_PREFIX."paiement as p, ".MAIN_DB_PREFIX."c_paiement as cp";
@@ -355,7 +355,7 @@ if ($action == "create" || $action == "start")
         $selectedposnumber = 1; $showempty = 0;
     }
     print $form->selectarray('posnumber', $array, GETPOSTISSET('posnumber') ?GETPOST('posnumber', 'int') : $selectedposnumber, $showempty);
-    //print '<input name="posnumber" type="text" class="maxwidth50" value="'.(GETPOSTISSET('posnumber')?GETPOST('posnumber', 'alpha'):'0').'">';
+   
     print '</td>';
 	// Year
 	print '<td>';
@@ -417,7 +417,7 @@ if ($action == "create" || $action == "start")
 		print '<tr class="liste_titre">';
 		print '<td></td>';
 		print '<td class="center">'.$langs->trans("InitialBankBalance");
-		//print '<br>'.$langs->trans("TheoricalAmount").'<br>'.$langs->trans("RealAmount");
+		
 		print '</td>';
 		print '<td align="center" class="hide0" colspan="'.count($arrayofpaymentmode).'">';
 		print $langs->trans("AmountAtEndOfPeriod");
@@ -434,7 +434,7 @@ if ($action == "create" || $action == "start")
 		foreach ($arrayofpaymentmode as $key => $val)
 		{
 			print '<td align="center"'.($i == 0 ? ' class="hide0"' : '').'>'.$langs->trans($val);
-			//print '<br>'.$langs->trans("TheoricalAmount").'<br>'.$langs->trans("RealAmount");
+			
 			print '</td>';
 			$i++;
 		}
