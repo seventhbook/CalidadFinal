@@ -433,14 +433,14 @@ class Ods extends BaseReader
 
                     switch ($key) {
                         case 'table-header-rows':
-                            /// TODO :: Figure this out. This is only a partial implementation I guess.
+                            
                             //          ($rowData it's not used at all and I'm not sure that PHPExcel
                             //          has an API for this)
 
-//                            foreach ($rowData as $keyRowData => $cellData) {
-//                                $rowData = $cellData;
-//                                break;
-//                            }
+
+
+
+
                             break;
                         case 'table-row':
                             if ($childNode->hasAttributeNS($tableNs, 'number-rows-repeated')) {
@@ -532,7 +532,7 @@ class Ods extends BaseReader
                                             break;
                                         case 'boolean':
                                             $type = DataType::TYPE_BOOL;
-                                            $dataValue = ($allCellDataText == 'TRUE') ? true : false;
+                                            $dataValue = ($allCellDataText == 'TRUE') ?;
 
                                             break;
                                         case 'percentage':
