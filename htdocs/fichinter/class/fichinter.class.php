@@ -223,7 +223,6 @@ class Fichinter extends CommonObject
 		}
 
 		$soc = new Societe($this->db);
-		$result = $soc->fetch($this->socid);
 
 		$now = dol_now();
 
@@ -777,12 +776,6 @@ class Fichinter extends CommonObject
 			$linkclose .= ' title="'.dol_escape_htmltag($label, 1).'"';
 			$linkclose .= ' class="classfortooltip"';
 
-			/*
-			$hookmanager->initHooks(array('fichinterdao'));
-			$parameters=array('id'=>$this->id);
-			$reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
-			if ($reshook > 0) $linkclose = $hookmanager->resPrint;
-			*/
 		}
 
 		$linkstart = '<a href="'.$url.'"';
@@ -1110,7 +1103,6 @@ class Fichinter extends CommonObject
 	}
 
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *	Link intervention to a contract
 	 *
@@ -1175,13 +1167,10 @@ class Fichinter extends CommonObject
 			if ($objsoc->fetch($socid) > 0)
 			{
 				$this->socid = $objsoc->id;
-				//$this->cond_reglement_id	= (! empty($objsoc->cond_reglement_id) ? $objsoc->cond_reglement_id : 0);
-				//$this->mode_reglement_id	= (! empty($objsoc->mode_reglement_id) ? $objsoc->mode_reglement_id : 0);
 				$this->fk_project = '';
 				$this->fk_delivery_address = '';
 			}
 
-			// TODO Change product price if multi-prices
 		}
 
 		$this->id = 0;
