@@ -117,7 +117,6 @@ function pt($db, $sql, $date)
             $obj = $db->fetch_object($result);
             $mode = $obj->mode;
 
-            //print $obj->dm.' '.$obj->mode.' '.$previousmonth.' '.$previousmode;
             if ($obj->mode == 'claimed' && !empty($previousmode))
             {
             	print '<tr class="oddeven">';
@@ -239,7 +238,6 @@ $description .= $langs->trans($LT);
 $calcmode = $langs->trans("LTReportBuildWithOptionDefinedInModule").' ';
 $calcmode .= '('.$langs->trans("TaxModuleSetupToModifyRulesLT", DOL_URL_ROOT.'/admin/company.php').')<br>';
 
-//if (! empty($conf->global->MAIN_MODULE_ACCOUNTING)) $description.='<br>'.$langs->trans("ThisIsAnEstimatedValue");
 
 $period = $form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
 
@@ -248,12 +246,8 @@ $builddate = dol_now();
 
 llxHeader('', $name);
 
-//$textprevyear="<a href=\"index.php?localTaxType=".$localTaxType."&year=" . ($year_current-1) . "\">".img_previous()."</a>";
-//$textnextyear=" <a href=\"index.php?localTaxType=".$localTaxType."&year=" . ($year_current+1) . "\">".img_next()."</a>";
-//print load_fiche_titre($langs->transcountry($LT,$mysoc->country_code),"$textprevyear ".$langs->trans("Year")." $year_start $textnextyear", 'invoicing');
 
 report_header($name, '', $period, $periodlink, $description, $builddate, $exportlink, array(), $calcmode);
-//report_header($name,'',$textprevyear.$langs->trans("Year")." ".$year_start.$textnextyear,'',$description,$builddate,$exportlink,array(),$calcmode);
 
 
 print '<br>';
@@ -290,7 +284,6 @@ $total = 0; $subtotalcoll = 0; $subtotalpaye = 0; $subtotal = 0;
 $i = 0; $mcursor = 0;
 while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mcursor is to avoid too large loop
 {
-	//$m = $conf->global->SOCIETE_FISCAL_MONTH_START + ($mcursor % 12);
 	if ($m == 13) $y++;
 	if ($m > 12) $m -= 12;
 	$mcursor++;
@@ -314,10 +307,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 		$x_both[$my_coll_rate]['coll']['links'] = '';
 		$x_both[$my_coll_rate]['coll']['detail'] = array();
 		foreach ($x_coll[$my_coll_rate]['facid'] as $id=>$dummy) {
-			//$invoice_customer->id=$x_coll[$my_coll_rate]['facid'][$id];
-			//$invoice_customer->ref=$x_coll[$my_coll_rate]['facnum'][$id];
-			//$invoice_customer->type=$x_coll[$my_coll_rate]['type'][$id];
-			//$company_static->fetch($x_coll[$my_coll_rate]['company_id'][$id]);
 			$x_both[$my_coll_rate]['coll']['detail'][] = array(
 			'id'        =>$x_coll[$my_coll_rate]['facid'][$id],
 			'descr'     =>$x_coll[$my_coll_rate]['descr'][$id],
@@ -331,7 +320,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			'dtype'     =>$x_coll[$my_coll_rate]['dtype'][$id],
 			'datef'     =>$x_coll[$my_coll_rate]['datef'][$id],
 			'datep'     =>$x_coll[$my_coll_rate]['datep'][$id],
-			//'company_link'=>$company_static->getNomUrl(1,'',20),
 			'ddate_start'=>$x_coll[$my_coll_rate]['ddate_start'][$id],
 			'ddate_end'  =>$x_coll[$my_coll_rate]['ddate_end'][$id],
 
@@ -339,7 +327,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			'vat'       =>$x_coll[$my_coll_rate]['vat_list'][$id],
 			'localtax1' =>$x_coll[$my_coll_rate]['localtax1_list'][$id],
 			'localtax2' =>$x_coll[$my_coll_rate]['localtax2_list'][$id],
-			//'link'      =>$invoice_customer->getNomUrl(1,'',12)
 			);
 		}
 	}
@@ -364,9 +351,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			// ExpenseReport
 			if ($x_paye[$my_paye_rate]['ptype'][$id] == 'ExpenseReportPayment')
 			{
-				//$expensereport->id=$x_paye[$my_paye_rate]['facid'][$id];
-				//$expensereport->ref=$x_paye[$my_paye_rate]['facnum'][$id];
-				//$expensereport->type=$x_paye[$my_paye_rate]['type'][$id];
 
 				$x_both[$my_paye_rate]['paye']['detail'][] = array(
 				'id'				=>$x_paye[$my_paye_rate]['facid'][$id],
@@ -386,15 +370,10 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 				'vat'				=>$x_paye[$my_paye_rate]['vat_list'][$id],
 				'localtax1'			=>$x_paye[$my_paye_rate]['localtax1_list'][$id],
 				'localtax2'			=>$x_paye[$my_paye_rate]['localtax2_list'][$id],
-				//'link'				=>$expensereport->getNomUrl(1)
 				);
 			}
 			else
 			{
-				//$invoice_supplier->id=$x_paye[$my_paye_rate]['facid'][$id];
-				//$invoice_supplier->ref=$x_paye[$my_paye_rate]['facnum'][$id];
-				//$invoice_supplier->type=$x_paye[$my_paye_rate]['type'][$id];
-				//$company_static->fetch($x_paye[$my_paye_rate]['company_id'][$id]);
 				$x_both[$my_paye_rate]['paye']['detail'][] = array(
 				'id'        =>$x_paye[$my_paye_rate]['facid'][$id],
 				'descr'     =>$x_paye[$my_paye_rate]['descr'][$id],
@@ -408,7 +387,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 				'dtype'     =>$x_paye[$my_paye_rate]['dtype'][$id],
 				'datef'     =>$x_paye[$my_paye_rate]['datef'][$id],
 				'datep'     =>$x_paye[$my_paye_rate]['datep'][$id],
-				//'company_link'=>$company_static->getNomUrl(1,'',20),
 				'ddate_start'=>$x_paye[$my_paye_rate]['ddate_start'][$id],
 				'ddate_end'  =>$x_paye[$my_paye_rate]['ddate_end'][$id],
 
@@ -416,7 +394,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 				'vat'       =>$x_paye[$my_paye_rate]['vat_list'][$id],
 				'localtax1' =>$x_paye[$my_paye_rate]['localtax1_list'][$id],
 				'localtax2' =>$x_paye[$my_paye_rate]['localtax2_list'][$id],
-				//'link'      =>$invoice_supplier->getNomUrl(1,'',12)
 				);
 			}
 		}
@@ -477,14 +454,12 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
     			if (($type == 0 && $conf->global->TAX_MODE_SELL_PRODUCT == 'invoice')
     				|| ($type == 1 && $conf->global->TAX_MODE_SELL_SERVICE == 'invoice'))
     			{
-    				//print $langs->trans("NA");
     			} else {
     				if (isset($fields['payment_amount']) && price2num($fields['ftotal_ttc'])) {
     					$ratiopaymentinvoice = ($fields['payment_amount'] / $fields['ftotal_ttc']);
     				}
     			}
     		}
-    		//var_dump('type='.$type.' '.$fields['totalht'].' '.$ratiopaymentinvoice);
     		$temp_ht = $fields['totalht'] * $ratiopaymentinvoice;
     		$temp_vat = $fields['localtax'.$localTaxType] * $ratiopaymentinvoice;
     		$subtot_coll_total_ht += $temp_ht;
@@ -521,7 +496,6 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
     			if (($type == 0 && $conf->global->TAX_MODE_SELL_PRODUCT == 'invoice')
     				|| ($type == 1 && $conf->global->TAX_MODE_SELL_SERVICE == 'invoice'))
     			{
-    				//print $langs->trans("NA");
     			} else {
     				if (isset($fields['payment_amount']) && price2num($fields['ftotal_ttc'])) {
     					$ratiopaymentinvoice = ($fields['payment_amount'] / $fields['ftotal_ttc']);
@@ -598,7 +572,6 @@ $sql .= " AND localtaxtype=".$localTaxType;
 $sql .= " GROUP BY dm";
 
 $sql .= " ORDER BY dm ASC, mode ASC";
-//print $sql;
 
 pt($db, $sql, $langs->trans("Month"));
 
