@@ -120,7 +120,7 @@ class Conf
 		$this->file->character_set_client = 'UTF-8'; // UTF-8, ISO-8859-1
 
 		// First level object
-		// TODO Remove this part.
+		
 		$this->expedition_bon = new stdClass();
 		$this->livraison_bon = new stdClass();
 		$this->fournisseur = new stdClass();
@@ -232,12 +232,12 @@ class Conf
             }
         }
 
-        //var_dump($this->modules);
-        //var_dump($this->modules_parts['theme']);
+        
+        
 
 		// If you can't set timezone of your PHP, set this constant. Better is to set it to UTC.
 		// In future, this constant will be forced to 'UTC' so PHP server timezone will not have effect anymore.
-		//$this->global->MAIN_SERVER_TZ='Europe/Paris';
+		
 		if (!empty($this->global->MAIN_SERVER_TZ) && $this->global->MAIN_SERVER_TZ != 'auto')
 		{
 			try {
@@ -295,7 +295,7 @@ class Conf
 		// Define default dir_output and dir_temp for directories of modules
 		foreach ($this->modules as $module)
 		{
-		    //var_dump($module);
+		    
 			// For multicompany sharings
 			$this->$module->multidir_output = array($this->entity => $rootfordata."/".$module);
 			$this->$module->multidir_temp = array($this->entity => $rootfordata."/".$module."/temp");
@@ -372,7 +372,7 @@ class Conf
 		$this->livraison_bon->enabled = (!empty($this->global->MAIN_SUBMODULE_LIVRAISON) ? $this->global->MAIN_SUBMODULE_LIVRAISON : 0);
 
 		// Module fournisseur
-		// TODO To split into module supplier_invoice and supplier_order
+		
 		if (!empty($this->fournisseur))
 		{
 			$this->fournisseur->commande = new stdClass();
@@ -594,7 +594,7 @@ class Conf
         if (empty($this->global->TAX_MODE_BUY_SERVICE))  $this->global->TAX_MODE_BUY_SERVICE = 'payment';
 
 		// Delay before warnings
-		// Avoid strict errors. TODO: Replace xxx->warning_delay with a property ->warning_delay_xxx
+		
 		if (isset($this->agenda)) {
 		    $this->adherent->subscription = new stdClass();
             $this->adherent->subscription->warning_delay = (isset($this->global->MAIN_DELAY_MEMBERS) ? $this->global->MAIN_DELAY_MEMBERS : 0) * 24 * 60 * 60;
