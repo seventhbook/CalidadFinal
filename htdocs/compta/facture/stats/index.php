@@ -49,7 +49,6 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
 $startyear=$year-1;
 $endyear=$year;
 
@@ -92,7 +91,6 @@ if ($mode == 'supplier')
 // Build graphic number of object
 // $data = array(array('Lib',val1,val2,val3),...)
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
-//var_dump($data);
 
 $filenamenb = $dir."/invoicesnbinyear-".$year.".png";
 if ($mode == 'customer') $fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=billstats&amp;file=invoicesnbinyear-'.$year.'.png';
@@ -124,8 +122,6 @@ if (! $mesg)
 
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
-//var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
 
 $filenameamount = $dir."/invoicesamountinyear-".$year.".png";
 if ($mode == 'customer') $fileurlamount = DOL_URL_ROOT.'/viewimage.php?modulepart=billstats&amp;file=invoicesamountinyear-'.$year.'.png';
