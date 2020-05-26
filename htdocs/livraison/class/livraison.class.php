@@ -202,7 +202,6 @@ class Livraison extends CommonObject
 
 					if (! $conf->expedition_bon->enabled)
 					{
-						// TODO uniformiser les statuts
 						$ret = $this->setStatut(2, $this->origin_id, $this->origin);
 						if (! $ret)
 						{
@@ -529,7 +528,6 @@ class Livraison extends CommonObject
 	{
         // phpcs:enable
 		$expedition = new Expedition($this->db);
-		$result=$expedition->fetch($sending_id);
 
 		$this->lines = array();
 
@@ -745,14 +743,9 @@ class Livraison extends CommonObject
 
 		$url=DOL_URL_ROOT.'/livraison/card.php?id='.$this->id;
 
-        //if ($option !== 'nolink')
-        //{
-        	// Add param to save lastsearch_values or not
         	$add_save_lastsearch_values=($save_lastsearch_value == 1 ? 1 : 0);
         	if ($save_lastsearch_value == -1 && preg_match('/list\.php/', $_SERVER["PHP_SELF"])) $add_save_lastsearch_values=1;
         	if ($add_save_lastsearch_values) $url.='&save_lastsearch_values=1';
-        //}
-
 
         $linkstart = '<a href="'.$url.'" title="'.dol_escape_htmltag($label, 1).'" class="classfortooltip">';
 		$linkend='</a>';
@@ -850,7 +843,6 @@ class Livraison extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
 			$this->labelStatus[-1] = $langs->trans('StatusDeliveryCanceled');
 			$this->labelStatus[0] = $langs->trans('StatusDeliveryDraft');
 			$this->labelStatus[1] = $langs->trans('StatusDeliveryValidated');
@@ -922,21 +914,13 @@ class Livraison extends CommonObject
 
 		$this->lines[$i] = $line;
 	}
-
-	/**
-	 *  Renvoie la quantite de produit restante a livrer pour une commande
-	 *
-	 *  @return     array		Product remaining to be delivered
-	 *  TODO use new function
-	 */
+	
     public function getRemainingDelivered()
 	{
 		global $langs;
 
 		// Get the linked object
 		$this->fetchObjectLinked('', '', $this->id, $this->element);
-		//var_dump($this->linkedObjectIds);
-		// Get the product ref and qty in source
 		$sqlSourceLine = "SELECT st.rowid, st.description, st.qty";
 		$sqlSourceLine.= ", p.ref, p.label";
 		$sqlSourceLine.= " FROM ".MAIN_DB_PREFIX.$this->linkedObjectIds[0]['type']."det as st";
@@ -948,7 +932,6 @@ class Livraison extends CommonObject
 		{
 			$num_lines = $this->db->num_rows($resultSourceLine);
 			$i = 0;
-			$resultArray = array();
 			while ($i < $num_lines)
 			{
 				$objSourceLine = $this->db->fetch_object($resultSourceLine);
