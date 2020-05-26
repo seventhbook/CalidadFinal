@@ -51,7 +51,7 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
+
 $startyear=$year-1;
 $endyear=$year;
 
@@ -97,8 +97,8 @@ if ($mode == 'supplier')
 // Build graphic number of object
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 
-//var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
+
 
 
 if (!$user->rights->societe->client->voir || $user->socid)
@@ -141,8 +141,8 @@ if (! $mesg)
 
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
-//var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
+
 
 if (!$user->rights->societe->client->voir || $user->socid)
 {
