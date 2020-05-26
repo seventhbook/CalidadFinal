@@ -114,12 +114,7 @@ if (empty($date_start) || empty($date_end)) // We define date_start and date_end
 	if ($q == 3) { $date_start = dol_get_first_day($year_start, 7, false); $date_end = dol_get_last_day($year_start, 9, false); }
 	if ($q == 4) { $date_start = dol_get_first_day($year_start, 10, false); $date_end = dol_get_last_day($year_start, 12, false); }
 }
-else
-{
-	// TODO We define q
-}
 
-// $date_start and $date_end are defined. We force $year_start and $nbofyear
 $tmps = dol_getdate($date_start);
 $year_start = $tmps['year'];
 $tmpe = dol_getdate($date_end);
@@ -168,7 +163,6 @@ $form = new Form($db);
 $thirdparty_static = new Societe($db);
 $formother = new FormOther($db);
 
-// TODO Report from bookkeeping not yet available, so we switch on report on business events
 if ($modecompta == "BOOKKEEPING") $modecompta = "CREANCES-DETTES";
 if ($modecompta == "BOOKKEEPINGCOLLECTED") $modecompta = "RECETTES-DEPENSES";
 
@@ -177,22 +171,18 @@ if ($modecompta == "CREANCES-DETTES")
 {
 	$name = $langs->trans("Turnover").', '.$langs->trans("ByThirdParties");
 	$calcmode = $langs->trans("CalcModeDebt");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
 	$description = $langs->trans("RulesCADue");
 	if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description .= $langs->trans("DepositsAreNotIncluded");
 	else  $description .= $langs->trans("DepositsAreIncluded");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
 }
 elseif ($modecompta == "RECETTES-DEPENSES")
 {
 	$name = $langs->trans("TurnoverCollected").', '.$langs->trans("ByThirdParties");
 	$calcmode = $langs->trans("CalcModeEngagement");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=CREANCES-DETTES">','</a>').')';
 	$description = $langs->trans("RulesCAIn");
 	$description .= $langs->trans("DepositsAreIncluded");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
 }
 elseif ($modecompta == "BOOKKEEPING")
 {
@@ -291,7 +281,6 @@ $sql .= " AND f.entity IN (".getEntity('invoice').")";
 if ($socid) $sql .= " AND f.fk_soc = ".$socid;
 $sql .= " GROUP BY s.rowid, s.nom, s.zip, s.town, s.fk_pays";
 $sql .= " ORDER BY s.rowid";
-//echo $sql;
 
 dol_syslog("casoc", LOG_DEBUG);
 $result = $db->query($sql);
@@ -391,7 +380,6 @@ print '<input class="flat" size="6" type="text" name="search_town" value="'.$sea
 print '</td>';
 print '<td class="liste_titre left">';
 print $form->select_country($search_country, 'search_country');
-//print '<input class="flat" size="6" type="text" name="search_country" value="'.$search_country.'">';
 print '</td>';
 print '<td class="liste_titre">&nbsp;</td>';
 print '<td class="liste_titre">&nbsp;</td>';
@@ -598,7 +586,6 @@ if (count($amount)) {
 		print '</a>';
 		print '</td>';
 
-		// Percent;
 		print '<td class="right">'.($catotal > 0 ? round(100 * $amount[$key] / $catotal, 2).'%' : '&nbsp;').'</td>';
 
         // Other stats
