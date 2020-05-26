@@ -239,7 +239,7 @@ class doc_generic_usergroup_odt extends ModelePDFUserGroup
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -297,10 +297,10 @@ class doc_generic_usergroup_odt extends ModelePDFUserGroup
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->user->dir_temp=".$conf->user->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->user->dir_temp);
 
@@ -340,7 +340,7 @@ class doc_generic_usergroup_odt extends ModelePDFUserGroup
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Line of free text
 				$newfreetext = '';
@@ -370,8 +370,8 @@ class doc_generic_usergroup_odt extends ModelePDFUserGroup
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 
 				// Make substitutions into odt of freetext
