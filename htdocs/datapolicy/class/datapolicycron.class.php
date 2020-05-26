@@ -54,7 +54,7 @@ class DataPolicyCron
         $errormsg = '';
         $nbupdated = $nbdeleted = 0;
 
-        // FIXME Removed hardcoded values of id
+        
         $arrayofparameters=array(
             'DATAPOLICIES_TIERS_CLIENT' => array(
                 'sql' => "
