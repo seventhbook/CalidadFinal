@@ -124,15 +124,6 @@ class modPrelevement extends DolibarrModules
 		$this->rights[$r][4] = 'bons';
 		$this->rights[$r][5] = 'credit';
 
-        /*
-        $this->rights[2][0] = 154;
-        $this->rights[2][1] = 'Setup withdraw account';
-        $this->rights[2][2] = 'w';
-        $this->rights[2][3] = 0;
-        $this->rights[2][4] = 'bons';
-        $this->rights[2][5] = 'configurer';
-        */
-
         // Menus
         //-------
         $this->menu = 1;        // This module add menu entries. They are coded into menu manager.
