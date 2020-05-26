@@ -315,16 +315,16 @@ else
 			print "</td>\n";
 			print "\t\t".'<td colspan="2">'.$cat->description."</td>\n";
 
-			/*
-			if ($cat->visible == 1)
-			{
-				print "\t\t<td>".$langs->trans("ContentsVisibleByAllShort")."</td>\n";
-			}
-			else
-			{
-				print "\t\t<td>".$langs->trans("ContentsNotVisibleByAllShort")."</td>\n";
-			}
-			*/
+			
+			
+			
+				
+			
+			
+			
+				
+			
+			
 
 			print "\t</tr>\n";
 		}
