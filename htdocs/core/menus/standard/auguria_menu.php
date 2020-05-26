@@ -94,7 +94,6 @@ class MenuManager
 
     		if ($_SESSION["leftmenuopened"]==$leftmenu)	// To collapse
     		{
-    			//$leftmenu="";
     			$_SESSION["leftmenuopened"]="";
     		}
     		else
@@ -112,9 +111,6 @@ class MenuManager
     	$menuArbo = new Menubase($this->db, 'auguria');
     	$menuArbo->menuLoad($mainmenu, $leftmenu, $this->type_user, 'auguria', $tabMenu);
     	$this->tabMenu=$tabMenu;
-    	//var_dump($tabMenu);
-
-    	//if ($forcemainmenu == 'all') { var_dump($this->tabMenu); exit; }
    	}
 
 
@@ -163,8 +159,6 @@ class MenuManager
         {
         	print_auguria_menu($this->db, $this->atarget, $this->type_user, $this->tabMenu, $this->menu, 1, $mode);
 
-            // $this->menu->liste is top menu
-            //var_dump($this->menu->liste);exit;
         	$lastlevel = array();
         	print '<!-- Generate menu list from menu handler '.$this->name.' -->'."\n";
         	foreach($this->menu->liste as $key => $val)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
@@ -178,7 +172,6 @@ class MenuManager
         			$val['url'] = make_substitutions($val['url'], $substitarray);
 
         			$relurl=dol_buildpath($val['url'], 1);
-        			$canonurl=preg_replace('/\?.*$/', '', $val['url']);
 
         			print '<a class="alilevel0" href="#">';
 
@@ -197,8 +190,6 @@ class MenuManager
 
         			$canonrelurl=preg_replace('/\?.*$/', '', $relurl);
         			$canonnexturl=preg_replace('/\?.*$/', '', $nexturl);
-        			//var_dump($canonrelurl);
-        			//var_dump($canonnexturl);
         			print '<ul>'."\n";
         			if (($canonrelurl != $canonnexturl && ! in_array($val['mainmenu'], array('tools')))
         				|| (strpos($canonrelurl, '/product/index.php') !== false || strpos($canonrelurl, '/compta/bank/list.php') !== false))
@@ -264,7 +255,6 @@ class MenuManager
        							$relurl2=$val2['url'];
        						}
 	        				$canonurl2=preg_replace('/\?.*$/', '', $val2['url']);
-	        				//var_dump($val2['url'].' - '.$canonurl2.' - '.$val2['level']);
 	        				if (in_array($canonurl2, array('/admin/index.php','/admin/tools/index.php','/core/tools.php'))) $relurl2='';
 
 	        				$disabled='';
@@ -282,7 +272,6 @@ class MenuManager
 	        					if ($val2['enabled'])	// Allowed
 	        					{
 	        						print '<a href="'.$relurl2.'"';
-		        					//print ' data-ajax="false"';
 		        					print '>';
 		        					$lastlevel2[$val2['level']]='enabled';
 	        					}
@@ -314,7 +303,6 @@ class MenuManager
 	        				print '</li>'."\n";
        					}
         			}
-        			//var_dump($submenu);
         			print '</ul>';
         		}
         		if ($val['enabled'] == 2)
@@ -328,7 +316,6 @@ class MenuManager
 
         unset($this->menu);
 
-        //print 'xx'.$mode;
         return 0;
     }
 }
