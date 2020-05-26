@@ -74,10 +74,10 @@ if (!$sortorder) $sortorder = "ASC";
 $socid = 0;
 if ($user->socid > 0)
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
-//$result = restrictedArea($user, 'asset', $id,'');
+
 
 // Initialize array of search criterias
 $search_all = trim(GETPOST("search_all", 'alpha'));
@@ -170,7 +170,7 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_Asset|FR:Module_Asset_FR|ES:Módulo_Asset";
+
 $help_url = '';
 $title = $langs->trans('ListOf', $langs->transnoentitiesnoconv("Assets"));
 
@@ -207,20 +207,20 @@ $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldListWhere', $parameters, $object); // Note that $action and $object may have been modified by hook
 $sql .= $hookmanager->resPrint;
 
-/* If a group by is required
-$sql.= " GROUP BY "
-foreach($object->fields as $key => $val)
-{
-    $sql.='t.'.$key.', ';
-}
-// Add fields from extrafields
-if (! empty($extrafields->attributes[$object->table_element]['label'])) {
-	foreach ($extrafields->attributes[$object->table_element]['label'] as $key => $val) $sql.=($extrafields->attributes[$object->table_element]['type'][$key] != 'separate' ? "ef.".$key.', ' : '');
-// Add where from hooks
-$parameters=array();
-$reshook=$hookmanager->executeHooks('printFieldListGroupBy',$parameters);    // Note that $action and $object may have been modified by hook
-$sql.=$hookmanager->resPrint;
-*/
+
+
+
+
+    
+
+
+
+	
+
+
+
+
+
 
 $sql .= $db->order($sortfield, $sortorder);
 
@@ -334,9 +334,9 @@ if ($sall)
 }
 
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
-$moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
-$moreforfilter.= '</div>';*/
+
+
+
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters, $object); // Note that $action and $object may have been modified by hook
