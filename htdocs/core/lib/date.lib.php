@@ -93,7 +93,6 @@ function getServerTimeZoneInt($refgmtdate = 'now')
         $localtz = new DateTimeZone(getServerTimeZoneString());
         $localdt = new DateTime($newrefgmtdate, $localtz);
         $tmp=-1*$localtz->getOffset($localdt);
-        //print $refgmtdate.'='.$tmp;
     }
     else
     {
@@ -200,7 +199,6 @@ function convertSecondToTime($iSecond, $format = 'all', $lengthOfDay = 86400, $l
 				$sDay++;
 				$iSecond-=$lengthOfDay;
 			}
-			$dayTranslate = $langs->trans("Day");
 			if ($iSecond >= ($lengthOfDay*2)) $dayTranslate = $langs->trans("Days");
 		}
 
@@ -533,7 +531,6 @@ function dol_get_first_day_week($day, $month, $year, $gm = false)
 {
 	global $conf;
 
-	//$day=2; $month=2; $year=2015;
 	$date = dol_mktime(0, 0, 0, $month, $day, $year, $gm);
 
 	//Checking conf of start week
@@ -546,7 +543,6 @@ function dol_get_first_day_week($day, $month, $year, $gm = false)
  	if ($days>=1) $days=7-$days;
  	$days = abs($days);
     $seconds = $days*24*60*60;
-	//print 'start_week='.$start_week.' tmparray[wday]='.$tmparray['wday'].' day offset='.$days.' seconds offset='.$seconds.'<br>';
 
     //Get first day of week
     $tmpdaytms = date($tmparray[0])-$seconds; // $tmparray[0] is day of parameters
@@ -832,7 +828,6 @@ function num_public_holiday($timestampStart, $timestampEnd, $country_code = '', 
 
 		// Increase number of days (on go up into loop)
 		$timestampStart=dol_time_plus_duree($timestampStart, 1, 'd');
-		//var_dump($jour.' '.$mois.' '.$annee.' '.$timestampStart);
 
 		$i++;
 	}
@@ -864,7 +859,6 @@ function num_between_day($timestampStart, $timestampEnd, $lastday = 0)
 		}
 		$nbjours = (int) floor(($timestampEnd - $timestampStart)/(60*60*24)) + 1 - $bit;
 	}
-	//print ($timestampEnd - $timestampStart) - $lastday;
 	return $nbjours;
 }
 
@@ -892,7 +886,6 @@ function num_open_day($timestampStart, $timestampEnd, $inhour = 0, $lastday = 0,
 	if (! is_int($timestampStart) && ! is_float($timestampStart)) return 'ErrorBadParameter_num_open_day';
 	if (! is_int($timestampEnd) && ! is_float($timestampEnd)) return 'ErrorBadParameter_num_open_day';
 
-	//print 'num_open_day timestampStart='.$timestampStart.' timestampEnd='.$timestampEnd.' bit='.$lastday;
 	if ($timestampStart < $timestampEnd)
 	{
 		$numdays = num_between_day($timestampStart, $timestampEnd, $lastday);
