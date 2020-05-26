@@ -55,8 +55,6 @@ $hookmanager->initHooks(array('timesheetperweekcard'));
 
 // Security check
 $socid=0;
-// For external user, no check is done on company because readability is managed by public status of project and assignement.
-// if ($user->socid > 0) $socid=$user->socid;
 $result = restrictedArea($user, 'projet', $projectid);
 
 $now=dol_now();
@@ -121,26 +119,11 @@ $object = new Task($db);
 // Extra fields
 $extrafields = new ExtraFields($db);
 
-// fetch optionals attributes and labels
-//$extrafields->fetch_name_optionals_label('projet');
 $extrafields->fetch_name_optionals_label('projet_task');
 
 $arrayfields = array();
-/*$arrayfields=array(
-    // Project
-    'p.opp_amount'=>array('label'=>$langs->trans("OpportunityAmountShort"), 'checked'=>0, 'enabled'=>($conf->global->PROJECT_USE_OPPORTUNITIES?1:0), 'position'=>103),
-    'p.fk_opp_status'=>array('label'=>$langs->trans("OpportunityStatusShort"), 'checked'=>0, 'enabled'=>($conf->global->PROJECT_USE_OPPORTUNITIES?1:0), 'position'=>104),
-    'p.opp_percent'=>array('label'=>$langs->trans("OpportunityProbabilityShort"), 'checked'=>0, 'enabled'=>($conf->global->PROJECT_USE_OPPORTUNITIES?1:0), 'position'=>105),
-    'p.budget_amount'=>array('label'=>$langs->trans("Budget"), 'checked'=>0, 'position'=>110),
-    'p.usage_bill_time'=>array('label'=>$langs->trans("BillTimeShort"), 'checked'=>0, 'position'=>115),
-);*/
 $arrayfields['t.planned_workload'] = array('label'=>'PlannedWorkload', 'checked'=>1, 'enabled'=>1, 'position'=>0);
 $arrayfields['t.progress'] = array('label'=>'ProgressDeclared', 'checked'=>1, 'enabled'=>1, 'position'=>0);
-/*foreach($object->fields as $key => $val)
-{
-    // If $val['visible']==0, then we never show the field
-    if (! empty($val['visible'])) $arrayfields['t.'.$key]=array('label'=>$val['label'], 'checked'=>(($val['visible']<0)?0:1), 'enabled'=>$val['enabled'], 'position'=>$val['position']);
-}*/
 // Definition of fields for list
 // Extra fields
 if (is_array($extrafields->attributes['projet_task']['label']) && count($extrafields->attributes['projet_task']['label']) > 0)
@@ -324,7 +307,6 @@ if ($action == 'addtime' && $user->rights->projet->lire && GETPOST('formfilterac
 			if (!$updateoftaskdone)  // Check to update progress if no update were done on task.
 			{
 				$object->fetch($taskid);
-				//var_dump($object->progress);var_dump(GETPOST($taskid . 'progress', 'int')); exit;
 				if ($object->progress != GETPOST($taskid.'progress', 'int'))
 				{
 					$object->progress = GETPOST($taskid.'progress', 'int');
@@ -355,10 +337,6 @@ if ($action == 'addtime' && $user->rights->projet->lire && GETPOST('formfilterac
 			$param .= ($search_task_ref ? '&search_task_ref='.urlencode($search_task_ref) : '');
 			$param .= ($search_task_label ? '&search_task_label='.urlencode($search_task_label) : '');
 
-            /*$search_array_options=$search_array_options_project;
-            $search_options_pattern='search_options_';
-            include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
-            */
 
             $search_array_options = $search_array_options_task;
             $search_options_pattern = 'search_task_options_';
@@ -390,7 +368,6 @@ $holiday = new Holiday($db);
 $title = $langs->trans("TimeSpent");
 
 $projectsListId = $projectstatic->getProjectsAuthorizedForUser($usertoprocess, (empty($usertoprocess->id) ? 2 : 0), 1); // Return all project i have permission on (assigned to me+public). I want my tasks and some of my task may be on a public projet that is not my project
-//var_dump($projectsListId);
 if ($id)
 {
 	$project->fetch($id);
@@ -408,12 +385,6 @@ if ($search_declared_progress)  $morewherefilter .= natural_search("t.progress",
 
 $sql = &$morewherefilter;
 
-/*$search_array_options = $search_array_options_project;
-$extrafieldsobjectprefix='efp.';
-$search_options_pattern='search_options_';
-$extrafieldsobjectkey='projet';
-include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_sql.tpl.php';
-*/
 $search_array_options = $search_array_options_task;
 $extrafieldsobjectprefix = 'efpt.';
 $search_options_pattern = 'search_task_options_';
@@ -427,14 +398,9 @@ if ($morewherefilter)	// Get all task without any filter, so we can show total o
 }
 $projectsrole = $taskstatic->getUserRolesForProjectsOrTasks($usertoprocess, 0, ($project->id ? $project->id : 0), 0, $onlyopenedproject);
 $tasksrole = $taskstatic->getUserRolesForProjectsOrTasks(0, $usertoprocess, ($project->id ? $project->id : 0), 0, $onlyopenedproject);
-//var_dump($tasksarray);
-//var_dump($projectsrole);
-//var_dump($taskrole);
-
 
 llxHeader("", $title, "", '', '', '', array('/core/js/timesheet.js'));
 
-//print_barre_liste($title, $page, $_SERVER["PHP_SELF"], "", $sortfield, $sortorder, "", $num, '', 'project');
 
 $param = '';
 $param .= ($mode ? '&mode='.urlencode($mode) : '');
@@ -533,13 +499,6 @@ for ($idw = 0; $idw < 7; $idw++)
 	$dayinloopfromfirstdaytoshow = dol_time_plus_duree($firstdaytoshow, $idw, 'd'); // $firstdaytoshow is a date with hours = 0
 	$dayinloop = dol_time_plus_duree($startday, $idw, 'd');
 
-	// Useless because $dayinloopwithouthours should be same than $dayinloopfromfirstdaytoshow
-	//$tmparray = dol_getdate($dayinloop);
-	//$dayinloopwithouthours=dol_mktime(0, 0, 0, $tmparray['mon'], $tmparray['mday'], $tmparray['year']);
-	//print dol_print_date($dayinloop, 'dayhour').' ';
-	//print dol_print_date($dayinloopwithouthours, 'dayhour').' ';
-	//print dol_print_date($dayinloopfromfirstdaytoshow, 'dayhour').'<br>';
-
 	$statusofholidaytocheck = '3';
 
 	$isavailablefordayanduser = $holiday->verifDateHolidayForTimestamp($usertoprocess->id, $dayinloopfromfirstdaytoshow, $statusofholidaytocheck);
@@ -550,16 +509,6 @@ for ($idw = 0; $idw < 7; $idw++)
 $moreforfilter = '';
 
 // Filter on categories
-/*
-if (! empty($conf->categorie->enabled))
-{
-	require_once DOL_DOCUMENT_ROOT . '/categories/class/categorie.class.php';
-	$moreforfilter.='<div class="divsearchfield">';
-	$moreforfilter.=$langs->trans('ProjectCategories'). ': ';
-	$moreforfilter.=$formother->select_categories('project', $search_categ, 'search_categ', 1, 1, 'maxwidth300');
-	$moreforfilter.='</div>';
-}*/
-
 // If the user can view user other than himself
 $moreforfilter .= '<div class="divsearchfield">';
 $moreforfilter .= '<div class="inline-block hideonsmartphone">'.$langs->trans('User').' </div>';
@@ -654,9 +603,6 @@ if (!empty($arrayfields['t.progress']['checked']))
 {
     print '<th class="maxwidth75 right">'.$langs->trans("ProgressDeclared").'</th>';
 }
-/*print '<td class="maxwidth75 right">'.$langs->trans("TimeSpent").'</td>';
- if ($usertoprocess->id == $user->id) print '<td class="maxwidth75 right">'.$langs->trans("TimeSpentByYou").'</td>';
- else print '<td class="maxwidth75 right">'.$langs->trans("TimeSpentByUser").'</td>';*/
 print '<th class="maxwidth75 right">'.$langs->trans("TimeSpent").'<br>('.$langs->trans("Everybody").')</th>';
 print '<th class="maxwidth75 right">'.$langs->trans("TimeSpent").($usertoprocess->firstname ? '<br>('.dol_trunc($usertoprocess->firstname, 10).')' : '').'</th>';
 
@@ -680,7 +626,6 @@ for ($idw = 0; $idw < 7; $idw++)
 
 	print '<th width="6%" align="center" class="bold hide'.$idw.($cssonholiday ? ' '.$cssonholiday : '').($cssweekend ? ' '.$cssweekend : '').'">'.dol_print_date($dayinloopfromfirstdaytoshow, '%a').'<br>'.dol_print_date($dayinloopfromfirstdaytoshow, 'dayreduceformat').'</th>';
 }
-//print '<td></td>';
 print_liste_field_titre($selectedfields, $_SERVER["PHP_SELF"], "", '', '', '', $sortfield, $sortorder, 'center maxwidthsearch ');
 
 
@@ -723,14 +668,10 @@ if ($conf->use_javascript_ajax)
 $restrictviewformytask = ((!isset($conf->global->PROJECT_TIME_SHOW_TASK_NOT_ASSIGNED)) ? 2 : $conf->global->PROJECT_TIME_SHOW_TASK_NOT_ASSIGNED);
 if (count($tasksarray) > 0)
 {
-	//var_dump($tasksarray);				// contains only selected tasks
-	//var_dump($tasksarraywithoutfilter);	// contains all tasks (if there is a filter, not defined if no filter)
-	//var_dump($tasksrole);
 
 	$j = 0;
 	$level = 0;
 	$totalforvisibletasks = projectLinesPerWeek($j, $firstdaytoshow, $usertoprocess, 0, $tasksarray, $level, $projectsrole, $tasksrole, $mine, $restrictviewformytask, $isavailable, 0, $arrayfields, $extrafields);
-	//var_dump($totalforvisibletasks);
 
 	// Show total for all other tasks
 
@@ -743,7 +684,6 @@ if (count($tasksarray) > 0)
 			$listofdistinctprojectid[$tmptask->fk_project] = $tmptask->fk_project;
 		}
 	}
-	//var_dump($listofdistinctprojectid);
 	$totalforeachday = array();
 	foreach ($listofdistinctprojectid as $tmpprojectid)
 	{
@@ -756,8 +696,6 @@ if (count($tasksarray) > 0)
 		}
 	}
 
-	//var_dump($totalforeachday);
-	//var_dump($totalforvisibletasks);
 
 	// Is there a diff between selected/filtered tasks and all tasks ?
 	$isdiff = 0;
