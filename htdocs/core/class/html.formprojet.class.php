@@ -218,8 +218,8 @@ class FormProjets
 						}
 
 						$labeltoshow=dol_trunc($obj->ref, 18);
-						//if ($obj->public) $labeltoshow.=' ('.$langs->trans("SharedProject").')';
-						//else $labeltoshow.=' ('.$langs->trans("Private").')';
+						
+						
 						$labeltoshow.=', '.dol_trunc($obj->title, $maxlength);
 						if ($obj->name)
 						{
@@ -247,7 +247,7 @@ class FormProjets
 						if (!empty($selected) && $selected == $obj->rowid)
 						{
 							$out.= '<option value="'.$obj->rowid.'" selected';
-							//if ($disabled) $out.=' disabled';						// with select2, field can't be preselected if disabled
+							
 							$out.= '>'.$labeltoshow.'</option>';
 						}
 						else
@@ -260,8 +260,8 @@ class FormProjets
 							{
 								$resultat='<option value="'.$obj->rowid.'"';
 								if ($disabled) $resultat.=' disabled';
-								//if ($obj->public) $labeltoshow.=' ('.$langs->trans("Public").')';
-								//else $labeltoshow.=' ('.$langs->trans("Private").')';
+								
+								
 								$resultat.='>';
 								$resultat.=$labeltoshow;
 								$resultat.='</option>';
@@ -404,8 +404,8 @@ class FormProjets
 						if ($showproject == 'all')
 						{
 							$labeltoshow.=dol_trunc($obj->ref, 18);     // Project ref
-							//if ($obj->public) $labeltoshow.=' ('.$langs->trans("SharedProject").')';
-							//else $labeltoshow.=' ('.$langs->trans("Private").')';
+							
+							
 							$labeltoshow.=' '.dol_trunc($obj->title, $maxlength);
 
 							if ($obj->name) $labeltoshow.=' ('.$obj->name.')';
@@ -448,8 +448,8 @@ class FormProjets
 							{
 								$resultat='<option value="'.$obj->rowid.'"';
 								if ($disabled) $resultat.=' disabled';
-								//if ($obj->public) $labeltoshow.=' ('.$langs->trans("Public").')';
-								//else $labeltoshow.=' ('.$langs->trans("Private").')';
+								
+								
 								$resultat.='>';
 								$resultat.=$labeltoshow;
 								$resultat.='</option>';
@@ -484,7 +484,7 @@ class FormProjets
 	 *    @param	string		$table_element		Table of the element to update
 	 *    @param	string		$socid				If of thirdparty to use as filter or 'id1,id2,...'
 	 *    @param	string		$morecss			More CSS
-	 *    @param    int         $limitonstatus      Add filters to limit length of list to opened status (for example to avoid ERR_RESPONSE_HEADERS_TOO_BIG on project/element.php page). TODO To implement
+	
 	 *    @param	string		$projectkey			Equivalent key  to fk_projet for actual table_element
 	 *    @return	int|string						The HTML select list of element or '' if nothing or -1 if KO
 	 */
@@ -500,7 +500,7 @@ class FormProjets
 
 		$sqlfilter='';
 
-		//print $table_element;
+		
 		switch ($table_element)
 		{
 			case "loan":
@@ -526,9 +526,9 @@ class FormProjets
 			case "expensereport":
 				return '';
 			case "expensereport_det":
-				/*$sql = "SELECT rowid, '' as ref";	// table is llx_expensereport_det
-				$projectkey="fk_projet";
-				break;*/
+				
+				
+				
 				return '';
 			case "commande":
 		    case "contrat":
@@ -540,7 +540,7 @@ class FormProjets
 				$projectkey='fk_origin';
 				break;
 			case "payment_salary":
-				$sql = "SELECT t.rowid, t.num_payment as ref";	// TODO In a future fill and use real ref field
+				$sql = "SELECT t.rowid, t.num_payment as ref";	
 				break;
 			case "payment_various":
 				$sql = "SELECT t.rowid, t.num_payment as ref";
@@ -585,12 +585,12 @@ class FormProjets
 				}
 				$sellist .='</select>';
 			}
-			/*else
-			{
-				$sellist = '<select class="flat" name="elementselect">';
-				$sellist.= '<option value="0" disabled>'.$langs->trans("None").'</option>';
-				$sellist.= '</select>';
-			}*/
+			
+			
+			
+			
+			
+			
 			$this->db->free($resql);
 
 			return $sellist;
@@ -667,12 +667,12 @@ class FormProjets
 				}
 				$sellist .='</select>';
 			}
-			/*else
-			{
-				$sellist = '<select class="flat" name="elementselect">';
-				$sellist.= '<option value="0" disabled>'.$langs->trans("None").'</option>';
-				$sellist.= '</select>';
-			}*/
+			
+			
+			
+			
+			
+			
 			$this->db->free($resql);
 
 			return $sellist;
