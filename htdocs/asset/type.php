@@ -204,7 +204,6 @@ llxHeader('', $langs->trans("AssetsTypeSetup"), $helpurl);
 // List of asset type
 if (!$rowid && $action != 'create' && $action != 'edit')
 {
-	//dol_fiche_head('');
 
 	$sql = "SELECT d.rowid, d.label as label, d.accountancy_code_asset, d.accountancy_code_depreciation_asset, d.accountancy_code_depreciation_expense, d.note";
 	$sql .= " FROM ".MAIN_DB_PREFIX."asset_type as d";
