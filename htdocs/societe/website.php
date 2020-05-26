@@ -279,21 +279,6 @@ $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldListWhere', $parameters, $objectwebsiteaccount); // Note that $action and $objectwebsiteaccount may have been modified by hook
 $sql .= $hookmanager->resPrint;
 
-/* If a group by is required
-$sql.= " GROUP BY "
-foreach($objectwebsiteaccount->fields as $key => $val)
-{
-	$sql.='t.'.$key.', ';
-}
-// Add fields from extrafields
-if (! empty($extrafields->attributes[$object->table_element]['label'])) {
-	foreach ($extrafields->attributes[$object->table_element]['label'] as $key => $val) $sql.=($extrafields->attributes[$object->table_element]['type'][$key] != 'separate' ? "ef.".$key.', ' : '');
-// Add where from hooks
-$parameters=array();
-$reshook=$hookmanager->executeHooks('printFieldListGroupBy',$parameters);    // Note that $action and $objectwebsiteaccount may have been modified by hook
-$sql.=$hookmanager->resPrint;
-*/
-
 $sql .= $db->order($sortfield, $sortorder);
 
 // Count total nb of records
@@ -350,16 +335,7 @@ $objecttmp = new SocieteAccount($db);
 $trackid = 'thi'.$object->id;
 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';
 
-/*if ($sall)
-{
-	foreach($fieldstosearchall as $key => $val) $fieldstosearchall[$key]=$langs->trans($val);
-	print '<div class="divsearchfieldfilter">'.$langs->trans("FilterOnInto", $sall) . join(', ', $fieldstosearchall).'</div>';
-}*/
-
 $moreforfilter = '';
-/*$moreforfilter.='<div class="divsearchfield">';
-$moreforfilter.= $langs->trans('MyFilter') . ': <input type="text" name="search_myfield" value="'.dol_escape_htmltag($search_myfield).'">';
-$moreforfilter.= '</div>';*/
 
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldPreListTitle', $parameters, $objectwebsiteaccount); // Note that $action and $objectwebsiteaccount may have been modified by hook
