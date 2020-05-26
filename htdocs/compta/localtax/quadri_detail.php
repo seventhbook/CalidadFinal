@@ -86,7 +86,7 @@ if (empty($min)) $min = 0;
 
 // Define modetax (0 or 1)
 // 0=normal, 1=option vat for services is on debit, 2=option on payments for products
-//$modetax = $conf->global->TAX_MODE;
+
 $calc = $conf->global->MAIN_INFO_LOCALTAX_CALC.$local;
 $modetax = $conf->global->$calc;
 if (GETPOSTISSET("modetax")) $modetax = GETPOST("modetax", 'int');
@@ -160,14 +160,14 @@ if ($nextquarter < 4) {
 $description .= $fsearch;
 $builddate = dol_now();
 
-/*if ($conf->global->TAX_MODE_SELL_PRODUCT == 'invoice') $description.=$langs->trans("RulesVATDueProducts");
-if ($conf->global->TAX_MODE_SELL_PRODUCT == 'payment') $description.=$langs->trans("RulesVATInProducts");
-if ($conf->global->TAX_MODE_SELL_SERVICE == 'invoice') $description.='<br>'.$langs->trans("RulesVATDueServices");
-if ($conf->global->TAX_MODE_SELL_SERVICE == 'payment') $description.='<br>'.$langs->trans("RulesVATInServices");
-if (! empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) {
-	$description.='<br>'.$langs->trans("DepositsAreNotIncluded");
-}
-*/
+
+
+
+
+
+
+
+
 if (!empty($conf->global->MAIN_MODULE_ACCOUNTING)) $description .= $langs->trans("ThisIsAnEstimatedValue");
 
 // Customers invoices
@@ -551,9 +551,9 @@ else
 						print price($fields['totalht']);
 						if (price2num($fields['ftotal_ttc']))
 						{
-							//print $fields['dtotal_ttc']."/".$fields['ftotal_ttc']." - ";
+							
 							$ratiolineinvoice = ($fields['dtotal_ttc'] / $fields['ftotal_ttc']);
-							//print ' ('.round($ratiolineinvoice*100,2).'%)';
+							
 						}
 						print '</td>';
 					}
@@ -593,7 +593,7 @@ else
 					print '<td class="nowrap right">';
 					$temp_vat = ($local == 1 ? $fields['localtax1'] : $fields['localtax2']) * $ratiopaymentinvoice;
 					print price(price2num($temp_vat, 'MT'), 1);
-					//print price($fields['vat']);
+					
 					print '</td>';
 					print '</tr>';
 
