@@ -138,7 +138,6 @@ if (($action == 'update' && !GETPOST("cancel", 'alpha'))
 						if ($isimage > 0)
 						{
 						    // Create thumbs
-						    //$object->addThumbs($newfile);    // We can't use addThumbs here yet because we need name of generated thumbs to add them into constants. TODO Check if need such constants. We should be able to retreive value with get...
 
 							// Create small thumb, Used on logon for example
 							$imgThumbSmall = vignette($dirforimage.$original_file, $maxwidthsmall, $maxheightsmall, '_small', $quality);
@@ -272,7 +271,6 @@ if ($action == 'addthumb' || $action == 'addthumbsquarred')  // Regenerate thumb
 			$reg = array();
 
 		    // Create thumbs
-			//$object->addThumbs($newfile);    // We can't use addThumbs here yet because we need name of generated thumbs to add them into constants. TODO Check if need such constants. We should be able to retreive value with get...
 
 			// Create small thumb. Used on logon for example
 			$imgThumbSmall = vignette($conf->mycompany->dir_output.'/logos/'.$_GET["file"], $maxwidthsmall, $maxheightsmall, '_small', $quality);
@@ -427,7 +425,6 @@ print '<input name="MAIN_INFO_SOCIETE_TOWN" class="minwidth100" id="MAIN_INFO_SO
 // Country
 
 print '<tr class="oddeven"><td class="fieldrequired"><label for="selectcountry_id">'.$langs->trans("Country").'</label></td><td class="maxwidthonsmartphone">';
-//if (empty($country_selected)) $country_selected=substr($langs->defaultlang,-2);    // By default, country of localization
 print $form->select_country($mysoc->country_id, 'country_id');
 if ($user->admin) print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);
 print '</td></tr>'."\n";
