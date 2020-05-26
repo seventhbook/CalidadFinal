@@ -99,7 +99,6 @@ class TCPDFBarcode {
 		header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 		header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
 		header('Content-Disposition: inline; filename="'.md5($code).'.svg";');
-		//header('Content-Length: '.strlen($code));
 		echo $code;
 	}
 
@@ -177,7 +176,6 @@ class TCPDFBarcode {
 		header('Pragma: public');
 		header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 		header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-		//header('Content-Length: '.strlen($data));
 		echo $data;
 	}
 
@@ -202,7 +200,6 @@ class TCPDFBarcode {
 			$fgcol = imagecolorallocate($png, $color[0], $color[1], $color[2]);
 		} elseif (extension_loaded('imagick')) {
 			$imagick = true;
-			$bgcol = new imagickpixel('rgb(255,255,255');
 			$fgcol = new imagickpixel('rgb('.$color[0].','.$color[1].','.$color[2].')');
 			$png = new Imagick();
 			$png->newImage($width, $height, 'none', 'png');
