@@ -345,10 +345,6 @@ if ($result)
                     $paymenttmp=new Paiement($db);
                     $paymenttmp->fetch($links[$key]['url_id']);
                     $paymenttmp->ref = $langs->trans("Payment").' '.$paymenttmp->ref;
-                    /*print '<a href="'.DOL_URL_ROOT.'/compta/paiement/card.php?id='.$links[$key]['url_id'].'">';
-                    print img_object($langs->trans('ShowPayment'),'payment').' ';
-                    print $langs->trans("Payment");
-                    print '</a>';*/
                     print $paymenttmp->getNomUrl(1);
                 }
                 elseif ($links[$key]['type']=='payment_supplier') {
@@ -356,10 +352,6 @@ if ($result)
                     $paymenttmp=new PaiementFourn($db);
                     $paymenttmp->fetch($links[$key]['url_id']);
                     $paymenttmp->ref = $langs->trans("Payment").' '.$paymenttmp->ref;
-                    /*print '<a href="'.DOL_URL_ROOT.'/fourn/paiement/card.php?id='.$links[$key]['url_id'].'">';
-                    print img_object($langs->trans('ShowPayment'),'payment').' ';
-                    print $langs->trans("Payment");
-                    print '</a>';*/
                     print $paymenttmp->getNomUrl(1);
                 }
                 elseif ($links[$key]['type']=='company') {
@@ -442,9 +434,6 @@ if ($result)
             }
             print '</td></tr>';
         }
-
-        //$user->rights->banque->modifier=false;
-        //$user->rights->banque->consolidate=true;
 
         // Type of payment / Number
         print "<tr><td>".$langs->trans("Type")." / ".$langs->trans("Numero");
