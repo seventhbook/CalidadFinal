@@ -246,13 +246,6 @@ if ($action == 'set')
 	if (! $res > 0) $error++;
 }
 
-//if ($action == 'other')
-//{
-//    $value = GETPOST('activate_units', 'alpha');
-//    $res = dolibarr_set_const($db, "PRODUCT_USE_UNITS", $value, 'chaine', 0, '', $conf->entity);
-//	if (! $res > 0) $error++;
-//}
-
 if ($action)
 {
     if (! $error)
@@ -636,26 +629,7 @@ print '</td>';
 print '</tr>';
 
 // Activate propal merge produt card
-/* Kept as hidden feature only. PRODUIT_PDF_MERGE_PROPAL can be added manually. Still did not understand how this feature works.
 
-print '<tr class="oddeven">';
-print '<td>'.$langs->trans("MergePropalProductCard").'</td>';
-print '<td width="60" class="right">';
-print $form->selectyesno("activate_mergePropalProductCard",$conf->global->PRODUIT_PDF_MERGE_PROPAL,1);
-print '</td>';
-print '</tr>';
-*/
-
-// Use units
-/* Kept as hidden feature only. PRODUCT_USE_UNITS is hidden for the moment. Because it seems to be a duplicated feature with already existing field to store unit of product
-
-print '<tr class="oddeven">';
-print '<td>'.$langs->trans("UseUnits").'</td>';
-print '<td width="60" class="right">';
-print $form->selectyesno("activate_units",$conf->global->PRODUCT_USE_UNITS,1);
-print '</td>';
-print '</tr>';
-*/
 
 // View product description in thirdparty language
 if (! empty($conf->global->MAIN_MULTILANGS))
