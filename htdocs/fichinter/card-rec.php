@@ -372,7 +372,7 @@ if ($action == 'create') {
 		$sql = 'SELECT l.rowid, l.description, l.duree';
 		$sql .= " FROM ".MAIN_DB_PREFIX."fichinterdet as l";
 		$sql .= " WHERE l.fk_fichinter= ".$object->id;
-		//$sql.= " AND l.fk_product is null ";
+		
 		$sql .= " ORDER BY l.rang";
 
 		$result = $db->query($sql);
@@ -758,8 +758,8 @@ if ($action == 'create') {
 		if ($search_frequency == '0') $sql .= ' AND (f.frequency IS NULL or f.frequency = 0)';
 
 
-		//$sql .= " ORDER BY $sortfield $sortorder, rowid DESC ";
-		//	$sql .= $db->plimit($limit + 1, $offset);
+		
+		
 
 		$resql = $db->query($sql);
 		if ($resql) {
