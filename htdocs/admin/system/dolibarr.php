@@ -49,7 +49,6 @@ $version = '0.0';
 if ($action == 'getlastversion')
 {
     $result = getURLContent('https://sourceforge.net/projects/dolibarr/rss');
-    //var_dump($result['content']);
     $sfurl = simplexml_load_string($result['content']);
 }
 
@@ -99,7 +98,6 @@ if (function_exists('curl_init'))
                     $newversion = $reg[1];
                     $newversionarray = explode('.', $newversion);
                     $versionarray = explode('.', $version);
-                    //var_dump($newversionarray);var_dump($versionarray);
                     if (versioncompare($newversionarray, $versionarray) > 0) $version = $newversion;
                 }
                 $i++;
@@ -228,7 +226,6 @@ $a = getServerTimeZoneInt('now');
 $b = getServerTimeZoneInt('winter');
 $c = getServerTimeZoneInt('summer');
 $daylight = (is_numeric($c) && is_numeric($b)) ?round($c - $b) : 'unknown';
-//print $a." ".$b." ".$c." ".$daylight;
 $val = ($a >= 0 ? '+' : '').$a;
 $val .= ' ('.($a == 'unknown' ? 'unknown' : ($a >= 0 ? '+' : '').($a * 3600)).')';
 $val .= ' &nbsp; &nbsp; &nbsp; '.getServerTimeZoneString();
@@ -394,7 +391,6 @@ foreach ($configfileparameters as $key => $value)
 			}
 			elseif ($newkey == 'dolibarr_main_instance_unique_id')
 			{
-			    //print $conf->file->instance_unique_id;
 			    global $dolibarr_main_cookie_cryptkey;
 			    $valuetoshow = ${$newkey} ? ${$newkey} : $dolibarr_main_cookie_cryptkey;	// Use $dolibarr_main_instance_unique_id first then $dolibarr_main_cookie_cryptkey
 			    print $valuetoshow;
