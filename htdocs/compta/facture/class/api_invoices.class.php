@@ -210,7 +210,7 @@ class Invoices extends DolibarrApi
 			throw new RestException(401, "Insuffisant rights");
 		}
         // Check mandatory fields
-        $result = $this->_validate($request_data);
+        
 
         foreach ($request_data as $field => $value) {
             $this->invoice->$field = $value;
@@ -219,13 +219,13 @@ class Invoices extends DolibarrApi
             $this->invoice->date = dol_now();
         }
         /* We keep lines as an array
-         if (isset($request_data["lines"])) {
-            $lines = array();
-            foreach ($request_data["lines"] as $line) {
-                array_push($lines, (object) $line);
-            }
-            $this->invoice->lines = $lines;
-        }*/
+         
+         
+         
+         
+         
+         
+        */
 
         if ($this->invoice->create(DolibarrApiAccess::$user, 0, (empty($request_data["date_lim_reglement"]) ? 0 : $request_data["date_lim_reglement"])) < 0) {
             throw new RestException(500, "Error creating invoice", array_merge(array($this->invoice->error), $this->invoice->errors));
@@ -486,7 +486,7 @@ class Invoices extends DolibarrApi
     		throw new RestException(404, 'Invoice not found');
     	}
 
-    	// TODO Check the lineid $lineid is a line of ojbect
+    	
 
     	$updateRes = $this->invoice->deleteline($lineid);
     	if ($updateRes > 0) {
