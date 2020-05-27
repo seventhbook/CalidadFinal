@@ -71,25 +71,25 @@ class DoliDBSqlite3 extends DoliDB
 
         $this->transaction_opened=0;
 
-        //print "Name DB: $host,$user,$pass,$name<br>";
+        
 
-        /*if (! function_exists("sqlite_query"))
-        {
-            $this->connected = false;
-            $this->ok = false;
-            $this->error="Sqlite PHP functions for using Sqlite driver are not available in this version of PHP. Try to use another driver.";
-            dol_syslog(get_class($this)."::DoliDBSqlite3 : Sqlite PHP functions for using Sqlite driver are not available in this version of PHP. Try to use another driver.",LOG_ERR);
-            return $this->ok;
-        }*/
+        
+        
+            
+            
+            
+            
+            
+        
 
-        /*if (! $host)
-        {
-            $this->connected = false;
-            $this->ok = false;
-            $this->error=$langs->trans("ErrorWrongHostParameter");
-            dol_syslog(get_class($this)."::DoliDBSqlite3 : Erreur Connect, wrong host parameters",LOG_ERR);
-            return $this->ok;
-        }*/
+        
+        
+           
+            
+            
+            
+            
+        
 
         // Essai connexion serveur
         // We do not try to connect to database, only to server. Connect to database is done later in constrcutor
@@ -110,7 +110,7 @@ class DoliDBSqlite3 extends DoliDB
             $this->addCustomFunction('WEEK', 2);
             $this->addCustomFunction('WEEKDAY');
             $this->addCustomFunction('date_format');
-            //$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
         }
         else
         {
@@ -119,7 +119,7 @@ class DoliDBSqlite3 extends DoliDB
             $this->ok = false;
             $this->database_selected = false;
             $this->database_name = '';
-            //$this->error=sqlite_connect_error();
+            
             dol_syslog(get_class($this)."::DoliDBSqlite3 : Error Connect ".$this->error, LOG_ERR);
         }
 
@@ -168,7 +168,7 @@ class DoliDBSqlite3 extends DoliDB
                 // Process case: "CREATE TABLE llx_mytable(rowid integer NOT NULL AUTO_INCREMENT PRIMARY KEY,code..."
                 if (preg_match('/[\s\t\(]*(\w*)[\s\t]+int.*auto_increment/i', $line, $reg)) {
                     $newline=preg_replace('/([\s\t\(]*)([a-zA-Z_0-9]*)[\s\t]+int.*auto_increment[^,]*/i', '\\1 \\2 integer PRIMARY KEY AUTOINCREMENT', $line);
-                    //$line = "-- ".$line." replaced by --\n".$newline;
+                    
                     $line=$newline;
                 }
 
@@ -231,7 +231,7 @@ class DoliDBSqlite3 extends DoliDB
                 }
 
                 // alter table add primary key (field1, field2 ...) -> We create a unique index instead as dynamic creation of primary key is not supported
-                // ALTER TABLE llx_dolibarr_modules ADD PRIMARY KEY pk_dolibarr_modules (numero, entity);
+                
                 if (preg_match('/ALTER\s+TABLE\s*(.*)\s*ADD\s+PRIMARY\s+KEY\s*(.*)\s*\((.*)$/i', $line, $reg))
                 {
                     $line = "-- ".$line." replaced by --\n";
@@ -239,15 +239,15 @@ class DoliDBSqlite3 extends DoliDB
                 }
 
                 // Translate order to drop foreign keys
-                // ALTER TABLE llx_dolibarr_modules DROP FOREIGN KEY fk_xxx;
+                
                 if (preg_match('/ALTER\s+TABLE\s*(.*)\s*DROP\s+FOREIGN\s+KEY\s*(.*)$/i', $line, $reg))
                 {
                     $line = "-- ".$line." replaced by --\n";
                     $line.= "ALTER TABLE ".$reg[1]." DROP CONSTRAINT ".$reg[2];
                 }
 
-                // alter table add [unique] [index] (field1, field2 ...)
-                // ALTER TABLE llx_accountingaccount ADD INDEX idx_accountingaccount_fk_pcg_version (fk_pcg_version)
+                
+                
                 if (preg_match('/ALTER\s+TABLE\s*(.*)\s*ADD\s+(UNIQUE INDEX|INDEX|UNIQUE)\s+(.*)\s*\(([\w,\s]+)\)/i', $line, $reg))
                 {
                     $fieldlist=$reg[4];
@@ -257,14 +257,14 @@ class DoliDBSqlite3 extends DoliDB
                     $line.= "CREATE ".(preg_match('/UNIQUE/', $reg[2])?'UNIQUE ':'')."INDEX ".$idxname." ON ".$tablename." (".$fieldlist.")";
                 }
                 if (preg_match('/ALTER\s+TABLE\s*(.*)\s*ADD\s+CONSTRAINT\s+(.*)\s*FOREIGN\s+KEY\s*\(([\w,\s]+)\)\s*REFERENCES\s+(\w+)\s*\(([\w,\s]+)\)/i', $line, $reg)) {
-                    // Pour l'instant les contraintes ne sont pas créées
+                    
                     dol_syslog(get_class().'::query line emptied');
                     $line = 'SELECT 0;';
                 }
 
-                //if (preg_match('/rowid\s+.*\s+PRIMARY\s+KEY,/i', $line)) {
-                    //preg_replace('/(rowid\s+.*\s+PRIMARY\s+KEY\s*,)/i', '/* \\1 */', $line);
-                //}
+                
+                    
+                
             }
 
             // Delete using criteria on other table must not declare twice the deleted table
@@ -277,19 +277,19 @@ class DoliDBSqlite3 extends DoliDB
                 }
             }
 
-            // Remove () in the tables in FROM if one table
+            
             $line=preg_replace('/FROM\s*\((([a-z_]+)\s+as\s+([a-z_]+)\s*)\)/i', 'FROM \\1', $line);
-            //print $line."\n";
+            
 
-            // Remove () in the tables in FROM if two table
+            
             $line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2', $line);
             //print $line."\n";
 
-            // Remove () in the tables in FROM if two table
+            
             $line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2, \\3', $line);
-            //print $line."\n";
+            
 
-            //print "type=".$type." newline=".$line."<br>\n";
+            
         }
 
         return $line;
@@ -306,8 +306,8 @@ class DoliDBSqlite3 extends DoliDB
     {
         // phpcs:enable
         dol_syslog(get_class($this)."::select_db database=".$database, LOG_DEBUG);
-        // sqlite_select_db() does not exist
-        //return sqlite_select_db($this->db,$database);
+        
+        
         return true;
     }
 
@@ -332,13 +332,13 @@ class DoliDBSqlite3 extends DoliDB
         $dir=$main_data_dir;
         if (empty($dir)) $dir=DOL_DATA_ROOT;
         // With sqlite, port must be in connect parameters
-        //if (! $newport) $newport=3306;
+        
         $database_name = $dir.'/database_'.$name.'.sdb';
         try {
-            /*** connect to SQLite database ***/
-            //$this->db = new PDO("sqlite:".$dir.'/database_'.$name.'.sdb');
+            
+            
 			$this->db = new SQLite3($database_name);
-            //$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
         }
         catch(Exception $e)
         {
@@ -346,7 +346,7 @@ class DoliDBSqlite3 extends DoliDB
             return '';
         }
 
-        //print "Resultat fonction connect: ".$this->db;
+        
         return $this->db;
     }
 
@@ -451,7 +451,7 @@ class DoliDBSqlite3 extends DoliDB
         } else {
             $query=$this->convertSQLFromMysql($query, $type);
         }
-        //print "After convertSQLFromMysql:\n".$query."<br>\n";
+        
 
         if (! in_array($query, array('BEGIN','COMMIT','ROLLBACK')))
         {
@@ -462,7 +462,7 @@ class DoliDBSqlite3 extends DoliDB
 
         // Ordre SQL ne necessitant pas de connexion a une base (exemple: CREATE DATABASE)
         try {
-            //$ret = $this->db->exec($query);
+            
             $ret = $this->db->query($query);        // $ret is a Sqlite3Result
             if ($ret) {
                 $ret->queryString = $query;
@@ -512,7 +512,7 @@ class DoliDBSqlite3 extends DoliDB
         // phpcs:enable
         // Si le resultset n'est pas fourni, on prend le dernier utilise sur cette connexion
         if (! is_object($resultset)) { $resultset=$this->_results; }
-        //return $resultset->fetch(PDO::FETCH_OBJ);
+        
         $ret = $resultset->fetchArray(SQLITE3_ASSOC);
         if ($ret) {
             return (object) $ret;
@@ -533,7 +533,7 @@ class DoliDBSqlite3 extends DoliDB
         // phpcs:enable
         // If resultset not provided, we take the last used by connexion
         if (! is_object($resultset)) { $resultset=$this->_results; }
-        //return $resultset->fetch(PDO::FETCH_ASSOC);
+        
         $ret = $resultset->fetchArray(SQLITE3_ASSOC);
 	    return $ret;
     }
@@ -858,7 +858,7 @@ class DoliDBSqlite3 extends DoliDB
         $like = '';
         if ($table) $like = "LIKE '".$table."'";
         $sql="SHOW TABLES FROM ".$database." ".$like.";";
-        //print $sql;
+        
         $result = $this->query($sql);
         if ($result)
         {
@@ -915,8 +915,8 @@ class DoliDBSqlite3 extends DoliDB
         // phpcs:enable
         // FIXME: $fulltext_keys parameter is unused
 
-        // cles recherchees dans le tableau des descriptions (fields) : type,value,attribute,null,default,extra
-        // ex. : $fields['rowid'] = array('type'=>'int','value'=>'11','null'=>'not null','extra'=> 'auto_increment');
+        
+        
         $sql = "create table ".$table."(";
         $i=0;
         foreach($fields as $field_name => $field_desc)
@@ -1027,7 +1027,7 @@ class DoliDBSqlite3 extends DoliDB
     {
         // phpcs:enable
         // cles recherchees dans le tableau des descriptions (field_desc) : type,value,attribute,null,default,extra
-        // ex. : $field_desc = array('type'=>'int','value'=>'11','null'=>'not null','extra'=> 'auto_increment');
+        
         $sql= "ALTER TABLE ".$table." ADD ".$field_name." ";
         $sql.= $field_desc['type'];
         if(preg_match("/^[^\s]/i", $field_desc['value']))
@@ -1278,7 +1278,7 @@ class DoliDBSqlite3 extends DoliDB
             if ($resql)
             {
                 $obj = $this->fetch_row($resql);
-                //dol_syslog(get_class($this)."::select_db getServerParametersValues $var=". print_r($obj, true), LOG_DEBUG);
+                
                 $result[$var] = $obj[0];
             }
             else {
@@ -1298,15 +1298,15 @@ class DoliDBSqlite3 extends DoliDB
     public function getServerStatusValues($filter = '')
     {
         $result=array();
-        /*
-        $sql='SHOW STATUS';
-        if ($filter) $sql.=" LIKE '".$this->escape($filter)."'";
-        $resql=$this->query($sql);
-        if ($resql)
-        {
-            while ($obj=$this->fetch_object($resql)) $result[$obj->Variable_name]=$obj->Value;
-        }
-         */
+        
+        
+        
+        
+        
+        
+            
+        
+         
 
         return $result;
     }
