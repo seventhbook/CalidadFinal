@@ -1158,7 +1158,7 @@ abstract class CommonDocGenerator
                     $pdf->MultiCell($textWidth, 2, $colDef['title']['label'], '', $colDef['title']['align']);
                     $this->tabTitleHeight = max($pdf->GetY() - $tab_top + $colDef['title']['padding'][2], $this->tabTitleHeight);
                 }
-            }
+            } 
         }
         return $this->tabTitleHeight;
     }
