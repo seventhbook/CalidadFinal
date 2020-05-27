@@ -37,7 +37,7 @@ require_once DOL_DOCUMENT_ROOT.'/livraison/class/livraison.class.php';
 // Load translation files required by the page
 $langs->loadLangs(array("admin", "sendings", "deliveries", "other"));
 
-if (!$user->admin) accessforbidden();
+if (!$user->admin){ accessforbidden();}
 
 $action  = GETPOST('action', 'alpha');
 $value   = GETPOST('value', 'alpha');
@@ -56,9 +56,9 @@ if ($action == 'updateMask')
 {
     $maskconstdelivery = GETPOST('maskconstdelivery', 'alpha');
     $maskdelivery = GETPOST('maskdelivery', 'alpha');
-    if ($maskconstdelivery)  $res = dolibarr_set_const($db, $maskconstdelivery, $maskdelivery, 'chaine', 0, '', $conf->entity);
+    if ($maskconstdelivery) { $res = dolibarr_set_const($db, $maskconstdelivery, $maskdelivery, 'chaine', 0, '', $conf->entity);}
 
-    if (!$res > 0) $error++;
+    if (!$res > 0){ $error++;}
 
  	if (!$error)
     {
@@ -75,7 +75,7 @@ if ($action == 'set_DELIVERY_FREE_TEXT')
     $free = GETPOST('DELIVERY_FREE_TEXT', 'none'); // No alpha here, we want exact string
     $res = dolibarr_set_const($db, "DELIVERY_FREE_TEXT", $free, 'chaine', 0, '', $conf->entity);
 
-    if (!$res > 0) $error++;
+    if (!$res > 0){ $error++;}
 
  	if (!$error)
     {
@@ -142,7 +142,7 @@ if ($action == 'del')
     $ret = delDocumentModel($value, $type);
     if ($ret > 0)
     {
-        if ($conf->global->LIVRAISON_ADDON_PDF == "$value") dolibarr_del_const($db, 'LIVRAISON_ADDON_PDF', $conf->entity);
+        if ($conf->global->LIVRAISON_ADDON_PDF == "$value") {dolibarr_del_const($db, 'LIVRAISON_ADDON_PDF', $conf->entity);}
     }
 }
 
@@ -165,7 +165,7 @@ if ($action == 'setdoc')
 
 if ($action == 'setmod')
 {
-    // TODO Verifier si module numerotation choisi peut etre active
+    
     // par appel methode canBeActivated
 
     dolibarr_set_const($db, "LIVRAISON_ADDON_NUMBER", $value, 'chaine', 0, '', $conf->entity);
@@ -227,8 +227,8 @@ foreach ($dirmodels as $reldir)
 					if ($module->isEnabled())
                     {
 						// Show modules according to features level
-						if ($module->version == 'development' && $conf->global->MAIN_FEATURES_LEVEL < 2) continue;
-						if ($module->version == 'experimental' && $conf->global->MAIN_FEATURES_LEVEL < 1) continue;
+						if ($module->version == 'development' && $conf->global->MAIN_FEATURES_LEVEL < 2) {continue;}
+						if ($module->version == 'experimental' && $conf->global->MAIN_FEATURES_LEVEL < 1) {continue;}
 
 
                         print '<tr class="oddeven"><td>'.$module->nom."</td><td>\n";
@@ -241,8 +241,8 @@ foreach ($dirmodels as $reldir)
                         if (preg_match('/^Error/', $tmp)) {
 							$langs->load("errors"); print '<div class="error">'.$langs->trans($tmp).'</div>';
 						}
-                        elseif ($tmp == 'NotConfigured') print $langs->trans($tmp);
-                        else print $tmp;
+                        elseif ($tmp == 'NotConfigured') {print $langs->trans($tmp);}
+                        else {print $tmp;}
                         print '</td>'."\n";
 
                         print '<td class="center">';
@@ -266,8 +266,8 @@ foreach ($dirmodels as $reldir)
                         if ("$nextval" != $langs->trans("NotAvailable")) {  // Keep " on nextval
                             $htmltooltip .= ''.$langs->trans("NextValue").': ';
                             if ($nextval) {
-                                if (preg_match('/^Error/', $nextval) || $nextval == 'NotConfigured')
-                                    $nextval = $langs->trans($nextval);
+                                if (preg_match('/^Error/', $nextval) || $nextval == 'NotConfigured'){
+                                    $nextval = $langs->trans($nextval);}
                                 $htmltooltip .= $nextval.'<br>';
                             } else {
                                 $htmltooltip .= $langs->trans($module->error).'<br>';
@@ -363,16 +363,16 @@ foreach ($dirmodels as $reldir)
 		    			$module = new $classname($db);
 
 		    			$modulequalified = 1;
-		    			if ($module->version == 'development' && $conf->global->MAIN_FEATURES_LEVEL < 2) $modulequalified = 0;
-		    			if ($module->version == 'experimental' && $conf->global->MAIN_FEATURES_LEVEL < 1) $modulequalified = 0;
+		    			if ($module->version == 'development' && $conf->global->MAIN_FEATURES_LEVEL < 2) {$modulequalified = 0;}
+		    			if ($module->version == 'experimental' && $conf->global->MAIN_FEATURES_LEVEL < 1) {$modulequalified = 0;}
 
 		    			if ($modulequalified)
 		    			{
 		    				print '<tr class="oddeven"><td width="100">';
 		    				print (empty($module->name) ? $name : $module->name);
 		    				print "</td><td>\n";
-		    				if (method_exists($module, 'info')) print $module->info($langs);
-		    				else print $module->description;
+		    				if (method_exists($module, 'info')){ print $module->info($langs);}
+		    				else {print $module->description;}
 		    				print '</td>';
 
 		    				// Active
@@ -450,7 +450,7 @@ print "</tr>\n";
 $substitutionarray = pdf_getSubstitutionArray($langs, null, null, 2);
 $substitutionarray['__(AnyTranslationKey)__'] = $langs->trans("Translation");
 $htmltext = '<i>'.$langs->trans("AvailableVariables").':<br>';
-foreach ($substitutionarray as $key => $val)	$htmltext .= $key.'<br>';
+foreach ($substitutionarray as $key => $val)	{$htmltext .= $key.'<br>';}
 $htmltext .= '</i>';
 
 print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
