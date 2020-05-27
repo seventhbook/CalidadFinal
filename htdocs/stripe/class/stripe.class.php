@@ -207,19 +207,19 @@ class Stripe extends CommonObject
 
 				$vatcleaned = $object->tva_intra ? $object->tva_intra : null;
 
-				/*
-				$taxinfo = array('type'=>'vat');
-				if ($vatcleaned)
-				{
-					$taxinfo["tax_id"] = $vatcleaned;
-				}
-				// We force data to "null" if not defined as expected by Stripe
-				if (empty($vatcleaned)) $taxinfo=null;
-				$dataforcustomer["tax_info"] = $taxinfo;
-				*/
+				
+				
+				
+				
+					
+				
+				
+				
+				
+				
 
-				//$a = \Stripe\Stripe::getApiKey();
-				//var_dump($a);var_dump($key);exit;
+				
+				
 				try {
 					// Force to use the correct API key
 					global $stripearrayofkeysbyenv;
@@ -239,7 +239,7 @@ class Stripe extends CommonObject
 							$isineec = isInEEC($object);
 							if ($object->country_code && $isineec)
 							{
-								//$taxids = $customer->allTaxIds($customer->id);
+								
 								$customer->createTaxId($customer->id, array('type'=>'eu_vat', 'value'=>$vatcleaned));
 							}
 						}
@@ -359,45 +359,45 @@ class Stripe extends CommonObject
 			// Recommanded solution is to recreate a new payment intent each time we need one (old one will be automatically closed after a delay), Stripe will
 			// automatically return the existing payment intent if idempotency is provided when we try to create the new one.
 			// That's why we can comment the part of code to retreive a payment intent with object id (never mind if we cumulate payment intent with old ones that will not be used)
-			/*
-			$sql = "SELECT pi.ext_payment_id, pi.entity, pi.fk_facture, pi.sourcetype, pi.ext_payment_site";
-    		$sql.= " FROM " . MAIN_DB_PREFIX . "prelevement_facture_demande as pi";
-    		$sql.= " WHERE pi.fk_facture = " . $object->id;
-    		$sql.= " AND pi.sourcetype = '" . $object->element . "'";
-    		$sql.= " AND pi.entity IN (".getEntity('societe').")";
-    		$sql.= " AND pi.ext_payment_site = '" . $service . "'";
-
-    		dol_syslog(get_class($this) . "::getPaymentIntent search stripe payment intent for object id = ".$object->id, LOG_DEBUG);
-    		$resql = $this->db->query($sql);
-    		if ($resql) {
-    			$num = $this->db->num_rows($resql);
-    			if ($num)
-    			{
-    				$obj = $this->db->fetch_object($resql);
-    				$intent = $obj->ext_payment_id;
-
-    				dol_syslog(get_class($this) . "::getPaymentIntent found existing payment intent record");
-
-    				// Force to use the correct API key
-    				global $stripearrayofkeysbyenv;
-    				\Stripe\Stripe::setApiKey($stripearrayofkeysbyenv[$status]['secret_key']);
-
-    				try {
-    					if (empty($key)) {				// If the Stripe connect account not set, we use common API usage
-    						$paymentintent = \Stripe\PaymentIntent::retrieve($intent);
-    					} else {
-    						$paymentintent = \Stripe\PaymentIntent::retrieve($intent, array("stripe_account" => $key));
-    					}
-    				}
-    				catch(Exception $e)
-    				{
-    				    $error++;
-    					$this->error = $e->getMessage();
-    				}
-    			}
-    		}*/
+		
 		}
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if (empty($paymentintent))
 		{
     		$ipaddress = getUserRemoteIP();
@@ -421,9 +421,9 @@ class Stripe extends CommonObject
     			"metadata" => $metadata
     		);
     		if (!is_null($customer)) $dataforintent["customer"] = $customer;
-    		// payment_method =
-    		// payment_method_types = array('card')
-            //var_dump($dataforintent);
+    		
+    		
+            
     		if ($off_session)
     		{
     		    unset($dataforintent['setup_future_usage']);
@@ -511,12 +511,12 @@ class Stripe extends CommonObject
     		}
     		catch (Exception $e)
     		{
-    		    /*var_dump($dataforintent);
-    		    var_dump($description);
-    		    var_dump($key);
-    		    var_dump($paymentintent);
-    		    var_dump($e->getMessage());
-    		    var_dump($e);*/
+    		    
+    		    
+    		    
+    		    
+    		    
+    		    
     		    $error++;
     			$this->error = $e->getMessage();
     			$this->code = '';
@@ -587,9 +587,9 @@ class Stripe extends CommonObject
 				"metadata" => $metadata
 			);
 			if (!is_null($customer)) $dataforintent["customer"] = $customer;
-			// payment_method =
-			// payment_method_types = array('card')
-			//var_dump($dataforintent);
+			
+			
+			
 
 			if ($usethirdpartyemailforreceiptemail && is_object($object) && $object->thirdparty->email)
 			{
@@ -603,64 +603,64 @@ class Stripe extends CommonObject
 
 				// Note: If all data for payment intent are same than a previous on, even if we use 'create', Stripe will return ID of the old existing payment intent.
 				if (empty($key)) {				// If the Stripe connect account not set, we use common API usage
-					//$setupintent = \Stripe\SetupIntent::create($dataforintent, array("idempotency_key" => "$description"));
+					
 					$setupintent = \Stripe\SetupIntent::create($dataforintent, array());
 				} else {
-					//$setupintent = \Stripe\SetupIntent::create($dataforintent, array("idempotency_key" => "$description", "stripe_account" => $key));
+					
 					$setupintent = \Stripe\SetupIntent::create($dataforintent, array("stripe_account" => $key));
 				}
-				//var_dump($setupintent->id);
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
-				// Store the setup intent
-				/*if (is_object($object))
-				{
-					$setupintentalreadyexists = 0;
-					// Check that payment intent $setupintent->id is not already recorded.
-					$sql = "SELECT pi.rowid";
-					$sql.= " FROM " . MAIN_DB_PREFIX . "prelevement_facture_demande as pi";
-					$sql.= " WHERE pi.entity IN (".getEntity('societe').")";
-					$sql.= " AND pi.ext_payment_site = '" . $service . "'";
-					$sql.= " AND pi.ext_payment_id = '".$this->db->escape($setupintent->id)."'";
-
-					dol_syslog(get_class($this) . "::getPaymentIntent search if payment intent already in prelevement_facture_demande", LOG_DEBUG);
-					$resql = $this->db->query($sql);
-					if ($resql) {
-						$num = $this->db->num_rows($resql);
-						if ($num)
-						{
-							$obj = $this->db->fetch_object($resql);
-							if ($obj) $setupintentalreadyexists++;
-						}
-					}
-					else dol_print_error($this->db);
-
-					// If not, we create it.
-					if (! $setupintentalreadyexists)
-					{
-						$now=dol_now();
-						$sql = "INSERT INTO " . MAIN_DB_PREFIX . "prelevement_facture_demande (date_demande, fk_user_demande, ext_payment_id, fk_facture, sourcetype, entity, ext_payment_site)";
-						$sql .= " VALUES ('".$this->db->idate($now)."', '0', '".$this->db->escape($setupintent->id)."', ".$object->id.", '".$this->db->escape($object->element)."', " . $conf->entity . ", '" . $service . "')";
-						$resql = $this->db->query($sql);
-						if (! $resql)
-						{
-							$error++;
-							$this->error = $this->db->lasterror();
-							dol_syslog(get_class($this) . "::PaymentIntent failed to insert paymentintent with id=".$setupintent->id." into database.");
-						}
-					}
-				}
-				else
-				{
-					$_SESSION["stripe_setup_intent"] = $setupintent;
-				}*/
 			}
 			catch (Exception $e)
 			{
-				/*var_dump($dataforintent);
-				 var_dump($description);
-				 var_dump($key);
-				 var_dump($setupintent);
-				 var_dump($e->getMessage());*/
+				
+				 
+				 
+				 
+				 
 				$error++;
 				$this->error = $e->getMessage();
 			}
@@ -752,8 +752,8 @@ class Stripe extends CommonObject
 						"metadata" => array('dol_id'=>$object->id, 'dol_version'=>DOL_VERSION, 'dol_entity'=>$conf->entity, 'ipaddress'=>(empty($_SERVER['REMOTE_ADDR']) ? '' : $_SERVER['REMOTE_ADDR']))
 					);
 
-					//$a = \Stripe\Stripe::getApiKey();
-					//var_dump($a);var_dump($stripeacc);exit;
+					
+					
 					try {
 						if (empty($stripeacc)) {				// If the Stripe connect account not set, we use common API usage
 							if (empty($conf->global->STRIPE_USE_INTENT_WITH_AUTOMATIC_CONFIRMATION))
@@ -776,7 +776,7 @@ class Stripe extends CommonObject
 								}
 								$urtoswitchonstripe = ' <a href="'.$url.'" target="_stripe">'.img_picto($langs->trans('ShowInStripe'), 'globe').'</a>';
 
-								//dol_syslog("Error: This case is not supported", LOG_ERR);
+								
 								$this->error = $langs->trans('CreationOfPaymentModeMustBeDoneFromStripeInterface', $urtoswitchonstripe);
 							}
 						} else {
@@ -800,7 +800,7 @@ class Stripe extends CommonObject
 								}
 								$urtoswitchonstripe = ' <a href="'.$url.'" target="_stripe">'.img_picto($langs->trans('ShowInStripe'), 'globe').'</a>';
 
-								//dol_syslog("Error: This case is not supported", LOG_ERR);
+								
 								$this->error = $langs->trans('CreationOfPaymentModeMustBeDoneFromStripeInterface', $urtoswitchonstripe);
 							}
 						}
@@ -864,7 +864,7 @@ class Stripe extends CommonObject
 		$sql = "SELECT sa.key_account as key_account, sa.fk_soc, sa.entity";
 		$sql .= " FROM ".MAIN_DB_PREFIX."societe_account as sa";
 		$sql .= " WHERE sa.key_account = '".$this->db->escape($customer)."'";
-		//$sql.= " AND sa.entity IN (".getEntity('societe').")";
+		
 		$sql .= " AND sa.site = 'stripe' AND sa.status = ".((int) $status);
 
 		dol_syslog(get_class($this)."::fetch", LOG_DEBUG);
