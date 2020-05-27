@@ -467,7 +467,7 @@ class ReferenceHelper
                 if ($pSheet->cellExists($coordinate)) {
                     $xfIndex = $pSheet->getCell($coordinate)->getXfIndex();
                     $conditionalStyles = $pSheet->conditionalStylesExists($coordinate) ?
-                        $pSheet->getConditionalStyles($coordinate) : false;
+                        $pSheet->getConditionalStyles($coordinate);
                     for ($j = $beforeColumnIndex; $j <= $beforeColumnIndex - 1 + $pNumCols; ++$j) {
                         $pSheet->getCellByColumnAndRow($j, $i)->setXfIndex($xfIndex);
                         if ($conditionalStyles) {
@@ -489,7 +489,7 @@ class ReferenceHelper
                 if ($pSheet->cellExists($coordinate)) {
                     $xfIndex = $pSheet->getCell($coordinate)->getXfIndex();
                     $conditionalStyles = $pSheet->conditionalStylesExists($coordinate) ?
-                        $pSheet->getConditionalStyles($coordinate) : false;
+                        $pSheet->getConditionalStyles($coordinate);
                     for ($j = $beforeRow; $j <= $beforeRow - 1 + $pNumRows; ++$j) {
                         $pSheet->getCell(Coordinate::stringFromColumnIndex($i) . $j)->setXfIndex($xfIndex);
                         if ($conditionalStyles) {
