@@ -101,20 +101,6 @@ if ($action == 'validatehistory') {
 	$db->begin();
 
 	// Now make the binding. Bind automatically only for product with a dedicated account that exists into chart of account, others need a manual bind
-	/*if ($db->type == 'pgsql') {
-		$sql1 = "UPDATE " . MAIN_DB_PREFIX . "facture_fourn_det";
-		$sql1 .= " SET fk_code_ventilation = accnt.rowid";
-		$sql1 .= " FROM " . MAIN_DB_PREFIX . "product as p, " . MAIN_DB_PREFIX . "accounting_account as accnt , " . MAIN_DB_PREFIX . "accounting_system as syst";
-		$sql1 .= " WHERE " . MAIN_DB_PREFIX . "facture_fourn_det.fk_product = p.rowid  AND accnt.fk_pcg_version = syst.pcg_version AND syst.rowid=" . $conf->global->CHARTOFACCOUNTS.' AND accnt.entity = '.$conf->entity;
-		$sql1 .= " AND accnt.active = 1 AND p.accountancy_code_buy=accnt.account_number";
-		$sql1 .= " AND " . MAIN_DB_PREFIX . "facture_fourn_det.fk_code_ventilation = 0";
-	} else {
-		$sql1 = "UPDATE " . MAIN_DB_PREFIX . "facture_fourn_det as fd, " . MAIN_DB_PREFIX . "product as p, " . MAIN_DB_PREFIX . "accounting_account as accnt , " . MAIN_DB_PREFIX . "accounting_system as syst";
-		$sql1 .= " SET fk_code_ventilation = accnt.rowid";
-		$sql1 .= " WHERE fd.fk_product = p.rowid AND accnt.fk_pcg_version = syst.pcg_version AND syst.rowid=" . $conf->global->CHARTOFACCOUNTS.' AND accnt.entity = '.$conf->entity;
-		$sql1 .= " AND accnt.active = 1 AND p.accountancy_code_buy=accnt.account_number";
-		$sql1 .= " AND fd.fk_code_ventilation = 0";
-	}*/
 
 	// Supplier Invoice Lines (must be same request than into page list.php for manual binding)
 	$sql = "SELECT f.rowid as facid, f.ref, f.ref_supplier, f.libelle as invoice_label, f.datef, f.type as ftype,";
@@ -157,15 +143,11 @@ if ($action == 'validatehistory') {
 				$suggestedaccountingaccountfor = '';
 			} else {
 				if ($isSellerInEEC && $isBuyerInEEC) {          // European intravat sale
-					//$objp->code_buy_p = $objp->code_buy_intra;
 					$objp->code_buy_p = $objp->code_buy;
-					//$objp->aarowid_suggest = $objp->aarowid_intra;
 					$objp->aarowid_suggest = $objp->aarowid;
 					$suggestedaccountingaccountfor = 'eec';
 				} else {                                        // Foreign sale
-					//$objp->code_buy_p = $objp->code_buy_export;
 					$objp->code_buy_p = $objp->code_buy;
-					//$objp->aarowid_suggest = $objp->aarowid_export;
 					$objp->aarowid_suggest = $objp->aarowid;
 					$suggestedaccountingaccountfor = 'export';
 				}
@@ -222,7 +204,6 @@ $buttonbind = '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?year='.$year_
 
 
 print_barre_liste($langs->trans("OverviewOfAmountOfLinesNotBound"), '', '', '', '', '', '', -1, '', '', 0, $buttonbind, '', 0, 1, 1);
-//print load_fiche_titre($langs->trans("OverviewOfAmountOfLinesNotBound"), $buttonbind, '');
 
 print '<div class="div-table-responsive-no-min">';
 print '<table class="noborder centpercent">';
@@ -292,7 +273,6 @@ print '<br>';
 
 
 print_barre_liste($langs->trans("OverviewOfAmountOfLinesBound"), '', '', '', '', '', '', -1, '', '', 0, '', '', 0, 1, 1);
-//print load_fiche_titre($langs->trans("OverviewOfAmountOfLinesBound"), '', '');
 
 print '<div class="div-table-responsive-no-min">';
 print '<table class="noborder centpercent">';
@@ -365,7 +345,6 @@ if ($conf->global->MAIN_FEATURES_LEVEL > 0) // This part of code looks strange. 
     print '<br>';
 
     print_barre_liste($langs->trans("OtherInfo"), '', '', '', '', '', '', -1, '', '', 0, '', '', 0, 1, 1);
-    //print load_fiche_titre($langs->trans("OtherInfo"), '', '');
 
 	print '<div class="div-table-responsive-no-min">';
     print '<table class="noborder centpercent">';

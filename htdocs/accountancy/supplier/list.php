@@ -93,7 +93,7 @@ $hookmanager->initHooks(array('accountancysupplierlist'));
 
 $formaccounting = new FormAccounting($db);
 $accounting = new AccountingAccount($db);
-// TODO: we should need to check if result is a really exist accountaccount rowid.....
+
 $aarowid_s = $accounting->fetch('', $conf->global->ACCOUNTING_SERVICE_BUY_ACCOUNT, 1);
 $aarowid_p = $accounting->fetch('', $conf->global->ACCOUNTING_PRODUCT_BUY_ACCOUNT, 1);
 
@@ -143,7 +143,7 @@ if (empty($reshook))
 if ($massaction == 'ventil') {
     $msg = '';
 
-    //print '<div><font color="red">' . $langs->trans("Processing") . '...</font></div>';
+    
     if (!empty($mesCasesCochees)) {
         $msg = '<div>'.$langs->trans("SelectedLines").': '.count($mesCasesCochees).'</div>';
         $msg .= '<div class="detail">';
@@ -327,8 +327,8 @@ if ($result) {
 	    //'presend'=>$langs->trans("SendByMail"),
 	    //'builddoc'=>$langs->trans("PDFMerge"),
 	);
-	//if ($user->rights->mymodule->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
-	//if (in_array($massaction, array('presend','predelete'))) $arrayofmassactions=array();
+	
+	
 	$massactionbutton = $form->selectMassAction('ventil', $arrayofmassactions, 1);
 
 	print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">'."\n";
@@ -344,11 +344,11 @@ if ($result) {
 
 	print '<span class="opacitymedium">'.$langs->trans("DescVentilTodoCustomer").'</span></br><br>';
 
-	/*$topicmail="Information";
-	 $modelmail="project";
-	 $objecttmp=new Project($db);
-	 $trackid='prj'.$object->id;
-	 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';*/
+	
+	
+	
+	
+	
 
 	if ($msg) print $msg.'<br>';
 
@@ -373,7 +373,7 @@ if ($result) {
 	print '<td class="liste_titre right"><input type="text" class="right flat maxwidth50" name="search_vat" placeholder="%" size="1" value="'.dol_escape_htmltag($search_vat).'"></td>';
 	print '<td class="liste_titre">';
 	print $form->select_country($search_country, 'search_country', '', 0, 'maxwidth150', 'code2', 1, 0, 1);
-	//print '<input type="text" class="flat maxwidth50" name="search_country" value="' . dol_escape_htmltag($search_country) . '">';
+	
 	print '</td>';
 	print '<td class="liste_titre"><input type="text" class="flat maxwidth50" name="search_tvaintra" value="'.dol_escape_htmltag($search_tvaintra).'"></td>';
 	print '<td class="liste_titre"></td>';
@@ -390,7 +390,7 @@ if ($result) {
 	print_liste_field_titre("InvoiceLabel", $_SERVER["PHP_SELF"], "f.libelle", "", $param, '', $sortfield, $sortorder);
 	print_liste_field_titre("Date", $_SERVER["PHP_SELF"], "f.datef, f.ref, l.rowid", "", $param, '', $sortfield, $sortorder, 'center ');
 	print_liste_field_titre("ProductRef", $_SERVER["PHP_SELF"], "p.ref", "", $param, '', $sortfield, $sortorder);
-	//print_liste_field_titre("ProductLabel", $_SERVER["PHP_SELF"], "p.label", "", $param, '', $sortfield, $sortorder);
+	
 	print_liste_field_titre("ProductDescription", $_SERVER["PHP_SELF"], "l.description", "", $param, '', $sortfield, $sortorder);
 	print_liste_field_titre("Amount", $_SERVER["PHP_SELF"], "l.total_ht", "", $param, '', $sortfield, $sortorder, 'right maxwidth50 ');
 	print_liste_field_titre("VATRate", $_SERVER["PHP_SELF"], "l.tva_tx", "", $param, '', $sortfield, $sortorder, 'right ');

@@ -75,28 +75,28 @@ if ($action == 'removebackgroundlogin' && ! empty($conf->global->MAIN_LOGIN_BACK
 	dolibarr_del_const($db, "MAIN_LOGIN_BACKGROUND", $conf->entity);
 	$mysoc->logo='';
 
-	/*$logosmallfile=$conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_small;
-    dol_delete_file($logosmallfile);
-    dolibarr_del_const($db, "MAIN_INFO_SOCIETE_LOGO_SMALL",$conf->entity);
-    $mysoc->logo_small='';
+	
+    
+    
+    
 
-    $logominifile=$conf->mycompany->dir_output.'/logos/thumbs/'.$mysoc->logo_mini;
-    dol_delete_file($logominifile);
-    dolibarr_del_const($db, "MAIN_INFO_SOCIETE_LOGO_MINI",$conf->entity);
-    $mysoc->logo_mini='';*/
+    
+   
+   
+   
 }
 
 if ($action == 'update')
 {
 	dolibarr_set_const($db, "MAIN_LANG_DEFAULT", GETPOST("MAIN_LANG_DEFAULT", 'aZ09'), 'chaine', 0, '', $conf->entity);
 	dolibarr_set_const($db, "MAIN_IHM_PARAMS_REV", (int) $conf->global->MAIN_IHM_PARAMS_REV+1, 'chaine', 0, '', $conf->entity);
-	//dolibarr_set_const($db, "MAIN_MULTILANGS", $_POST["MAIN_MULTILANGS"], 'chaine', 0, '', $conf->entity);
+	
 
 	dolibarr_set_const($db, "MAIN_THEME", GETPOST("main_theme", 'aZ09'), 'chaine', 0, '', $conf->entity);
 
-	/*$val=GETPOST('THEME_TOPMENU_DISABLE_IMAGE');
-	if (! $val) dolibarr_del_const($db, 'THEME_TOPMENU_DISABLE_IMAGE', $conf->entity);
-	else dolibarr_set_const($db, 'THEME_TOPMENU_DISABLE_IMAGE', GETPOST('THEME_TOPMENU_DISABLE_IMAGE'), 'chaine', 0, '', $conf->entity);*/
+	
+	
+	
 
 	$val=(implode(',', (colorStringToArray(GETPOST('THEME_ELDY_BACKBODY'), array()))));
 	if ($val == '') dolibarr_del_const($db, 'THEME_ELDY_BACKBODY', $conf->entity);
@@ -151,7 +151,7 @@ if ($action == 'update')
 	dolibarr_set_const($db, "MAIN_SIZE_LISTE_LIMIT", GETPOST("main_size_liste_limit", 'int'), 'chaine', 0, '', $conf->entity);
 	dolibarr_set_const($db, "MAIN_SIZE_SHORTLIST_LIMIT", GETPOST("main_size_shortliste_limit", 'int'), 'chaine', 0, '', $conf->entity);
 
-	//dolibarr_set_const($db, "MAIN_DISABLE_JAVASCRIPT", GETPOST("MAIN_DISABLE_JAVASCRIPT", 'aZ09'), 'chaine', 0, '', $conf->entity);
+	
 	dolibarr_set_const($db, "MAIN_BUTTON_HIDE_UNAUTHORIZED", GETPOST("MAIN_BUTTON_HIDE_UNAUTHORIZED", 'aZ09'), 'chaine', 0, '', $conf->entity);
 	dolibarr_set_const($db, "MAIN_START_WEEK", GETPOST("MAIN_START_WEEK", 'int'), 'chaine', 0, '', $conf->entity);
 	dolibarr_set_const($db, "MAIN_DEFAULT_WORKING_DAYS", GETPOST("MAIN_DEFAULT_WORKING_DAYS", 'alpha'), 'chaine', 0, '', $conf->entity);
@@ -291,13 +291,13 @@ print '<td width="20">&nbsp;</td>';
 print '</tr>';
 
 // show input border
-/*
- print '<tr><td>'.$langs->trans("showInputBorder").'</td><td>';
- print $form->selectyesno('main_showInputBorder',isset($conf->global->THEME_ELDY_SHOW_BORDER_INPUT)?$conf->global->THEME_ELDY_SHOW_BORDER_INPUT:0,1);
- print '</td>';
- print '<td width="20">&nbsp;</td>';
- print '</tr>';
- */
+
+
+
+
+
+
+
 
 // First day for weeks
 print '<tr class="oddeven"><td class="titlefield">'.$langs->trans("WeekStartOnDay").'</td><td>';
@@ -336,14 +336,14 @@ print '<td width="20">&nbsp;</td>';
 print '</tr>';
 
 // Hide version link
-/*
 
-print '<tr><td class="titlefield">'.$langs->trans("HideVersionLink").'</td><td>';
-print $form->selectyesno('MAIN_HIDE_VERSION',$conf->global->MAIN_HIDE_VERSION,1);
-print '</td>';
-print '<td width="20">&nbsp;</td>';
-print '</tr>';
-*/
+
+
+
+
+
+
+
 
 // Show bugtrack link
 print '<tr class="oddeven"><td class="titlefield">'.$langs->trans("ShowBugTrackLink", $langs->transnoentitiesnoconv("FindBug")).'</td><td>';

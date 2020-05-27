@@ -197,12 +197,6 @@ class tcpdi_parser {
 		$this->findObjectOffsets();
 		// parse all document objects
 		$this->objects = array();
-		/*foreach ($this->xref['xref'] as $obj => $offset) {
-			if (!isset($this->objects[$obj]) AND ($offset > 0)) {
-				// decode only objects with positive offset
-				//$this->objects[$obj] = $this->getIndirectObject($obj, $offset, true);
-			}
-		}*/
         $this->getPDFVersion();
 		$this->readPages();
 	}
@@ -650,10 +644,6 @@ class tcpdi_parser {
 						break;
 					}
 					case 2: { // compressed objects
-						// $row[1] = object number of the object stream in which this object is stored
-						// $row[2] = index of this object within the object stream
-						/*$index = $row[1].'_0_'.$row[2];
-						$xref['xref'][$row[1]][0][$row[2]] = -1;*/
 						break;
 					}
 					default: { // null objects
@@ -1084,13 +1074,10 @@ class tcpdi_parser {
 		if (isset($this->xref['xref'][$key[0]][$key[1]])) {
 			$offset = $this->xref['xref'][$key[0]][$key[1]];
 			if (strpos($this->pdfdata, $objref, $offset) === $offset) {
-				// Offset is in xref table and matches actual position in file
-				//echo "Offset in XREF is correct, returning<br>";
 				return $this->xref['xref'][$key[0]][$key[1]];
 			}
 		}
 		if (array_key_exists($objref, $this->objoffsets)) {
-			//echo "Offset found in internal reftable<br>";
 			return $this->objoffsets[$objref];
 		}
 		return false;
@@ -1361,7 +1348,7 @@ class tcpdi_parser {
         return $this->_getPageRotation($this->pages[$pageno - 1]);
     }
 
-    private function _getPageRotation($obj) { // $obj = /Page
+    private function _getPageRotation($obj) { 
     	$obj = $this->getObjectVal($obj);
     	if (isset ($obj[1][1]['/Rotate'])) {
     		$res = $this->getObjectVal($obj[1][1]['/Rotate']);

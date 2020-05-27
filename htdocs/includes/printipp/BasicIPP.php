@@ -366,15 +366,6 @@ class BasicIPP
         if ($username == 'PHP-SERVER' && isset($this->meta->username)) {
             return TRUE;
         }
-        /*
-        $value_length = 0x00;
-        for ($i = 0; $i < strlen($username); $i++)
-        {
-            $value_length+= 0x01;
-        }
-        $value_length = chr($value_length);
-        while (strlen($value_length) < 2) $value_length = chr(0x00) . $value_length;
-        */
         $this->meta->username = chr(0x42) // keyword type || value-tag
             . chr(0x00) . chr(0x14) // name-length
             . "requesting-user-name"
@@ -472,15 +463,12 @@ class BasicIPP
 
     public function setPageRanges($page_ranges)
     {
-        // $pages_ranges = string:  "1:5 10:25 40:52 ..."
-        // to unset, specify an empty string.
         $this->meta->page_range = '';
         if (!$page_ranges) {
             return true;
         }
         $page_ranges = trim(str_replace("-", ":", $page_ranges));
         $first = true;
-        #$page_ranges = split(' ', $page_ranges);
         $page_ranges = preg_split('# #', $page_ranges);
         foreach($page_ranges as $page_range)
         {
@@ -984,12 +972,6 @@ class BasicIPP
                 "tag" => chr(0x36) ,
                 "build" => "string"
             ) ,
-            /*
-            "text" => array ("tag" => chr(0x40),
-            "build" => "string"),
-            "text string" => array ("tag" => chr(0x40),
-            "build" => "string"),
-            */
             "textWithoutLanguage" => array(
                 "tag" => chr(0x41) ,
                 "build" => "string"
@@ -1057,12 +1039,9 @@ class BasicIPP
             "multiple-document-handling" => array(
                 "tag" => "keyword"
             ) ,
-            //"copies" => array("tag" => "integer"),
             "finishings" => array(
                 "tag" => "enum"
             ) ,
-            //"page-ranges" => array("tag" => "rangeOfInteger"), // has its own function
-            //"sides" => array("tag" => "keyword"), // has its own function
             "number-up" => array(
                 "tag" => "integer"
             ) ,
@@ -1116,7 +1095,6 @@ class BasicIPP
         $this->meta->job_uri = chr(0x45) // type uri
             . chr(0x00) . chr(0x07) // name-length
             . "job-uri"
-            //. chr(0x00).chr(strlen($job_uri))
             . self::_giveMeStringLength($job_uri) . $job_uri;
         self::_putDebug("job-uri is: " . $job_uri, 2);
     }
@@ -1175,7 +1153,6 @@ class BasicIPP
 
             default:
                 $server_response = preg_replace("/: $/", '', $this->serveroutput->headers[0]);
-                #$strings = split(' ', $server_response, 3);
                 $strings = preg_split('# #', $server_response, 3);
                 $errno = $strings[1];
                 $string = strtoupper(str_replace(' ', '_', $strings[2]));
@@ -1824,7 +1801,6 @@ class BasicIPP
 
     protected function _rangeOfIntegerBuild($integers)
     {
-        #$integers = split(":", $integers);
         $integers = preg_split("#:#", $integers);
         for ($i = 0; $i < 2; $i++) {
             $outvalue[$i] = self::_integerBuild($integers[$i]);
@@ -1858,7 +1834,6 @@ class BasicIPP
                 break;
 
             case 'rangeOfInteger':
-                // $value have to be: INT1:INT2 , eg 100:1000
                 $this->job_tags[$attribute]['value'][] = self::_rangeOfIntegerBuild($value);
                 break;
 
@@ -1956,8 +1931,7 @@ class BasicIPP
 
         $this->debug[$this->debug_count] = substr($string, 0, 1024);
         $this->debug_count++;
-        //$this->debug .= substr($string,0,1024);
-
+    
     }
 
     //

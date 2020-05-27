@@ -463,49 +463,6 @@ foreach ($dirmodels as $reldir)
 print '</table>';
 print '<br>';
 
-
-/*
- * Other options
- *
- */
-/*
-print load_fiche_titre($langs->trans("OtherOptions"));
-
-print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
-print '<input type="hidden" name="token" value="'.newToken().'">';
-print '<input type="hidden" name="action" value="set_param">';
-
-print "<table class=\"noborder\" width=\"100%\">";
-print "<tr class=\"liste_titre\">";
-print "<td>".$langs->trans("Parameter")."</td>\n";
-print "</tr>";
-
-$substitutionarray=pdf_getSubstitutionArray($langs);
-$substitutionarray['__(AnyTranslationKey)__']=$langs->trans("Translation");
-$htmltext = '<i>'.$langs->trans("AvailableVariables").':<br>';
-foreach($substitutionarray as $key => $val)	$htmltext.=$key.'<br>';
-$htmltext.='</i>';
-
-print '<tr><td>';
-print $form->textwithpicto($langs->trans("FreeLegalTextOnReceptions"), $langs->trans("AddCRIfTooLong").'<br><br>'.$htmltext).'<br>';
-$variablename='RECEPTION_FREE_TEXT';
-if (empty($conf->global->PDF_ALLOW_HTML_FOR_FREE_TEXT))
-{
-    print '<textarea name="'.$variablename.'" class="flat" cols="120">'.$conf->global->$variablename.'</textarea>';
-}
-else
-{
-    include_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
-    $doleditor=new DolEditor($variablename, $conf->global->$variablename,'',80,'dolibarr_notes');
-    print $doleditor->Create();
-}
-print "</td></tr>\n";
-
-print '<tr><td>';
-print $form->textwithpicto($langs->trans("WatermarkOnDraftContractCards"), $htmltext).'<br>';
-print '<input size="50" class="flat" type="text" name="RECEPTION_DRAFT_WATERMARK" value="'.$conf->global->RECEPTION_DRAFT_WATERMARK.'">';
-print "</td></tr>\n";
-*/
 print '</table>';
 
 print '<div class="center"><input type="submit" class="button" value="'.$langs->trans("Modify").'"></div>';

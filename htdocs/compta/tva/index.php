@@ -15,7 +15,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ 
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
@@ -120,7 +120,7 @@ function pt($db, $sql, $date)
     if ($result) {
         $num = $db->num_rows($result);
         $i = 0;
-        $total = 0;
+        
         print '<table class="noborder centpercent">';
 
         print '<tr class="liste_titre">';
@@ -141,7 +141,7 @@ function pt($db, $sql, $date)
             $obj = $db->fetch_object($result);
             $mode = $obj->mode;
 
-            //print $obj->dm.' '.$obj->mode.' '.$previousmonth.' '.$previousmode;
+            
             if ($obj->mode == 'claimed' && !empty($previousmode))
             {
             	print '<tr class="oddeven">';
@@ -253,12 +253,12 @@ $builddate = dol_now();
 
 llxHeader('', $name);
 
-//$textprevyear="<a href=\"index.php?year=" . ($year_current-1) . "\">".img_previous($langs->trans("Previous"), 'class="valignbottom"')."</a>";
-//$textnextyear=" <a href=\"index.php?year=" . ($year_current+1) . "\">".img_next($langs->trans("Next"), 'class="valignbottom"')."</a>";
-//print load_fiche_titre($langs->transcountry("VAT", $mysoc->country_code), $textprevyear." ".$langs->trans("Year")." ".$year_start." ".$textnextyear, 'invoicing');
+
+
+
 
 report_header($name, '', $period, $periodlink, $description, $builddate, $exportlink, array(), $calcmode);
-//report_header($name,'',$textprevyear.$langs->trans("Year")." ".$year_start.$textnextyear,'',$description,$builddate,$exportlink,array(),$calcmode);
+
 
 
 print '<br>';
@@ -282,7 +282,7 @@ $m = $tmp['mon'];
 $tmp = dol_getdate($date_end);
 $yend = $tmp['year'];
 $mend = $tmp['mon'];
-//var_dump($m);
+
 $total = 0; $subtotalcoll = 0; $subtotalpaye = 0; $subtotal = 0;
 $i = 0; $mcursor = 0;
 
@@ -307,10 +307,10 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 		$x_both[$my_coll_rate]['coll']['links'] = '';
 		$x_both[$my_coll_rate]['coll']['detail'] = array();
 		foreach ($x_coll[$my_coll_rate]['facid'] as $id=>$dummy) {
-			//$invoice_customer->id=$x_coll[$my_coll_rate]['facid'][$id];
-			//$invoice_customer->ref=$x_coll[$my_coll_rate]['facnum'][$id];
-			//$invoice_customer->type=$x_coll[$my_coll_rate]['type'][$id];
-			//$company_static->fetch($x_coll[$my_coll_rate]['company_id'][$id]);
+			
+			
+			
+			
 			$x_both[$my_coll_rate]['coll']['detail'][] = array(
 			'id'        =>$x_coll[$my_coll_rate]['facid'][$id],
 			'descr'     =>$x_coll[$my_coll_rate]['descr'][$id],
@@ -324,12 +324,12 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			'dtype'     =>$x_coll[$my_coll_rate]['dtype'][$id],
 			'datef'     =>$x_coll[$my_coll_rate]['datef'][$id],
 			'datep'     =>$x_coll[$my_coll_rate]['datep'][$id],
-			//'company_link'=>$company_static->getNomUrl(1,'',20),
+			
 			'ddate_start'=>$x_coll[$my_coll_rate]['ddate_start'][$id],
 			'ddate_end'  =>$x_coll[$my_coll_rate]['ddate_end'][$id],
 			'totalht'   =>$x_coll[$my_coll_rate]['totalht_list'][$id],
 			'vat'       =>$x_coll[$my_coll_rate]['vat_list'][$id],
-			//'link'      =>$invoice_customer->getNomUrl(1,'',12)
+			
 			);
 		}
 	}
@@ -350,9 +350,9 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			// ExpenseReport
 			if ($x_paye[$my_paye_rate]['ptype'][$id] == 'ExpenseReportPayment')
 			{
-				//$expensereport->id=$x_paye[$my_paye_rate]['facid'][$id];
-				//$expensereport->ref=$x_paye[$my_paye_rate]['facnum'][$id];
-				//$expensereport->type=$x_paye[$my_paye_rate]['type'][$id];
+				
+				
+				
 
 				$x_both[$my_paye_rate]['paye']['detail'][] = array(
 				'id'				=>$x_paye[$my_paye_rate]['facid'][$id],
@@ -374,10 +374,10 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 			}
 			else
 			{
-				//$invoice_supplier->id=$x_paye[$my_paye_rate]['facid'][$id];
-				//$invoice_supplier->ref=$x_paye[$my_paye_rate]['facnum'][$id];
-				//$invoice_supplier->type=$x_paye[$my_paye_rate]['type'][$id];
-				//$company_static->fetch($x_paye[$my_paye_rate]['company_id'][$id]);
+				
+				
+				
+				
 				$x_both[$my_paye_rate]['paye']['detail'][] = array(
 				'id'        =>$x_paye[$my_paye_rate]['facid'][$id],
 				'descr'     =>$x_paye[$my_paye_rate]['descr'][$id],
@@ -457,14 +457,14 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 	    		if (($type == 0 && $conf->global->TAX_MODE_SELL_PRODUCT == 'invoice')
 	    			|| ($type == 1 && $conf->global->TAX_MODE_SELL_SERVICE == 'invoice'))
 	    		{
-	    			//print $langs->trans("NA");
+	    			
 	    		} else {
 	    			if (isset($fields['payment_amount']) && price2num($fields['ftotal_ttc'])) {
 	    				$ratiopaymentinvoice = ($fields['payment_amount'] / $fields['ftotal_ttc']);
 	    			}
 	    		}
 	    	}
-	    	//var_dump('type='.$type.' '.$fields['totalht'].' '.$ratiopaymentinvoice);
+	    	
 	    	$temp_ht = $fields['totalht'] * $ratiopaymentinvoice;
 	    	$temp_vat = $fields['vat'] * $ratiopaymentinvoice;
 	    	$subtot_coll_total_ht += $temp_ht;
@@ -501,14 +501,14 @@ while ((($y < $yend) || ($y == $yend && $m <= $mend)) && $mcursor < 1000)	// $mc
 	    		if (($type == 0 && $conf->global->TAX_MODE_SELL_PRODUCT == 'invoice')
 	    			|| ($type == 1 && $conf->global->TAX_MODE_SELL_SERVICE == 'invoice'))
 	    		{
-	    			//print $langs->trans("NA");
+	    			
 	    		} else {
 	    			if (isset($fields['payment_amount']) && price2num($fields['ftotal_ttc'])) {
 	    				$ratiopaymentinvoice = ($fields['payment_amount'] / $fields['ftotal_ttc']);
 	    			}
 	    		}
 	    	}
-	    	//var_dump('type='.$type.' '.$fields['totalht'].' '.$ratiopaymentinvoice);
+	    	
 	    	$temp_ht = $fields['totalht'] * $ratiopaymentinvoice;
 	    	$temp_vat = $fields['vat'] * $ratiopaymentinvoice;
 	    	$subtot_paye_total_ht += $temp_ht;
@@ -576,7 +576,7 @@ $sql .= " AND (f.datep >= '".$db->idate($date_start)."' AND f.datep <= '".$db->i
 $sql .= " GROUP BY dm";
 
 $sql .= " ORDER BY dm ASC, mode ASC";
-//print $sql;
+
 
 pt($db, $sql, $langs->trans("Month"));
 

@@ -198,8 +198,8 @@ SQL
             // 1 = owner, 2 = readonly, 3 = readwrite
             if ($row['access'] > 1) {
                 // We need to find more information about the original owner.
-                //$stmt2 = $this->pdo->prepare('SELECT principaluri FROM ' . $this->calendarInstancesTableName . ' WHERE access = 1 AND id = ?');
-                //$stmt2->execute([$row['id']]);
+                
+                
 
                 // read-only is for backwards compatbility. Might go away in
                 // the future.
@@ -509,7 +509,7 @@ SQL
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $result = [];
         foreach (array_chunk($uris, 900) as $chunk) {
@@ -563,7 +563,7 @@ SQL
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $extraData = $this->getDenormalizedData($calendarData);
 
@@ -609,7 +609,7 @@ SQL
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $extraData = $this->getDenormalizedData($calendarData);
 
@@ -722,7 +722,7 @@ SQL
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $stmt = $this->pdo->prepare('DELETE FROM ' . $this->calendarObjectTableName . ' WHERE calendarid = ? AND uri = ?');
         $stmt->execute([$calendarId, $objectUri]);
@@ -788,7 +788,7 @@ SQL
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $componentType = null;
         $requirePostFilter = true;
@@ -967,7 +967,7 @@ SQL;
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         // Current synctoken
         $stmt = $this->pdo->prepare('SELECT synctoken FROM ' . $this->calendarTableName . ' WHERE id = ?');
@@ -1458,7 +1458,7 @@ INSERT INTO ' . $this->calendarInstancesTableName . '
         if (!is_array($calendarId)) {
             throw new \InvalidArgumentException('The value passed to getInvites() is expected to be an array with a calendarId and an instanceId');
         }
-        list($calendarId, $instanceId) = $calendarId;
+        list($calendarId) = $calendarId;
 
         $query = <<<SQL
 SELECT

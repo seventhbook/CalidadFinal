@@ -166,30 +166,30 @@ class doc_generic_stock_odt extends ModelePDFStock
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>'.count($listoffiles).'</b>';
 
-			/*if ($conf->global->MAIN_STOCK_CHOOSE_ODT_DOCUMENT > 0)
-			{
-				// Model for creation
-				$liste=ModelePDFStock::liste_modeles($this->db);
-				$texte.= '<table width="50%;">';
-				$texte.= '<tr>';
-				$texte.= '<td width="60%;">'.$langs->trans("DefaultModelPropalCreate").'</td>';
-				$texte.= '<td colspan="">';
-				$texte.= $form->selectarray('value2',$liste,$conf->global->STOCK_ADDON_PDF_ODT_DEFAULT);
-				$texte.= "</td></tr>";
+			
+			
+			
+			
+		
+		
+		
+		
+		
+		
 
-				$texte.= '<tr>';
-				$texte.= '<td width="60%;">'.$langs->trans("DefaultModelPropalToBill").'</td>';
-				$texte.= '<td colspan="">';
-				$texte.= $form->selectarray('value3',$liste,$conf->global->STOCK_ADDON_PDF_ODT_TOBILL);
-				$texte.= "</td></tr>";
-				$texte.= '<tr>';
+	
+				
+				
+				
+				
+				
 
-				$texte.= '<td width="60%;">'.$langs->trans("DefaultModelPropalClosed").'</td>';
-				$texte.= '<td colspan="">';
-				$texte.= $form->selectarray('value4',$liste,$conf->global->STOCK_ADDON_PDF_ODT_CLOSED);
-				$texte.= "</td></tr>";
-				$texte.= '</table>';
-			}*/
+				
+				
+				
+				
+				
+			
 		}
 
 		$texte .= '</td>';
@@ -238,7 +238,7 @@ class doc_generic_stock_odt extends ModelePDFStock
 		global $action;
 
 		if (!is_object($outputlangs)) $outputlangs = $langs;
-		$sav_charset_output = $outputlangs->charset_output;
+		
 		$outputlangs->charset_output = 'UTF-8';
 
 		// Load translation files required by the page
@@ -299,10 +299,10 @@ class doc_generic_stock_odt extends ModelePDFStock
 					$filename = $newfiletmp.'.'.$newfileformat;
 				}
 				$file = $dir.'/'.$filename;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->product->dir_temp=".$conf->product->dir_temp;
+				
+				
+				
+				
 
 				dol_mkdir($conf->product->dir_temp);
 
@@ -344,7 +344,7 @@ class doc_generic_stock_odt extends ModelePDFStock
 				complete_substitutions_array($substitutionarray, $langs, $object);
 				// Call the ODTSubstitution hook
 				$parameters = array('file'=>$file, 'object'=>$object, 'outputlangs'=>$outputlangs, 'substitutionarray'=>&$substitutionarray);
-				$reshook = $hookmanager->executeHooks('ODTSubstitution', $parameters, $this, $action); // Note that $action and $object may have been modified by some hooks
+				
 
 				// Line of free text
 				$newfreetext = '';
@@ -376,8 +376,8 @@ class doc_generic_stock_odt extends ModelePDFStock
 				// After construction $odfHandler->contentXml contains content and
 				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
 				// [!-- BEGIN lines --]*[!-- END lines --]
-				//print html_entity_decode($odfHandler->__toString());
-				//print exit;
+				
+				
 
 				$object->fetch_optionals();
 
@@ -393,7 +393,7 @@ class doc_generic_stock_odt extends ModelePDFStock
 				// Define substitution array
 				$substitutionarray = getCommonSubstitutionArray($outputlangs, 0, null, $object);
 				$array_object_from_properties = $this->get_substitutionarray_each_var_object($object, $outputlangs);
-				//$array_objet=$this->get_substitutionarray_object($object,$outputlangs);
+				
 				$array_user = $this->get_substitutionarray_user($user, $outputlangs);
 				$array_soc = $this->get_substitutionarray_mysoc($mysoc, $outputlangs);
 				$array_thirdparty = $this->get_substitutionarray_thirdparty($socobject, $outputlangs);

@@ -202,14 +202,6 @@ class Website extends CommonObject
 			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX.$this->table_element);
 
             // Uncomment this and change MYOBJECT to your own tag if you
-            // want this action to call a trigger.
-            // if (!$notrigger) {
-
-            //     // Call triggers
-            //     $result = $this->call_trigger('MYOBJECT_CREATE',$user);
-            //     if ($result < 0) $error++;
-            //     // End call triggers
-            // }
         }
 
 		// Commit or rollback
@@ -452,10 +444,6 @@ class Website extends CommonObject
 			// Uncomment this and change MYOBJECT to your own tag if you
 			// want this action calls a trigger.
 
-			//// Call triggers
-			//$result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-			//if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-			//// End call triggers
 		}
 
 		// Commit or rollback
@@ -492,9 +480,6 @@ class Website extends CommonObject
 				// want this action calls a trigger.
 
 				//// Call triggers
-				//$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-				//if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-				//// End call triggers
 			}
 		}
 
@@ -630,7 +615,6 @@ class Website extends CommonObject
 				// Create new file
 				$objectpagenew = $objectpageold->createFromClone($user, $pageid, $objectpageold->pageurl, '', 0, $object->id, 1);
 
-				//print $pageid.' = '.$objectpageold->pageurl.' -> '.$objectpagenew->id.' = '.$objectpagenew->pageurl.'<br>';
 				if (is_object($objectpagenew) && $objectpagenew->pageurl)
 				{
 		            $filealias = $pathofwebsitenew.'/'.$objectpagenew->pageurl.'.php';
@@ -976,7 +960,6 @@ class Website extends CommonObject
 			fputs($fp, $line);
 
 			// Add line to update home page id during import
-			//var_dump($this->fk_default_home.' - '.$objectpageold->id.' - '.$objectpageold->newid);exit;
 			if ($this->fk_default_home > 0 && ($objectpageold->id == $this->fk_default_home) && ($objectpageold->newid > 0))	// This is the record with home page
 			{
 			    // Warning: We must keep llx_ here. It is a generic SQL.
@@ -1154,8 +1137,6 @@ class Website extends CommonObject
 			if ($obj) {
 				$object->fk_default_home = $obj->fk_default_home;
 			} else {
-				//$this->errors[] = 'Failed to get the Home page';
-				//$error++;
 			}
 		}
 
@@ -1182,7 +1163,6 @@ class Website extends CommonObject
 	 */
 	public function isMultiLang()
 	{
-		// TODO Can edit list of languages of web site. Return false if there is only 0 or 1 language.
 
 		return true;
 	}
@@ -1254,7 +1234,6 @@ class Website extends CommonObject
 		}
 
 		$weblangs->load('languages');
-		//var_dump($weblangs->defaultlang);
 
 		$url = $_SERVER["REQUEST_URI"];
 		$url = preg_replace('/(\?|&)l=([a-zA-Z_]*)/', '', $url); // We remove param l from url

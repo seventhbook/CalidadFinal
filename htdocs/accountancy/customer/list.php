@@ -139,7 +139,7 @@ if (empty($reshook))
 if ($massaction == 'ventil') {
     $msg = '';
 
-    //print '<div><font color="red">' . $langs->trans("Processing") . '...</font></div>';
+    
     if (!empty($mesCasesCochees)) {
         $msg = '<div>'.$langs->trans("SelectedLines").': '.count($mesCasesCochees).'</div>';
         $msg .= '<div class="detail">';
@@ -329,8 +329,8 @@ if ($result) {
 	    //'presend'=>$langs->trans("SendByMail"),
 	    //'builddoc'=>$langs->trans("PDFMerge"),
 	);
-	//if ($user->rights->mymodule->supprimer) $arrayofmassactions['predelete']='<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
-	//if (in_array($massaction, array('presend','predelete'))) $arrayofmassactions=array();
+	
+	
 	$massactionbutton = $form->selectMassAction('ventil', $arrayofmassactions, 1);
 
 	print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">'."\n";
@@ -346,11 +346,11 @@ if ($result) {
 
 	print '<span class="opacitymedium">'.$langs->trans("DescVentilTodoCustomer").'</span></br><br>';
 
-	/*$topicmail="Information";
-	 $modelmail="project";
-	 $objecttmp=new Project($db);
-	 $trackid='prj'.$object->id;
-	 include DOL_DOCUMENT_ROOT.'/core/tpl/massactions_pre.tpl.php';*/
+	
+	
+	
+	
+	
 
 	if ($msg) print $msg.'<br>';
 
@@ -371,13 +371,13 @@ if ($result) {
    	$formother->select_year($search_year, 'search_year', 1, 20, 5);
 	print '</td>';
 	print '<td class="liste_titre"><input type="text" class="flat maxwidth50" name="search_ref" value="'.dol_escape_htmltag($search_ref).'"></td>';
-	//print '<td class="liste_titre"><input type="text" class="flat maxwidth50" name="search_label" value="' . dol_escape_htmltag($search_label) . '"></td>';
+	
 	print '<td class="liste_titre"><input type="text" class="flat maxwidth100" name="search_desc" value="'.dol_escape_htmltag($search_desc).'"></td>';
 	print '<td class="liste_titre right"><input type="text" class="flat maxwidth50 right" name="search_amount" value="'.dol_escape_htmltag($search_amount).'"></td>';
 	print '<td class="liste_titre right"><input type="text" class="flat maxwidth50 right" name="search_vat" placeholder="%" size="1" value="'.dol_escape_htmltag($search_vat).'"></td>';
 	print '<td class="liste_titre">';
 	print $form->select_country($search_country, 'search_country', '', 0, 'maxwidth150', 'code2', 1, 0, 1);
-	//print '<input type="text" class="flat maxwidth50" name="search_country" value="' . dol_escape_htmltag($search_country) . '">';
+	
 	print '</td>';
 	print '<td class="liste_titre"><input type="text" class="flat maxwidth50" name="search_tvaintra" value="'.dol_escape_htmltag($search_tvaintra).'"></td>';
 	print '<td class="liste_titre"></td>';
@@ -393,7 +393,7 @@ if ($result) {
 	print_liste_field_titre("Invoice", $_SERVER["PHP_SELF"], "f.ref", "", $param, '', $sortfield, $sortorder);
 	print_liste_field_titre("Date", $_SERVER["PHP_SELF"], "f.datef, f.ref, l.rowid", "", $param, '', $sortfield, $sortorder, 'center ');
 	print_liste_field_titre("ProductRef", $_SERVER["PHP_SELF"], "p.ref", "", $param, '', $sortfield, $sortorder);
-	//print_liste_field_titre("ProductLabel", $_SERVER["PHP_SELF"], "p.label", "", $param, '', $sortfield, $sortorder);
+	
 	print_liste_field_titre("ProductDescription", $_SERVER["PHP_SELF"], "l.description", "", $param, '', $sortfield, $sortorder);
 	print_liste_field_titre("Amount", $_SERVER["PHP_SELF"], "l.total_ht", "", $param, '', $sortfield, $sortorder, 'right maxwidth50 ');
 	print_liste_field_titre("VATRate", $_SERVER["PHP_SELF"], "l.tva_tx", "", $param, '', $sortfield, $sortorder, 'right ');
@@ -557,9 +557,9 @@ if ($result) {
 		// $objp->code_sell_l = default (it takes the country into consideration), $objp->code_sell_p is value for product (it takes the country into consideration too)
 		print '<td>';
 		$suggestedid = $objp->aarowid_suggest;
-		/*var_dump($suggestedid);
-		var_dump($objp->code_sell_p);
-		var_dump($objp->code_sell_l);*/
+		
+		
+		
 		if (empty($suggestedid) && empty($objp->code_sell_p) && ! empty($objp->code_sell_l) && empty($conf->global->ACCOUNTANCY_DO_NOT_AUTOFILL_ACCOUNT_WITH_GENERIC))
 		{
 			if (empty($accountingaccount_codetotid_cache[$objp->code_sell_l]))
@@ -580,7 +580,7 @@ if ($result) {
 
 		// Column with checkbox
 		print '<td class="center">';
-		//var_dump($objp->aarowid);var_dump($objp->aarowid_intra);var_dump($objp->aarowid_export);var_dump($objp->aarowid_suggest);
+		
 		$ischecked = $objp->aarowid_suggest;
 		print '<input type="checkbox" class="flat checkforselect checkforselect'.$objp->rowid.'" name="toselect[]" value="'.$objp->rowid."_".$i.'"'.($ischecked ? "checked" : "").'/>';
 		print '</td>';
