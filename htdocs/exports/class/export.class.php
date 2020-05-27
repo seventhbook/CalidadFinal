@@ -109,8 +109,8 @@ class Export
 						// Defined if module is enabled
 						$enabled=true;
 						$part=strtolower(preg_replace('/^mod/i', '', $modulename));
-						if ($part == 'propale') $part='propal';
-						if (empty($conf->$part->enabled)) $enabled=false;
+						if ($part == 'propale') {$part='propal';}
+						if (empty($conf->$part->enabled)) {$enabled=false;}
 
 						if ($enabled)
 						{
@@ -124,11 +124,11 @@ class Export
 							{
 							    foreach($module->export_code as $r => $value)
 								{
-                                    //print $i.'-'.$filter.'-'.$modulename.'-'.join(',',$module->export_code).'<br>';
-								    if ($filter && ($filter != $module->export_code[$r])) continue;
+                                    
+								    if ($filter && ($filter != $module->export_code[$r])) {continue;}
 
                                     // Test if condition to show are ok
-                                    if (! empty($module->export_enabled[$r]) && ! verifCond($module->export_enabled[$r])) continue;
+                                    if (! empty($module->export_enabled[$r]) && ! verifCond($module->export_enabled[$r])){ continue;}
 
                                     // Test if permissions are ok
 									$bool=true;
@@ -137,7 +137,7 @@ class Export
 										foreach($module->export_permission[$r] as $val)
 										{
 	    									$perm=$val;
-	    									//print_r("$perm[0]-$perm[1]-$perm[2]<br>");
+	    									
 	    									if (! empty($perm[2]))
 	    									{
 	    										$bool=$user->rights->{$perm[0]}->{$perm[1]}->{$perm[2]};
@@ -146,15 +146,15 @@ class Export
 	    									{
 	    										$bool=$user->rights->{$perm[0]}->{$perm[1]};
 	    									}
-	    									if ($perm[0]=='user' && $user->admin) $bool=true;
+	    									if ($perm[0]=='user' && $user->admin){ $bool=true;}
 	    									if (! $bool) break;
 										}
 									}
-									//print $bool." $perm[0]"."<br>";
+									
 
 									// Permissions ok
-									//	          if ($bool)
-									//	          {
+									
+									
 									// Charge fichier lang en rapport
 									$langtoload=$module->getLangFilesArray();
 									if (is_array($langtoload))
@@ -194,7 +194,7 @@ class Export
 									$this->array_export_sql_start[$i]=$module->export_sql_start[$r];
 									$this->array_export_sql_end[$i]=$module->export_sql_end[$r];
 									$this->array_export_sql_order[$i]=$module->export_sql_order[$r];
-									//$this->array_export_sql[$i]=$module->export_sql[$r];
+									
 
 									dol_syslog(get_class($this)."::load_arrays loaded for module ".$modulename." with index ".$i.", dataset=".$module->export_code[$r].", nb of fields=".(! empty($module->export_fields_code[$r])?count($module->export_fields_code[$r]):''));
 									$i++;
@@ -232,10 +232,10 @@ class Export
 		//print_r($array_selected);
 		foreach ($this->array_export_fields[$indice] as $key => $value)
 		{
-			if (! array_key_exists($key, $array_selected)) continue;		// Field not selected
-            if (preg_match('/^none\./', $key)) continue;                    // A field that must not appears into SQL
-			if ($i > 0) $sql.=', ';
-			else $i++;
+			if (! array_key_exists($key, $array_selected)){ continue;}		// Field not selected
+            if (preg_match('/^none\./', $key)){ continue;}                    // A field that must not appears into SQL
+			if ($i > 0){ $sql.=', ';}
+			else{ $i++;}
 
 			if (strpos($key, ' as ')===false) {
 				$newfield=$key.' as '.str_replace(array('.', '-','(',')'), '_', $key);
@@ -255,7 +255,7 @@ class Export
 			foreach ($array_filterValue as $key => $value)
 			{
 			    if (preg_match('/GROUP_CONCAT/i', $key)) continue;
-				if ($value != '') $sqlWhere.=" and ".$this->build_filterQuery($this->array_export_TypeFields[$indice][$key], $key, $array_filterValue[$key]);
+				if ($value != ''){ $sqlWhere.=" and ".$this->build_filterQuery($this->array_export_TypeFields[$indice][$key], $key, $array_filterValue[$key]);}
 			}
 			$sql.=$sqlWhere;
 		}
@@ -269,7 +269,7 @@ class Export
 		    // Loop on each condition to add
 		    foreach ($array_filterValue as $key => $value)
 		    {
-		        if (preg_match('/GROUP_CONCAT/i', $key) and $value != '') $sql.=" HAVING ".$this->build_filterQuery($this->array_export_TypeFields[$indice][$key], $key, $array_filterValue[$key]);
+		        if (preg_match('/GROUP_CONCAT/i', $key) and $value != '') {$sql.=" HAVING ".$this->build_filterQuery($this->array_export_TypeFields[$indice][$key], $key, $array_filterValue[$key]);}
 		    }
 		}
 
@@ -288,15 +288,15 @@ class Export
     public function build_filterQuery($TypeField, $NameField, $ValueField)
     {
         // phpcs:enable
-		//print $TypeField." ".$NameField." ".$ValueField;
+		
 		$InfoFieldList = explode(":", $TypeField);
 		// build the input field on depend of the type of file
 		switch ($InfoFieldList[0]) {
 			case 'Text':
-				if (! (strpos($ValueField, '%') === false))
+				if (! (strpos($ValueField, '%') === false)){
 					$szFilterQuery.=" ".$NameField." LIKE '".$ValueField."'";
-				else
-					$szFilterQuery.=" ".$NameField." = '".$ValueField."'";
+				}else{
+					$szFilterQuery.=" ".$NameField." = '".$ValueField."'";}
 				break;
 			case 'Date':
 				if (strpos($ValueField, "+") > 0)
@@ -308,10 +308,10 @@ class Export
 				}
 				else
 				{
-					if (is_numeric(substr($ValueField, 0, 1)))
+					if (is_numeric(substr($ValueField, 0, 1))){
 						$szFilterQuery=$this->conditionDate($NameField, trim($ValueField), "=");
-					else
-						$szFilterQuery=$this->conditionDate($NameField, trim(substr($ValueField, 1)), substr($ValueField, 0, 1));
+					}else{
+						$szFilterQuery=$this->conditionDate($NameField, trim(substr($ValueField, 1)), substr($ValueField, 0, 1));}
 				}
 				break;
 			case 'Duree':
@@ -327,10 +327,11 @@ class Export
 				}
 				else
 				{
-					if (is_numeric(substr($ValueField, 0, 1)))
+					if (is_numeric(substr($ValueField, 0, 1))){
 						$szFilterQuery=" ".$NameField."=".$ValueField;
-					else
+					}else{
 						$szFilterQuery=" ".$NameField.substr($ValueField, 0, 1).substr($ValueField, 1);
+					}
 				}
 				break;
 			case 'Boolean':
@@ -338,13 +339,13 @@ class Export
 				break;
 			case 'Status':
 			case 'List':
-				if (is_numeric($ValueField))
+				if (is_numeric($ValueField)){
 					$szFilterQuery=" ".$NameField."=".$ValueField;
-				else {
-                    if (! (strpos($ValueField, '%') === false))
+				}else {
+                    if (! (strpos($ValueField, '%') === false)){
                         $szFilterQuery=" ".$NameField." LIKE '".$ValueField."'";
-                    else
-                        $szFilterQuery=" ".$NameField." = '".$ValueField."'";
+		    }else{
+                        $szFilterQuery=" ".$NameField." = '".$ValueField."'";}
 				}
 				break;
 			default:
@@ -365,9 +366,9 @@ class Export
     public function conditionDate($Field, $Value, $Sens)
     {
 		// TODO date_format is forbidden, not performant and not portable. Use instead BETWEEN
-		if (strlen($Value)==4) $Condition=" date_format(".$Field.",'%Y') ".$Sens." '".$Value."'";
-		elseif (strlen($Value)==6) $Condition=" date_format(".$Field.",'%Y%m') ".$Sens." '".$Value."'";
-		else  $Condition=" date_format(".$Field.",'%Y%m%d') ".$Sens." ".$Value;
+		if (strlen($Value)==4) {$Condition=" date_format(".$Field.",'%Y') ".$Sens." '".$Value."'";}
+		elseif (strlen($Value)==6){ $Condition=" date_format(".$Field.",'%Y%m') ".$Sens." '".$Value."'";}
+		else { $Condition=" date_format(".$Field.",'%Y%m%d') ".$Sens." ".$Value;}
 		return $Condition;
     }
 
@@ -411,11 +412,11 @@ class Export
 				$szFilterField.=' value="">&nbsp;</option>';
 
 				$szFilterField.='<option ';
-				if ($ValueField=='yes' || $ValueField == '1') $szFilterField.=' selected ';
+				if ($ValueField=='yes' || $ValueField == '1'){ $szFilterField.=' selected ';}
 				$szFilterField.=' value="1">'.yn(1).'</option>';
 
 				$szFilterField.='<option ';
-				if ($ValueField=='no' || $ValueField=='0') $szFilterField.=' selected ';
+				if ($ValueField=='no' || $ValueField=='0'){ $szFilterField.=' selected ';}
 				$szFilterField.=' value="0">'.yn(0).'</option>';
 				$szFilterField.="</select>";
 				break;
@@ -426,13 +427,14 @@ class Export
 				// 3 : Name of field with key (if it is not "rowid"). Used this field as key for combo list.
 				// 4 : Name of element for getEntity().
 
-				if (! empty($InfoFieldList[3]))
+				if (! empty($InfoFieldList[3])){
 					$keyList=$InfoFieldList[3];
-				else
+				}else{
 					$keyList='rowid';
+				}
 				$sql = 'SELECT '.$keyList.' as rowid, '.$InfoFieldList[2].' as label'.(empty($InfoFieldList[3])?'':', '.$InfoFieldList[3].' as code');
-				if ($InfoFieldList[1] == 'c_stcomm') $sql = 'SELECT id as id, '.$keyList.' as rowid, '.$InfoFieldList[2].' as label'.(empty($InfoFieldList[3])?'':', '.$InfoFieldList[3].' as code');
-				if ($InfoFieldList[1] == 'c_country') $sql = 'SELECT '.$keyList.' as rowid, '.$InfoFieldList[2].' as label, code as code';
+				if ($InfoFieldList[1] == 'c_stcomm'){ $sql = 'SELECT id as id, '.$keyList.' as rowid, '.$InfoFieldList[2].' as label'.(empty($InfoFieldList[3])?'':', '.$InfoFieldList[3].' as code');}
+				if ($InfoFieldList[1] == 'c_country'){ $sql = 'SELECT '.$keyList.' as rowid, '.$InfoFieldList[2].' as label, code as code';}
 				$sql.= ' FROM '.MAIN_DB_PREFIX .$InfoFieldList[1];
 				if (! empty($InfoFieldList[4])) {
 					$sql.= ' WHERE entity IN ('.getEntity($InfoFieldList[4]).')';
@@ -457,7 +459,7 @@ class Export
 								$i++;
 								continue;
 							}
-							//var_dump($InfoFieldList[1]);
+							
 							$labeltoshow=dol_trunc($obj->label, 18);
 							if ($InfoFieldList[1] == 'c_stcomm')
 							{
@@ -466,7 +468,7 @@ class Export
 							}
 							if ($InfoFieldList[1] == 'c_country')
 							{
-								//var_dump($sql);
+							
 								$langs->load("dict");
 								$labeltoshow=(($langs->trans("Country".$obj->code) != "Country".$obj->code)?$langs->trans("Country".$obj->code):$obj->label);
 							}
@@ -563,7 +565,7 @@ class Export
 		require_once $dir.$file;
 		$objmodel = new $classname($this->db);
 
-		if (! empty($sqlquery)) $sql = $sqlquery;
+		if (! empty($sqlquery)){ $sql = $sqlquery;}
         else
 		{
 			// Define value for indice from $datatoexport
@@ -574,7 +576,7 @@ class Export
 				{
 					$indice=$key;
 					$foundindice++;
-					//print "Found indice = ".$indice." for dataset=".$datatoexport."\n";
+					
 					break;
 				}
 			}
