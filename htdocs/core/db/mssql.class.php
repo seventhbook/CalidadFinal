@@ -172,8 +172,6 @@ class DoliDBMssql extends DoliDB
 		//force les enregistrement en latin1 si la base est en utf8 par defaut
 		// Supprime car plante sur mon PHP-Mysql. De plus, la base est forcement en latin1 avec
 		// les nouvelles version de Dolibarr car force par l'install Dolibarr.
-		//$this->query('SET NAMES '.$this->forcecharset);
-		//print "Resultat fonction connect: ".$this->db;
 		$set_options=array('SET ANSI_PADDING ON;',
 		    "SET ANSI_NULLS ON;",
 		    "SET ANSI_WARNINGS ON;",
@@ -408,15 +406,11 @@ class DoliDBMssql extends DoliDB
     		}
     	    if (preg_match('/^insert\h+(?:INTO)?\h*(\w+?)\h*\(.*\b(?:row)?id\b.*\)\h+VALUES/i', $query, $matches))
     	    {
-    	        //var_dump($query);
-    	        //var_dump($matches);
-    	        //if (stripos($query,'llx_c_departements') !== false) var_dump($query);
     	        $sql='SET IDENTITY_INSERT ['.trim($matches[1]).'] ON;';
     	        @mssql_query($sql, $this->db);
     	        $post_query='SET IDENTITY_INSERT ['.trim($matches[1]).'] OFF;';
     	    }
 		}
-		//print "<!--".$query."-->";
 
 		if (! in_array($query, array('BEGIN','COMMIT','ROLLBACK')))
 		{
@@ -750,13 +744,8 @@ class DoliDBMssql extends DoliDB
     public function DDLCreateDb($database, $charset = '', $collation = '', $owner = '')
 	{
         // phpcs:enable
-        /*if (empty($charset))   $charset=$this->forcecharset;
-        if (empty($collation)) $collation=$this->forcecollate;
-        */
 
 		$sql = 'CREATE DATABASE '.$this->EscapeFieldName($database);
-        //TODO: Check if we need to force a charset
-		//$sql.= ' DEFAULT CHARACTER SET '.$charset.' DEFAULT COLLATE '.$collation;
 		$ret=$this->query($sql);
 
 		$this->select_db($database);
@@ -773,7 +762,6 @@ class DoliDBMssql extends DoliDB
 	    return $ret;
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *  List tables into a database
 	 *
@@ -799,9 +787,6 @@ class DoliDBMssql extends DoliDB
 	{
         // phpcs:enable
 
-		// FIXME: Dummy method
-		// TODO: Implement
-		// May help: https://stackoverflow.com/questions/600446/sql-server-how-do-you-return-the-column-names-from-a-table
 
 		$infotables=array();
 		return $infotables;
@@ -906,7 +891,6 @@ class DoliDBMssql extends DoliDB
 			return 1;
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *	Return a pointer of line with description of a table or field
 	 *
@@ -924,7 +908,6 @@ class DoliDBMssql extends DoliDB
 		return $this->_results;
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *	Create a new field into table
 	 *
@@ -936,9 +919,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function DDLAddField($table, $field_name, $field_desc, $field_position = "")
 	{
-        // phpcs:enable
-		// cles recherchees dans le tableau des descriptions (field_desc) : type,value,attribute,null,default,extra
-		// ex. : $field_desc = array('type'=>'int','value'=>'11','null'=>'not null','extra'=> 'auto_increment');
 		$sql= "ALTER TABLE ".$table." ADD ".$field_name." ";
 		$sql .= $field_desc['type'];
 		if( preg_match("/^[^\s]/i", $field_desc['value']))
@@ -1008,7 +988,6 @@ class DoliDBMssql extends DoliDB
 		else return 1;
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 * 	Create a user and privileges to connect to database (even if database does not exists yet)
 	 *
@@ -1077,8 +1056,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function getListOfCharacterSet()
 	{
-		// FIXME: Dummy method
-		// TODO: Implement
 
 		return '';
 	}
@@ -1106,8 +1083,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function getListOfCollation()
 	{
-		// FIXME: Dummy method
-		// TODO: Implement
 
 		return array();
 	}
@@ -1132,8 +1107,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function getPathOfRestore()
 	{
-		// FIXME: Dummy method
-		// TODO: Implement
 
 	    return '';
 	}
@@ -1146,9 +1119,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function getServerParametersValues($filter = '')
 	{
-		// FIXME: Dummy method
-		// TODO: Implement
-		// May help: SELECT SERVERPROPERTY
 
 		$result=array();
 		return $result;
@@ -1162,14 +1132,10 @@ class DoliDBMssql extends DoliDB
 	 */
     public function getServerStatusValues($filter = '')
 	{
-		// FIXME: Dummy method
-		// TODO: Implement
-		// May help: http://www.experts-exchange.com/Database/MS-SQL-Server/Q_20971756.html
 
 		return array();
 	}
 
-    // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
 	/**
 	 *    Escape a field name according to escape's syntax
 	 *
@@ -1178,7 +1144,6 @@ class DoliDBMssql extends DoliDB
 	 */
     public function EscapeFieldName($fieldname)
     {
-        // phpcs:enable
 	    return "[".$fieldname."]";
 	}
 
