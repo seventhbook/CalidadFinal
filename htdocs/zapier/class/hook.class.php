@@ -252,27 +252,27 @@ class Hook extends CommonObject
     /**
      * @var int    Name of subtable line
      */
-    //public $table_element_line = 'hookdet';
+    
 
     /**
      * @var int    Field with ID of parent key if this field has a parent
      */
-    //public $fk_element = 'fk_hook';
+    
 
     /**
      * @var int    Name of subtable class that manage subtable lines
      */
-    //public $class_element_line = 'MyObjectline';
+    
 
     /**
      * @var array  Array of child tables (child tables to delete before deleting a record)
      */
-    //protected $childtables=array('hookdet');
+    
 
     /**
      * @var MyObjectLine[]     Array of subtable lines
      */
-    //public $lines = array();
+    
 
 
 
@@ -358,7 +358,7 @@ class Hook extends CommonObject
             foreach($object->array_options as $key => $option) {
                 $shortkey = preg_replace('/options_/', '', $key);
                 if (! empty($extrafields->attributes[$this->element]['unique'][$shortkey])) {
-                    // var_dump($key);
+                    
                     // var_dump($clonedObj->array_options[$key]);
                     // exit;
                     unset($object->array_options[$key]);
@@ -409,7 +409,7 @@ class Hook extends CommonObject
      * @return int         <0 if KO, 0 if not found, >0 if OK
      */
     /*public function fetchLines()
-    {
+    
         $this->lines=array();
 
         // Load lines with object MyObjectLine
@@ -438,7 +438,7 @@ class Hook extends CommonObject
 
         $sql = 'SELECT';
         $sql .= ' t.rowid';
-        // TODO Get all fields
+        
         $sql .= ' FROM ' . MAIN_DB_PREFIX . $this->table_element. ' as t';
         $sql .= ' WHERE t.entity = '.$conf->entity;
         // Manage filter
@@ -475,9 +475,9 @@ class Hook extends CommonObject
                 $record = new self($this->db);
 
                 $record->id = $obj->rowid;
-                // TODO Get other fields
+                
 
-                //var_dump($record->id);
+                
                 $records[$record->id] = $record;
             }
             $this->db->free($resql);
@@ -513,7 +513,7 @@ class Hook extends CommonObject
     public function delete(User $user, $notrigger = false)
     {
         return $this->deleteCommon($user, $notrigger);
-        //return $this->deleteCommon($user, $notrigger, 1);
+        
     }
 
     /**
@@ -566,7 +566,7 @@ class Hook extends CommonObject
             $linkclose.=' class="classfortooltip'.($morecss?' '.$morecss:'').'"';
 
             /*
-             $hookmanager->initHooks(array('hookdao'));
+             
              $parameters=array('id'=>$this->id);
              $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
              if ($reshook > 0) $linkclose = $hookmanager->resPrint;
@@ -587,7 +587,7 @@ class Hook extends CommonObject
             $result.= $this->ref;
         }
         $result .= $linkend;
-        //if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+        
 
         $hookmanager->initHooks(array('hookdao'));
         $parameters = array(
@@ -638,7 +638,7 @@ class Hook extends CommonObject
     	if (empty($this->labelStatus) || empty($this->labelStatusShort))
     	{
     		global $langs;
-    		//$langs->load("mymodule");
+    		
     		$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Disabled');
     		$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Enabled');
     		$this->labelStatusShort[self::STATUS_DRAFT] = $langs->trans('Disabled');
@@ -720,7 +720,7 @@ class Hook extends CommonObject
     {
         global $conf, $langs;
 
-        //$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlofile.log';
+        
 
         $error = 0;
         $this->output = '';

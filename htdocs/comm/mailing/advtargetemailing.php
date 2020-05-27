@@ -121,7 +121,7 @@ if ($action == 'add') {
 	// Get extra fields
 
 	foreach ($_POST as $key => $value) {
-		// print '$key='.$key.' $value='.$value.'<BR>';
+		
 		if (preg_match("/^options_.*(?<!_cnct)$/", $key)) {
 			// Special case for start date come with 3 inputs day, month, year
 			if (preg_match("/st_dt/", $key)) {
@@ -200,14 +200,14 @@ if ($action == 'add') {
 		}
 	}
 
-	// if ($array_query ['type_of_target'] == 1 || $array_query ['type_of_target'] == 3) {
+	
 	$result = $advTarget->query_thirdparty($array_query);
 	if ($result < 0) {
 		setEventMessages($advTarget->error, $advTarget->errors, 'errors');
 	}
-	/*} else {
-		$advTarget->thirdparty_lines = array ();
-	}*/
+	
+	
+	
 
 	if ($user_contact_query && ($array_query['type_of_target'] == 1 || $array_query['type_of_target'] == 2 || $array_query['type_of_target'] == 4)) {
 		$result = $advTarget->query_contact($array_query, 1);
@@ -287,7 +287,7 @@ if ($action == 'savefilter' || $action == 'createfilter') {
 					$dtarr = explode('_', $key);
 					if (!array_key_exists('options_'.$dtarr[1].'_end_dt', $array_query)) {
 						$array_query['options_'.$dtarr[1].'_end_dt'] = dol_mktime(0, 0, 0, GETPOST('options_'.$dtarr[1].'_end_dtmonth', 'int'), GETPOST('options_'.$dtarr[1].'_end_dtday', 'int'), GETPOST('options_'.$dtarr[1].'_end_dtyear', 'int'));
-						// print $array_query['options_'.$dtarr[1].'_end_dt'];
+						
 						// 01/02/1013=1361228400
 					}
 				} else {
@@ -308,7 +308,7 @@ if ($action == 'savefilter' || $action == 'createfilter') {
 					$dtarr = explode('_', $key);
 					if (!array_key_exists('options_'.$dtarr[1].'_end_dt'.'_cnct', $array_query)) {
 						$array_query['options_'.$dtarr[1].'_end_dt'.'_cnct'] = dol_mktime(0, 0, 0, GETPOST('options_'.$dtarr[1].'_end_dtmonth'.'_cnct', 'int'), GETPOST('options_'.$dtarr[1].'_end_dtday'.'_cnct', 'int'), GETPOST('options_'.$dtarr[1].'_end_dtyear'.'_cnct', 'int'));
-						// print $array_query['cnct_options_'.$dtarr[1].'_end_dt'];
+						
 						// 01/02/1013=1361228400
 					}
 				} else {

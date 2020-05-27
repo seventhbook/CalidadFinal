@@ -138,7 +138,7 @@ class CashControl extends CommonObject
 		// Insert request
 		$sql = "INSERT INTO ".MAIN_DB_PREFIX."pos_cash_fence (";
 		$sql .= "entity";
-		//$sql .= ", ref";
+		
 		$sql .= ", opening";
 		$sql .= ", status";
 		$sql .= ", date_creation";
@@ -151,7 +151,7 @@ class CashControl extends CommonObject
 		$sql .= ", cheque";
 		$sql .= ", card";
 		$sql .= ") VALUES (";
-		//$sql .= "'(PROV)', ";
+		
 		$sql .= $conf->entity;
 		$sql .= ", ".(is_numeric($this->opening) ? $this->opening : 0);
 		$sql .= ", 0";										// Draft by default
@@ -218,7 +218,7 @@ class CashControl extends CommonObject
 		}
 
 		/*
-		 $posmodule = $this->posmodule;
+		 
 		 if (! empty($user->rights->$posmodule->use))
 		 {
 		 $this->error='NotEnoughPermissions';
@@ -298,8 +298,7 @@ class CashControl extends CommonObject
 	public function delete(User $user, $notrigger = false)
 	{
 	    return $this->deleteCommon($user, $notrigger);
-	    //return $this->deleteCommon($user, $notrigger, 1);
-	}
+	    	}
 
 	/**
 	 *  Return label of the status
@@ -325,8 +324,9 @@ class CashControl extends CommonObject
 		// phpcs:enable
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
+
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[0] = $langs->trans('Draft');
 			$this->labelStatus[1] = $langs->trans('Closed');
 			$this->labelStatusShort[0] = $langs->trans('Draft');
@@ -385,7 +385,7 @@ class CashControl extends CommonObject
 		    $linkclose.=' class="classfortooltip'.($morecss?' '.$morecss:'').'"';
 
 		    /*
-		     $hookmanager->initHooks(array('myobjectdao'));
+		     
 		     $parameters=array('id'=>$this->id);
 		     $reshook=$hookmanager->executeHooks('getnomurltooltip',$parameters,$this,$action);    // Note that $action and $object may have been modified by some hooks
 		     if ($reshook > 0) $linkclose = $hookmanager->resPrint;
@@ -401,7 +401,7 @@ class CashControl extends CommonObject
 		if ($withpicto) $result.=img_object(($notooltip?'':$label), ($this->picto?$this->picto:'generic'), ($notooltip?(($withpicto != 2) ? 'class="paddingright"' : ''):'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip?0:1);
 		if ($withpicto != 2) $result.= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		global $action;
 		$hookmanager->initHooks(array('cashfencedao'));

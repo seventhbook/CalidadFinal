@@ -639,7 +639,7 @@ if (empty($conf->global->MAIN_DISABLE_GLOBAL_WORKBOARD)) {
             $text = $langs->transnoentitiesnoconv("NoItemLate");
         }
         $text .= '. '.$langs->transnoentitiesnoconv("LateDesc");
-        //$text.=$form->textwithpicto('',$langs->trans("LateDesc"));
+        
         $options = 'height="24px" style="float: right"';
         $boxwork .= showWeather($totallate, $text, $options, 'inline-block valignmiddle');
     }
@@ -825,7 +825,7 @@ if (empty($conf->global->MAIN_DISABLE_GLOBAL_WORKBOARD)) {
             if ($board->nbtodolate > 0) {
                 $boxwork .= '<div class="dashboardlinelatecoin nowrap">';
                 $boxwork .= '<a title="'.dol_escape_htmltag($textlate).'" class="valignmiddle dashboardlineindicatorlate'.($board->nbtodolate > 0 ? ' dashboardlineko' : ' dashboardlineok').'" href="'.((!$board->url_late) ? $board->url : $board->url_late).'">';
-                //$boxwork .= img_picto($textlate, "warning_white", 'class="valigntextbottom"').'';
+                
                 $boxwork .= img_picto($textlate, "warning_white",
                         'class="inline-block hideonsmartphone valigntextbottom"').'';
                 $boxwork .= '<span class="dashboardlineindicatorlate'.($board->nbtodolate > 0 ? ' dashboardlineko' : ' dashboardlineok').'">';
@@ -961,7 +961,7 @@ if ($user->admin && empty($conf->global->MAIN_REMOVE_INSTALL_WARNING))
     if (!empty($lockfile) && !file_exists($lockfile) && is_dir(DOL_DOCUMENT_ROOT."/install"))
     {
         $langs->load("errors");
-        //if (! empty($message)) $message.='<br>';
+        
         $message .= info_admin($langs->trans("WarningLockFileDoesNotExists", DOL_DATA_ROOT).' '.$langs->trans("WarningUntilDirRemoved", DOL_DOCUMENT_ROOT."/install"), 0, 0, '1', 'clearboth');
     }
 
@@ -969,7 +969,7 @@ if ($user->admin && empty($conf->global->MAIN_REMOVE_INSTALL_WARNING))
     if (is_writable($conffile))
     {
         $langs->load("errors");
-        //$langs->load("other");
+        
         //if (! empty($message)) $message.='<br>';
         $message .= info_admin($langs->transnoentities("WarningConfFileMustBeReadOnly").' '.$langs->trans("WarningUntilDirRemoved", DOL_DOCUMENT_ROOT."/install"), 0, 0, '1', 'clearboth');
     }
@@ -977,12 +977,12 @@ if ($user->admin && empty($conf->global->MAIN_REMOVE_INSTALL_WARNING))
     if ($message)
     {
         print $message;
-        //$message.='<br>';
+        
         //print info_admin($langs->trans("WarningUntilDirRemoved",DOL_DOCUMENT_ROOT."/install"));
     }
 }
 
-//print 'mem='.memory_get_usage().' - '.memory_get_peak_usage();
+
 
 // End of page
 llxFooter();

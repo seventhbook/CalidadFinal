@@ -74,7 +74,7 @@ $conffiletoshowshort = "conf.php";
 $conffile = "../conf/conf.php";
 $conffiletoshow = "htdocs/conf/conf.php";
 // For debian/redhat like systems
-//$conffile = "/etc/dolibarr/conf.php";
+
 //$conffiletoshow = "/etc/dolibarr/conf.php";
 
 
@@ -229,7 +229,7 @@ if (! defined('SYSLOG_FILE'))	// To avoid warning on systems with constant alrea
 	elseif (! empty($_ENV["TEMP"]) && @is_writable($_ENV["TEMP"])) define('SYSLOG_FILE', $_ENV["TEMP"].'/dolibarr_install.log');
 	elseif (@is_writable('../../../../') && @file_exists('../../../../startdoliwamp.bat')) define('SYSLOG_FILE', '../../../../dolibarr_install.log');	// For DoliWamp
 	elseif (@is_writable('../../')) define('SYSLOG_FILE', '../../dolibarr_install.log');				// For others
-	//print 'SYSLOG_FILE='.SYSLOG_FILE;exit;
+	
 }
 if (defined('SYSLOG_FILE')) $conf->global->SYSLOG_FILE=constant('SYSLOG_FILE');
 if (! defined('SYSLOG_FILE_NO_ERROR')) define('SYSLOG_FILE_NO_ERROR', 1);
@@ -311,7 +311,7 @@ function conf($dolibarr_main_document_root)
         elseif (! empty($_ENV["TEMP"]) && @is_writable($_ENV["TEMP"])) define('SYSLOG_FILE', $_ENV["TEMP"].'/dolibarr_install.log');
         elseif (@is_writable('../../../../') && @file_exists('../../../../startdoliwamp.bat')) define('SYSLOG_FILE', '../../../../dolibarr_install.log');	// For DoliWamp
         elseif (@is_writable('../../')) define('SYSLOG_FILE', '../../dolibarr_install.log');				// For others
-        //print 'SYSLOG_FILE='.SYSLOG_FILE;exit;
+        
     }
     if (defined('SYSLOG_FILE')) $conf->global->SYSLOG_FILE=constant('SYSLOG_FILE');
     if (! defined('SYSLOG_FILE_NO_ERROR')) define('SYSLOG_FILE_NO_ERROR', 1);
@@ -465,12 +465,12 @@ function pFooter($nonext = 0, $setuplang = '', $jscheckfunction = '', $withpleas
     {
         print "\n";
         print "<!-- Start of log output\n";
-        //print '<div class="hidden">'."\n";
+        
         foreach($conf->logbuffer as $logline)
         {
             print $logline."<br>\n";
         }
-        //print '</div>'."\n";
+        
         print "End of log output -->\n";
         print "\n";
     }

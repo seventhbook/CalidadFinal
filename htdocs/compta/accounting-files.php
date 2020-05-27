@@ -49,7 +49,7 @@ $date_stop = GETPOST('date_stop', 'alpha');
 $date_stopDay = GETPOST('date_stopday', 'int');
 $date_stopMonth = GETPOST('date_stopmonth', 'int');
 $date_stopYear = GETPOST('date_stopyear', 'int');
-//FIXME doldate
+
 $date_stop = ($date_stopDay) ?dol_mktime(23, 59, 59, $date_stopMonth, $date_stopDay, $date_stopYear) : strtotime($date_stop);
 $action = GETPOST('action', 'alpha');
 
@@ -106,9 +106,9 @@ $error = 0;
  */
 
 
-//$parameters = array('socid' => $id);
+
 //$reshook = $hookmanager->executeHooks('doActions', $parameters, $object); // Note that $object may have been modified by some hooks
-//if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
+
 
 $filesarray = array();
 $result = false;
@@ -161,16 +161,16 @@ if (($action == 'searchfiles' || $action == 'dl')) {
 	    $sql .= " FROM ".MAIN_DB_PREFIX."payment_salary as t LEFT JOIN ".MAIN_DB_PREFIX."user as u ON u.rowid = t.fk_user LEFT JOIN ".MAIN_DB_PREFIX."c_country as c ON c.rowid = u.fk_country";
 	    $sql .= " WHERE datep between ".$wheretail;
 	    $sql .= " AND t.entity IN (".($entity == 1 ? '0,1' : $entity).')';
-	    //$sql.=" AND fk_statut <> ".PaymentSalary::STATUS_DRAFT;
+	    
 	    $sql .= " UNION ALL";
 	    // Social contributions
 	    $sql .= " SELECT t.rowid as id, t.entity, t.libelle as ref, paye as paid, amount as total_ht, amount as total_ttc, 0 as total_tva, 0 as fk_soc, date_creation as date, 'SocialContributions' as item, '' as thirdparty_name, '' as thirdparty_code, '' as country_code, '' as vatnum";
 	    $sql .= " FROM ".MAIN_DB_PREFIX."chargesociales as t";
 	    $sql .= " WHERE date_creation between ".$wheretail;
 	    $sql .= " AND t.entity IN (".($entity == 1 ? '0,1' : $entity).')';
-	    //$sql.=" AND fk_statut <> ".ChargeSociales::STATUS_DRAFT;
+	    
 	    $sql .= $db->order($sortfield, $sortorder);
-		//print $sql;
+		
 
 	    $resd = $db->query($sql);
 	    $files = array();
@@ -242,7 +242,7 @@ if (($action == 'searchfiles' || $action == 'dl')) {
 	                $result = true;
 
 	                $files = dol_dir_list($upload_dir, "files", 0, '', '(\.meta|_preview.*\.png)$', '', SORT_ASC, 1);
-	                //var_dump($upload_dir);
+	                
 	                //var_dump($files);
 
 	                if (count($files) < 1)
@@ -295,7 +295,7 @@ if (($action == 'searchfiles' || $action == 'dl')) {
 	                        	$filesarray[$file['item'].'_'.$file['id']]['files'] = array();
 	                        }
 	                        $filesarray[$file['item'].'_'.$file['id']]['files'][] = array('link' => $link.$file['name'], 'name'=>$file['name'], 'ref'=>$file['ref'], 'fullname' => $file['fullname'], 'relpathnamelang' => $langs->trans($file['item']).'/'.$file['name']);
-	                        //var_dump($file['item'].'_'.$file['id']);
+	                        
 	                        //var_dump($filesarray[$file['item'].'_'.$file['id']]['files']);
 	                    }
 	                }
@@ -472,11 +472,11 @@ if (!empty($date_start) && !empty($date_stop))
     print '<input type="hidden" name="date_start" value="'.dol_print_date($date_start, 'dayxcard').'" />';
     print '<input type="hidden" name="date_stop"  value="'.dol_print_date($date_stop, 'dayxcard').'" />';
 
-    //print   '<input type="hidden" name="date_stopDay"  value="'.dol_print_date($date_stop, '%d').'" />';
+    
     //print   '<input type="hidden" name="date_stopMonth"  value="'.dol_print_date($date_stop, '%m').'" />';
     //print   '<input type="hidden" name="date_stopYear"  value="'.dol_print_date($date_stop, '%Y').'" />';
 
-    //print   '<input type="hidden" name="date_startDay"  value="'.dol_print_date($date_start, '%d').'" />';
+    
     //print   '<input type="hidden" name="date_startMonth"  value="'.dol_print_date($date_start, '%m').'" />';
     //print   '<input type="hidden" name="date_startYear"  value="'.dol_print_date($date_start, '%m').'" />';
 
@@ -523,7 +523,7 @@ if (!empty($date_start) && !empty($date_stop))
             foreach ($TData as $data)
             {
                 $html_class = '';
-                //if (!empty($data['fk_facture'])) $html_class = 'facid-'.$data['fk_facture'];
+                
                 //elseif (!empty($data['fk_paiement'])) $html_class = 'payid-'.$data['fk_paiement'];
                 print '<tr class="oddeven '.$html_class.'">';
 
@@ -567,9 +567,9 @@ if (!empty($date_start) && !empty($date_stop))
                 print '<td align="right">'.$data['vatnum']."</td>\n";
 
                 // Debit
-                //print '<td align="right">'.(($data['amount_ttc'] > 0) ? price(abs($data['amount_ttc'])) : '')."</td>\n";
+                
                 // Credit
-                //print '<td align="right">'.(($data['amount_ttc'] > 0) ? '' : price(abs($data['amount_ttc'])))."</td>\n";
+                
 
                 $totalET += $data['amount_ht'];
                 $totalIT += $data['amount_ttc'];
@@ -579,7 +579,7 @@ if (!empty($date_start) && !empty($date_stop))
                 $totalCredit += ($data['amount_ttc'] > 0) ? 0 : abs($data['amount_ttc']);
 
                 // Balance
-                //print '<td align="right">'.price($data['balance'])."</td>\n";
+                
 
                 print "</tr>\n";
             }
@@ -597,7 +597,7 @@ if (!empty($date_start) && !empty($date_stop))
             print '<td></td>';
             print '<td></td>';
             print '<td></td>';
-            /*print '<td align="right">'.price($totalDebit).'</td>';
+            /*
             print '<td align="right">'.price($totalCredit).'</td>';
             print '<td align="right">'.price(price2num($totalDebit - $totalCredit, 'MT')).'</td>';
 			*/

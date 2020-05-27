@@ -168,25 +168,25 @@ if ($action == 'testprinter' && $user->admin) {
 
 if ($action == 'testtemplate' && $user->admin) {
     $error=0;
-    // if (empty($printerid)) {
+    
     //     $error++;
     //     setEventMessages($langs->trans("PrinterIdEmpty"), null, 'errors');
     // }
 
-    // if (! $error) {
+    
 	// test
 	require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
 	$object = new Facture($db);
-	//$object->initAsSpecimen();
+	
 	$object->fetch(18);
-	//var_dump($object->lines);
+	
     $ret = $printer->sendToPrinter($object, $templateid, 1);
     if ($ret == 0) {
         setEventMessages($langs->trans("TestTemplateToPrinter", $printername), null);
     } else {
         setEventMessages($printer->error, $printer->errors, 'errors');
     }
-    //}
+    
     $action = '';
 }
 
@@ -355,7 +355,7 @@ if ($mode == 'config' && $user->admin) {
     print '<tr class="oddeven"><td>'.$langs->trans("CONNECTOR_NETWORK_PRINT").':</td><td>'.$langs->trans("CONNECTOR_NETWORK_PRINT_HELP").'</td></tr>';
     print '<tr class="oddeven"><td>'.$langs->trans("CONNECTOR_FILE_PRINT").':</td><td>'.$langs->trans("CONNECTOR_FILE_PRINT_HELP").'</td></tr>';
     print '<tr class="oddeven"><td>'.$langs->trans("CONNECTOR_WINDOWS_PRINT").':</td><td>'.$langs->trans("CONNECTOR_WINDOWS_PRINT_HELP").'</td></tr>';
-    //print '<tr class="oddeven"><td>'.$langs->trans("CONNECTOR_JAVA").':</td><td>'.$langs->trans("CONNECTOR_JAVA_HELP").'</td></tr>';
+    
     print '</table>';
     dol_fiche_end();
 
@@ -394,7 +394,7 @@ if ($mode == 'template' && $user->admin) {
     print '<th></th>';
     print "</tr>\n";
     $ret = $printer->listPrintersTemplates();
-    //print '<pre>'.print_r($printer->listprinterstemplates, true).'</pre>';
+    
     if ($ret > 0) {
         setEventMessages($printer->error, $printer->errors, 'errors');
     } else {

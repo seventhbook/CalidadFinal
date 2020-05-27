@@ -194,7 +194,7 @@ if (empty($reshook))
 				$result = 0;
 				if ($massaction == 'disable') $result = $tmpcron->setStatut(Cronjob::STATUS_DISABLED);
 				elseif ($massaction == 'enable') $result = $tmpcron->setStatut(Cronjob::STATUS_ENABLED);
-				//else dol_print_error($db, 'Bad value for massaction');
+				
 				if ($result < 0) setEventMessages($tmpcron->error, $tmpcron->errors, 'errors');
 			}
 			else
@@ -447,7 +447,7 @@ if ($num > 0)
 		}
 		else
 		{
-			//print $langs->trans('CronNone');
+			
 		}
 		print '</td>';
 
@@ -509,7 +509,7 @@ if ($num > 0)
 		print '<td class="center">';
 		if (!empty($datelastresult) && ($datelastresult >= $datelastrun)) {
 		    print convertSecondToTime(max($datelastresult - $datelastrun, 1), 'allhourminsec');
-		    //print '<br>'.($datelastresult - $datelastrun).' '.$langs->trans("seconds");
+		    
 		}
 		print '</td>';
 

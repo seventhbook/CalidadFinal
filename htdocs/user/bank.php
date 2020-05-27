@@ -49,7 +49,7 @@ $socid = 0;
 if ($user->socid > 0) $socid = $user->socid;
 $feature2 = (($socid && $user->rights->user->self->creer) ? '' : 'user');
 // Ok if user->rights->salaries->read or user->rights->hrm->read
-//$result = restrictedArea($user, 'salaries|hrm', $id, 'user&user', $feature2);
+
 $ok = false;
 if ($user->id == $id) $ok = true; // A user can always read its own card
 if (!empty($user->rights->salaries->read)) $ok = true;
@@ -481,7 +481,7 @@ if ($id && ($action == 'edit' || $action == 'create') && $user->rights->user->us
 
     dol_banner_tab($object, 'id', $linkback, $user->rights->user->user->lire || $user->admin);
 
-    //print '<div class="fichecenter">';
+    
 
     print '<div class="underbanner clearboth"></div>';
 	print '<table class="border centpercent">';
@@ -540,7 +540,7 @@ if ($id && ($action == 'edit' || $action == 'create') && $user->rights->user->us
 
     print '</table>';
 
-    //print '</div>';
+    
 
     dol_fiche_end();
 

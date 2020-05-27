@@ -26,7 +26,7 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
+
 //require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
@@ -349,7 +349,7 @@ class WebsitePage extends CommonObject
 				$record->date_modification = $this->db->jdate($obj->date_modification);
 				$record->fk_user_creat = $obj->fk_user_creat;
 				$record->fk_user_modif = $obj->fk_user_modif;
-				//var_dump($record->id);
+				
 				$records[$record->id] = $record;
 			}
 			$this->db->free($resql);
@@ -534,7 +534,7 @@ class WebsitePage extends CommonObject
         $linkstart .= $linkclose.'>';
 		$linkend = '</a>';
 
-		//$linkstart = $linkend = '';
+		
 
 		$result .= $linkstart;
 		if ($withpicto) $result .= img_picto(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
@@ -571,7 +571,7 @@ class WebsitePage extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Disabled');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Enabled');
 			$this->labelStatusShort[self::STATUS_DRAFT] = $langs->trans('Disabled');

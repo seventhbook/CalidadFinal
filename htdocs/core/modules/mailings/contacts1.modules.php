@@ -130,7 +130,7 @@ class mailing_contacts1 extends MailingTargets
 		$sql = "SELECT sp.poste, count(distinct(sp.email)) AS nb";
 		$sql.= " FROM ".MAIN_DB_PREFIX."socpeople as sp";
 		$sql.= " WHERE sp.entity IN (".getEntity('socpeople').")";
-		/*$sql.= " AND sp.email != ''";    // Note that null != '' is false
+		/*
 		 $sql.= " AND sp.no_email = 0";
 		 $sql.= " AND sp.statut = 1";*/
 		$sql.= " AND (sp.poste IS NOT NULL AND sp.poste != '')";
@@ -226,7 +226,7 @@ class mailing_contacts1 extends MailingTargets
 		}
 		else dol_print_error($this->db);
 		$s.='<option value="customers">'.$langs->trans("ThirdPartyCustomers").'</option>';
-		//$s.='<option value="customersidprof">'.$langs->trans("ThirdPartyCustomersWithIdProf12",$langs->trans("ProfId1"),$langs->trans("ProfId2")).'</option>';
+		
 		$s.='<option value="suppliers">'.$langs->trans("ThirdPartySuppliers").'</option>';
 		$s.='</select>';
 
@@ -396,7 +396,7 @@ class mailing_contacts1 extends MailingTargets
     	// Filter on nature
 		$key = $filter;
 		{
-			//print "xx".$key;
+			
 			if ($key == 'prospects') $sql.= " AND s.client=2";
 			foreach($prospectlevel as $codelevel=>$valuelevel) if ($key == 'prospectslevel'.$codelevel) $sql.= " AND s.fk_prospectlevel='".$codelevel."'";
 			if ($key == 'customers') $sql.= " AND s.client=1";
@@ -406,7 +406,7 @@ class mailing_contacts1 extends MailingTargets
 		$key = $filter_jobposition;
 		if (! empty($key) && $key != 'all') $sql.= " AND sp.poste ='".$this->db->escape($key)."'";
 		$sql.= " ORDER BY sp.email";
-		//print "wwwwwwx".$sql;
+		
 
 		// Stocke destinataires dans cibles
 		$result=$this->db->query($sql);

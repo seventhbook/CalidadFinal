@@ -302,7 +302,7 @@ class InterfaceWorkflowManager extends DolibarrTriggers
         				$qtyordred[$orderline->fk_product]+=$orderline->qty;
         			}
         		}
-        		//dol_syslog(var_export($qtyordred,true),LOG_DEBUG);
+        		
         		//dol_syslog(var_export($qtyshipped,true),LOG_DEBUG);
         		//Compare array
         		$diff_array=array_diff_assoc($qtyordred, $qtyshipped);

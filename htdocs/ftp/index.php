@@ -40,7 +40,7 @@ $action=GETPOST('action', 'aZ09');
 $section=GETPOST('section');
 if (! $section) $section='/';
 $numero_ftp = GETPOST("numero_ftp");
-/* if (! $numero_ftp) $numero_ftp=1; */
+
 $file=GETPOST("file");
 $confirm=GETPOST('confirm');
 
@@ -167,7 +167,7 @@ if ($action == 'confirm_deletefile' && $_REQUEST['confirm'] == 'yes')
 		$remotefile=$section.(preg_match('@[\\\/]$@', $section)?'':'/').$file;
 		$newremotefileiso=utf8_decode($remotefile);
 
-		//print "x".$newremotefileiso;
+		
 		dol_syslog("ftp/index.php ftp_delete ".$newremotefileiso);
 		$result=@ftp_delete($conn_id, $newremotefileiso);
 		if ($result)
@@ -217,7 +217,7 @@ if ($_POST["const"] && $_POST["delete"] && $_POST["delete"] == $langs->trans("De
 				$remotefile=$section.(preg_match('@[\\\/]$@', $section)?'':'/').$file;
 				$newremotefileiso=utf8_decode($remotefile);
 
-				//print "x".$newremotefileiso;
+				
 				dol_syslog("ftp/index.php ftp_delete ".$newremotefileiso);
 				$result=@ftp_delete($conn_id, $newremotefileiso);
 				if ($result)
@@ -478,17 +478,17 @@ else
 
 		if ($ok)
 		{
-			//$type = ftp_systype($conn_id);
+			
 
 			$newsection=$section;
 		    $newsectioniso=utf8_decode($section);
-			//$newsection='/home';
+			
 
 			// List content of directory ($newsection = '/', '/home', ...)
 			if (! empty($conf->global->FTP_CONNECT_WITH_SFTP))
 			{
 			    if ($newsection == '/') $newsection='/./';  // workaround for bug https://bugs.php.net/bug.php?id=64169
-			    //$dirHandle = opendir("ssh2.sftp://$conn_id".$newsection);
+			    
 			    //var_dump($dirHandle);
                 $contents = scandir('ssh2.sftp://' . $conn_id . $newsection);
                 $buff=array();
@@ -501,7 +501,7 @@ else
     		{
                 $buff = ftp_rawlist($conn_id, $newsectioniso);
                 $contents = ftp_nlist($conn_id, $newsectioniso);	// Sometimes rawlist fails but never nlist
-        		//var_dump($contents);
+        		
 		        //var_dump($buff);
     		}
 
@@ -511,7 +511,7 @@ else
 			while ($i < $nboflines && $i < 1000)
 			{
 				$vals=preg_split('@ +@', utf8_encode($buff[$i]), 9);
-				//$vals=preg_split('@ +@','drwxr-xr-x 2 root root 4096 Aug 30 2008 backup_apollon1',9);
+				
 				//var_dump($vals);
 				$file=$vals[8];
 				if (empty($file))
@@ -538,13 +538,13 @@ else
 				{
 					// Remote file
 					$filename=$file;
-					//print "section=".$section.' file='.$file.'X';
+					
 					//print preg_match('@[\/]$@','aaa/').'Y';
 					//print preg_match('@[\\\/]$@',"aaa\\").'Y';
 					$remotefile=$section.(preg_match('@[\\\/]$@', $section)?'':'/').preg_replace('@^[\\\/]@', '', $file);
-					//print 'A'.$remotefile.'A';
+					
 					$newremotefileiso=utf8_decode($remotefile);
-					//print 'Z'.$newremotefileiso.'Z';
+					
 					$is_directory=ftp_isdir($conn_id, $newremotefileiso);
 				}
 
@@ -622,7 +622,7 @@ else
 		// Actions
 		/*
 		if ($user->rights->ftp->write && ! empty($section))
-		{
+		
 		$formfile->form_attach_new_file(DOL_URL_ROOT.'/ftp/index.php','',0,$section,1);
 		}
 		else print '&nbsp;';
@@ -643,7 +643,7 @@ else
 		while ($i <= $MAXFTP)
 		{
 			$paramkey='FTP_NAME_'.$i;
-			//print $paramkey;
+			
 			if (! empty($conf->global->$paramkey))
 			{
 				$foundsetup=true;
@@ -668,8 +668,8 @@ print '<br>';
 if ($conn_id)
 {
     if (! empty($conf->global->FTP_CONNECT_WITH_SFTP))
-    {
-    }
+    
+    
     elseif (! empty($conf->global->FTP_CONNECT_WITH_SSL))
     {
         ftp_close($conn_id);
@@ -737,11 +737,11 @@ function dol_ftp_connect($ftp_server, $ftp_port, $ftp_user, $ftp_password, $sect
 				    if (ssh2_auth_password($tmp_conn_id, $ftp_user, $ftp_password))
     				{
     					// Turn on passive mode transfers (must be after a successful login
-    					//if ($ftp_passive) ftp_pasv($conn_id, true);
+						
 
     					// Change the dir
     					$newsectioniso=utf8_decode($section);
-    					//ftp_chdir($conn_id, $newsectioniso);
+    					
 		                $conn_id = ssh2_sftp($tmp_conn_id);
 		                if (! $conn_id)
 		                {

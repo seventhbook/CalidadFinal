@@ -242,7 +242,7 @@ function productlot_prepare_head($object)
 
     // Log
     /*
-    $head[$h][0] = DOL_URL_ROOT.'/product/info.php?id='.$object->id;
+    
     $head[$h][1] = $langs->trans("Info");
     $head[$h][2] = 'info';
     $h++;

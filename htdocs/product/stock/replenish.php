@@ -147,7 +147,7 @@ if ($action == 'order' && isset($_POST['valid']))
 	                    $line->fk_product = $idprod;
 
 	                    //$product = new Product($db);
-	                    //$product->fetch($obj->fk_product);
+	                    
 	                    if (!empty($conf->global->MAIN_MULTILANGS))
 	                    {
 	                        $productsupplier->getMultiLangs();
@@ -162,7 +162,7 @@ if ($action == 'order' && isset($_POST['valid']))
 	                    $line->desc = $desc;
                         if (! empty($conf->global->MAIN_MULTILANGS))
                         {
-                            // TODO Get desc in language of thirdparty
+                            
                         }
 
 	                    $line->tva_tx = $productsupplier->vatrate_supplier;
@@ -461,7 +461,7 @@ $sql .= $hookmanager->resPrint;
 $sql .= $db->order($sortfield, $sortorder);
 $sql .= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 $resql = $db->query($sql);
 if (empty($resql))
 {
@@ -687,7 +687,7 @@ while ($i < ($limit ? min($num, $limit) : $num))
 
 		$result = $prod->load_stats_reception(0, '4');
 
-		//print $prod->stats_commande_fournisseur['qty'].'<br>'."\n";
+		
 		//print $prod->stats_reception['qty'];
 		$ordered = $prod->stats_commande_fournisseur['qty'] - $prod->stats_reception['qty'];
 
@@ -719,14 +719,14 @@ while ($i < ($limit ? min($num, $limit) : $num))
 				$picto = img_picto('', './img/no', '', 1);
 			}
 		} else {
-			//$picto = img_help('',$langs->trans("NoPendingReceptionOnSupplierOrder"));
+			
 			$picto = img_picto($langs->trans("NoPendingReceptionOnSupplierOrder"), './img/no', '', 1);
 		}
 
 		print '<tr class="oddeven">';
 
 		// Select field
-		//print '<td><input type="checkbox" class="check" name="' . $i . '"' . $disabled . '></td>';
+		
 		print '<td><input type="checkbox" class="check" name="choose'.$i.'"></td>';
 
 		print '<td class="nowrap">'.$prod->getNomUrl(1, '').'</td>';
@@ -762,7 +762,7 @@ while ($i < ($limit ? min($num, $limit) : $num))
 		print '<td class="right"><a href="replenishorders.php?sproduct='.$prod->id.'">'.$ordered.'</a> '.$picto.'</td>';
 
 		// To order
-		//print '<td class="right"><input type="text" name="tobuy'.$i.'" value="'.$stocktobuy.'" '.$disabled.'></td>';
+		
 		print '<td class="right"><input type="text" size="4" name="tobuy'.$i.'" value="'.$stocktobuy.'"></td>';
 
 		// Supplier
@@ -799,7 +799,7 @@ print '<div class="center"><input class="button" type="submit" name="valid" valu
 print '</form>';
 
 
-// TODO Replace this with jquery
+
 print '
 <script type="text/javascript">
 function toggle(source)

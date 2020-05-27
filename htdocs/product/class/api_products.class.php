@@ -743,7 +743,7 @@ class Products extends DolibarrApi
     			foreach($product_fourn_list as $tmpobj) {
     				$this->_cleanObjectDatas($tmpobj);
     			}
-    				//var_dump($product_fourn_list->db);exit;
+    				
     			$obj_ret[$obj->rowid] = $product_fourn_list;
 
     			$i++;
@@ -762,7 +762,7 @@ class Products extends DolibarrApi
      * Get purchase prices for a product
      *
      * Return an array with product information.
-     * TODO implement getting a product by ref or by $ref_ext
+     
      *
      * @param  int    $id               ID of product
      * @param  string $ref              Ref of element

@@ -98,7 +98,7 @@ class ActionsDatapolicy
             $object->fetch(GETPOST('socid'));
         }
 
-        // FIXME Removed hard coded id, use codes
+        
         if ($parameters['currentcontext'] == 'thirdpartycard' && $action == 'anonymiser' && (in_array($object->forme_juridique_code, array(11, 12, 13, 15, 17, 18, 19, 35, 60, 200, 311, 312, 316, 401, 600, 700, 1005)) || $object->typent_id == 8)) {
             // on verifie si l'objet est utilisé
             if ($object->isObjectUsed(GETPOST('socid'))) {
@@ -243,12 +243,12 @@ class ActionsDatapolicy
 
         $error = 0; // Error counter
 
-        /* print_r($parameters); print_r($object); echo "action: " . $action; */
+        /* 
         //if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {
         //    // do something only for the context 'somecontext1' or 'somecontext2'
-        //    foreach ($parameters['toselect'] as $objectid) {
+        
         //        // Do action on each object id
-        //    }
+        
         //}
 
         if (!$error) {
@@ -276,7 +276,7 @@ class ActionsDatapolicy
 
         $error = 0; // Error counter
 
-        /* print_r($parameters); print_r($object); echo "action: " . $action; */
+        
         if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  // do something only for the context 'somecontext1' or 'somecontext2'
             $this->resprints = '<option value="0"' . ($disabled ? ' disabled="disabled"' : '') . '>' . $langs->trans("datapolicyMassAction") . '</option>';
         }
@@ -310,7 +310,7 @@ class ActionsDatapolicy
         $deltemp = array();
         dol_syslog(get_class($this) . '::executeHooks action=' . $action);
 
-        /* print_r($parameters); print_r($object); echo "action: " . $action; */
+        
         if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  // do something only for the context 'somecontext1' or 'somecontext2'
         }
 

@@ -249,7 +249,7 @@ class Orders extends DolibarrApi
         foreach($request_data as $field => $value) {
             $this->commande->$field = $value;
         }
-        /*if (isset($request_data["lines"])) {
+        /*
           $lines = array();
           foreach ($request_data["lines"] as $line) {
             array_push($lines, (object) $line);
@@ -443,7 +443,7 @@ class Orders extends DolibarrApi
 			throw new RestException(401, 'Access not allowed for login '.DolibarrApiAccess::$user->login);
         }
 
-        // TODO Check the lineid $lineid is a line of ojbect
+        
 
         $updateRes = $this->commande->deleteline(DolibarrApiAccess::$user, $lineid);
         if ($updateRes > 0) {

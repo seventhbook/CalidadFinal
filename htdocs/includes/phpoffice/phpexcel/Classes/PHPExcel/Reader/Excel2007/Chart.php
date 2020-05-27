@@ -237,7 +237,7 @@ class PHPExcel_Reader_Excel2007_Chart
 		}
 		$layout = array();
 		foreach($details as $detailKey => $detail) {
-//			echo $detailKey,' => ',self::_getAttribute($detail, 'val', 'string'),PHP_EOL;
+
 			$layout[$detailKey] = self::_getAttribute($detail, 'val', 'string');
 		}
 		return new PHPExcel_Chart_Layout($layout);

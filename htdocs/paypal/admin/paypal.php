@@ -197,7 +197,7 @@ print $form->selectarray("PAYPAL_API_INTEGRAL_OR_PAYPALONLY", array('integral'=>
 print '</td></tr>';
 
 /*
-print '<tr class="oddeven"><td>';
+
 print '<span class="fieldrequired">'.$langs->trans("PAYPAL_API_EXPRESS").'</span></td><td>';
 print $form->selectyesno("PAYPAL_API_EXPRESS",$conf->global->PAYPAL_API_EXPRESS);
 print '</td></tr>';

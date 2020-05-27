@@ -130,11 +130,11 @@ if ($action == 'update') {
 	}
 
 	if (!empty($btn_changeaccount)) {
-		//$msg = '<div><span class="accountingprocessing">' . $langs->trans("Processing") . '...</span></div>';
+		
 		if (!empty($chk_prod)) {
 			$accounting = new AccountingAccount($db);
 
-			//$msg .= '<div><span  class="accountingprocessing">' . count($chk_prod) . ' ' . $langs->trans("SelectedLines") . '</span></div>';
+			
 			$arrayofdifferentselectedvalues = array();
 
 			$cpt = 0; $ok = 0; $ko = 0;
@@ -149,7 +149,7 @@ if ($action == 'update') {
 					$result = $accounting->fetch($accounting_account_id, null, 1);
 				}
 				if ($result <= 0) {
-					// setEventMessages(null, $accounting->errors, 'errors');
+					
 					$msg .= '<div><font color="red">'.$langs->trans("ErrorDB").' : '.$langs->trans("Product").' '.$productid.' '.$langs->trans("NotVentilatedinAccount").' : id='.$accounting_account_id.'<br/> <pre>'.$sql.'</pre></font></div>';
 					$ko++;
 				} else {
@@ -202,7 +202,7 @@ $form = new FormAccounting($db);
 // at this time ACCOUNTING_SERVICE_SOLD_ACCOUNT & ACCOUNTING_PRODUCT_SOLD_ACCOUNT are account number not accountingacount rowid
 // so we need to get those the rowid of those default value first
 $accounting = new AccountingAccount($db);
-// TODO: we should need to check if result is already exists accountaccount rowid.....
+
 $aarowid_servbuy            = $accounting->fetch('', $conf->global->ACCOUNTING_SERVICE_BUY_ACCOUNT, 1);
 $aarowid_prodbuy            = $accounting->fetch('', $conf->global->ACCOUNTING_PRODUCT_BUY_ACCOUNT, 1);
 $aarowid_servsell           = $accounting->fetch('', $conf->global->ACCOUNTING_SERVICE_SOLD_ACCOUNT, 1);
@@ -369,7 +369,7 @@ if ($result)
 	$selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);	// This also change content of $arrayfields
 
     $buttonsave = '<input type="submit" class="button" id="changeaccount" name="changeaccount" value="' . $langs->trans("Save") . '">';
-    //print '<br><div class="center">'.$buttonsave.'</div>';
+    
 
 	$texte=$langs->trans("ListOfProductsServices");
 	print_barre_liste($texte, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $buttonsave, $num, $nbtotalofrecords, '', 0, '', '', $limit);
@@ -499,9 +499,9 @@ if ($result)
 
 		if (!empty($conf->global->ACCOUNTANCY_SHOW_PROD_DESC))
 		{
-		    // TODO ADJUST DESCRIPTION SIZE
-    		// print '<td class="left">' . $obj->description . '</td>';
-    		// TODO: we shoul set a user defined value to adjust user square / wide screen size
+		    
+    		
+    		
     		$trunclengh = empty($conf->global->ACCOUNTING_LENGTH_DESCRIPTION) ? 32 : $conf->global->ACCOUNTING_LENGTH_DESCRIPTION;
     		print '<td>'.nl2br(dol_trunc($obj->description, $trunclengh)).'</td>';
 		}
@@ -546,7 +546,7 @@ if ($result)
 			//$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
 			if (empty($defaultvalue)) $defaultvalue=$compta_prodsell;
 			$codesell=length_accountg($obj->accountancy_code_sell);
-			//var_dump($defaultvalue.' - '.$codesell.' - '.$compta_prodsell);
+			
 			if (! empty($obj->aaid)) $defaultvalue = '';     // Do not suggest default new value is code is already valid
 			print $form->select_account($defaultvalue, 'codeventil_' . $product_static->id, 1, array(), 1);
 			print '</td>';
@@ -556,7 +556,7 @@ if ($result)
             //$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
             if (empty($defaultvalue)) $defaultvalue=$compta_prodsell;
             $codesell=length_accountg($obj->accountancy_code_sell_intra);
-            //var_dump($defaultvalue.' - '.$codesell.' - '.$compta_prodsell);
+            
             if (! empty($obj->aaid)) $defaultvalue = '';     // Do not suggest default new value is code is already valid
             print $form->select_account($defaultvalue, 'codeventil_' . $product_static->id, 1, array(), 1);
             print '</td>';

@@ -292,7 +292,7 @@ class PHPExcel_Calculation_LookupRef {
 	 * @param	PHPExcel_Cell	$pCell			The current cell (containing this formula)
 	 * @return	mixed			The cells referenced by cellAddress
 	 *
-	 * @todo	Support for the optional a1 parameter introduced in Excel 2010
+	 * 
 	 *
 	 */
 	public static function INDIRECT($cellAddress = NULL, PHPExcel_Cell $pCell = NULL) {
@@ -539,21 +539,21 @@ class PHPExcel_Calculation_LookupRef {
 		// find the match
 		// **
 		// loop on the cells
-//		var_dump($lookup_array);
+
 //		echo '<br />';
 		foreach($lookup_array as $i => $lookupArrayValue) {
 			if (($match_type == 0) && ($lookupArrayValue == $lookup_value)) {
 				//	exact match
 				return ++$i;
 			} elseif (($match_type == -1) && ($lookupArrayValue <= $lookup_value)) {
-//				echo '$i = '.$i.' => ';
+
 //				var_dump($lookupArrayValue);
 //				echo '<br />';
 //				echo 'Keyset = ';
 //				var_dump($keySet);
 //				echo '<br />';
 				$i = array_search($i,$keySet);
-//				echo '$i='.$i.'<br />';
+
 				// if match_type is -1 <=> find the smallest value that is greater than or equal to lookup_value
 				if ($i < 1){
 					// 1st cell was allready smaller than the lookup_value
@@ -563,15 +563,9 @@ class PHPExcel_Calculation_LookupRef {
 					return $keySet[$i-1]+1;
 				}
 			} elseif (($match_type == 1) && ($lookupArrayValue >= $lookup_value)) {
-//				echo '$i = '.$i.' => ';
-//				var_dump($lookupArrayValue);
-//				echo '<br />';
-//				echo 'Keyset = ';
-//				var_dump($keySet);
-//				echo '<br />';
+
 				$i = array_search($i,$keySet);
-//				echo '$i='.$i.'<br />';
-				// if match_type is 1 <=> find the largest value that is less than or equal to lookup_value
+
 				if ($i < 1){
 					// 1st cell was allready bigger than the lookup_value
 					break;

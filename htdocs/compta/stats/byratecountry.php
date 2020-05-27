@@ -136,12 +136,12 @@ foreach ($listofparams as $param)
 llxHeader('', $langs->trans("TurnoverReport"), '', '', 0, 0, '', '', $morequerystring);
 
 
-//print load_fiche_titre($langs->trans("VAT"),"");
 
-//$fsearch.='<br>';
+
+
 $fsearch .= '  <input type="hidden" name="year" value="'.$year.'">';
 $fsearch .= '  <input type="hidden" name="modetax" value="'.$modetax.'">';
-//$fsearch.='  '.$langs->trans("SalesTurnoverMinimum").': ';
+
 //$fsearch.='  <input type="text" name="min" value="'.$min.'">';
 
 
@@ -191,7 +191,7 @@ $namesup = $namecust;
 
 
 
-// TODO Report from bookkeeping not yet available, so we switch on report on business events
+
 if ($modecompta == "BOOKKEEPING") $modecompta = "CREANCES-DETTES";
 if ($modecompta == "BOOKKEEPINGCOLLECTED") $modecompta = "RECETTES-DEPENSES";
 
@@ -199,7 +199,7 @@ if ($modecompta == "BOOKKEEPINGCOLLECTED") $modecompta = "RECETTES-DEPENSES";
 if ($modecompta == "CREANCES-DETTES") {
 	$name = $langs->trans("Turnover").', '.$langs->trans("ByVatRate");
 	$calcmode = $langs->trans("CalcModeDebt");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
+	
 
 	$description = $langs->trans("RulesCADue");
 	if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) {
@@ -214,7 +214,7 @@ elseif ($modecompta == "RECETTES-DEPENSES")
 {
 	$name = $langs->trans("TurnoverCollected").', '.$langs->trans("ByVatRate");
 	$calcmode = $langs->trans("CalcModeEngagement");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=CREANCES-DETTES">','</a>').')';
+	
 
 	$description = $langs->trans("RulesCAIn");
 	$description .= $langs->trans("DepositsAreIncluded");
@@ -358,7 +358,7 @@ if ($modecompta == 'CREANCES-DETTES') {
 	$sql2 .= " AND ff.entity IN (".getEntity("facture_fourn", 0).")";
 	$sql2 .= " GROUP BY ffd.tva_tx, ffd.product_type, cc.label";
 
-	//print $sql2;
+	
 	dol_syslog("htdocs/compta/tva/index.php sql=".$sql, LOG_DEBUG);
 	$resql2 = $db->query($sql2);
 	if ($resql2) {
@@ -404,7 +404,7 @@ if ($modecompta == 'CREANCES-DETTES') {
 	}
 	print "</table>\n";
 } else {
-	// $modecompta != 'CREANCES-DETTES'
+	
 	// "Calculation of part of each product for accountancy in this mode is not possible. When a partial payment (for example 5 euros) is done on an
 	// invoice with 2 product (product A for 10 euros and product B for 20 euros), what is part of paiment for product A and part of paiment for product B ?
 	// Because there is no way to know this, this report is not relevant.

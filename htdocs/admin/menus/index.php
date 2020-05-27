@@ -311,7 +311,7 @@ if ($conf->use_javascript_ajax)
 	$sql .= " FROM ".MAIN_DB_PREFIX."menu as m";
 	$sql .= " WHERE menu_handler = '".$db->escape($menu_handler_to_search)."'";
 	$sql .= " AND entity = ".$conf->entity;
-	//$sql.= " AND fk_menu >= 0";
+	
 	$sql .= " ORDER BY m.position, m.rowid"; // Order is position then rowid (because we need a sort criteria when position is same)
 
 	$res  = $db->query($sql);
@@ -356,7 +356,7 @@ if ($conf->use_javascript_ajax)
 
 	global $tree_recur_alreadyadded; // This var was def into tree_recur
 
-	//var_dump($data);
+	
 
 	// Appelle de la fonction recursive (ammorce) avec recherche depuis la racine.
 	//tree_recur($data, $data[0], 0, 'iddivjstree', 0, 1);  // use this to get info on name and foreign keys of menu entry
@@ -392,7 +392,7 @@ if ($conf->use_javascript_ajax)
     	foreach ($remainingdata as $datar)
     	{
             $father = array('rowid'=>$datar['rowid'], 'title'=>"???", 'mainmenu'=>$datar['fk_mainmenu'], 'leftmenu'=>$datar['fk_leftmenu'], 'fk_mainmenu'=>'', 'fk_leftmenu'=>'');
-    	    //print 'Start with rowid='.$datar['rowid'].' mainmenu='.$father ['mainmenu'].' leftmenu='.$father ['leftmenu'].'<br>'."\n";
+    	    
     	    tree_recur($data, $father, 0, 'iddivjstree'.$datar['rowid'], 1, 1);
     	}
 

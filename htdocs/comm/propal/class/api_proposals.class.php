@@ -192,7 +192,7 @@ class Proposals extends DolibarrApi
 		foreach($request_data as $field => $value) {
 			$this->propal->$field = $value;
 		}
-		/*if (isset($request_data["lines"])) {
+		/*
           $lines = array();
           foreach ($request_data["lines"] as $line) {
             array_push($lines, (object) $line);
@@ -395,7 +395,7 @@ class Proposals extends DolibarrApi
 			throw new RestException(401, 'Access not allowed for login '.DolibarrApiAccess::$user->login);
 		}
 
-		// TODO Check the lineid $lineid is a line of ojbect
+		
 
 		$updateRes = $this->propal->deleteline($lineid);
 		if ($updateRes > 0) {

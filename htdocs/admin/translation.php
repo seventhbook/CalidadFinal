@@ -221,7 +221,7 @@ else
 
 print load_fiche_titre($langs->trans("Translation"), $enabledisablehtml, 'title_setup');
 
-//print '<span class="opacitymedium">'.$langs->trans("TranslationDesc")."</span><br>\n";
+
 //print "<br>\n";
 
 $current_language_code=$langs->defaultlang;
@@ -252,7 +252,7 @@ dol_fiche_head($head, $mode, '', -1, '');
 
 if ($mode == 'overwrite')
 {
-    //print load_fiche_titre($langs->trans("TranslationOverwriteKey"), '', '')."\n";
+    
 
 	$disabled = '';
 	if ($action == 'edit' || empty($conf->global->MAIN_ENABLE_OVERWRITE_TRANSLATION)) $disabled = ' disabled="disabled"';
@@ -279,7 +279,7 @@ if ($mode == 'overwrite')
     print_liste_field_titre("Language_en_US_es_MX_etc", $_SERVER["PHP_SELF"], 'lang,transkey', '', $param, '', $sortfield, $sortorder);
     print_liste_field_titre("Key", $_SERVER["PHP_SELF"], 'transkey', '', $param, '', $sortfield, $sortorder);
     print_liste_field_titre("NewTranslationStringToShow", $_SERVER["PHP_SELF"], 'transvalue', '', $param, '', $sortfield, $sortorder);
-    //if (! empty($conf->multicompany->enabled) && !$user->entity) print_liste_field_titre("Entity", $_SERVER["PHP_SELF"], 'entity,transkey', '', $param, '', $sortfield, $sortorder);
+    
     print '<td align="center"></td>';
     print "</tr>\n";
 
@@ -297,7 +297,7 @@ if ($mode == 'overwrite')
     print '</td>';
     // Limit to superadmin
     /*if (! empty($conf->multicompany->enabled) && !$user->entity)
-    {
+    
     	print '<td>';
     	print '<input type="text" class="flat" size="1" name="entity" value="'.$conf->entity.'">';
     	print '</td>';
@@ -307,7 +307,7 @@ if ($mode == 'overwrite')
     {*/
     	print '<td class="center">';
     	print '<input type="hidden" name="entity" value="'.$conf->entity.'">';
-    //}
+    
     print '<input type="submit" class="button"'.$disabled.' value="'.$langs->trans("Add").'" name="add" title="'.dol_escape_htmltag($langs->trans("YouMustEnabledTranslationOverwriteBefore")).'">';
     print "</td>\n";
     print '</tr>';
@@ -340,7 +340,7 @@ if ($mode == 'overwrite')
 
     		// Value
     		print '<td>';
-    		/*print '<input type="hidden" name="const['.$i.'][rowid]" value="'.$obj->rowid.'">';
+    		/*
     		print '<input type="hidden" name="const['.$i.'][lang]" value="'.$obj->lang.'">';
     		print '<input type="hidden" name="const['.$i.'][name]" value="'.$obj->transkey.'">';
     		print '<input type="text" id="value_'.$i.'" class="flat inputforupdate" size="30" name="const['.$i.'][value]" value="'.dol_escape_htmltag($obj->transvalue).'">';
@@ -398,7 +398,7 @@ if ($mode == 'searchkey')
 
     $nbtotaloffiles = 0;
     $nbempty = 0;
-    /*var_dump($langcode);
+    /*
      var_dump($transkey);
      var_dump($transvalue);*/
     if (empty($langcode) || $langcode == '-1') $nbempty++;
@@ -428,13 +428,13 @@ if ($mode == 'searchkey')
 
 				$langkey = $tmpfile;
 				if ($i > 0) $langkey .= '@'.$moduledirname;
-				//var_dump($i.' - '.$keydir.' - '.$dir_lang_osencoded.' -> '.$moduledirname . ' / ' . $tmpfile.' -> '.$langkey);
+				
 
 				$result = $newlang->load($langkey, 0, 0, '', 0); // Load translation files + database overwrite
 				$result = $newlangfileonly->load($langkey, 0, 0, '', 1); // Load translation files only
 				if ($result < 0) print 'Failed to load language file '.$tmpfile.'<br>'."\n";
 				else $nbtotaloffiles++;
-				//print 'After loading lang '.$langkey.', newlang has '.count($newlang->tab_translate).' records<br>'."\n";
+				
         	}
         	$i++;
         }
@@ -448,13 +448,13 @@ if ($mode == 'searchkey')
         }
     }
 
-    //print '<br>';
+    
     $nbtotalofrecordswithoutfilters = count($newlang->tab_translate);
     $nbtotalofrecords = count($recordtoshow);
     $num = $limit + 1;
     if (($offset + $num) > $nbtotalofrecords) $num = $limit;
 
-    //print 'param='.$param.' $_SERVER["PHP_SELF"]='.$_SERVER["PHP_SELF"].' num='.$num.' page='.$page.' nbtotalofrecords='.$nbtotalofrecords." sortfield=".$sortfield." sortorder=".$sortorder;
+    
     $title = $langs->trans("TranslationKeySearch");
     if ($nbtotalofrecords > 0) $title.=' ('.$nbtotalofrecords.' / '.$nbtotalofrecordswithoutfilters.' - '.$nbtotaloffiles.' '.$langs->trans("Files").')';
     print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, '', $num, -1 * $nbtotalofrecords, '', 0, '', '', $limit);
@@ -468,7 +468,7 @@ if ($mode == 'searchkey')
     print_liste_field_titre("Language_en_US_es_MX_etc", $_SERVER["PHP_SELF"], 'lang,transkey', '', $param, '', $sortfield, $sortorder);
     print_liste_field_titre("Key", $_SERVER["PHP_SELF"], 'transkey', '', $param, '', $sortfield, $sortorder);
     print_liste_field_titre("CurrentTranslationString", $_SERVER["PHP_SELF"], 'transvalue', '', $param, '', $sortfield, $sortorder);
-    //if (! empty($conf->multicompany->enabled) && !$user->entity) print_liste_field_titre("Entity", $_SERVER["PHP_SELF"], 'entity,transkey', '', $param, '', $sortfield, $sortorder);
+    
     print '<td align="center"></td>';
     print "</tr>\n";
 
@@ -476,7 +476,7 @@ if ($mode == 'searchkey')
     print "\n";
 
     print '<tr class="oddeven"><td>';
-    //print $formadmin->select_language($langcode,'langcode',0,null,$langs->trans("All"),0,0,'',1);
+    
     print $formadmin->select_language($langcode, 'langcode', 0, null, 0, 0, 0, 'maxwidthonsmartphone', 1);
     print '</td>'."\n";
     print '<td>';
@@ -485,14 +485,14 @@ if ($mode == 'searchkey')
     print '<input type="text" class="quatrevingtpercent" name="transvalue" value="'.$transvalue.'">';
     // Limit to superadmin
     /*if (! empty($conf->multicompany->enabled) && !$user->entity)
-    {
+    
         print '</td><td>';
         print '<input type="text" class="flat" size="1" name="entitysearch" value="'.$conf->entity.'">';
     }
     else
     {*/
         print '<input type="hidden" name="entitysearch" value="'.$conf->entity.'">';
-    //}
+    
     print '</td>';
     // Action column
     print '<td class="nowrap right">';
@@ -540,14 +540,14 @@ if ($mode == 'searchkey')
             }
             elseif (!empty($conf->global->MAIN_ENABLE_OVERWRITE_TRANSLATION))
             {
-            	//print $key.'-'.$val;
+            	
                 print '<a href="'.$_SERVER['PHP_SELF'].'?mode=overwrite&amp;langcode='.$langcode.'&amp;transkey='.$key.'">'.img_edit_add($langs->trans("Overwrite")).'</a>';
             }
 
             if (!empty($conf->global->MAIN_FEATURES_LEVEL))
             {
             	$transifexlangfile = '$'; // $ means 'All'
-            	//$transifexurl = 'https://www.transifex.com/dolibarr-association/dolibarr/translate/#'.$langcode.'/'.$transifexlangfile.'?key='.$key;
+            	
             	$transifexurl = 'https://www.transifex.com/dolibarr-association/dolibarr/translate/#'.$langcode.'/'.$transifexlangfile.'?q=key%3A'.$key;
 
             	print ' &nbsp; <a href="'.$transifexurl.'" target="transifex">'.img_picto('FixOnTransifex', 'globe').'</a>';
@@ -559,7 +559,7 @@ if ($mode == 'searchkey')
             print $form->textwithpicto('', $htmltext, 1, 'warning');
         }
         /*if (! empty($conf->multicompany->enabled) && !$user->entity)
-        {
+        
             print '<td>'.$val.'</td>';
         }*/
         print '</td></tr>'."\n";

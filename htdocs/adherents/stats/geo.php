@@ -84,7 +84,7 @@ if ($mode)
         $sql.=" WHERE d.entity IN (".getEntity('adherent').")";
         $sql.=" AND d.statut = 1";
         $sql.=" GROUP BY c.label, c.code";
-        //print $sql;
+        
     }
 
 	if ($mode == 'memberbystate')
@@ -103,7 +103,7 @@ if ($mode)
         $sql.=" WHERE d.entity IN (".getEntity('adherent').")";
         $sql.=" AND d.statut = 1";
         $sql.=" GROUP BY co.label, co.code, c.nom";
-        //print $sql;
+        
     }
     if ($mode == 'memberbyregion') //
     {
@@ -121,7 +121,7 @@ if ($mode)
         $sql.=" WHERE d.entity IN (".getEntity('adherent').")";
         $sql.=" AND d.statut = 1";
         $sql.=" GROUP BY co.label, co.code, r.nom"; //+
-        //print $sql;
+        
     }
     if ($mode == 'memberbytown')
     {
@@ -137,13 +137,13 @@ if ($mode)
         $sql.=" WHERE d.entity IN (".getEntity('adherent').")";
         $sql.=" AND d.statut = 1";
         $sql.=" GROUP BY c.label, c.code, d.town";
-        //print $sql;
+        
     }
 
     $langsen=new Translate('', $conf);
     $langsen->setDefaultLang('en_US');
     $langsen->load("dict");
-    //print $langsen->trans("Country"."FI");exit;
+    
 
     // Define $data array
     dol_syslog("Count member", LOG_DEBUG);
@@ -264,7 +264,7 @@ if (count($arrayjs) && $mode == 'memberbycountry')
     foreach($data as $val)
     {
         $valcountry=strtoupper($val['code']);    // Should be ISO-3166 code (faster)
-        //$valcountry=ucfirst($val['label_en']);
+        
         if ($valcountry == 'Great Britain') { $valcountry = 'United Kingdom'; }    // fix case of uk (when we use labels)
         print "\tdata.setValue(".$i.", 0, \"".$valcountry."\");\n";
         print "\tdata.setValue(".$i.", 1, ".$val['nb'].");\n";
@@ -276,7 +276,7 @@ if (count($arrayjs) && $mode == 'memberbycountry')
     print "\tvar options = {};\n";
     print "\toptions['dataMode'] = 'regions';\n";
     print "\toptions['showZoomOut'] = false;\n";
-    //print "\toptions['zoomOutLabel'] = '".dol_escape_js($langs->transnoentitiesnoconv("Numbers"))."';\n";
+    
     print "\toptions['width'] = ".$graphwidth.";\n";
     print "\toptions['height'] = ".$graphheight.";\n";
     print "\toptions['colors'] = [0x".colorArrayToHex($theme_datacolor[1], 'BBBBBB').", 0x".colorArrayToHex($theme_datacolor[0], '444444')."];\n";

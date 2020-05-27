@@ -260,7 +260,7 @@ foreach ($dirmodels as $reldir)
                             print '</td>'."\n";
 
                             print '<td class="center">';
-                            //print "> ".$conf->global->SUPPLIER_PAYMENT_ADDON." - ".$file;
+                            
                             if ($conf->global->SUPPLIER_PAYMENT_ADDON == $file || $conf->global->SUPPLIER_PAYMENT_ADDON.'.php' == $file)
                             {
                                 print img_picto($langs->trans("Activated"), 'switch_on');
@@ -367,17 +367,17 @@ foreach ($dirmodels as $reldir)
                     if (in_array($name, $def))
                     {
                         print '<td class="center">'."\n";
-                        //if ($conf->global->SUPPLIER_PAYMENT_ADDON_PDF != "$name")
+                        
                         //{
                             // Even if choice is the default value, we allow to disable it: For supplier invoice, we accept to have no doc generation at all
                             print '<a href="'.$_SERVER["PHP_SELF"].'?action=del&amp;value='.$name.'&amp;scandir='.$module->scandir.'&amp;label='.urlencode($module->name).'&amp;type=SUPPLIER_PAYMENT">';
                             print img_picto($langs->trans("Enabled"), 'switch_on');
                             print '</a>';
-                        /*}
-                        else
-                        {
-                            print img_picto($langs->trans("Enabled"),'switch_on');
-                        }*/
+                        
+                        
+                        
+                        
+                        
                         print "</td>";
                     }
                     else
@@ -391,7 +391,7 @@ foreach ($dirmodels as $reldir)
                     print '<td class="center">';
                     if ($conf->global->SUPPLIER_PAYMENT_ADDON_PDF == "$name")
                     {
-                        //print img_picto($langs->trans("Default"),'on');
+                        
                         // Even if choice is the default value, we allow to disable it: For supplier invoice, we accept to have no doc generation at all
                         print '<a href="'.$_SERVER["PHP_SELF"].'?action=unsetdoc&amp;value='.$name.'&amp;scandir='.$module->scandir.'&amp;label='.urlencode($module->name).'&amp;type=SUPPLIER_PAYMENT"" alt="'.$langs->trans("Disable").'">'.img_picto($langs->trans("Enabled"), 'on').'</a>';
                     }

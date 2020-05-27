@@ -40,7 +40,7 @@ if (!empty($conf->product->enabled) || !empty($conf->service->enabled)) {
 $langs->loadLangs(array('resource', 'other', 'interventions'));
 
 /*
-$sortorder                      = GETPOST('sortorder','alpha');
+
 $sortfield                      = GETPOST('sortfield','alpha');
 $page                           = GETPOST('page','int');
 */
@@ -103,7 +103,7 @@ if (empty($reshook))
 			$objstat = fetchObjectByElement($element_id, $element, $element_ref);
 			$objstat->element = $element; // For externals module, we need to keep @xx
 
-            // TODO : add this check at update_linked_resource and when modifying event start or end date
+            
             // check if an event resource is already in use
             if (!empty($conf->global->RESOURCE_USED_IN_EVENT_CHECK) && $objstat->element == 'action' && $resource_type == 'dolresource' && intval($busy) == 1) {
                 $eventDateStart = $objstat->datep;
@@ -337,12 +337,12 @@ else
 
 			$morehtmlref = '<div class="refidno">';
 			// Thirdparty
-			//$morehtmlref.='<br>'.$langs->trans('ThirdParty') . ' : ' . $object->thirdparty->getNomUrl(1);
+			
 			// Project
 			if (!empty($conf->projet->enabled))
 			{
 			    $langs->load("projects");
-			    //$morehtmlref.='<br>'.$langs->trans('Project') . ' ';
+			    
 			    $morehtmlref .= $langs->trans('Project').': ';
 		        if (!empty($act->fk_project)) {
 		            $proj = new Project($db);
@@ -425,7 +425,7 @@ else
 			print $form->select_dolusers_forevent('view', 'assignedtouser', 1, '', 0, '', '', 0, 0, 0, '', ($act->datep != $act->datef) ? 1 : 0, $listofuserid, $listofcontactid, $listofotherid);
 			print '</div>';
 			/*if (in_array($user->id,array_keys($listofuserid)))
-			{
+			
 				print '<div class="myavailability">';
 				print $langs->trans("MyAvailability").': '.(($act->userassigned[$user->id]['transparency'] > 0)?$langs->trans("Busy"):$langs->trans("Available"));	// We show nothing if event is assigned to nobody
 				print '</div>';
@@ -495,7 +495,7 @@ else
 
 			$morehtmlref = '<div class="refidno">';
 			// Ref customer
-			//$morehtmlref.=$form->editfieldkey("RefCustomer", 'ref_client', $object->ref_client, $object, 0, 'string', '', 0, 1);
+			
 			//$morehtmlref.=$form->editfieldval("RefCustomer", 'ref_client', $object->ref_client, $object, 0, 'string', '', null, null, '', 1);
 			// Thirdparty
 			$morehtmlref .= $langs->trans('ThirdParty').' : '.$fichinter->thirdparty->getNomUrl(1);
@@ -507,10 +507,10 @@ else
 				if ($user->rights->commande->creer)
 				{
 					if ($action != 'classify')
-						//$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $fichinter->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
+						
 						$morehtmlref .= ' : ';
 					if ($action == 'classify') {
-						//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $fichinter->id, $fichinter->socid, $fichinter->fk_project, 'projectid', 0, 0, 1, 1);
+						
 						$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$fichinter->id.'">';
 						$morehtmlref .= '<input type="hidden" name="action" value="classin">';
 						$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -571,7 +571,7 @@ else
 	if ($reshook < 0) setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 
 
-	//print load_fiche_titre($langs->trans('ResourcesLinkedToElement'),'','');
+	
 	print '<br>';
 
 	// Show list of resource links
@@ -583,7 +583,7 @@ else
 		{
 			$element_prop = getElementProperties($resource_obj);
 
-			//print '/'.$modresources.'/class/'.$resource_obj.'.class.php<br>';
+			
 
 			$path = '';
 			if (strpos($resource_obj, '@'))

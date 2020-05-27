@@ -53,7 +53,7 @@ class FormMargin
 
 	/**
 	 *	get array with margin information from lines of object
-	 *  TODO Move this in common class.
+	 *  
 	 *
 	 * 	@param	CommonObject	$object			Object we want to get margin information for
 	 * 	@param 	boolean			$force_price	True of not
@@ -113,7 +113,7 @@ class FormMargin
 					$marginInfos['pv_total'] +=  $pv;
 					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
 					//if ($pv < 0)
-					//{
+					
 					//	$marginInfos['margin_on_products'] += -1 * (abs($pv) - $pa);
 					//}
 					//else
@@ -126,7 +126,7 @@ class FormMargin
 					$marginInfos['pv_total'] +=  $pv;
 					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
 					//if ($pv < 0)
-					//	$marginInfos['margin_on_services'] += -1 * (abs($pv) - $pa);
+					
 					//else
 						$marginInfos['margin_on_services'] += $pv - $pa;
 				}
@@ -144,13 +144,13 @@ class FormMargin
 					$marginInfos['pv_total'] +=  $pv;
 					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
 					//if ($pv < 0)
-					//{
+					
 					//    $marginInfos['margin_on_products'] += -1 * (abs($pv) - $pa);
 					//}
 					//else
-					//{
+					
 					    $marginInfos['margin_on_products'] += $pv - $pa;
-					//}
+					
 				}
 				elseif ($type == 1) {  // service
 					$marginInfos['pa_services'] += $pa;
@@ -159,7 +159,7 @@ class FormMargin
 					$marginInfos['pv_total'] +=  $pv;
 					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
 					//if ($pv < 0)
-					//	$marginInfos['margin_on_services'] += -1 * (abs($pv) - $pa);
+					
 					//else
 						$marginInfos['margin_on_services'] += $pv - $pa;
 				}
@@ -177,7 +177,7 @@ class FormMargin
 
 		// if credit note, margin = -1 * (abs(selling_price) - buying_price)
 		//if ($marginInfos['pv_total'] < 0)
-		//	$marginInfos['total_margin'] = -1 * (abs($marginInfos['pv_total']) - $marginInfos['pa_total']);
+		
 		//else
 			$marginInfos['total_margin'] = $marginInfos['pv_total'] - $marginInfos['pa_total'];
 		if ($marginInfos['pa_total'] > 0)
@@ -239,7 +239,7 @@ class FormMargin
 
 		if (! empty($conf->product->enabled))
 		{
-			//if ($marginInfo['margin_on_products'] != 0 && $marginInfo['margin_on_services'] != 0) {
+			
 			print '<tr class="oddeven">';
 			print '<td>'.$langs->trans('MarginOnProducts').'</td>';
 			print '<td class="right">'.price($marginInfo['pv_products']).'</td>';

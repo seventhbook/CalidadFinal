@@ -502,7 +502,7 @@ class Xml extends BaseReader
                                 $cellDataType = $cellData_ss['Type'];
                                 switch ($cellDataType) {
                                     /*
-                                    const TYPE_STRING        = 's';
+                                    
                                     const TYPE_FORMULA        = 'f';
                                     const TYPE_NUMERIC        = 'n';
                                     const TYPE_BOOL            = 'b';

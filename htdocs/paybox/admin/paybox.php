@@ -161,7 +161,7 @@ print "</tr>\n";
 
 /*
 
-print '<tr class="oddeven"><td>';
+
 print $langs->trans("PAYBOX_IBS_DEVISE").'</td><td>';
 print '<input size="32" type="text" name="PAYBOX_IBS_DEVISE" value="'.$conf->global->PAYBOX_IBS_DEVISE.'">';
 print '<br>'.$langs->trans("Example").': 978 (EUR)';
@@ -170,7 +170,7 @@ print '</td></tr>';
 
 /*
 
-print '<tr class="oddeven"><td>';
+
 print $langs->trans("PAYBOX_CGI_URL_V1").'</td><td>';
 print '<input size="64" type="text" name="PAYBOX_CGI_URL_V1" value="'.$conf->global->PAYBOX_CGI_URL_V1.'">';
 print '<br>'.$langs->trans("Example").': http://mysite/cgi-bin/module_linux.cgi';

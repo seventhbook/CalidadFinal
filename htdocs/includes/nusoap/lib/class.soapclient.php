@@ -232,7 +232,7 @@ class nusoap_client extends nusoap_base  {
 			return false;
 		} else {
 			// no WSDL
-			//$this->namespaces['ns1'] = $namespace;
+			
 			$nsPrefix = 'ns' . rand(1000, 9999);
 			// serialize 
 			$payload = '';
@@ -438,10 +438,10 @@ class nusoap_client extends nusoap_base  {
 				}
 				$this->debug('sending message, length='.strlen($msg));
 				if(preg_match('/^http:/',$this->endpoint)){
-				//if(strpos($this->endpoint,'http:')){
+				
 					$this->responseData = $http->send($msg,$timeout,$response_timeout,$this->cookies);
 				} elseif(preg_match('/^https/',$this->endpoint)){
-				//} elseif(strpos($this->endpoint,'https:')){
+				
 					//if(phpversion() == '4.3.0-dev'){
 						//$response = $http->send($msg,$timeout,$response_timeout);
                    		//$this->request = $http->outgoing_payload;
@@ -700,7 +700,7 @@ class nusoap_client extends nusoap_base  {
 	function getProxy() {
 		$r = rand();
 		$evalStr = $this->_getProxyClassCode($r);
-		//$this->debug("proxy class: $evalStr");
+		
 		if ($this->getError()) {
 			$this->debug("Error from _getProxyClassCode, so return NULL");
 			return null;
