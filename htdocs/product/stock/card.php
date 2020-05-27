@@ -53,7 +53,7 @@ if (!$sortorder) $sortorder = "DESC";
 $backtopage = GETPOST('backtopage', 'alpha');
 
 // Security check
-//$result=restrictedArea($user,'stock', $id, 'entrepot&stock');
+
 $result = restrictedArea($user, 'stock');
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
@@ -68,8 +68,8 @@ $extrafields->fetch_name_optionals_label($object->table_element);
 // Load object
 if ($id > 0 || !empty($ref)) {
     $ret = $object->fetch($id, $ref);
-	//    if ($ret > 0)
-	//        $ret = $object->fetch_thirdparty();
+	
+	
     if ($ret <= 0) {
         setEventMessages($object->error, $object->errors, 'errors');
         $action = '';
@@ -564,7 +564,7 @@ else
 					}
 
 
-					//print '<td>'.dol_print_date($objp->datem).'</td>';
+					
 					print '<tr class="oddeven">';
 					print "<td>";
 					$productstatic->id = $objp->rowid;
@@ -580,7 +580,7 @@ else
 					print '<td>'.$objp->produit.'</td>';
 
 					print '<td class="right">';
-					$valtoshow = price(price2num($objp->value, 'MS'), 0, '', 0, 0); // TODO replace with a qty() function
+					$valtoshow = price(price2num($objp->value, 'MS'), 0, '', 0, 0); 
 					print empty($valtoshow) ? '0' : $valtoshow;
 					print '</td>';
 					$totalunit += $objp->value;
