@@ -157,7 +157,6 @@ class Productcustomerprice extends CommonObject
 					$this->price_min = price2num($this->price_min, 'MU');
 					$this->price_min_ttc = price2num($this->price_min) * (1 + ($this->tva_tx / 100));
 					$this->price_min_ttc = price2num($this->price_min_ttc, 'MU');
-					// print 'X'.$newminprice.'-'.$price_min;
 				} else {
 					$this->price_min = 0;
 					$this->price_min_ttc = 0;
@@ -219,15 +218,6 @@ class Productcustomerprice extends CommonObject
 			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX."product_customer_price");
 
 			if (!$notrigger) {
-				// Uncomment this and change MYOBJECT to your own tag if you
-				// want this action calls a trigger.
-
-				// // Call triggers
-				// include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				// $interface=new Interfaces($this->db);
-				// $result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-				// if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				// // End call triggers
 			}
 		}
 
@@ -612,7 +602,6 @@ class Productcustomerprice extends CommonObject
 					$this->price_min = price2num($this->price_min, 'MU');
 					$this->price_min_ttc = price2num($this->price_min) * (1 + ($this->tva_tx / 100));
 					$this->price_min_ttc = price2num($this->price_min_ttc, 'MU');
-					// print 'X'.$newminprice.'-'.$price_min;
 				} else {
 					$this->price_min = 0;
 					$this->price_min_ttc = 0;
@@ -851,15 +840,6 @@ class Productcustomerprice extends CommonObject
 
 		if (!$error) {
 			if (!$notrigger) {
-				// Uncomment this and change MYOBJECT to your own tag if you
-				// want this action calls a trigger.
-
-				// // Call triggers
-				// include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				// $interface=new Interfaces($this->db);
-				// $result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-				// if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				// // End call triggers
 			}
 		}
 
