@@ -174,7 +174,7 @@ function ordersupplier_prepare_head($object)
 
 /**
  *  Return array head with list of tabs to view object informations.
- *
+ 
  *  @return	array   	        head array with tabs
  */
 function supplierorder_admin_prepare_head()
