@@ -46,7 +46,7 @@ $statut = GETPOST('statut') ?GETPOST('statut') : 1;
 // Security check
 $socid = 0;
 $id = GETPOST('id', 'int');
-if (!empty($user->socid)) $socid = $user->socid;
+if (!empty($user->socid)){ $socid = $user->socid;}
 $result = restrictedArea($user, 'contrat', $id);
 
 $staticcompany = new Societe($db);
@@ -73,8 +73,8 @@ llxHeader();
 print load_fiche_titre($langs->trans("ContractsArea"), '', 'commercial');
 
 
-//print '<table border="0" width="100%" class="notopnoleftnoright">';
-//print '<tr><td valign="top" width="30%" class="notopnoleft">';
+
+
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
@@ -199,8 +199,8 @@ foreach ($listofstatus as $status)
         print '<td class="right"><a href="services_list.php?mode='.$status.($bool ? '&filter=expired' : '').'">'.($nb[$status.$bool] ? $nb[$status.$bool] : 0).' '.$staticcontratligne->LibStatut($status, 3, ($bool ? 1 : 0)).'</a></td>';
         print "</tr>\n";
     }
-    if ($status == 4 && !$bool) $bool = true;
-    else $bool = false;
+    if ($status == 4 && !$bool){ $bool = true;}
+    else{ $bool = false;}
 }
 if (!empty($conf->use_javascript_ajax))
 {
@@ -226,13 +226,13 @@ foreach ($listofstatus as $status)
     	print '<tr class="oddeven">';
     	print '<td>'.$staticcontratligne->LibStatut($status, 0, ($bool ? 1 : 0)).'</td>';
     	print '<td class="right"><a href="services_list.php?mode='.$status.($bool ? '&filter=expired' : '').'">'.($nb[$status.$bool] ? $nb[$status.$bool] : 0).' '.$staticcontratligne->LibStatut($status, 3, ($bool ? 1 : 0)).'</a></td>';
-    	if ($status == 4 && !$bool) $bool = true;
-    	else $bool = false;
+    	if ($status == 4 && !$bool){ $bool = true;}
+    	else{ $bool = false;}
         print "</tr>\n";
     }
 }
-//if ($totalinprocess != $total)
-//print '<tr class="liste_total"><td>'.$langs->trans("Total").' ('.$langs->trans("ServicesRunning").')</td><td class="right">'.$totalinprocess.'</td></tr>';
+
+
 print '<tr class="liste_total"><td>'.$langs->trans("Total").'</td><td class="right">'.$total.'</td></tr>';
 print "</table></div><br>";
 
@@ -303,7 +303,7 @@ if (!empty($conf->contrat->enabled) && $user->rights->contrat->lire)
 }
 
 
-//print '</td><td valign="top" width="70%" class="notopnoleftnoright">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 
@@ -317,14 +317,14 @@ $sql .= ' sum('.$db->ifsql("cd.statut=4 AND (cd.date_fin_validite IS NOT NULL AN
 $sql .= ' sum('.$db->ifsql("cd.statut=5", 1, 0).') as nb_closed,';
 $sql .= " c.rowid as cid, c.ref, c.datec, c.tms, c.statut, s.nom as name, s.rowid as socid";
 $sql .= " FROM ".MAIN_DB_PREFIX."societe as s,";
-if (!$user->rights->societe->client->voir && !$socid) $sql .= " ".MAIN_DB_PREFIX."societe_commerciaux as sc,";
+if (!$user->rights->societe->client->voir && !$socid){ $sql .= " ".MAIN_DB_PREFIX."societe_commerciaux as sc,";}
 $sql .= " ".MAIN_DB_PREFIX."contrat as c";
 $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."contratdet as cd ON c.rowid = cd.fk_contrat";
 $sql .= " WHERE c.fk_soc = s.rowid";
 $sql .= " AND c.entity IN (".getEntity('contract', 0).")";
 $sql .= " AND c.statut > 0";
-if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
-if ($socid) $sql .= " AND s.rowid = ".$socid;
+if (!$user->rights->societe->client->voir && !$socid){ $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;}
+if ($socid){ $sql .= " AND s.rowid = ".$socid;}
 $sql .= " GROUP BY c.rowid, c.ref, c.datec, c.tms, c.statut, s.nom, s.rowid";
 $sql .= " ORDER BY c.tms DESC";
 $sql .= " LIMIT ".$max;
@@ -341,7 +341,7 @@ if ($result)
 
 	print '<tr class="liste_titre"><th colspan="2">'.$langs->trans("LastContracts", 5).'</th>';
 	print '<th class="center">'.$langs->trans("DateModification").'</th>';
-	//print '<th class="left">'.$langs->trans("Status").'</th>';
+	
 	print '<th class="center" width="80" colspan="4">'.$langs->trans("Services").'</th>';
 	print "</tr>\n";
 
@@ -354,7 +354,7 @@ if ($result)
 		$staticcontrat->ref = ($obj->ref ? $obj->ref : $obj->cid);
 		$staticcontrat->id = $obj->cid;
 		print $staticcontrat->getNomUrl(1, 16);
-		if ($obj->nb_late) print img_warning($langs->trans("Late"));
+		if ($obj->nb_late) {print img_warning($langs->trans("Late"));}
 		print '</td>';
 		print '<td>';
 		$staticcompany->id = $obj->socid;
@@ -362,7 +362,7 @@ if ($result)
 		print $staticcompany->getNomUrl(1, '', 20);
 		print '</td>';
 		print '<td class="center">'.dol_print_date($db->jdate($obj->tms), 'dayhour').'</td>';
-		//print '<td class="left">'.$staticcontrat->LibStatut($obj->statut,2).'</td>';
+		
 		print '<td class="right" width="32">'.($obj->nb_initial > 0 ? $obj->nb_initial.$staticcontratligne->LibStatut(0, 3) : '').'</td>';
 		print '<td class="right" width="32">'.($obj->nb_running > 0 ? $obj->nb_running.$staticcontratligne->LibStatut(4, 3, 0) : '').'</td>';
 		print '<td class="right" width="32">'.($obj->nb_expired > 0 ? $obj->nb_expired.$staticcontratligne->LibStatut(4, 3, 1) : '').'</td>';
@@ -394,8 +394,8 @@ $sql .= ") LEFT JOIN ".MAIN_DB_PREFIX."product as p ON cd.fk_product = p.rowid";
 $sql .= " WHERE c.entity IN (".getEntity('contract', 0).")";
 $sql .= " AND cd.fk_contrat = c.rowid";
 $sql .= " AND c.fk_soc = s.rowid";
-if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
-if ($socid) $sql .= " AND s.rowid = ".$socid;
+if (!$user->rights->societe->client->voir && !$socid){ $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;}
+if ($socid){ $sql .= " AND s.rowid = ".$socid;}
 $sql .= " ORDER BY cd.tms DESC";
 
 $resql = $db->query($sql);
@@ -419,7 +419,7 @@ if ($resql)
 		$staticcontrat->ref = ($obj->ref ? $obj->ref : $obj->fk_contrat);
 		$staticcontrat->id = $obj->fk_contrat;
 		print $staticcontrat->getNomUrl(1, 16);
-		//if (1 == 1) print img_warning($langs->trans("Late"));
+		
 		print '</td>';
 		print '<td>';
 		if ($obj->fk_product > 0)
@@ -433,8 +433,8 @@ if ($resql)
 		else
 		{
 		    print '<a href="'.DOL_URL_ROOT.'/contrat/card.php?id='.$obj->fk_contrat.'">'.img_object($langs->trans("ShowService"), "service");
-            if ($obj->label) print ' '.dol_trunc($obj->label, 20).'</a>';
-            else print '</a> '.dol_trunc($obj->note, 20);
+            if ($obj->label){ print ' '.dol_trunc($obj->label, 20).'</a>';}
+            else{ print '</a> '.dol_trunc($obj->note, 20);}
 		}
 		print '</td>';
 		print '<td>';
@@ -513,8 +513,8 @@ if ($resql)
 		else
 		{
 		    print '<a href="'.DOL_URL_ROOT.'/contrat/card.php?id='.$obj->fk_contrat.'">'.img_object($langs->trans("ShowService"), "service");
-            if ($obj->label) print ' '.dol_trunc($obj->label, 20).'</a>';
-            else print '</a> '.dol_trunc($obj->note, 20);
+            if ($obj->label){ print ' '.dol_trunc($obj->label, 20).'</a>';}
+            else{ print '</a> '.dol_trunc($obj->note, 20);}
 		}
         print '</td>';
 		print '<td>';
@@ -545,7 +545,7 @@ $sql .= " s.nom as name,";
 $sql .= " p.rowid as pid, p.ref as pref, p.label as plabel, p.fk_product_type as ptype, p.entity as pentity";
 $sql .= " FROM (".MAIN_DB_PREFIX."contrat as c";
 $sql .= ", ".MAIN_DB_PREFIX."societe as s";
-if (!$user->rights->societe->client->voir && !$socid) $sql .= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
+if (!$user->rights->societe->client->voir && !$socid) {$sql .= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";}
 $sql .= ", ".MAIN_DB_PREFIX."contratdet as cd";
 $sql .= " ) LEFT JOIN ".MAIN_DB_PREFIX."product as p ON cd.fk_product = p.rowid";
 $sql .= " WHERE c.entity IN (".getEntity('contract', 0).")";
@@ -554,8 +554,8 @@ $sql .= " AND cd.statut = 4";
 $sql .= " AND cd.date_fin_validite < '".$db->idate($now)."'";
 $sql .= " AND cd.fk_contrat = c.rowid";
 $sql .= " AND c.fk_soc = s.rowid";
-if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
-if ($socid) $sql .= " AND s.rowid = ".$socid;
+if (!$user->rights->societe->client->voir && !$socid){ $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;}
+if ($socid){ $sql .= " AND s.rowid = ".$socid;}
 $sql .= " ORDER BY cd.tms DESC";
 
 $resql = $db->query($sql);
@@ -618,7 +618,7 @@ else
 }
 
 
-//print '</td></tr></table>';
+
 print '</div></div></div>';
 
 $parameters = array('user' => $user);
