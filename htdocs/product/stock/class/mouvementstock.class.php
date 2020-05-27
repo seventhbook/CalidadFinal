@@ -411,7 +411,7 @@ class MouvementStock extends CommonObject
 			// Define current values for qty and pmp
 			$oldqty=$product->stock_reel;
 			$oldpmp=$product->pmp;
-			$oldqtywarehouse=0;
+			
 
 			// Test if there is already a record for couple (warehouse / product)
 			$alreadyarecord = 0;
@@ -455,9 +455,9 @@ class MouvementStock extends CommonObject
 					{
 						$newpmp=$price; // For this product, PMP was not yet set. We set it to input price.
 					}
-					//print "oldqtytouse=".$oldqtytouse." oldpmp=".$oldpmp." oldqtywarehousetouse=".$oldqtywarehousetouse." ";
-					//print "qty=".$qty." newpmp=".$newpmp;
-					//exit;
+					
+					
+					
 				}
 				elseif ($type == 1 || $type == 2)
 				{
@@ -517,8 +517,8 @@ class MouvementStock extends CommonObject
 			{
 				$newpmp = price2num($newpmp, 'MU');
 
-				// $sql = "UPDATE ".MAIN_DB_PREFIX."product SET pmp = ".$newpmp.", stock = ".$this->db->ifsql("stock IS NULL", 0, "stock") . " + ".$qty;
-				// $sql.= " WHERE rowid = ".$fk_product;
+				
+				
     			// Update pmp + denormalized fields because we change content of produt_stock. Warning: Do not use "SET p.stock", does not works with pgsql
 				$sql = "UPDATE ".MAIN_DB_PREFIX."product as p SET pmp = ".$newpmp.", ";
 				$sql.= " stock=(SELECT SUM(ps.reel) FROM ".MAIN_DB_PREFIX."product_stock as ps WHERE ps.fk_product = p.rowid)";
@@ -600,11 +600,11 @@ class MouvementStock extends CommonObject
 	    $sql .= " t.fk_projet as fk_project";
 	    $sql .= ' FROM ' . MAIN_DB_PREFIX . $this->table_element . ' as t';
 	    $sql.= ' WHERE 1 = 1';
-	    //if (null !== $ref) {
-	        //$sql .= ' AND t.ref = ' . '\'' . $ref . '\'';
-	    //} else {
+	    
+	    
+	    
 	        $sql .= ' AND t.rowid = ' . $id;
-	    //}
+	    
 
 	    $resql = $this->db->query($sql);
 	    if ($resql) {
@@ -637,7 +637,7 @@ class MouvementStock extends CommonObject
 	        // fetch optionals attributes and labels
 	        $this->fetch_optionals();
 
-	        // $this->fetch_lines();
+	        
 
 	        $this->db->free($resql);
 
@@ -786,20 +786,20 @@ class MouvementStock extends CommonObject
 	 * @return     int						<0 if KO, nb of subproducts if OK
 	 * @deprecated A count($product->getChildsArbo($id,1)) is same. No reason to have this in this class.
 	 */
-	/*
-	public function nbOfSubProducts($id)
-	{
-		$nbSP=0;
+	
+	
+	
+	
 
-		$resql = "SELECT count(*) as nb FROM ".MAIN_DB_PREFIX."product_association";
-		$resql.= " WHERE fk_product_pere = ".$id;
-		if ($this->db->query($resql))
-		{
-			$obj=$this->db->fetch_object($resql);
-			$nbSP=$obj->nb;
-		}
-		return $nbSP;
-	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * Count number of product in stock before a specific date
@@ -886,7 +886,7 @@ class MouvementStock extends CommonObject
 			// No error
 			if ($pdluo->id > 0)		// product_batch record found
 			{
-				//print "Avant ".$pdluo->qty." Apres ".($pdluo->qty + $qty)."<br>";
+				
 				$pdluo->qty += $qty;
 				if ($pdluo->qty == 0)
 				{
@@ -1041,7 +1041,7 @@ class MouvementStock extends CommonObject
 		global $langs, $conf, $db;
 
 		$result = '';
-		$companylink = '';
+		
 
 		$label = '<u>' . $langs->trans("Movement") . ' '.$this->id.'</u>';
 		$label.= '<div width="100%">';
@@ -1149,6 +1149,6 @@ class MouvementStock extends CommonObject
 	public function delete(User $user, $notrigger = false)
 	{
 		return $this->deleteCommon($user, $notrigger);
-		//return $this->deleteCommon($user, $notrigger, 1);
+		
 	}
 }
