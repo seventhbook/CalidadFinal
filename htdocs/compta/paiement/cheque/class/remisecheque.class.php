@@ -280,7 +280,7 @@ class RemiseCheque extends CommonObject
 	    if (! $this->errno && ! empty($conf->global->MAIN_DISABLEDRAFTSTATUS))
         {
             $res=$this->validate($user);
-            //if ($res < 0) $error++;
+            
         }
 
         if (! $this->errno)
@@ -658,16 +658,16 @@ class RemiseCheque extends CommonObject
 
 			// We save charset_output to restore it because write_file can change it if needed for
 			// output format that does not support UTF8.
-			$sav_charseSupprimert_output=$outputlangs->charset_output;
+			
 			$result=$docmodel->write_file($this, $conf->bank->dir_output.'/checkdeposits', $this->ref, $outputlangs);
 			if ($result > 0)
 			{
-				//$outputlangs->charset_output=$sav_charset_output;
+				
 				return 1;
 			}
 			else
 			{
-				//$outputlangs->charset_output=$sav_charset_output;
+				
 				dol_syslog("Error");
 				dol_print_error($this->db, $docmodel->error);
 				return 0;
@@ -790,11 +790,11 @@ class RemiseCheque extends CommonObject
 		$bankline->fetch($bank_id);
 
 		/* Conciliation is allowed because when check is returned, a new line is created onto bank transaction log.
-		if ($bankline->rappro)
-		{
-            $this->error='ActionRefusedLineAlreadyConciliated';
-		    return -1;
-		}*/
+		
+		
+            
+	
+		*/
 
 		$this->db->begin();
 
