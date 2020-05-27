@@ -50,9 +50,9 @@ class Translate
 	 */
 	public function __construct($dir, $conf)
 	{
-		if (! empty($conf->file->character_set_client)) $this->charset_output=$conf->file->character_set_client;	// If charset output is forced
-		if ($dir) $this->dir=array($dir);
-		else $this->dir=$conf->file->dol_document_root;
+		if (! empty($conf->file->character_set_client)){ $this->charset_output=$conf->file->character_set_client;}	// If charset output is forced
+		if ($dir){ $this->dir=array($dir);}
+		else{ $this->dir=$conf->file->dol_document_root;}
 	}
 
 
@@ -66,7 +66,7 @@ class Translate
 	{
 		global $conf;
 
-		//dol_syslog(get_class($this)."::setDefaultLang srclang=".$srclang,LOG_DEBUG);
+		
 
 		// If a module ask to force a priority on langs directories (to use its own lang files)
 		if (! empty($conf->global->MAIN_FORCELANGDIR))
@@ -88,18 +88,18 @@ class Translate
 
 		if (empty($srclang) || $srclang == 'auto')
 		{
-			// $_SERVER['HTTP_ACCEPT_LANGUAGE'] can be 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7,it;q=0.6' but can contains also malicious content
+			
 			$langpref=empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])?'':$_SERVER['HTTP_ACCEPT_LANGUAGE'];
 			$langpref=preg_replace("/;([^,]*)/i", "", $langpref);	// Remove the 'q=x.y,' part
 			$langpref=str_replace("-", "_", $langpref);
 			$langlist=preg_split("/[;,]/", $langpref);
 			$codetouse=preg_replace('/[^_a-zA-Z]/', '', $langlist[0]);
 		}
-		else $codetouse=$srclang;
+		else {$codetouse=$srclang;}
 
 		// We redefine $srclang
 		$langpart=explode("_", $codetouse);
-		//print "Short code before _ : ".$langpart[0].' / Short code after _ : '.$langpart[1].'<br>';
+		
 		if (! empty($langpart[1]))	// If it's for a codetouse that is a long code xx_YY
 		{
 			// Array force long code from first part, even if long code is defined
@@ -109,20 +109,20 @@ class Translate
 			elseif (! is_numeric($langpart[1])) {		// Second part YY may be a numeric with some Chrome browser
 				$srclang=strtolower($langpart[0])."_".strtoupper($langpart[1]);
 				$longforlong=array('no_nb'=>'nb_NO');
-				if (isset($longforlong[strtolower($srclang)])) $srclang=$longforlong[strtolower($srclang)];
+				if (isset($longforlong[strtolower($srclang)])){ $srclang=$longforlong[strtolower($srclang)];}
 			}
 			else $srclang=strtolower($langpart[0])."_".strtoupper($langpart[0]);
 		}
 		else {						// If it's for a codetouse that is a short code xx
     	    // Array to convert short lang code into long code.
 	        $longforshort=array('ar'=>'ar_SA', 'el'=>'el_GR', 'ca'=>'ca_ES', 'en'=>'en_US', 'nb'=>'nb_NO', 'no'=>'nb_NO');
-			if (isset($longforshort[strtolower($langpart[0])])) $srclang=$longforshort[strtolower($langpart[0])];
-			elseif (! empty($langpart[0])) $srclang=strtolower($langpart[0])."_".strtoupper($langpart[0]);
-			else $srclang='en_US';
+			if (isset($longforshort[strtolower($langpart[0])])){ $srclang=$longforshort[strtolower($langpart[0])];}
+			elseif (! empty($langpart[0])){ $srclang=strtolower($langpart[0])."_".strtoupper($langpart[0]);}
+			else{ $srclang='en_US';}
 		}
 
 		$this->defaultlang=$srclang;
-		//print 'this->defaultlang='.$this->defaultlang;
+		
 	}
 
 
@@ -135,8 +135,8 @@ class Translate
 	 */
 	public function getDefaultLang($mode = 0)
 	{
-	    if (empty($mode)) return $this->defaultlang;
-	    else return substr($this->defaultlang, 0, 2);
+	    if (empty($mode)){ return $this->defaultlang;}
+	    else{ return substr($this->defaultlang, 0, 2);}
 	}
 
 
@@ -178,19 +178,19 @@ class Translate
 	{
 		global $conf,$db;
 
-		//dol_syslog("Translate::Load Start domain=".$domain." alt=".$alt." forcelangdir=".$forcelangdir." this->defaultlang=".$this->defaultlang);
-
+		
+		
 		// Check parameters
 		if (empty($domain))
 		{
 		    dol_print_error('', get_class($this)."::Load ErrorWrongParameters");
 		    return -1;
 		}
-		if ($this->defaultlang == 'none_NONE') return 0;    // Special language code to not translate keys
+		if ($this->defaultlang == 'none_NONE') {return 0;}    // Special language code to not translate keys
 
 
 		// Load $this->tab_translate[] from database
-		if (empty($loadfromfileonly) && count($this->tab_translate) == 0) $this->loadFromDatabase($db);      // No translation was never loaded yet, so we load database.
+		if (empty($loadfromfileonly) && count($this->tab_translate) == 0){ $this->loadFromDatabase($db);}      // No translation was never loaded yet, so we load database.
 
 
 		$newdomain = $domain;
@@ -207,7 +207,7 @@ class Translate
         // Check cache
 		if (! empty($this->_tab_loaded[$newdomain]))	// File already loaded for this domain
 		{
-			//dol_syslog("Translate::Load already loaded for newdomain=".$newdomain);
+			
 			return 0;
 		}
 
@@ -216,8 +216,8 @@ class Translate
 
 		// Redefine alt
 		$langarray=explode('_', $langofdir);
-		if ($alt < 1 && isset($langarray[1]) && (strtolower($langarray[0]) == strtolower($langarray[1]) || in_array(strtolower($langofdir), array('el_gr')))) $alt=1;
-		if ($alt < 2 && strtolower($langofdir) == 'en_us') $alt=2;
+		if ($alt < 1 && isset($langarray[1]) && (strtolower($langarray[0]) == strtolower($langarray[1]) || in_array(strtolower($langofdir), array('el_gr')))){ $alt=1;}
+		if ($alt < 2 && strtolower($langofdir) == 'en_us'){ $alt=2;}
 
 		if (empty($langofdir))	// This may occurs when load is called without setting the language and without providing a value for forcelangdir
 		{
@@ -233,9 +233,9 @@ class Translate
 
 			$filelangexists=is_file($file_lang_osencoded);
 
-			//dol_syslog(get_class($this).'::Load Try to read for alt='.$alt.' langofdir='.$langofdir.' domain='.$domain.' newdomain='.$newdomain.' modulename='.$modulename.' file_lang='.$file_lang." => filelangexists=".$filelangexists);
-			//print 'Try to read for alt='.$alt.' langofdir='.$langofdir.' domain='.$domain.' newdomain='.$newdomain.' modulename='.$modulename.' this->_tab_loaded[newdomain]='.$this->_tab_loaded[$newdomain].' file_lang='.$file_lang." => filelangexists=".$filelangexists."\n";
-
+			
+			
+			
 			if ($filelangexists)
 			{
 				// TODO Move cache read out of loop on dirs or at least filelangexists
@@ -256,17 +256,17 @@ class Translate
 
 				if ($usecachekey)
 				{
-			        //dol_syslog('Translate::Load we will cache result into usecachekey '.$usecachekey);
-                    //global $aaa; $aaa+=1;
-                    //print $aaa." ".$usecachekey."\n";
+			        
+                    
+                    
 				    require_once DOL_DOCUMENT_ROOT .'/core/lib/memory.lib.php';
 					$tmparray=dol_getcache($usecachekey);
 					if (is_array($tmparray) && count($tmparray))
 					{
 				        $this->tab_translate+=$tmparray;	// Faster than array_merge($tmparray,$this->tab_translate). Note: If a value already exists into tab_translate, value into tmparaay is not added.
-						//print $newdomain."\n";
-						//var_dump($this->tab_translate);
-						if ($alt == 2) $fileread=1;
+						
+						
+						if ($alt == 2){ $fileread=1;}
 						$found=true;						// Found in dolibarr PHP cache
 					}
 				}
@@ -287,8 +287,8 @@ class Translate
 							if (isset($line[1]))
 							{
 								list($key, $value) = $line;
-								//if ($domain == 'orders') print "Domain=$domain, found a string for $tab[0] with value $tab[1]. Currently in cache ".$this->tab_translate[$key]."<br>";
-								//if ($key == 'Order') print "Domain=$domain, found a string for key=$key=$tab[0] with value $tab[1]. Currently in cache ".$this->tab_translate[$key]."<br>";
+								
+								
 								if (empty($this->tab_translate[$key]))
 								{ // If translation was already found, we must not continue, even if MAIN_FORCELANGDIR is set (MAIN_FORCELANGDIR is to replace lang dir, not to overwrite entries)
 									if ($key == 'DIRECTION') { // This is to declare direction of language
@@ -359,9 +359,9 @@ class Translate
 		// We are in the pass of the reference file. No more files to scan to complete.
 		if ($alt == 2)
 		{
-			if ($fileread) $this->_tab_loaded[$newdomain]=1;								// Set domain file as found so loaded
+			if ($fileread){ $this->_tab_loaded[$newdomain]=1;}								// Set domain file as found so loaded
 
-			if (empty($this->_tab_loaded[$newdomain])) $this->_tab_loaded[$newdomain]=2;	// Set this file as not found
+			if (empty($this->_tab_loaded[$newdomain])){ $this->_tab_loaded[$newdomain]=2;	}// Set this file as not found
 		}
 
 		// This part is deprecated and replaced with table llx_overwrite_trans
@@ -376,7 +376,7 @@ class Translate
                 foreach($tmparray as $tmp)
                 {
                     $tmparray2=explode(':', $tmp);
-                    if (! empty($tmparray2[1])) $this->tab_translate[$tmparray2[0]]=$tmparray2[1];
+                    if (! empty($tmparray2[1])){ $this->tab_translate[$tmparray2[0]]=$tmparray2[1];}
                 }
             }
 		}
@@ -407,16 +407,16 @@ class Translate
 		$domain='database';
 
 		// Check parameters
-		if (empty($db)) return 0;    // Database handler can't be used
+		if (empty($db)){ return 0;   } // Database handler can't be used
 
-		//dol_syslog("Translate::Load Start domain=".$domain." alt=".$alt." forcelangdir=".$forcelangdir." this->defaultlang=".$this->defaultlang);
+		
 
 		$newdomain = $domain;
 
 		// Check cache
 		if (! empty($this->_tab_loaded[$newdomain]))	// File already loaded for this domain 'database'
 		{
-			//dol_syslog("Translate::Load already loaded for newdomain=".$newdomain);
+			
 			return 0;
 		}
 
@@ -449,16 +449,16 @@ class Translate
 
 		if ($usecachekey)
 		{
-	        //dol_syslog('Translate::Load we will cache result into usecachekey '.$usecachekey);
-            //global $aaa; $aaa+=1;
-            //print $aaa." ".$usecachekey."\n";
+	        
+            
+            
 		    require_once DOL_DOCUMENT_ROOT .'/core/lib/memory.lib.php';
 			$tmparray=dol_getcache($usecachekey);
 			if (is_array($tmparray) && count($tmparray))
 			{
 				$this->tab_translate+=$tmparray;	// Faster than array_merge($tmparray,$this->tab_translate). Note: If a valuer already exists into tab_translate, value into tmparaay is not added.
-				//print $newdomain."\n";
-				//var_dump($this->tab_translate);
+				
+				
 				$fileread=1;
 				$found=true;						// Found in dolibarr PHP cache
 			}
@@ -477,7 +477,7 @@ class Translate
     		    $num = $db->num_rows($resql);
     		    if ($num)
     		    {
-    				if ($usecachekey) $tabtranslatedomain=array();	// To save lang content in cache
+    				if ($usecachekey){ $tabtranslatedomain=array();}	// To save lang content in cache
 
     				$i = 0;
     				while ($i < $num)	// Ex: Need 225ms for all fgets on all lang file for Third party page. Same speed than file_get_contents
@@ -493,7 +493,7 @@ class Translate
 							// Convert some strings: Parse and render carriage returns. Also, change '\\s' int '\s' because transifex sync pull the string '\s' into string '\\s'
 							$this->tab_translate[$key] = str_replace(array('\\n', '\\\\s'), array("\n", '\s'), $value);
 
-							if ($usecachekey) $tabtranslatedomain[$key]=$value;	// To save lang content in cache
+							if ($usecachekey){ $tabtranslatedomain[$key]=$value;	}// To save lang content in cache
 						}
 
     					$i++;
@@ -520,9 +520,9 @@ class Translate
 		    }
 		}
 
-		if ($fileread) $this->_tab_loaded[$newdomain]=1;	// Set domain file as loaded
+		if ($fileread){ $this->_tab_loaded[$newdomain]=1;}	// Set domain file as loaded
 
-		if (empty($this->_tab_loaded[$newdomain])) $this->_tab_loaded[$newdomain]=2;           // Marque ce cas comme non trouve (no lines found for language)
+		if (empty($this->_tab_loaded[$newdomain])){ $this->_tab_loaded[$newdomain]=2;      }     // Marque ce cas comme non trouve (no lines found for language)
 
 		return 1;
 	}
@@ -544,7 +544,7 @@ class Translate
     {
 		global $conf, $db;
 
-		if (! is_string($key)) return 'ErrorBadValueForParamNotAString';	// Avoid multiple errors with code not using function correctly.
+		if (! is_string($key)) {return 'ErrorBadValueForParamNotAString';}	// Avoid multiple errors with code not using function correctly.
 
 		$newstr=$key;
 	    if (preg_match('/^Civility([0-9A-Z]+)$/i', $key, $reg))
@@ -569,15 +569,15 @@ class Translate
         }
         elseif (preg_match('/^OrderSource([0-9A-Z]+)$/i', $key, $reg))
         {
-        	// TODO OrderSourceX must be replaced with content of table llx_c_input_reason or llx_c_input_method
-            //$newstr=$this->getLabelFromKey($db,$reg[1],'c_ordersource','code','label');
+        	
+          
         }
 
-        /* Disabled. There is too many cases where translation of $newstr is not defined is normal (like when output with setEventMessage an already translated string)
-        if (! empty($conf->global->MAIN_FEATURES_LEVEL) && $conf->global->MAIN_FEATURES_LEVEL >= 2)
-        {
-        	dol_syslog(__METHOD__." MAIN_FEATURES_LEVEL=DEVELOP: missing translation for key '".$newstr."' in ".$_SERVER["PHP_SELF"], LOG_DEBUG);
-        }*/
+        
+	
+	
+        
+	
 
         return $newstr;
     }
@@ -637,7 +637,7 @@ class Translate
 		}
 		else								// Translation is not available
 		{
-		    //if ($key[0] == '$') { return dol_eval($key,1); }
+		    
 			return $this->getTradFromKey($key);
 		}
     }
@@ -700,7 +700,7 @@ class Translate
 
             if (! preg_match('/^Format/', $key))
             {
-            	//print $str;
+            	
            		$str=sprintf($str, $param1, $param2, $param3, $param4, $param5);	// Replace %s and %d except for FormatXXX strings.
             }
 
@@ -888,7 +888,7 @@ class Translate
 		// If key empty
 		if ($key == '') return '';
 
-        //print 'param: '.$key.'-'.$keydatabase.'-'.$this->trans($key); exit;
+        
 
 		// Check if a translation is available (this can call getTradFromKey)
 		$tmp=$this->transnoentitiesnoconv($key);
