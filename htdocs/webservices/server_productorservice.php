@@ -412,9 +412,9 @@ function getProductOrService($authentication, $id = '', $ref = '', $ref_ext = ''
 	            	'price_min' => $product->price_min_ttc,
 	            	'price_base_type' => $product->price_base_type,
 	            	'vat_rate' => $product->tva_tx,
-	            	//! French VAT NPR
+	            	
 	            	'vat_npr' => $product->tva_npr,
-	            	//! Spanish local taxes
+	            	
 	            	'localtax1_tx' => $product->localtax1_tx,
 	            	'localtax2_tx' => $product->localtax2_tx,
 

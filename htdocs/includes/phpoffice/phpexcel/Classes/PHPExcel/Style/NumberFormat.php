@@ -605,7 +605,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 		// Let's begin inspecting the format and converting the value to a formatted string
 		if (preg_match('/^(\[\$[A-Z]*-[0-9A-F]*\])*[hmsdy]/i', $format)) { // datetime format
 			self::_formatAsDate($value, $format);
-		} else if (preg_match('/%$/', $format)) { // % number format
+		} else if (preg_match('/%$/', $format)) { 
 			self::_formatAsPercentage($value, $format);
 		} else {
 			if ($format === self::FORMAT_CURRENCY_EUR_SIMPLE) {
@@ -617,8 +617,8 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 				// Some non-number characters are escaped with \, which we don't need
 				$format = preg_replace("/\\\\/", '', $format);
 //              Handle escaped characters, such as \" to display a literal " or \\ to display a literal \
-//              $format = preg_replace('/(?<!\\\\)\"/', '', $format);
-//				$format = str_replace(array('\\"', '*'), array('"', ''), $format);
+
+
 
 				// Some non-number strings are quoted, so we'll get rid of the quotes, likewise any positional * symbols
 				$format = str_replace(array('"', '*'), '', $format);
@@ -646,7 +646,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 				}
 
 				if (preg_match('/#?.*\?\/\?/', $format, $m)) {
-					//echo 'Format mask is fractional '.$format.' <br />';
+					
 					if ($value != (int)$value) {
 						self::_formatAsFraction($value, $format);
 					}

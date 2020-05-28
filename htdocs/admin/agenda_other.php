@@ -135,7 +135,7 @@ elseif ($action == 'specimen')  // For orders
 // Activate a model
 elseif ($action == 'setmodel')
 {
-	//print "sssd".$value;
+	
 	$ret = addDocumentModel($value, $type, $label, $scandir);
 }
 
@@ -340,7 +340,7 @@ print '<tr class="oddeven">'."\n";
 print '<td>'.$langs->trans("AGENDA_USE_EVENT_TYPE").'</td>'."\n";
 print '<td class="center">&nbsp;</td>'."\n";
 print '<td class="right">'."\n";
-//print ajax_constantonoff('AGENDA_USE_EVENT_TYPE');	Do not use ajax here, we need to reload page to change other combo list
+
 if (empty($conf->global->AGENDA_USE_EVENT_TYPE))
 {
 	print '<a href="'.$_SERVER['PHP_SELF'].'?action=set_AGENDA_USE_EVENT_TYPE">'.img_picto($langs->trans("Disabled"), 'switch_off').'</a>';

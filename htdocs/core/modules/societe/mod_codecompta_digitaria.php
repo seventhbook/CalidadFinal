@@ -219,11 +219,11 @@ class mod_codecompta_digitaria extends ModeleAccountancyCode
 
         if ($disponibility == 0)
         {
-            return 0; // return ok
+            return 0; 
         }
         else
         {
-            return -1; // return ko
+            return -1; 
         }
 	}
 

@@ -56,7 +56,7 @@ abstract class Format implements iFormat
      */
     public function setMIME($mime)
     {
-        //do nothing
+        
     }
 
     /**
@@ -102,7 +102,7 @@ abstract class Format implements iFormat
      */
     public function setExtension($extension)
     {
-        //do nothing;
+        
     }
 
     /**

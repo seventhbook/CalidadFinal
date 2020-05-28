@@ -289,7 +289,7 @@ print '<br><br>';
 /*
  * Document templates generators
  */
-//if (! empty($conf->global->MAIN_FEATURES_LEVEL))
+
 //{
 print load_fiche_titre($langs->trans("BankAccountModelModule"), '', '');
 
@@ -395,12 +395,12 @@ foreach ($dirmodels as $reldir) {
                                 }
                                 $htmltooltip .= '<br><br><u>'.$langs->trans("FeaturesSupported").':</u>';
                                 $htmltooltip .= '<br>'.$langs->trans("Logo").': '.yn($module->option_logo, 1, 1);
-                                //$htmltooltip .= '<br>' . $langs->trans("PaymentMode") . ': ' . yn($module->option_modereg, 1, 1);
-                                //$htmltooltip .= '<br>' . $langs->trans("PaymentConditions") . ': ' . yn($module->option_condreg, 1, 1);
+                                
+                                
                                 $htmltooltip .= '<br>'.$langs->trans("MultiLanguage").': '.yn($module->option_multilang, 1, 1);
-                                // $htmltooltip.='<br>'.$langs->trans("Discounts").': '.yn($module->option_escompte,1,1);
-                                // $htmltooltip.='<br>'.$langs->trans("CreditNote").': '.yn($module->option_credit_note,1,1);
-                                //$htmltooltip .= '<br>' . $langs->trans("WatermarkOnDraftOrders") . ': ' . yn($module->option_draft_watermark, 1, 1);
+                                
+                                
+                                
 
                                 print '<td class="center">';
                                 print $form->textwithpicto('', $htmltooltip, 1, 0);
@@ -485,7 +485,7 @@ print '<br><br>';
 /*
  * Document templates generators
  */
-//if (! empty($conf->global->MAIN_FEATURES_LEVEL))
+
 //{
 print load_fiche_titre($langs->trans("Other"), '', '');
 

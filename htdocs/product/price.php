@@ -414,7 +414,7 @@ if (empty($reshook))
 		$rowid = GETPOST('rowid', 'int');
 		$priceid = GETPOST('priceid', 'int');
 		$newprice = price2num(GETPOST("price", 'alpha'), 'MU');
-		// $newminprice=price2num(GETPOST("price_min"),'MU'); // TODO : Add min price management
+		
 		$quantity = GETPOST('quantity', 'int');
 		$remise_percent = price2num(GETPOST('remise_percent', 'alpha'));
 		$remise = 0; // TODO : allow discount by amount when available on documents
@@ -1909,7 +1909,7 @@ if (!empty($conf->global->PRODUIT_CUSTOMER_PRICES))
 
 				echo vatrate($positiverates.($line->default_vat_code ? ' ('.$line->default_vat_code.')' : ''), '%', ($line->tva_npr ? $line->tva_npr : $line->recuperableonly));
 
-				//. vatrate($tva_tx, true, $line->recuperableonly) .
+				
 				print "</td>";
 				print '<td class="right">'.price($line->price)."</td>";
 

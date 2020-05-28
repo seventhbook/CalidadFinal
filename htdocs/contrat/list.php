@@ -295,7 +295,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -324,7 +324,7 @@ if ($num == 1 && !empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $
 
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $langs->trans("Contracts"));
 
@@ -721,7 +721,7 @@ while ($i < min($num, $limit))
 					$userstatic->entity = $val['entity'];
 					$userstatic->photo = $val['photo'];
 
-					//print '<div class="float">':
+					
 					print $userstatic->getNomUrl(-2);
 					$j++;
 					if ($j < $nbofsalesrepresentative) print ' ';

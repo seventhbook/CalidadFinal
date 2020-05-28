@@ -29,7 +29,7 @@
  */
 
 // Enable this line to trace path when function is called.
-//print xdebug_print_function_stack('Functions2.lib was called');exit;
+
 
 /**
  * Same function than javascript unescape() function but in PHP.
@@ -167,7 +167,7 @@ function dol_print_file($langs, $filename, $searchalt = 0)
             if ($langs->defaultlang != "en_US") $formfilealt = $searchdir."/langs/en_US/".$filename;
             else $formfilealt = $searchdir."/langs/fr_FR/".$filename;
             dol_syslog('functions2::dol_print_file search alt file '.$formfilealt, LOG_DEBUG);
-            //print 'getcwd='.getcwd().' htmlfilealt='.$formfilealt.' X '.file_exists(getcwd().'/'.$formfilealt);
+            
             if (is_readable($formfilealt))
             {
                 $content = file_get_contents($formfilealt);
@@ -203,9 +203,9 @@ function dol_print_object_info($object, $usetable = 0)
 
     $deltadateforserver = getServerTimeZoneInt('now');
     $deltadateforclient = ((int) $_SESSION['dol_tz'] + (int) $_SESSION['dol_dst']);
-    //$deltadateforcompany=((int) $_SESSION['dol_tz'] + (int) $_SESSION['dol_dst']);
+    
     $deltadateforuser = round($deltadateforclient - $deltadateforserver);
-    //print "x".$deltadateforserver." - ".$deltadateforclient." - ".$deltadateforuser;
+    
 
     if ($usetable) print '<table class="border tableforfield centpercent">';
 
@@ -510,7 +510,7 @@ function isValidMailDomain($mail)
 
 /**
  *	Url string validation
- *  <http[s]> :// [user[:pass]@] hostname [port] [/path] [?getquery] [anchor]
+ *  <http[s]> :
  *
  *	@param	string	$url		Url
  *  @param  int		$http		1: verify http is provided, 0: not verify http
@@ -533,10 +533,10 @@ function isValidUrl($url, $http = 0, $pass = 0, $port = 0, $path = 0, $query = 0
     if ($pass) $urlregex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)";
 
     // HOSTNAME OR IP
-    //$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)*";  // x allowed (ex. http://localhost, http://routerlogin)
-    //$urlregex .= "[a-z0-9+\$_-]+(\.[a-z0-9+\$_-]+)+";  // x.x
+    
+    
     $urlregex .= "([a-z0-9+\$_\\\:-])+(\.[a-z0-9+\$_-][a-z0-9+\$_-]+)*"; // x ou x.xx (2 x ou plus)
-    //use only one of the above
+    
 
     // PORT
     if ($port) $urlregex .= "(\:[0-9]{2,5})";
@@ -552,7 +552,7 @@ function isValidUrl($url, $http = 0, $pass = 0, $port = 0, $path = 0, $query = 0
     {
         $ValidUrl = 1;
     }
-    //print $urlregex.' - '.$url.' - '.$ValidUrl;
+    
 
     return $ValidUrl;
 }
@@ -586,7 +586,7 @@ function isValidVATID($company)
  *	Clean an url string
  *
  *	@param	string	$url		Url
- *	@param  integer	$http		1 = keep both http:// and https://, 0: remove http:// but not https://
+ *	@param  integer	$http		1 = keep both http:
  *	@return string				Cleaned url
  */
 function clean_url($url, $http = 1)
@@ -599,8 +599,8 @@ function clean_url($url, $http = 1)
         $proto = $regs[1];
         $domain = $regs[2];
         $port = isset($regs[3]) ? $regs[3] : '';
-        //print $url." -> ".$proto." - ".$domain." - ".$port;
-        //$url = dol_string_nospecial(trim($url));
+        
+        
         $url = trim($url);
 
         // Si http: defini on supprime le http (Si https on ne supprime pas)
@@ -739,7 +739,7 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
     else $valueforccc=dol_string_unaccent($objsoc->code_client);
 
     $sharetable = $table;
-    if ($table == 'facture' || $table == 'invoice') $sharetable = 'invoicenumber'; // for getEntity function
+    if ($table == 'facture' || $table == 'invoice') $sharetable = 'invoicenumber'; 
 
     // Clean parameters
     if ($date == '') $date=dol_now();	// We use local year and month of PHP server to search numbers
@@ -747,10 +747,10 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
 
     // For debugging
     //dol_syslog("mask=".$mask, LOG_DEBUG);
-    //include_once(DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php');
-    //$mask='FA{yy}{mm}-{0000@99}';
-    //$date=dol_mktime(12, 0, 0, 1, 1, 1900);
-    //$date=dol_stringtotime('20130101');
+    
+    
+    
+    
 
     $hasglobalcounter = false;
     // Extract value for mask counter, mask raz and mask offset
@@ -778,7 +778,7 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
         $maskrefclient = $regClientRef[1].$regClientRef[2];
         $maskrefclient_maskclientcode = $regClientRef[1];
         $maskrefclient_maskcounter = $regClientRef[2];
-        $maskrefclient_maskoffset = 0; //default value of maskrefclient_counter offset
+        $maskrefclient_maskoffset = 0; 
         $maskrefclient_clientcode = substr($valueforccc, 0, dol_strlen($maskrefclient_maskclientcode)); //get n first characters of client code where n is length in mask
         $maskrefclient_clientcode = str_pad($maskrefclient_clientcode, dol_strlen($maskrefclient_maskclientcode), "#", STR_PAD_RIGHT); //padding maskrefclient_clientcode for having exactly n characters in maskrefclient_clientcode
         $maskrefclient_clientcode = dol_string_nospecial($maskrefclient_clientcode); //sanitize maskrefclient_clientcode for sql insert and sql select like
@@ -857,8 +857,8 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
     $maskwithnocode=preg_replace('/\{y\}/i', 'y', $maskwithnocode);
     $maskwithnocode=preg_replace('/\{mm\}/i', 'mm', $maskwithnocode);
     // Now maskwithnocode = 0000ddmmyyyyccc for example
-    // and maskcounter    = 0000 for example
-    //print "maskwithonlyymcode=".$maskwithonlyymcode." maskwithnocode=".$maskwithnocode."\n<br>";
+    
+    
     //var_dump($reg);
 
     // If an offset is asked
@@ -874,12 +874,12 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
     if (! empty($reg[2]) && preg_match('/^@/', $reg[2]))	$yearoffsettype = preg_replace('/^@/', '', $reg[2]);
     if (! empty($reg[3]) && preg_match('/^@/', $reg[3]))	$yearoffsettype = preg_replace('/^@/', '', $reg[3]);
 
-    //print "yearoffset=".$yearoffset." yearoffsettype=".$yearoffsettype;
+    
     if (is_numeric($yearoffsettype) && $yearoffsettype >= 1)
         $maskraz=$yearoffsettype; // For backward compatibility
     elseif ($yearoffsettype === '0' || (! empty($yearoffsettype) && ! is_numeric($yearoffsettype) && $conf->global->SOCIETE_FISCAL_MONTH_START > 1))
         $maskraz = $conf->global->SOCIETE_FISCAL_MONTH_START;
-    //print "maskraz=".$maskraz;	// -1=no reset
+    
 
     if ($maskraz > 0) {   // A reset is required
         if ($maskraz == 99) {
@@ -889,7 +889,7 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
         if ($maskraz > 12) return 'ErrorBadMaskBadRazMonth';
 
         // Define posy, posm and reg
-        if ($maskraz > 1)	// if reset is not first month, we need month and year into mask
+        if ($maskraz > 1)	
         {
             if (preg_match('/^(.*)\{(y+)\}\{(m+)\}/i', $maskwithonlyymcode, $reg)) { $posy = 2; $posm = 3; }
             elseif (preg_match('/^(.*)\{(m+)\}\{(y+)\}/i', $maskwithonlyymcode, $reg)) { $posy = 3; $posm = 2; }
@@ -897,7 +897,7 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
 
             if (dol_strlen($reg[$posy]) < 2) return 'ErrorCantUseRazWithYearOnOneDigit';
         }
-        else // if reset is for a specific month in year, we need year
+        else 
         {
             if (preg_match('/^(.*)\{(m+)\}\{(y+)\}/i', $maskwithonlyymcode, $reg)) { $posy = 3; $posm = 2; }
         	elseif (preg_match('/^(.*)\{(y+)\}\{(m+)\}/i', $maskwithonlyymcode, $reg)) { $posy = 2; $posm = 3; }
@@ -910,23 +910,23 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
         // Define pos
        	$yearpos = (dol_strlen($reg[1]) + 1);
         $monthpos = ($yearpos + $yearlen);
-        if ($posy == 3 && $posm == 2) {		// if month is before year
+        if ($posy == 3 && $posm == 2) {		
           	$monthpos = (dol_strlen($reg[1]) + 1);
            	$yearpos = ($monthpos + $monthlen);
         }
-        //print "xxx ".$maskwithonlyymcode." maskraz=".$maskraz." posy=".$posy." yearlen=".$yearlen." yearpos=".$yearpos." posm=".$posm." monthlen=".$monthlen." monthpos=".$monthpos." yearoffsettype=".$yearoffsettype." resetEveryMonth=".$resetEveryMonth."\n";
+        
 
         // Define $yearcomp and $monthcomp (that will be use in the select where to search max number)
         $monthcomp = $maskraz;
         $yearcomp = 0;
 
-        if (!empty($yearoffsettype) && !is_numeric($yearoffsettype) && $yearoffsettype != '=')	// $yearoffsettype is - or +
+        if (!empty($yearoffsettype) && !is_numeric($yearoffsettype) && $yearoffsettype != '=')	
         {
         	$currentyear = date("Y", $date);
         	$fiscaldate = dol_mktime('0', '0', '0', $maskraz, '1', $currentyear);
         	$newyeardate = dol_mktime('0', '0', '0', '1', '1', $currentyear);
         	$nextnewyeardate = dol_mktime('0', '0', '0', '1', '1', $currentyear + 1);
-        	//echo 'currentyear='.$currentyear.' date='.dol_print_date($date, 'day').' fiscaldate='.dol_print_date($fiscaldate, 'day').'<br>';
+        	
 
         	// If after or equal of current fiscal date
         	if ($date >= $fiscaldate)
@@ -966,8 +966,8 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
             $sqlwhere .= '(SUBSTRING('.$field.', '.$yearpos.', '.$yearlen.") = '".$yearcomp."')";
         }
     }
-    //print "sqlwhere=".$sqlwhere." yearcomp=".$yearcomp."<br>\n";	// sqlwhere and yearcomp defined only if we ask a reset
-    //print "masktri=".$masktri." maskcounter=".$maskcounter." maskraz=".$maskraz." maskoffset=".$maskoffset."<br>\n";
+    
+    
 
     // Define $sqlstring
     if (function_exists('mb_strrpos'))
@@ -1013,7 +1013,7 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
     if ($where) $sql .= $where;
     if ($sqlwhere) $sql .= ' AND '.$sqlwhere;
 
-    //print $sql.'<br>';
+    
     dol_syslog("functions2::get_next_value mode=".$mode."", LOG_DEBUG);
     $resql = $db->query($sql);
     if ($resql)
@@ -1085,13 +1085,13 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
 
         if (!empty($maskrefclient_maskcounter))
         {
-            //print "maskrefclient_maskcounter=".$maskrefclient_maskcounter." maskwithnocode=".$maskwithnocode." maskrefclient=".$maskrefclient."\n<br>";
+            
 
             // Define $sqlstring
             $maskrefclient_posnumstart = strpos($maskwithnocode, $maskrefclient_maskcounter, strpos($maskwithnocode, $maskrefclient)); // Pos of counter in final string (from 0 to ...)
             if ($maskrefclient_posnumstart <= 0) return 'ErrorBadMask';
             $maskrefclient_sqlstring = 'SUBSTRING('.$field.', '.($maskrefclient_posnumstart + 1).', '.dol_strlen($maskrefclient_maskcounter).')';
-            //print "x".$sqlstring;
+            
 
             // Define $maskrefclient_maskLike
             $maskrefclient_maskLike = dol_string_nospecial($mask);
@@ -1109,14 +1109,14 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
             $maskrefclient_counter = 0;
             $maskrefclient_sql = "SELECT MAX(".$maskrefclient_sqlstring.") as val";
             $maskrefclient_sql .= " FROM ".MAIN_DB_PREFIX.$table;
-            //$sql.= " WHERE ".$field." not like '(%'";
+            
             $maskrefclient_sql .= " WHERE ".$field." LIKE '".$maskrefclient_maskLike."'";
             if ($bentityon) // only if entity enable
             	$maskrefclient_sql .= " AND entity IN (".getEntity($sharetable).")";
             elseif (!empty($forceentity))
             	$sql .= " AND entity IN (".$forceentity.")";
-            if ($where) $maskrefclient_sql .= $where; //use the same optional where as general mask
-            if ($sqlwhere) $maskrefclient_sql .= ' AND '.$sqlwhere; //use the same sqlwhere as general mask
+            if ($where) $maskrefclient_sql .= $where; 
+            if ($sqlwhere) $maskrefclient_sql .= ' AND '.$sqlwhere; 
             $maskrefclient_sql .= ' AND (SUBSTRING('.$field.', '.(strpos($maskwithnocode, $maskrefclient) + 1).', '.dol_strlen($maskrefclient_maskclientcode).")='".$maskrefclient_clientcode."')";
 
             dol_syslog("functions2::get_next_value maskrefclient", LOG_DEBUG);
@@ -1154,13 +1154,13 @@ function get_next_value($db, $mask, $table, $field, $where = '', $objsoc = '', $
         // Now we replace the counter
         $maskbefore = '{'.$masktri.'}';
         $maskafter = str_pad($counter, dol_strlen($maskcounter), "0", STR_PAD_LEFT);
-        //print 'x'.$maskbefore.'-'.$maskafter.'y';
+        
         $numFinal = str_replace($maskbefore, $maskafter, $numFinal);
 
         // Now we replace the refclient
         if ($maskrefclient)
         {
-            //print "maskrefclient=".$maskrefclient." maskwithonlyymcode=".$maskwithonlyymcode." maskwithnocode=".$maskwithnocode." maskrefclient_clientcode=".$maskrefclient_clientcode."\n<br>";exit;
+            
             $maskrefclient_maskbefore='{'.$maskrefclient.'}';
             $maskrefclient_maskafter=$maskrefclient_clientcode.str_pad($maskrefclient_counter, dol_strlen($maskrefclient_maskcounter), "0", STR_PAD_LEFT);
             $numFinal = str_replace($maskrefclient_maskbefore, $maskrefclient_maskafter, $numFinal);
@@ -1241,7 +1241,7 @@ function check_value($mask, $value)
         $maskrefclient=$regClientRef[1].$regClientRef[2];
         $maskrefclient_maskclientcode=$regClientRef[1];
         $maskrefclient_maskcounter=$regClientRef[2];
-        $maskrefclient_maskoffset=0; //default value of maskrefclient_counter offset
+        $maskrefclient_maskoffset=0; 
         $maskrefclient_clientcode=substr('', 0, dol_strlen($maskrefclient_maskclientcode));//get n first characters of client code to form maskrefclient_clientcode
         $maskrefclient_clientcode=str_pad($maskrefclient_clientcode, dol_strlen($maskrefclient_maskclientcode), "#", STR_PAD_RIGHT);//padding maskrefclient_clientcode for having exactly n characters in maskrefclient_clientcode
         $maskrefclient_clientcode=dol_string_nospecial($maskrefclient_clientcode);//sanitize maskrefclient_clientcode for sql insert and sql select like
@@ -1265,8 +1265,8 @@ function check_value($mask, $value)
     $maskwithnocode=preg_replace('/\{y\}/i', 'y', $maskwithnocode);
     $maskwithnocode=preg_replace('/\{mm\}/i', 'mm', $maskwithnocode);
     // Now maskwithnocode = 0000ddmmyyyyccc for example
-    // and maskcounter    = 0000 for example
-    //print "maskwithonlyymcode=".$maskwithonlyymcode." maskwithnocode=".$maskwithnocode."\n<br>";
+    
+    
 
     // If an offset is asked
     if (! empty($reg[2]) && preg_match('/^\+/', $reg[2])) $maskoffset=preg_replace('/^\+/', '', $reg[2]);
@@ -1288,12 +1288,12 @@ function check_value($mask, $value)
         // Define reg
         if ($maskraz > 1 && ! preg_match('/^(.*)\{(y+)\}\{(m+)\}/i', $maskwithonlyymcode, $reg)) return 'ErrorCantUseRazInStartedYearIfNoYearMonthInMask';
         if ($maskraz <= 1 && ! preg_match('/^(.*)\{(y+)\}/i', $maskwithonlyymcode, $reg)) return 'ErrorCantUseRazIfNoYearInMask';
-        //print "x".$maskwithonlyymcode." ".$maskraz;
+        
     }
-    //print "masktri=".$masktri." maskcounter=".$maskcounter." maskraz=".$maskraz." maskoffset=".$maskoffset."<br>\n";
+    
 
     // Check we have a number in ($posnumstart+1).', '.dol_strlen($maskcounter)
-    //
+    
 
     // Check length
     $len = dol_strlen($maskwithnocode);
@@ -1428,7 +1428,7 @@ function numero_semaine($time)
         }
     }
 
-    //echo $jour."-".$mois."-".$annee." (".date("d-m-Y",$premierJeudiAnnee)." - ".date("d-m-Y",$jeudiSemaine).") -> ".$numeroSemaine."<BR>";
+    
 
     return sprintf("%02d", $numeroSemaine);
 }
@@ -1526,7 +1526,7 @@ function dol_set_user_param($db, $conf, &$user, $tab)
                 return -1;
             }
             $user->conf->$key = $value;
-            //print "key=".$key." user->conf->key=".$user->conf->$key;
+            
         }
         else
         {
@@ -1764,7 +1764,7 @@ function getSoapParams()
     $proxypass = (empty($conf->global->MAIN_PROXY_USE) ?false:$conf->global->MAIN_PROXY_PASS);
     $timeout  = (empty($conf->global->MAIN_USE_CONNECT_TIMEOUT) ? 10 : $conf->global->MAIN_USE_CONNECT_TIMEOUT); // Connection timeout
     $response_timeout = (empty($conf->global->MAIN_USE_RESPONSE_TIMEOUT) ? 30 : $conf->global->MAIN_USE_RESPONSE_TIMEOUT); // Response timeout
-    //print extension_loaded('soap');
+    
     if ($proxyuse)
     {
         $params = array('connection_timeout'=>$timeout,
@@ -1896,7 +1896,7 @@ function dolGetElementUrl($objectid, $objecttype, $withpicto = 0, $option = '')
 
 	// Generic case for $classfile and $classname
 	$classfile = strtolower($myobject); $classname = ucfirst($myobject);
-	//print "objecttype=".$objecttype." module=".$module." subelement=".$subelement." classfile=".$classfile." classname=".$classname;
+	
 
 	if ($objecttype == 'invoice_supplier') {
 		$classfile = 'fournisseur.facture';
@@ -1990,14 +1990,14 @@ function cleanCorruptedTree($db, $tabletocleantree, $fieldfkparent)
 
 			$totalnb += $nb;
 		}
-		//else dol_print_error($db);
+		
 
 		// Check other loops
 		$listofidtoclean = array();
 		foreach ($listofparentid as $id => $pid)
 		{
 			// Check depth
-			//print 'Analyse record id='.$id.' with parent '.$pid.'<br>';
+			
 
 			$cursor = $id; $arrayidparsed = array(); // We start from child $id
 			while ($cursor > 0)
@@ -2032,7 +2032,7 @@ function cleanCorruptedTree($db, $tabletocleantree, $fieldfkparent)
 
 			$totalnb += $nb;
 		}
-		//else dol_print_error($db);
+		
 
 		// Check and clean orphelins
 		$sql = "UPDATE ".MAIN_DB_PREFIX.$tabletocleantree;
@@ -2051,7 +2051,7 @@ function cleanCorruptedTree($db, $tabletocleantree, $fieldfkparent)
 
 			$totalnb += $nb;
 		}
-		//else dol_print_error($db);
+		
 
 		print '<br>We fixed '.$totalnb.' record(s). Some records may still be corrupted. New check may be required.';
 		return $totalnb;
@@ -2079,7 +2079,7 @@ function getElementProperties($element_type)
         $module = $regs[2];
     }
 
-    //print '<br>1. element : '.$element.' - module : '.$module .'<br>';
+    
     if (preg_match('/^([^_]+)_([^_]+)/i', $element, $regs)) {
         $module = $element = $regs[1];
         $subelement = $regs[2];
@@ -2609,7 +2609,7 @@ function convertBackOfficeMediasLinksToPublicLinks($notetoshow)
     // Define $urlwithroot
     $urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
     $urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-    //$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+    
     $notetoshow=preg_replace('/src="[a-zA-Z0-9_\/\-\.]*(viewimage\.php\?modulepart=medias[^"]*)"/', 'src="'.$urlwithroot.'/\1"', $notetoshow);
     return $notetoshow;
 }

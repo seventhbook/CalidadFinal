@@ -48,7 +48,7 @@ $action=GETPOST('action', 'alpha');
 
 
 // Security check
-//if (! $user->rights->mymodule->myobject->read) accessforbidden();
+
 $socid=GETPOST('socid', 'int');
 if (isset($user->socid) && $user->socid > 0)
 {

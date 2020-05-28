@@ -268,17 +268,17 @@ class Cronjob extends CommonObject
         {
             $this->id = $this->db->last_insert_id(MAIN_DB_PREFIX."cronjob");
 
-			//if (! $notrigger)
+			
 			
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
-	            //// Call triggers
 	            
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
 		
         }
 
@@ -657,17 +657,17 @@ class Cronjob extends CommonObject
         $resql = $this->db->query($sql);
     	if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 
-		//if (! $error && ! $notrigger)
+		
 		
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
-	            //// Call triggers
 	            
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
 		
 
         // Commit or rollback
@@ -753,7 +753,7 @@ class Cronjob extends CommonObject
 		$object->statut = 0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';
@@ -766,7 +766,7 @@ class Cronjob extends CommonObject
 			$error++;
 		}
 
-		//if (! $error)
+		
 		
 
 		

@@ -65,7 +65,7 @@ if (!isset($mode) || $mode != 'noajax')    // For ajax call
     if (!$result > 0)
     {
         //dol_print_error($db,$ecmdir->error);
-        //exit;
+        
     }
 }
 else    // For no ajax call
@@ -106,7 +106,7 @@ $langs->loadLangs(array("ecm", "companies", "other"));
 // Security check
 if ($user->socid > 0) $socid = $user->socid;
 
-//print 'xxx'.$upload_dir;
+
 
 // Security:
 // On interdit les remontees de repertoire ainsi que les pipe dans les noms de fichiers.
@@ -162,7 +162,7 @@ if (!dol_is_dir($upload_dir))
 }
 
 print '<!-- ajaxdirpreview type='.$type.' -->'."\n";
-//print '<!-- Page called with mode='.dol_escape_htmltag(isset($mode)?$mode:'').' type='.dol_escape_htmltag($type).' module='.dol_escape_htmltag($module).' url='.dol_escape_htmltag($url).' '.dol_escape_htmltag($_SERVER["PHP_SELF"]).'?'.dol_escape_htmltag($_SERVER["QUERY_STRING"]).' -->'."\n";
+
 
 $param = ($sortfield ? '&sortfield='.urlencode($sortfield) : '').($sortorder ? '&sortorder='.urlencode($sortorder) : '');
 if (!empty($websitekey)) $param .= '&website='.urlencode($websitekey);
@@ -256,7 +256,7 @@ if ($type == 'directory')
 	    		$param .= '&file_manager=1';
 	    		if (!preg_match('/website=/', $param)) $param .= '&website='.urlencode(GETPOST('website', 'alpha'));
 	    		if (!preg_match('/pageid=/', $param)) $param .= '&pageid='.urlencode(GETPOST('pageid', 'int'));
-	    		//if (!preg_match('/backtopage=/',$param)) $param.='&backtopage='.urlencode($_SERVER["PHP_SELF"].'?file_manager=1&website='.$websitekey.'&pageid='.$pageid);
+	    		
 	    	}
     	}
     	else
@@ -343,7 +343,7 @@ if (!empty($conf->dol_use_jmobile)) $useajax = 0;
 if (empty($conf->use_javascript_ajax)) $useajax = 0;
 if (!empty($conf->global->MAIN_ECM_DISABLE_JS)) $useajax = 0;
 
-//$param.=($param?'?':'').(preg_replace('/^&/','',$param));
+
 
 if ($useajax || $action == 'delete')
 {
@@ -393,7 +393,7 @@ if ($useajax)
 	print '  jQuery(".deletefilelink").click(function(e) { '."\n";
 	print '    console.log("We click on button with class deletefilelink, param='.$param.', we set urlfile to "+jQuery(this).attr("rel"));'."\n";
 	print '    jQuery("#urlfile").val(jQuery(this).attr("rel"));'."\n";
-	//print '    jQuery("#section_dir").val(\'aaa\');'."\n";
+	
 	print '    jQuery("#dialog-confirm-deletefile").dialog("open");'."\n";
 	print '    return false;'."\n";
 	print '  });'."\n";

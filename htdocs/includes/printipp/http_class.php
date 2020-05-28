@@ -176,7 +176,7 @@ class http_class
         $this->headers["Content-Type"] = "application/octet-stream";
         $this->headers["Host"] = $this->host;
         $this->headers["User-Agent"] = $this->user_agent;
-        //$this->headers["Expect"] = "100-continue";
+        
     }
 
     public function Open ($arguments)

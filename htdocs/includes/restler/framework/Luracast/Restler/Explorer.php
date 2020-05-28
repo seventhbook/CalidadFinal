@@ -305,7 +305,7 @@ class Explorer implements iProvideMultiVersionApi
                             ? '**' . $child['name'] . '** (required)  '.PHP_EOL
                             : $child['name'] . '  '.PHP_EOL;
                     }
-                    //$description .= '</section>';
+                    
                 }
                 $r[] = $this->parameter(new ValidationInfo($firstChild), $description);
             } else {
@@ -315,7 +315,7 @@ class Explorer implements iProvideMultiVersionApi
                         ? '**' . $child['name'] . '** (required)  '.PHP_EOL
                         : $child['name'] . '  '.PHP_EOL;
                 }
-                //$description .= '</section>';
+                
 
                 //lets group all body parameters under a generated model name
                 $name = $this->modelName($route);
@@ -339,7 +339,7 @@ class Explorer implements iProvideMultiVersionApi
     {
         $p = new stdClass();
         if (isset($info->rules['model'])) {
-            //$info->type = $info->rules['model'];
+            
         }
         $p->name = $info->name;
         $this->setType($p, $info);
@@ -360,10 +360,10 @@ class Explorer implements iProvideMultiVersionApi
             //TODO: $p->items and $p->uniqueItems boolean
         }
         $p->description = $description;
-        $p->in = $info->from; //$info->from == 'body' ? 'form' : $info->from;
+        $p->in = $info->from; 
         $p->required = $info->required;
 
-        //$p->allowMultiple = false;
+        
 
         if (isset($p->{'$ref'})) {
             $p->schema = (object)array('$ref' => ($p->{'$ref'}));

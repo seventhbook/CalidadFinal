@@ -146,7 +146,7 @@ class Xls extends BaseWriter
         $this->buildWorkbookEscher();
 
         // add 15 identical cell style Xfs
-        // for now, we use the first cellXf instead of cellStyleXf
+        
         $cellXfCollection = $this->spreadsheet->getCellXfCollection();
         for ($i = 0; $i < 15; ++$i) {
             $this->writerWorkbook->addXfWriter($cellXfCollection[0], true);
@@ -411,7 +411,7 @@ class Xls extends BaseWriter
             return;
         }
 
-        // if we reach here, then there are drawings in the workbook
+        
         $escher = new Escher();
 
         // dggContainer
@@ -421,7 +421,7 @@ class Xls extends BaseWriter
         // set IDCLs (identifier clusters)
         $dggContainer->setIDCLs($this->IDCLs);
 
-        // this loop is for determining maximum shape identifier of all drawing
+        
         $spIdMax = 0;
         $totalCountShapes = 0;
         $countDrawings = 0;
@@ -635,7 +635,7 @@ class Xls extends BaseWriter
         // cElements
         $dataProp = pack('v', 0x0001);
         $dataProp .= pack('v', 0x0000);
-        // array of UnalignedLpstr
+        
         // cch
         $dataProp .= pack('v', 0x000A);
         $dataProp .= pack('v', 0x0000);
@@ -740,7 +740,7 @@ class Xls extends BaseWriter
 
         // section header
         // offset: $secOffset; size: 4; section length
-        //         + x  Size of the content (summary + content)
+        
         $data .= pack('V', $dataSection_Content_Offset);
         // offset: $secOffset+4; size: 4; property count
         $data .= pack('V', $dataSection_NumProps);
@@ -932,7 +932,7 @@ class Xls extends BaseWriter
 
         // section header
         // offset: $secOffset; size: 4; section length
-        //         + x  Size of the content (summary + content)
+        
         $data .= pack('V', $dataSection_Content_Offset);
         // offset: $secOffset+4; size: 4; property count
         $data .= pack('V', $dataSection_NumProps);

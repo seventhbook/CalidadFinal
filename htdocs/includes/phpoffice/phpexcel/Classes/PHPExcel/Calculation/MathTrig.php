@@ -45,9 +45,9 @@ if (!defined('PHPEXCEL_ROOT')) {
  */
 class PHPExcel_Calculation_MathTrig {
 
-	//
+	
 	//	Private method to return an array of the factors of the input value
-	//
+	
 	private static function _factors($value) {
 		$startVal = floor(sqrt($value));
 
@@ -67,12 +67,12 @@ class PHPExcel_Calculation_MathTrig {
 		} else {
 			return array((integer) $value);
 		}
-	}	//	function _factors()
+	}	
 
 
 	private static function _romanCut($num, $n) {
 		return ($num - ($num % $n ) ) / $n;
-	}	//	function _romanCut()
+	}	
 
 
 	/**
@@ -116,7 +116,7 @@ class PHPExcel_Calculation_MathTrig {
 			return atan2($yCoordinate, $xCoordinate);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ATAN2()
+	}	
 
 
 	/**
@@ -155,7 +155,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function CEILING()
+	}	
 
 
 	/**
@@ -186,7 +186,7 @@ class PHPExcel_Calculation_MathTrig {
 			return round(self::FACT($numObjs) / self::FACT($numObjs - $numInSet)) / self::FACT($numInSet);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function COMBIN()
+	}	
 
 
 	/**
@@ -220,7 +220,7 @@ class PHPExcel_Calculation_MathTrig {
 			return (int) self::CEILING($number,$significance);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function EVEN()
+	}	
 
 
 	/**
@@ -258,7 +258,7 @@ class PHPExcel_Calculation_MathTrig {
 			return $factorial ;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function FACT()
+	}	
 
 
 	/**
@@ -290,7 +290,7 @@ class PHPExcel_Calculation_MathTrig {
 			return $factorial ;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function FACTDOUBLE()
+	}	
 
 
 	/**
@@ -328,7 +328,7 @@ class PHPExcel_Calculation_MathTrig {
 		} else
 
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function FLOOR()
+	}	
 
 
 	/**
@@ -404,7 +404,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 			return pow($key,$value);
 		}
-	}	//	function GCD()
+	}	
 
 
 	/**
@@ -432,7 +432,7 @@ class PHPExcel_Calculation_MathTrig {
 			return (int) floor($number);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function INT()
+	}	
 
 
 	/**
@@ -484,7 +484,7 @@ class PHPExcel_Calculation_MathTrig {
 			$returnValue *= (integer) $allPoweredFactor;
 		}
 		return $returnValue;
-	}	//	function LCM()
+	}	
 
 
 	/**
@@ -510,7 +510,7 @@ class PHPExcel_Calculation_MathTrig {
 		if (($base <= 0) || ($number <= 0))
 			return PHPExcel_Calculation_Functions::NaN();
 		return log($number, $base);
-	}	//	function LOG_BASE()
+	}	
 
 
 	/**
@@ -552,7 +552,7 @@ class PHPExcel_Calculation_MathTrig {
 		} catch (PHPExcel_Exception $ex) {
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
-	}	//	function MDETERM()
+	}	
 
 
 	/**
@@ -594,7 +594,7 @@ class PHPExcel_Calculation_MathTrig {
 		} catch (PHPExcel_Exception $ex) {
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
-	}	//	function MINVERSE()
+	}	
 
 
 	/**
@@ -648,7 +648,7 @@ class PHPExcel_Calculation_MathTrig {
             var_dump($ex->getMessage());
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
-	}	//	function MMULT()
+	}	
 
 
 	/**
@@ -671,7 +671,7 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		return fmod($a,$b);
-	}	//	function MOD()
+	}	
 
 
 	/**
@@ -698,7 +698,7 @@ class PHPExcel_Calculation_MathTrig {
 			return PHPExcel_Calculation_Functions::NaN();
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function MROUND()
+	}	
 
 
 	/**
@@ -732,7 +732,7 @@ class PHPExcel_Calculation_MathTrig {
 			return $summer / $divisor;
 		}
 		return 0;
-	}	//	function MULTINOMIAL()
+	}	
 
 
 	/**
@@ -766,7 +766,7 @@ class PHPExcel_Calculation_MathTrig {
 			return (int) $result;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ODD()
+	}	
 
 
 	/**
@@ -792,7 +792,7 @@ class PHPExcel_Calculation_MathTrig {
 		// Return
 		$result = pow($x, $y);
 		return (!is_nan($result) && !is_infinite($result)) ? $result : PHPExcel_Calculation_Functions::NaN();
-	}	//	function POWER()
+	}	
 
 
 	/**
@@ -829,7 +829,7 @@ class PHPExcel_Calculation_MathTrig {
 			return 0;
 		}
 		return $returnValue;
-	}	//	function PRODUCT()
+	}	
 
 
 	/**
@@ -868,7 +868,7 @@ class PHPExcel_Calculation_MathTrig {
 
 		// Return
 		return intval($returnValue);
-	}	//	function QUOTIENT()
+	}	
 
 
 	/**
@@ -887,7 +887,7 @@ class PHPExcel_Calculation_MathTrig {
 		} else {
 			return mt_rand($min, $max);
 		}
-	}	//	function RAND()
+	}	
 
 
 	public static function ROMAN($aValue, $style=0) {
@@ -916,7 +916,7 @@ class PHPExcel_Calculation_MathTrig {
 		$t = self::_romanCut($aValue, 10);		$aValue %= 10;
 
 		return $roman.$mill[$m].$cent[$c].$tens[$t].$ones[$aValue];
-	}	//	function ROMAN()
+	}	
 
 
 	/**
@@ -941,7 +941,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ROUNDUP()
+	}	
 
 
 	/**
@@ -966,7 +966,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ROUNDDOWN()
+	}	
 
 
 	/**
@@ -1006,7 +1006,7 @@ class PHPExcel_Calculation_MathTrig {
 			return $returnValue;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SERIESSUM()
+	}	
 
 
 	/**
@@ -1030,7 +1030,7 @@ class PHPExcel_Calculation_MathTrig {
 			return $number / abs($number);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SIGN()
+	}	
 
 
 	/**
@@ -1051,7 +1051,7 @@ class PHPExcel_Calculation_MathTrig {
 			return sqrt($number * M_PI) ;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SQRTPI()
+	}	
 
 
 	/**
@@ -1108,7 +1108,7 @@ class PHPExcel_Calculation_MathTrig {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SUBTOTAL()
+	}	
 
 
 	/**
@@ -1138,7 +1138,7 @@ class PHPExcel_Calculation_MathTrig {
 
 		// Return
 		return $returnValue;
-	}	//	function SUM()
+	}	
 
 
 	/**
@@ -1181,7 +1181,7 @@ class PHPExcel_Calculation_MathTrig {
 
 		// Return
 		return $returnValue;
-	}	//	function SUMIF()
+	}	
 
 
 	/**
@@ -1223,7 +1223,7 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		return array_sum($wrkArray);
-	}	//	function SUMPRODUCT()
+	}	
 
 
 	/**
@@ -1253,7 +1253,7 @@ class PHPExcel_Calculation_MathTrig {
 
 		// Return
 		return $returnValue;
-	}	//	function SUMSQ()
+	}	
 
 
 	/**
@@ -1283,7 +1283,7 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		return $result;
-	}	//	function SUMX2MY2()
+	}	
 
 
 	/**
@@ -1313,7 +1313,7 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		return $result;
-	}	//	function SUMX2PY2()
+	}	
 
 
 	/**
@@ -1343,7 +1343,7 @@ class PHPExcel_Calculation_MathTrig {
 		}
 
 		return $result;
-	}	//	function SUMXMY2()
+	}	
 
 
 	/**
@@ -1371,6 +1371,6 @@ class PHPExcel_Calculation_MathTrig {
 			return $value;
 
 		return (intval($value * $adjust)) / $adjust;
-	}	//	function TRUNC()
+	}	
 
-}	//	class PHPExcel_Calculation_MathTrig  
+}	

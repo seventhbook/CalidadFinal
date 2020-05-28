@@ -283,19 +283,19 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
 		$sql .= " AND entity = ".$conf->entity;
 
 		dol_syslog("actionmodify", LOG_DEBUG);
-		//print $sql;
+		
 		$resql = $db->query($sql);
 		if (!$resql)
 		{
 			setEventMessages($db->error(), null, 'errors');
 		}
 	}
-	//$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+	
 }
 
-//if (GETPOST('actioncancel', 'alpha'))
+
 //{
-//	$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+
 //}
 
 if ($action == 'confirm_delete' && $confirm == 'yes')       // delete
@@ -428,7 +428,7 @@ if ($id)
 			// Determine le nom du champ par rapport aux noms possibles
 			// dans les dictionnaires de donnees
 			$valuetoshow = ucfirst($fieldlist[$field]); // Par defaut
-			$valuetoshow = $langs->trans($valuetoshow); // try to translate
+			$valuetoshow = $langs->trans($valuetoshow); 
 			$class = "left";
             if ($fieldlist[$field] == 'code') {
                 $valuetoshow = $langs->trans("Code");
@@ -548,7 +548,7 @@ if ($id)
             $sortable=$tmp['sortable'];
 			*/
 			$valuetoshow = ucfirst($fieldlist[$field]); // By defaut
-			$valuetoshow = $langs->trans($valuetoshow); // try to translate
+			$valuetoshow = $langs->trans($valuetoshow); 
 			if ($fieldlist[$field] == 'code') {
                 $valuetoshow = $langs->trans("Code");
             }
@@ -665,7 +665,7 @@ if ($id)
 					{
 						print '<td class="center">';
 						if ($user->admin) print '<a href="'.$url.'action=delete">'.img_delete().'</a>';
-						//else print '<a href="#">'.img_delete().'</a>';    // Some dictionary can be edited by other profile than admin
+						
 						print '</td>';
 					}
 					else print '<td>&nbsp;</td>';

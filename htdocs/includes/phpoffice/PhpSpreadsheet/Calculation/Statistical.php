@@ -301,9 +301,9 @@ class Statistical
             if ($y <= self::EPS) {
                 $res = -log($y);
             } elseif ($y <= 1.5) {
-                // ---------------------
+                
                 //    EPS .LT. X .LE. 1.5
-                // ---------------------
+                
                 if ($y < $pnt68) {
                     $corr = -log($y);
                     $xm1 = $y;
@@ -330,9 +330,9 @@ class Statistical
                     $res = $corr + $xm2 * ($lg_d2 + $xm2 * ($xnum / $xden));
                 }
             } elseif ($y <= 4.0) {
-                // ---------------------
+                
                 //    1.5 .LT. X .LE. 4.0
-                // ---------------------
+                
                 $xm2 = $y - 2.0;
                 $xden = 1.0;
                 $xnum = 0.0;
@@ -342,9 +342,9 @@ class Statistical
                 }
                 $res = $xm2 * ($lg_d2 + $xm2 * ($xnum / $xden));
             } elseif ($y <= 12.0) {
-                // ----------------------
+                
                 //    4.0 .LT. X .LE. 12.0
-                // ----------------------
+                
                 $xm4 = $y - 4.0;
                 $xden = -1.0;
                 $xnum = 0.0;
@@ -354,9 +354,9 @@ class Statistical
                 }
                 $res = $lg_d4 + $xm4 * ($xnum / $xden);
             } else {
-                // ---------------------------------
+                
                 //    Evaluate for argument .GE. 12.0
-                // ---------------------------------
+                
                 $res = 0.0;
                 if ($y <= $lg_frtbig) {
                     $res = $lg_c[6];
@@ -371,23 +371,23 @@ class Statistical
                 }
             }
         } else {
-            // --------------------------
+            
             //    Return for bad arguments
-            // --------------------------
+            
             $res = self::MAX_VALUE;
         }
-        // ------------------------------
+        
         //    Final adjustments and return
-        // ------------------------------
+        
         self::$logGammaCacheX = $x;
         self::$logGammaCacheResult = $res;
 
         return $res;
     }
 
-    //
+    
     //    Private implementation of the incomplete Gamma function
-    //
+    
     private static function incompleteGamma($a, $x)
     {
         static $max = 32;
@@ -403,9 +403,9 @@ class Statistical
         return pow($x, $a) * exp(0 - $x) * $summer;
     }
 
-    //
+    
     //    Private implementation of the Gamma function
-    //
+    
     private static function gamma($data)
     {
         if ($data == 0.0) {
@@ -923,7 +923,7 @@ class Statistical
                     $xNew = $x - $dx;
                 }
                 // If the NR fails to converge (which for example may be the
-                // case if the initial guess is too rough) we apply a bisection
+                
                 // step to determine a more narrow interval around the root.
                 if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
                     $xNew = ($xLo + $xHi) / 2;
@@ -1533,7 +1533,7 @@ class Statistical
                     $xNew = $x - $dx;
                 }
                 // If the NR fails to converge (which for example may be the
-                // case if the initial guess is too rough) we apply a bisection
+                
                 // step to determine a more narrow interval around the root.
                 if (($xNew < $xLo) || ($xNew > $xHi) || ($pdf == 0.0)) {
                     $xNew = ($xLo + $xHi) / 2;
@@ -2309,10 +2309,10 @@ class Statistical
         return $returnValue;
     }
 
-    //
+    
     //    Special variant of array_count_values that isn't limited to strings and integers,
     //        but can work with floating point numbers as values
-    //
+    
     private static function modeCalc($data)
     {
         $frequencyArray = [];
@@ -3265,7 +3265,7 @@ class Statistical
                     $xNew = $x - $dx;
                 }
                 // If the NR fails to converge (which for example may be the
-                // case if the initial guess is too rough) we apply a bisection
+                
                 // step to determine a more narrow interval around the root.
                 if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
                     $xNew = ($xLo + $xHi) / 2;

@@ -42,8 +42,8 @@ function stripeadmin_prepare_head()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'stripeadmin');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'stripeadmin', 'remove');

@@ -169,7 +169,7 @@ if (! isset($num))
 	$sql .= " OR b.num_releve is null";
 $sql .= " AND b.fk_account = ba.rowid";
 $sql .= $db->order("b.num_releve, b.datev, b.datec", "ASC"); // We add date of creation to have correct order when everything is done the same day
-                                                             // print $sql;
+                                                             
 
 $resql = $db->query($sql);
 if ($resql) {
@@ -333,18 +333,18 @@ if ($resql) {
 			 * elseif ($links[$key]['type']=='sc')
 			 * {
 			 * if ($accountelem) $accountelem.= ', ';
-			 * //$accountelem.= '<a href="'.DOL_URL_ROOT.'/compta/sociales/card.php?id='.$links[$key]['url_id'].'">';
-			 * //$accountelem.= img_object($langs->transnoentitiesnoconv('ShowBill'),'bill').' ';
+			 * 
+			 * 
 			 * $accountelem.= $langs->transnoentitiesnoconv("SocialContribution");
-			 * //$accountelem.= '</a>';
+			 * 
 			 * $newline=0;
 			 * }
 			 * else
 			 * {
 			 * if ($accountelem) $accountelem.= ', ';
-			 * //$accountelem.= '<a href="'.$links[$key]['url'].$links[$key]['url_id'].'">';
+			 * 
 			 * $accountelem.= $links[$key]['label'];
-			 * //$accountelem.= '</a>';
+			 * 
 			 * $newline=0;
 			 * }
 			 */

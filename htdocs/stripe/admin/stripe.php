@@ -105,9 +105,9 @@ if ($action == 'setvalue' && $user->admin)
 	if (!$result > 0)
 		$error++;
 	// Stock decrement
-	//$result = dolibarr_set_const($db, "ONLINE_PAYMENT_WAREHOUSE", (GETPOST('ONLINE_PAYMENT_WAREHOUSE', 'alpha') > 0 ? GETPOST('ONLINE_PAYMENT_WAREHOUSE', 'alpha') : ''), 'chaine', 0, '', $conf->entity);
-	//if (! $result > 0)
-	//	$error ++;
+	
+	
+	
 
 	// Payment token for URL
 	$result = dolibarr_set_const($db, "PAYMENT_SECURITY_TOKEN", GETPOST('PAYMENT_SECURITY_TOKEN', 'alpha'), 'chaine', 0, '', $conf->entity);
@@ -243,7 +243,7 @@ if (empty($conf->stripeconnect->enabled))
             	print '<a class="reposition" href="'.$_SERVER['PHP_SELF'].'?action=ipn&webhook='.$endpoint->id.'&status=1">';
             	print img_picto($langs->trans("Disabled"), 'switch_off');
             }
-            //print $endpoint;
+            
         }
         else
         {
@@ -316,7 +316,7 @@ if (empty($conf->stripeconnect->enabled))
                 print '<a class="reposition" href="'.$_SERVER['PHP_SELF'].'?action=ipn&webhook='.$endpoint->id.'&status=1">';
                 print img_picto($langs->trans("Disabled"), 'switch_off');
             }
-            //print $endpoint;
+            
         }
         else
         {
@@ -396,12 +396,12 @@ if ($conf->global->MAIN_FEATURES_LEVEL >= 2)	// TODO Not used by current code
 }
 
 // Warehouse for automatic decrement
-//if ($conf->global->MAIN_FEATURES_LEVEL >= 2)	// warehouse to reduce stock for online payment
+
 //{
-//	print '<tr class="oddeven"><td>';
-//	print $langs->trans("ONLINE_PAYMENT_WAREHOUSE").'</td><td>';
-//	print $formproduct->selectWarehouses($conf->global->ONLINE_PAYMENT_WAREHOUSE, 'ONLINE_PAYMENT_WAREHOUSE', '', 1, $disabled);
-//	print '</td></tr>';
+
+
+
+
 //}
 
 print '<tr class="oddeven"><td>';

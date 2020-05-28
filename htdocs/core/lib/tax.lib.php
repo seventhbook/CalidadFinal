@@ -48,8 +48,8 @@ function tax_prepare_head(ChargeSociales $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'tax');
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
@@ -367,9 +367,9 @@ function tax_by_thirdparty($type, $db, $y, $date_start, $date_end, $modetax, $di
     if (! $sql)
     {
     	dol_syslog("Tax.lib.php::tax_by_rate no accountancy module enabled".$sql, LOG_ERR);
-    	return -1;  // -1 = Not accountancy module enabled
+    	return -1;  
     }
-    if ($sql == 'TODO') return -2; // -2 = Feature not yet available
+    if ($sql == 'TODO') return -2; 
     if ($sql != 'TODO')
     {
     	dol_syslog("Tax.lib.php::tax_by_rate", LOG_DEBUG);
@@ -470,9 +470,9 @@ function tax_by_thirdparty($type, $db, $y, $date_start, $date_end, $modetax, $di
     	if (! $sql)
     	{
     		dol_syslog("Tax.lib.php::tax_by_rate no accountancy module enabled".$sql, LOG_ERR);
-    		return -1;  // -1 = Not accountancy module enabled
+    		return -1;  
     	}
-    	if ($sql == 'TODO') return -2; // -2 = Feature not yet available
+    	if ($sql == 'TODO') return -2; 
     	if ($sql != 'TODO')
     	{
     		dol_syslog("Tax.lib.php::tax_by_rate", LOG_DEBUG);
@@ -835,9 +835,9 @@ function tax_by_rate($type, $db, $y, $q, $date_start, $date_end, $modetax, $dire
     if (! $sql)
     {
         dol_syslog("Tax.lib.php::tax_by_rate no accountancy module enabled".$sql, LOG_ERR);
-        return -1;  // -1 = Not accountancy module enabled
+        return -1;  
     }
-    if ($sql == 'TODO') return -2; // -2 = Feature not yet available
+    if ($sql == 'TODO') return -2; 
     if ($sql != 'TODO')
     {
         dol_syslog("Tax.lib.php::tax_by_rate", LOG_DEBUG);
@@ -938,9 +938,9 @@ function tax_by_rate($type, $db, $y, $q, $date_start, $date_end, $modetax, $dire
 		if (! $sql)
 		{
 			dol_syslog("Tax.lib.php::tax_by_rate no accountancy module enabled".$sql, LOG_ERR);
-			return -1;  // -1 = Not accountancy module enabled
+			return -1;  
 		}
-		if ($sql == 'TODO') return -2; // -2 = Feature not yet available
+		if ($sql == 'TODO') return -2; 
 		if ($sql != 'TODO')
 		{
 			dol_syslog("Tax.lib.php::tax_by_rate", LOG_DEBUG);

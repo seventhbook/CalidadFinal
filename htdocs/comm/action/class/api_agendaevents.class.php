@@ -112,7 +112,7 @@ class AgendaEvents extends DolibarrApi
             throw new RestException(401, "Insufficient rights to read events");
         }
 
-        // case of external user
+        
         $socid = 0;
         if (!empty(DolibarrApiAccess::$user->socid)) $socid = DolibarrApiAccess::$user->socid;
 

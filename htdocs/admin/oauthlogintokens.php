@@ -60,7 +60,7 @@ if ($action == 'setconst' && $user->admin)
     $error = 0;
     $db->begin();
     foreach ($_POST['setupdriver'] as $setupconst) {
-        //print '<pre>'.print_r($setupconst, true).'</pre>';
+        
         $result = dolibarr_set_const($db, $setupconst['varname'], $setupconst['value'], 'chaine', 0, '', $conf->entity);
         if (!$result > 0) $error++;
     }
@@ -106,7 +106,7 @@ if ($action == 'setvalue' && $user->admin)
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 $form = new Form($db);
 
@@ -144,7 +144,7 @@ if ($mode == 'setup' && $user->admin)
         {
             $OAUTH_SERVICENAME = 'Google';
             $state='userinfo_email,userinfo_profile,cloud_print'; 	// List of keys that will be converted into scopes (from constants 'SCOPE_state_in_uppercase' in file of service)
-            //$state.=',gmail_full';
+            
             $urltorenew = $urlwithroot.'/core/modules/oauth/google_oauthcallback.php?state='.$state.'&backtourl='.urlencode(DOL_URL_ROOT.'/admin/oauthlogintokens.php');
             $urltodelete = $urlwithroot.'/core/modules/oauth/google_oauthcallback.php?action=delete&backtourl='.urlencode(DOL_URL_ROOT.'/admin/oauthlogintokens.php');
             $urltocheckperms = 'https://security.google.com/settings/security/permissions';
@@ -281,8 +281,8 @@ if ($mode == 'setup' && $user->admin)
         {
             //var_dump($tokenobj);
             print $tokenobj->getAccessToken().'<br>';
-            //print 'Refresh: '.$tokenobj->getRefreshToken().'<br>';
-            //print 'EndOfLife: '.$tokenobj->getEndOfLife().'<br>';
+            
+            
             //var_dump($tokenobj->getExtraParams());
             /*print '<br>Extra: <br><textarea class="quatrevingtpercent">';
             print ''.join(',',$tokenobj->getExtraParams());
@@ -349,7 +349,7 @@ if ($mode == 'test' && $user->admin)
         $classname = 'printing_'.$driver;
         $langs->load($driver);
         $printer = new $classname($db);
-        //print '<pre>'.print_r($printer, true).'</pre>';
+        
         if (count($printer->getlistAvailablePrinters())) {
             if ($printer->listAvailablePrinters() == 0) {
                 print $printer->resprint;

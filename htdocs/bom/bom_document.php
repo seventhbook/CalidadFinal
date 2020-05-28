@@ -41,9 +41,9 @@ $id = (GETPOST('socid', 'int') ? GETPOST('socid', 'int') : GETPOST('id', 'int'))
 $ref = GETPOST('ref', 'alpha');
 
 // Security check - Protection if external user
-//if ($user->socid > 0) accessforbidden();
-//if ($user->socid > 0) $socid = $user->socid;
-//$result = restrictedArea($user, 'bom', $id);
+
+
+
 
 // Get parameters
 $sortfield = GETPOST("sortfield", 'alpha');
@@ -55,7 +55,7 @@ $pageprev = $page - 1;
 $pagenext = $page + 1;
 if (!$sortorder) $sortorder = "ASC";
 if (!$sortfield) $sortfield = "name";
-//if (! $sortfield) $sortfield="position_name";
+
 
 // Initialize technical objects
 $object = new BOM($db);
@@ -68,7 +68,7 @@ $extrafields->fetch_name_optionals_label($object->table_element);
 // Load object
 include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once  // Must be include, not include_once. Include fetch and fetch_thirdparty but not fetch_optionals
 
-//if ($id > 0 || ! empty($ref)) $upload_dir = $conf->bom->multidir_output[$object->entity?$object->entity:1] . "/bom/" . dol_sanitizeFileName($object->id);
+
 if ($id > 0 || !empty($ref)) $upload_dir = $conf->bom->multidir_output[$object->entity ? $object->entity : 1]."/bom/".dol_sanitizeFileName($object->ref);
 
 
@@ -87,7 +87,7 @@ $form = new Form($db);
 
 $title = $langs->trans("BillOfMaterials").' - '.$langs->trans("Files");
 $help_url = '';
-//$help_url='EN:Module_Third_Parties|FR:Module_Tiers|ES:Empresas';
+
 llxHeader('', $title, $help_url);
 
 if ($object->id)
@@ -109,7 +109,7 @@ if ($object->id)
 	}
 
 	// Object card
-	// ------------------------------------------------------------
+	
 	$linkback = '<a href="'.dol_buildpath('/bom/bom_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	dol_banner_tab($object, 'ref', $linkback, 1, 'ref', 'ref', $morehtmlref);
@@ -136,7 +136,7 @@ if ($object->id)
 	$permtoedit = $user->rights->bom->write;
 	$param = '&id='.$object->id;
 
-	//$relativepathwithnofile='bom/' . dol_sanitizeFileName($object->id).'/';
+	
 	$relativepathwithnofile = 'bom/'.dol_sanitizeFileName($object->ref).'/';
 
 	include_once DOL_DOCUMENT_ROOT.'/core/tpl/document_actions_post_headers.tpl.php';

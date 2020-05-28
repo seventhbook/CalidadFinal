@@ -492,7 +492,7 @@ elseif ($action == 'edit')
     print '</td></tr>';
 
     // Niveau
-    //print '<tr><td>'.$langs->trans('Level').'</td><td>'.$menu->level.'</td><td>'.$langs->trans('DetailLevel').'</td></tr>';
+    
 
     // Title
     print '<tr><td class="fieldrequired">'.$langs->trans('Title').'</td><td><input type="text" class="minwidth300" name="titre" value="'.dol_escape_htmltag($menu->titre ? $menu->titre : $menu->title).'"></td><td>'.$langs->trans('DetailTitre').'</td></tr>';

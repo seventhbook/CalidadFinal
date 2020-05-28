@@ -523,4 +523,4 @@ class SingularValueDecomposition  {
 		return $r;
 	}
 
-}	//	class SingularValueDecomposition
+}	

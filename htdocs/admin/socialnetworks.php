@@ -82,7 +82,7 @@ llxHeader('', $langs->trans("SocialNetworkSetup"), $help_url);
 $linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans("BackToModuleList").'</a>';
 print load_fiche_titre($langs->trans("SocialNetworkSetup"), $linkback, 'title_setup');
 
-//$head = socialnetworks_admin_prepare_head();
+
 $h=0;
 $head = array();
 $head[$h][0] = DOL_URL_ROOT.'/admin/socialnetworks.php';

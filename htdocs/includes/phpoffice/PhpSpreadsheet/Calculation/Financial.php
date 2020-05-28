@@ -165,7 +165,7 @@ class Financial
             }
             $daysBetweenIssueAndSettlement = DateTime::YEARFRAC($issue, $settlement, $basis);
             if (!is_numeric($daysBetweenIssueAndSettlement)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndSettlement;
             }
 
@@ -216,7 +216,7 @@ class Financial
             }
             $daysBetweenIssueAndSettlement = DateTime::YEARFRAC($issue, $settlement, $basis);
             if (!is_numeric($daysBetweenIssueAndSettlement)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndSettlement;
             }
 
@@ -1024,7 +1024,7 @@ class Financial
             }
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
 
@@ -1250,7 +1250,7 @@ class Financial
             }
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
 
@@ -1730,7 +1730,7 @@ class Financial
             }
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
 
@@ -1781,19 +1781,19 @@ class Financial
             }
             $daysBetweenIssueAndSettlement = DateTime::YEARFRAC($issue, $settlement, $basis);
             if (!is_numeric($daysBetweenIssueAndSettlement)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndSettlement;
             }
             $daysBetweenIssueAndSettlement *= $daysPerYear;
             $daysBetweenIssueAndMaturity = DateTime::YEARFRAC($issue, $maturity, $basis);
             if (!is_numeric($daysBetweenIssueAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndMaturity;
             }
             $daysBetweenIssueAndMaturity *= $daysPerYear;
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
             $daysBetweenSettlementAndMaturity *= $daysPerYear;
@@ -1950,7 +1950,7 @@ class Financial
             }
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
 
@@ -2119,7 +2119,7 @@ class Financial
                 ++$maturity;
                 $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity) * 360;
                 if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                    //    return date error
+                    
                     return $daysBetweenSettlementAndMaturity;
                 }
             } else {
@@ -2170,7 +2170,7 @@ class Financial
                 ++$maturity;
                 $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity) * 360;
                 if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                    //    return date error
+                    
                     return $daysBetweenSettlementAndMaturity;
                 }
             } else {
@@ -2330,7 +2330,7 @@ class Financial
             }
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
             $daysBetweenSettlementAndMaturity *= $daysPerYear;
@@ -2382,19 +2382,19 @@ class Financial
             }
             $daysBetweenIssueAndSettlement = DateTime::YEARFRAC($issue, $settlement, $basis);
             if (!is_numeric($daysBetweenIssueAndSettlement)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndSettlement;
             }
             $daysBetweenIssueAndSettlement *= $daysPerYear;
             $daysBetweenIssueAndMaturity = DateTime::YEARFRAC($issue, $maturity, $basis);
             if (!is_numeric($daysBetweenIssueAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenIssueAndMaturity;
             }
             $daysBetweenIssueAndMaturity *= $daysPerYear;
             $daysBetweenSettlementAndMaturity = DateTime::YEARFRAC($settlement, $maturity, $basis);
             if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-                //    return date error
+                
                 return $daysBetweenSettlementAndMaturity;
             }
             $daysBetweenSettlementAndMaturity *= $daysPerYear;

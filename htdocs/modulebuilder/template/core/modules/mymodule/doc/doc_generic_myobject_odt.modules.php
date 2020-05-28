@@ -305,7 +305,7 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					if (!empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) $socobject = $object->contact;
 					else {
                         $socobject = $object->thirdparty;
-               			// if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+               			
             			$contactobject = $object->contact;
                     }
 				}
@@ -355,8 +355,8 @@ class doc_generic_myobject_odt extends ModelePDFMyObject
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

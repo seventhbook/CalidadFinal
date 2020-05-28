@@ -530,8 +530,8 @@ class doc_generic_task_odt extends ModelePDFTask
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

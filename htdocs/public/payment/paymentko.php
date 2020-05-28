@@ -219,7 +219,7 @@ $logo = $mysoc->logo;
 $paramlogo = 'ONLINE_PAYMENT_LOGO_'.$suffix;
 if (!empty($conf->global->$paramlogo)) $logosmall = $conf->global->$paramlogo;
 elseif (!empty($conf->global->ONLINE_PAYMENT_LOGO)) $logosmall = $conf->global->ONLINE_PAYMENT_LOGO;
-//print '<!-- Show logo (logosmall='.$logosmall.' logo='.$logo.') -->'."\n";
+
 // Define urllogo
 $urllogo = '';
 if (!empty($logosmall) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$logosmall))

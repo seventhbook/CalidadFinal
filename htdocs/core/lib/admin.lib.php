@@ -978,7 +978,7 @@ function activateModule($value, $withdeps = 1)
             if (isset($objMod->depends) && is_array($objMod->depends) && !empty($objMod->depends))
             {
                 // Activation of modules this module depends on
-                // this->depends may be array('modModule1', 'mmodModule2') or array('always1'=>"modModule1", 'FR'=>'modModule2')
+                
                 foreach ($objMod->depends as $key => $modulestring)
                 {
                
@@ -1441,7 +1441,7 @@ function form_constantes($tableau, $strictw3c = 0, $helptext = '')
     foreach ($tableau as $key => $const)	// Loop on each param
     {
     	$label = '';
-    	// $const is a const key like 'MYMODULE_ABC'
+    	
     	if (is_numeric($key)) {		// Very old behaviour
     		$type = 'string';
     	}
@@ -1525,7 +1525,7 @@ function form_constantes($tableau, $strictw3c = 0, $helptext = '')
             	print 'TYPE:Type1:mymailmanlist1,TYPE:Type2:mymailmanlist2<br>';
             	if ($conf->categorie->enabled) print 'CATEG:Categ1:mymailmanlist1,CATEG:Categ2:mymailmanlist2<br>';
             	print '</div>';
-            	//print 'http://lists.example.com/cgi-bin/mailman/admin/%LISTE%/members/remove?adminpw=%MAILMAN_ADMINPW%&unsubscribees=%EMAIL%';
+            	
             }
 
             print "</td>\n";
@@ -1737,7 +1737,7 @@ function phpinfo_array()
 	$cat = "General";
 	foreach ($info_lines as $line)
 	{
-		// new cat?
+		
 		$title = array();
 		preg_match("~<h2>(.*)</h2>~", $line, $title) ? $cat = $title[1] : null;
 		$val = array();

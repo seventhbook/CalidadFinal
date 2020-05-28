@@ -110,7 +110,7 @@ class File
     public static function sysGetTempDir()
     {
         if (self::$useUploadTempDirectory) {
-            //  use upload-directory when defined to allow running on environments having very restricted
+            
             //      open_basedir configs
             if (ini_get('upload_tmp_dir') !== false) {
                 if ($temp = ini_get('upload_tmp_dir')) {

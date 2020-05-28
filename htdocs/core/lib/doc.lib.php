@@ -158,9 +158,9 @@ function doc_getlinedesc($line, $outputlangs, $hideref = 0, $hidedesc = 0, $issu
 		{
 			$period='('.$outputlangs->transnoentitiesnoconv('DateUntil', dol_print_date($line->date_end, $format, false, $outputlangs)).')';
 		}
-		//print '>'.$outputlangs->charset_output.','.$period;
+		
 		$libelleproduitservice=dol_concatdesc($libelleproduitservice, $period);
-		//print $libelleproduitservice;
+		
 	}
 
 	return $libelleproduitservice;

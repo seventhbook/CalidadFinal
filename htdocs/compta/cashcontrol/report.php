@@ -43,7 +43,7 @@ $_GET['optioncss']="print";
 $cashcontrol= new CashControl($db);
 $cashcontrol->fetch($id);
 
-//$limit = GETPOST('limit')?GETPOST('limit', 'int'):$conf->liste_limit;
+
 $sortorder='ASC';
 $sortfield='b.datev,b.dateo,b.rowid';
 
@@ -77,7 +77,7 @@ $sql.= " ba.rowid as bankid, ba.ref as bankref,";
 $sql.= " bu.url_id,";
 $sql.= " f.module_source, f.ref as ref";
 $sql.= " FROM ";
-//if ($bid) $sql.= MAIN_DB_PREFIX."bank_class as l,";
+
 $sql.= " ".MAIN_DB_PREFIX."bank_account as ba,";
 $sql.= " ".MAIN_DB_PREFIX."bank as b";
 $sql.= " LEFT JOIN ".MAIN_DB_PREFIX."bank_url as bu ON bu.fk_bank = b.rowid AND type = 'payment'";
@@ -215,8 +215,8 @@ if ($resql)
 			$bank += $objp->amount;
 		} else {
 			if ($conf->global->$var1 == $bankaccount->id) $cash += $objp->amount;
-			//elseif ($conf->global->$var2 == $bankaccount->id) $bank+=$objp->amount;
-			//elseif ($conf->global->$var3 == $bankaccount->id) $cheque+=$objp->amount;
+			
+			
 			else $other += $objp->amount;
 		}
 		print "</td>\n";
@@ -263,7 +263,7 @@ if ($resql)
 
 	print "</table>";
 
-	//$cash = $amountpertype['LIQ'] + $cashcontrol->opening;
+	
 	$cash = $cash + $cashcontrol->opening;
 
 	print "<div style='text-align: right'><h2>";
@@ -273,21 +273,21 @@ if ($resql)
 	}
 	print "<br><br>";
 
-	//print '<br>';
+	
 	print $langs->trans("PaymentTypeCHQ").": ".price($cheque);
 	if ($cheque != $cashcontrol->cheque) {
 		print ' <> <span class="amountremaintopay">'.$langs->trans("Declared").': '.price($cashcontrol->cheque).'</span>';
 	}
 	print "<br><br>";
 
-	//print '<br>';
+	
 	print $langs->trans("PaymentTypeCB").": ".price($bank);
 	if ($bank != $cashcontrol->card) {
 		print ' <> <span class="amountremaintopay">'.$langs->trans("Declared").': '.price($cashcontrol->card).'</span>';
 	}
 	print "<br><br>";
 
-	// print '<br>';
+	
 	if ($other) {
 		print '<br>'.$langs->trans("Other").": ".price($other)."<br><br>";
 	}

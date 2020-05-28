@@ -59,7 +59,7 @@ class PHPExcel_Calculation_Logical {
 	 */
 	public static function TRUE() {
 		return TRUE;
-	}	//	function TRUE()
+	}	
 
 
 	/**
@@ -76,7 +76,7 @@ class PHPExcel_Calculation_Logical {
 	 */
 	public static function FALSE() {
 		return FALSE;
-	}	//	function FALSE()
+	}	
 
 
 	/**
@@ -131,7 +131,7 @@ class PHPExcel_Calculation_Logical {
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
 		return $returnValue;
-	}	//	function LOGICAL_AND()
+	}	
 
 
 	/**
@@ -186,7 +186,7 @@ class PHPExcel_Calculation_Logical {
 			return PHPExcel_Calculation_Functions::VALUE();
 		}
 		return $returnValue;
-	}	//	function LOGICAL_OR()
+	}	
 
 
 	/**
@@ -223,7 +223,7 @@ class PHPExcel_Calculation_Logical {
 		}
 
 		return !$logical;
-	}	//	function NOT()
+	}	
 
 	/**
 	 * STATEMENT_IF
@@ -263,7 +263,7 @@ class PHPExcel_Calculation_Logical {
 		$returnIfFalse	= (is_null($returnIfFalse))	? FALSE :	PHPExcel_Calculation_Functions::flattenSingleValue($returnIfFalse);
 
 		return ($condition) ? $returnIfTrue : $returnIfFalse;
-	}	//	function STATEMENT_IF()
+	}	
 
 
 	/**
@@ -283,6 +283,6 @@ class PHPExcel_Calculation_Logical {
 		$errorpart	= (is_null($errorpart))	? '' :	PHPExcel_Calculation_Functions::flattenSingleValue($errorpart);
 
 		return self::STATEMENT_IF(PHPExcel_Calculation_Functions::IS_ERROR($testValue), $errorpart, $testValue);
-	}	//	function IFERROR()
+	}	
 
-}	//	class PHPExcel_Calculation_Logical
+}	

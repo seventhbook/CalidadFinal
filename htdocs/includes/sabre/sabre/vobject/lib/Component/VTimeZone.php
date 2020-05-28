@@ -54,7 +54,7 @@ class VTimeZone extends VObject\Component {
             'TZURL'         => '?',
 
             // At least 1 STANDARD or DAYLIGHT must appear.
-            //
+            
             // The validator is not specific yet to pick this up, so these
             // rules are too loose.
             'STANDARD' => '*',

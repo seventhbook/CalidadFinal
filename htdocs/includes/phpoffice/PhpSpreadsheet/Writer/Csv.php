@@ -121,7 +121,7 @@ class Csv extends BaseWriter
         for ($row = 1; $row <= $maxRow; ++$row) {
             // Convert the row to an array...
             $cellsArray = $sheet->rangeToArray('A' . $row . ':' . $maxCol . $row, '', $this->preCalculateFormulas);
-            // ... and write to the file
+            
             $this->writeLine($fileHandle, $cellsArray[0]);
         }
 

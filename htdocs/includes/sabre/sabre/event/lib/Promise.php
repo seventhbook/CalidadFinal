@@ -254,7 +254,7 @@ class Promise {
         // We use 'nextTick' to ensure that the event handlers are always
         // triggered outside of the calling stack in which they were originally
         // passed to 'then'.
-        //
+        
         // This makes the order of execution more predictable.
         Loop\nextTick(function() use ($callBack, $subPromise) {
             if (is_callable($callBack)) {

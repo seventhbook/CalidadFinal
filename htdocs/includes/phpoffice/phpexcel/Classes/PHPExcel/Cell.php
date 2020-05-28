@@ -269,14 +269,14 @@ class PHPExcel_Cell
 	 */
 	public function getCalculatedValue($resetLog = TRUE)
 	{
-//echo 'Cell '.$this->getCoordinate().' value is a '.$this->_dataType.' with a value of '.$this->getValue().PHP_EOL;
+
 		if ($this->_dataType == PHPExcel_Cell_DataType::TYPE_FORMULA) {
 			try {
-//echo 'Cell value for '.$this->getCoordinate().' is a formula: Calculating value'.PHP_EOL;
+
 				$result = PHPExcel_Calculation::getInstance(
 					$this->getWorksheet()->getParent()
 				)->calculateCellValue($this,$resetLog);
-//echo $this->getCoordinate().' calculation result is '.$result.PHP_EOL;
+
 				//	We don't yet handle array returns
 				if (is_array($result)) {
 					while (is_array($result)) {
@@ -285,10 +285,10 @@ class PHPExcel_Cell
 				}
 			} catch ( PHPExcel_Exception $ex ) {
 				if (($ex->getMessage() === 'Unable to access External Workbook') && ($this->_calculatedValue !== NULL)) {
-//echo 'Returning fallback value of '.$this->_calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
+
 					return $this->_calculatedValue; // Fallback for calculations referencing external files.
 				}
-//echo 'Calculation Exception: '.$ex->getMessage().PHP_EOL;
+
 				$result = '#N/A';
 				throw new PHPExcel_Calculation_Exception(
 					$this->getWorksheet()->getTitle().'!'.$this->getCoordinate().' -> '.$ex->getMessage()
@@ -296,16 +296,16 @@ class PHPExcel_Cell
 			}
 
 			if ($result === '#Not Yet Implemented') {
-//echo 'Returning fallback value of '.$this->_calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
+
 				return $this->_calculatedValue; // Fallback if calculation engine does not support the formula.
 			}
-//echo 'Returning calculated value of '.$result.' for cell '.$this->getCoordinate().PHP_EOL;
+
 			return $result;
 		} elseif($this->_value instanceof PHPExcel_RichText) {
-//		echo 'Cell value for '.$this->getCoordinate().' is rich text: Returning data value of '.$this->_value.'<br />';
+
 			return $this->_value->getPlainText();
 		}
-//		echo 'Cell value for '.$this->getCoordinate().' is not a formula: Returning data value of '.$this->_value.'<br />';
+
 		return $this->_value;
 	}
 
@@ -790,7 +790,7 @@ class PHPExcel_Cell
 			return $_indexCache[$pString];
 
 		//	It's surprising how costly the strtoupper() and ord() calls actually are, so we use a lookup array rather than use ord()
-		//		and make it case insensitive to get rid of the strtoupper() as well. Because it's a static, there's no significant
+		
 		//		memory overhead either
 		static $_columnLookup = array(
 			'A' => 1, 'B' => 2, 'C' => 3, 'D' => 4, 'E' => 5, 'F' => 6, 'G' => 7, 'H' => 8, 'I' => 9, 'J' => 10, 'K' => 11, 'L' => 12, 'M' => 13,
@@ -800,7 +800,7 @@ class PHPExcel_Cell
 		);
 
 		//	We also use the language construct isset() rather than the more costly strlen() function to match the length of $pString
-		//		for improved performance
+		
 		if (isset($pString{0})) {
 			if (!isset($pString{1})) {
 				$_indexCache[$pString] = $_columnLookup[$pString];

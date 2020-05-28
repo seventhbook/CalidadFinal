@@ -27,7 +27,7 @@
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
 
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
 
 /**
  * Class Websitepage
@@ -198,7 +198,7 @@ class WebsitePage extends CommonObject
 		$sql .= " t.fk_user_creat,";
 		$sql .= " t.fk_user_modif";
 		$sql .= ' FROM '.MAIN_DB_PREFIX.$this->table_element.' as t';
-		//$sql .= ' WHERE entity IN ('.getEntity('website').')';       // entity is on website level
+		
 		$sql .= ' WHERE 1 = 1';
 		if ($id > 0)
 		{

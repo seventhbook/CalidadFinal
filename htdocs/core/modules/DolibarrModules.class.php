@@ -1239,7 +1239,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
                                   $this->db->rollback();
                         }
                     }
-                    // else box already registered into database
+                    
                 }
                 else
                 {
@@ -1434,7 +1434,7 @@ class DolibarrModules // Can not be abstract, because we need to instantiate it 
                             $this->db->rollback();
                         }
                     }
-                    // else box already registered into database
+                    
                 }
                 else
                 {

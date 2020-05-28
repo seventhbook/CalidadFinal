@@ -96,7 +96,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 			$this->_currentCellIsDirty = false;
 		}
 		$this->_currentObjectID = $this->_currentObject = null;
-	}	//	function _storeData()
+	}	
 
 
     /**
@@ -117,7 +117,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		$this->_currentCellIsDirty = true;
 
 		return $cell;
-	}	//	function addCacheData()
+	}	
 
 
     /**
@@ -153,7 +153,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 
 		//	Return requested entry
 		return $this->_currentObject;
-	}	//	function getCacheData()
+	}	
 
 
 	/**
@@ -176,7 +176,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		$cellData = $cellResult->fetchArray(SQLITE3_ASSOC);
 
 		return ($cellData === FALSE) ? FALSE : TRUE;
-	}	//	function isDataSet()
+	}	
 
 
     /**
@@ -198,7 +198,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 			throw new PHPExcel_Exception($this->_DBHandle->lastErrorMsg());
 
 		$this->_currentCellIsDirty = FALSE;
-	}	//	function deleteCacheData()
+	}	
 
 
 	/**
@@ -225,7 +225,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 			throw new PHPExcel_Exception($this->_DBHandle->lastErrorMsg());
 
 		return TRUE;
-	}	//	function moveCell()
+	}	
 
 
 	/**
@@ -249,7 +249,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		}
 
 		return $cellKeys;
-	}	//	function getCellList()
+	}	
 
 
 	/**
@@ -270,7 +270,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 
 		//	Copy the existing cell cache file
 		$this->_TableName = $tableName;
-	}	//	function copyCellCollection()
+	}	
 
 
 	/**
@@ -288,7 +288,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 
 		//	Close down the temporary cache file
 		$this->__destruct();
-	}	//	function unsetWorksheetCells()
+	}	
 
 
 	/**
@@ -313,7 +313,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 		$this->_insertQuery = $this->_DBHandle->prepare("INSERT OR REPLACE INTO kvp_".$this->_TableName." VALUES(:id,:data)");
 		$this->_updateQuery = $this->_DBHandle->prepare("UPDATE kvp_".$this->_TableName." SET id=:toId WHERE id=:fromId");
 		$this->_deleteQuery = $this->_DBHandle->prepare("DELETE FROM kvp_".$this->_TableName." WHERE id = :id");
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -325,7 +325,7 @@ class PHPExcel_CachedObjectStorage_SQLite3 extends PHPExcel_CachedObjectStorage_
 			$this->_DBHandle->close();
 		}
 		$this->_DBHandle = null;
-	}	//	function __destruct()
+	}	
 
 
 	/**

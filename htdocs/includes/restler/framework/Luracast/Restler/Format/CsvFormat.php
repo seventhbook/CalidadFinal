@@ -49,7 +49,7 @@ class CsvFormat extends Format implements iDecodeStream
         $data = Obj::toArray($data);
         Obj::$separatorChar = $char;
         if (is_array($data) && array_values($data) == $data) {
-            //if indexed array
+            
             $lines = array();
             $row = array_shift($data);
             if (array_values($row) != $row) {
@@ -100,7 +100,7 @@ class CsvFormat extends Format implements iDecodeStream
         $row = static::getRow(array_shift($lines));
 
         if (is_null(static::$haveHeaders)) {
-            //try to guess with the given data
+            
             static::$haveHeaders = !count(array_filter($row, 'is_numeric'));
         }
 
@@ -163,7 +163,7 @@ class CsvFormat extends Format implements iDecodeStream
         $keys = false;
         $row = static::getRow(stream_get_line($stream, 0, PHP_EOL));
         if (is_null(static::$haveHeaders)) {
-            //try to guess with the given data
+            
             static::$haveHeaders = !count(array_filter($row, 'is_numeric'));
         }
 

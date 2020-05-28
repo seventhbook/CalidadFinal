@@ -90,7 +90,7 @@ if ($object_status != '' && $object_status >= 0) $stats->where .= ' AND p.fk_sta
 
 // Build graphic number of object
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 
 if (!$user->rights->societe->client->voir || $user->socid)
@@ -131,7 +131,7 @@ if (! $mesg)
 
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear, 0);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 if (!$user->rights->societe->client->voir || $user->socid)
 {

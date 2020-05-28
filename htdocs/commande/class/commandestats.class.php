@@ -83,7 +83,7 @@ class CommandeStats extends Stats
 			$this->field_line='total_ht';
 			$this->where.= " c.fk_statut > 2";    // Only approved & ordered
 		}
-		//$this->where.= " AND c.fk_soc = s.rowid AND c.entity = ".$conf->entity;
+		
 		$this->where.= ' AND c.entity IN ('.getEntity('commande').')';
 
 		if (!$user->rights->societe->client->voir && !$this->socid) $this->where .= " AND c.fk_soc = sc.fk_soc AND sc.fk_user = " .$user->id;
@@ -218,7 +218,7 @@ class CommandeStats extends Stats
     	$sql.= " AND c.date_commande BETWEEN '".$this->db->idate(dol_get_first_day($year, 1, false))."' AND '".$this->db->idate(dol_get_last_day($year, 12, false))."'";
 		$sql.= " GROUP BY product.ref";
         $sql.= $this->db->order('nb', 'DESC');
-        //$sql.= $this->db->plimit(20);
+        
 
 		return $this->_getAllByProduct($sql);
 	}

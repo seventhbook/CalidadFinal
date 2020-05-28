@@ -53,10 +53,10 @@ foreach ($linkedObjectBlock as $key => $objectlink)
     	<td class="linkedcol-ref center"><?php echo $objectlink->ref_client; ?></td>
     	<td class="linkedcol-date center"><?php echo dol_print_date($objectlink->datec, 'day'); ?></td>
 	    <?php
-	    //$objectlink->socid = $objectlink->fk_soc;
-	    //$objectlink->fetch_thirdparty();
+	    
+	    
 	    ?>
-    	<td class="linkedcol-amount right"><?php //echo $objectlink->thirdparty->getNomUrl(1); ?></td>
+    	<td class="linkedcol-amount right"><?php 
     	<td class="linkedcol-statut right"><?php echo $objectlink->getLibStatut(3); ?></td>
     	<td class="linkedcol-action right">
     		<?php

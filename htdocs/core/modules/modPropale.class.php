@@ -174,12 +174,12 @@ class modPropale extends DolibarrModules
 
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;

@@ -447,7 +447,7 @@ while ($compteur < $num)
 		for ($i = 0; $i < $nbcolonnes; $i++)
 		{
 			$car = substr($ensemblereponses, $i, 1);
-			//print 'xx'.$i."-".$car.'-'.$listofanswers[$i]['format'].'zz';
+			
 
 			if (empty($listofanswers[$i]['format']) || !in_array($listofanswers[$i]['format'], array('yesno', 'foragainst')))
 			{
@@ -661,7 +661,7 @@ if ($object->allow_spy) {
 		print '<td class="somme"></td>'."\n";
 		for ($i = 0; $i < $nbcolonnes; $i++)
 		{
-			//print 'xx'.(! empty($listofanswers[$i]['format'])).'-'.$sumfor[$i].'-'.$meilleurecolonne;
+			
 			if (empty($listofanswers[$i]['format']) || !in_array($listofanswers[$i]['format'], array('yesno', 'foragainst')) && isset($sumfor[$i]) && isset($meilleurecolonne) && $sumfor[$i] == $meilleurecolonne)
 			{
 				print '<td class="somme"><img src="'.dol_buildpath('/opensurvey/img/medaille.png', 1).'"></td>'."\n";
@@ -737,11 +737,11 @@ if ($comments)
 
 	foreach ($comments as $obj) {
 		// ligne d'un usager pré-authentifié
-		//$mod_ok = (in_array($obj->name, $listofvoters));
+		
 
 		print '<div class="comment"><span class="usercomment">';
 		if (in_array($obj->usercomment, $listofvoters)) print '<a href="'.$_SERVER["PHP_SELF"].'?deletecomment='.$obj->id_comment.'&sondage='.$numsondage.'"> '.img_picto('', 'delete.png', '', false, 0, 0, '', 'nomarginleft').'</a> ';
-		//else print img_picto('', 'ellipsis-h', '', false, 0, 0, '', 'nomarginleft').' ';
+		
 		print dol_htmlentities($obj->usercomment).':</span> <span class="comment">'.dol_nl2br(dol_htmlentities($obj->comment))."</span></div>";
 	}
 }

@@ -118,7 +118,7 @@ function dolWebsiteReplacementOfLinks($website, $content, $removephppart = 0, $c
 	$nbrep = 0;
 
 	dol_syslog('dolWebsiteReplacementOfLinks start (contenttype='.$contenttype." containerid=".$containerid." USEDOLIBARREDITOR=".(defined('USEDOLIBARREDITOR')?'1':'')." USEDOLIBARRSERVER=".(defined('USEDOLIBARRSERVER')?'1':'').')', LOG_DEBUG);
-	//if ($contenttype == 'html') { print $content;exit; }
+	
 
 	// Replace php code. Note $content may come from database and does not contains body tags.
 	$replacewith='...php...';
@@ -141,10 +141,10 @@ function dolWebsiteReplacementOfLinks($website, $content, $removephppart = 0, $c
 	if ($removephppart) $replacewith='';
 	$content = preg_replace('/href="<\?php((?!\?>).)*\?>\n*/ims', $replacewith, $content);
 
-	//$replacewith='<span class="phptag">...php...</span>';
+	
 	$replacewith='...php...';
 	if ($removephppart) $replacewith='';
-	//$content = preg_replace('/<\?php((?!\?toremove>).)*\?toremove>\n*/ims', $replacewith, $content);
+	
 	/*if ($content === null) {
 		if (preg_last_error() == PREG_JIT_STACKLIMIT_ERROR) $content = 'preg_replace error (when removing php tags) PREG_JIT_STACKLIMIT_ERROR';
 	}*/
@@ -173,12 +173,12 @@ function dolWebsiteReplacementOfLinks($website, $content, $removephppart = 0, $c
 	$content = preg_replace('/url\((["\']?)medias\//', 'url(\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
 	$content = preg_replace('/data-slide-bg=(["\']?)medias\//', 'data-slide-bg=\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
 
-	// <img src="medias/...image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
-	// <img src="...image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
+	
+	
 	$content = preg_replace('/(<img[^>]*src=")\/?medias\//', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
-	// <img src="image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
+	
 	$content = preg_replace('/(<img[^>]*src=")\/?([^:\"\!]+)\"/', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=\2"', $content, -1, $nbrep);
-	// <img src="viewimage.php/modulepart=medias&file=image.png" => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png"
+	
 	$content = preg_replace('/(<img[^>]*src=")(\/?viewimage\.php)/', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php', $content, -1, $nbrep);
 
 	// action="newpage.php" => action="dolibarr/website/index.php?website=...&pageref=newpage
@@ -198,7 +198,7 @@ function dolWebsiteReplacementOfLinks($website, $content, $removephppart = 0, $c
 	$content = str_replace('!~!~!~', '', $content);
 
 	dol_syslog('dolWebsiteReplacementOfLinks end', LOG_DEBUG);
-	//if ($contenttype == 'html') { print $content;exit; }
+	
 
 	return $content;
 }
@@ -223,7 +223,7 @@ function dolWebsiteOutput($content, $contenttype = 'html', $containerid = '')
 	// Define $urlwithroot
 	$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 	$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-	//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+	
 
 	if (defined('USEDOLIBARREDITOR'))		// REPLACEMENT OF LINKS When page called from Dolibarr editor
 	{
@@ -272,12 +272,12 @@ function dolWebsiteOutput($content, $contenttype = 'html', $containerid = '')
 		$content = preg_replace('/url\((["\']?)medias\//', 'url(\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
 		$content = preg_replace('/data-slide-bg=(["\']?)medias\//', 'data-slide-bg=\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
 
-		// <img src="medias/...image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
-		// <img src="...image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
+		
+		
 		$content = preg_replace('/(<img[^>]*src=")\/?medias\//', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
-		// <img src="image.png... => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png...
+		
 		$content = preg_replace('/(<img[^>]*src=")\/?([^:\"\!]+)\"/', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=\2"', $content, -1, $nbrep);
-		// <img src="viewimage.php/modulepart=medias&file=image.png" => <img src="dolibarr/viewimage.php/modulepart=medias&file=image.png"
+		
 		$content = preg_replace('/(<img[^>]*src=")(\/?viewimage\.php)/', '\1!~!~!~'.DOL_URL_ROOT.'/viewimage.php', $content, -1, $nbrep);
 
 		// action="newpage.php" => action="dolibarr/website/index.php?website=...&pageref=newpage
@@ -294,13 +294,13 @@ function dolWebsiteOutput($content, $contenttype = 'html', $containerid = '')
 		$symlinktomediaexists=1;
 
 		// Make a change into HTML code to allow to include images from medias directory correct with direct link for virtual server
-		// <img alt="" src="/dolibarr_dev/htdocs/viewimage.php?modulepart=medias&amp;entity=1&amp;file=image/ldestailleur_166x166.jpg" style="height:166px; width:166px" />
+		
 		// become
-		// <img alt="" src="'.$urlwithroot.'/medias/image/ldestailleur_166x166.jpg" style="height:166px; width:166px" />
+		
 		$nbrep=0;
 		if (! $symlinktomediaexists)
 		{
-			// <img src="image.png... => <img src="medias/image.png...
+			
 			$content=preg_replace('/(<img[^>]*src=")\/?image\//', '\1/wrapper.php?modulepart=medias&file=medias/image/', $content, -1, $nbrep);
 			$content=preg_replace('/(url\(["\']?)\/?image\//', '\1/wrapper.php?modulepart=medias&file=medias/image/', $content, -1, $nbrep);
 
@@ -323,7 +323,7 @@ function dolWebsiteOutput($content, $contenttype = 'html', $containerid = '')
 		}
 		else
 		{
-			// <img src="image.png... => <img src="medias/image.png...
+			
 			$content=preg_replace('/(<img[^>]*src=")\/?image\//', '\1/medias/image/', $content, -1, $nbrep);
 			$content=preg_replace('/(url\(["\']?)\/?image\//', '\1/medias/image/', $content, -1, $nbrep);
 
@@ -372,9 +372,9 @@ function dolWebsiteSaveContent($content)
 	// Define $urlwithroot
 	$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT,'/').'$/i','',trim($dolibarr_main_url_root));
 	$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-	//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+	
 
-	//$content = preg_replace('/(<img.*src=")(?!(http|'.preg_quote(DOL_URL_ROOT,'/').'\/viewimage))/', '\1'.DOL_URL_ROOT.'/viewimage.php?modulepart=medias&file=', $content, -1, $nbrep);
+	
 
 	return $content;
 }
@@ -504,8 +504,8 @@ function includeContainer($containerref)
 		return;
 	}
 	// file_get_contents is not possible. We must execute code with include
-	//$content = file_get_contents($fullpathfile);
-	//print preg_replace(array('/^.*<body[^>]*>/ims','/<\/body>.*$/ims'), array('', ''), $content);*/
+	
+	
 
 	ob_start();
 	$res = include $fullpathfile; // Include because we want to execute code content
@@ -854,7 +854,7 @@ function getAllImages($object, $objectpage, $urltograb, &$tmp, &$action, $modify
 
 		//var_dump($filetosave);
 		//var_dump($filename);
-		//exit;
+		
 
 		if (empty($alreadygrabbed[$urltograbbis]))
 		{
@@ -933,7 +933,7 @@ function getAllImages($object, $objectpage, $urltograb, &$tmp, &$action, $modify
 
 		//var_dump($filetosave);
 		//var_dump($filename);
-		//exit;
+		
 
 		if (empty($alreadygrabbed[$urltograbbis]))
 		{

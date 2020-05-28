@@ -321,8 +321,8 @@ if ($search_type != '' && $search_type >= 0)
 	if ($search_type == '1') $sql .= " AND f.type = 1"; // replacement
 	if ($search_type == '2') $sql .= " AND f.type = 2"; // credit note
 	if ($search_type == '3') $sql .= " AND f.type = 3"; // deposit
-	//if ($search_type == '4') $sql.=" AND f.type = 4";  // proforma
-	//if ($search_type == '5') $sql.=" AND f.type = 5";  // situation
+	
+	
 }
 if ($search_project) $sql .= natural_search('p.ref', $search_project);
 if ($search_company) $sql .= natural_search('s.nom', $search_company);
@@ -397,7 +397,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -405,7 +405,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 }
 
 $sql .= $db->plimit($limit + 1, $offset);
-//print $sql;
+
 
 $resql = $db->query($sql);
 if ($resql)
@@ -468,7 +468,7 @@ if ($resql)
 		//'builddoc'=>$langs->trans("PDFMerge"),
 	    //'presend'=>$langs->trans("SendByMail"),
 	);
-	//if($user->rights->fournisseur->facture->creer) $arrayofmassactions['createbills']=$langs->trans("CreateInvoiceForThisCustomer");
+	
 	if ($user->rights->fournisseur->facture->supprimer) $arrayofmassactions['predelete'] = '<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 	if (in_array($massaction, array('presend', 'predelete', 'createbills'))) $arrayofmassactions = array();
 	$massactionbutton = $form->selectMassAction('', $arrayofmassactions);
@@ -624,7 +624,7 @@ if ($resql)
 			$listtype[Facture::TYPE_SITUATION] = $langs->trans("InvoiceSituation");
 		}
         */
-		//$listtype[Facture::TYPE_PROFORMA]=$langs->trans("InvoiceProForma");     // A proformat invoice is not an invoice but must be an order.
+		
 		print $form->selectarray('search_type', $listtype, $search_type, 1, 0, 0, '', 0, 0, 0, 'ASC', 'maxwidth100');
 		print '</td>';
 	}

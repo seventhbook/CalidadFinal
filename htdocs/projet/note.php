@@ -34,7 +34,7 @@ $id = GETPOST('id', 'int');
 $ref= GETPOST('ref', 'alpha');
 
 $mine = $_REQUEST['mode']=='mine' ? 1 : 0;
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 $object = new Project($db);
 
@@ -43,7 +43,7 @@ if(! empty($conf->global->PROJECT_ALLOW_COMMENT_ON_PROJECT) && method_exists($ob
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $id, 'projet&project');
 
 $permissionnote=$user->rights->projet->creer;	// Used by the include of actions_setnotes.inc.php
@@ -73,10 +73,10 @@ $now=dol_now();
 if ($id > 0 || ! empty($ref))
 {
 	// To verify role of users
-	//$userAccess = $object->restrictedProjectArea($user,'read');
+	
 	$userWrite  = $object->restrictedProjectArea($user, 'write');
-	//$userDelete = $object->restrictedProjectArea($user,'delete');
-	//print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+	
+	
 
 	$head = project_prepare_head($object);
 	dol_fiche_head($head, 'notes', $langs->trans('Project'), -1, ($object->public?'projectpub':'project'));

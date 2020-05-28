@@ -464,7 +464,7 @@ if ($id)
 			// Determine le nom du champ par rapport aux noms possibles
 			// dans les dictionnaires de donnees
 			$valuetoshow=ucfirst($fieldlist[$field]);   // Par defaut
-			$valuetoshow=$langs->trans($valuetoshow);   // try to translate
+			$valuetoshow=$langs->trans($valuetoshow);   
 			$class="left";
 			if ($fieldlist[$field]=='code')            { $valuetoshow=$langs->trans("Code"); }
 			if ($fieldlist[$field]=='libelle' || $fieldlist[$field]=='label')

@@ -26,8 +26,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class for Inventory
@@ -259,7 +259,7 @@ class Inventory extends CommonObject
 		// Clear fields
 		$object->ref = "copy_of_".$object->ref;
 		$object->title = $langs->trans("CopyOf")." ".$object->title;
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';
@@ -292,7 +292,7 @@ class Inventory extends CommonObject
 	public function fetch($id, $ref = null)
 	{
 		$result = $this->fetchCommon($id, $ref);
-		//if ($result > 0 && ! empty($this->table_element_line)) $this->fetchLines();
+		
 		return $result;
 	}
 
@@ -382,7 +382,7 @@ class Inventory extends CommonObject
 		if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
 		if ($withpicto != 2) $result .= $this->ref;
 		$result .= $linkend;
-		//if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+		
 
 		return $result;
 	}
@@ -560,7 +560,7 @@ class InventoryLine extends CommonObjectLine
 	public function fetch($id, $ref = null)
 	{
 	    $result = $this->fetchCommon($id, $ref);
-	    //if ($result > 0 && ! empty($this->table_element_line)) $this->fetchLines();
+	    
 	    return $result;
 	}
 
@@ -586,6 +586,6 @@ class InventoryLine extends CommonObjectLine
 	public function delete(User $user, $notrigger = false)
 	{
 	    return $this->deleteCommon($user, $notrigger);
-	    //return $this->deleteCommon($user, $notrigger, 1);
+	    
 	}
 }

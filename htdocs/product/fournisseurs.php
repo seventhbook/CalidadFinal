@@ -279,7 +279,7 @@ if (empty($reshook))
                             $sql .= '"' . $value . '", ';
                         }
                         $sql = substr($sql, 0, strlen($sql) - 2) . ')';
-                    } // else update the existing one
+                    } 
                     else {
                         $sql = "UPDATE " . MAIN_DB_PREFIX . "product_fournisseur_price_extrafields SET ";
                         foreach ($extrafield_values as $key => $value) {
@@ -549,7 +549,7 @@ if ($id > 0 || $ref)
 
 				print '<tr><td class="fieldrequired">'.$langs->trans("VATRateForSupplierProduct").'</td>';
 				print '<td>';
-				//print $form->load_tva('tva_tx',$object->tva_tx,$supplier,$mysoc);    // Do not use list here as it may be any vat rates for any country
+				
 				if (!empty($rowid))	// If we have a supplier, it is an update, we must show the vat of current supplier price
 				{
 				    $tmpproductsupplier = new ProductFournisseur($db);

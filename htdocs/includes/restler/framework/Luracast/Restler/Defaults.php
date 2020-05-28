@@ -19,11 +19,11 @@ use Luracast\Restler\Data\Validator;
  */
 class Defaults
 {
-    // ==================================================================
-    //
+    
+    
     // Class Mappings
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var string of name of the class that implements
@@ -50,11 +50,11 @@ class Defaults
      */
     public static $composeClass = 'Luracast\\Restler\\Compose';
 
-    // ==================================================================
-    //
+    
+    
     // Routing
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var bool should auto routing for public and protected api methods
@@ -78,11 +78,11 @@ class Defaults
      */
     public static $smartParameterParsing = true;
 
-    // ==================================================================
-    //
+    
+    
     // API Version Management
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var null|string name that is used for vendor specific media type and
@@ -106,11 +106,11 @@ class Defaults
     public static $useUrlBasedVersioning = false;
 
 
-    // ==================================================================
-    //
+    
+    
     // Request
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var string name to be used for the method parameter to capture the
@@ -138,11 +138,11 @@ class Defaults
      */
     public static $userIdentifierClass = 'Luracast\\Restler\\User';
 
-    // ==================================================================
-    //
+    
+    
     // Response
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var bool HTTP status codes are set on all responses by default.
@@ -180,11 +180,11 @@ class Defaults
     public static $accessControlAllowMethods =
         'GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD';
 
-    // ==================================================================
-    //
+    
+    
     // Header
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var array default Cache-Control template that used to set the
@@ -212,11 +212,11 @@ class Defaults
      */
     public static $headerExpires = 0;
 
-    // ==================================================================
-    //
+    
+    
     // Access Control
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var null|callable if the api methods are under access control mechanism
@@ -249,11 +249,11 @@ class Defaults
      */
     public static $throttle = 0;
 
-    // ==================================================================
-    //
+    
+    
     // Overrides for API User
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var array use 'alternativeName'=> 'actualName' to set alternative
@@ -285,11 +285,11 @@ class Defaults
         'headerExpires' => array('type' => 'int', 'min' => 0),
     );
 
-    // ==================================================================
-    //
+    
+    
     // Overrides API Developer
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * @var array determines what are the phpdoc comment tags that will
@@ -333,11 +333,11 @@ class Defaults
         'smart-auto-routing' => 'smartAutoRouting',
     );
 
-    // ==================================================================
-    //
+    
+    
     // Util
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * Use this method to set value to a static properly of Defaults when

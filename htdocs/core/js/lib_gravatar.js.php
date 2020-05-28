@@ -22,10 +22,10 @@
  * 				JQuery (providing object $) library must be loaded before this file.
  */
 
-//if (! defined('NOREQUIREUSER')) define('NOREQUIREUSER', '1');	// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIREDB'))   define('NOREQUIREDB', '1');
+
+
 if (! defined('NOREQUIRESOC'))    define('NOREQUIRESOC', '1');
-//if (! defined('NOREQUIRETRAN')) define('NOREQUIRETRAN', '1');	// Not disabled cause need to do translations
+
 if (! defined('NOCSRFCHECK'))     define('NOCSRFCHECK', 1);
 if (! defined('NOTOKENRENEWAL'))  define('NOTOKENRENEWAL', 1);
 if (! defined('NOLOGIN'))         define('NOLOGIN', 1);
@@ -46,13 +46,13 @@ else header('Cache-Control: no-cache');
 ?>
 
 function get_avatar_from_service(service, userid, size) {
-    // this return the url that redirects to the according user image/avatar/profile picture
+    
     // implemented services: google profiles, facebook, gravatar, twitter, tumblr, default fallback
-    // for google   use get_avatar_from_service('google', profile-name or user-id , size-in-px )
-    // for facebook use get_avatar_from_service('facebook', vanity url or user-id , size-in-px or size-as-word )
-    // for gravatar use get_avatar_from_service('gravatar', md5 hash email@adress, size-in-px )
-    // for twitter  use get_avatar_from_service('twitter', username, size-in-px or size-as-word )
-    // for tumblr   use get_avatar_from_service('tumblr', blog-url, size-in-px )
+    
+    
+    
+    
+    
     // everything else will go to the fallback
     // google and gravatar scale the avatar to any site, others will guided to the next best version
     var url = '';

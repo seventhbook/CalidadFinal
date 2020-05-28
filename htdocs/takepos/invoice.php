@@ -22,10 +22,10 @@
  *	\brief      Page to generate section with list of lines
  */
 
-// if (! defined('NOREQUIREUSER'))    define('NOREQUIREUSER', '1');    // Not disabled cause need to load personalized language
-// if (! defined('NOREQUIREDB'))        define('NOREQUIREDB', '1');        // Not disabled cause need to load personalized language
-// if (! defined('NOREQUIRESOC'))        define('NOREQUIRESOC', '1');
-// if (! defined('NOREQUIRETRAN'))        define('NOREQUIRETRAN', '1');
+
+
+
+
 if (!defined('NOCSRFCHECK')) { define('NOCSRFCHECK', '1'); }
 if (!defined('NOTOKENRENEWAL')) { define('NOTOKENRENEWAL', '1'); }
 if (!defined('NOREQUIREMENU')) { define('NOREQUIREMENU', '1'); }
@@ -42,8 +42,8 @@ $langs->loadLangs(array("companies", "commercial", "bills", "cashdesk", "stocks"
 $id = GETPOST('id', 'int');
 $action = GETPOST('action', 'alpha');
 $idproduct = GETPOST('idproduct', 'int');
-$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0); // $place is id of table for Bar or Restaurant
-$placeid = 0; // $placeid is ID of invoice
+$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0); 
+$placeid = 0; 
 
 if ($conf->global->TAKEPOS_PHONE_BASIC_LAYOUT == 1 && $conf->browser->layout == 'phone')
 {
@@ -272,7 +272,7 @@ if ($action == "addline")
 
 	$price = $datapriceofproduct['pu_ht'];
 	$price_ttc = $datapriceofproduct['pu_ttc'];
-	//$price_min = $datapriceofproduct['price_min'];
+	
 	$price_base_type = $datapriceofproduct['price_base_type'];
 	$tva_tx = $datapriceofproduct['tva_tx'];
 	$tva_npr = $datapriceofproduct['tva_npr'];
@@ -327,7 +327,7 @@ if ($action == "deleteline") {
 }
 
 if ($action == "delete") {
-	// $placeid is the invoice id (it differs from place) and is defined if the place is set and the ref of invoice is '(PROV-POS'.$_SESSION["takeposterminal"].'-'.$place.')', so the fetch at begining of page works.
+	
 	if ($placeid > 0) {
         $result = $invoice->fetch($placeid);
 
@@ -508,7 +508,7 @@ if ($action == "order" and $order_receipt_printer1 != "") {
     ?>
     $.ajax({
         type: "POST",
-        url: 'http://<?php print $conf->global->TAKEPOS_PRINT_SERVER; ?>:8111/print',
+        url: 'http:
         data: '<?php
         print $headerorder.$order_receipt_printer1.$footerorder; ?>'
     });
@@ -519,7 +519,7 @@ if ($action == "order" and $order_receipt_printer2 != "") {
     ?>
     $.ajax({
         type: "POST",
-        url: 'http://<?php print $conf->global->TAKEPOS_PRINT_SERVER; ?>:8111/print2',
+        url: 'http:
         data: '<?php
         print $headerorder.$order_receipt_printer2.$footerorder; ?>'
     });
@@ -538,7 +538,7 @@ if ($action == "temp" and $ticket_printer1 != "") {
     ?>
     $.ajax({
         type: "POST",
-        url: 'http://<?php print $conf->global->TAKEPOS_PRINT_SERVER; ?>:8111/print',
+        url: 'http:
         data: '<?php
         print $header_soc.$header_ticket.$body_ticket.$ticket_printer1.$ticket_total.$footer_ticket; ?>'
     });
@@ -572,7 +572,7 @@ function TakeposPrinting(id){
         receipt=data.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '');
         $.ajax({
             type: "POST",
-            url: 'http://<?php print $conf->global->TAKEPOS_PRINT_SERVER; ?>:8111/print',
+            url: 'http:
             data: receipt
         });
     });
@@ -588,7 +588,7 @@ function DolibarrTakeposPrinting(id) {
 
 <?php
 // Add again js for footer because this content is injected into takepos.php page so all init
-// for tooltip and other js beautifiers must be reexecuted too.
+
 if (!empty($conf->use_javascript_ajax))
 {
     print "\n".'<!-- Includes JS Footer of Dolibarr -->'."\n";
@@ -712,7 +712,7 @@ if ($placeid > 0)
             }
             $htmlforlines .= '" id="'.$line->id.'">';
             $htmlforlines .= '<td class="left">';
-            //if ($line->product_label) $htmlforlines.= '<b>'.$line->product_label.'</b>';
+            
             if (isset($line->product_type))
             {
                 if (empty($line->product_type)) $htmlforlines .= img_object('', 'product').' ';
@@ -739,11 +739,11 @@ if ($placeid > 0)
 				$moreinfo .= $langs->transcountry("TotalHT", $mysoc->country_code).': '.price($line->total_ht);
 				if ($line->vat_src_code) $moreinfo .= '<br>'.$langs->trans("VATCode").': '.$line->vat_src_code;
 				$moreinfo .= '<br>'.$langs->transcountry("TotalVAT", $mysoc->country_code).': '.price($line->total_vat);
-				//$moreinfo .= '<br>'.$langs->transcountry("VATRate", $mysoc->country_code).': '.price($line->);
+				
 				$moreinfo .= '<br>'.$langs->transcountry("TotalLT1", $mysoc->country_code).': '.price($line->total_localtax1);
 				$moreinfo .= '<br>'.$langs->transcountry("TotalLT2", $mysoc->country_code).': '.price($line->total_localtax2);
 				$moreinfo .= '<br>'.$langs->transcountry("TotalTTC", $mysoc->country_code).': '.price($line->total_ttc);
-				//$moreinfo .= $langs->trans("TotalHT").': '.$line->total_ht;
+				
 
 				$htmlforlines .= '</td>';
 				$htmlforlines .= '<td class="right">'.vatrate($line->remise_percent, true).'</td>';

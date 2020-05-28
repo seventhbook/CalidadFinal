@@ -63,7 +63,7 @@ $required_fields = array($conf->global->LDAP_KEY_MEMBERS_TYPES,$conf->global->LD
 $required_fields = array_unique(array_values(array_filter($required_fields, "dolValidElementType")));
 
 if (! isset($argv[1])) {
-	// print "Usage: $script_file (nocommitiferror|commitiferror) [id_group]\n";
+	
 	print "Usage:  $script_file (nocommitiferror|commitiferror) [--server=ldapserverhost] [--excludeuser=user1,user2...] [-y]\n";
 	exit(- 1);
 }

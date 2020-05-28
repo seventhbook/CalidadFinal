@@ -180,7 +180,7 @@ class Plugin extends DAV\ServerPlugin {
 
 
         // Deleted items also show up as 'responses'. They have no properties,
-        // and a single {DAV:}status element set as 'HTTP/1.1 404 Not Found'.
+        
         foreach ($deleted as $item) {
 
             $fullPath = $collectionUrl . '/' . $item;

@@ -39,7 +39,7 @@ $socid  = GETPOST('socid', 'int');
 $action = GETPOST('action', 'alpha');
 
 $mine   = GETPOST('mode')=='mine' ? 1 : 0;
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 $object = new Project($db);
 
@@ -48,7 +48,7 @@ if(! empty($conf->global->PROJECT_ALLOW_COMMENT_ON_PROJECT) && method_exists($ob
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $id, 'projet&project');
 
 $hookmanager->initHooks(array('projectcontactcard','globalcard'));
@@ -144,10 +144,10 @@ if ($id > 0 || ! empty($ref))
 {
 	if(! empty($conf->global->PROJECT_ALLOW_COMMENT_ON_PROJECT) && method_exists($object, 'fetchComments') && empty($object->comments)) $object->fetchComments();
 	// To verify role of users
-	//$userAccess = $object->restrictedProjectArea($user,'read');
+	
 	$userWrite  = $object->restrictedProjectArea($user, 'write');
-	//$userDelete = $object->restrictedProjectArea($user,'delete');
-	//print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+	
+	
 
 	$head = project_prepare_head($object);
 	dol_fiche_head($head, 'contact', $langs->trans("Project"), -1, ($object->public?'projectpub':'project'));

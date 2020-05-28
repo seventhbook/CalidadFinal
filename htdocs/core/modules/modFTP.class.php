@@ -85,10 +85,10 @@ class modFTP extends DolibarrModules
 
 		// Add here list of php file(s) stored in core/boxes that contains class to show a box.
 		// Example:
-        //$this->boxes[$r][1] = "myboxa.php";
-    	//$r++;
-        //$this->boxes[$r][1] = "myboxb.php";
-    	//$r++;
+        
+    	
+        
+    	
 
 		// Permissions
 		$this->rights_class = 'ftp';	// Permission key
@@ -110,7 +110,7 @@ class modFTP extends DolibarrModules
 
 
 		// Menus
-		//-------
+		
 		$this->menu[$r]=array('fk_menu'=>0,
 							  'type'=>'top',
 							  'titre'=>'FTP',

@@ -140,7 +140,7 @@ class ExpenseReportIk extends CoreObject
      */
     public static function getRangeByUser(User $userauthor, $fk_c_exp_tax_cat)
     {
-		$default_range = (int) $userauthor->default_range; // if not defined, then 0
+		$default_range = (int) $userauthor->default_range; 
 		$ranges = self::getRangesByCategory($fk_c_exp_tax_cat);
 
 		// substract 1 because array start from 0

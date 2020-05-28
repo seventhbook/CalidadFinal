@@ -21,10 +21,10 @@
  *	\brief      Page to edit floors and tables.
  */
 
-//if (! defined('NOREQUIREUSER'))	define('NOREQUIREUSER','1');	// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIREDB'))		define('NOREQUIREDB','1');		// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIRESOC'))		define('NOREQUIRESOC','1');
-//if (! defined('NOREQUIRETRAN'))		define('NOREQUIRETRAN','1');
+
+
+
+
 if (! defined('NOCSRFCHECK'))		define('NOCSRFCHECK', '1');
 if (! defined('NOTOKENRENEWAL'))	define('NOTOKENRENEWAL', '1');
 if (! defined('NOREQUIREMENU'))		define('NOREQUIREMENU', '1');
@@ -42,7 +42,7 @@ $action = GETPOST('action', 'alpha');
 $left = GETPOST('left', 'alpha');
 $top = GETPOST('top', 'alpha');
 
-$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0);   // $place is id of table for Ba or Restaurant
+$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0);   
 
 $newname = GETPOST('newname', 'alpha');
 $mode = GETPOST('mode', 'alpha');

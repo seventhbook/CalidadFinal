@@ -208,7 +208,7 @@ if (function_exists("imagecreatefrompng") && !$disabled)
 $parameters = array('entity' => GETPOST('entity', 'int'));
 $hookmanager->executeHooks('getPasswordForgottenPageOptions', $parameters); // Note that $action and $object may have been modified by some hooks
 if (is_array($hookmanager->resArray) && !empty($hookmanager->resArray)) {
-	$morelogincontent = $hookmanager->resArray; // (deprecated) For compatibility
+	$morelogincontent = $hookmanager->resArray; 
 } else {
 	$morelogincontent = $hookmanager->resPrint;
 }

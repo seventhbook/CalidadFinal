@@ -97,7 +97,7 @@ $output = $v->getVCard();
 
 $filename =trim(urldecode($v->getFileName()));      // "Nom prenom.vcf"
 $filenameurlencoded = dol_sanitizeFileName(urlencode($filename));
-//$filename = dol_sanitizeFileName($filename);
+
 
 
 header("Content-Disposition: attachment; filename=\"".$filename."\"");

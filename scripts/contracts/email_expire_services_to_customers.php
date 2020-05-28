@@ -96,7 +96,7 @@ if ($targettype == 'contacts')
 	$sql .= " sp.email, sp.rowid,";
 $sql .= " s.email ASC, s.rowid ASC, cd.date_fin_validite ASC"; // Order by email to allow one message per email
 
-// print $sql;
+
 $resql = $db->query($sql);
 if ($resql) {
 	$num = $db->num_rows($resql);
@@ -150,7 +150,7 @@ if ($resql) {
 				$total = 0;
 				$foundtoprocess = 0;
 				$target = (empty($obj->cfirstname) && empty($obj->clastname)) ? $obj->name : ($obj->clastname . " " . $obj->cfirstname);
-				// if (empty($newemail)) print "Warning: Customer ".$target." has no email. Notice disabled.\n";
+				
 			}
 
 			// Define line content
@@ -261,7 +261,7 @@ function envoi_mail($mode, $oldemail, $message, $total, $userlang, $oldtarget, $
 		$allmessage .= "Please, find a summary of the services contracted by you that are about to expire." . ($usehtml ? "<br>\n" : "\n") . ($usehtml ? "<br>\n" : "\n");
 	}
 	$allmessage .= $message . ($usehtml ? "<br>\n" : "\n");
-	// $allmessage.= $langs->trans("Total")." = ".price($total,0,$userlang,0,0,-1,$conf->currency).($usehtml?"<br>\n":"\n");
+	
 	if (! empty($conf->global->SCRIPT_EMAIL_EXPIRE_SERVICES_CUSTOMERS_FOOTER)) {
 		$allmessage .= $conf->global->SCRIPT_EMAIL_EXPIRE_SERVICES_CUSTOMERS_FOOTER;
 		if (dol_textishtml($conf->global->SCRIPT_EMAIL_EXPIRE_SERVICES_CUSTOMERS_FOOTER))

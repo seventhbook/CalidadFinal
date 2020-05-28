@@ -26,39 +26,39 @@
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Workbook (used as the base for this class):
-// -----------------------------------------------------------------------------------------
-// /*
-// *  Module written/ported by Xavier Noguer <xnoguer@rezebra.com>
-// *
-// *  The majority of this is _NOT_ my code.  I simply ported it from the
-// *  PERL Spreadsheet::WriteExcel module.
-// *
-// *  The author of the Spreadsheet::WriteExcel module is John McNamara
-// *  <jmcnamara@cpan.org>
-// *
-// *  I _DO_ maintain this code, and John McNamara has nothing to do with the
-// *  porting of this code to PHP.  Any questions directly related to this
-// *  class library should be directed to me.
-// *
-// *  License Information:
-// *
-// *    Spreadsheet_Excel_Writer:  A library for generating Excel Spreadsheets
-// *    Copyright (c) 2002-2003 Xavier Noguer xnoguer@rezebra.com
-// *
-// *    This library is free software; you can redistribute it and/or
-// *    modify it under the terms of the GNU Lesser General Public
-// *    License as published by the Free Software Foundation; either
-// *    version 2.1 of the License, or (at your option) any later version.
-// *
-// *    This library is distributed in the hope that it will be useful,
-// *    but WITHOUT ANY WARRANTY; without even the implied warranty of
-// *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// *    Lesser General Public License for more details.
-// *
-// *    You should have received a copy of the GNU Lesser General Public
-// *    License along with this library; if not, write to the Free Software
-// *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**
@@ -221,7 +221,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 		$this->_phpExcel = $phpExcel;
 
 		// set BIFFwriter limit for CONTINUE records
-		//		$this->_limit = 8224;
+		
 		$this->_codepage = 0x04B0;
 
 		// Add empty sheets and Build color cache
@@ -610,7 +610,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 					$colmax
 					);
 
-			// (exclusive) either repeatColumns or repeatRows
+			
 			} else if ($sheetSetup->isColumnsToRepeatAtLeftSet() || $sheetSetup->isRowsToRepeatAtTopSet()) {
 
 				// Columns to repeat
@@ -683,13 +683,13 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 						// local scope
 						$scope = $this->_phpExcel->getIndex($namedRange->getScope()) + 1;
 					} else {
-						// global scope
+						
 						$scope = 0;
 					}
 					$chunk .= $this->writeData($this->_writeDefinedNameBiff8($namedRange->getName(), $formulaData, $scope, false));
 
 				} catch(PHPExcel_Exception $e) {
-					// do nothing
+					
 				}
 			}
 		}
@@ -719,7 +719,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 				// store the DEFINEDNAME record
 				$chunk .= $this->writeData($this->_writeDefinedNameBiff8(pack('C', 0x07), $formulaData, $i + 1, true));
 
-			// (exclusive) either repeatColumns or repeatRows
+			
 			} else if ($sheetSetup->isColumnsToRepeatAtLeftSet() || $sheetSetup->isRowsToRepeatAtTopSet()) {
 
 				// Columns to repeat
@@ -772,7 +772,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 					$formulaData .= pack('Cvvvvv', 0x3B, $i, $print_rowmin, $print_rowmax, $print_colmin, $print_colmax);
 
 					if ($j > 0) {
-						$formulaData .= pack('C', 0x10); // list operator token ','
+						$formulaData .= pack('C', 0x10); 
 					}
 				}
 
@@ -1235,7 +1235,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 		$header = pack('vv',  $record, $length);
 		/* using the same country code always for simplicity */
 		$data = pack('vv', $this->_country_code, $this->_country_code);
-		//$this->_append($header . $data);
+		
 		return $this->writeData($header . $data);
 	}
 
@@ -1360,7 +1360,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 						// we close the block, store the block data
 						$recordDatas[] = $recordData;
 
-						// and start new record data block where we start writing the string
+						
 						$recordData = '';
 
 					// 2. space remaining is greater than or equal to minimum space needed
@@ -1368,7 +1368,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 						// initialize effective remaining space, for Unicode strings this may need to be reduced by 1, see below
 						$effective_space_remaining = $space_remaining;
 
-						// for uncompressed strings, sometimes effective space remaining is reduced by 1
+						
 						if ( $encoding == 1 && (strlen($string) - $space_remaining) % 2 == 1 ) {
 							--$effective_space_remaining;
 						}
@@ -1376,7 +1376,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 						// one block fininshed, store the block data
 						$recordData .= substr($string, 0, $effective_space_remaining);
 
-						$string = substr($string, $effective_space_remaining); // for next cycle in while loop
+						$string = substr($string, $effective_space_remaining); 
 						$recordDatas[] = $recordData;
 
 						// start new record data block with the repeated option flags
@@ -1387,7 +1387,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 		}
 
 		// Store the last record data block unless it is empty
-		// if there was no need for any continue records, this will be the for SST record data block itself
+		
 		if (strlen($recordData) > 0) {
 			$recordDatas[] = $recordData;
 		}

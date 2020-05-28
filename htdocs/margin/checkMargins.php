@@ -143,7 +143,7 @@ $title = $langs->trans("Margins");
 
 llxHeader('', $title);
 
-// print load_fiche_titre($text);
+
 
 $param = '';
 if (!empty($contextpage) && $contextpage != $_SERVER["PHP_SELF"]) $param .= '&contextpage='.$contextpage;
@@ -204,7 +204,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST)) {
 	dol_syslog(__FILE__, LOG_DEBUG);
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -228,8 +228,8 @@ if ($result) {
 	$moreforfilter = '';
 
 	$varpage = empty($contextpage) ? $_SERVER["PHP_SELF"] : $contextpage;
-	//$selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);	// This also change content of $arrayfields
-	//if ($massactionbutton) $selectedfields.=$form->showCheckAddButtons('checkforselect', 1);
+	
+	
 	$selectedfields = '';
 
     print '<div class="div-table-responsive">';

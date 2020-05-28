@@ -153,9 +153,9 @@ if ($action == 'delete')
 	    $db->begin();
 
     	// Remove all personalized setup when a box is activated or disabled (why removing all ? We removed only removed boxes)
-        //	$sql = "DELETE FROM ".MAIN_DB_PREFIX."user_param";
-        //	$sql.= " WHERE param LIKE 'MAIN_BOXES_%'";
-        //	$resql = $db->query($sql);
+        
+        
+        
 
 	    $sql = "DELETE FROM ".MAIN_DB_PREFIX."boxes";
 	    $sql .= " WHERE entity = ".$conf->entity;

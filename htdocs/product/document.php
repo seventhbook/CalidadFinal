@@ -141,7 +141,7 @@ if ($action == 'filemerge')
 			setEventMessages($filetomerge->error, $filetomerge->errors, 'errors');
 		}
 
-		// for each file checked add it to the product
+		
 		if (is_array($filetomerge_file_array)) {
 			foreach ($filetomerge_file_array as $filetomerge_file) {
 				$filetomerge->fk_product = $object->id;

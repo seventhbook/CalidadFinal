@@ -32,11 +32,11 @@ require_once DOL_DOCUMENT_ROOT .'/core/db/DoliDB.class.php';
  */
 class DoliDBSqlite3 extends DoliDB
 {
-    //! Database type
+    
     public $type='sqlite3';
-    //! Database label
+    
     const LABEL='Sqlite3';
-    //! Version min database
+    
     const VERSIONMIN='3.0.0';
     /** @var SQLite3Result Resultset of last query */
     private $_results;
@@ -186,7 +186,7 @@ class DoliDBSqlite3 extends DoliDB
                 $line=preg_replace('/mediumtext/i', 'text', $line);
 
                 // change not null datetime field to null valid ones
-                // (to support remapping of "zero time" to null
+                
                 $line=preg_replace('/datetime not null/i', 'datetime', $line);
                 $line=preg_replace('/datetime/i', 'timestamp', $line);
 
@@ -283,7 +283,7 @@ class DoliDBSqlite3 extends DoliDB
 
             
             $line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2', $line);
-            //print $line."\n";
+            
 
             
             $line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2, \\3', $line);
@@ -416,7 +416,7 @@ class DoliDBSqlite3 extends DoliDB
             // Ajout d'une clef étrangère à la table
             // procédure de remplacement de la table pour ajouter la contrainte
             // Exemple : ALTER TABLE llx_adherent ADD CONSTRAINT adherent_fk_soc FOREIGN KEY (fk_soc) REFERENCES llx_societe (rowid)
-            // -> CREATE TABLE ( ... ,CONSTRAINT adherent_fk_soc FOREIGN KEY (fk_soc) REFERENCES llx_societe (rowid))
+            
             $foreignFields = $reg[5];
             $foreignTable = $reg[4];
             $localfields = $reg[3];
@@ -463,7 +463,7 @@ class DoliDBSqlite3 extends DoliDB
         // Ordre SQL ne necessitant pas de connexion a une base (exemple: CREATE DATABASE)
         try {
             
-            $ret = $this->db->query($query);        // $ret is a Sqlite3Result
+            $ret = $this->db->query($query);        
             if ($ret) {
                 $ret->queryString = $query;
             }

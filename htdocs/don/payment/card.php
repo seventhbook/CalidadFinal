@@ -38,7 +38,7 @@ $action=GETPOST('action', 'aZ09');
 $confirm=GETPOST('confirm');
 if ($user->socid) $socid=$user->socid;
 // TODO Add rule to restrict access payment
-//$result = restrictedArea($user, 'facture', $id,'');
+
 
 $object = new PaymentDonation($db);
 if ($id > 0)

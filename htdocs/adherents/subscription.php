@@ -85,7 +85,7 @@ if ($rowid)
     // Define variables to know what current user can do on properties of user linked to edited member
     if ($object->user_id)
     {
-        // $user is the user editing, $object->user_id is the user's id linked to the edited member
+        
         $caneditfielduser=( (($user->id == $object->user_id) && $user->rights->user->self->creer)
         || (($user->id != $object->user_id) && $user->rights->user->user->creer) );
         $caneditpassworduser=( (($user->id == $object->user_id) && $user->rights->user->self->password)
@@ -348,7 +348,7 @@ if ($user->rights->adherent->cotisation->creer && $action == 'subscription' && !
         if (!$error)
         {
             // Send confirmation Email
-            if ($object->email && $sendalsoemail)   // $object is 'Adherent'
+            if ($object->email && $sendalsoemail)   
             {
             	$subject = '';
             	$msg = '';

@@ -267,7 +267,7 @@ class Plugin extends ServerPlugin {
                     }
                     if (!isset($child[200][$sccs]) || in_array('VEVENT', $child[200][$sccs]->getValue())) {
                         // Either there is no supported-calendar-component-set
-                        // (which is fine) or we found one that supports VEVENT.
+                        
                         return new LocalHref($child['href']);
                     }
                 }
@@ -461,7 +461,7 @@ class Plugin extends ServerPlugin {
         // We found a principal URL, now we need to find its inbox.
         // Unfortunately we may not have sufficient privileges to find this, so
         // we are temporarily turning off ACL to let this come through.
-        //
+        
         // Once we support PHP 5.5, this should be wrapped in a try..finally
         // block so we can ensure that this privilege gets added again after.
         $this->server->removeListener('propFind', [$aclPlugin, 'propFind']);
@@ -541,7 +541,7 @@ class Plugin extends ServerPlugin {
             // We received an iTip message referring to a UID that we don't
             // have in any calendars yet, and processMessage did not give us a
             // calendarobject back.
-            //
+            
             // The implication is that processMessage did not understand the
             // iTip message.
             $iTipMessage->scheduleStatus = '5.0;iTip message was not processed by the server, likely because we didn\'t understand it.';
@@ -744,7 +744,7 @@ class Plugin extends ServerPlugin {
 
         // The incoming iCalendar object must have a METHOD property, and a
         // component. The combination of both determines what type of request
-        // this is.
+        
         $componentType = null;
         foreach ($vObject->getComponents() as $component) {
             if ($component->name !== 'VTIMEZONE') {
@@ -763,7 +763,7 @@ class Plugin extends ServerPlugin {
         }
 
         // So we support one type of request:
-        //
+        
         // REQUEST with a VFREEBUSY component
 
         $acl = $this->server->getPlugin('acl');

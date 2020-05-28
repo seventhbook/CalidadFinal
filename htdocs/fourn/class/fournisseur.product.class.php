@@ -64,7 +64,7 @@ class ProductFournisseur extends Product
     public $delivery_time_days;
     public $ref_supplier; // ref supplier (can be set by get_buyprice)
     public $desc_supplier;
-    public $vatrate_supplier; // default vat rate for this supplier/qty/product (can be set by get_buyprice)
+    public $vatrate_supplier; 
 
     public $fourn_id; //supplier id
     public $fourn_qty; // quantity for price (can be set by get_buyprice)
@@ -95,7 +95,7 @@ class ProductFournisseur extends Product
     public $fk_supplier_price_expression;
 
     public $supplier_reputation; // reputation of supplier
-    public $reputations = array(); // list of available supplier reputations
+    public $reputations = array(); 
 
     // Multicurreny
     public $fourn_multicurrency_id;
@@ -236,7 +236,7 @@ class ProductFournisseur extends Product
     {
         // phpcs:enable
         global $conf, $langs;
-        //global $mysoc;
+        
 
         // Clean parameter
         if (empty($qty)) $qty = 0;

@@ -57,10 +57,10 @@ dol_syslog($script_file . " launched with arg " . join(',', $argv));
 
 // List of fields to get from LDAP
 $required_fields = array($conf->global->LDAP_KEY_USERS,$conf->global->LDAP_FIELD_FULLNAME,$conf->global->LDAP_FIELD_NAME,$conf->global->LDAP_FIELD_FIRSTNAME,$conf->global->LDAP_FIELD_LOGIN,$conf->global->LDAP_FIELD_LOGIN_SAMBA,$conf->global->LDAP_FIELD_PASSWORD,$conf->global->LDAP_FIELD_PASSWORD_CRYPTED,$conf->global->LDAP_FIELD_PHONE,$conf->global->LDAP_FIELD_FAX,$conf->global->LDAP_FIELD_MOBILE,
-	// $conf->global->LDAP_FIELD_ADDRESS,
-	// $conf->global->LDAP_FIELD_ZIP,
-	// $conf->global->LDAP_FIELD_TOWN,
-	// $conf->global->LDAP_FIELD_COUNTRY,
+	
+	
+	
+	
 	$conf->global->LDAP_FIELD_MAIL,$conf->global->LDAP_FIELD_TITLE,$conf->global->LDAP_FIELD_DESCRIPTION,$conf->global->LDAP_FIELD_SID);
 
 // Remove from required_fields all entries not configured in LDAP (empty) and duplicated
@@ -132,7 +132,7 @@ if ($resql) {
 		while ($i < $num) {
 			$obj = $db->fetch_object($resql);
 			if ($obj) {
-				// print 'Load cache for country '.strtolower($obj->label).' rowid='.$obj->rowid."\n";
+				
 				$hashlib2rowid[strtolower($obj->label)] = $obj->rowid;
 				$countries[$obj->rowid] = array('rowid' => $obj->rowid,'label' => $obj->label,'code' => $obj->code);
 			}
@@ -179,7 +179,7 @@ if ($result >= 0) {
 			$fuser->pass = $ldapuser[$conf->global->LDAP_FIELD_PASSWORD];
 			$fuser->pass_indatabase_crypted = $ldapuser[$conf->global->LDAP_FIELD_PASSWORD_CRYPTED];
 
-			// $user->societe;
+			
 			/*
 			 * $fuser->address=$ldapuser[$conf->global->LDAP_FIELD_ADDRESS];
 			 * $fuser->zip=$ldapuser[$conf->global->LDAP_FIELD_ZIP];
@@ -212,7 +212,7 @@ if ($result >= 0) {
 			 * $fuser->statut=$ldapuser[$conf->global->LDAP_FIELD_MEMBER_STATUS];
 			 * }
 			 */
-			// if ($fuser->statut > 1) $fuser->statut=1;
+			
 
 			// print_r($ldapuser);
 

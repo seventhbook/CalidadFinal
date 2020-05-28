@@ -45,7 +45,7 @@ try {
         $conf->global->MAIN_MODULE_DOLISTORE_API_SRV,
         $conf->global->MAIN_MODULE_DOLISTORE_API_KEY, $dolistore->debug_api
     );
-    //echo $url;
+    
     $request = $api->executeRequest($url, array(CURLOPT_CUSTOMREQUEST => 'GET'));
     header('Content-type:image');
     print $request['response'];

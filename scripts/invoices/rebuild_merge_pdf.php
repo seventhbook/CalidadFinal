@@ -215,7 +215,7 @@ if (in_array('bank', $filter) && in_array('nopayment', $filter)) {
 // Use $filter, $dateafterdate, datebeforedate, $paymentdateafter, $paymentdatebefore
 $result = rebuild_merge_pdf($db, $langs, $conf, $diroutputpdf, $newlangid, $filter, $dateafterdate, $datebeforedate, $paymentdateafter, $paymentdatebefore, 1, $regenerate, $option, $paymentonbankid, $thirdpartiesid, $fileprefix);
 
-// -------------------- END OF YOUR CODE --------------------
+
 
 if ($result >= 0) {
 	$error = 0;

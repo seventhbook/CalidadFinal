@@ -269,7 +269,7 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
                     $out.= img_picto($langs->trans("MoveBox", $this->box_id), 'grip_title', 'class="opacitymedium boxhandle hideonsmartphone cursormove"');
                     $out.= img_picto($langs->trans("CloseBox", $this->box_id), 'close_title', 'class="opacitymedium boxclose cursorpointer marginleftonly" rel="x:y" id="imgclose'.$this->box_id.'"');
                     $label=$head['text'];
-                    //if (! empty($head['graph'])) $label.=' ('.$langs->trans("Graph").')';
+                    
                     if (! empty($head['graph'])) $label.=' <span class="opacitymedium fa fa-bar-chart"></span>';
                     $out.= '<input type="hidden" id="boxlabelentry'.$this->box_id.'" value="'.dol_escape_htmltag($label).'">';
                     $out.= '</td></tr></table>';
@@ -303,7 +303,7 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
                             $text2withnotags=preg_replace('/<([^>]+)>/i', '', $text2);
 
                             $textnoformat=isset($contents[$i][$j]['textnoformat'])?$contents[$i][$j]['textnoformat']:'';
-                            //$out.= "xxx $textwithnotags y";
+                            
                             if (empty($contents[$i][$j]['tooltip'])) $contents[$i][$j]['tooltip']="";
                             $tooltip=isset($contents[$i][$j]['tooltip'])?$contents[$i][$j]['tooltip']:'';
 
@@ -316,7 +316,7 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
                                 if (!empty($tooltip)) {
                                     $out .= ' title="'.dol_escape_htmltag($langs->trans("Show").' '.$tooltip, 1).'" class="classfortooltip"';
                                 }
-                                //$out.= ' alt="'.$textwithnotags.'"';      // Pas de alt sur un "<a href>"
+                                
                                 $out.= isset($contents[$i][$j]['target'])?' target="'.$contents[$i][$j]['target'].'"':'';
                                 $out.= '>';
                             }
@@ -398,8 +398,8 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
 		$orders = array();
 		$i = 0;
 
-		//$dirwidget=array_merge(array('/core/boxes/'), $conf->modules_parts['widgets']);
-		$dirwidget=array('/core/boxes/');	// $conf->modules_parts['widgets'] is not required
+		
+		$dirwidget=array('/core/boxes/');	
 		if (is_array($forcedirwidget))
 		{
 			$dirwidget=$forcedirwidget;
@@ -425,7 +425,7 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
 						$part1=$reg[1];
 
 						$modName = ucfirst($reg[1]);
-						//print "file=$file"; print "modName=$modName"; exit;
+						
 						if (in_array($modName, $modules))
 						{
 							$langs->load("errors");
@@ -489,7 +489,7 @@ class ModeleBoxes // Can't be abtract as it is instantiated to build "empty" box
 				$widget[$j]['fullpath'] = $fullpath[$key];
 				$widget[$j]['relpath'] = $relpath[$key];
 				$widget[$j]['iscoreorexternal'] = $iscoreorexternal[$key];
-				//$widget[$j]['version'] = $objMod->getVersion();
+				
 				$widget[$j]['status'] = img_picto($langs->trans("Active"), 'tick');
 				if ($disabledbyname > 0 || $disabledbymodule > 1) $widget[$j]['status'] = '';
 

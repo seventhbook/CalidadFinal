@@ -65,8 +65,8 @@ class DoliStorage implements TokenStorageInterface
         $this->conf = $conf;
         $this->tokens = array();
         $this->states = array();
-        //$this->key = $key;
-        //$this->stateKey = $stateKey;
+        
+        
     }
 
     /**
@@ -116,7 +116,7 @@ class DoliStorage implements TokenStorageInterface
             $sql.= " VALUES ('".$this->db->escape($service)."', '".$this->db->escape($serializedToken)."', 1)";
             $resql = $this->db->query($sql);
         }
-        //print $sql;
+        
         
         // allow chaining
         return $this;
@@ -153,10 +153,10 @@ class DoliStorage implements TokenStorageInterface
     {
         // TODO
         // get previously saved tokens
-        //$tokens = $this->retrieveAccessToken($service);
+        
 
-        //if (is_array($tokens) && array_key_exists($service, $tokens)) {
-        //    unset($tokens[$service]);
+        
+        
 
             $sql = "DELETE FROM ".MAIN_DB_PREFIX."oauth_token";
             $sql.= " WHERE service='".$this->db->escape($service)."'";
@@ -257,13 +257,13 @@ class DoliStorage implements TokenStorageInterface
     {
         // TODO
         // get previously saved tokens
-        //$states = $this->conf->get($this->stateKey);
+        
 
         if (is_array($states) && array_key_exists($service, $states)) {
             unset($states[$service]);
 
             // Replace the stored tokens array
-            //$this->conf->set($this->stateKey, $states);
+            
         }
 
         // allow chaining
@@ -276,7 +276,7 @@ class DoliStorage implements TokenStorageInterface
     public function clearAllAuthorizationStates()
     {
         // TODO
-        //$this->conf->remove($this->stateKey);
+        
 
         // allow chaining
         return $this;

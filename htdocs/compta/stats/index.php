@@ -118,7 +118,7 @@ if ($modecompta == "CREANCES-DETTES")
 {
 	$name = $langs->trans("Turnover");
 	$calcmode = $langs->trans("CalcModeDebt");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
+	
 	$calcmode .= '<br>('.$langs->trans("SeeReportInBookkeepingMode", '<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=BOOKKEEPING">', '</a>').')';
 	$period = $form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
 	$periodlink = ($year_start ? "<a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear - 2)."&modecompta=".$modecompta."'>".img_previous()."</a> <a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear)."&modecompta=".$modecompta."'>".img_next()."</a>" : "");
@@ -126,32 +126,32 @@ if ($modecompta == "CREANCES-DETTES")
 	if (!empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description .= $langs->trans("DepositsAreNotIncluded");
 	else  $description .= $langs->trans("DepositsAreIncluded");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta == "RECETTES-DEPENSES")
 {
 	$name = $langs->trans("TurnoverCollected");
 	$calcmode = $langs->trans("CalcModeEngagement");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=CREANCES-DETTES">','</a>').')';
-	//$calcmode.='<br>('.$langs->trans("SeeReportInBookkeepingMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=BOOKKEEPINGCOLLECTED">','</a>').')';
+	
+	
 	$period = $form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
 	$periodlink = ($year_start ? "<a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear - 2)."&modecompta=".$modecompta."'>".img_previous()."</a> <a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear)."&modecompta=".$modecompta."'>".img_next()."</a>" : "");
 	$description = $langs->trans("RulesCAIn");
 	$description .= $langs->trans("DepositsAreIncluded");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta == "BOOKKEEPING")
 {
 	$name = $langs->trans("Turnover");
 	$calcmode = $langs->trans("CalcModeBookkeeping");
 	$calcmode .= '<br>('.$langs->trans("SeeReportInDueDebtMode", '<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=CREANCES-DETTES">', '</a>').')';
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
+	
 	$period = $form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
 	$periodlink = ($year_start ? "<a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear - 2)."&modecompta=".$modecompta."'>".img_previous()."</a> <a href='".$_SERVER["PHP_SELF"]."?year=".($year_start + $nbofyear)."&modecompta=".$modecompta."'>".img_next()."</a>" : "");
 	$description = $langs->trans("RulesCATotalSaleJournal");
 	$builddate = dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 
 $moreparam = array();
@@ -201,7 +201,7 @@ elseif ($modecompta == "BOOKKEEPING")
 $sql .= " GROUP BY dm";
 $sql .= " ORDER BY dm";
 // TODO Add a filter on $date_start and $date_end to reduce quantity on data
-//print $sql;
+
 
 $minyearmonth = $maxyearmonth = 0;
 
@@ -370,7 +370,7 @@ for ($mois = 1 + $nb_mois_decalage; $mois <= 12 + $nb_mois_decalage; $mois++)
 				if ($cum[$caseprev] && $cum[$case])
 				{
 					$percent = (round(($cum[$case] - $cum[$caseprev]) / $cum[$caseprev], 4) * 100);
-					//print "X $cum[$case] - $cum[$caseprev] - $cum[$caseprev] - $percent X";
+					
 					print '<td class="borderrightlight right">'.($percent >= 0 ? "+$percent" : "$percent").'%</td>';
 				}
 				if ($cum[$caseprev] && !$cum[$case])
@@ -379,7 +379,7 @@ for ($mois = 1 + $nb_mois_decalage; $mois <= 12 + $nb_mois_decalage; $mois++)
 				}
 				if (!$cum[$caseprev] && $cum[$case])
 				{
-					//print '<td class="right">+Inf%</td>';
+					
 					print '<td class="borderrightlight right">-</td>';
 				}
 				if (isset($cum[$caseprev]) && !$cum[$caseprev] && !$cum[$case])
@@ -441,7 +441,7 @@ for ($mois = 1 + $nb_mois_decalage; $mois <= 12 + $nb_mois_decalage; $mois++)
  if ($cum[$caseprev] && $cum[$case])
  {
  $percent=(round(($cum[$case]-$cum[$caseprev])/$cum[$caseprev],4)*100);
- //print "X $cum[$case] - $cum[$caseprev] - $cum[$caseprev] - $percent X";
+ 
  print '<td class="right">'.($percent>=0?"+$percent":"$percent").'%</td>';
 
  }

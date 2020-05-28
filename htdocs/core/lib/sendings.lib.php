@@ -101,8 +101,8 @@ function shipping_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'delivery');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'delivery', 'remove');
@@ -142,8 +142,8 @@ function delivery_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   				to remove a tab
+	
+	
 	// complete_head_from_modules  use $object->id for this link so we temporary change it
 
 	$savObjectId = $object->id;
@@ -213,13 +213,13 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 	$sql = "SELECT obj.rowid, obj.fk_product, obj.label, obj.description, obj.product_type as fk_product_type, obj.qty as qty_asked, obj.date_start, obj.date_end,";
 	$sql.= " ed.rowid as edrowid, ed.qty as qty_shipped, ed.fk_expedition as expedition_id, ed.fk_origin_line, ed.fk_entrepot as warehouse_id,";
 	$sql.= " e.rowid as sendingid, e.ref as exp_ref, e.date_creation, e.date_delivery, e.date_expedition,";
-	//if ($conf->livraison_bon->enabled) $sql .= " l.rowid as livraison_id, l.ref as livraison_ref, l.date_delivery, ld.qty as qty_received,";
+	
 	$sql.= ' p.label as product_label, p.ref, p.fk_product_type, p.rowid as prodid, p.tobatch as product_tobatch,';
 	$sql.= ' p.description as product_desc';
 	$sql.= " FROM ".MAIN_DB_PREFIX."expeditiondet as ed";
 	$sql.= ", ".MAIN_DB_PREFIX."expedition as e";
 	$sql.= ", ".MAIN_DB_PREFIX.$origin."det as obj";
-	//if ($conf->livraison_bon->enabled) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."livraison as l ON l.fk_expedition = e.rowid LEFT JOIN ".MAIN_DB_PREFIX."livraisondet as ld ON ld.fk_livraison = l.rowid  AND obj.rowid = ld.fk_origin_line";
+	
 	$sql.= " LEFT JOIN ".MAIN_DB_PREFIX."product as p ON obj.fk_product = p.rowid";
 	//TODO Add link to expeditiondet_batch
 	$sql.= " WHERE e.entity IN (".getEntity('expedition').")";
@@ -244,7 +244,7 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 
 			print '<table class="liste centpercent">';
 			print '<tr class="liste_titre">';
-			//print '<td class="left">'.$langs->trans("QtyOrdered").'</td>';
+			
 			print '<td>'.$langs->trans("SendingSheet").'</td>';
 			print '<td>'.$langs->trans("Description").'</td>';
 			print '<td class="center">'.$langs->trans("DateCreation").'</td>';
@@ -263,7 +263,7 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 			if (! empty($conf->livraison_bon->enabled))
 			{
 				print '<td>'.$langs->trans("DeliveryOrder").'</td>';
-				//print '<td class="center">'.$langs->trans("QtyReceived").'</td>';
+				
 				print '<td class="right">'.$langs->trans("DeliveryDate").'</td>';
 			}
 			print "</tr>\n";
@@ -351,7 +351,7 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 					print "</td>\n";
 				}
 
-				//print '<td class="center">'.$objp->qty_asked.'</td>';
+				
 
 				// Date creation
 				print '<td class="nowrap center">'.dol_print_date($db->jdate($objp->date_creation), 'day').'</td>';
@@ -419,22 +419,22 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 
 					if (! empty($receiving))
 					{
-						// $expedition->fk_origin_line = id of det line of order
-						// $receiving->fk_origin_line = id of det line of order
-						// $receiving->origin may be 'shipping'
-						// $receiving->origin_id may be id of shipping
+						
+						
+						
+						
 
 						// Ref
 						print '<td>';
 						print $receiving->getNomUrl($db);
-						//print '<a href="'.DOL_URL_ROOT.'/livraison/card.php?id='.$livraison_id.'">'.img_object($langs->trans("ShowReceiving"),'sending').' '.$objp->livraison_ref.'<a>';
+						
 						print '</td>';
 						// Qty received
-						//print '<td class="center">';
+						
 						// TODO No solution for the moment to link a line det of receipt with a line det of shipping,
 						// so no way to know the qty received for this line of shipping.
-						//print $langs->trans("FeatureNotYetAvailable");
-						//print '</td>';
+						
+						
 						// Date shipping real
 						print '<td class="right">';
 						print dol_print_date($receiving->date_delivery, 'day');
@@ -442,7 +442,7 @@ function show_list_sending_receive($origin, $origin_id, $filter = '')
 					}
 					else
 					{
-						//print '<td>&nbsp;</td>';
+						
 						print '<td>&nbsp;</td>';
 						print '<td>&nbsp;</td>';
 					}

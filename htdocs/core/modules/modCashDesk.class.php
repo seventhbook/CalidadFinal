@@ -71,7 +71,7 @@ class modCashDesk extends DolibarrModules
 		$this->need_dolibarr_version = array(2,4);	// Minimum version of Dolibarr required by module
 		$this->langfiles = array("cashdesk");
 		$this->warnings_activation = array('FR'=>'WarningNoteModulePOSForFrenchLaw');                     // Warning to show when we activate module. array('always'='text') or array('FR'='text')
-		//$this->warnings_activation_ext = array('FR'=>'WarningInstallationMayBecomeNotCompliantWithLaw');  // Warning to show when we activate an external module. array('always'='text') or array('FR'='text')
+		
 
 		// Constants
 		$this->const = array();
@@ -110,7 +110,7 @@ class modCashDesk extends DolibarrModules
 		$r++;
 
 		// This is to declare a Left Menu entry:
-		// $this->menu[$r]=array(	'fk_menu'=>'r=0',		// Use r=value where r is index key used for the top menu entry
+		
 		//							'type'=>'left',			// This is a Left menu entry
 		//							'titre'=>'Title left menu',
 		//							'mainmenu'=>'mymodule',
@@ -120,7 +120,7 @@ class modCashDesk extends DolibarrModules
 		//							'perms'=>'$user->rights->mymodule->level1->level2',		// Use 'perms'=>'1' if you want your menu with no permission rules
 		//							'target'=>'',
 		//							'user'=>2);				// 0=Menu for internal users, 1=external users, 2=both
-		// $r++;
+		
     }
 
 

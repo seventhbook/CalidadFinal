@@ -80,7 +80,7 @@ print '<form id="frmThirdparty" class="formulaire1 inline-block" method="post" a
 print $langs->trans("CashDeskThirdParty").': ';
 print $form->select_company($_SESSION["CASHDESK_ID_THIRDPARTY"], 'CASHDESK_ID_THIRDPARTY', '(s.client IN (1,3) AND s.status = 1)', '', 0, 0, null, 0, 'valignmiddle inline-block');
 print '<input class="button bouton_change_thirdparty inline-block valignmiddle" type="submit" id="bouton_change_thirdparty" value="'.$langs->trans("Modify").'">';
-//print $companyLink;
+
 print '<br>';
 print '</form>';
 /*print $langs->trans("CashDeskBankCash").': '.$bankcashLink.'<br>';

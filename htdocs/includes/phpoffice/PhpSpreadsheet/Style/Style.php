@@ -385,7 +385,7 @@ class Style extends Supervisor
                     break;
             }
 
-            // clone each of the affected styles, apply the style array, and add the new styles to the workbook
+            
             $workbook = $this->getActiveSheet()->getParent();
             foreach ($oldXfIndexes as $oldXfIndex => $dummy) {
                 $style = $workbook->getCellXfByIndex($oldXfIndex);

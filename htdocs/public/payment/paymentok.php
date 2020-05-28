@@ -152,7 +152,7 @@ $logo=$mysoc->logo;
 $paramlogo='ONLINE_PAYMENT_LOGO_'.$suffix;
 if (! empty($conf->global->$paramlogo)) $logosmall=$conf->global->$paramlogo;
 elseif (! empty($conf->global->ONLINE_PAYMENT_LOGO)) $logosmall=$conf->global->ONLINE_PAYMENT_LOGO;
-//print '<!-- Show logo (logosmall='.$logosmall.' logo='.$logo.') -->'."\n";
+
 // Define urllogo
 $urllogo='';
 if (! empty($logosmall) && is_readable($conf->mycompany->dir_output.'/logos/thumbs/'.$logosmall))
@@ -765,7 +765,7 @@ if ($ispaymentok)
 		// Define $urlwithroot
 		$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 		$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-		//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+		
 
 		// Define link to login card
 		$appli=constant('DOL_APPLICATION_TITLE');
@@ -795,7 +795,7 @@ if ($ispaymentok)
 			$url=$urlwithroot."/compta/facture/card.php?id=".$tmptag['INV'];
 			$content.='<strong>'.$companylangs->trans("Payment")."</strong><br><br>\n";
 			$content.=$companylangs->trans("InvoiceId").': <strong>'.$tmptag['INV']."</strong><br>\n";
-			//$content.=$companylangs->trans("ThirdPartyId").': '.$tmptag['CUS']."<br>\n";
+			
 			$content.=$companylangs->trans("Link").': <a href="'.$url.'">'.$url.'</a>'."<br>\n";
 		}
 		else
@@ -805,7 +805,7 @@ if ($ispaymentok)
 		$content.=$companylangs->transnoentities("PostActionAfterPayment").' : ';
 		if ($ispostactionok > 0)
 		{
-			//$topic.=' ('.$companylangs->transnoentitiesnoconv("Status").' '.$companylangs->transnoentitiesnoconv("OK").')';
+			
 			$content.='<font color="green">'.$companylangs->transnoentitiesnoconv("OK").'</font>';
 		}
 		elseif ($ispostactionok == 0)
@@ -904,7 +904,7 @@ else
         // Define $urlwithroot
         $urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
         $urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-        //$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+        
 
         // Define link to login card
         $appli=constant('DOL_APPLICATION_TITLE');

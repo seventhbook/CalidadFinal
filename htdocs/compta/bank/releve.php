@@ -294,7 +294,7 @@ if (empty($numref))
 
 			if (!isset($objp->numr))
 			{
-				//
+				
 			}
 			else
 			{
@@ -375,9 +375,9 @@ else
 	$mesprevnext = '';
 	$mesprevnext .= '<div class="pagination"><ul>';
 	$mesprevnext .= '<li class="pagination"><a class="paginationnext" href="'.$_SERVER["PHP_SELF"].'?rel=prev&amp;num='.$numref.'&amp;ve='.$ve.'&amp;account='.$object->id.'"><i class="fa fa-chevron-left" title="'.dol_escape_htmltag($langs->trans("Previous")).'"></i></a></li>';
-	//$mesprevnext.=' &nbsp; ';
+	
 	$mesprevnext .= '<li class="pagination"><span class="active">'.$langs->trans("AccountStatement")." ".$numref.'</span></li>';
-	//$mesprevnext.=' &nbsp; ';
+	
     $mesprevnext .= '<li class="pagination"><a class="paginationnext" href="'.$_SERVER["PHP_SELF"].'?rel=next&amp;num='.$numref.'&amp;ve='.$ve.'&amp;account='.$object->id.'"><i class="fa fa-chevron-right" title="'.dol_escape_htmltag($langs->trans("Next")).'"></i></a></li>';
     $mesprevnext .= '</ul></div>';
 

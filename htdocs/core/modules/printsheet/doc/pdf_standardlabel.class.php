@@ -43,7 +43,7 @@ class pdf_standardlabel extends CommonStickerGenerator
 	 */
     public function addSticker(&$pdf, $outputlangs, $param)
     {
-		// use this method in future refactoring
+		
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -106,7 +106,7 @@ class pdf_standardlabel extends CommonStickerGenerator
 		if ($this->code == "CARD")
 		{
 			$this->Tformat=$this->_Avery_Labels["CARD"];
-			//$this->_Pointille($pdf,$_PosX,$_PosY,$_PosX+$this->_Width,$_PosY+$this->_Height,0.3,25);
+			
 			$this->_Croix($pdf, $_PosX, $_PosY, $_PosX+$this->_Width, $_PosY+$this->_Height, 0.1, 10);
 		}
 
@@ -159,7 +159,7 @@ class pdf_standardlabel extends CommonStickerGenerator
 				$pdf->MultiCell($this->_Width, $this->_Line_Height, $outputlangs->convToOutputCharset($textleft), 0, 'L');
 			}
 		}
-		elseif ($textleft!='' && $textright!='')	//
+		elseif ($textleft!='' && $textright!='')	
 		{
 			if ($textleft == '%LOGO%' || $textleft == '%PHOTO%')
 			{
@@ -207,7 +207,7 @@ class pdf_standardlabel extends CommonStickerGenerator
 			$pdf->SetXY($_PosX, $_PosY+$this->_Height-$this->_Line_Height-1);
 			$pdf->Cell($this->_Width, $this->_Line_Height, $outputlangs->convToOutputCharset($footer), 0, 1, 'C');
 		}
-		//print "$_PosY+$this->_Height-$this->_Line_Height-1<br>\n";
+		
 
 		$this->_COUNTY++;
 
@@ -319,8 +319,8 @@ class pdf_standardlabel extends CommonStickerGenerator
 			$this->Add_PDF_label($pdf, $val['textleft'], $val['textheader'], $val['textfooter'], $langs, $val['textright'], $val['photo']);
 		}
 
-		//$pdf->SetXY(10, 295);
-		//$pdf->Cell($this->_Width, $this->_Line_Height, 'XXX',0,1,'C');
+		
+		
 
 
 		// Output to file
@@ -336,7 +336,7 @@ class pdf_standardlabel extends CommonStickerGenerator
 		if (! empty($conf->global->MAIN_DISABLE_FORCE_SAVEAS)) $attachment=false;
 		$type=dol_mimetype($filename);
 
-		//if ($encoding)   header('Content-Encoding: '.$encoding);
+		
 		if ($type)		 header('Content-Type: '.$type);
 		if ($attachment) header('Content-Disposition: attachment; filename="'.$filename.'"');
 		else header('Content-Disposition: inline; filename="'.$filename.'"');

@@ -20,14 +20,14 @@
  */
 
 // Following var can be set
-// $permissiontoadd = permission or not to add a file (can use also $permission) and permission or not to edit file name or crop file (can use also $permtoedit)
-// $modulepart  = for download
-// $param       = param to add to download links
-// $moreparam   = param to add to download link for the form_attach_new_file function
-// $upload_dir
-// $object
-// $filearray
-// $savingdocmask = dol_sanitizeFileName($object->ref).'-__file__';
+
+
+
+
+
+
+
+
 
 // Protection to avoid direct call of template
 if (empty($langs) || !is_object($langs))
@@ -75,7 +75,7 @@ $formfile=new FormFile($db);
 
 // We define var to enable the feature to add prefix of uploaded files.
 // Caller of this include can make
-// $savingdocmask=dol_sanitizeFileName($object->ref).'-__file__';
+
 if (!isset($savingdocmask) || !empty($conf->global->MAIN_DISABLE_SUGGEST_REF_AS_PREFIX)) {
 	$savingdocmask='';
 	if (empty($conf->global->MAIN_DISABLE_SUGGEST_REF_AS_PREFIX)) {

@@ -1,34 +1,34 @@
 <?php
-//============================================================+
+
 // File name   : pdf417.php
 // Version     : 1.0.005
 // Begin       : 2010-06-03
 // Last Update : 2014-04-25
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2010-2013  Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the GNU Lesser General Public License
 // along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // DESCRIPTION :
-//
+
 // Class to create PDF417 barcode arrays for TCPDF class.
 // PDF417 (ISO/IEC 15438:2006) is a 2-dimensional stacked bar code created by Symbol Technologies in 1991.
 // It is one of the most popular 2D codes because of its ability to be read with slightly modified handheld laser or linear CCD scanners.
@@ -40,8 +40,8 @@
 //		Bidirectional Decoding:      Yes
 //		Error Correction Characters: 2 - 512
 //		Maximum Data Characters:     1850 text, 2710 digits, 1108 bytes
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -61,7 +61,7 @@ if (!defined('PDF417DEFS')) {
 	 */
 	define('PDF417DEFS', true);
 
-	// -----------------------------------------------------
+	
 
 	/**
 	 * Row height respect X dimension of single module
@@ -126,10 +126,10 @@ class PDF417 {
 	 * @protected
 	 */
 	protected $textlatch = array(
-		'01' => array(27), '02' => array(28), '03' => array(28,25), //
-		'10' => array(28,28), '12' => array(28), '13' => array(28,25), //
-		'20' => array(28), '21' => array(27), '23' => array(25), //
-		'30' => array(29), '31' => array(29,27), '32' => array(29,28) //
+		'01' => array(27), '02' => array(28), '03' => array(28,25), 
+		'10' => array(28,28), '12' => array(28), '13' => array(28,25), 
+		'20' => array(28), '21' => array(27), '23' => array(25), 
+		'30' => array(29), '31' => array(29,27), '32' => array(29,28) 
 	);
 
 	/**
@@ -536,7 +536,7 @@ class PDF417 {
 		}
 		// get the input sequence array
 		$sequence = $this->getInputSequences($code);
-		$codewords = array(); // array of code-words
+		$codewords = array(); 
 		foreach($sequence as $seq) {
 			$cw = $this->getCompaction($seq[0], $seq[1], true);
 			$codewords = array_merge($codewords, $cw);
@@ -660,7 +660,7 @@ class PDF417 {
 		}
 		$k = 0; // codeword index
 		$cid = 0; // initial cluster
-		// for each row
+		
 		for ($r = 0; $r < $rows; ++$r) {
 			// row start code
 			$row = $pstart;
@@ -680,7 +680,7 @@ class PDF417 {
 			}
 			// left row indicator
 			$row .= sprintf('%17b', $this->clusters[$cid][$L]);
-			// for each column
+			
 			for ($c = 0; $c < $cols; ++$c) {
 				$row .= sprintf('%17b', $this->clusters[$cid][$codewords[$k]]);
 				++$k;
@@ -786,7 +786,7 @@ class PDF417 {
 		$eclmaxid = ($eclsize - 1);
 		// initialize array of error correction codewords
 		$ecw = array_fill(0, $eclsize, 0);
-		// for each data codeword
+		
 		foreach($cw as $k => $d) {
 			$t1 = ($d + $ecw[$eclmaxid]) % 929;
 			for ($j = $eclmaxid; $j > 0; --$j) {
@@ -814,7 +814,7 @@ class PDF417 {
 	 * @protected
 	 */
 	protected function getInputSequences($code) {
-		$sequence_array = array(); // array to be returned
+		$sequence_array = array(); 
 		$numseq = array();
 		// get numeric sequences
 		preg_match_all('/([0-9]{13,44})/', $code, $numseq, PREG_OFFSET_CAPTURE);
@@ -871,11 +871,11 @@ class PDF417 {
 	 * @protected
 	 */
 	protected function getCompaction($mode, $code, $addmode=true) {
-		$cw = array(); // array of codewords to return
+		$cw = array(); 
 		switch($mode) {
 			case 900: { // Text Compaction mode latch
-				$submode = 0; // default Alpha sub-mode
-				$txtarr = array(); // array of characters and sub-mode switching characters
+				$submode = 0; 
+				$txtarr = array(); 
 				$codelen = strlen($code);
 				for ($i = 0; $i < $codelen; ++$i) {
 					$chval = ord($code{$i});
@@ -887,7 +887,7 @@ class PDF417 {
 						for ($s = 0; $s < 4; ++$s) {
 							// search new sub-mode
 							if (($s != $submode) AND (($k = array_search($chval, $this->textsubmodes[$s])) !== false)) {
-								// $s is the new submode
+								
 								if (((($i + 1) == $codelen) OR ((($i + 1) < $codelen) AND (array_search(ord($code{($i + 1)}), $this->textsubmodes[$submode]) !== false))) AND (($s == 3) OR (($s == 0) AND ($submode == 1)))) {
 									// shift (temporary change only for this char)
 									if ($s == 3) {
@@ -991,6 +991,6 @@ class PDF417 {
 
 } // end PDF417 class
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

@@ -867,7 +867,7 @@ if (!empty($id) && $action != 'edit')
 	// Show online payment link
 	$useonlinepayment = (! empty($conf->paypal->enabled) || ! empty($conf->stripe->enabled) || ! empty($conf->paybox->enabled));
 
-	if ($useonlinepayment) //$object->statut != Facture::STATUS_DRAFT &&
+	if ($useonlinepayment) 
 	{
 		print '<br><!-- Link to pay -->'."\n";
 		require_once DOL_DOCUMENT_ROOT.'/core/lib/payments.lib.php';

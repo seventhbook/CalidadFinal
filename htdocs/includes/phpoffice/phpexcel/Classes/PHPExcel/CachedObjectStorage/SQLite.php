@@ -65,7 +65,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			$this->_currentCellIsDirty = false;
 		}
 		$this->_currentObjectID = $this->_currentObject = null;
-	}	//	function _storeData()
+	}	
 
 
     /**
@@ -86,7 +86,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 		$this->_currentCellIsDirty = true;
 
 		return $cell;
-	}	//	function addCacheData()
+	}	
 
 
     /**
@@ -121,7 +121,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 
 		//	Return requested entry
 		return $this->_currentObject;
-	}	//	function getCacheData()
+	}	
 
 
 	/**
@@ -145,7 +145,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			return false;
 		}
 		return true;
-	}	//	function isDataSet()
+	}	
 
 
     /**
@@ -166,7 +166,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			throw new PHPExcel_Exception(sqlite_error_string($this->_DBHandle->lastError()));
 
 		$this->_currentCellIsDirty = false;
-	}	//	function deleteCacheData()
+	}	
 
 
 	/**
@@ -192,7 +192,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			throw new PHPExcel_Exception($this->_DBHandle->lastErrorMsg());
 
 		return TRUE;
-	}	//	function moveCell()
+	}	
 
 
 	/**
@@ -216,7 +216,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 		}
 
 		return $cellKeys;
-	}	//	function getCellList()
+	}	
 
 
 	/**
@@ -237,7 +237,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 
 		//	Copy the existing cell cache file
 		$this->_TableName = $tableName;
-	}	//	function copyCellCollection()
+	}	
 
 
 	/**
@@ -255,7 +255,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 
 		//	Close down the temporary cache file
 		$this->__destruct();
-	}	//	function unsetWorksheetCells()
+	}	
 
 
 	/**
@@ -275,7 +275,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			if (!$this->_DBHandle->queryExec('CREATE TABLE kvp_'.$this->_TableName.' (id VARCHAR(12) PRIMARY KEY, value BLOB)'))
 				throw new PHPExcel_Exception(sqlite_error_string($this->_DBHandle->lastError()));
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -286,7 +286,7 @@ class PHPExcel_CachedObjectStorage_SQLite extends PHPExcel_CachedObjectStorage_C
 			$this->_DBHandle->queryExec('DROP TABLE kvp_'.$this->_TableName);
 		}
 		$this->_DBHandle = null;
-	}	//	function __destruct()
+	}	
 
 
 	/**

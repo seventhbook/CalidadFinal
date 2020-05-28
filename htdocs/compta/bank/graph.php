@@ -68,7 +68,7 @@ if (GETPOST("month")) $month = sprintf("%02d", GETPOST("month"));
 
 
 $object = new Account($db);
-if ($_GET["account"] && !preg_match('/,/', $_GET["account"]))	// if for a particular account and not a list
+if ($_GET["account"] && !preg_match('/,/', $_GET["account"]))	
 {
 	$result = $object->fetch(GETPOST("account", "int"));
 }
@@ -380,7 +380,7 @@ else
 		$px2->setBgColor('onglet');
 		$px2->setBgColorGrid(array(255, 255, 255));
 		$px2->SetHideXGrid(true);
-		//$px2->SetHorizTickIncrement(30.41);	// 30.41 jours/mois en moyenne
+		
 		$px2->draw($file, $fileurl);
 
 		$show2 = $px2->show();

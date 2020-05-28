@@ -210,8 +210,8 @@ class mailing_thirdparties extends MailingTargets
 	{
 		// CHANGE THIS: Optionnal
 
-		//var $statssql=array();
-		//$this->statssql[0]="SELECT field1 as label, count(distinct(email)) as nb FROM mytable WHERE email IS NOT NULL";
+		
+		
 		return array();
 	}
 
@@ -257,11 +257,11 @@ class mailing_thirdparties extends MailingTargets
 		$sql = "SELECT rowid, label, type, visible";
 		$sql.= " FROM ".MAIN_DB_PREFIX."categorie";
 		$sql.= " WHERE type in (1,2)";	// We keep only categories for suppliers and customers/prospects
-		// $sql.= " AND visible > 0";	// We ignore the property visible because third party's categories does not use this property (only products categories use it).
+		
 		$sql.= " AND entity = ".$conf->entity;
 		$sql.= " ORDER BY label";
 
-		//print $sql;
+		
 		$resql = $this->db->query($sql);
 		if ($resql)
 		{

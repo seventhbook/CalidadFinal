@@ -38,11 +38,11 @@ $confirm	= GETPOST('confirm', 'alpha');
 $id			= GETPOST('id', 'int');
 $ref		= GETPOST('ref', 'alpha');
 $mine 		= (GETPOST('mode', 'alpha') == 'mine' ? 1 : 0);
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result=restrictedArea($user, 'projet', $id, 'projet&project');
 
 $object = new Project($db);
@@ -95,10 +95,10 @@ if ($object->id > 0)
 	$upload_dir = $conf->projet->dir_output.'/'.dol_sanitizeFileName($object->ref);
 
     // To verify role of users
-    //$userAccess = $object->restrictedProjectArea($user,'read');
+    
     $userWrite  = $object->restrictedProjectArea($user, 'write');
-    //$userDelete = $object->restrictedProjectArea($user,'delete');
-    //print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+    
+    
 
 	$head = project_prepare_head($object);
 	dol_fiche_head($head, 'document', $langs->trans("Project"), -1, ($object->public?'projectpub':'project'));

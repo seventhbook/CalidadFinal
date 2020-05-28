@@ -234,7 +234,7 @@ abstract class Node
         $iterator->offsetSet($offset, $value);
 
     // @codeCoverageIgnoreStart
-    //
+    
     // This method always throws an exception, so we ignore the closing
     // brace
     }
@@ -255,7 +255,7 @@ abstract class Node
         $iterator->offsetUnset($offset);
 
     // @codeCoverageIgnoreStart
-    //
+    
     // This method always throws an exception, so we ignore the closing
     // brace
     }

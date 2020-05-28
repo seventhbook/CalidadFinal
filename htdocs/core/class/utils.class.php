@@ -242,7 +242,7 @@ class Utils
 
 
 			$outputfile = $outputdir.'/'.$file;
-			// for compression format, we add extension
+			
 			$compression = $compression ? $compression : 'none';
 			if ($compression == 'gz') $outputfile .= '.gz';
 			if ($compression == 'bz') $outputfile .= '.bz2';
@@ -382,7 +382,7 @@ class Utils
 			{
 				// Get 2048 first chars of error message.
 				$errormsg = fgets($handle, 2048);
-				//$ok=0;$errormsg='';  To force error
+				
 
 				// Close file
 				if ($compression == 'none') fclose($handle);
@@ -418,7 +418,7 @@ class Utils
 		{
 			$outputfile = $outputdir.'/'.$file;
 			$outputfiletemp = $outputfile.'-TMP.sql';
-			// for compression format, we add extension
+			
 			$compression = $compression ? $compression : 'none';
 			if ($compression == 'gz') $outputfile .= '.gz';
 			if ($compression == 'bz') $outputfile .= '.bz2';
@@ -446,7 +446,7 @@ class Utils
 			$cmddump = $conf->global->SYSTEMTOOLS_POSTGRESQLDUMP;
 
 			$outputfile = $outputdir.'/'.$file;
-			// for compression format, we add extension
+			
 			$compression = $compression ? $compression : 'none';
 			if ($compression == 'gz') $outputfile .= '.gz';
 			if ($compression == 'bz') $outputfile .= '.bz2';
@@ -459,7 +459,7 @@ class Utils
 			if (preg_match("/\s/", $command)) $command = escapeshellarg($command); // If there is spaces, we add quotes on command to be sure $command is only a program and not a program+parameters
 
 			
-			//$param="-F c";
+			
 			$param = "-F p";
 			$param .= " --no-tablespaces --inserts -h ".$dolibarr_main_db_host;
 			$param .= " -U ".$dolibarr_main_db_user;
@@ -477,9 +477,9 @@ class Utils
 				if (GETPOST("showcolumns"))	     $param .= " -c";
 			}
 			$param .= ' -f "'.$outputfile.'"';
-			//if ($compression == 'none')
+			
 			if ($compression == 'gz')   $param .= ' -Z 9';
-			//if ($compression == 'bz')
+			
 			$paramcrypted = $param;
 			$paramclear = $param;
 			/*if (! empty($dolibarr_main_db_pass))
@@ -1021,12 +1021,12 @@ class Utils
 							// IMPORTANT: if the field is NULL we set it NULL
 							$row[$j] = 'NULL';
 						} elseif (is_string($row[$j]) && $row[$j] == '') {
-							// if it's an empty string, we set it as an empty string
+							
 							$row[$j] = "''";
 						} elseif (is_numeric($row[$j]) && !strcmp($row[$j], $row[$j] + 0)) { // test if it's a numeric type and the numeric version ($nb+0) == string version (eg: if we have 01, it's probably not a number but rather a string, else it would not have any leading 0)
-							// if it's a number, we return it as-is
+							
 				
-						} else { // else for all other cases we escape the value and put quotes around
+						} else { 
 							$row[$j] = addslashes($row[$j]);
 							$row[$j] = preg_replace("#\n#", "\\n", $row[$j]);
 							$row[$j] = "'".$row[$j]."'";

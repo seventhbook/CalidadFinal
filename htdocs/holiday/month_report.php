@@ -37,7 +37,7 @@ $langs->loadLangs(array("holiday"));
 $socid = 0;
 if ($user->socid > 0)	// Protection if external user
 {
-	//$socid = $user->socid;
+	
 	accessforbidden();
 }
 $result = restrictedArea($user, 'holiday', $id, '');

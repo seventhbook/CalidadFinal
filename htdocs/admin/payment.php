@@ -177,7 +177,7 @@ foreach ($dirmodels as $reldir)
                             print '</td>'."\n";
 
                             print '<td class="center">';
-                            //print "> ".$conf->global->PAYMENT_ADDON." - ".$file;
+                            
                             if ($conf->global->PAYMENT_ADDON == $file || $conf->global->PAYMENT_ADDON.'.php' == $file)
                             {
                                 print img_picto($langs->trans("Activated"), 'switch_on');

@@ -78,7 +78,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 			$this->_currentCellIsDirty = false;
 		}
 		$this->_currentObjectID = $this->_currentObject = null;
-	}	//	function _storeData()
+	}	
 
 
     /**
@@ -100,7 +100,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 		$this->_currentCellIsDirty = true;
 
 		return $cell;
-	}	//	function addCacheData()
+	}	
 
 
 	/**
@@ -126,7 +126,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 			return true;
 		}
 		return false;
-	}	//	function isDataSet()
+	}	
 
 
 	/**
@@ -163,7 +163,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 
 		//	Return requested entry
 		return $this->_currentObject;
-	}	//	function getCacheData()
+	}	
 
 
 	/**
@@ -192,7 +192,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 
 		//	Delete the entry from our cell address array
 		parent::deleteCacheData($pCoord);
-	}	//	function deleteCacheData()
+	}	
 
 
 	/**
@@ -222,7 +222,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 			}
 		}
 		$this->_cachePrefix = $newCachePrefix;
-	}	//	function copyCellCollection()
+	}	
 
 
 	/**
@@ -243,7 +243,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 
 		//	detach ourself from the worksheet, so that it can then delete this object successfully
 		$this->_parent = null;
-	}	//	function unsetWorksheetCells()
+	}	
 
 
 	/**
@@ -270,7 +270,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 
 			parent::__construct($parent);
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -293,7 +293,7 @@ class PHPExcel_CachedObjectStorage_Memcache extends PHPExcel_CachedObjectStorage
 		foreach($cacheList as $cellID) {
 			$this->_memcache->delete($this->_cachePrefix.$cellID.'.cache');
 		}
-	}	//	function __destruct()
+	}	
 
 	/**
 	 * Identify whether the caching method is currently available

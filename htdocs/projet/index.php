@@ -45,7 +45,7 @@ if ($search_project_user == $user->id) $mine = 1;
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (!$user->rights->projet->lire) accessforbidden();
 
 $sortfield = GETPOST("sortfield", 'alpha');
@@ -70,7 +70,7 @@ $projectsListId = $projectstatic->getProjectsAuthorizedForUser($user, $projectse
 llxHeader("", $langs->trans("Projects"), "EN:Module_Projects|FR:Module_Projets|ES:M&oacute;dulo_Proyectos");
 
 $title=$langs->trans("ProjectsArea");
-//if ($mine) $title=$langs->trans("MyProjectsArea");
+
 
 
 // Title for combo list see all projects

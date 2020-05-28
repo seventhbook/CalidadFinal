@@ -171,7 +171,7 @@ class ReferenceHelper
                 $pSheet->setBreak($key, Worksheet::BREAK_NONE);
             } else {
                 //    Otherwise update any affected breaks by inserting a new break at the appropriate point
-                //        and removing the old affected break
+                
                 $newReference = $this->updateCellReference($key, $pBefore, $pNumCols, $pNumRows);
                 if ($key != $newReference) {
                     $pSheet->setBreak($newReference, $value)

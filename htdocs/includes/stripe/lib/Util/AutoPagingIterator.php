@@ -38,7 +38,7 @@ class AutoPagingIterator implements \Iterator
         $item = next($this->page->data);
         if ($item === false) {
             // If we've run out of data on the current page, try to fetch another one
-            // and increase the offset the new page would start at
+            
             $this->pageOffset += count($this->page->data);
             if ($this->page['has_more']) {
                 $this->params = array_merge(

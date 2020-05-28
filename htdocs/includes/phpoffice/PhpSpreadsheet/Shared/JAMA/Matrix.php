@@ -218,7 +218,7 @@ class Matrix
                     return $R;
 
                     break;
-                //$R = array of row indices; $C = array of column indices
+                
                 case 'array,array':
                     list($RL, $CL) = $args;
                     if (count($RL) > 0) {
@@ -264,7 +264,7 @@ class Matrix
                     return $R;
 
                     break;
-                //$RL = array of row indices
+                
                 case 'array,integer,integer':
                     list($RL, $j0, $jF) = $args;
                     if (count($RL) > 0) {
@@ -319,7 +319,7 @@ class Matrix
         throw new CalculationException(self::ARGUMENT_TYPE_EXCEPTION);
     }
 
-    //    function checkMatrixDimensions()
+    
 
     /**
      * set.
@@ -338,7 +338,7 @@ class Matrix
         $this->A[$i][$j] = $c;
     }
 
-    //    function set()
+    
 
     /**
      * identity.
@@ -441,7 +441,7 @@ class Matrix
         return $R;
     }
 
-    //    function transpose()
+    
 
     /**
      * trace.

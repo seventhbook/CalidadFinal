@@ -49,7 +49,7 @@ $version='1.14';
 $error=0;
 
 
-// -------------------- START OF YOUR CODE HERE --------------------
+
 @set_time_limit(0);
 print "***** ".$script_file." (".$version.") *****\n";
 $dir=DOL_DOCUMENT_ROOT."/langs";
@@ -94,7 +94,7 @@ $langParser = new autoTranslator($argv[2], $argv[1], $dir, $file, $argv[3]);
 
 print "***** Finished *****\n";
 
-// -------------------- END OF YOUR CODE --------------------
+
 
 $db->close();
 

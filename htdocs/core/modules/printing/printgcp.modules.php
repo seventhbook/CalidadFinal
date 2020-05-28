@@ -81,7 +81,7 @@ class printing_printgcp extends PrintingDriver
         // Define $urlwithroot
         $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
         $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-        //$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+        
 
         $this->db = $db;
 
@@ -96,7 +96,7 @@ class printing_printgcp extends PrintingDriver
             $this->google_secret = $conf->global->OAUTH_GOOGLE_SECRET;
             // Token storage
             $storage = new DoliStorage($this->db, $this->conf);
-            //$storage->clearToken($this->OAUTH_SERVICENAME_GOOGLE);
+            
             // Setup the credentials for the requests
             $credentials = new Credentials(
                 $this->google_id,
@@ -177,7 +177,7 @@ class printing_printgcp extends PrintingDriver
                 $this->conf[] = array('varname'=>'PRINTGCP_INFO', 'info'=>'GoogleAuthNotConfigured', 'type'=>'info');
             }
         }
-        // do not display submit button
+        
         $this->conf[] = array('enabled'=>0, 'type'=>'submit');
     }
 
@@ -203,7 +203,7 @@ class printing_printgcp extends PrintingDriver
         $html .= '<td class="center">'.$langs->trans("Select").'</td>';
         $html .= '</tr>'."\n";
         $list = $this->getlistAvailablePrinters();
-        //$html.= '<td><pre>'.print_r($list,true).'</pre></td>';
+        
         foreach ($list['available'] as $printer_det)
         {
             $html .= '<tr class="oddeven">';
@@ -281,7 +281,7 @@ class printing_printgcp extends PrintingDriver
             $this->errors[] = $e->getMessage();
             print '<pre>'.print_r($e->getMessage(), true).'</pre>';
         }
-        //print '<tr><td><pre>'.print_r($response, true).'</pre></td></tr>';
+        
         $responsedata = json_decode($response, true);
         $printers = $responsedata['printers'];
         // Check if we have printers?
@@ -415,7 +415,7 @@ class printing_printgcp extends PrintingDriver
 
         // Send a request with api
         $response = json_decode($apiService->request(self::PRINT_URL, 'POST', $post_fields), true);
-        //print '<tr><td><pre>'.print_r($response, true).'</pre></td></tr>';
+        
         return array('status' => $response['success'], 'errorcode' => $response['errorCode'], 'errormessage' => $response['message']);
     }
 
@@ -478,7 +478,7 @@ class printing_printgcp extends PrintingDriver
             $error++;
         }
         $responsedata = json_decode($response, true);
-        //$html .= '<pre>'.print_r($responsedata,true).'</pre>';
+        
         $html .= '<div class="div-table-responsive">';
         $html .= '<table width="100%" class="noborder">';
         $html .= '<tr class="liste_titre">';
@@ -492,7 +492,7 @@ class printing_printgcp extends PrintingDriver
         $html .= '</tr>'."\n";
 
         $jobs = $responsedata['jobs'];
-        //$html .= '<pre>'.print_r($jobs['0'],true).'</pre>';
+        
         if (is_array($jobs)) {
             foreach ($jobs as $value) {
                 $html .= '<tr class="oddeven">';

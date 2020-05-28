@@ -111,7 +111,7 @@ class FormTicket
         $this->withfromsocid = 0;
         $this->withfromcontactid = 0;
         
-        //$this->withtitletopic='';
+        
         $this->withnotifytiersatcreate = 0;
         $this->withusercreate = 1;
         $this->withcreatereadonly = 1;
@@ -747,7 +747,7 @@ class FormTicket
     	$upload_dir = $vardir.'/temp/'; // TODO Add $keytoavoidconflict in upload_dir path
     	if (is_dir($upload_dir)) dol_delete_dir_recursive($upload_dir);
 
-    	$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+    	$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
     	unset($_SESSION["listofpaths".$keytoavoidconflict]);
     	unset($_SESSION["listofnames".$keytoavoidconflict]);
     	unset($_SESSION["listofmimes".$keytoavoidconflict]);
@@ -805,7 +805,7 @@ class FormTicket
         $listofpaths = array();
         $listofnames = array();
         $listofmimes = array();
-        $keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+        $keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 
         if (GETPOST('mode', 'alpha') == 'init' || (GETPOST('modelmailselected', 'alpha') && GETPOST('modelmailselected', 'alpha') != '-1'))
         {
@@ -1009,7 +1009,7 @@ class FormTicket
         }
 
         print '<tr><td class="tdtop"><label for="message"><span class="fieldrequired">'.$langs->trans("Message").'</span></label></td><td>';
-        //$toolbarname = 'dolibarr_details';
+        
         $toolbarname = 'dolibarr_notes';
         include_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
         $doleditor = new DolEditor('message', $defaultmessage, '100%', 200, $toolbarname, '', false, true, $conf->global->FCKEDITOR_ENABLE_SOCIETE, ROWS_5, 70);

@@ -231,7 +231,7 @@ if ($action == 'dispatch' && $user->rights->fournisseur->commande->receptionner)
 		{
 			$pos++;
 
-			// $numline=$reg[2] + 1; // line of product
+			
 			$numline = $pos;
 			$prod = "product_".$reg[1].'_'.$reg[2];
 			$qty = "qty_".$reg[1].'_'.$reg[2];
@@ -291,7 +291,7 @@ if ($action == 'dispatch' && $user->rights->fournisseur->commande->receptionner)
 			$pos++;
 
 			// eat-by date dispatch
-			// $numline=$reg[2] + 1; // line of product
+			
 			$numline = $pos;
 			$prod = 'product_batch_'.$reg[1].'_'.$reg[2];
 			$qty = 'qty_'.$reg[1].'_'.$reg[2];
@@ -608,7 +608,7 @@ if ($id > 0 || !empty($ref)) {
 
 			$nbfreeproduct = 0; // Nb of lins of free products/services
 			$nbproduct = 0; // Nb of predefined product lines to dispatch (already done or not) if SUPPLIER_ORDER_DISABLE_STOCK_DISPATCH_WHEN_TOTAL_REACHED is off (default)
-									// or nb of line that remain to dispatch if SUPPLIER_ORDER_DISABLE_STOCK_DISPATCH_WHEN_TOTAL_REACHED is on.
+									
 
 			while ($i < $num) {
 				$objp = $db->fetch_object($resql);
@@ -830,7 +830,7 @@ if ($id > 0 || !empty($ref)) {
 
                         // Enable hooks to append additional columns
                         $parameters = array(
-                            'is_information_row' => false // this is a dispatch form row
+                            'is_information_row' => false 
                         );
                         $reshook = $hookmanager->executeHooks(
                             'printFieldListValue',
@@ -868,7 +868,7 @@ if ($id > 0 || !empty($ref)) {
                     print $langs->trans("Comment").' : ';
                     print '<input type="text" class="minwidth400" maxlength="128" name="comment" value="';
                     print $_POST["comment"] ? GETPOST("comment") : $langs->trans("DispatchSupplierOrder", $object->ref);
-                    // print ' / '.$object->ref_supplier; // Not yet available
+                    
                     print '" class="flat"><br>';
 
                     print '<input type="checkbox" checked="checked" name="closeopenorder"> '.$checkboxlabel;

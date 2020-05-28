@@ -10,7 +10,7 @@ if (empty($conf) || !is_object($conf))
 if (empty($extrafieldsobjectkey) && is_object($object)) $extrafieldsobjectkey = $object->table_element;
 
 // Loop to show all columns of extrafields from $obj, $extrafields and $db
-if (!empty($extrafieldsobjectkey))	// $extrafieldsobject is the $object->table_element like 'societe', 'socpeople', ...
+if (!empty($extrafieldsobjectkey))	
 {
 	if (is_array($extrafields->attributes[$extrafieldsobjectkey]['label']) && count($extrafields->attributes[$extrafieldsobjectkey]['label']))
 	{
@@ -43,7 +43,7 @@ if (!empty($extrafieldsobjectkey))	// $extrafieldsobject is the $object->table_e
 				// If field is a computed field, we make computation to get value
 				if ($extrafields->attributes[$extrafieldsobjectkey]['computed'][$key])
 				{
-					//global $obj, $object;
+					
 					//var_dump($extrafields->attributes[$extrafieldsobjectkey]['computed'][$key]);
 					//var_dump($obj);
 					//var_dump($extrafields->attributes[$extrafieldsobjectkey]['computed'][$key]);

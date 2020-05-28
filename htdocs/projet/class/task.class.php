@@ -1775,7 +1775,7 @@ class Task extends CommonObject
 				}
 			}
 
-			// clone affectation
+			
 			if ($clone_affectation)
 			{
 				$origin_task = new Task($this->db);
@@ -1854,7 +1854,7 @@ class Task extends CommonObject
         // phpcs:enable
 		global $langs;
 
-		// list of Statut of the task
+		
 		$this->statuts[0] = 'Draft';
 		$this->statuts[1] = 'ToDo';
 		$this->statuts[2] = 'Running';

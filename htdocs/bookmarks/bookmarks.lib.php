@@ -76,7 +76,7 @@ function printBookmarksList()
 		// Url to go on create new bookmark page
 		if (! empty($user->rights->bookmark->creer))
 		{
-	    	//$urltoadd=DOL_URL_ROOT.'/bookmarks/card.php?action=create&amp;urlsource='.urlencode($url).'&amp;url='.urlencode($url);
+	    	
 		    $urltoadd=DOL_URL_ROOT.'/bookmarks/card.php?action=create&amp;url='.urlencode($url);
 	    	$ret.= '<option value="newbookmark" class="optionblue" rel="'.dol_escape_htmltag($urltoadd).'"';
 	    	$ret.= ' data-html="'.dol_escape_htmltag(img_picto('', 'bookmark').' '.$langs->trans('AddThisPageToBookmarks').'...').'">'.dol_escape_htmltag($langs->trans('AddThisPageToBookmarks').'...').'</option>';
@@ -94,7 +94,7 @@ function printBookmarksList()
 				while ($i < $conf->global->BOOKMARKS_SHOW_IN_MENU && $obj = $db->fetch_object($resql))
 				{
 				    $ret.='<option name="bookmark'.$obj->rowid.'" value="'.$obj->rowid.'" '.($obj->target == 1?' target="_blank"':'').' rel="'.dol_escape_htmltag($obj->url).'"';
-				    //$ret.=' data-html="'.dol_escape_htmltag('<span class="fa fa-print"></span> '.$obj->title).'"';
+				    
 				    $ret.='>';
 				    $ret.=dol_escape_htmltag($obj->title);
 				    $ret.='</option>';
@@ -199,7 +199,7 @@ function printDropdownBookmarksList()
     $newbtn = '';
     if (! empty($user->rights->bookmark->creer))
     {
-        //$urltoadd=DOL_URL_ROOT.'/bookmarks/card.php?action=create&amp;urlsource='.urlencode($url).'&amp;url='.urlencode($url);
+        
         $urltoadd=DOL_URL_ROOT.'/bookmarks/card.php?action=create&amp;url='.urlencode($url);
         $newbtn.= '<a class="top-menu-dropdown-link" title="'.$langs->trans('AddThisPageToBookmarks').'" href="'.dol_escape_htmltag($urltoadd).'" >';
         $newbtn.= img_picto('', 'bookmark').' '.dol_escape_htmltag($langs->trans('AddThisPageToBookmarks')).'</a>';

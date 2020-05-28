@@ -140,7 +140,7 @@ class InfoBox
                         $relsourcefile = "/core/boxes/".$boxname.".php";
                     }
 
-                    //print $obj->box_id.'-'.$boxname.'-'.$relsourcefile.'<br>';
+                    
 
                     // TODO PERF Do not make "dol_include_once" here, nor "new" later. This means, we must store a 'depends' field to store modules list, then
                     // the "enabled" condition for modules forbidden for external users and the depends condition can be done.
@@ -149,7 +149,7 @@ class InfoBox
                     if (class_exists($boxname))
                     {
                         $box = new $boxname($db, $obj->note); // Constructor may set properties like box->enabled. obj->note is note into box def, not user params.
-                        //$box=new stdClass();
+                        
 
                         // box properties
                         $box->rowid = (empty($obj->rowid) ? '' : $obj->rowid);
@@ -180,12 +180,12 @@ class InfoBox
                             foreach ($box->depends as $moduleelem)
                             {
                                 $arrayelem = explode('|', $moduleelem);
-                                $tmpenabled = 0; // $tmpenabled is used for the '|' test (OR)
+                                $tmpenabled = 0; 
                                 foreach ($arrayelem as $module)
                                 {
                                     $tmpmodule = preg_replace('/@[^@]+/', '', $module);
                                     if (!empty($conf->$tmpmodule->enabled)) $tmpenabled = 1;
-                                    //print $boxname.'-'.$module.'-module enabled='.(empty($conf->$tmpmodule->enabled)?0:1).'<br>';
+                                    
                                 }
                                 if (empty($tmpenabled))	// We found at least one module required that is disabled
                                 {
@@ -194,9 +194,9 @@ class InfoBox
                                 }
                             }
                         }
-                        //print '=>'.$boxname.'-enabled='.$enabled.'<br>';
+                        
 
-                        //print 'xx module='.$module.' enabled='.$enabled;
+                        
                         if ($enabled && ($includehidden || empty($box->hidden))) $boxes[] = $box;
                         else unset($box);
                     }

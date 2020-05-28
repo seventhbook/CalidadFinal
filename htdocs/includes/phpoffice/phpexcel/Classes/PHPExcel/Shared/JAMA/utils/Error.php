@@ -13,7 +13,7 @@ define('JAMALANG', 'EN');
 
 //All errors may be defined by the following format:
 //define('ExceptionName', N);
-//$error['lang'][ExceptionName] = 'Error message';
+
 $error = array();
 
 /*

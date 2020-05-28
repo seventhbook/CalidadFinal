@@ -138,7 +138,7 @@ if (! empty($conf->multicompany->enabled) && ! empty($conf->stripeconnect->enabl
 	if (! $res) die("Include of main fails");
 }
 
-// list of  action
+
 $stripe=new Stripe($db);
 
 // Subject

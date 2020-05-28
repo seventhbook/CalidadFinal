@@ -137,7 +137,7 @@ class ActionsAdherentCardDefault extends ActionsAdherentCardCommon
         // phpcs:enable
 		global $conf, $langs;
 
-        //$this->getFieldList();
+        
 
         $this->list_datas = array();
 	}

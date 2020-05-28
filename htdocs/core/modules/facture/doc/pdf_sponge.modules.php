@@ -181,7 +181,7 @@ class pdf_sponge extends ModelePDFFactures
 		$this->posxdesc=$this->marge_gauche+1; // used for notes ans other stuff
 
 
-		$this->tabTitleHeight = 5; // default height
+		$this->tabTitleHeight = 5; 
 
 		//  Use new system for position of columns, view  $this->defineColumnField()
 
@@ -244,7 +244,7 @@ class pdf_sponge extends ModelePDFFactures
 	            }
 	            else
 	            {
-	                $pdir[0] = get_exdir(0, 0, 0, 0, $objphoto, 'product') . dol_sanitizeFileName($objphoto->ref).'/';				// default
+	                $pdir[0] = get_exdir(0, 0, 0, 0, $objphoto, 'product') . dol_sanitizeFileName($objphoto->ref).'/';				
 	                $pdir[1] = get_exdir($objphoto->id, 2, 0, 0, $objphoto, 'product') . $objphoto->id ."/photos/";	// alternative
 	            }
 
@@ -601,7 +601,7 @@ class pdf_sponge extends ModelePDFFactures
     	                if (!empty($this->cols['photo']) && isset($imglinesize['width']) && isset($imglinesize['height']))
     	                {
     	                    $pdf->Image($realpatharray[$i], $this->getColumnContentXStart('photo'), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300);	// Use 300 dpi
-    	                    // $pdf->Image does not increase value return by getY, so we save it manually
+    	                    
     	                    $posYAfterImage=$curY+$imglinesize['height'];
     	                }
 	                }
@@ -755,8 +755,8 @@ class pdf_sponge extends ModelePDFFactures
 	                $vatrate=(string) $object->lines[$i]->tva_tx;
 
 	                // Retrieve type from database for backward compatibility with old records
-	                if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') // if tax type not defined
-	                    && (! empty($localtax1_rate) || ! empty($localtax2_rate))) // and there is local tax
+	                if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') 
+	                    && (! empty($localtax1_rate) || ! empty($localtax2_rate))) 
 	                {
 	                    $localtaxtmp_array=getLocalTaxesFromRate($vatrate, 0, $object->thirdparty, $mysoc);
 	                    $localtax1_type = $localtaxtmp_array[0];
@@ -1583,7 +1583,7 @@ class pdf_sponge extends ModelePDFFactures
 				        $displayWarranty = true;
 				    }
 				    elseif(!empty($object->lines) && $object->status == Facture::STATUS_DRAFT ){
-				        // $object->situation_final need validation to be done so this test is need for draft
+				        
 				        $displayWarranty = true;
 				        foreach($object->lines as $i => $line){
 				            if($line->product_type < 2 && $line->situation_percent < 100){
@@ -2071,13 +2071,13 @@ class pdf_sponge extends ModelePDFFactures
 	        'padding' => array(0.5, 0, 0.5, 0), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
 	    );
 
-	    $rank = 0; // do not use negative rank
+	    $rank = 0; 
 	    $this->cols['desc'] = array(
 	        'rank' => $rank,
 	        'width' => false, // only for desc
 	        'status' => true,
 	        'title' => array(
-	            'textkey' => 'Designation', // use lang key is usefull in somme case with module
+	            'textkey' => 'Designation', 
 	            'align' => 'L',
 	            // 'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
 	            // 'label' => ' ', // the final label

@@ -351,7 +351,7 @@ class Hook extends CommonObject
         // Clear fields
         $object->ref = "copy_of_".$object->ref;
         $object->title = $langs->trans("CopyOf")." ".$object->title;
-        // ...
+        
         // Clear extrafields that are unique
         if (is_array($object->array_options) && count($object->array_options) > 0) {
             $extrafields->fetch_name_optionals_label($this->element);
@@ -360,7 +360,7 @@ class Hook extends CommonObject
                 if (! empty($extrafields->attributes[$this->element]['unique'][$shortkey])) {
                     
                     // var_dump($clonedObj->array_options[$key]);
-                    // exit;
+                    
                     unset($object->array_options[$key]);
                 }
             }
@@ -715,7 +715,7 @@ class Hook extends CommonObject
      *
      * @return  int         0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
      */
-    //public function doScheduledJob($param1, $param2, ...)
+    
     public function doScheduledJob()
     {
         global $conf, $langs;
@@ -732,7 +732,7 @@ class Hook extends CommonObject
 
         $this->db->begin();
 
-        // ...
+        
 
         $this->db->commit();
 

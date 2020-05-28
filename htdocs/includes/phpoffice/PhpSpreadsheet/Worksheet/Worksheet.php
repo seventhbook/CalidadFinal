@@ -2751,12 +2751,12 @@ class Worksheet implements IComparable
      */
     public function getHyperlink($pCellCoordinate)
     {
-        // return hyperlink if we already have one
+        
         if (isset($this->hyperlinkCollection[$pCellCoordinate])) {
             return $this->hyperlinkCollection[$pCellCoordinate];
         }
 
-        // else create hyperlink
+        
         $this->hyperlinkCollection[$pCellCoordinate] = new Hyperlink();
 
         return $this->hyperlinkCollection[$pCellCoordinate];
@@ -2812,12 +2812,12 @@ class Worksheet implements IComparable
      */
     public function getDataValidation($pCellCoordinate)
     {
-        // return data validation if we already have one
+        
         if (isset($this->dataValidationCollection[$pCellCoordinate])) {
             return $this->dataValidationCollection[$pCellCoordinate];
         }
 
-        // else create data validation
+        
         $this->dataValidationCollection[$pCellCoordinate] = new DataValidation();
 
         return $this->dataValidationCollection[$pCellCoordinate];
@@ -3007,7 +3007,7 @@ class Worksheet implements IComparable
             $pValue = str_replace(' ', '_', $pValue); //Excel does this automatically without flinching, we are doing the same
 
             // Syntax check
-            // throw an exception if not valid
+            
             self::checkSheetCodeName($pValue);
 
             // We use the same code that setTitle to find a valid codeName else not using a space (Excel don't like) but a '_'

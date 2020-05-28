@@ -2,7 +2,7 @@
 
 use DebugBar\DataCollector\MessagesCollector;
 use Psr\Log\LogLevel;
-//use ReflectionClass;
+
 
 /**
  * DolLogsCollector class
@@ -106,7 +106,7 @@ class DolLogsCollector extends MessagesCollector
 	 */
 	public function getLogsFile()
 	{
-	    // default dolibarr log file
+	    
 	    $path = DOL_DATA_ROOT . '/dolibarr.log';
 	    return $path;
 	}

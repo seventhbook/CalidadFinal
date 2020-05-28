@@ -342,7 +342,7 @@ class Paiement extends CommonObject
                                 {
                                     if (! empty($conf->prelevement->enabled))
                                     {
-                                        // if not, $mustwait++;      // This will disable automatic close on invoice to allow to process
+                                        
 
                                     }
                                 }
@@ -360,7 +360,7 @@ class Paiement extends CommonObject
 
                             if (!in_array($invoice->type, $affected_types)) dol_syslog("Invoice ".$facid." is not a standard, nor replacement invoice, nor credit note, nor deposit invoice, nor situation invoice. We do nothing more.");
                             elseif ($remaintopay) dol_syslog("Remain to pay for invoice ".$facid." not null. We do nothing more.");
-                            //else if ($mustwait) dol_syslog("There is ".$mustwait." differed payment to process, we do nothing more.");
+                            
                             else
                             {
                                 // If invoice is a down payment, we also convert down payment to discount
@@ -636,7 +636,7 @@ class Paiement extends CommonObject
 			$totalamount=$this->amount;
             if (empty($totalamount)) $totalamount=$this->total; // For backward compatibility
 
-            // if dolibarr currency != bank currency then we received an amount in customer currency (currently I don't manage the case : my currency is USD, the customer currency is EUR and he paid me in GBP. Seems no sense for me)
+            
             if (!empty($conf->multicurrency->enabled) && $conf->currency != $acc->currency_code) $totalamount=$this->multicurrency_amount;
 
             if ($mode == 'payment_supplier') $totalamount=-$totalamount;
@@ -683,7 +683,7 @@ class Paiement extends CommonObject
                 }
 
                 // Add link 'company' in bank_url between invoice and bank transaction (for each invoice concerned by payment)
-                //if (! $error && $label != '(WithdrawalPayment)')
+                
                 if (! $error)
                 {
                     $linkaddedforthirdparty=array();

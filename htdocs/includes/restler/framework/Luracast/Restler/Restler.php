@@ -53,11 +53,11 @@ class Restler extends EventDispatcher
 {
     const VERSION = '3.0.0rc6';
 
-    // ==================================================================
-    //
+    
+    
     // Public variables
-    //
-    // ------------------------------------------------------------------
+    
+    
     /**
      * Reference to the last exception thrown
      * @var RestException
@@ -194,11 +194,11 @@ class Restler extends EventDispatcher
     protected $postAuthFilterClasses = array();
 
 
-    // ==================================================================
-    //
+    
+    
     // Protected variables
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * Data sent to the service
@@ -247,7 +247,7 @@ class Restler extends EventDispatcher
         }
         $this->cache = new Defaults::$cacheClass();
         $this->refreshCache = $refreshCache;
-        // use this to rebuild cache every time in production mode
+        
         if ($productionMode && $refreshCache) {
             $this->cached = false;
         }
@@ -574,7 +574,7 @@ class Restler extends EventDispatcher
                 $format = Scope::get($this->formatMap[$mime]);
                 $format->setMIME($mime);
             } elseif (!$this->requestFormatDiffered && isset($this->formatOverridesMap[$mime])) {
-                //if our api method is not using an @format comment
+                
                 //to point to this $mime, we need to throw 403 as in below
                 //but since we don't know that yet, we need to defer that here
                 $format = Scope::get($this->formatOverridesMap[$mime]);
@@ -726,11 +726,11 @@ class Restler extends EventDispatcher
         }
     }
 
-    // ==================================================================
-    //
+    
+    
     // Protected functions
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * Parses the request to figure out the best format for response.
@@ -773,7 +773,7 @@ class Restler extends EventDispatcher
             if ($extension && isset($this->formatMap[$extension])) {
                 $format = Scope::get($this->formatMap[$extension]);
                 $format->setExtension($extension);
-                // echo "Extension $extension";
+                
                 return $format;
             }
         }
@@ -784,7 +784,7 @@ class Restler extends EventDispatcher
                 if (isset($this->formatMap[$accept])) {
                     $format = Scope::get($this->formatMap[$accept]);
                     $format->setMIME($accept);
-                    //echo "MIME $accept";
+                    
                     // Tell cache content is based on Accept header
                     @header('Vary: Accept');
 
@@ -805,7 +805,7 @@ class Restler extends EventDispatcher
                                 $this->requestedApiVersion = $version;
                                 $format = Scope::get($this->formatMap[$extension]);
                                 $format->setExtension($extension);
-                                // echo "Extension $extension";
+                                
                                 Defaults::$useVendorMIMEVersioning = true;
                                 @header('Vary: Accept');
 
@@ -864,7 +864,7 @@ class Restler extends EventDispatcher
             }
             if (!$found) {
                 if (strpos($_SERVER['HTTP_ACCEPT_CHARSET'], '*') !== false) {
-                    //use default charset
+                    
                 } else {
                     throw new RestException(
                         406,
@@ -892,7 +892,7 @@ class Restler extends EventDispatcher
             }
             if (!$found) {
                 if (strpos($_SERVER['HTTP_ACCEPT_LANGUAGE'], '*') !== false) {
-                    //use default language
+                    
                 } else {
                     //ignore
                 }
@@ -1016,7 +1016,7 @@ class Restler extends EventDispatcher
                 //initialize validator
                 Scope::get(Defaults::$validatorClass);
                 $validator = Defaults::$validatorClass;
-                //if(!is_subclass_of($validator, 'Luracast\\Restler\\Data\\iValidate')) {
+                
                 //changed the above test to below for addressing this php bug
                 //https://bugs.php.net/bug.php?id=53727
                 if (function_exists("$validator::validate")) {
@@ -1047,7 +1047,7 @@ class Restler extends EventDispatcher
             newrelic_name_transaction("{$o->className}/{$o->methodName}");
         $object =  Scope::get($o->className);
         switch ($accessLevel) {
-            case 3 : //protected method
+            case 3 : 
                 $reflectionMethod = new \ReflectionMethod(
                     $object,
                     $o->methodName

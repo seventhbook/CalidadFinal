@@ -142,7 +142,7 @@ $countrynotdefined = $langs->trans("ErrorSetACountryFirst").' ('.$langs->trans("
 
 
 if (!empty($object->id)) $res = $object->fetch_optionals($object->id, null);
-//if ($res < 0) { dol_print_error($db); exit; }
+
 
 
 $head = societe_prepare_head($object);

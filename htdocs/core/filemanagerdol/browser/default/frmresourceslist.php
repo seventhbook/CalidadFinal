@@ -131,7 +131,7 @@ function OpenFile( fileUrl )
     //window.top.opener.CKEDITOR.tools.callFunction(funcNum, encodeURI( fileUrl ).replace( '#', '%23' ));
 	window.top.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl.replace( '#', '%23' ));
     
-    ///////////////////////////////////
+    
     window.top.close();
     window.top.opener.focus();
 }
@@ -164,7 +164,7 @@ function GetFoldersAndFilesCallBack( fckXml )
 	var sCurrentFolderPath	= oFolderNode.attributes.getNamedItem('path').value ;
 	var sCurrentFolderUrl	= oFolderNode.attributes.getNamedItem('url').value ;
 
-//	var dTimer = new Date();
+
 
 	var oHtml = new StringBuilder( '<table id="tableFiles" cellspacing="1" cellpadding="0" width="100%" border="0">' );
 

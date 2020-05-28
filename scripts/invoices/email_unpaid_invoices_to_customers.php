@@ -94,7 +94,7 @@ if ($targettype == 'contacts')
 	$sql .= " sp.email, sp.rowid,";
 $sql .= " s.email ASC, s.rowid ASC, f.ref ASC"; // Order by email to allow one message per email
 
-// print $sql;
+
 $resql = $db->query($sql);
 if ($resql) {
 	$num = $db->num_rows($resql);
@@ -148,7 +148,7 @@ if ($resql) {
 				$total = 0;
 				$foundtoprocess = 0;
 				$target = (empty($obj->cfirstname) && empty($obj->clastname)) ? $obj->name : ($obj->clastname . " " . $obj->cfirstname);
-				// if (empty($newemail)) print "Warning: Customer ".$target." has no email. Notice disabled.\n";
+				
 			}
 
 			// Define line content

@@ -59,8 +59,8 @@ dolibarr_install_syslog("- check: Dolibarr install/upgrade process started");
 pHeader('', ''); // No next step for navigation buttons. Next step is defined by click on links.
 
 
-//print "<br>\n";
-//print $langs->trans("InstallEasy")."<br><br>\n";
+
+
 
 print '<h3><img class="valigntextbottom" src="../theme/common/octicons/build/svg/gear.svg" width="20" alt="Database"> '.$langs->trans("MiscellaneousChecks").":</h3>\n";
 
@@ -127,7 +127,7 @@ if (!function_exists("imagecreate"))
 {
 	$langs->load("errors");
 	print '<img src="../theme/eldy/img/warning.png" alt="Error"> '.$langs->trans("ErrorPHPDoesNotSupportGD")."<br>\n";
-	// $checksok=0;		// If ko, just warning. So check must still be 1 (otherwise no way to install)
+	
 }
 else
 {
@@ -140,7 +140,7 @@ if (!function_exists("curl_init"))
 {
     $langs->load("errors");
     print '<img src="../theme/eldy/img/warning.png" alt="Error"> '.$langs->trans("ErrorPHPDoesNotSupportCurl")."<br>\n";
-    // $checksok=0;		// If ko, just warning. So check must still be 1 (otherwise no way to install)
+    
 }
 else
 {
@@ -163,7 +163,7 @@ if (!function_exists("utf8_encode"))
 {
 	$langs->load("errors");
 	print '<img src="../theme/eldy/img/warning.png" alt="Error"> '.$langs->trans("ErrorPHPDoesNotSupportUTF8")."<br>\n";
-	// $checksok=0;		// If ko, just warning. So check must still be 1 (otherwise no way to install)
+	
 }
 else
 {
@@ -178,7 +178,7 @@ if (empty($_SERVER["SERVER_ADMIN"]) || $_SERVER["SERVER_ADMIN"] != 'doliwamp@loc
 	{
 	    $langs->load("errors");
 	    print '<img src="../theme/eldy/img/warning.png" alt="Error"> '.$langs->trans("ErrorPHPDoesNotSupportIntl")."<br>\n";
-	    // $checksok=0;		// If ko, just warning. So check must still be 1 (otherwise no way to install)
+	    
 	}
 	else
 	{
@@ -351,7 +351,7 @@ else
                         else $dolibarr_main_db_pass = dol_decode($dolibarr_main_db_encrypted_pass);
                     }
 
-    				// $conf already created in inc.php
+    				
     				$conf->db->type = $dolibarr_main_db_type;
     				$conf->db->host = $dolibarr_main_db_host;
     				$conf->db->port = $dolibarr_main_db_port;
@@ -391,13 +391,13 @@ else
 		{
             print $langs->trans("VersionLastUpgrade").': <b><span class="ok">'.(empty($conf->global->MAIN_VERSION_LAST_UPGRADE) ? $conf->global->MAIN_VERSION_LAST_INSTALL : $conf->global->MAIN_VERSION_LAST_UPGRADE).'</span></b> - ';
             print $langs->trans("VersionProgram").': <b><span class="ok">'.DOL_VERSION.'</span></b>';
-			//print ' '.img_warning($langs->trans("RunningUpdateProcessMayBeRequired"));
+			
 			print '<br>';
 			print '<br>';
 		}
 		else print "<br>\n";
 
-		//print $langs->trans("InstallEasy")." ";
+		
 		print '<h3><span class="soustitre">'.$langs->trans("ChooseYourSetupMode").'</span></h3>';
 
 		$foundrecommandedchoice = 0;
@@ -414,9 +414,9 @@ else
 		if (empty($dolibarr_main_db_host))	// This means install process was not run
 		{
             $choice .= '<br>';
-			//print $langs->trans("InstallChoiceRecommanded",DOL_VERSION,$conf->global->MAIN_VERSION_LAST_UPGRADE);
+			
 			$choice .= '<div class="center"><div class="ok">'.$langs->trans("InstallChoiceSuggested").'</div></div>';
-			// <img src="../theme/eldy/img/tick.png" alt="Ok"> ';
+			
 			$foundrecommandedchoice = 1; // To show only once
 		}
 
@@ -517,7 +517,7 @@ else
             if ($recommended_choice)
             {
                 $choice .= '<br>';
-                //print $langs->trans("InstallChoiceRecommanded",DOL_VERSION,$conf->global->MAIN_VERSION_LAST_UPGRADE);
+                
                 $choice .= '<div class="center">';
                 $choice .= '<div class="ok">'.$langs->trans("InstallChoiceSuggested").'</div>';
                 if ($count < count($migarray))	// There are other choices after

@@ -336,7 +336,7 @@ if ($massaction == 'withdrawrequest')
 					setEventMessages($objecttmp->ref.' '.$langs->trans("BadPaymentMethod"), $objecttmp->errors, 'errors');
 				}
 				else {
-					$listofbills[] = $objecttmp; // $listofbills will only contains invoices with good payment method and no request already done
+					$listofbills[] = $objecttmp; 
 				}
 			}
 		}
@@ -532,7 +532,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -749,7 +749,7 @@ if ($resql)
 		{
 			$listtype[Facture::TYPE_SITUATION] = $langs->trans("InvoiceSituation");
 		}
-		//$listtype[Facture::TYPE_PROFORMA]=$langs->trans("InvoiceProForma");     // A proformat invoice is not an invoice but must be an order.
+		
 		print $form->selectarray('search_type', $listtype, $search_type, 1, 0, 0, '', 0, 0, 0, 'ASC', 'maxwidth100');
 		print '</td>';
 	}

@@ -792,7 +792,7 @@ class PHPExcel_Worksheet_AutoFilter
 
 
 //		var_dump($columnFilterTests);
-//
+
 		//	Execute the column tests for each row in the autoFilter range to determine show/hide,
 		for ($row = $rangeStart[1]+1; $row <= $rangeEnd[1]; ++$row) {
 

@@ -92,7 +92,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DggContainer':
-			// this is a container record
+			
 
 			// initialize
 			$innerData = '';
@@ -145,7 +145,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DggContainer_BstoreContainer':
-			// this is a container record
+			
 
 			// initialize
 			$innerData = '';
@@ -173,7 +173,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE':
-			// this is a semi-container record
+			
 
 			// initialize
 			$innerData = '';
@@ -223,7 +223,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip':
-			// this is an atom record
+			
 
 			// write the record
 			switch ($this->_object->getParent()->getBlipType()) {
@@ -286,7 +286,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DgContainer':
-			// this is a container record
+			
 
 			// initialize
 			$innerData = '';
@@ -305,7 +305,7 @@ class PHPExcel_Writer_Excel5_Escher
 			// number of shapes in this drawing (including group shape)
 			$countShapes = count($this->_object->getSpgrContainer()->getChildren());
 			$innerData .= $header . pack('VV', $countShapes, $this->_object->getLastSpId());
-			//$innerData .= $header . pack('VV', 0, 0);
+			
 
 			// write the spgrContainer
 			if ($spgrContainer = $this->_object->getSpgrContainer()) {
@@ -340,7 +340,7 @@ class PHPExcel_Writer_Excel5_Escher
 			break;
 
 		case 'PHPExcel_Shared_Escher_DgContainer_SpgrContainer':
-			// this is a container record
+			
 
 			// initialize
 			$innerData = '';

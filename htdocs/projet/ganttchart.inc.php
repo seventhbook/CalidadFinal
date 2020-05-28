@@ -78,11 +78,11 @@ function reloadGraph() {
 }
 
 
-//var g = new JSGantt.GanttChart('g', document.getElementById('GanttChartDIV'), 'day');
+
 var g = new JSGantt.GanttChart(document.getElementById('GanttChartDIV'), 'day');
 
 if (g.getDivId() != null)
-//if (g)
+
 {
 	var booShowRessources = 1;
 	var booShowDurations = 1;
@@ -190,7 +190,7 @@ function constructGanttLine($tarr, $task, $task_dependencies, $level = 0, $proje
             $count ++;
         }
     }
-    // $depend .= "\"";
+    
     // Define parent
     if ($project_id && $level < 0)
     {
@@ -199,14 +199,14 @@ function constructGanttLine($tarr, $task, $task_dependencies, $level = 0, $proje
     else
     {
     	$parent = $task["task_parent_alternate_id"];
-    	//$parent = $task["task_parent"];
+    	
     }
     // Define percent
     $percent = $task['task_percent_complete']?$task['task_percent_complete']:0;
     // Link (more information)
     if ($task["task_id"] < 0)
     {
-    	//$link=DOL_URL_ROOT.'/projet/tasks.php?withproject=1&id='.abs($task["task_id"]);
+    	
     	$link='';
     }
     else
@@ -215,7 +215,7 @@ function constructGanttLine($tarr, $task, $task_dependencies, $level = 0, $proje
     }
 
     // Name
-    //$name='<a href="'.DOL_URL_ROOT.'/projet/task/tasks.php?id='.$task['task_id'].'">'.$task['task_name'].'</a>';
+    
     $name=$task['task_name'];
 
     /*for($i=0; $i < $level; $i++) {
@@ -247,23 +247,23 @@ function constructGanttLine($tarr, $task, $task_dependencies, $level = 0, $proje
 	<dt>pGantt</dt><dd>(required) javascript JSGantt.GanttChart object from which to take settings.  Defaults to &quot;g&quot; for backwards compatibility</dd>
     */
 
-    //$note="";
+    
 
     $s = "\n// Add task level = ".$level." id=".$task["task_id"]." parent_id=".$task["task_parent"]." aternate_id=".$task["task_alternate_id"]." parent_aternate_id=".$task["task_parent_alternate_id"]."\n";
 
-    //$task["task_is_group"]=1;		// When task_is_group is 1, content will be autocalculated from sum of all low tasks
+    
 
     // For JSGanttImproved
     $css = $task['task_css'];
     $line_is_auto_group = $task["task_is_group"];
-    //$line_is_auto_group=0;
-    //if ($line_is_auto_group) $css = 'ggroupblack';
-    //$dependency = ($depend?$depend:$parent."SS");
+    
+    
+    
     $dependency = '';
-    //$name = str_repeat("..", $level).$name;
+    
 
     $taskid = $task["task_alternate_id"];
-    //$taskid = $task['task_id'];
+    
 
     $note = $task['note'];
 

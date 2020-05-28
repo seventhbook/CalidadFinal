@@ -42,7 +42,7 @@ $result = restrictedArea($user, 'deplacement', '', '');
 $search_ref=GETPOST('search_ref', 'int');
 $search_name=GETPOST('search_name', 'alpha');
 $search_company=GETPOST('search_company', 'alpha');
-// $search_amount=GETPOST('search_amount','alpha');
+
 $sortfield = GETPOST("sortfield", 'alpha');
 $sortorder = GETPOST("sortorder", 'alpha');
 $page = GETPOST("page", 'int');
@@ -63,7 +63,7 @@ if (GETPOST('button_removefilter_x', 'alpha') || GETPOST('button_removefilter', 
 	$search_ref="";
 	$search_name="";
 	$search_company="";
-	// $search_amount="";
+	
 	$year="";
 	$month="";
 	$day="";
@@ -110,7 +110,7 @@ $sql.= dolSqlDateFilter("d.dated", $day, $month, $year);
 $sql.= $db->order($sortfield, $sortorder);
 $sql.= $db->plimit($limit + 1, $offset);
 
-//print $sql;
+
 $resql=$db->query($sql);
 if ($resql)
 {
@@ -151,7 +151,7 @@ if ($resql)
     print '<input class="flat" size="10" type="text" name="search_company" value="'.$search_company.'">';
     print '</td>';
     print '<td class="liste_titre right">';
-    // print '<input class="flat" size="10" type="text" name="search_amount" value="'.$search_amount.'">';
+    
     print '</td>';
     print '<td class="liste_titre maxwidthsearch">';
     $searchpicto=$form->showFilterAndCheckAddButtons(0);

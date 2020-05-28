@@ -123,7 +123,7 @@ if ( GETPOST('filtre', 'alpha') ) {
 	$tab_designations=$ret;
 }
 
-//$nbr_enreg = count($tab_designations);
+
 
 if ( $nbr_enreg > 1 )
 {

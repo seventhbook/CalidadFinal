@@ -1,35 +1,35 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_colors.php
 // Version     : 1.0.004
 // Begin       : 2002-04-09
 // Last Update : 2014-04-25
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2002-2013  Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the GNU Lesser General Public License
 // along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : Array of WEB safe colors
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -233,10 +233,10 @@ class TCPDF_COLORS {
 		'green'   => array(100,   0, 100,   0, 'Green'),
 		'blue'    => array(100, 100,   0,   0, 'Blue'),
 		// Add here standard spot colors or dynamically define them with AddSpotColor()
-		// ...
+		
 	); // end of spot colors
 
-	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
 
 	/**
 	 * Return the Spot color array.
@@ -448,7 +448,7 @@ class TCPDF_COLORS {
 			return sprintf("['RGB',%F,%F,%F]", (hexdec(substr($color, 1, 2)) / 255), (hexdec(substr($color, 3, 2)) / 255), (hexdec(substr($color, 5, 2)) / 255));
 		}
 		if (!in_array($color, self::$jscolor)) {
-			// default transparent color
+			
 			$color = $jscolor[0];
 		}
 		return 'color.'.$color;
@@ -457,6 +457,6 @@ class TCPDF_COLORS {
 
 } // END OF TCPDF_COLORS CLASS
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

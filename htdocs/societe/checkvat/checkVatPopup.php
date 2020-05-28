@@ -29,7 +29,7 @@ $langs->load("companies");
 
 //http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl
 $WS_DOL_URL='http://ec.europa.eu/taxation_customs/vies/services/checkVatService';
-//$WS_DOL_URL_WSDL=$WS_DOL_URL.'?wsdl';
+
 $WS_DOL_URL_WSDL='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
 $WS_METHOD ='checkVat';
 
@@ -71,7 +71,7 @@ else
     require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
     $params=getSoapParams();
     //ini_set('default_socket_timeout', $params['response_timeout']);
-    //$soapclient = new SoapClient($WS_DOL_URL_WSDL,$params);
+    
 	$soapclient = new nusoap_client($WS_DOL_URL_WSDL, true, $params['proxy_host'], $params['proxy_port'], $params['proxy_login'], $params['proxy_password'], $params['connection_timeout'], $params['response_timeout']);
 	$soapclient->soap_defencoding = 'utf-8';
 	$soapclient->xml_encoding = 'utf-8';
@@ -90,10 +90,10 @@ else
 
 	//var_dump($parameters);
 	//var_dump($soapclient);
-	//print "x".is_array($result)."i";
+	
 	//var_dump($result);
-	//print $soapclient->request.'<br>';
-	//print $soapclient->response.'<br>';
+	
+	
 
 	$messagetoshow='';
 	print '<b>'.$langs->trans("Response").'</b>:<br>';
@@ -126,7 +126,7 @@ else
 		if ($result['requestDate']) print $langs->trans("Date").': '.$result['requestDate'].'<br>';
 		print $langs->trans("VATIntraSyntaxIsValid").': <font class="error">'.$langs->trans("No").'</font> (Might be a non europeen VAT)<br>';
 		print $langs->trans("ValueIsValid").': <font class="error">'.$langs->trans("No").'</font> (Might be a non europeen VAT)<br>';
-		//$messagetoshow=$soapclient->response;
+		
 	}
 	else
 	{

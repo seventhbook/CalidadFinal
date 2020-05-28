@@ -101,7 +101,7 @@ class Interfaces
         {
             $dir = dol_buildpath($reldir, 0);
             $newdir = dol_osencode($dir);
-            //print "xx".$dir;exit;
+            
 
             // Check if directory exists (we do not use dol_is_dir to avoir loading files.lib.php at each call)
             if (!is_dir($newdir)) continue;
@@ -139,8 +139,8 @@ class Interfaces
                         }
 
                         $modName = "Interface".ucfirst($reg[3]);
-                        //print "file=$file - modName=$modName\n";
-                        if (in_array($modName, $modules))    // $modules = list of modName already loaded
+                        
+                        if (in_array($modName, $modules))    
                         {
                             $langs->load("errors");
                             dol_syslog(get_class($this)."::run_triggers action=".$action." ".$langs->trans("ErrorDuplicateTrigger", $newdir."/".$file, $fullpathfiles[$modName]), LOG_WARNING);
@@ -148,9 +148,9 @@ class Interfaces
                         }
 
                         try {
-                            //print 'Todo for '.$modName." : ".$newdir.'/'.$file."\n";
+                            
                             include_once $newdir.'/'.$file;
-                            //print 'Done for '.$modName."\n";
+                            
                         }
                         catch (Exception $e)
                         {
@@ -286,7 +286,7 @@ class Interfaces
                         $part3 = $reg[3];
 
                         $modName = 'Interface'.ucfirst($reg[3]);
-                        //print "file=$file"; print "modName=$modName"; exit;
+                        
                         if (in_array($modName, $modules))
                         {
                             $langs->load("errors");

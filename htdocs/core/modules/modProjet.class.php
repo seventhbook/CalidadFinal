@@ -204,12 +204,12 @@ class modProjet extends DolibarrModules
 
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
 		//Exports
-		//--------
+		
 		$r=1;
 
 		$this->export_code[$r]=$this->rights_class.'_'.$r;
@@ -310,7 +310,7 @@ class modProjet extends DolibarrModules
     		    't.fk_projet'=>array('rule'=>'fetchidfromref','classfile'=>'/projet/class/project.class.php','class'=>'Project','method'=>'fetch','element'=>'Project'),
     		    't.ref'=>array('rule'=>'getrefifauto')
     		);
-    		//$this->import_convertvalue_array[$r]=array('s.fk_soc'=>array('rule'=>'lastrowid',table='t');
+    		
     		$this->import_regex_array[$r]=array('t.dateo'=>'^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$','t.datee'=>'^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$','t.datec'=>'^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]( [0-9][0-9]:[0-9][0-9]:[0-9][0-9])?$');
     		$this->import_examplevalues_array[$r]=array('t.fk_projet'=>'MyProjectRef','t.ref'=>"auto or TK2010-1234",'t.label'=>"My task",'t.progress'=>"0 (not started) to 100 (finished)",'t.datec'=>'1972-10-10','t.note_private'=>"My private note",'t.note_public'=>"My public note");
 		}

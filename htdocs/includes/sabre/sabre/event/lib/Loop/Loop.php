@@ -35,8 +35,8 @@ class Loop {
         }
 
         // We need to insert these values in the timers array, but the timers
-        // array must be in reverse-order of trigger times.
-        //
+        
+        
         // So here we search the array for the insertion point.
         $index = count($this->timers) - 1;
         while (true) {
@@ -83,7 +83,7 @@ class Loop {
 
         // Really the only thing that matters is returning the $keepGoing
         // boolean value.
-        //
+        
         // We need to pack it in an array to allow returning by reference.
         // Because I'm worried people will be confused by using a boolean as a
         // sort of identifier, I added an extra string.

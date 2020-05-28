@@ -37,7 +37,7 @@ $ref = GETPOST('ref', 'alpha');
 
 $mode = GETPOST('mode', 'alpha');
 $mine = ($mode == 'mine' ? 1 : 0);
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 $object = new Project($db);
 
@@ -46,7 +46,7 @@ if(! empty($conf->global->PROJECT_ALLOW_COMMENT_ON_PROJECT) && method_exists($ob
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $id, 'projet&project');
 
 // Load translation files required by the page
@@ -81,7 +81,7 @@ if (!empty($conf->use_javascript_ajax))
 	);
 }
 
-//$title=$langs->trans("Gantt").($object->ref?' - '.$object->ref.' '.$object->name:'');
+
 $title = $langs->trans("Gantt");
 if (!empty($conf->global->MAIN_HTML_TITLE) && preg_match('/projectnameonly/', $conf->global->MAIN_HTML_TITLE) && $object->name) $title = ($object->ref ? $object->ref.' '.$object->name.' - ' : '').$langs->trans("Gantt");
 $help_url = "EN:Module_Projects|FR:Module_Projets|ES:M&oacute;dulo_Proyectos";
@@ -90,10 +90,10 @@ llxHeader("", $title, $help_url, '', 0, 0, $arrayofjs, $arrayofcss);
 if (($id > 0 && is_numeric($id)) || !empty($ref))
 {
 	// To verify role of users
-	//$userAccess = $object->restrictedProjectArea($user,'read');
+	
 	$userWrite = $object->restrictedProjectArea($user, 'write');
-	//$userDelete = $object->restrictedProjectArea($user,'delete');
-	//print "userAccess=".$userAccess." userWrite=".$userWrite." userDelete=".$userDelete;
+	
+	
 
     $tab = 'tasks';
 
@@ -245,7 +245,7 @@ print load_fiche_titre($title, $linktolist.' &nbsp; '.$linktocreatetask, 'generi
 // can have a parent that is not affected to him).
 $tasksarray=$task->getTasksArray(0, 0, ($object->id ? $object->id : $id), $socid, 0);
 // We load also tasks limited to a particular user
-//$tasksrole=($_REQUEST["mode"]=='mine' ? $task->getUserRolesForProjectsOrTasks(0,$user,$object->id,0) : '');
+
 //var_dump($tasksarray);
 //var_dump($tasksrole);
 
@@ -279,18 +279,18 @@ if (count($tasksarray)>0)
         if ($val->fk_parent != 0 && $task->hasChildren()> 0){
             $tasks[$taskcursor]['task_is_group']=1;
         	$tasks[$taskcursor]['task_css']='ggroupblack';
-            //$tasks[$taskcursor]['task_css'] = 'gtaskblue';
+            
         }
         elseif ($task->hasChildren()> 0) {
             $tasks[$taskcursor]['task_is_group'] = 1;
-        	//$tasks[$taskcursor]['task_is_group'] = 0;
+        	
             $tasks[$taskcursor]['task_css'] = 'ggroupblack';
-            //$tasks[$taskcursor]['task_css'] = 'gtaskblue';
+            
         }
 		$tasks[$taskcursor]['task_milestone']='0';
 		$tasks[$taskcursor]['task_percent_complete']=$val->progress;
-		//$tasks[$taskcursor]['task_name']=$task->getNomUrl(1);
-		//print dol_print_date($val->date_start).dol_print_date($val->date_end).'<br>'."\n";
+		
+		
 		$tasks[$taskcursor]['task_name']=$val->ref.' - '.$val->label;
 		$tasks[$taskcursor]['task_start_date']=$val->date_start;
 		$tasks[$taskcursor]['task_end_date']=$val->date_end;
@@ -311,7 +311,7 @@ if (count($tasksarray)>0)
 				$i++;
 			}
 		}
-		//if (count($idofusers)>0 && (count($idofcontacts)>0)) $s.=' - ';
+		
 		if (count($idofcontacts)>0)
 		{
 			if ($s) $s.=' - ';
@@ -333,11 +333,11 @@ if (count($tasksarray)>0)
 				}
 			}
 		}
-		//if ($s) $tasks[$taskcursor]['task_resources']='<a href="'.DOL_URL_ROOT.'/projet/tasks/contact.php?id='.$val->id.'&withproject=1" title="'.dol_escape_htmltag($s).'">'.$langs->trans("List").'</a>';
+		
 		/* For JSGanttImproved */
-		//if ($s) $tasks[$taskcursor]['task_resources']=implode(',',$idofusers);
+		
         $tasks[$taskcursor]['task_resources'] = $s;
-		//print "xxx".$val->id.$tasks[$taskcursor]['task_resources'];
+		
         $tasks[$taskcursor]['note'] = $task->note_public;
 		$taskcursor++;
 	}

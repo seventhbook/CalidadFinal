@@ -151,7 +151,7 @@ if ($object->thirdparty->fournisseur)
 	if ($conf->fournisseur->enabled && $user->rights->fournisseur->commande->lire) $elementTypeArray['supplier_order']=$langs->transnoentitiesnoconv('SuppliersOrders');
 
     // There no contact type for supplier proposals
-    // if ($conf->fournisseur->enabled && $user->rights->supplier_proposal->lire) $elementTypeArray['supplier_proposal']=$langs->transnoentitiesnoconv('SupplierProposals');
+    
 }
 
 print '</table>';
@@ -239,18 +239,18 @@ elseif ($type_element == 'supplier_invoice')
 	$doc_number='f.ref';
 	$thirdTypeSelect='supplier';
 }
-//elseif ($type_element == 'supplier_proposal')
+
 //{
-//    require_once DOL_DOCUMENT_ROOT.'/supplier_proposal/class/supplier_proposal.class.php';
-//    $documentstatic=new SupplierProposal($db);
-//    $sql_select = 'SELECT c.rowid as doc_id, c.ref as doc_number, \'1\' as doc_type, c.date_valid as dateprint, c.fk_statut as status, ';
-//    $tables_from = MAIN_DB_PREFIX."supplier_proposal as c,".MAIN_DB_PREFIX."supplier_proposaldet as d";
-//    $where = " WHERE c.fk_soc = s.rowid AND s.rowid = ".$socid;
-//    $where.= " AND d.fk_supplier_proposal = c.rowid";
-//    $where.= " AND c.entity = ".$conf->entity;
-//    $dateprint = 'c.date_valid';
-//    $doc_number='c.ref';
-//    $thirdTypeSelect='supplier';
+
+
+
+
+
+
+
+
+
+
 //}
 elseif ($type_element == 'supplier_order')
 { 	// Supplier : Show products from orders.
@@ -298,7 +298,7 @@ if (!empty($sql_select))
 	$sql.= " ";
 	if ($type_element != 'fichinter') $sql.= ", p.ref as prod_ref, p.label as product_label";
 	$sql.= " FROM "/*.MAIN_DB_PREFIX."societe as s, "*/.$tables_from;
-    // if ($type_element != 'fichinter') $sql.= ' LEFT JOIN '.MAIN_DB_PREFIX.'product as p ON d.fk_product = p.rowid ';
+    
 	$sql.= $where;
 	$sql.= dolSqlDateFilter($dateprint, 0, $month, $year);
 	if ($sref) $sql.= " AND ".$doc_number." LIKE '%".$db->escape($sref)."%'";
@@ -485,7 +485,7 @@ if ($sql_select)
 			if ($objp->description == '(DEPOSIT)') $txt=$langs->trans("Deposit");
 			elseif ($objp->description == '(EXCESS RECEIVED)') $txt=$langs->trans("ExcessReceived");
 			elseif ($objp->description == '(EXCESS PAID)') $txt=$langs->trans("ExcessPaid");
-			//else $txt=$langs->trans("Discount");
+			
 			print $txt;
             print '</a>';
 			if ($objp->description)

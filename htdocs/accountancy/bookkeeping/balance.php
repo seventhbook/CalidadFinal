@@ -52,8 +52,8 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
-//if (! $sortorder) $sortorder="DESC";
+
+
 
 
 $search_date_start = dol_mktime(0, 0, 0, GETPOST('date_startmonth', 'int'), GETPOST('date_startday', 'int'), GETPOST('date_startyear', 'int'));
@@ -301,7 +301,7 @@ if ($action != 'export_csv')
 			$sous_total_credit = 0;
 		}
 
-		// $object->get_compte_racine($line->numero_compte);
+		
 
 		print '<td>'.length_accountg($line->numero_compte).'</td>';
 		print '<td>'.$description.'</td>';

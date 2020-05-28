@@ -227,9 +227,9 @@ class Commande extends CommonOrder
      */
 	public $oldcopy;
 
-	//! key of module source when order generated from a dedicated module ('cashdesk', 'takepos', ...)
+	
 	public $module_source;
-	//! key of pos source ('0', '1', ...)
+	
 	public $pos_source;
 
 
@@ -463,7 +463,7 @@ class Commande extends CommonOrder
 		$result = $soc->set_as_client();
 
 		// Define new ref
-		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
 		{
 			$num = $this->getNextNumRef($soc);
 		}
@@ -893,7 +893,7 @@ class Commande extends CommonOrder
 		// Clean parameters
 		$this->brouillon = 1; // set command as draft
 
-		// $date_commande is deprecated
+		
 		$date = ($this->date_commande ? $this->date_commande : $this->date);
 
 		// Multicurrency (test on $this->multicurrency_tx because we should take the default rate only if not using origin rate)
@@ -1002,7 +1002,7 @@ class Commande extends CommonOrder
 					$line = $this->lines[$i];
 
 					// Test and convert into object this->lines[$i]. When coming from REST API, we may still have an array
-					//if (! is_object($line)) $line=json_decode(json_encode($line), false);  // convert recursively array into object.
+					
 					if (! is_object($line)) $line = (object) $line;
 
 					// Reset fk_parent_line for no child products and special product
@@ -1482,7 +1482,7 @@ class Commande extends CommonOrder
 			$pu_ttc = price2num($pu_ttc);
 			$pa_ht = price2num($pa_ht);
 			if (!preg_match('/\((.*)\)/', $txtva)) {
-				$txtva = price2num($txtva); // $txtva can have format '5,1' or '5.1' or '5.1(XXX)', we must clean only if '5,1'
+				$txtva = price2num($txtva); 
 			}
 			$txlocaltax1 = price2num($txlocaltax1);
 			$txlocaltax2 = price2num($txlocaltax2);
@@ -1722,7 +1722,7 @@ class Commande extends CommonOrder
 			 {
 			 foreach($prods_arbo as $key => $value)
 			 {
-			 // print "id : ".$value[1].' :qty: '.$value[0].'<br>';
+			 
 			 if(! in_array($value[1],$this->products))
 			 $this->add_product($value[1], $value[0]);
 
@@ -4262,7 +4262,7 @@ class OrderLine extends CommonOrderLine
 		if (empty($this->fk_parent_line)) $this->fk_parent_line = 0;
 		if (empty($this->pa_ht)) $this->pa_ht = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)
@@ -4408,7 +4408,7 @@ class OrderLine extends CommonOrderLine
 		if (empty($this->fk_parent_line)) $this->fk_parent_line = 0;
 		if (empty($this->pa_ht)) $this->pa_ht = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)

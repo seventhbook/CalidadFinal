@@ -61,11 +61,11 @@ class modCollab extends DolibarrModules
         $this->dirs = array("/collab/temp");
 
         // Config pages
-        //-------------
+        
         $this->config_page_url = array(/*'collab.php'*/);
 
         // Dependancies
-        //-------------
+        
         $this->hidden = ! empty($conf->global->MODULE_COLLAB_DISABLED);	// A condition to disable module
         $this->depends = array();		// List of modules id that must be enabled if this module is enabled
         $this->requiredby = array();	// List of modules id to disable if this one is disabled
@@ -73,15 +73,15 @@ class modCollab extends DolibarrModules
         $this->langfiles = array("collab");
 
         // Constants
-        //-----------
+        
            $this->const = array();
 
         // New pages on tabs
-        // -----------------
+        
         $this->tabs = array();
 
         // Boxes
-        //------
+        
         $this->boxes = array();
 
         // Permissions

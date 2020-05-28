@@ -121,7 +121,7 @@ class InterfaceNotification extends DolibarrTriggers
 				// Check if module for this event is active
 				if ($qualified)
 				{
-					//print 'xx'.$obj->code;
+					
 					$element = $obj->elementtype;
 
 					// Exclude events if related module is disabled

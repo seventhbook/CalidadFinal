@@ -22,13 +22,13 @@
  */
 
 
-// $action or $cancel must be defined
-// $object must be defined
-// $permissiontoadd must be defined
-// $permissiontodelete must be defined
-// $backurlforlist must be defined
-// $backtopage may be defined
-// $triggermodname may be defined
+
+
+
+
+
+
+
 
 if (!empty($permissionedit) && empty($permissiontoadd)) $permissiontoadd = $permissionedit; // For backward compatibility
 
@@ -377,7 +377,7 @@ if ($action == 'confirm_clone' && $confirm == 'yes' && !empty($permissiontoadd))
 	{
 	    $objectutil = dol_clone($object, 1); // To avoid to denaturate loaded object when setting some properties for clone or if createFromClone modifies the object. We use native clone to keep this->db valid.
 		
-        // ...
+        
 	    $result = $objectutil->createFromClone($user, (($object->id > 0) ? $object->id : $id));
 	    if (is_object($result) || $result > 0)
 		{

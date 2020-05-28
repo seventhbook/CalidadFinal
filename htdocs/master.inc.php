@@ -146,7 +146,7 @@ if (!defined('NOREQUIREDB'))
 }
 
 // Now database connexion is known, so we can forget password
-//unset($dolibarr_main_db_pass); 	// We comment this because this constant is used in a lot of pages
+
 unset($conf->db->pass); // This is to avoid password to be shown in memory/swap dump
 
 /*
@@ -184,7 +184,7 @@ if (!is_numeric($conf->entity)) $conf->entity = 1;
 
 if (!defined('NOREQUIREDB'))
 {
-	//print "Will work with data into entity instance number '".$conf->entity."'";
+	
 
 	// Here we read database (llx_const table) and define $conf->global->XXX var.
 	$conf->setValues($db);
@@ -264,4 +264,4 @@ $hookmanager=new HookManager($db);
 
 
 if (! defined('MAIN_LABEL_MENTION_NPR') ) define('MAIN_LABEL_MENTION_NPR', 'NPR');
-//if (! defined('PCLZIP_TEMPORARY_DIR')) define('PCLZIP_TEMPORARY_DIR', $conf->user->dir_temp);
+

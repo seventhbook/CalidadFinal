@@ -144,8 +144,8 @@ if ($object->id > 0)
 	dol_fiche_end();
 
 
-    //print '<div class="tabsAction">';
-    //print '</div>';
+    
+    
 
 
 	$newcardbutton = '';

@@ -65,8 +65,8 @@ function member_prepare_head(Adherent $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'member');
 
     $nbNote = 0;
@@ -150,8 +150,8 @@ function member_type_prepare_head(AdherentType $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'membertype');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'membertype', 'remove');
@@ -183,8 +183,8 @@ function member_admin_prepare_head()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, '', $head, $h, 'member_admin');
 
     $head[$h][0] = DOL_URL_ROOT.'/adherents/admin/adherent_extrafields.php';
@@ -253,8 +253,8 @@ function member_stats_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'member_stats');
 
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'member_stats', 'remove');
@@ -287,8 +287,8 @@ function subscription_prepare_head(Subscription $object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'subscription');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'subscription', 'remove');

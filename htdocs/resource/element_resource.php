@@ -496,7 +496,7 @@ else
 			$morehtmlref = '<div class="refidno">';
 			// Ref customer
 			
-			//$morehtmlref.=$form->editfieldval("RefCustomer", 'ref_client', $object->ref_client, $object, 0, 'string', '', null, null, '', 1);
+			
 			// Thirdparty
 			$morehtmlref .= $langs->trans('ThirdParty').' : '.$fichinter->thirdparty->getNomUrl(1);
 			// Project
@@ -608,7 +608,7 @@ else
 				if (empty($conf->file->strict_mode)) {
 					$res = @include $tpl;
 				} else {
-					$res = include $tpl; // for debug
+					$res = include $tpl; 
 				}
 				if ($res) break;
 			}
@@ -628,7 +628,7 @@ else
 					if (empty($conf->file->strict_mode)) {
 						$res = @include $tpl;
 					} else {
-						$res = include $tpl; // for debug
+						$res = include $tpl; 
 					}
 					if ($res) break;
 				}

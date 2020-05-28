@@ -624,7 +624,7 @@ if ($action == 'create')
 						print '</td>';
 						print '<td>';
 						// TODO For the moment we keep a free input text instead of a combo. The select_auxaccount has problem because it does not
-						// use setup of keypress to select thirdparty and this hang browser on large database.
+						
 						if (!empty($conf->global->ACCOUNTANCY_COMBO_FOR_AUX))
 						{
 							print $formaccounting->select_auxaccount((GETPOSTISSET("subledger_account") ? GETPOST("subledger_account", "alpha") : $line->subledger_account), 'subledger_account', 1);
@@ -681,7 +681,7 @@ if ($action == 'create')
 					print '</td>';
 					print '<td>';
 					// TODO For the moment we keep a free input text instead of a combo. The select_auxaccount has problem because it does not
-					// use setup of keypress to select thirdparty and this hang browser on large database.
+					
 					if (!empty($conf->global->ACCOUNTANCY_COMBO_FOR_AUX))
 					{
 						print $formaccounting->select_auxaccount('', 'subledger_account', 1);

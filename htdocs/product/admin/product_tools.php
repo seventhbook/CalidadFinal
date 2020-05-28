@@ -40,7 +40,7 @@ if (! $user->admin) accessforbidden();
 $action = GETPOST('action', 'alpha');
 $oldvatrate=GETPOST('oldvatrate', 'alpha');
 $newvatrate=GETPOST('newvatrate', 'alpha');
-//$price_base_type=GETPOST('price_base_type');
+
 
 
 
@@ -134,7 +134,7 @@ if ($action == 'convert')
 							$newdefaultvatcode=$vat_src_code_new;
 							$newlevel=$level;
 
-							//print "$objectstatic->id $newprice, $price_base_type, $newvat, $newminprice, $newlevel, $newnpr<br>\n";
+							
 							$retm=$objectstatic->updatePrice($newprice, $price_base_type, $user, $newvatrateclean, $newminprice, $newlevel, $newnpr, 0, 0, $localtaxes_type, $newdefaultvatcode);
 							if ($retm < 0)
 							{
@@ -165,7 +165,7 @@ if ($action == 'convert')
 						$newlevel=0;
 						if (! empty($price_base_type) && ! $updatelevel1)
 						{
-							//print "$objectstatic->id $newprice, $price_base_type, $newvat, $newminprice, $newlevel, $newnpr<br>\n";
+							
 							$ret=$objectstatic->updatePrice($newprice, $price_base_type, $user, $newvatrateclean, $newminprice, $newlevel, $newnpr, 0, 0, $localtaxes_type, $newdefaultvatcode);
 						}
 
@@ -190,7 +190,7 @@ if ($action == 'convert')
 		if ($vat_src_code_old) $sql.= " AND default_vat_code = '".$vat_src_code_old."'";
 		else " AND default_vat_code = IS NULL";
 		$sql.= " AND s.fk_pays = '".$country_id."'";
-		//print $sql;
+		
 		$resql=$db->query($sql);
 		if ($resql)
 		{
@@ -208,21 +208,21 @@ if ($action == 'convert')
 					$ret=0; $retm=0; $updatelevel1=false;
 
 					$price_base_type='HT';
-					//$price_base_type = $objectstatic2->price_base_type;	// Get price_base_type of product/service to keep the same for update
-					//if ($price_base_type == 'TTC')
+					
+					
 					//{
-					//	$newprice=price2num($objectstatic2->price_ttc,'MU');    // Second param must be MU (we want a unit price so 'MU'. If unit price was on 4 decimal, we must keep 4 decimals)
-					//	$newminprice=$objectstatic2->price_min_ttc;
+					
+					
 					//}
-					//else
+					
 					//{
 						$newprice=price2num($obj->price, 'MU');    // Second param must be MU (we want a unit price so 'MU'. If unit price was on 4 decimal, we must keep 4 decimals)
-						//$newminprice=$objectstatic2->fourn_price_min;
+						
 					//}
-					//if ($newminprice > $newprice) $newminprice=$newprice;
+					
 					$newvat=str_replace('*', '', $newvatrate);
 					$localtaxes_type=getLocalTaxesFromRate($newvat, 0, $mysoc, $mysoc);
-					//$newnpr=$objectstatic2->recuperableonly;
+					
 					$newnpr=0;
 					$newdefaultvatcode=$vat_src_code_new;
 
@@ -233,7 +233,7 @@ if ($action == 'convert')
 					$newlevel=0;
 					if (! empty($price_base_type) && ! $updatelevel1)
 					{
-						//print "$objectstatic2->id $newprice, $price_base_type, $newvat, $newminprice, $newlevel, $newnpr<br>\n";
+						
 						$fourn->id=$obj->fk_soc;
 						$ret=$objectstatic2->update_buyprice($obj->qty, $newprice, $user, $price_base_type, $fourn, $obj->fk_availability, $obj->ref_fourn, $newvat, '', $newpercent, 0, $newnpr, $newdeliverydelay, $newsupplierreputation, $localtaxes_type, $newdefaultvatcode);
 					}

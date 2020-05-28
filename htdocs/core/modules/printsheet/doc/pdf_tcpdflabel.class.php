@@ -248,7 +248,7 @@ class pdf_tcpdflabel extends CommonStickerGenerator
 			$pdf->SetXY($_PosX, $_PosY+$this->_Height-$this->_Line_Height-1);
 			$pdf->Cell($this->_Width, $this->_Line_Height, $outputlangs->convToOutputCharset($footer), 0, 1, 'C');
 		}
-		//print "$_PosY+$this->_Height-$this->_Line_Height-1<br>\n";
+		
 
 		$this->_COUNTY++;
 
@@ -360,8 +360,8 @@ class pdf_tcpdflabel extends CommonStickerGenerator
 			$this->addSticker($pdf, $outputlangs, $val);
 		}
 
-		//$pdf->SetXY(10, 295);
-		//$pdf->Cell($this->_Width, $this->_Line_Height, 'XXX',0,1,'C');
+		
+		
 
 
 		// Output to file
@@ -377,7 +377,7 @@ class pdf_tcpdflabel extends CommonStickerGenerator
 		if (! empty($conf->global->MAIN_DISABLE_FORCE_SAVEAS)) $attachment=false;
 		$type=dol_mimetype($filename);
 
-		//if ($encoding)   header('Content-Encoding: '.$encoding);
+		
 		if ($type)		 header('Content-Type: '.$type);
 		if ($attachment) header('Content-Disposition: attachment; filename="'.$filename.'"');
 		else header('Content-Disposition: inline; filename="'.$filename.'"');

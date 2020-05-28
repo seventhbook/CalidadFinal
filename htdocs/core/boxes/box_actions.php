@@ -124,7 +124,7 @@ class box_actions extends ModeleBoxes
                     if ($objp->percentage >= 0 && $objp->percentage < 100 && $datelimite  < ($now - $delay_warning))
                         $late=img_warning($langs->trans("Late"));
 
-					//($langs->transnoentities("Action".$objp->code)!=("Action".$objp->code) ? $langs->transnoentities("Action".$objp->code) : $objp->label)
+					
 					$label = empty($objp->label)?$objp->type_label:$objp->label;
 
                     $this->info_box_contents[$line][] = array(

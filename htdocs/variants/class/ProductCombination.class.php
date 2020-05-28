@@ -546,7 +546,7 @@ WHERE c.fk_product_parent = ".(int) $productid." AND p.tosell = 1";
 		$prodattr = new ProductAttribute($db);
 		$prodattrval = new ProductAttributeValue($db);
 
-		// $combination contains list of attributes pairs key->value. Example: array('id Color'=>id Blue, 'id Size'=>id Small, 'id Option'=>id val a, ...)
+		
 		//var_dump($combinations);
 		foreach ($combinations as $currcombattr => $currcombval) {
 			//This was checked earlier, so no need to double check
@@ -602,7 +602,7 @@ WHERE c.fk_product_parent = ".(int) $productid." AND p.tosell = 1";
 		$newproduct->barcode = -1;
 
 		// Now create the product
-		//print 'Create prod '.$newproduct->ref.'<br>'."\n";
+		
 		$newprodid = $newproduct->create($user);
 		if ($newprodid < 0)
 		{

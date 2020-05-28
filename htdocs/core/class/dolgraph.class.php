@@ -43,7 +43,7 @@ class DolGraph
 	public $mode = 'side'; // Mode bars graph: side, depth
 	private $_library = 'jflot'; // Graphic library to use (jflot, artichow)
 
-	//! Array of data
+	
 	public $data; // Data of graph: array(array('abs1',valA1,valB1), array('abs2',valA2,valB2), ...)
 	public $title; // Title of graph
 	public $cssprefix = ''; // To add into css styles
@@ -81,10 +81,10 @@ class DolGraph
 	 */
 	public $error = '';
 
-	public $bordercolor; // array(R,G,B)
-	public $bgcolor; // array(R,G,B)
-	public $bgcolorgrid = array(255, 255, 255); // array(R,G,B)
-	public $datacolor; // array(array(R,G,B),...)
+	public $bordercolor; 
+	public $bgcolor; 
+	public $bgcolorgrid = array(255, 255, 255); 
+	public $datacolor; 
 
 	private $stringtoshow; // To store string to output graph into HTML page
 
@@ -818,7 +818,7 @@ class DolGraph
 				$plot->SetYMin($this->MinValue);
 			}
 
-			//$plot->reduce(80);		// Evite temps d'affichage trop long et nombre de ticks absisce satures
+			
 
 			$group->legend->setTextFont(new $artichow_defaultfont(10)); // This is to force Artichow to use awFileFontDriver to
 			// solve a bug in Artichow with UTF8
@@ -850,9 +850,9 @@ class DolGraph
 	/**
 	 * Build a graph using JFlot library. Input when calling this method should be:
 	 *	$this->data  = array(array(0=>'labelxA',1=>yA),  array('labelxB',yB));
-	 *	$this->data  = array(array(0=>'labelxA',1=>yA1,...,n=>yAn), array('labelxB',yB1,...yBn));   // or when there is n series to show for each x
+	 *	$this->data  = array(array(0=>'labelxA',1=>yA1,...,n=>yAn), array('labelxB',yB1,...yBn));   
 	 *  $this->data  = array(array('label'=>'labelxA','data'=>yA),  array('labelxB',yB));			// Syntax deprecated
-	 *  $this->legend= array("Val1",...,"Valn");													// list of n series name
+	 *  $this->legend= array("Val1",...,"Valn");													
 	 *  $this->type  = array('bars',...'lines'); or array('pie')
 	 *  $this->mode = 'depth' ???
 	 *  $this->bgcolorgrid
@@ -879,12 +879,12 @@ class DolGraph
 		$legends=array();
 		$nblot=0;
 		if (is_array($this->data) && is_array($this->data[0])) {
-			$nblot=count($this->data[0])-1;    // -1 to remove legend
+			$nblot=count($this->data[0])-1;    
 		}
 		if ($nblot < 0) dol_syslog('Bad value for property ->data. Must be set by mydolgraph->SetData before calling mydolgrapgh->draw', LOG_WARNING);
 		$firstlot=0;
 		// Works with line but not with bars
-		//if ($nblot > 2) $firstlot = ($nblot - 2);        // We limit nblot to 2 because jflot can't manage more than 2 bars on same x
+		
 
 		$i=$firstlot;
 		$serie=array();

@@ -54,7 +54,7 @@ class modEmailCollector extends DolibarrModules
 		// Module position in the family on 2 digits ('01', '10', '20', ...)
 		$this->module_position = '12';
 		// Gives the possibility to the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-		//$this->familyinfo = array('myownfamily' => array('position' => '01', 'label' => $langs->trans("MyOwnFamily")));
+		
 
 		// Module label (no space allowed), used if translation string 'ModuledavName' not found (MyModue is name of module).
 		$this->name = preg_replace('/^mod/i', '', get_class($this));
@@ -73,9 +73,9 @@ class modEmailCollector extends DolibarrModules
 		$this->picto = 'email';
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
-		// for default path (eg: /dav/core/xxxxx) (0=disable, 1=enable)
-		// for specific path of parts (eg: /dav/core/modules/barcode)
-		// for specific css file (eg: /dav/css/dav.css.php)
+		
+		
+		
 		$this->module_parts = array();
 
 		// Data directories to create when module is enabled.
@@ -95,14 +95,14 @@ class modEmailCollector extends DolibarrModules
 		$this->need_dolibarr_version = array(7, 0); // Minimum version of Dolibarr required by module
 		$this->warnings_activation = array(); // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
 		$this->warnings_activation_ext = array(); // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
-		//$this->automatic_activation = array('FR'=>'davWasAutomaticallyActivatedBecauseOfYourCountryChoice');
-		//$this->always_enabled = true;								// If true, can't be disabled
+		
+		
 
 		// Constants
 		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
 		// Example: $this->const=array(0=>array('DAV_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
 		//                             1=>array('DAV_MYNEWCONST2','chaine','myvalue','This is another constant to add',0, 'current', 1)
-		// );
+		
 		$this->const = array(
 			//1=>array('DAV_MYCONSTANT', 'chaine', 'avalue', 'This is a constant to add', 1, 'allentities', 1)
 		);
@@ -118,10 +118,10 @@ class modEmailCollector extends DolibarrModules
 		// Array to add new pages in new tabs
         $this->tabs = array();
 		// Example:
-		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@dav:$user->rights->dav->read:/dav/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-        // $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@dav:$user->rights->othermodule->read:/dav/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
-        // $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
-        //
+		
+        
+        
+        
         // Where objecttype can be
 		// 'categories_x'	  to add a tab in category view (replace 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
 		// 'contact'          to add a tab in contact view
@@ -265,16 +265,16 @@ class modEmailCollector extends DolibarrModules
 	public function init($options = '')
 	{
 		global $conf, $user;
-		//$this->_load_tables('/dav/sql/');
+		
 
 		// Create extrafields
-		//include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-		//$extrafields = new ExtraFields($this->db);
-		//$result1=$extrafields->addExtraField('myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'dav@dav', '$conf->dav->enabled');
-		//$result2=$extrafields->addExtraField('myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'dav@dav', '$conf->dav->enabled');
-		//$result3=$extrafields->addExtraField('myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'dav@dav', '$conf->dav->enabled');
-		//$result4=$extrafields->addExtraField('myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1 '', 0, 0, '', '', 'dav@dav', '$conf->dav->enabled');
-		//$result5=$extrafields->addExtraField('myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'dav@dav', '$conf->dav->enabled');
+		
+		
+		
+		
+		
+		
+		
 
 		$sql = array();
 

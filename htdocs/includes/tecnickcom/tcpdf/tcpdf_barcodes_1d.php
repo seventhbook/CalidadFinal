@@ -1,36 +1,36 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_barcodes_1d.php
 // Version     : 1.0.027
 // Begin       : 2008-06-09
 // Last Update : 2014-10-20
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2008-2014 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the GNU Lesser General Public License
 // along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : PHP class to creates array representations for
 //               common 1D barcodes to be used with TCPDF.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -118,7 +118,7 @@ class TCPDFBarcode {
 		$svg .= '<svg width="'.round(($this->barcode_array['maxw'] * $w), 3).'" height="'.$h.'" version="1.1" xmlns="http://www.w3.org/2000/svg">'."\n";
 		$svg .= "\t".'<desc>'.strtr($this->barcode_array['code'], $repstr).'</desc>'."\n";
 		$svg .= "\t".'<g id="bars" fill="'.$color.'" stroke="none">'."\n";
-		// print bars
+		
 		$x = 0;
 		foreach ($this->barcode_array['bcode'] as $k => $v) {
 			$bw = round(($v['w'] * $w), 3);
@@ -145,7 +145,7 @@ class TCPDFBarcode {
 	 */
 	public function getBarcodeHTML($w=2, $h=30, $color='black') {
 		$html = '<div style="font-size:0;position:relative;width:'.($this->barcode_array['maxw'] * $w).'px;height:'.($h).'px;">'."\n";
-		// print bars
+		
 		$x = 0;
 		foreach ($this->barcode_array['bcode'] as $k => $v) {
 			$bw = round(($v['w'] * $w), 3);
@@ -208,7 +208,7 @@ class TCPDFBarcode {
 		} else {
 			return false;
 		}
-		// print bars
+		
 		$x = 0;
 		foreach ($this->barcode_array['bcode'] as $k => $v) {
 			$bw = round(($v['w'] * $w), 3);
@@ -591,17 +591,17 @@ class TCPDFBarcode {
 		$chr[88] = '112221'; // X
 		$chr[89] = '122121'; // Y
 		$chr[90] = '123111'; // Z
-		$chr[45] = '121131'; // -
-		$chr[46] = '311112'; // .
-		$chr[32] = '311211'; //
-		$chr[36] = '321111'; // $
-		$chr[47] = '112131'; // /
-		$chr[43] = '113121'; // +
-		$chr[37] = '211131'; // %
-		$chr[128] = '121221'; // ($)
-		$chr[129] = '311121'; // (/)
-		$chr[130] = '122211'; // (+)
-		$chr[131] = '312111'; // (%)
+		$chr[45] = '121131'; 
+		$chr[46] = '311112'; 
+		$chr[32] = '311211'; 
+		$chr[36] = '321111'; 
+		$chr[47] = '112131'; 
+		$chr[43] = '113121'; 
+		$chr[37] = '211131'; 
+		$chr[128] = '121221'; 
+		$chr[129] = '311121'; 
+		$chr[130] = '122211'; 
+		$chr[131] = '312111'; 
 		$chr[42] = '111141'; // start-stop
 		$code = strtoupper($code);
 		$encode = array(
@@ -1074,7 +1074,7 @@ class TCPDFBarcode {
 		// special codes
 		$fnc_a = array(241 => 102, 242 => 97, 243 => 96, 244 => 101);
 		$fnc_b = array(241 => 102, 242 => 97, 243 => 96, 244 => 100);
-		// array of symbols
+		
 		$code_data = array();
 		// length of the code
 		$len = strlen($code);
@@ -2267,7 +2267,7 @@ class TCPDFBarcode {
 	protected function imb_crc11fcs($code_arr) {
 		$genpoly = 0x0F35; // generator polynomial
 		$fcs = 0x07FF; // Frame Check Sequence
-		// do most significant byte skipping the 2 most significant bits
+		
 		$data = hexdec($code_arr[0]) << 5;
 		for ($bit = 2; $bit < 8; ++$bit) {
 			if (($fcs ^ $data) & 0x400) {
@@ -2278,7 +2278,7 @@ class TCPDFBarcode {
 			$fcs &= 0x7FF;
 			$data <<= 1;
 		}
-		// do rest of bytes
+		
 		for ($byte = 1; $byte < 13; ++$byte) {
 			$data = hexdec($code_arr[$byte]) << 3;
 			for ($bit = 0; $bit < 8; ++$bit) {
@@ -2326,10 +2326,10 @@ class TCPDFBarcode {
 			for ($bit_index = 0; $bit_index < 13; ++$bit_index) {
 				$bit_count += intval(($count & (1 << $bit_index)) != 0);
 			}
-			// if we don't have the right number of bits on, go on to the next value
+			
 			if ($bit_count == $n) {
 				$reverse = ($this->imb_reverse_us($count) >> 3);
-				// if the reverse is less than count, we have already visited this pair before
+				
 				if ($reverse >= $count) {
 					// If count is symmetric, place it at the first free slot from the end of the list.
 					// Otherwise, place it at the first free slot from the beginning of the list AND place $reverse ath the next free slot from the beginning of the list
@@ -2349,6 +2349,6 @@ class TCPDFBarcode {
 	}
 
 } // end of class
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

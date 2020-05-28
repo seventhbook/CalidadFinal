@@ -248,7 +248,7 @@ if ($action == 'create') {
 	print load_fiche_titre($langs->trans("CreateRepeatableIntervention"), '', 'fichinter');
 
 	$object = new Fichinter($db); // Source invoice
-	//$object = new Managementfichinter($db);   // Source invoice
+	
 
 	if ($object->fetch($id, $ref) > 0) {
 		print '<form action="card-rec.php" method="post">';
@@ -270,7 +270,7 @@ if ($action == 'create') {
 		print '<tr><td>'.$langs->trans("Customer").'</td><td>';
 		print $form->select_company($object->thirdparty->id, 'socid', '', 0, 1);
 
-		//.$object->thirdparty->getNomUrl(1,'customer').
+		
 		print '</td><td>';
 		print $langs->trans("Comment");
 		print '</td></tr>';
@@ -322,7 +322,7 @@ if ($action == 'create') {
 
 		print '<br><br>';
 
-		/// frequency & duration
+		
 		// Autogeneration
 		$title = $langs->trans("Recurrence");
 		print load_fiche_titre($title, '', 'calendar');
@@ -571,7 +571,7 @@ if ($action == 'create') {
 
 			print '<table class="border centpercent">';
 
-			// if "frequency" is empty or = 0, the reccurence is disabled
+			
 			print '<tr><td style="width: 50%">';
 			print '<table class="nobordernopadding" width="100%"><tr><td>';
 			print $langs->trans('Frequency');

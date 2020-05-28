@@ -145,7 +145,7 @@ class Product extends CommonObject
     */
     public $price_base_type;
 
-    //! Arrays for multiprices
+    
     public $multiprices = array();
     public $multiprices_ttc = array();
     public $multiprices_base_type = array();
@@ -154,22 +154,22 @@ class Product extends CommonObject
     public $multiprices_tva_tx = array();
     public $multiprices_recuperableonly = array();
 
-    //! Price by quantity arrays
+    
     public $price_by_qty;
     public $prices_by_qty = array();
     public $prices_by_qty_id = array();
     public $prices_by_qty_list = array();
 
-    //! Default VAT code for product (link to code into llx_c_tva but without foreign keys)
+    
     public $default_vat_code;
 
-    //! Default VAT rate of product
+    
     public $tva_tx;
 
-    //! French VAT NPR (0 or 1)
+    
     public $tva_npr = 0;
 
-    //! Other local taxes
+    
     public $localtax1_tx;
     public $localtax2_tx;
     public $localtax1_type;
@@ -196,7 +196,7 @@ class Product extends CommonObject
      */
     public $cost_price;
 
-    //! Average price value for product entry into stock (PMP)
+    
     public $pmp;
 
     /**
@@ -263,7 +263,7 @@ class Product extends CommonObject
      */
     public $url;
 
-    //! Metric of products
+    
     public $weight;
     public $weight_units;
     public $length;
@@ -324,7 +324,7 @@ class Product extends CommonObject
 
     public $multilangs = array();
 
-    //! Size of image
+    
     public $imgWidth;
     public $imgHeight;
 
@@ -338,15 +338,15 @@ class Product extends CommonObject
      */
     public $date_modification;
 
-    //! Id du fournisseur
+    
     public $product_fourn_id;
 
-    //! Product ID already linked to a reference supplier
+    
     public $product_id_already_linked;
 
     public $nbphoto = 0;
 
-    //! Contains detail of stock of product into each warehouse
+    
     public $stock_warehouse = array();
 
     public $oldcopy;
@@ -520,25 +520,25 @@ class Product extends CommonObject
         $price_min_ht = 0;
         $price_min_ttc = 0;
 
-        //
+        
         if ($this->price_base_type == 'TTC' && $this->price_ttc > 0) {
             $price_ttc = price2num($this->price_ttc, 'MU');
             $price_ht = price2num($this->price_ttc / (1 + ($this->tva_tx / 100)), 'MU');
         }
 
-        //
+        
         if ($this->price_base_type != 'TTC' && $this->price > 0) {
             $price_ht = price2num($this->price, 'MU');
             $price_ttc = price2num($this->price * (1 + ($this->tva_tx / 100)), 'MU');
         }
 
-        //
+        
         if (($this->price_min_ttc > 0) && ($this->price_base_type == 'TTC')) {
             $price_min_ttc = price2num($this->price_min_ttc, 'MU');
             $price_min_ht = price2num($this->price_min_ttc / (1 + ($this->tva_tx / 100)), 'MU');
         }
 
-        //
+        
         if (($this->price_min > 0) && ($this->price_base_type != 'TTC')) {
             $price_min_ht = price2num($this->price_min, 'MU');
             $price_min_ttc = price2num($this->price_min * (1 + ($this->tva_tx / 100)), 'MU');
@@ -919,7 +919,7 @@ class Product extends CommonObject
             // Test if batch management is activated on existing product
             // If yes, we create missing entries into product_batch
             if ($this->hasbatch() && !$this->oldcopy->hasbatch()) {
-                //$valueforundefinedlot = 'Undefined';  // In previous version, 39 and lower
+                
                 $valueforundefinedlot = '000000';
 
                 dol_syslog("Flag batch of product id=".$this->id." is set to ON, so we will create missing records into product_batch");
@@ -1304,7 +1304,7 @@ class Product extends CommonObject
 
                 $result = $this->db->query($sql);
 
-                if ($this->db->num_rows($result)) // if there is already a description line for this language
+                if ($this->db->num_rows($result)) 
                 {
                     $sql2 = "UPDATE ".MAIN_DB_PREFIX."product_lang";
                     $sql2 .= " SET ";
@@ -1341,7 +1341,7 @@ class Product extends CommonObject
 
                 $result = $this->db->query($sql);
 
-                if ($this->db->num_rows($result)) // if there is already a description line for this language
+                if ($this->db->num_rows($result)) 
                 {
                     $sql2 = "UPDATE ".MAIN_DB_PREFIX."product_lang";
                     $sql2 .= " SET ";
@@ -2121,10 +2121,10 @@ class Product extends CommonObject
                 $this->cost_price                    = $obj->cost_price;
                 $this->default_vat_code = $obj->default_vat_code;
                 $this->tva_tx                        = $obj->tva_tx;
-                //! French VAT NPR
+                
                 $this->tva_npr                        = $obj->tva_npr;
                 $this->recuperableonly                = $obj->tva_npr; // For backward compatibility
-                //! Local taxes
+                
                 $this->localtax1_tx                    = $obj->localtax1_tx;
                 $this->localtax2_tx                    = $obj->localtax2_tx;
                 $this->localtax1_type                = $obj->localtax1_type;
@@ -2254,7 +2254,7 @@ class Product extends CommonObject
                                     $resultat[$ii]["unitprice"] = $result["unitprice"];
                                     $resultat[$ii]["quantity"] = $result["quantity"];
                                     $resultat[$ii]["remise_percent"] = $result["remise_percent"];
-                                    //$resultat[$ii]["remise"]= $result["remise"];                    // deprecated
+                                    
                                     $resultat[$ii]["price_base_type"] = $result["price_base_type"];
                                     $ii++;
                                 }
@@ -2410,7 +2410,7 @@ class Product extends CommonObject
             $this->stats_propale['rows'] = $obj->nb_rows;
             $this->stats_propale['qty'] = $obj->qty ? $obj->qty : 0;
 
-            // if it's a virtual product, maybe it is in proposal by extension
+            
             if (!empty($conf->global->PRODUCT_STATS_WITH_PARENT_PROD_IF_INCDEC)) {
                 $TFather = $this->getFather();
                 if (is_array($TFather) && !empty($TFather)) {
@@ -2531,7 +2531,7 @@ class Product extends CommonObject
             $this->stats_commande['rows'] = $obj->nb_rows;
             $this->stats_commande['qty'] = $obj->qty ? $obj->qty : 0;
 
-            // if it's a virtual product, maybe it is in order by extension
+            
             if (!empty($conf->global->PRODUCT_STATS_WITH_PARENT_PROD_IF_INCDEC)) {
                 $TFather = $this->getFather();
                 if (is_array($TFather) && !empty($TFather)) {
@@ -2688,7 +2688,7 @@ class Product extends CommonObject
             $this->stats_expedition['rows'] = $obj->nb_rows;
             $this->stats_expedition['qty'] = $obj->qty ? $obj->qty : 0;
 
-            // if it's a virtual product, maybe it is in sending by extension
+            
             if (!empty($conf->global->PRODUCT_STATS_WITH_PARENT_PROD_IF_INCDEC)) {
                 $TFather = $this->getFather();
                 if (is_array($TFather) && !empty($TFather)) {
@@ -2886,7 +2886,7 @@ class Product extends CommonObject
             $this->stats_contrat['rows'] = $obj->nb_rows;
             $this->stats_contrat['qty'] = $obj->qty ? $obj->qty : 0;
 
-            // if it's a virtual product, maybe it is in contract by extension
+            
             if (!empty($conf->global->PRODUCT_STATS_WITH_PARENT_PROD_IF_INCDEC)) {
                 $TFather = $this->getFather();
                 if (is_array($TFather) && !empty($TFather)) {
@@ -2954,7 +2954,7 @@ class Product extends CommonObject
             $this->stats_facture['rows'] = $obj->nb_rows;
             $this->stats_facture['qty'] = $obj->qty ? $obj->qty : 0;
 
-            // if it's a virtual product, maybe it is in invoice by extension
+            
             if (!empty($conf->global->PRODUCT_STATS_WITH_PARENT_PROD_IF_INCDEC)) {
                 $TFather = $this->getFather();
                 if (is_array($TFather) && !empty($TFather)) {
@@ -3940,7 +3940,7 @@ class Product extends CommonObject
         global $conf, $langs;
 
         $tmpproduct = null;
-        foreach ($prod as $id_product => $desc_pere)    // $id_product is 0 (first call starting with root top) or an id of a sub_product
+        foreach ($prod as $id_product => $desc_pere)    
         {
             if (is_array($desc_pere))    // If desc_pere is an array, this means it's a child
             {
@@ -4095,7 +4095,7 @@ class Product extends CommonObject
             $prods = array();
             while ($record = $this->db->fetch_array($res))
             {
-                // $record['id'] = $record['rowid'] = id of father
+                
                 $prods[$record['id']]['id'] = $record['rowid'];
                 $prods[$record['id']]['ref'] = $record['ref'];
                 $prods[$record['id']]['label'] = $record['label'];
@@ -4449,7 +4449,7 @@ class Product extends CommonObject
         $statuttrans = empty($status) ? 'status5' : 'status4';
 
         if ($status == 0) {
-            // $type   0=Status "to sell", 1=Status "to buy", 2=Status "to Batch"
+            
             if ($type == 0) {
                 $labelStatus = $langs->trans('ProductStatusNotOnSellShort');
                 $labelStatusShort = $langs->trans('ProductStatusNotOnSell');
@@ -4464,7 +4464,7 @@ class Product extends CommonObject
             }
         }
         elseif ($status == 1) {
-            // $type   0=Status "to sell", 1=Status "to buy", 2=Status "to Batch"
+            
             if ($type == 0) {
                 $labelStatus = $langs->trans('ProductStatusOnSellShort');
                 $labelStatusShort = $langs->trans('ProductStatusOnSell');

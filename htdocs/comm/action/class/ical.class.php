@@ -67,7 +67,7 @@ class ICal
             $file_text = join("", $tmparray); //load file
             $file_text = preg_replace("/[\r\n]{1,} /", "", $file_text);
         }
-        return $file_text; // return all text
+        return $file_text; 
     }
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -102,7 +102,7 @@ class ICal
      */
     public function parse($uri)
     {
-        $this->cal = array(); // new empty array
+        $this->cal = array(); 
 
         $this->event_count = -1;
 
@@ -128,17 +128,17 @@ class ICal
                 switch ($text) // search special string
                 {
                     case "BEGIN:VTODO":
-                        $this->todo_count = $this->todo_count+1; // new to do begin
+                        $this->todo_count = $this->todo_count+1; 
                         $type = "VTODO";
                         break;
 
                     case "BEGIN:VEVENT":
-                        $this->event_count = $this->event_count+1; // new event begin
+                        $this->event_count = $this->event_count+1; 
                         $type = "VEVENT";
                         break;
 
                     case "BEGIN:VFREEBUSY":
-                        $this->freebusy_count = $this->freebusy_count+1; // new event begin
+                        $this->freebusy_count = $this->freebusy_count+1; 
                         $type = "VFREEBUSY";
                         break;
 
@@ -191,7 +191,7 @@ class ICal
                     		{
                     			$value=quotedPrintDecode(preg_replace('/^ENCODING=QUOTED-PRINTABLE:/i', '', $tmpvalue.$value));
                     		}
-                    	}                    	//$value=quotedPrintDecode($tmpvalue.$value);
+                    	}                    	
                     	if (! $insidealarm && ! $tmpkey) $this->add_to_array($type, $key, $value); // add to array
                         break;
                 }
@@ -215,7 +215,7 @@ class ICal
     {
         // phpcs:enable
 
-        //print 'type='.$type.' key='.$key.' value='.$value.'<br>'."\n";
+        
 
         if (empty($key))
         {
@@ -229,7 +229,7 @@ class ICal
         }
 
         if (($key == "DTSTAMP") || ($key == "LAST-MODIFIED") || ($key == "CREATED")) $value = $this->ical_date_to_unix($value);
-        //if ($key == "RRULE" ) $value = $this->ical_rrule($value);
+        
 
         if (stristr($key, "DTSTART") || stristr($key, "DTEND") || stristr($key, "DTSTART;VALUE=DATE") || stristr($key, "DTEND;VALUE=DATE"))
         {
@@ -327,8 +327,8 @@ class ICal
         if (preg_match('/([0-9]{4})([0-9]{2})([0-9]{2})([0-9]{0,2})([0-9]{0,2})([0-9]{0,2})/', $ical_date, $date))
             $ntime=dol_mktime($date[4], $date[5], $date[6], $date[2], $date[3], $date[1], true);
 
-        //if (empty($date[4])) print 'Error bad date: '.$ical_date.' - date1='.$date[1];
-        //print dol_print_date($ntime,'dayhour');exit;
+        
+        
         return $ntime;      // ntime is a GTM time
     }
 

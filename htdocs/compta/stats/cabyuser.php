@@ -101,7 +101,7 @@ if (empty($date_start) || empty($date_end)) // We define date_start and date_end
 
 	
 
-// $date_start and $date_end are defined. We force $year_start and $nbofyear
+
 $tmps = dol_getdate($date_start);
 $year_start = $tmps['year'];
 $tmpe = dol_getdate($date_end);
@@ -400,7 +400,7 @@ if (count($amount)) {
             if ($key > 0) {
                 print '<a href="'.DOL_URL_ROOT.'/compta/facture/list.php?userid='.$key.'">';
             } else {
-                //print '<a href="#">';
+                
             }
             print price($amount_ht[$key]);
             if ($key > 0) print '</a>';

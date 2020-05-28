@@ -373,7 +373,7 @@ class Plugin extends DAV\ServerPlugin {
         $highestLevel = 0;
         $warningMessage = null;
 
-        // $messages contains a list of problems with the vcard, along with
+        
         // their severity.
         foreach ($messages as $message) {
 
@@ -562,10 +562,10 @@ class Plugin extends DAV\ServerPlugin {
                     }
                 }
 
-            } // else
+            } 
 
             // There are two conditions where we can already determine whether
-            // or not this filter succeeds.
+            
             if ($test === 'anyof' && $success) {
 
                 // Destroy circular references to PHP will GC the object.
@@ -581,7 +581,7 @@ class Plugin extends DAV\ServerPlugin {
                 return false;
             }
 
-        } // foreach
+        } 
 
 
         // Destroy circular references to PHP will GC the object.
@@ -589,7 +589,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // If we got all the way here, it means we haven't been able to
         // determine early if the test failed or not.
-        //
+        
         // This implies for 'anyof' that the test failed, and for 'allof' that
         // we succeeded. Sounds weird, but makes sense.
         return $test === 'allof';
@@ -642,10 +642,10 @@ class Plugin extends DAV\ServerPlugin {
                     $success = !$success;
                 }
 
-            } // else
+            } 
 
             // There are two conditions where we can already determine whether
-            // or not this filter succeeds.
+            
             if ($test === 'anyof' && $success) {
                 return true;
             }
@@ -657,7 +657,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // If we got all the way here, it means we haven't been able to
         // determine early if the test failed or not.
-        //
+        
         // This implies for 'anyof' that the test failed, and for 'allof' that
         // we succeeded. Sounds weird, but makes sense.
         return $test === 'allof';
@@ -698,7 +698,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // If we got all the way here, it means we haven't been able to
         // determine early if the test failed or not.
-        //
+        
         // This implies for 'anyof' that the test failed, and for 'allof' that
         // we succeeded. Sounds weird, but makes sense.
         return $test === 'allof';

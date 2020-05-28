@@ -223,7 +223,7 @@ if ($_REQUEST["account"] || $_REQUEST["ref"])
 			{
 				$showline=1;
 				// Uncomment this line to avoid to count suppliers credit note (ff.type = 2)
-				//$showline=(($obj->total_ttc < 0 && $obj->type != 2) || ($obj->total_ttc > 0 && $obj->type == 2))
+				
 				if ($showline)
 				{
 					$ref=$obj->ref;

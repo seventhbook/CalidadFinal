@@ -100,8 +100,8 @@ class ExpenseReports extends DolibarrApi
 
         $obj_ret = array();
 
-        // case of external user, $societe param is ignored and replaced by user's socid
-        //$socid = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $societe;
+        
+        
 
         $sql = "SELECT t.rowid";
         $sql.= " FROM ".MAIN_DB_PREFIX."expensereport as t";

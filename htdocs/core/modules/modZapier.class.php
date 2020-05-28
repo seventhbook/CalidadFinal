@@ -51,7 +51,7 @@ class modZapier extends DolibarrModules
         // Module position in the family on 2 digits ('01', '10', '20', ...)
         $this->module_position = '13';
         // Gives the possibility for the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-        //$this->familyinfo = array('myownfamily' => array('position' => '01', 'label' => $langs->trans("MyOwnFamily")));
+        
         // Module label (no space allowed), used if translation string 'ModuleZapierName' not found (Zapier is name of module).
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         // Module description, used if translation string 'ModuleZapierDesc' not found (Zapier is name of module).
@@ -61,7 +61,7 @@ class modZapier extends DolibarrModules
         // Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
         $this->version = 'development';
         //Url to the file with your last numberversion of this module
-        //$this->url_last_version = 'http://www.example.com/versionmodule.txt';
+        
         // Key used in llx_const table to save module status enabled/disabled (where ZAPIERFORDOLIBARR is value of property name of module in uppercase)
         $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
         // Name of image file used for this module.
@@ -99,7 +99,7 @@ class modZapier extends DolibarrModules
                 //   'data' => array(
                 //       'hookcontext1',
                 //       'hookcontext2',
-                //   ),
+                
                 //   'entity' => '0',
             ),
             // Set this to 1 if feature of module are opened to external users
@@ -123,24 +123,24 @@ class modZapier extends DolibarrModules
         $this->conflictwith = array();
         $this->langfiles = array("zapier");
         // Minimum version of PHP required by module
-        //$this->phpmin = array(5, 5);
+        
         // Minimum version of Dolibarr required by module
         $this->need_dolibarr_version = array(10, 0);
         // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
         $this->warnings_activation = array();
         // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
         $this->warnings_activation_ext = array();
-        // $this->automatic_activation = array(
+        
         //     'FR'=>'ZapierWasAutomaticallyActivatedBecauseOfYourCountryChoice',
-        // );
+        
         // If true, can't be disabled
-        // $this->always_enabled = true;
+        
         // Constants
         // List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
         // Example: $this->const=array(
         //    1 => array('ZAPIERFORDOLIBARR_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
         //    2 => array('ZAPIERFORDOLIBARR_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
-        // );
+        
         $this->const = array(
             // 1 => array('ZAPIERFORDOLIBARR_MYCONSTANT', 'chaine', 'avalue', 'This is a constant to add', 1, 'allentities', 1)
         );
@@ -156,10 +156,10 @@ class modZapier extends DolibarrModules
         // Array to add new pages in new tabs
         $this->tabs = array();
         // Example:
-        // $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@zapier:$user->rights->zapier->read:/zapier/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-        // $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@zapier:$user->rights->othermodule->read:/zapier/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
-        // $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
-        //
+        
+        
+        
+        
         // Where objecttype can be
         // 'categories_x'	  to add a tab in category view (replace 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
         // 'contact'          to add a tab in contact view
@@ -212,7 +212,7 @@ class modZapier extends DolibarrModules
             //      'file' => 'zapierwidget1.php@zapier',
             //      'note' => 'Widget provided by Zapier',
             //      'enabledbydefaulton' => 'Home',
-            //  ),
+            
             //1=>array('file'=>'zapierwidget2.php@zapier','note'=>'Widget provided by Zapier'),
             //2=>array('file'=>'zapierwidget3.php@zapier','note'=>'Widget provided by Zapier')
         );
@@ -232,12 +232,12 @@ class modZapier extends DolibarrModules
             //      'status' => 0,
             //      'test' => '$conf->zapier->enabled',
             //      'priority' => 50,
-            //  ),
+            
         );
         // Example: $this->cronjobs=array(
         //    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->zapier->enabled', 'priority'=>50),
         //    1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>'$conf->zapier->enabled', 'priority'=>50)
-        // );
+        
         // Permissions
         // Permission array used by this module
         $this->rights = array();
@@ -271,7 +271,7 @@ class modZapier extends DolibarrModules
         $r=0;
 
         // Add here entries to declare new menus
-        // $this->menu[$r++]=array(
+        
         //     'fk_menu' => '',                          // '' if this is a top menu. For left menu, use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode
         //     'type' => 'top',                          // This is a Top menu entry
         //     'titre' => 'Zapier',
@@ -284,7 +284,7 @@ class modZapier extends DolibarrModules
         //     'perms' => '1',			                // Use 'perms'=>'$user->rights->zapier->level1->level2' if you want your menu with a permission rules
         //     'target' => '',
         //     'user' => 2,				                // 0=Menu for internal users, 1=external users, 2=both
-        // );
+        
 
         /*
         $this->menu[$r++]=array(
@@ -332,13 +332,13 @@ class modZapier extends DolibarrModules
         if ($result < 0) return -1; // Do not activate module if not allowed errors found on module SQL queries (the _load_table run sql with run_sql with error allowed parameter to 'default')
 
         // Create extrafields
-        //include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-        //$extrafields = new ExtraFields($this->db);
-        //$result1=$extrafields->addExtraField('myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'zapier@zapier', '$conf->zapier->enabled');
-        //$result2=$extrafields->addExtraField('myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'zapier@zapier', '$conf->zapier->enabled');
-        //$result3=$extrafields->addExtraField('myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'zapier@zapier', '$conf->zapier->enabled');
-        //$result4=$extrafields->addExtraField('myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'zapier@zapier', '$conf->zapier->enabled');
-        //$result5=$extrafields->addExtraField('myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'zapier@zapier', '$conf->zapier->enabled');
+        
+        
+        
+        
+        
+        
+        
         $sql = array();
         return $this->_init($sql, $options);
     }

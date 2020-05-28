@@ -98,7 +98,7 @@ class QRDecomposition
         }
     }
 
-    //    function __construct()
+    
 
     /**
      *    Is the matrix full rank?
@@ -116,7 +116,7 @@ class QRDecomposition
         return true;
     }
 
-    //    function isFullRank()
+    
 
     /**
      * Return the Householder vectors.
@@ -139,7 +139,7 @@ class QRDecomposition
         return new Matrix($H);
     }
 
-    //    function getH()
+    
 
     /**
      * Return the upper triangular factor.
@@ -164,7 +164,7 @@ class QRDecomposition
         return new Matrix($R);
     }
 
-    //    function getR()
+    
 
     /**
      * Generate and return the (economy-sized) orthogonal factor.
@@ -196,7 +196,7 @@ class QRDecomposition
         return new Matrix($Q);
     }
 
-    //    function getQ()
+    
 
     /**
      * Least squares solution of A*X = B.

@@ -133,7 +133,7 @@ class Uri implements UriInterface
         // "Applications should not render as clear text any data
         // after the first colon (":") character found within a userinfo
         // subcomponent unless the data after the colon is the empty string
-        // (indicating no password)"
+        
         if ($colonPos !== false && strlen($rawUserInfo)-1 > $colonPos) {
             return substr($rawUserInfo, 0, $colonPos) . ':********';
         } else {

@@ -42,7 +42,7 @@ function parse_backtrace($raw, $skip = 1)
         if ($skip-- > 0) {
             continue;
         }
-        //$output .= print_r($entry, true) . "\n";
+        
         $output .= "\nFile: " . $entry['file'] . " (Line: " . $entry['line'] . ")\n";
         if (isset($entry['class']))
             $output .= $entry['class'] . "::";
@@ -116,7 +116,7 @@ foreach ($reqHeadersArr as $key => $value) {
         continue;
     $requestHeaders .= "$key: $value" . PHP_EOL;
 }
-// $requestHeaders = $this->encode(apache_request_headers(), FALSE,
+
 // FALSE);
 $responseHeaders = implode(PHP_EOL, headers_list()).PHP_EOL.'Status: HTTP/1.1 ';
 $responseHeaders .= Util::$restler->responseCode.' '.\Luracast\Restler\RestException::$codes[Util::$restler->responseCode];

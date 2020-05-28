@@ -1,36 +1,36 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_barcodes_2d.php
 // Version     : 1.0.015
 // Begin       : 2009-04-07
 // Last Update : 2014-05-20
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2009-2014 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the GNU Lesser General Public License
 // along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
-//
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : PHP class to creates array representations for
 //               2D barcodes to be used with TCPDF.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -113,12 +113,12 @@ class TCPDF2DBarcode {
 		$svg .= '<svg width="'.round(($this->barcode_array['num_cols'] * $w), 3).'" height="'.round(($this->barcode_array['num_rows'] * $h), 3).'" version="1.1" xmlns="http://www.w3.org/2000/svg">'."\n";
 		$svg .= "\t".'<desc>'.strtr($this->barcode_array['code'], $repstr).'</desc>'."\n";
 		$svg .= "\t".'<g id="elements" fill="'.$color.'" stroke="none">'."\n";
-		// print barcode elements
+		
 		$y = 0;
-		// for each row
+		
 		for ($r = 0; $r < $this->barcode_array['num_rows']; ++$r) {
 			$x = 0;
-			// for each column
+			
 			for ($c = 0; $c < $this->barcode_array['num_cols']; ++$c) {
 				if ($this->barcode_array['bcode'][$r][$c] == 1) {
 					// draw a single barcode cell
@@ -143,12 +143,12 @@ class TCPDF2DBarcode {
 	 */
 	public function getBarcodeHTML($w=10, $h=10, $color='black') {
 		$html = '<div style="font-size:0;position:relative;width:'.($w * $this->barcode_array['num_cols']).'px;height:'.($h * $this->barcode_array['num_rows']).'px;">'."\n";
-		// print barcode elements
+		
 		$y = 0;
-		// for each row
+		
 		for ($r = 0; $r < $this->barcode_array['num_rows']; ++$r) {
 			$x = 0;
-			// for each column
+			
 			for ($c = 0; $c < $this->barcode_array['num_cols']; ++$c) {
 				if ($this->barcode_array['bcode'][$r][$c] == 1) {
 					// draw a single barcode cell
@@ -212,12 +212,12 @@ class TCPDF2DBarcode {
 		} else {
 			return false;
 		}
-		// print barcode elements
+		
 		$y = 0;
-		// for each row
+		
 		for ($r = 0; $r < $this->barcode_array['num_rows']; ++$r) {
 			$x = 0;
-			// for each column
+			
 			for ($c = 0; $c < $this->barcode_array['num_cols']; ++$c) {
 				if ($this->barcode_array['bcode'][$r][$c] == 1) {
 					// draw a single barcode cell
@@ -263,12 +263,12 @@ class TCPDF2DBarcode {
 			case 'PDF417': { // PDF417 (ISO/IEC 15438:2006)
 				require_once(dirname(__FILE__).'/include/barcodes/pdf417.php');
 				if (!isset($mode[1]) OR ($mode[1] === '')) {
-					$aspectratio = 2; // default aspect ratio (width / height)
+					$aspectratio = 2; 
 				} else {
 					$aspectratio = floatval($mode[1]);
 				}
 				if (!isset($mode[2]) OR ($mode[2] === '')) {
-					$ecl = -1; // default error correction level (auto)
+					$ecl = -1; 
 				} else {
 					$ecl = intval($mode[2]);
 				}
@@ -344,6 +344,6 @@ class TCPDF2DBarcode {
 	}
 } // end of class
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

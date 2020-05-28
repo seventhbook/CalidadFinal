@@ -140,7 +140,7 @@ class Worksheet extends WriterPart
         // sheetPr
         $objWriter->startElement('sheetPr');
         if ($pSheet->getParent()->hasMacros()) {
-            //if the workbook have macros, we need to have codeName for the sheet
+            
             if ($pSheet->hasCodeName() == false) {
                 $pSheet->setCodeName($pSheet->getTitle());
             }
@@ -468,8 +468,8 @@ class Worksheet extends WriterPart
         foreach ($pSheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
             foreach ($conditionalStyles as $conditional) {
                 // WHY was this again?
-                // if ($this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode($conditional->getHashCode()) == '') {
-                //    continue;
+                
+                
                 // }
                 if ($conditional->getConditionType() != Conditional::CONDITION_NONE) {
                     // conditionalFormatting

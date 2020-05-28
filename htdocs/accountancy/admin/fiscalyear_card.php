@@ -236,7 +236,7 @@ if ($action == 'create')
 
 			// Statut
 			print '<tr><td>'.$langs->trans("Statut").'</td><td>';
-			// print $form->selectarray('statut', $statut2label, $object->statut);
+			
 			print $object->getLibStatut(4);
 			print '</td></tr>';
 
@@ -309,7 +309,7 @@ if ($action == 'create')
 
     			print '<a class="butAction" href="'.$_SERVER["PHP_SELF"].'?action=edit&id='.$id.'">'.$langs->trans('Modify').'</a>';
 
-    			// print '<a class="butActionDelete" href="' . $_SERVER["PHP_SELF"] . '?action=delete&id=' . $id . '">' . $langs->trans('Delete') . '</a>';
+    			
 
     			print '</div>';
 			}

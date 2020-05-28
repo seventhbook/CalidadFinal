@@ -182,7 +182,7 @@ $title = $langs->trans('ListOfInventories');
 
 
 // Build and execute select
-// --------------------------------------------------------------------
+
 $sql = 'SELECT ';
 foreach ($object->fields as $key => $val)
 {
@@ -245,13 +245,13 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$resql = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($resql);
-	if (($page * $limit) > $nbtotalofrecords)	// if total of record found is smaller than page * limit, goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
 	}
 }
-// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+
 if (is_numeric($nbtotalofrecords) && ($limit > $nbtotalofrecords || empty($limit)))
 {
 	$num = $nbtotalofrecords;
@@ -281,7 +281,7 @@ if ($num == 1 && !empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $
 
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $title, $help_url);
 
@@ -363,7 +363,7 @@ print '<table class="tagtable liste'.($moreforfilter ? " listwithfilterbefore" :
 
 
 // Fields title search
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($object->fields as $key => $val)
 {
@@ -399,7 +399,7 @@ print '</tr>'."\n";
 
 
 // Fields title label
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($object->fields as $key => $val)
 {
@@ -435,7 +435,7 @@ if (is_array($extrafields->attributes[$object->table_element]['computed']) && co
 }
 
 // Loop on record
-// --------------------------------------------------------------------
+
 $i = 0;
 $totalarray = array();
 while ($i < ($limit ? min($num, $limit) : $num))

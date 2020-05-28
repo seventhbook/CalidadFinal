@@ -100,7 +100,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // The default behavior for most sabre/dav servers is that there is a
         // principals root node, which contains users directly under it.
-        //
+        
         // This function assumes that there are two components in a principal
         // path. If there's more, we don't return a calendar home. This
         // excludes things like the calendar-proxy-read principal (which it
@@ -161,7 +161,7 @@ class Plugin extends DAV\ServerPlugin {
             $reports[] = '{' . self::NS_CALDAV . '}free-busy-query';
         }
         // iCal has a bug where it assumes that sync support is enabled, only
-        // if we say we support it on the calendar-home, even though this is
+        
         // not actually the case.
         if ($node instanceof CalendarHome && $this->server->getPlugin('sync')) {
             $reports[] = '{DAV:}sync-collection';
@@ -291,7 +291,7 @@ class Plugin extends DAV\ServerPlugin {
         // iCal abuses MKCALENDAR since iCal 10.9.2 to create server-stored
         // subscriptions. Before that it used MKCOL which was the correct way
         // to do this.
-        //
+        
         // If the body had a {DAV:}resourcetype, it means we stumbled upon this
         // request, and we simply use it instead of the pre-defined list.
         if (isset($properties['{DAV:}resourcetype'])) {
@@ -387,7 +387,7 @@ class Plugin extends DAV\ServerPlugin {
 
                     // If the node is either ap proxy-read or proxy-write
                     // group, we grab the parent principal and add it to the
-                    // list.
+                    
                     if ($groupNode instanceof Principal\IProxyRead) {
                         $readList[] = $listItem;
                     }
@@ -537,7 +537,7 @@ class Plugin extends DAV\ServerPlugin {
         }
 
         // The calendarobject was requested directly. In this case we handle
-        // this locally.
+        
         if ($depth == 0 && $node instanceof ICalendarObject) {
 
             $requestedCalendarData = true;
@@ -564,7 +564,7 @@ class Plugin extends DAV\ServerPlugin {
             $properties = current($properties);
 
             // If there wasn't any calendar-data returned somehow, we ignore
-            // this.
+            
             if (isset($properties[200]['{urn:ietf:params:xml:ns:caldav}calendar-data'])) {
 
                 $validator = new CalendarQueryValidator();
@@ -606,7 +606,7 @@ class Plugin extends DAV\ServerPlugin {
                 // Microsoft clients incorrectly supplied depth as 0, when it actually
                 // should have set depth to 1. We're implementing a workaround here
                 // to deal with this.
-                //
+                
                 // This targets at least the following clients:
                 //   Windows 10
                 //   Windows Phone 8, 10
@@ -618,7 +618,7 @@ class Plugin extends DAV\ServerPlugin {
         }
 
         // If we're dealing with a calendar, the calendar itself is responsible
-        // for the calendar-query.
+        
         if ($node instanceof ICalendarObjectContainer && $depth == 1) {
 
             $nodePaths = $node->calendarQuery($report->filters);
@@ -756,7 +756,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // We're onyl interested in ICalendarObject nodes that are inside of a
         // real calendar. This is to avoid triggering validation and scheduling
-        // for non-calendars (such as an inbox).
+        
         list($parent) = Uri\split($path);
         $parentNode = $this->server->tree->getNodeForPath($parent);
 
@@ -894,7 +894,7 @@ class Plugin extends DAV\ServerPlugin {
         $highestLevel = 0;
         $warningMessage = null;
 
-        // $messages contains a list of problems with the vcard, along with
+        
         // their severity.
         foreach ($messages as $message) {
 
@@ -928,7 +928,7 @@ class Plugin extends DAV\ServerPlugin {
 
         // We use an extra variable to allow event handles to tell us whether
         // the object was modified or not.
-        //
+        
         // This helps us determine if we need to re-serialize the object.
         $subModified = false;
 

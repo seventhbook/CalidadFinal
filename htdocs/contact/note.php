@@ -93,8 +93,8 @@ if ($id > 0)
     dol_banner_tab($object, 'id', $linkback, 1, 'rowid', 'ref', $morehtmlref);
 
     $cssclass='titlefield';
-    //if ($action == 'editnote_public') $cssclass='titlefieldcreate';
-    //if ($action == 'editnote_private') $cssclass='titlefieldcreate';
+    
+    
 
     print '<div class="fichecenter">';
     print '<div class="underbanner clearboth"></div>';

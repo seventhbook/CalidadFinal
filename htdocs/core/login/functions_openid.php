@@ -51,7 +51,7 @@ function check_user_password_openid($usertotest, $passwordtotest, $entitytotest)
         $openid->SetTrustRoot($protocol . $_SERVER["HTTP_HOST"]);
         $openid->SetRequiredFields(array('email','fullname'));
         $_SESSION['dol_entity'] = $_POST["entity"];
-        //$openid->SetOptionalFields(array('dob','gender','postcode','country','language','timezone'));
+        
         if ($openid->sendDiscoveryRequestToGetXRDS())
         {
             $openid->SetApprovedURL($protocol . $_SERVER["HTTP_HOST"] . $_SERVER["SCRIPT_NAME"]);      // Send Response from OpenID server to this script
@@ -99,14 +99,14 @@ function check_user_password_openid($usertotest, $passwordtotest, $entitytotest)
         else
         {
             // Signature Verification Failed
-            //echo "INVALID AUTHORIZATION";
+            
             return false;
         }
     }
     elseif ($_GET['openid_mode'] == 'cancel')
     {
         // User Canceled your Request
-        //echo "USER CANCELED REQUEST";
+        
         return false;
     }
 

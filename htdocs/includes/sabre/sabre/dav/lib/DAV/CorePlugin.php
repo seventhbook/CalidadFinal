@@ -127,7 +127,7 @@ class CorePlugin extends ServerPlugin {
         // the precondition.
         if ($nodeSize && $range && $ifRange) {
 
-            // if IfRange is parsable as a date we'll treat it as a DateTime
+            
             // otherwise, we must treat it as an etag.
             try {
                 $ifRangeDate = new \DateTime($ifRange);
@@ -173,7 +173,7 @@ class CorePlugin extends ServerPlugin {
 
             // Streams may advertise themselves as seekable, but still not
             // actually allow fseek.  We'll manually go forward in the stream
-            // if fseek failed.
+            
             if (!stream_get_meta_data($body)['seekable'] || fseek($body, $start, SEEK_SET) === -1) {
                 $consumeBlock = 8192;
                 for ($consumed = 0; $start - $consumed > 0;){
@@ -245,7 +245,7 @@ class CorePlugin extends ServerPlugin {
     function httpHead(RequestInterface $request, ResponseInterface $response) {
 
         // This is implemented by changing the HEAD request to a GET request,
-        // and dropping the response body.
+        
         $subRequest = clone $request;
         $subRequest->setMethod('GET');
 
@@ -342,7 +342,7 @@ class CorePlugin extends ServerPlugin {
 
         // Normally this header is only needed for OPTIONS responses, however..
         // iCal seems to also depend on these being set for PROPFIND. Since
-        // this is not harmful, we'll add it.
+        
         $features = ['1', '3', 'extended-mkcol'];
         foreach ($this->server->getPlugins() as $plugin) {
             $features = array_merge($features, $plugin->getFeatures());

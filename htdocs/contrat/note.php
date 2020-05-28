@@ -86,7 +86,7 @@ if ($id > 0 || !empty($ref))
 
 
     $morehtmlref = '';
-    //if (! empty($modCodeContract->code_auto)) {
+    
     $morehtmlref .= $object->ref;
     /*} else {
      $morehtmlref.=$form->editfieldkey("",'ref',$object->ref,0,'string','',0,3);
@@ -111,10 +111,10 @@ if ($id > 0 || !empty($ref))
     	if ($user->rights->contrat->creer)
     	{
     		if ($action != 'classify')
-    			//$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
+    			
     			$morehtmlref .= ' : ';
     		if ($action == 'classify') {
-    			//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+    			
     			$morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
     			$morehtmlref .= '<input type="hidden" name="action" value="classin">';
     			$morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -172,7 +172,7 @@ if ($id > 0 || !empty($ref))
 
 	print '</div>';
 
-	//print '<br>';
+	
 
 	include DOL_DOCUMENT_ROOT.'/core/tpl/notes.tpl.php';
 

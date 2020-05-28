@@ -471,7 +471,7 @@ class pdf_rouget extends ModelePdfExpedition
 					{
 						$curX = $this->posxpicture - 1;
 						$pdf->Image($realpatharray[$i], $curX + (($this->posxweightvol - $this->posxpicture - $imglinesize['width']) / 2), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300); // Use 300 dpi
-						// $pdf->Image does not increase value return by getY, so we save it manually
+						
 						$posYAfterImage = $curY + $imglinesize['height'];
 					}
 
@@ -1016,7 +1016,7 @@ class pdf_rouget extends ModelePdfExpedition
 			$result = $linkedobject->fetch($origin_id);
 			if ($result >= 0)
 			{
-			    //$linkedobject->fetchObjectLinked()   Get all linked object to the $linkedobject (commonly order) into $linkedobject->linkedObjects
+			    
 
 				$pdf->SetFont('', '', $default_font_size - 2);
 				$text = $linkedobject->ref;

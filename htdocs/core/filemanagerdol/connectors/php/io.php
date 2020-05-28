@@ -332,7 +332,7 @@ function GetCurrentFolder()
 	if ( strpos($sCurrentFolder, '..') || strpos($sCurrentFolder, "\\"))
 		SendError(102, '');
 
-	if ( preg_match(",(/\.)|[[:cntrl:]]|(//)|(\\\\)|([\:\*\?\"\<\>\|]),", $sCurrentFolder))
+	if ( preg_match(",(/\.)|[[:cntrl:]]|(
 		SendError(102, '');
 
 	return $sCurrentFolder ;

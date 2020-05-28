@@ -125,7 +125,7 @@ class modPrelevement extends DolibarrModules
 		$this->rights[$r][5] = 'credit';
 
         // Menus
-        //-------
+        
         $this->menu = 1;        // This module add menu entries. They are coded into menu manager.
     }
 

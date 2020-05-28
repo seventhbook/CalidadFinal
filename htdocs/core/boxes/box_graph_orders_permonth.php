@@ -71,8 +71,8 @@ class box_graph_orders_permonth extends ModeleBoxes
 
 		$refreshaction = 'refresh_'.$this->boxcode;
 
-		//include_once DOL_DOCUMENT_ROOT.'/commande/class/commande.class.php';
-		//$commandestatic=new Commande($this->db);
+		
+		
 
 		$startmonth = $conf->global->SOCIETE_FISCAL_MONTH_START ? ($conf->global->SOCIETE_FISCAL_MONTH_START) : 1;
 		if (empty($conf->global->GRAPH_USE_FISCAL_YEAR)) $startmonth = 1;
@@ -135,7 +135,7 @@ class box_graph_orders_permonth extends ModeleBoxes
 				$data1 = $stats->getNbByMonthWithPrevYear($endyear, $startyear, (GETPOST('action', 'aZ09') == $refreshaction ?-1 : (3600 * 24)), ($WIDTH < 300 ? 2 : 0), $startmonth);
 
 				$filenamenb = $dir."/".$prefix."ordersnbinyear-".$endyear.".png";
-                // default value for customer mode
+                
 				$fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=orderstats&amp;file=ordersnbinyear-'.$endyear.'.png';
 				if ($mode == 'supplier') $fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=orderstatssupplier&amp;file=ordersnbinyear-'.$endyear.'.png';
 
@@ -180,7 +180,7 @@ class box_graph_orders_permonth extends ModeleBoxes
 				$data2 = $stats->getAmountByMonthWithPrevYear($endyear, $startyear, (GETPOST('action', 'aZ09') == $refreshaction ?-1 : (3600 * 24)), ($WIDTH < 300 ? 2 : 0), $startmonth);
 
 				$filenamenb = $dir."/".$prefix."ordersamountinyear-".$endyear.".png";
-                // default value for customer mode
+                
 				$fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=orderstats&amp;file=ordersamountinyear-'.$endyear.'.png';
 				if ($mode == 'supplier') $fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=orderstatssupplier&amp;file=ordersamountinyear-'.$endyear.'.png';
 

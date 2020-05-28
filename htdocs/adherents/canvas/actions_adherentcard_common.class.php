@@ -37,9 +37,9 @@ abstract class ActionsAdherentCardCommon
     public $canvas;
     public $card;
 
-	//! Template container
+	
 	public $tpl = array();
-	//! Object container
+	
 	public $object;
 
 	/**
@@ -61,7 +61,7 @@ abstract class ActionsAdherentCardCommon
      */
     public function getObject($id)
     {
-    	//$ret = $this->getInstanceDao();
+    	
 
     	/*if (is_object($this->object) && method_exists($this->object,'fetch'))
     	{

@@ -29,7 +29,7 @@
 include_once 'inc.php';
 if (file_exists($conffile)) include_once $conffile;
 require_once $dolibarr_main_document_root . '/core/lib/admin.lib.php';
-require_once $dolibarr_main_document_root . '/core/lib/security.lib.php'; // for dol_hash
+require_once $dolibarr_main_document_root . '/core/lib/security.lib.php'; 
 
 global $langs;
 
@@ -40,15 +40,15 @@ $langs->setDefaultLang($setuplang);
 $action=GETPOST('action', 'alpha')?GETPOST('action', 'alpha'):(empty($argv[4])?'':$argv[4]);
 
 // Define targetversion used to update MAIN_VERSION_LAST_INSTALL for first install
-// or MAIN_VERSION_LAST_UPGRADE for upgrade.
+
 $targetversion=DOL_VERSION;		// If it's latest upgrade
 if (! empty($action) && preg_match('/upgrade/i', $action))	// If it's an old upgrade
 {
     $tmp=explode('_', $action, 2);
     if ($tmp[0]=='upgrade')
     {
-        if (! empty($tmp[1])) $targetversion=$tmp[1];   // if $action = 'upgrade_6.0.0-beta', we use '6.0.0-beta'
-        else $targetversion=DOL_VERSION;                // if $action = 'upgrade', we use DOL_VERSION
+        if (! empty($tmp[1])) $targetversion=$tmp[1];   
+        else $targetversion=DOL_VERSION;                
     }
 }
 
@@ -243,7 +243,7 @@ if ($action == "set" || empty($action) || preg_match('/upgrade/i', $action))
                 }
                 else
                 {
-                    //if (! $resql) dol_print_error($db,'Error in setup program');      // We ignore errors. Key may already exists
+                    
                     $db->commit();
                 }
 
@@ -344,7 +344,7 @@ if ($action == "set" || empty($action) || preg_match('/upgrade/i', $action))
 
     // May fail if parameter already defined
     $resql=$db->query("INSERT INTO ".MAIN_DB_PREFIX."const(name,value,type,visible,note,entity) VALUES (".$db->encrypt('MAIN_LANG_DEFAULT', 1).",".$db->encrypt($setuplang, 1).",'chaine',0,'Default language',1)");
-    //if (! $resql) dol_print_error($db,'Error in setup program');
+    
 
     $db->close();
 }

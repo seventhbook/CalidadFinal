@@ -794,7 +794,7 @@ SQL
         $requirePostFilter = true;
         $timeRange = null;
 
-        // if no filters were specified, we don't need to filter after a query
+        
         if (!$filters['prop-filters'] && !$filters['comp-filters']) {
             $requirePostFilter = false;
         }
@@ -1387,7 +1387,7 @@ INSERT INTO ' . $this->calendarInstancesTableName . '
         foreach ($sharees as $sharee) {
 
             if ($sharee->access === \Sabre\DAV\Sharing\Plugin::ACCESS_NOACCESS) {
-                // if access was set no NOACCESS, it means access for an
+                
                 // existing sharee was removed.
                 $removeStmt->execute([$calendarId, $sharee->href]);
                 continue;
@@ -1481,7 +1481,7 @@ SQL;
             $result[] = new Sharee([
                 'href'   => isset($row['share_href']) ? $row['share_href'] : \Sabre\HTTP\encodePath($row['principaluri']),
                 'access' => (int)$row['access'],
-                /// Everyone is always immediately accepted, for now.
+                
                 'inviteStatus' => (int)$row['share_invitestatus'],
                 'properties'   =>
                     !empty($row['share_displayname'])

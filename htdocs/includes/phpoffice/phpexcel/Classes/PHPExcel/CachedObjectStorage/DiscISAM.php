@@ -77,7 +77,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 			$this->_currentCellIsDirty = false;
 		}
 		$this->_currentObjectID = $this->_currentObject = null;
-	}	//	function _storeData()
+	}	
 
 
     /**
@@ -98,7 +98,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 		$this->_currentCellIsDirty = true;
 
 		return $cell;
-	}	//	function addCacheData()
+	}	
 
 
     /**
@@ -129,7 +129,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 
 		//	Return requested entry
 		return $this->_currentObject;
-	}	//	function getCacheData()
+	}	
 
 
 	/**
@@ -162,7 +162,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 		$this->_fileName = $newFileName;
 		//	Open the copied cell cache file
 		$this->_fileHandle = fopen($this->_fileName,'a+');
-	}	//	function copyCellCollection()
+	}	
 
 
 	/**
@@ -182,7 +182,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 
 		//	Close down the temporary cache file
 		$this->__destruct();
-	}	//	function unsetWorksheetCells()
+	}	
 
 
 	/**
@@ -202,7 +202,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 			$this->_fileName = $this->_cacheDirectory.'/PHPExcel.'.$baseUnique.'.cache';
 			$this->_fileHandle = fopen($this->_fileName,'a+');
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -214,6 +214,6 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 			unlink($this->_fileName);
 		}
 		$this->_fileHandle = null;
-	}	//	function __destruct()
+	}	
 
 }

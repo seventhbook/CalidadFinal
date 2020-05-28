@@ -193,7 +193,7 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
     protected function sendMessage3($response, $username, $password, $timestamp, $client, Swift_Transport_SmtpAgent $agent, $v2 = true)
     {
         list($domain, $username) = $this->getDomainAndUsername($username);
-        //$challenge, $context, $targetInfoH, $targetName, $domainName, $workstation, $DNSDomainName, $DNSServerName, $blob, $ter
+        
         list($challenge, , , , , $workstation, , , $blob) = $this->parseMessage2($response);
 
         if (!$v2) {
@@ -395,7 +395,7 @@ class Swift_Transport_Esmtp_Auth_NTLMAuthenticator implements Swift_Transport_Es
     protected function createLMv2Password($password, $username, $domain, $challenge, $client)
     {
         $lmPass = '00'; // by default 00
-        // if $password > 15 than we can't use this method
+        
         if (strlen($password) <= 15) {
             $ntlmHash = $this->md4Encrypt($password);
             $ntml2Hash = $this->md5Encrypt($ntlmHash, $this->convertTo16bit(strtoupper($username).$domain));

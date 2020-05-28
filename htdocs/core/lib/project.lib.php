@@ -67,8 +67,8 @@ function project_prepare_head($object)
 
 		$nbTimeSpent = 0;
 		$sql = "SELECT t.rowid";
-		//$sql .= " FROM ".MAIN_DB_PREFIX."projet_task_time as t, ".MAIN_DB_PREFIX."projet_task as pt, ".MAIN_DB_PREFIX."user as u";
-		//$sql .= " WHERE t.fk_user = u.rowid AND t.fk_task = pt.rowid";
+		
+		
 		$sql .= " FROM ".MAIN_DB_PREFIX."projet_task_time as t, ".MAIN_DB_PREFIX."projet_task as pt";
 		$sql .= " WHERE t.fk_task = pt.rowid";
 		$sql .= " AND pt.fk_projet =".$object->id;
@@ -99,8 +99,8 @@ function project_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'project');
 
 
@@ -199,8 +199,8 @@ function task_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'task');
 
 	if (empty($conf->global->MAIN_DISABLE_NOTES_TAB))
@@ -375,9 +375,9 @@ function projectLinesa(&$inc, $parent, &$lines, &$level, $var, $showproject, &$t
 
 	for ($i = 0; $i < $numlines; $i++)
 	{
-		if ($parent == 0 && $level >= 0) $level = 0; // if $level = -1, we dont' use sublevel recursion, we show all lines
+		if ($parent == 0 && $level >= 0) $level = 0; 
 
-		if ($lines[$i]->fk_parent == $parent || $level < 0)       // if $level = -1, we dont' use sublevel recursion, we show all lines
+		if ($lines[$i]->fk_parent == $parent || $level < 0)       
 		{
 			// Show task line.
 			$showline = 1;
@@ -405,7 +405,7 @@ function projectLinesa(&$inc, $parent, &$lines, &$level, $var, $showproject, &$t
 			else
 			{
 				// Caller did not ask to filter on tasks of a specific user (this probably means he want also tasks of all users, into public project
-				// or into all other projects if user has permission to).
+				
 				if (empty($user->rights->projet->all->lire))
 				{
 					// User is not allowed on this project and project is not public, so we hide line
@@ -645,7 +645,7 @@ function projectLinesa(&$inc, $parent, &$lines, &$level, $var, $showproject, &$t
             $totalAverageDeclaredProgress = round(100 * $total_projectlinesa_declared_if_planned / $total_projectlinesa_planned, 2);
             $totalCalculatedProgress = round(100 * $total_projectlinesa_spent / $total_projectlinesa_planned, 2);
 
-            // this conf is actually hidden, by default we use 10% for "be carefull or warning"
+            
             $warningRatio = !empty($conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT) ? (1 + $conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT / 100) : 1.10;
 
             // define progress color according to time spend vs workload
@@ -1069,7 +1069,7 @@ function projectLinesPerDay(&$inc, $parent, $fuser, $lines, &$level, &$projectsr
 
 				// Time spent by everybody
 				print '<td class="right">';
-				// $lines[$i]->duration is a denormalised field = summ of time spent by everybody for task. What we need is time consummed by user
+				
 				if ($lines[$i]->duration)
 				{
 					print '<a href="'.DOL_URL_ROOT.'/projet/tasks/time.php?id='.$lines[$i]->id.'">';
@@ -1351,7 +1351,7 @@ function projectLinesPerWeek(&$inc, $firstdaytoshow, $fuser, $parent, $lines, &$
 
 				// Time spent by everybody
 				print '<td class="right">';
-				// $lines[$i]->duration is a denormalised field = summ of time spent by everybody for task. What we need is time consummed by user
+				
 				if ($lines[$i]->duration)
 				{
 					print '<a href="'.DOL_URL_ROOT.'/projet/tasks/time.php?id='.$lines[$i]->id.'">';
@@ -1765,7 +1765,7 @@ function getTaskProgressView($task, $label = true, $progressNumber = true, $hide
     if ($task->planned_workload) {
         $progressCalculated = round(100 * doubleval($task->duration_effective) / doubleval($task->planned_workload), 2);
 
-        // this conf is actually hidden, by default we use 10% for "be carefull or warning"
+        
         $warningRatio = !empty($conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT) ? (1 + $conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT / 100) : 1.10;
 
         $diffTitle = '<br/>'.$langs->trans('ProgressDeclared').' : '.$task->progress.($task->progress ? '%' : '');
@@ -1881,7 +1881,7 @@ function getTaskProgressBadge($task, $label = '', $tooltip = '')
         if ($task->planned_workload) {
             $progressCalculated = round(100 * doubleval($task->duration_effective) / doubleval($task->planned_workload), 2);
 
-            // this conf is actually hidden, by default we use 10% for "be carefull or warning"
+            
             $warningRatio = !empty($conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT) ? (1 + $conf->global->PROJECT_TIME_SPEND_WARNING_PERCENT / 100) : 1.10;
 
             if (doubleval($progressCalculated) > doubleval($task->progress * $warningRatio)) {

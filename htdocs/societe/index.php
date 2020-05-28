@@ -58,8 +58,8 @@ $linkback = '';
 print load_fiche_titre($transAreaType, $linkback, 'companies');
 
 
-//print '<table border="0" width="100%" class="notopnoleftnoright">';
-//print '<tr><td valign="top" width="30%" class="notopnoleft">';
+
+
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
@@ -82,7 +82,7 @@ $sql .= ' WHERE s.entity IN ('.getEntity('societe').')';
 if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
 if ($socid)	$sql .= " AND s.rowid = ".$socid;
 if (!$user->rights->fournisseur->lire) $sql .= " AND (s.fournisseur <> 1 OR s.client <> 0)"; // client=0, fournisseur=0 must be visible
-//print $sql;
+
 $result = $db->query($sql);
 if ($result)
 {
@@ -227,7 +227,7 @@ if (!empty($conf->categorie->enabled) && !empty($conf->global->CATEGORY_GRAPHSTA
 	print '</div>';
 }
 
-//print '</td><td valign="top" width="70%" class="notopnoleftnoright">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 
@@ -252,7 +252,7 @@ if (!$user->rights->fournisseur->lire) $sql .= " AND (s.fournisseur != 1 OR s.cl
 $sql .= $db->order("s.tms", "DESC");
 $sql .= $db->plimit($max, 0);
 
-//print $sql;
+
 $result = $db->query($sql);
 if ($result)
 {
@@ -340,7 +340,7 @@ else
     dol_print_error($db);
 }
 
-//print '</td></tr></table>';
+
 print '</div></div></div>';
 
 $parameters = array('user' => $user);

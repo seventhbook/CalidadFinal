@@ -231,9 +231,9 @@ class NumberFormat extends Supervisor
      */
     private static function fillBuiltInFormatCodes()
     {
-        //  [MS-OI29500: Microsoft Office Implementation Information for ISO/IEC-29500 Standard Compliance]
+        
         //  18.8.30. numFmt (Number Format)
-        //
+        
         //  The ECMA standard defines built-in format IDs
         //      14: "mm-dd-yy"
         //      22: "m/d/yy h:mm"
@@ -654,7 +654,7 @@ class NumberFormat extends Supervisor
             $color_regex = '/^\\[[a-zA-Z]+\\]/';
             $format = preg_replace($color_regex, '', $format);
             if (preg_match('/%$/', $format)) {
-                // % number format
+                
                 self::formatAsPercentage($value, $format);
             } else {
                 if ($format === self::FORMAT_CURRENCY_EUR_SIMPLE) {

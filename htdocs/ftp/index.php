@@ -539,8 +539,8 @@ else
 					// Remote file
 					$filename=$file;
 					
-					//print preg_match('@[\/]$@','aaa/').'Y';
-					//print preg_match('@[\\\/]$@',"aaa\\").'Y';
+					
+					
 					$remotefile=$section.(preg_match('@[\\\/]$@', $section)?'':'/').preg_replace('@^[\\\/]@', '', $file);
 					
 					$newremotefileiso=utf8_decode($remotefile);

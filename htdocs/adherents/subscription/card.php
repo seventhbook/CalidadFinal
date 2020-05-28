@@ -59,11 +59,11 @@ $permissiontoedit = $user->rights->adherent->cotisation->creer; // Used by the i
 
 if ($cancel) $action = '';
 
-//include DOL_DOCUMENT_ROOT.'/core/actions_setnotes.inc.php'; // Must be include, not include_once
+
 
 include DOL_DOCUMENT_ROOT.'/core/actions_dellink.inc.php'; // Must be include, not include_once
 
-//include DOL_DOCUMENT_ROOT.'/core/actions_lineupdown.inc.php';	// Must be include, not include_once
+
 
 
 if ($user->rights->adherent->cotisation->creer && $action == 'update' && !$cancel)
@@ -107,7 +107,7 @@ if ($user->rights->adherent->cotisation->creer && $action == 'update' && !$cance
 			$object->fk_type = $_POST["typeid"];
 			$object->note = $_POST["note"];
 			$object->amount = $_POST["amount"];
-			//print 'datef='.$object->datef.' '.$_POST['datesubendday'];
+			
 
 			$result = $object->update($user);
 			if ($result >= 0 && !count($object->errors))
@@ -289,8 +289,8 @@ if ($rowid && $action != 'edit')
     // Confirmation to delete subscription
     if ($action == 'delete')
     {
-		//$formquestion=array();
-        //$formquestion['text']='<b>'.$langs->trans("ThisWillAlsoDeleteBankRecord").'</b>';
+		
+        
 		$text = $langs->trans("ConfirmDeleteSubscription");
 		if (!empty($conf->banque->enabled) && !empty($conf->global->ADHERENT_BANK_USE)) $text .= '<br>'.img_warning().' '.$langs->trans("ThisWillAlsoDeleteBankRecord");
 		print $form->formconfirm($_SERVER["PHP_SELF"]."?rowid=".$object->id, $langs->trans("DeleteSubscription"), $text, "confirm_delete", $formquestion, 0, 1);
@@ -413,7 +413,7 @@ if ($rowid && $action != 'edit')
     $somethingshown = $formfile->numoffiles;
     */
 	// Show links to link elements
-	//$linktoelem = $form->showLinkToObjectBlock($object, null, array('subscription'));
+	
     $somethingshown = $form->showLinkedObjectBlock($object, '');
 
     // Show links to link elements

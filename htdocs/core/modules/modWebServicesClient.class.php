@@ -56,7 +56,7 @@ class modWebServicesClient extends DolibarrModules
         $this->dirs = array();
 
         // Config pages
-        //$this->config_page_url = array();
+        
 
         // Dependencies
         $this->hidden = false;			// A condition to hide module

@@ -46,7 +46,7 @@ class modResource extends DolibarrModules
 
 		// Id for module (must be unique).
 		// Use a free id here
-		// (See in Home -> System information -> Dolibarr for list of used modules id).
+		
 		$this->numero = 63000;
 
 		// Key text used to identify module (for permissions, menus, etc...)
@@ -58,32 +58,32 @@ class modResource extends DolibarrModules
 		$this->module_position = '16';
 		// Module label (no space allowed)
 		// used if translation string 'ModuleXXXName' not found
-		// (where XXX is value of numeric property 'numero' of module)
+		
 		$this->name = preg_replace('/^mod/i', '', get_class($this));
 		// Module description
 		// used if translation string 'ModuleXXXDesc' not found
-		// (where XXX is value of numeric property 'numero' of module)
+		
 		$this->description = "Manage resources (printers, cars, room, ...) you can then share into events";
 		// Possible values for version are: 'development', 'experimental' or version
 		$this->version = 'dolibarr';
 		// Key used in llx_const table to save module status enabled/disabled
-		// (where MYMODULE is value of property name of module in uppercase)
+		
 		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
 		// Name of image file used for this module.
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png
-		// use this->picto='pictovalue'
+		
 		// If file is in module/img directory under name object_pictovalue.png
-		// use this->picto='pictovalue@module'
+		
 		$this->picto = 'resource'; // mypicto@resource
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
-		// for default path (eg: /resource/core/xxxxx) (0=disable, 1=enable)
-		// for specific path of parts (eg: /resource/core/modules/barcode)
-		// for specific css file (eg: /resource/css/resource.css.php)
+		
+		
+		
 		$this->module_parts = array();
 
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/resource/temp");
-		//$this->dirs = array("/resource");
+		
 
 		// Config pages. Put here list of php pages
 		// stored into resource/admin directory, used to setup module.
@@ -100,18 +100,18 @@ class modResource extends DolibarrModules
 		$this->langfiles = array("resource"); // langfiles@resource
 		// Constants
 		// List of particular constants to add when module is enabled
-		// (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
+		
 		// Example:
 		$this->const = array();
 
 		// Array to add new pages in new tabs
 		// Example:
 		$this->tabs = array(
-			//	// To add a new tab identified by code tabname1
+			
 			//	'objecttype:+tabname1:Title1:langfile@resource:$user->rights->resource->read:/resource/mynewtab1.php?id=__ID__',
-			//	// To add another new tab identified by code tabname2
+			
 			//	'objecttype:+tabname2:Title2:langfile@resource:$user->rights->othermodule->read:/resource/mynewtab2.php?id=__ID__',
-			//	// To remove an existing tab identified by code tabname
+			
 			//	'objecttype:-tabname'
 		);
 		// where objecttype can be
@@ -130,7 +130,7 @@ class modResource extends DolibarrModules
 		// 'group'				to add a tab in group view
 		// 'contact'			to add a tab in contact view
 		// 'categories_x'		to add a tab in category view
-		// (reresource 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
+		
 
 		// Boxes
 		// Add here list of php file(s) stored in core/boxes that contains class to show a box.
@@ -138,8 +138,8 @@ class modResource extends DolibarrModules
 		$r = 0;
 		// Example:
 
-		//$this->boxes[$r][1] = "MyBox@resource";
-		//$r ++;
+		
+		
 		/*
 		  $this->boxes[$r][1] = "myboxb.php";
 		  $r++;
@@ -175,7 +175,7 @@ class modResource extends DolibarrModules
 
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
@@ -231,7 +231,7 @@ class modResource extends DolibarrModules
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -253,7 +253,7 @@ class modResource extends DolibarrModules
 
 
 		// Imports
-		//--------
+		
 		$r=0;
 
 		// Import list of third parties and attributes
@@ -281,7 +281,7 @@ class modResource extends DolibarrModules
 		$this->import_convertvalue_array[$r]=array(
 				'r.fk_code_type_resource'=>array('rule'=>'fetchidfromcodeorlabel','classfile'=>'/core/class/ctyperesource.class.php','class'=>'Ctyperesource','method'=>'fetch','dict'=>'DictionaryResourceType'),
 		);
-		//$this->import_convertvalue_array[$r]=array('s.fk_soc'=>array('rule'=>'lastrowid',table='t');
+		
 		$this->import_regex_array[$r]=array('s.datec'=>'^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]( [0-9][0-9]:[0-9][0-9]:[0-9][0-9])?$');
 		$this->import_examplevalues_array[$r]=array('r.ref'=>"REF1",'r.fk_code_type_resource'=>"Code from dictionary resource type",'r.datec'=>"2017-01-01 or 2017-01-01 12:30:00");
 		$this->import_updatekeys_array[$r]=array('r.rf'=>'ResourceFormLabel_ref');

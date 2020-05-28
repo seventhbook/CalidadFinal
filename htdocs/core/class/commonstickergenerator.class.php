@@ -28,22 +28,22 @@
  * disponible ici : http://www.fpdf.org/fr/script/script29.php
  */
 
-//-------------------------------------------------------------------
+
 // VERSIONS :
 // 1.0  : Initial release
 // 1.1  : +	: Added unit in the constructor
-//	  + : Now Positions start @ (1,1).. then the first image @top-left of a page is (1,1)
-//	  + : Added in the description of a label :
+
+
 //		font-size	: defaut char size (can be changed by calling Set_Char_Size(xx);
 //		paper-size	: Size of the paper for this sheet (thanx to Al Canton)
 //		metric		: type of unit used in this description
 //				  You can define your label properties in inches by setting metric to 'in'
-//				  and printing in millimiter by setting unit to 'mm' in constructor.
+
 //	  Added some labels :
 //	        5160, 5161, 5162, 5163,5164 : thanx to Al Canton : acanton@adams-blake.com
 //		8600 						: thanx to Kunal Walia : kunal@u.washington.edu
-//	  + : Added 3mm to the position of labels to avoid errors
-////////////////////////////////////////////////////
+
+
 
 /**
  *	\file       htdocs/core/class/commonstickergenerator.class.php
@@ -69,7 +69,7 @@ abstract class CommonStickerGenerator
     public $format;
 
     // phpcs:disable PEAR.NamingConventions.ValidVariableName.PublicUnderscore
-    // protected
+    
     // Nom du format de l'etiquette
     protected $_Avery_Name = '';
     // Marge de gauche de l'etiquette

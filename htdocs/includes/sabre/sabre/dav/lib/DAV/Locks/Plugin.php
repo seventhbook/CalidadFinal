@@ -237,9 +237,9 @@ class Plugin extends DAV\ServerPlugin {
 
             // We need to call the beforeWriteContent event for RFC3744
             // Edit: looks like this is not used, and causing problems now.
-            //
+            
             // See Issue 222
-            // $this->server->emit('beforeWriteContent',array($uri));
+            
 
         } catch (DAV\Exception\NotFound $e) {
 
@@ -257,7 +257,7 @@ class Plugin extends DAV\ServerPlugin {
         $response->setBody($this->generateLockResponse($lockInfo));
 
         // Returning false will interrupt the event chain and mark this method
-        // as 'handled'.
+        
         return false;
 
     }
@@ -504,12 +504,12 @@ class Plugin extends DAV\ServerPlugin {
 
                 // If we got here, it means that there was a
                 // lock-token, but it was not in 'mustLocks'.
-                //
+                
                 // This is an edge-case, as it could mean that token
                 // was specified with a url that was not 'required' to
                 // check. So we're doing one extra lookup to make sure
                 // we really don't know this token.
-                //
+                
                 // This also gets triggered when the user specified a
                 // lock-token that was expired.
                 $oddLocks = $this->getLocks($condition['uri']);

@@ -46,10 +46,10 @@ class Export
     public $array_export_TypeFields=array();	   // Tableau des listes de champ+Type de filtre
     public $array_export_FilterValue=array();	   // Tableau des listes de champ+Valeur a filtrer
     public $array_export_entities=array();         // Tableau des listes de champ+alias a exporter
-    public $array_export_dependencies=array();     // array of list of entities that must take care of the DISTINCT if a field is added into export
-    public $array_export_special=array();          // array of special operations to do on field
-    public $array_export_examplevalues=array();    // array with examples for fields
-	public $array_export_help=array();			   // array with tooltip help for fields
+    public $array_export_dependencies=array();     
+    public $array_export_special=array();          
+    public $array_export_examplevalues=array();    
+	public $array_export_help=array();			   
 
     // To store export modules
     public $hexa;									// List of fields in the export profile
@@ -594,7 +594,7 @@ class Export
 		$resql = $this->db->query($sql);
 		if ($resql)
 		{
-			//$this->array_export_label[$indice]
+			
 			if ($conf->global->EXPORT_PREFIX_SPEC)
 				$filename=$conf->global->EXPORT_PREFIX_SPEC."_".$datatoexport;
 			else
@@ -627,14 +627,14 @@ class Export
 							// Operation NULLIFNEG
 							if ($this->array_export_special[$indice][$key]=='NULLIFNEG')
 							{
-								//$alias=$this->array_export_alias[$indice][$key];
+								
 								$alias=str_replace(array('.', '-','(',')'), '_', $key);
 								if ($obj->$alias < 0) $obj->$alias='';
 							}
 							// Operation ZEROIFNEG
 							elseif ($this->array_export_special[$indice][$key]=='ZEROIFNEG')
 							{
-								//$alias=$this->array_export_alias[$indice][$key];
+								
 								$alias=str_replace(array('.', '-','(',')'), '_', $key);
 								if ($obj->$alias < 0) $obj->$alias='0';
 							}
@@ -642,14 +642,14 @@ class Export
 							elseif ($this->array_export_special[$indice][$key]=='getNumOpenDays')
 							{
 								include_once DOL_DOCUMENT_ROOT.'/core/lib/date.lib.php';
-								//$alias=$this->array_export_alias[$indice][$key];
+								
 								$alias=str_replace(array('.', '-','(',')'), '_', $key);
 								$obj->$alias=num_open_day(dol_stringtotime($obj->d_date_debut, 1), dol_stringtotime($obj->d_date_fin, 1), 0, 1, $obj->d_halfday, $mysoc->country_code);
 							}
 							// Operation INVOICEREMAINTOPAY
 							elseif ($this->array_export_special[$indice][$key]=='getRemainToPay')
 							{
-								//$alias=$this->array_export_alias[$indice][$key];
+								
 								$alias=str_replace(array('.', '-','(',')'), '_', $key);
 								$remaintopay='';
 								if ($obj->f_rowid > 0)
@@ -821,12 +821,12 @@ class Export
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action call a trigger.
 
-				//// Call triggers
-				//include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				//$interface=new Interfaces($this->db);
-				//$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-				//if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				//// End call triggers
+				
+				
+				
+				
+				
+				
 			}
 		}
 
@@ -883,7 +883,7 @@ class Export
 				$string=$langs->trans($this->array_export_label[$keyModel]);
 				print ($string!=$this->array_export_label[$keyModel]?$string:$this->array_export_label[$keyModel]);
 				print '</td>';
-				//print '<td>'.$obj->type.$keyModel.'</td>';
+				
 				print '<td>'.str_replace(',', ' , ', $obj->field).'</td>';
 				if (! empty($obj->filter)) {
 					$filter = json_decode($obj->filter, true);

@@ -148,7 +148,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 		$this->_buildWorkbookEscher();
 
 		// add 15 identical cell style Xfs
-		// for now, we use the first cellXf instead of cellStyleXf
+		
 		$cellXfCollection = $this->_phpExcel->getCellXfCollection();
 		for ($i = 0; $i < 15; ++$i) {
 			$this->_writerWorkbook->addXfWriter($cellXfCollection[0], true);
@@ -427,7 +427,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 			return;
 		}
 
-		// if we reach here, then there are drawings in the workbook
+		
 		$escher = new PHPExcel_Shared_Escher();
 
 		// dggContainer
@@ -437,7 +437,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 		// set IDCLs (identifier clusters)
 		$dggContainer->setIDCLs($this->_IDCLs);
 
-		// this loop is for determining maximum shape identifier of all drawing
+		
 		$spIdMax = 0;
 		$totalCountShapes = 0;
 		$countDrawings = 0;
@@ -639,7 +639,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 		// cElements
 		$dataProp = pack('v', 0x0001);
 		$dataProp .= pack('v', 0x0000);
-		// array of UnalignedLpstr
+		
 		  // cch
 		  $dataProp .= pack('v', 0x000A);
 		  $dataProp .= pack('v', 0x0000);
@@ -745,7 +745,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
 		// section header
 		// offset: $secOffset; size: 4; section length
-		// 		+ x  Size of the content (summary + content)
+		
 		$data .= pack('V', $dataSection_Content_Offset);
 		// offset: $secOffset+4; size: 4; property count
 		$data .= pack('V', $dataSection_NumProps);
@@ -921,7 +921,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
 		// section header
 		// offset: $secOffset; size: 4; section length
-		// 		+ x  Size of the content (summary + content)
+		
 		$data .= pack('V', $dataSection_Content_Offset);
 		// offset: $secOffset+4; size: 4; property count
 		$data .= pack('V', $dataSection_NumProps);

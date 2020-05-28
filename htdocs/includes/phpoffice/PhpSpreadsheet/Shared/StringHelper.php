@@ -528,7 +528,7 @@ class StringHelper
     public static function mbStrSplit($string)
     {
         // Split at all position not after the start: ^
-        // and not before the end: $
+        
         return preg_split('/(?<!^)(?!$)/u', $string);
     }
 
@@ -575,7 +575,7 @@ class StringHelper
         return false;
     }
 
-    //    function convertToNumberIfFraction()
+    
 
     /**
      * Get the decimal separator. If it has not yet been set explicitly, try to obtain number

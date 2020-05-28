@@ -82,7 +82,7 @@ if (GETPOST('modelselected', 'alpha')) {
 }
 
 // Load object
-//include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';  // Must be include, not include_once  // Must be include, not include_once. Include fetch and fetch_thirdparty but not fetch_optionals
+
 if ($id || $track_id || $ref) {
 	$res = $object->fetch($id, $ref, $track_id);
 	if ($res >= 0)
@@ -283,7 +283,7 @@ if (GETPOST('update', 'alpha') && GETPOST('id', 'int') && $user->rights->ticket-
         $object->label = GETPOST("label", 'alphanohtml');
         $object->description = GETPOST("description", 'none');
 
-        //...
+        
         $ret = $object->update($user);
         if ($ret <= 0) {
             $error++;
@@ -337,7 +337,7 @@ if ($action == "assign_user" && GETPOST('btn_assign_user', 'alpha') && $user->ri
                 if ($contact['code'] == "SUPPORTTEC" && $contact['id'] == $useroriginassign) {
                 }
                 {
-                    //print "user à effacer : ".$useroriginassign;
+                    
                     $object->delete_contact($contact['rowid']);
                 }
             }
@@ -509,7 +509,7 @@ elseif ($action == 'setcontract' && $user->rights->ticket->write) {
         $ret = $object->update($user);
         if ($ret > 0) {
             $log_action = $langs->trans('TicketInitialMessageModified')." \n";
-            // include the Diff class
+            
             dol_include_once('/ticket/class/utils_diff.class.php');
             // output the result of comparing two files as plain text
             $log_action .= Diff::toString(Diff::compare(strip_tags($oldvalue_message), strip_tags($object->message)));
@@ -636,7 +636,7 @@ if (empty($action) || $action == 'view' || $action == 'addlink' || $action == 'd
 {
     if ($res > 0)
     {
-        // or for unauthorized internals users
+        
         if (!$user->socid && ($conf->global->TICKET_LIMIT_VIEW_ASSIGNED_ONLY && $object->fk_user_assign != $user->id) && !$user->rights->ticket->manage) {
             accessforbidden('', 0, 1);
         }

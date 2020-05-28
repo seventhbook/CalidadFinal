@@ -83,7 +83,7 @@ $search_array_options = $extrafields->getOptionalsFromPost($object->table_elemen
 
 // Security check
 $socid = 0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (!$user->rights->projet->lire) accessforbidden();
 
 $diroutputmassaction = $conf->projet->dir_output.'/tasks/temp/massgeneration/'.$user->id;
@@ -292,7 +292,7 @@ if ($search_project_user > 0)  $sql .= ", ".MAIN_DB_PREFIX."element_contact as e
 if ($search_task_user > 0)     $sql .= ", ".MAIN_DB_PREFIX."element_contact as ect";
 $sql .= " WHERE t.fk_projet = p.rowid";
 $sql .= " AND p.entity IN (".getEntity('project').')';
-if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".($projectsListId ? $projectsListId : '0').")"; // public and assigned to projects, or restricted to company for external users
+if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".($projectsListId ? $projectsListId : '0').")"; 
 if (is_object($projectstatic) && $projectstatic->id > 0) $sql .= " AND p.rowid = ".$projectstatic->id;
 // No need to check company, as filtering of projects must be done by getProjectsAuthorizedForUser
 if ($socid) $sql .= "  AND (p.fk_soc IS NULL OR p.fk_soc = 0 OR p.fk_soc = ".$socid.")";
@@ -339,7 +339,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;

@@ -335,10 +335,10 @@ class ExportCsv extends ModeleExports
 
 
 		// Rule Dolibarr: No HTML
-   		//print $charset.' '.$newvalue."\n";
-   		//$newvalue=dol_string_nohtmltag($newvalue,0,$charset);
+   		
+   		
    		$newvalue=dol_htmlcleanlastbr($newvalue);
-   		//print $charset.' '.$newvalue."\n";
+   		
 
 		// Rule 1 CSV: No CR, LF in cells (except if USE_STRICT_CSV_RULES is on, we can keep record as it is but we must add quotes)
 		$oldvalue=$newvalue;

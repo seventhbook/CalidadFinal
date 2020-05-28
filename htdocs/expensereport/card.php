@@ -85,7 +85,7 @@ $conf->expensereport->dir_output = $rootfordata.'/expensereport';
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 // PDF
 $hidedetails = (GETPOST('hidedetails', 'int') ? GETPOST('hidedetails', 'int') : (!empty($conf->global->MAIN_GENERATE_DOCUMENTS_HIDE_DETAILS) ? 1 : 0));
@@ -1113,7 +1113,7 @@ if (empty($reshook))
     	    }
     	}
 
-		// if VAT is not used in Dolibarr, set VAT rate to 0 because VAT rate is necessary.
+		
     	if (empty($vatrate)) $vatrate = "0.000";
     	$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $vatrate));
 
@@ -1274,7 +1274,7 @@ if (empty($reshook))
     	$qty = GETPOST('qty', 'int');
     	$vatrate = GETPOST('vatrate', 'alpha');
 
-    	// if VAT is not used in Dolibarr, set VAT rate to 0 because VAT rate is necessary.
+    	
     	if (empty($vatrate)) $vatrate = "0.000";
     	$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $vatrate));
 
@@ -2581,7 +2581,7 @@ if ($action != 'create' && $action != 'edit')
 
 
 	// If status is Approved
-	// ---------------------
+	
 
 	if ($user->rights->expensereport->approve && $object->fk_statut == ExpenseReport::STATUS_APPROVED)
 	{
@@ -2605,7 +2605,7 @@ if ($action != 'create' && $action != 'edit')
 	// If bank module is not used
 	if (($user->rights->expensereport->to_paid || empty($conf->banque->enabled)) && $object->fk_statut == ExpenseReport::STATUS_APPROVED)
 	{
-		//if ((round($remaintopay) == 0 || empty($conf->banque->enabled)) && $object->paid == 0)
+		
 		if ($object->paid == 0)
 		{
 			print '<div class="inline-block divButAction"><a class="butAction" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=set_paid">'.$langs->trans("ClassifyPaid")."</a></div>";

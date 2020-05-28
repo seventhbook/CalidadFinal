@@ -895,7 +895,7 @@ class Categorie extends CommonObject
 		{
 			$result = $this->db->query($sql);
 			$nbtotalofrecords = $this->db->num_rows($result);
-			if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+			if (($page * $limit) > $nbtotalofrecords)	
 			{
 				$page = 0;
 				$offset = 0;
@@ -1168,7 +1168,7 @@ class Categorie extends CommonObject
 		}
 
 		// First build full array $motherof
-		//$this->load_motherof();	// Disabled because already done by caller of build_path_from_id_categ
+		
 
 		// Define fullpath and fulllabel
 		$this->cats[$id_categ]['fullpath'] = '_'.$id_categ;
@@ -1883,7 +1883,7 @@ class Categorie extends CommonObject
 	    {
 	        while ($obj = $this->db->fetch_object($result))
 	        {
-	            //print 'lang='.$obj->lang.' current='.$current_lang.'<br>';
+	            
 	            if ($obj->lang == $current_lang) // si on a les traduct. dans la langue courante on les charge en infos principales.
 	            {
 	                $this->label = $obj->label;

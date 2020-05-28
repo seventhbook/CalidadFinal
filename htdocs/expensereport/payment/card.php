@@ -38,7 +38,7 @@ $confirm=GETPOST('confirm');
 // Security check
 if ($user->socid) $socid=$user->socid;
 // TODO Add rule to restrict access payment
-//$result = restrictedArea($user, 'facture', $id,'');
+
 
 $object = new PaymentExpenseReport($db);
 
@@ -141,7 +141,7 @@ if ($action == 'valide')
 }
 
 $linkback = '';
-// $linkback = '<a href="' . DOL_URL_ROOT . '/expensereport/payment/list.php">' . $langs->trans("BackToList") . '</a>';
+
 
 dol_banner_tab($object, 'ref', $linkback, 1, 'ref', 'ref', '');
 

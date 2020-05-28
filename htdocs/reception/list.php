@@ -351,7 +351,7 @@ if (empty($reshook))
     			}
     		}
 
-    		//$rcp->classifyBilled($user);        // Disabled. This behavior must be set or not using the workflow module.
+    		
 
     		if (!empty($createbills_onebythird) && empty($TFactThird[$rcp->socid])) $TFactThird[$rcp->socid] = $object;
     		else $TFact[$object->id] = $object;
@@ -628,7 +628,7 @@ if ($resql)
     print '<table class="tagtable liste'.($moreforfilter ? " listwithfilterbefore" : "").'">'."\n";
 
     // Fields title search
-    // --------------------------------------------------------------------
+    
     print '<tr class="liste_titre_filter">';
 	// Ref
 	if (!empty($arrayfields['e.ref']['checked']))

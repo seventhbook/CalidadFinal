@@ -73,16 +73,16 @@ class mailing_example extends MailingTargets
         $target = array();
 
 	    // CHANGE THIS
-	    // ----- Your code start here -----
+	    
 
 	    // You must fill the $target array with record like this
-	    // $target[0]=array('email'=>'email_0','name'=>'name_0','firstname'=>'firstname_0', 'other'=>'other_0');
-		// ...
-	    // $target[n]=array('email'=>'email_n','name'=>'name_n','firstname'=>'firstname_n', 'other'=>'other_n');
+	    
+		
+	    
 
 		// Example: $target[0]=array('email'=>'myemail@example.com', 'name'=>'Doe', 'firstname'=>'John', 'other'=>'Other information');
 
-		// ----- Your code end here -----
+		
 
         return parent::addTargetsToDatabase($mailing_id, $target);
     }
@@ -100,8 +100,8 @@ class mailing_example extends MailingTargets
 	{
 	    // CHANGE THIS: Optionnal
 
-		//var $statssql=array();
-        //$this->statssql[0]="SELECT field1 as label, count(distinct(email)) as nb FROM mytable WHERE email IS NOT NULL";
+		
+        
 		return array();
 	}
 

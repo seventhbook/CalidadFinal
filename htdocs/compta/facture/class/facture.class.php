@@ -125,20 +125,20 @@ class Facture extends CommonInvoice
 	public $total_ttc = 0;
 	public $revenuestamp;
 
-	//! Fermeture apres paiement partiel: discount_vat, badcustomer, abandon
-	//! Fermeture alors que aucun paiement: replaced (si remplace), abandon
+	
+	
 	public $close_code;
-	//! Commentaire si mis a paye sans paiement complet
+	
 	public $close_note;
-	//! 1 if invoice paid COMPLETELY, 0 otherwise (do not use it anymore, use statut and close_code)
+	
 	public $paye;
-	//! key of module source when invoice generated from a dedicated module ('cashdesk', 'takepos', ...)
+	
 	public $module_source;
-	//! key of pos source ('0', '1', ...)
+	
 	public $pos_source;
-	//! id of template invoice when generated from a template invoice
+	
 	public $fk_fac_rec_source;
-	//! id of source invoice if replacement invoice or credit note
+	
 	public $fk_facture_source;
 	public $linked_objects = array();
 	public $date_lim_reglement;
@@ -515,8 +515,8 @@ class Facture extends CommonInvoice
 			$outputlangs = $langs;
 			$newlang = '';
 
-			if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->thirdparty->default_lang)) $newlang = $this->thirdparty->default_lang; // for proposal, order, invoice, ...
-			if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->default_lang)) $newlang = $this->default_lang; // for thirdparty
+			if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->thirdparty->default_lang)) $newlang = $this->thirdparty->default_lang; 
+			if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->default_lang)) $newlang = $this->default_lang; 
 			if (!empty($newlang))
 			{
 			    $outputlangs = new Translate("", $conf);
@@ -723,11 +723,11 @@ class Facture extends CommonInvoice
 					$newinvoiceline->origin_id = $this->lines[$i]->id;
 
 					// Auto set date of service ?
-					if ($this->lines[$i]->date_start_fill == 1 && $originaldatewhen)			// $originaldatewhen is defined when generating from recurring invoice only
+					if ($this->lines[$i]->date_start_fill == 1 && $originaldatewhen)			
 					{
 						$newinvoiceline->date_start = $originaldatewhen;
 					}
-					if ($this->lines[$i]->date_end_fill == 1 && $previousdaynextdatewhen)	// $previousdaynextdatewhen is defined when generating from recurring invoice only
+					if ($this->lines[$i]->date_end_fill == 1 && $previousdaynextdatewhen)	
 					{
 						$newinvoiceline->date_end = $previousdaynextdatewhen;
 					}
@@ -775,7 +775,7 @@ class Facture extends CommonInvoice
                 	$line = $this->lines[$i];
 
                 	// Test and convert into object this->lines[$i]. When coming from REST API, we may still have an array
-				    //if (! is_object($line)) $line=json_decode(json_encode($line), false);  // convert recursively array into object.
+				    
                 	if (!is_object($line)) $line = (object) $line;
 
 				    if ($result >= 0)
@@ -866,7 +866,7 @@ class Facture extends CommonInvoice
 
                         // If margin module defined on costprice, we try the costprice
                         // If not defined or if module margin defined and pmp and stock module enabled, we try pmp price
-                        // else we get the best supplier price
+                        
                         if ($conf->global->MARGIN_TYPE == 'costprice' && !empty($producttmp->cost_price)) $buyprice = $producttmp->cost_price;
                         elseif (!empty($conf->stock->enabled) && ($conf->global->MARGIN_TYPE == 'costprice' || $conf->global->MARGIN_TYPE == 'pmp') && !empty($producttmp->pmp)) $buyprice = $producttmp->pmp;
                         else {
@@ -2477,7 +2477,7 @@ class Facture extends CommonInvoice
 		{
 			$num = $force_number;
 		}
-		elseif (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) // empty should not happened, but when it occurs, the test save life
+		elseif (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) 
 		{
 			if (!empty($conf->global->FAC_FORCE_DATE_VALIDATION))	// If option enabled, we force invoice date
 			{
@@ -2890,7 +2890,7 @@ class Facture extends CommonInvoice
 			$pu_ttc = price2num($pu_ttc);
 			$pa_ht = price2num($pa_ht);
 			if (!preg_match('/\((.*)\)/', $txtva)) {
-				$txtva = price2num($txtva); // $txtva can have format '5.0(XXX)' or '5'
+				$txtva = price2num($txtva); 
 			}
 			$txlocaltax1 = price2num($txlocaltax1);
 			$txlocaltax2 = price2num($txlocaltax2);
@@ -4223,7 +4223,7 @@ class Facture extends CommonInvoice
 					$line->multicurrency_total_tva = 19.6;
 					$line->remise_percent = 50;
 				}
-				else    // (product line)
+				else    
 				{
 					$prodid = mt_rand(1, $num_prods);
 					$line->fk_product = $prodids[$prodid];
@@ -4731,16 +4731,16 @@ class FactureLigne extends CommonInvoiceLine
 
 	public $oldline;
 
-	//! From llx_facturedet
-	//! Id facture
+	
+	
 	public $fk_facture;
-	//! Id parent line
+	
 	public $fk_parent_line;
 	/**
 	 * @deprecated
 	 */
 	public $label;
-	//! Description ligne
+	
 	public $desc;
 
 	public $localtax1_type; // Local tax 1 type
@@ -4935,7 +4935,7 @@ class FactureLigne extends CommonInvoiceLine
 		if (empty($this->multicurrency_total_tva)) $this->multicurrency_total_tva = 0;
 		if (empty($this->multicurrency_total_ttc)) $this->multicurrency_total_ttc = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)
@@ -5152,7 +5152,7 @@ class FactureLigne extends CommonInvoiceLine
 		// Check parameters
 		if ($this->product_type < 0) return -1;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)

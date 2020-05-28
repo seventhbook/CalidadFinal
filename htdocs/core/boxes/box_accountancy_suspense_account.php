@@ -74,7 +74,7 @@ class box_accountancy_suspense_account extends ModeleBoxes
 
         include_once DOL_DOCUMENT_ROOT.'/accountancy/class/bookkeeping.class.php';
 
-        //$bookkeepingstatic = new BookKeeping($this->db);
+        
 
         $this->info_box_head = array('text' => $langs->trans("BoxTitleSuspenseAccount"));
 

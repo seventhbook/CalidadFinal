@@ -124,7 +124,7 @@ abstract class Stats
 			$this->lastfetchdate[get_class($this).'_'.__FUNCTION__]=$nowgmt;
 		}
 
-		// return array(array('Month',val1,val2,val3),...)
+		
 		return $data;
 	}
 
@@ -195,7 +195,7 @@ abstract class Stats
 			}
 
 			$data = array();
-			// $data = array('xval'=>array(0=>xlabel,1=>yval1,2=>yval2...),...)
+			
 			for ($i = 0 ; $i < 12 ; $i++)
 			{
 				$data[$i][]=$datay[$endyear][($i+$sm)%12][0];	// set label
@@ -314,7 +314,7 @@ abstract class Stats
         else
 		{
 			$data=$this->getAllByProduct($year);
-			//					$data[$i][]=$datay[$year][$i][1];	// set yval for x=i
+			
 		}
 
 		// Save cache file

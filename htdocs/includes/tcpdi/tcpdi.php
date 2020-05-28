@@ -1,22 +1,22 @@
 <?php
-//
+
 //  TCPDI - Version 1.0
 //  Based on FPDI - Version 1.4.4
-//
+
 //    Copyright 2004-2013 Setasign - Jan Slabon
-//
+
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-//
+
 //      http://www.apache.org/licenses/LICENSE-2.0
-//
+
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+
 
 // Dummy shim to allow unmodified use of fpdf_tpl
 class FPDF extends TCPDF {}
@@ -405,7 +405,7 @@ class TCPDI extends FPDF_TPL {
         if (!$onlynewobj) {
             $this->offsets[$obj_id] = $this->bufferlen;
             $this->_out($obj_id . ' 0 obj');
-            $this->_current_obj_id = $obj_id; // for later use with encryption
+            $this->_current_obj_id = $obj_id; 
         }
 
         return $obj_id;

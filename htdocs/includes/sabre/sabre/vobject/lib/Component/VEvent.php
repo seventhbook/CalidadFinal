@@ -41,7 +41,7 @@ class VEvent extends VObject\Component {
             } catch (NoInstancesException $e) {
 
                 // If we've catched this exception, there are no instances
-                // for the event that fall into the specified time-range.
+                
                 return false;
 
             }
@@ -51,7 +51,7 @@ class VEvent extends VObject\Component {
             // We fast-forwarded to a spot where the end-time of the
             // recurrence instance exceeded the start of the requested
             // time-range.
-            //
+            
             // If the starttime of the recurrence did not exceed the
             // end of the time range as well, we have a match.
             return ($it->getDTStart() < $end && $it->getDTEnd() > $start);
@@ -64,7 +64,7 @@ class VEvent extends VObject\Component {
             // The DTEND property is considered non inclusive. So for a 3 day
             // event in july, dtstart and dtend would have to be July 1st and
             // July 4th respectively.
-            //
+            
             // See:
             // http://tools.ietf.org/html/rfc5545#page-54
             $effectiveEnd = $this->DTEND->getDateTime($end->getTimezone());

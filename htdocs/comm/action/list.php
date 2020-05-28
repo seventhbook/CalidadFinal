@@ -347,7 +347,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -387,13 +387,13 @@ if ($resql)
 
 	
 	
-	//if ($resourceid)      $nav.='<input type="hidden" name="resourceid" value="'.$resourceid.'">';
+	
 	if ($filter)          $nav .= '<input type="hidden" name="search_filter" value="'.$filter.'">';
 	
-	//if ($socid)           $nav.='<input type="hidden" name="socid" value="'.$socid.'">';
+	
 	if ($showbirthday)    $nav .= '<input type="hidden" name="search_showbirthday" value="1">';
 	
-	//if ($usergroup)       $nav.='<input type="hidden" name="usergroup" value="'.$usergroup.'">';
+	
 	print $nav;
 
     dol_fiche_head($head, $tabactive, $langs->trans('Agenda'), 0, 'action');
@@ -505,7 +505,7 @@ if ($resql)
 	if (!empty($arrayfields['c.libelle']['checked']))	  print_liste_field_titre($arrayfields['c.libelle']['label'], $_SERVER["PHP_SELF"], "c.libelle", $param, "", "", $sortfield, $sortorder);
 	if (!empty($arrayfields['a.label']['checked']))	  print_liste_field_titre($arrayfields['a.label']['label'], $_SERVER["PHP_SELF"], "a.label", $param, "", "", $sortfield, $sortorder);
 	if (!empty($arrayfields['a.note']['checked']))		  print_liste_field_titre($arrayfields['a.note']['label'], $_SERVER["PHP_SELF"], "a.note", $param, "", "", $sortfield, $sortorder);
-	//if (! empty($conf->global->AGENDA_USE_EVENT_TYPE))
+	
 	if (!empty($arrayfields['a.datep']['checked']))	  print_liste_field_titre($arrayfields['a.datep']['label'], $_SERVER["PHP_SELF"], "a.datep,a.id", $param, '', 'align="center"', $sortfield, $sortorder);
 	if (!empty($arrayfields['a.datep2']['checked']))	  print_liste_field_titre($arrayfields['a.datep2']['label'], $_SERVER["PHP_SELF"], "a.datep2", $param, '', 'align="center"', $sortfield, $sortorder);
 	if (!empty($arrayfields['s.nom']['checked']))	      print_liste_field_titre($arrayfields['s.nom']['label'], $_SERVER["PHP_SELF"], "s.nom", $param, "", "", $sortfield, $sortorder);
@@ -666,7 +666,7 @@ if ($resql)
                 {
                     if (!isset($contactListCache[$socpeopleassigned['id']]))
                     {
-                        // if no cache found we fetch it
+                        
                         $contact = new Contact($db);
                         if ($contact->fetch($socpeopleassigned['id']) > 0)
                         {
@@ -675,7 +675,7 @@ if ($resql)
                         }
                     }
                     else {
-                        // use cache
+                        
                         $contactList[] = $contactListCache[$socpeopleassigned['id']];
                     }
                 }

@@ -453,7 +453,7 @@ if (! $error && $action == 'writebookkeeping') {
 	$now = dol_now();
 
 	$error = 0;
-	foreach ($tabpay as $key => $val)		// $key is rowid into llx_bank
+	foreach ($tabpay as $key => $val)		
 	{
 		$date = dol_print_date($db->jdate($val["date"]), 'day');
 
@@ -565,14 +565,14 @@ if (! $error && $action == 'writebookkeeping') {
 
 						if ($tabtype[$key] == 'payment') {	// If payment is payment of customer invoice, we get ref of invoice
 							$bookkeeping->subledger_account = $k;							// For payment, the subledger account is stored as $key of $tabtp
-							$bookkeeping->subledger_label = $tabcompany[$key]['name'];		// $tabcompany is defined only if we are sure there is 1 thirdparty for the bank transaction
+							$bookkeeping->subledger_label = $tabcompany[$key]['name'];		
 							$bookkeeping->numero_compte = $conf->global->ACCOUNTING_ACCOUNT_CUSTOMER;
 
 							$accountingaccount->fetch(null, $conf->global->ACCOUNTING_ACCOUNT_CUSTOMER, true);
 							$bookkeeping->label_compte = $accountingaccount->label;
 						} elseif ($tabtype[$key] == 'payment_supplier') {	// If payment is payment of supplier invoice, we get ref of invoice
 							$bookkeeping->subledger_account = $k;				   			// For payment, the subledger account is stored as $key of $tabtp
-							$bookkeeping->subledger_label = $tabcompany[$key]['name'];		// $tabcompany is defined only if we are sure there is 1 thirdparty for the bank transaction
+							$bookkeeping->subledger_label = $tabcompany[$key]['name'];		
 							$bookkeeping->numero_compte = $conf->global->ACCOUNTING_ACCOUNT_SUPPLIER;
 
 							$accountingaccount->fetch(null, $conf->global->ACCOUNTING_ACCOUNT_SUPPLIER, true);
@@ -1008,7 +1008,7 @@ if (empty($action) || $action == 'view') {
 
 	$r = '';
 
-	foreach ($tabpay as $key => $val)			  // $key is rowid in llx_bank
+	foreach ($tabpay as $key => $val)			  
 	{
 		$date = dol_print_date($db->jdate($val["date"]), 'day');
 

@@ -23,30 +23,30 @@ class XmlFormat extends Format
     const MIME = 'application/xml';
     const EXTENSION = 'xml';
 
-    // ==================================================================
-    //
+    
+    
     // Properties related to reading/parsing/decoding xml
-    //
-    // ------------------------------------------------------------------
+    
+    
     public static $importSettingsFromXml = false;
     public static $parseAttributes = true;
     public static $parseNamespaces = true;
     public static $parseTextNodeAsProperty = true;
 
-    // ==================================================================
-    //
+    
+    
     // Properties related to writing/encoding xml
-    //
-    // ------------------------------------------------------------------
+    
+    
     public static $useTextNodeProperty = true;
     public static $useNamespaces = true;
     public static $cdataNames = array();
 
-    // ==================================================================
-    //
+    
+    
     // Common Properties
-    //
-    // ------------------------------------------------------------------
+    
+    
     public static $attributeNames = array();
     public static $textNodeName = 'text';
     public static $namespaces = array();

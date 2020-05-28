@@ -280,9 +280,9 @@ if (empty($reshook))
 			elseif ($object->statut == 4) $newstatus = 3;
 			elseif ($object->statut == 5)
 			{
-				//$newstatus=2;    // Ordered
+				
 				// TODO Can we set it to submited ?
-				//$newstatus=3;  // Submited
+				
 				// TODO If there is at least one reception, we can set to Received->Received partially
 				$newstatus = 4; // Received partially
 			}
@@ -291,7 +291,7 @@ if (empty($reshook))
 			elseif ($object->statut == 9) $newstatus = 1; // Refused->Validated
 			else $newstatus = 2;
 
-			//print "old status = ".$object->statut.' new status = '.$newstatus;
+			
 			$db->begin();
 
 			$result = $object->setStatus($user, $newstatus);
@@ -452,7 +452,7 @@ if (empty($reshook))
 			elseif (GETPOST('idprodfournprice', 'alpha') > 0)
 			{
 				$qtytosearch = $qty; // Just to see if a price exists for the quantity. Not used to found vat.
-				//$qtytosearch=-1;	       // We force qty to -1 to be sure to find if a supplier price exist
+				
 				$idprod = $productsupplier->get_buyprice(GETPOST('idprodfournprice', 'alpha'), $qtytosearch);
 				$res = $productsupplier->fetch($idprod);
 			}
@@ -461,7 +461,7 @@ if (empty($reshook))
 			{
 				$label = $productsupplier->label;
 
-				// if we use supplier description of the products
+				
 				if (!empty($productsupplier->desc_supplier) && !empty($conf->global->PRODUIT_FOURN_TEXTS)) {
 				    $desc = $productsupplier->desc_supplier;
 				} else $desc = $productsupplier->description;
@@ -536,7 +536,7 @@ if (empty($reshook))
 				setEventMessages($langs->trans("ErrorQtyTooLowForThisSupplier"), null, 'errors');
 			}
 		}
-		elseif (empty($error)) // $price_ht is already set
+		elseif (empty($error)) 
 		{
 			$tva_npr = (preg_match('/\*/', $tva_tx) ? 1 : 0);
 			$tva_tx = str_replace('*', '', $tva_tx);
@@ -555,12 +555,12 @@ if (empty($reshook))
 
 			if ($price_ht !== '')
 			{
-				$pu_ht = price2num($price_ht, 'MU'); // $pu_ht must be rounded according to settings
+				$pu_ht = price2num($price_ht, 'MU'); 
 			}
 			else
 			{
 				$pu_ttc = price2num(GETPOST('price_ttc'), 'MU');
-				$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); // $pu_ht must be rounded according to settings
+				$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); 
 			}
 			$price_base_type = 'HT';
 			$pu_ht_devise = price2num($price_ht_devise, 'MU');
@@ -568,7 +568,7 @@ if (empty($reshook))
 			$result = $object->addline($desc, $pu_ht, $qty, $tva_tx, $localtax1_tx, $localtax2_tx, 0, 0, $ref_supplier, $remise_percent, $price_base_type, $pu_ttc, $type, '', '', $date_start, $date_end, $array_options, $fk_unit, $pu_ht_devise);
 		}
 
-		//print "xx".$tva_tx; exit;
+		
 		if (!$error && $result > 0)
 		{
 			$db->commit();
@@ -1691,7 +1691,7 @@ if ($action == 'create')
 	$doleditor = new DolEditor('note_public', isset($note_public) ? $note_public : GETPOST('note_public', 'none'), '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 	print $doleditor->Create(1);
 	print '</td>';
-	//print '<textarea name="note_public" wrap="soft" cols="60" rows="'.ROWS_5.'"></textarea>';
+	
 	print '</tr>';
 
 	print '<tr><td>'.$langs->trans('NotePrivate').'</td>';
@@ -1699,7 +1699,7 @@ if ($action == 'create')
 	$doleditor = new DolEditor('note_private', isset($note_private) ? $note_private : GETPOST('note_private', 'none'), '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 	print $doleditor->Create(1);
 	print '</td>';
-	//print '<td><textarea name="note_private" wrap="soft" cols="60" rows="'.ROWS_5.'"></textarea></td>';
+	
 	print '</tr>';
 
 	if (!empty($origin) && !empty($originid) && is_object($objectsrc)) {
@@ -1817,7 +1817,7 @@ elseif (!empty($object->id))
 		$object->date_commande = dol_now();
 
 		// We check if number is temporary number
-		if (preg_match('/^[\(]?PROV/i', $object->ref) || empty($object->ref)) // empty should not happened, but when it occurs, the test save life
+		if (preg_match('/^[\(]?PROV/i', $object->ref) || empty($object->ref)) 
 		{
 			$newref = $object->getNextNumRef($object->thirdparty);
 		}
@@ -1866,8 +1866,8 @@ elseif (!empty($object->id))
 			if ($conf->browser->name == 'ie') $forcecombo = 1; // There is a bug in IE10 that make combo inside popup crazy
 			$formquestion = array(
 				//'text' => $langs->trans("ConfirmClone"),
-				//array('type' => 'checkbox', 'name' => 'clone_content',   'label' => $langs->trans("CloneMainAttributes"),   'value' => 1),
-				//array('type' => 'checkbox', 'name' => 'update_prices',   'label' => $langs->trans("PuttingPricesUpToDate"),   'value' => 1),
+				
+				
 				array('type' => 'other', 'name' => 'idwarehouse', 'label' => $langs->trans("SelectWarehouseForStockIncrease"), 'value' => $formproduct->selectWarehouses(GETPOST('idwarehouse', 'int'), 'idwarehouse', '', 1, 0, 0, '', 0, $forcecombo))
 			);
 		}
@@ -1952,7 +1952,7 @@ elseif (!empty($object->id))
             if ($action != 'classify')
                 $morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
             if ($action == 'classify') {
-                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                
                 $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                 $morehtmlref .= '<input type="hidden" name="action" value="classin">';
                 $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -2293,7 +2293,7 @@ elseif (!empty($object->id))
 	/*
 	 * Lines
 	 */
-	//$result = $object->getLinesArray();
+	
 
 
 	print '	<form name="addproduct" id="addproduct" action="'.$_SERVER["PHP_SELF"].'?id='.$object->id.(($action != 'editline') ? '#addline' : '#line_'.GETPOST('lineid')).'" method="POST">
@@ -2314,8 +2314,8 @@ elseif (!empty($object->id))
 	// Add free products/services form
 	global $forceall, $senderissupplier, $dateSelector, $inputalsopricewithtax;
 	$forceall = 1; $dateSelector = 0; $inputalsopricewithtax = 1;
-	$senderissupplier = 2; // $senderissupplier=2 is same than 1 but disable test on minimum qty and disable autofill qty with minimum.
-	//if (! empty($conf->global->SUPPLIER_ORDER_WITH_NOPRICEDEFINED)) $senderissupplier=2;
+	$senderissupplier = 2; 
+	
 	if (!empty($conf->global->SUPPLIER_ORDER_WITH_PREDEFINED_PRICES_ONLY)) $senderissupplier = 1;
 
 	// Show object lines
@@ -2518,7 +2518,7 @@ elseif (!empty($object->id))
 			}
 
 			// Create bill
-			//if (! empty($conf->facture->enabled))
+			
 			//{
 			if (!empty($conf->fournisseur->enabled) && ($object->statut >= 2 && $object->statut != 7 && $object->billed != 1))  // statut 2 means approved, 7 means canceled
 			{
@@ -2594,7 +2594,7 @@ elseif (!empty($object->id))
 			print '<input type="hidden"	name="action" value="commande">';
 			print load_fiche_titre($langs->trans("ToOrder"), '', '');
 			print '<table class="noborder centpercent">';
-			//print '<tr class="liste_titre"><td colspan="2">'.$langs->trans("ToOrder").'</td></tr>';
+			
 			print '<tr><td class="fieldrequired">'.$langs->trans("OrderDate").'</td><td>';
 			$date_com = dol_mktime(GETPOST('rehour', 'int'), GETPOST('remin', 'int'), GETPOST('resec', 'int'), GETPOST('remonth', 'int'), GETPOST('reday', 'int'), GETPOST('reyear', 'int'));
 			if (empty($date_com)) $date_com = dol_now();
@@ -2652,7 +2652,7 @@ elseif (!empty($object->id))
 					print load_fiche_titre($langs->trans("Receive"), '', '');
 
 					print '<table class="noborder centpercent">';
-					//print '<tr class="liste_titre"><td colspan="2">'.$langs->trans("Receive").'</td></tr>';
+					
 					print '<tr><td>'.$langs->trans("DeliveryDate").'</td><td>';
 					$datepreselected = dol_now();
 					print $form->selectDate($datepreselected, '', 1, 1, '', "commande", 1, 1);

@@ -64,7 +64,7 @@ class modBanque extends DolibarrModules
 		$this->dirs = array("/banque/temp");
 
 		// Config pages
-		//-------------
+		
 		$this->config_page_url = array("bank.php");
 
 		// Dependancies
@@ -135,12 +135,12 @@ class modBanque extends DolibarrModules
 
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;

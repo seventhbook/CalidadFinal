@@ -333,7 +333,7 @@ class Notify
 		// Define $urlwithroot
 		$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 		$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;			// This is to use external domain name found into config file
-		//$urlwithroot=DOL_MAIN_URL_ROOT;						// This is to use same domain name than current
+		
 
 		// Define some vars
 		$application = 'Dolibarr';
@@ -749,7 +749,7 @@ class Notify
 				$message .= $langs->transnoentities("YouReceiveMailBecauseOfNotification2", $application, $mysoc->name)."\n";
 				$message .= "\n";
 				$message .= $mesg;
-				//if ($link) $message.= "\n" . $urlwithroot . $link;	// link already added around the ref into the text
+				
 
 				$message = nl2br($message);
 

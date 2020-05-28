@@ -127,7 +127,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 			    $xml->read();	//	Move onto the value node
 				$worksheetNames[] = (string) $xml->value;
 			} elseif ($xml->name == 'gnm:Sheets') {
-				//	break out of the loop once we've got our sheet names rather than parse the entire file
+				
 				break;
 			}
 		}

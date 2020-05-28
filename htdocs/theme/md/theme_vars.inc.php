@@ -39,7 +39,7 @@ if (!defined('ISLOADEDBYSTEELSHEET'))	// File is run after an include of a php p
 		}
 		else
 		{
-			// for now we use the same configuration for all types of color blind
+			
 			$theme_datacolor = array(array(248, 220, 1), array(9, 85, 187), array(42, 208, 255), array(0, 0, 0), array(169, 169, 169), array(253, 102, 136), array(120, 154, 190), array(146, 146, 55), array(0, 52, 251), array(196, 226, 161), array(222, 160, 41), array(85, 135, 150), array(150, 135, 80), array(150, 80, 150));
 		}
 	}

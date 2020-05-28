@@ -118,7 +118,7 @@ if (! empty($tag) && ($unsuscrib=='1'))
 	$sql = "INSERT INTO ".MAIN_DB_PREFIX."mailing_unsubscribe (date_creat, entity, email) VALUES ('".$db->idate(dol_now())."', ".$db->escape($obj->entity).", '".$db->escape($obj->email)."')";
 
 	$resql=$db->query($sql);
-	//if (! $resql) dol_print_error($db);	No test on errors, may fail if already unsubscribed
+	
 
 
 	header("Content-type: text/html; charset=".$conf->file->character_set_client);

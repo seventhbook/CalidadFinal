@@ -131,7 +131,7 @@ class Xlsx extends BaseWriter
         ];
 
         //    Initialise writer parts
-        //        and Assign their parent IWriters
+        
         foreach ($writerPartsArray as $writer => $class) {
             $this->writerParts[$writer] = new $class($this);
         }
@@ -222,7 +222,7 @@ class Xlsx extends BaseWriter
             // Add [Content_Types].xml to ZIP file
             $zip->addFromString('[Content_Types].xml', $this->getWriterPart('ContentTypes')->writeContentTypes($this->spreadSheet, $this->includeCharts));
 
-            //if hasMacros, add the vbaProject.bin file, Certificate file(if exists)
+            
             if ($this->spreadSheet->hasMacros()) {
                 $macrosCode = $this->spreadSheet->getMacrosCode();
                 if ($macrosCode !== null) {

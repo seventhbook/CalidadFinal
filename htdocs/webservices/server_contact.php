@@ -113,7 +113,7 @@ $contact_fields = array(
 	'user_login' => array('name'=>'user_login', 'type'=>'xsd:string'),
 	'civility_id' => array('name'=>'civility_id', 'type'=>'xsd:string'),
 	'poste' => array('name'=>'poste', 'type'=>'xsd:string')
-	//...
+	
 );
 
 $elementtype = 'socpeople';
@@ -436,7 +436,7 @@ function createContact($authentication, $contact)
 		}
 
 
-		//...
+		
 
 		$db->begin();
 

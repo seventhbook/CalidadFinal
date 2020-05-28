@@ -73,7 +73,7 @@ if ($object_status != '' && $object_status > -1) $stats->where .= ' AND c.fk_sta
 
 // Build graphic number of object
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 
 if (!$user->rights->societe->client->voir || $user->socid)
@@ -114,7 +114,7 @@ if (! $mesg)
 
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 if (!$user->rights->societe->client->voir || $user->socid)
 {
@@ -220,7 +220,7 @@ dol_fiche_head($head, 'byyear', $langs->trans("Statistics"), -1);
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
-//if (empty($socid))
+
 //{
 	// Show filter box
 	print '<form name="stats" method="POST" action="'.$_SERVER["PHP_SELF"].'">';

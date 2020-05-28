@@ -147,8 +147,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 	{
 		// sheetPr
 		$objWriter->startElement('sheetPr');
-		//$objWriter->writeAttribute('codeName',		$pSheet->getTitle());
-		if($pSheet->getParent()->hasMacros()){//if the workbook have macros, we need to have codeName for the sheet
+		
+		if($pSheet->getParent()->hasMacros()){
 			if($pSheet->hasCodeName()==false){
 				$pSheet->setCodeName($pSheet->getTitle());
 			}
@@ -288,7 +288,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 				}
 
 				// Selection
-//				if ($pane != '') {
+
 					//	Only need to write selection element if we have a split pane
 					//		We cheat a little by over-riding the active cell selection, setting it to the split cell
 					$objWriter->startElement('selection');
@@ -473,8 +473,8 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 		foreach ($pSheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
 			foreach ($conditionalStyles as $conditional) {
 				// WHY was this again?
-				// if ($this->getParentWriter()->getStylesConditionalHashTable()->getIndexForHashCode( $conditional->getHashCode() ) == '') {
-				//	continue;
+				
+				
 				// }
 				if ($conditional->getConditionType() != PHPExcel_Style_Conditional::CONDITION_NONE) {
 					// conditionalFormatting
@@ -1128,7 +1128,7 @@ class PHPExcel_Writer_Excel2007_Worksheet extends PHPExcel_Writer_Excel2007_Writ
 						}
 						if ($this->getParentWriter()->getOffice2003Compatibility() === false) {
 							if ($this->getParentWriter()->getPreCalculateFormulas()) {
-//								$calculatedValue = $pCell->getCalculatedValue();
+
 								if (!is_array($calculatedValue) && substr($calculatedValue, 0, 1) != '#') {
 									$objWriter->writeElement('v', PHPExcel_Shared_String::FormatNumber($calculatedValue));
 								} else {

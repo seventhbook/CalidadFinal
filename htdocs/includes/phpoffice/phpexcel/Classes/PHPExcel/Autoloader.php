@@ -60,7 +60,7 @@ class PHPExcel_Autoloader
         } else {
             return spl_autoload_register(array('PHPExcel_Autoloader', 'Load'));
         }
-    }   //    function Register()
+    }   
 
 
     /**
@@ -84,6 +84,6 @@ class PHPExcel_Autoloader
         }
 
         require($pClassFilePath);
-    }   //    function Load()
+    }   
 
 }

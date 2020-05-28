@@ -114,7 +114,7 @@ function getURLContent($url, $postorget = 'GET', $param = '', $followlocation = 
     	curl_setopt($ch, CURLOPT_POST, 0);			// GET
     }
 
-    //if USE_PROXY constant set at begin of this method.
+    
     if ($USE_PROXY)
     {
         dol_syslog("getURLContent set proxy to ".$PROXY_HOST. ":" . $PROXY_PORT." - ".$PROXY_USER. ":" . $PROXY_PASS);
@@ -150,8 +150,8 @@ function getURLContent($url, $postorget = 'GET', $param = '', $followlocation = 
 
     	// Ad keys to $rep
     	$rep = $info;
-    	//$rep['header_size']=$info['header_size'];
-    	//$rep['http_code']=$info['http_code'];
+    	
+    	
     	dol_syslog("getURLContent http_code=".$rep['http_code']);
 
         // Add more keys to $rep

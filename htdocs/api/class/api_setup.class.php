@@ -231,7 +231,7 @@ class Setup extends DolibarrApi
                 $country = new Ccountry($this->db);
                 if ($country->fetch($obj->rowid) > 0) {
                     // Translate the name of the country if needed
-                    // and then apply the filter if there is one.
+                    
                     $this->translateLabel($country, $lang);
 
                     if (empty($filter) || stripos($country->label, $filter) !== false) {
@@ -992,7 +992,7 @@ class Setup extends DolibarrApi
         }
 
 
-        //$sql.= $this->db->order($sortfield, $sortorder);
+        
 
         if ($limit) {
             if ($page < 0) {
@@ -1287,8 +1287,8 @@ class Setup extends DolibarrApi
     	$sql = "SELECT rowid, code, pos,  label, use_default, description";
     	$sql .= " FROM ".MAIN_DB_PREFIX."c_ticket_type as t";
         $sql .= " WHERE t.active = ".(int) $active;
-    	// if ($type) $sql .= " AND t.type LIKE '%".$this->db->escape($type)."%'";
-    	// if ($module)    $sql .= " AND t.module LIKE '%".$this->db->escape($module)."%'";
+    	
+    	
     	// Add sql filters
     	if ($sqlfilters)
     	{
@@ -1402,7 +1402,7 @@ class Setup extends DolibarrApi
     		if (!$xmlarray['curl_error_no'] && $xmlarray['http_code'] != '404')
     		{
     			$xmlfile = $xmlarray['content'];
-    			//print "xmlfilestart".$xmlfile."endxmlfile";
+    			
     			$xml = simplexml_load_string($xmlfile);
     		}
     		else
@@ -1435,7 +1435,7 @@ class Setup extends DolibarrApi
     			$out .= '</tr>'."\n";
 
     			$i = 0;
-    			foreach ($xml->dolibarr_constants[0]->constant as $constant)    // $constant is a simpleXMLElement
+    			foreach ($xml->dolibarr_constants[0]->constant as $constant)    
     			{
     				$constname = $constant['name'];
     				$constvalue = (string) $constant;
@@ -1653,14 +1653,14 @@ class Setup extends DolibarrApi
     			{
     				$resultcode = 'warning';
     				$resultcomment = 'FileIntegrityIsOkButFilesWereAdded';
-    				//$outcurrentchecksum =  $checksumget.' - <span class="'.$resultcode.'">'.$langs->trans("FileIntegrityIsOkButFilesWereAdded").'</span>';
+    				
     				$outcurrentchecksum = $checksumget;
     			}
     			else
     			{
     				$resultcode = 'ok';
     				$resultcomment = 'Success';
-    				//$outcurrentchecksum = '<span class="'.$resultcode.'">'.$checksumget.'</span>';
+    				
     				$outcurrentchecksum = $checksumget;
     			}
     		}
@@ -1668,7 +1668,7 @@ class Setup extends DolibarrApi
     		{
     			$resultcode = 'error';
     			$resultcomment = 'Error';
-    			//$outcurrentchecksum = '<span class="'.$resultcode.'">'.$checksumget.'</span>';
+    			
     			$outcurrentchecksum = $checksumget;
     		}
     	}

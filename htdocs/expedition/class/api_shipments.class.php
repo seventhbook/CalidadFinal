@@ -105,7 +105,7 @@ class Shipments extends DolibarrApi
 
         $obj_ret = array();
 
-        // case of external user, $thirdparty_ids param is ignored and replaced by user's socid
+        
         $socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $thirdparty_ids;
 
         // If the internal user must only see his customers, force searching by him
@@ -208,15 +208,15 @@ class Shipments extends DolibarrApi
         return $this->shipment->id;
     }
 
-    // /**
-    //  * Get lines of an shipment
-    //  *
-    //  * @param int   $id             Id of shipment
-    //  *
-    //  * @url	GET {id}/lines
-    //  *
-    //  * @return int
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function getLines($id)
     {
@@ -241,16 +241,16 @@ class Shipments extends DolibarrApi
     }
     */
 
-    // /**
-    //  * Add a line to given shipment
-    //  *
-    //  * @param int   $id             Id of shipment to update
-    //  * @param array $request_data   ShipmentLine data
-    //  *
-    //  * @url	POST {id}/lines
-    //  *
-    //  * @return int
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function postLine($id, $request_data = null)
     {
@@ -303,17 +303,17 @@ class Shipments extends DolibarrApi
         return false;
     }*/
 
-    // /**
-    //  * Update a line to given shipment
-    //  *
-    //  * @param int   $id             Id of shipment to update
-    //  * @param int   $lineid         Id of line to update
-    //  * @param array $request_data   ShipmentLine data
-    //  *
-    //  * @url	PUT {id}/lines/{lineid}
-    //  *
-    //  * @return object
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function putLine($id, $lineid, $request_data = null)
     {
@@ -528,20 +528,20 @@ class Shipments extends DolibarrApi
     }
 
 
-    // /**
-    //  *  Classify the shipment as invoiced
-    //  *
-    //  * @param int   $id           Id of the shipment
-    //  *
-    //  * @url     POST {id}/setinvoiced
-    //  *
-    //  * @return int
-    //  *
-    //  * @throws 400
-    //  * @throws 401
-    //  * @throws 404
-    //  * @throws 405
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
      /*
     public function setinvoiced($id)
     {
@@ -566,19 +566,19 @@ class Shipments extends DolibarrApi
     */
 
 
-    //  /**
-    //  * Create a shipment using an existing order.
-    //  *
-    //  * @param int   $orderid       Id of the order
-    //  *
-    //  * @url     POST /createfromorder/{orderid}
-    //  *
-    //  * @return int
-    //  * @throws 400
-    //  * @throws 401
-    //  * @throws 404
-    //  * @throws 405
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function createShipmentFromOrder($orderid)
     {

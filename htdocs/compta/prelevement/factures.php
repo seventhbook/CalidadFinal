@@ -81,11 +81,11 @@ if ($prev_id > 0 || $ref)
 		print '<div class="underbanner clearboth"></div>';
       	print '<table class="border centpercent tableforfield">';
 
-		//print '<tr><td class="titlefield">'.$langs->trans("Ref").'</td><td>'.$object->getNomUrl(1).'</td></tr>';
+		
 		print '<tr><td class="titlefield">'.$langs->trans("Date").'</td><td>'.dol_print_date($object->datec, 'day').'</td></tr>';
 		print '<tr><td>'.$langs->trans("Amount").'</td><td>'.price($object->amount).'</td></tr>';
 		// Status
-		//print '<tr><td>'.$langs->trans('Status').'</td><td>'.$object->getLibStatut(1).'</td></tr>';
+		
 
 		if ($object->date_trans <> 0)
 		{
@@ -166,7 +166,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -274,7 +274,7 @@ if ($result)
      	print '<td>'.$langs->trans("Total").'</td>';
       	print '<td>&nbsp;</td>';
       	print '<td class="right">';
-		//if ($totalinvoices != $object->amount) print img_warning("AmountOfFileDiffersFromSumOfInvoices");		// It is normal to have total that differs. For an amount of invoice of 100, request to pay may be 50 only.
+		
       	if ($totalamount_requested != $object->amount) print img_warning("AmountOfFileDiffersFromSumOfInvoices");
 		print "</td>\n";
       	print '<td class="right">';

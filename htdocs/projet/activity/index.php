@@ -459,7 +459,7 @@ if (empty($conf->global->PROJECT_HIDE_TASKS) && !empty($conf->global->PROJECT_SH
 	}
 	$sql .= " WHERE p.entity IN (".getEntity('project').")";
 	if ($mine || empty($user->rights->projet->all->lire)) $sql .= " AND p.rowid IN (".$projectsListId.")"; // project i have permission on
-	if ($mine)     // this may duplicate record if we are contact twice
+	if ($mine)     
 	{
         $sql .= " AND ect.fk_c_type_contact IN (".join(',', array_keys($listoftaskcontacttype)).") AND ect.element_id = t.rowid AND ect.fk_socpeople = ".$user->id;
 	}

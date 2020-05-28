@@ -116,7 +116,7 @@ class box_task extends ModeleBoxes
             'target'=>'none'	// Set '' to get target="_blank"
         );
 
-		// list the summary of the orders
+		
 		if ($user->rights->projet->lire) {
             $boxcontent .= '<div id="ancor-idfilter'.$this->boxcode.'" style="display: block; position: absolute; margin-top: -100px"></div>'."\n";
             $boxcontent .= '<div id="idfilter'.$this->boxcode.'" class="center" >'."\n";
@@ -169,7 +169,7 @@ class box_task extends ModeleBoxes
 			$sql .= " AND p.fk_statut = ".Project::STATUS_VALIDATED;
 			$sql .= " AND (pt.progress < 100 OR pt.progress IS NULL ) "; // 100% is done and not displayed
             $sql .= " AND p.usage_task = 1 ";
-            if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")"; // public and assigned to, or restricted to company for external users
+            if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")"; 
 
 			$sql .= " ORDER BY pt.datee ASC, pt.dateo ASC";
 			$sql .= $this->db->plimit($max, 0);

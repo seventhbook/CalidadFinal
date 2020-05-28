@@ -57,7 +57,7 @@ if ($user->socid > 0)
 {
     //accessforbidden();
 }
-//$result = restrictedArea($user, 'mymodule', $id);
+
 
 
 $object = new ProductLot($db);
@@ -68,7 +68,7 @@ $formfile = new FormFile($db);
 $extrafields->fetch_name_optionals_label($object->table_element);
 
 // Load object
-//include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';  // Must be include, not include_once. Include fetch and fetch_thirdparty but not fetch_optionals
+
 if ($id || $ref)
 {
     if ($ref)
@@ -280,8 +280,8 @@ if ($action == 'create')
 	dol_fiche_head();
 
 	print '<table class="border centpercent">'."\n";
-	// print '<tr><td class="fieldrequired">'.$langs->trans("Label").'</td><td><input class="flat" type="text" size="36" name="label" value="'.$label.'"></td></tr>';
-	//
+	
+	
     print '<tr><td class="fieldrequired">'.$langs->trans("Fieldfk_product").'</td><td><input class="flat" type="text" name="fk_product" value="'.GETPOST('fk_product').'"></td></tr>';
     print '<tr><td class="fieldrequired">'.$langs->trans("Fieldbatch").'</td><td><input class="flat" type="text" name="batch" value="'.GETPOST('batch').'"></td></tr>';
     print '<tr><td class="fieldrequired">'.$langs->trans("Fieldfk_user_creat").'</td><td><input class="flat" type="text" name="fk_user_creat" value="'.GETPOST('fk_user_creat').'"></td></tr>';
@@ -303,7 +303,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 {
 	$res = $object->fetch_optionals();
 
-    //print load_fiche_titre($langs->trans("Batch"));
+    
 
     $head = productlot_prepare_head($object);
 	dol_fiche_head($head, 'card', $langs->trans("Batch"), -1, 'barcode');

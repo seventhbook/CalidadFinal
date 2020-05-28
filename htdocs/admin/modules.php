@@ -115,7 +115,7 @@ if ($action == 'install')
 {
     $error = 0;
 
-    // $original_file should match format module_modulename-x.y[.z].zip
+    
     $original_file = basename($_FILES["fileinstall"]["name"]);
     $newfile = $conf->admin->dir_temp.'/'.$original_file.'/'.$original_file;
 
@@ -282,7 +282,7 @@ elseif ($action == 'reset' && $user->admin && GETPOST('confirm') == 'yes')
 
 $form = new Form($db);
 
-//$morejs  = array("/admin/dolistore/js/dolistore.js.php");
+
 $morecss = array("/admin/dolistore/css/dolistore.css");
 
 // Set dir where external modules are installed

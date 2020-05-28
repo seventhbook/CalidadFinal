@@ -624,7 +624,7 @@ class pdf_standard extends ModelePDFSuppliersPayments
 		$pdf->SetFont('', '', $default_font_size - 1);
 
 		// Output Rect
-		//$this->printRect($pdf,$this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_gauche-$this->marge_droite, $tab_height, $hidetop, $hidebottom);	// Rect takes a length in 3rd parameter and 4th parameter
+		
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore

@@ -183,7 +183,7 @@ if ($user->rights->banque->modifier && $action == "update")
             		    dol_print_error($db);
             		}
         		}
-        		// $arrayselected will be loaded after in page output
+        		
     		}
 		}
 

@@ -84,7 +84,7 @@ $user = new User($db);
 $user->fetch($conf->global->STRIPE_USER_ACCOUNT_FOR_ACTIONS);
 $user->getrights();
 
-// list of  action
+
 $stripe=new Stripe($db);
 
 // Subject

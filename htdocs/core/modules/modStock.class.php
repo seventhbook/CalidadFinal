@@ -180,12 +180,12 @@ class modStock extends DolibarrModules
 		$r=0;
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -301,7 +301,7 @@ class modStock extends DolibarrModules
 		$this->export_sql_end[$r] .=' AND e.entity IN ('.getEntity('stock').')';
 
 		// Imports
-		//--------
+		
 
 		$r=0;
 

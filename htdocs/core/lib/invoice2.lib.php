@@ -128,13 +128,13 @@ function rebuild_merge_pdf($db, $langs, $conf, $diroutputpdf, $newlangid, $filte
 	if ($sqlwhere) $sql.=$sqlwhere;
 	if ($sqlorder) $sql.=$sqlorder;
 
-	//print $sql; exit;
+	
 	dol_syslog("scripts/invoices/rebuild_merge.php:", LOG_DEBUG);
 
 	if ($usestdout) print '--- start'."\n";
 
 	// Start of transaction
-	//$db->begin();
+	
 
 	$error = 0;
 	$result = 0;
@@ -152,7 +152,7 @@ function rebuild_merge_pdf($db, $langs, $conf, $diroutputpdf, $newlangid, $filte
 	    if ($num)
 	    {
 	    	// First loop on each resultset to build PDF
-	    	// -----------------------------------------
+	    	
 
 	        while ($cpt < $num)
 	        {
@@ -207,7 +207,7 @@ function rebuild_merge_pdf($db, $langs, $conf, $diroutputpdf, $newlangid, $filte
 
 
 	        // Now, build a merged files with all files in $files array
-			//---------------------------------------------------------
+			
 
 	        // Create empty PDF
 	        $pdf=pdf_getInstance($format);
@@ -219,7 +219,7 @@ function rebuild_merge_pdf($db, $langs, $conf, $diroutputpdf, $newlangid, $filte
 	        $pdf->SetFont(pdf_getPDFFont($langs));
 
 	        if ($conf->global->MAIN_DISABLE_PDF_COMPRESSION) $pdf->SetCompression(false);
-			//$pdf->SetCompression(false);
+			
 
 			// Add all others
 			foreach($files as $file)

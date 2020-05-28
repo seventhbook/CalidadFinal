@@ -416,7 +416,7 @@ class FormulaParser
                 continue;
             }
 
-            // function, subexpression, or array parameters, or operand unions
+            
             if ($this->formula[$index] == self::COMMA) {
                 if (strlen($value) > 0) {
                     $tokens1[] = new FormulaToken($value, FormulaToken::TOKEN_TYPE_OPERAND);

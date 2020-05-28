@@ -25,14 +25,14 @@
  *		\brief      File for CSS style sheet Eldy
  */
 
-//if (! defined('NOREQUIREUSER')) define('NOREQUIREUSER','1');	// Not disabled because need to load personalized language
-//if (! defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Not disabled to increase speed. Language code is found on url.
+
+
 if (!defined('NOREQUIRESOC'))    define('NOREQUIRESOC', '1');
-//if (! defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Not disabled because need to do translations
+
 if (!defined('NOCSRFCHECK'))     define('NOCSRFCHECK', 1);
 if (!defined('NOTOKENRENEWAL'))  define('NOTOKENRENEWAL', 1);
 if (!defined('NOLOGIN'))         define('NOLOGIN', 1); // File must be accessed by logon page so without login
-//if (! defined('NOREQUIREMENU'))   define('NOREQUIREMENU',1);  // We need top menu content
+
 if (!defined('NOREQUIREHTML'))   define('NOREQUIREHTML', 1);
 if (!defined('NOREQUIREAJAX'))   define('NOREQUIREAJAX', '1');
 
@@ -50,7 +50,7 @@ require_once __DIR__.'/../../main.inc.php'; // __DIR__ allow this script to be i
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
 
 // Load user to have $user->conf loaded (not done into main because of NOLOGIN constant defined)
-// and permission, so we can later calculate number of top menu ($nbtopmenuentries) according to user profile.
+
 if (empty($user->id) && !empty($_SESSION['dol_login']))
 {
     $user->fetch('', $_SESSION['dol_login'], '', 1);
@@ -76,8 +76,8 @@ $theme = 'eldy'; // Value of theme
 if (!empty($conf->global->MAIN_OVERWRITE_THEME_RES)) { $path = '/'.$conf->global->MAIN_OVERWRITE_THEME_RES; $theme = $conf->global->MAIN_OVERWRITE_THEME_RES; }
 
 // Define image path files and other constants
-$fontlist = 'roboto,arial,tahoma,verdana,helvetica'; //$fontlist='helvetica, verdana, arial, sans-serif';
-//$fontlist='"open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;';
+$fontlist = 'roboto,arial,tahoma,verdana,helvetica'; 
+
 $img_head = '';
 $img_button = dol_buildpath($path.'/theme/'.$theme.'/img/button_bg.png', 1);
 $dol_hide_topmenu = $conf->dol_hide_topmenu;
@@ -85,8 +85,8 @@ $dol_hide_leftmenu = $conf->dol_hide_leftmenu;
 $dol_optimize_smallscreen = $conf->dol_optimize_smallscreen;
 $dol_no_mouse_hover = $conf->dol_no_mouse_hover;
 
-//$conf->global->THEME_ELDY_ENABLE_PERSONALIZED=0;
-//$user->conf->THEME_ELDY_ENABLE_PERSONALIZED=0;
+
+
 //var_dump($user->conf->THEME_ELDY_RGB);
 
 $useboldtitle = (isset($conf->global->THEME_ELDY_USEBOLDTITLE) ? $conf->global->THEME_ELDY_USEBOLDTITLE : 0);

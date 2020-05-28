@@ -88,11 +88,11 @@ class ValidationInfo implements iValueObject
      */
     public $children = null;
 
-    // ==================================================================
-    //
+    
+    
     // VALUE RANGE
-    //
-    // ------------------------------------------------------------------
+    
+    
     /**
      * Given value should match one of the values in the array
      *
@@ -114,11 +114,11 @@ class ValidationInfo implements iValueObject
      */
     public $max;
 
-    // ==================================================================
-    //
+    
+    
     // REGEX VALIDATION
-    //
-    // ------------------------------------------------------------------
+    
+    
     /**
      * RegEx pattern to match the value
      *
@@ -126,11 +126,11 @@ class ValidationInfo implements iValueObject
      */
     public $pattern;
 
-    // ==================================================================
-    //
+    
+    
     // CUSTOM VALIDATION
-    //
-    // ------------------------------------------------------------------
+    
+    
     /**
      * Rules specified for the parameter in the php doc comment.
      * It is passed to the validation method as the second parameter
@@ -147,11 +147,11 @@ class ValidationInfo implements iValueObject
      */
     public $message;
 
-    // ==================================================================
-    //
+    
+    
     // METHODS
-    //
-    // ------------------------------------------------------------------
+    
+    
 
     /**
      * Name of the method to be used for validation.

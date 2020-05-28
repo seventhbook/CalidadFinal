@@ -48,7 +48,7 @@ $action = GETPOST('action', 'alpha');
  * Actions
  */
 
-//
+
 if ($action == 'updateall')
 {
     $db->begin();

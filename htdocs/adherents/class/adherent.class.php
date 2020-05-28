@@ -66,11 +66,11 @@ class Adherent extends CommonObject
      */
 	public $login;
 
-	//! Clear password in memory
+	
 	public $pass;
-	//! Clear password in database (defined if DATABASE_PWD_ENCRYPTED=0)
+	
 	public $pass_indatabase;
-	//! Encrypted password in database (always defined)
+	
 	public $pass_indatabase_crypted;
 
     /**
@@ -181,7 +181,7 @@ class Adherent extends CommonObject
 	public $morphy;
 	public $public;
 
-    // -1:brouillon, 0:resilie, >=1:valide,paye
+    
     // def in common object
     
 
@@ -689,7 +689,7 @@ class Adherent extends CommonObject
 						$luser->lastname=$this->lastname;
 						$luser->gender=$this->gender;
 						$luser->pass=$this->pass;
-						//$luser->socid=$this->fk_soc;		// We do not enable this. This may transform a user into an external user.
+						
 
 						$luser->birth=$this->birth;
 
@@ -729,7 +729,7 @@ class Adherent extends CommonObject
 					dol_syslog(get_class($this)."::update update linked thirdparty");
 
 					// This member is linked with a thirdparty, so we also update thirdparty informations
-					// if this is an update.
+					
 					$lthirdparty=new Societe($this->db);
 					$result=$lthirdparty->fetch($this->fk_soc);
 
@@ -995,7 +995,7 @@ class Adherent extends CommonObject
 		// Mise a jour
 		$sql = "UPDATE ".MAIN_DB_PREFIX."adherent";
 		$sql.= " SET pass_crypted = '".$this->db->escape($password_crypted)."'";
-		//if (! empty($conf->global->DATABASE_PWD_ENCRYPTED))
+		
 		if ($isencrypted)
 		{
 			$sql.= ", pass = null";
@@ -1024,7 +1024,7 @@ class Adherent extends CommonObject
 					require_once DOL_DOCUMENT_ROOT.'/user/class/user.class.php';
 
 					// This member is linked with a user, so we also update users informations
-					// if this is an update.
+					
 					$luser=new User($this->db);
 					$result=$luser->fetch($this->user_id);
 
@@ -1801,7 +1801,7 @@ class Adherent extends CommonObject
 					$outputlangs->setDefaultLang($newlang);
 				}
 				// Generate PDF (whatever is option MAIN_DISABLE_PDF_AUTOUPDATE) so we can include it into email
-				//if (empty($conf->global->MAIN_DISABLE_PDF_AUTOUPDATE))
+				
 
 				$invoice->generateDocument($invoice->modelpdf, $outputlangs);
 			}
@@ -2513,7 +2513,7 @@ class Adherent extends CommonObject
 		// When password is modified
 		if (! empty($this->pass))
 		{
-			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass;	// this->pass = mot de passe non crypte
+			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass;	
 			if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass, 4); 
 		}
 		// Set LDAP password if possible
@@ -2534,7 +2534,7 @@ class Adherent extends CommonObject
 			// Use $this->pass_indatabase value if exists
 			elseif (! empty($this->pass_indatabase))
 			{
-				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass_indatabase;	// $this->pass_indatabase = mot de passe non crypte
+				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD))				$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD] = $this->pass_indatabase;	
 				if (! empty($conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_MEMBER_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass_indatabase, 4); 
 			}
 		}
@@ -2616,7 +2616,7 @@ class Adherent extends CommonObject
 		$sql = "SELECT count(mc.email) as nb";
 		$sql.= " FROM ".MAIN_DB_PREFIX."mailing_cibles as mc";
 		$sql.= " WHERE mc.email = '".$this->db->escape($this->email)."'";
-		$sql.= " AND mc.statut NOT IN (-1,0)";      // -1 erreur, 0 non envoye, 1 envoye avec succes
+		$sql.= " AND mc.statut NOT IN (-1,0)";      
 
 		$resql=$this->db->query($sql);
 		if ($resql)
@@ -2816,7 +2816,7 @@ class Adherent extends CommonObject
 						if (! empty($labeltouse) && is_object($arraydefaultmessage) && $arraydefaultmessage->id > 0)
 						{
 							$substitutionarray=getCommonSubstitutionArray($outputlangs, 0, null, $adherent);
-							//if (is_array($adherent->thirdparty)) $substitutionarraycomp = ...
+							
 							complete_substitutions_array($substitutionarray, $outputlangs, $adherent);
 
 							$subject = make_substitutions($arraydefaultmessage->topic, $substitutionarray, $outputlangs);

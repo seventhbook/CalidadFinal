@@ -617,7 +617,7 @@ function jscheckparam()
 
 <?php
 
-// $db->close();	Not database connexion yet
+
 
 dolibarr_install_syslog("- fileconf: end");
 pFooter($err, $setuplang, 'jscheckparam');

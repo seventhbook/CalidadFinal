@@ -1098,7 +1098,7 @@ if ((empty($id) && empty($ref)) || $action == 'add' || $action == 'request' || $
         	print $form->textwithpicto($s, $langs->trans("AnyOtherInThisListCanValidate"));
         }
 
-        //print $form->select_dolusers((GETPOST('valideur','int')>0?GETPOST('valideur','int'):$user->fk_user), "valideur", 1, ($user->admin ? '' : array($user->id)), 0, '', 0, 0, 0, 0, '', 0, '', '', 1);	// By default, hierarchical parent
+        
         print '</td>';
         print '</tr>';
 

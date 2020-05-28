@@ -93,7 +93,7 @@ class FormProjets
             $out.=ajax_autocompleter($selected, $htmlname, DOL_URL_ROOT.'/projet/ajax/projects.php', $urloption, $conf->global->PROJECT_USE_SEARCH_TO_SELECT, 0, array(
                 //  'update' => array(
                 //      'projectid' => 'id'
-                //  )
+                
             ));
 
             $out.='<input type="text" class="minwidth200'.($morecss?' '.$morecss:'').'" name="search_'.$htmlname.'" id="search_'.$htmlname.'" value="'.$selected_input_value.'"'.$placeholder.' />';
@@ -435,7 +435,7 @@ class FormProjets
 						if (!empty($selected) && $selected == $obj->rowid)
 						{
 							$out.= '<option value="'.$obj->rowid.'" selected';
-							//if ($disabled) $out.=' disabled';						// with select2, field can't be preselected if disabled
+							
 							$out.= '>'.$labeltoshow.'</option>';
 						}
 						else

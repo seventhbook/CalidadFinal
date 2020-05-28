@@ -51,7 +51,7 @@ foreach ($object->fields as $key => $val)
 
 	print '<tr><td';
 	print ' class="titlefield fieldname_'.$key;
-	//if ($val['notnull'] > 0) print ' fieldrequired';     // No fieldrequired on the view output
+	
 	if ($val['type'] == 'text' || $val['type'] == 'html') print ' tdtop';
 	print '">';
 	if (!empty($val['help'])) print $form->textwithpicto($langs->trans($val['label']), $langs->trans($val['help']));
@@ -62,7 +62,7 @@ foreach ($object->fields as $key => $val)
 	print '">';
 
 	print $object->showOutputField($val, $key, $value, '', '', '', 0);
-	//print dol_escape_htmltag($object->$key, 1, 1);
+	
 	print '</td>';
 	print '</tr>';
 }
@@ -99,7 +99,7 @@ foreach ($object->fields as $key => $val)
 
 	print '<tr><td';
 	print ' class="titlefield fieldname_'.$key;
-	//if ($val['notnull'] > 0) print ' fieldrequired';		// No fieldrequired inthe view output
+	
 	if ($val['type'] == 'text' || $val['type'] == 'html') print ' tdtop';
 	print '">';
 	if (!empty($val['help'])) print $form->textwithpicto($langs->trans($val['label']), $langs->trans($val['help']));
@@ -107,7 +107,7 @@ foreach ($object->fields as $key => $val)
 	print '</td>';
 	print '<td>';
 	print $object->showOutputField($val, $key, $value, '', '', '', 0);
-	//print dol_escape_htmltag($object->$key, 1, 1);
+	
 	print '</td>';
 	print '</tr>';
 }

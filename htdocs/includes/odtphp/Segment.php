@@ -202,7 +202,7 @@ class Segment implements IteratorAggregate, Countable
      */
     protected function _analyseChildren($xml)
     {
-        // $reg2 = "#\[!--\sBEGIN\s([\S]*)\s--\](?:<\/text:p>)?(.*)(?:<text:p\s.*>)?\[!--\sEND\s(\\1)\s--\]#sm";
+        
         $reg2 = "#\[!--\sBEGIN\s([\S]*)\s--\](.*)\[!--\sEND\s(\\1)\s--\]#sm";
         preg_match_all($reg2, $xml, $matches);
         for ($i = 0, $size = count($matches[0]); $i < $size; $i++) {
@@ -228,7 +228,7 @@ class Segment implements IteratorAggregate, Countable
     public function setVars($key, $value, $encode = true, $charset = 'ISO-8859')
     {
         if (strpos($this->xml, $this->odf->getConfig('DELIMITER_LEFT') . $key . $this->odf->getConfig('DELIMITER_RIGHT')) === false) {
-            //throw new SegmentException("var $key not found in {$this->getName()}");
+            
         }
 
 		$value=$this->odf->htmlToUTFAndPreOdf($value);

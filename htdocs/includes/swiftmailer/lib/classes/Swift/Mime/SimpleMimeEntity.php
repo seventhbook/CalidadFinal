@@ -100,17 +100,17 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
         $this->headers->defineOrdering(array('Content-Type', 'Content-Transfer-Encoding'));
 
         // This array specifies that, when the entire MIME document contains
-        // $compoundLevel, then for each child within $level, if its Content-Type
+        
         // is $contentType then it should be treated as if it's level is
-        // $neededLevel instead.  I tried to write that unambiguously! :-\
+        
         // Data Structure:
-        // array (
-        //   $compoundLevel => array(
-        //     $level => array(
-        //       $contentType => $neededLevel
-        //     )
-        //   )
-        // )
+        
+        
+        
+        
+        
+        
+        
 
         $this->compoundLevelFilters = array(
             (self::LEVEL_ALTERNATIVE + self::LEVEL_RELATED) => array(

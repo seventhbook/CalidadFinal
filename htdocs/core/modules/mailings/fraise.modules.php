@@ -171,11 +171,11 @@ class mailing_fraise extends MailingTargets
         $sql = "SELECT rowid, label, type, visible";
         $sql.= " FROM ".MAIN_DB_PREFIX."categorie";
         $sql.= " WHERE type = 3";	// We keep only categories for members
-        // $sql.= " AND visible > 0";	// We ignore the property visible because member's categories does not use this property (only products categories use it).
+        
         $sql.= " AND entity = ".$conf->entity;
         $sql.= " ORDER BY label";
 
-        //print $sql;
+        
         $resql = $this->db->query($sql);
         if ($resql)
         {
@@ -274,7 +274,7 @@ class mailing_fraise extends MailingTargets
         // Filter on category
         if ($_POST['filter_category']) $sql.= " AND c.rowid='".$_POST['filter_category']."'";
         $sql.= " ORDER BY a.email";
-        //print $sql;
+        
 
         // Add targets into table
         dol_syslog(get_class($this)."::add_to_target", LOG_DEBUG);

@@ -114,7 +114,7 @@ $form = new Form($db);
 if ($object->id > 0)
 {
 	$title = $langs->trans("Agenda");
-	//if (! empty($conf->global->MAIN_HTML_TITLE) && preg_match('/thirdpartynameonly/',$conf->global->MAIN_HTML_TITLE) && $object->name) $title=$object->name." - ".$title;
+	
 	$help_url = '';
 	llxHeader('', $title, $help_url);
 
@@ -125,7 +125,7 @@ if ($object->id > 0)
 	dol_fiche_head($head, 'agenda', $langs->trans("BillOfMaterials"), -1, 'bom');
 
 	// Object card
-	// ------------------------------------------------------------
+	
 	$linkback = '<a href="'.dol_buildpath('/bom/myobject_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';

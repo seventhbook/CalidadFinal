@@ -460,7 +460,7 @@ if ($id)
             // Determine le nom du champ par rapport aux noms possibles
             // dans les dictionnaires de donnees
             $valuetoshow = ucfirst($fieldlist[$field]); // Par defaut
-            $valuetoshow = $langs->trans($valuetoshow); // try to translate
+            $valuetoshow = $langs->trans($valuetoshow); 
             $class = "left";
             if ($fieldlist[$field] == 'type') {
                 if ($tabname[$id] == MAIN_DB_PREFIX."c_paiement") {
@@ -623,7 +623,7 @@ if ($id)
             $valuetoshow = '';
 
             $valuetoshow = ucfirst($fieldlist[$field]); // By defaut
-            $valuetoshow = $langs->trans($valuetoshow); // try to translate
+            $valuetoshow = $langs->trans($valuetoshow); 
             if ($fieldlist[$field] == 'source') {
                 $valuetoshow = $langs->trans("Contact");
             }
@@ -811,7 +811,7 @@ if ($id)
                     {
                         print '<td class="center">';
                         if ($user->admin) print '<a href="'.$url.'action=delete">'.img_delete().'</a>';
-                        //else print '<a href="#">'.img_delete().'</a>';    // Some dictionary can be edited by other profile than admin
+                        
                         print '</td>';
                     }
                     else print '<td>&nbsp;</td>';

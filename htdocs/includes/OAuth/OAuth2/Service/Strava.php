@@ -32,7 +32,7 @@ class Strava extends AbstractService
     /**
      * Scopes
      */
-    // default
+    
     const SCOPE_PUBLIC       = 'public';
     // Modify activities, upload on the user’s behalf
     const SCOPE_WRITE        = 'write';

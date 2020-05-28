@@ -130,7 +130,7 @@ elseif ($action == 'specimen')  // For orders
 // Activate a model
 elseif ($action == 'setmodel')
 {
-	//print "sssd".$value;
+	
 	$ret = addDocumentModel($value, $type, $label, $scandir);
 }
 

@@ -241,7 +241,7 @@ class Facturation
         $this->prix_total_localtax2 = $total_localtax2;
 
         $this->montant_tva = $total_ttc - $total_ht;
-        //print 'total: '.$this->prix_total_ttc; exit;
+        
     }
 
     /**

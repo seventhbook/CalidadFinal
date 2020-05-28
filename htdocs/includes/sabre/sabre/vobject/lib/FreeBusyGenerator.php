@@ -243,7 +243,7 @@ class FreeBusyGenerator {
                 // We need to order the components by priority. Priority 1
                 // comes first, up until priority 9. Priority 0 comes after
                 // priority 9. No priority implies priority 0.
-                //
+                
                 // Yes, I'm serious.
                 $priorityA = isset($a->PRIORITY) ? (int)$a->PRIORITY->getValue() : 0;
                 $priorityB = isset($b->PRIORITY) ? (int)$b->PRIORITY->getValue() : 0;
@@ -258,10 +258,10 @@ class FreeBusyGenerator {
 
         // Now we go over all the VAVAILABILITY components and figure if
         // there's any we don't need to consider.
-        //
+        
         // This is can be because of one of two reasons: either the
         // VAVAILABILITY component falls outside the time we are interested in,
-        // or a different VAVAILABILITY component with a higher priority has
+        
         // already completely covered the time-range.
         $old = $vavailComps;
         $new = [];
@@ -310,7 +310,7 @@ class FreeBusyGenerator {
 
         // Lastly, we need to traverse the remaining components and fill in the
         // freebusydata slots.
-        //
+        
         // We traverse the components in reverse, because we want the higher
         // priority components to override the lower ones.
         foreach (array_reverse($new) as $vavail) {
@@ -588,7 +588,7 @@ class FreeBusyGenerator {
             );
 
             // Only setting FBTYPE if it's not BUSY, because BUSY is the
-            // default anyway.
+            
             if ($busyType !== 'BUSY') {
                 $prop['FBTYPE'] = $busyType;
             }

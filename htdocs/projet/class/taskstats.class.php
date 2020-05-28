@@ -62,7 +62,7 @@ class TaskStats extends Stats
 		if (! $user->rights->societe->client->voir && ! $user->soc_id)
 			$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
 		$sql .= $this->buildWhere();
-		//$sql .= " AND t.fk_statut <> 0";     // We want historic also, so all task not draft
+		
 		$sql .= " GROUP BY t.priority";
 
 		$result = array ();

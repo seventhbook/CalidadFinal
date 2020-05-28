@@ -110,14 +110,14 @@ if (! empty($conf->facture->enabled))     { $rowspan++; $sectionauto[]=array('le
 if (! empty($conf->fournisseur->enabled)) { $rowspan++; $sectionauto[]=array('level'=>1, 'module'=>'invoice_supplier', 'test'=>$conf->fournisseur->enabled, 'label'=>$langs->trans("SuppliersOrders"),     'desc'=>$langs->trans("ECMDocsByOrders")); }
 
 
-//***********************
+
 // List
-//***********************
+
 print load_fiche_titre($langs->trans("ECMArea").' - '.$langs->trans("Search"));
 
-//print $langs->trans("ECMAreaDesc")."<br>";
-//print $langs->trans("ECMAreaDesc2")."<br>";
-//print "<br>\n";
+
+
+
 print $langs->trans("FeatureNotYetAvailable").'.<br><br>';
 
 // Tool bar
@@ -130,7 +130,7 @@ print '<table class="border centpercent"><tr><td width="40%" valign="top">';
 // Left area
 
 
-//print load_fiche_titre($langs->trans("ECMSectionsManual"));
+
 
 print '<form method="post" action="'.DOL_URL_ROOT.'/ecm/search.php">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
@@ -142,9 +142,9 @@ print "<tr ".$bc[false]."><td>".$langs->trans("Title").':</td><td class="right">
 print "<tr ".$bc[false]."><td>".$langs->trans("Keyword").':</td><td class="right"><input type="text" name="search_keyword" class="flat" size="10"></td></tr>';
 print "<tr ".$bc[false].'><td colspan="2" class="center"><input type="submit" class="button" value="'.$langs->trans("Search").'"></td></tr>';
 print "</table></form>";
-//print $langs->trans("ECMSectionManualDesc");
 
-//print load_fiche_titre($langs->trans("ECMSectionAuto"));
+
+
 
 print '<form method="post" action="'.DOL_URL_ROOT.'/ecm/search.php">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
@@ -157,25 +157,25 @@ $butshown=0;
 foreach($sectionauto as $sectioncur)
 {
 	if (! $sectioncur['test']) continue;
-	//if ($butshown % 2 == 0)
+	
 		print '<tr '. $bc[false].'>';
 	print "<td>".$sectioncur['label'].':</td>';
 	print '<td';
-	//if ($butshown % 2 == 1)
+	
 		print ' class="right"';
 	print '>';
 	print '<input type="text" name="search_'.$sectioncur['module'].'" class="flat" size="14">';
 	print '</td>';
-	//if ($butshown % 2 == 1)
+	
 		print '</tr>';
 	$butshown++;
 }
-//if ($butshown % 2 == 1)
-//	print '<td>&nbsp;</td><td>&nbsp;</td></tr>';
+
+
 
 print '<tr '. $bc[false].'><td colspan="4" class="center"><input type="submit" class="button" value="'.$langs->trans("Search").'"></td></tr>';
 print "</table></form>";
-//print $langs->trans("ECMSectionAutoDesc");
+
 
 
 
@@ -191,9 +191,9 @@ $param='&amp;section='.$section;
 $textifempty=($section?$langs->trans("NoFileFound"):$langs->trans("ECMSelectASection"));
 $formfile->list_of_documents($filearray, '', 'ecm', $param, 1, $relativepath, $user->rights->ecm->upload, 1, $textifempty);
 
-//	print '<table width="100%" class="border">';
 
-//	print '<tr><td> </td></tr></table>';
+
+
 
 
 

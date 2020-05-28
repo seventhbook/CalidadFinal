@@ -370,7 +370,7 @@ class ActionComm extends CommonObject
         $now = dol_now();
 
         // Check parameters
-        if (!isset($this->userownerid) || $this->userownerid === '')	// $this->userownerid may be 0 (anonymous event) of > 0
+        if (!isset($this->userownerid) || $this->userownerid === '')	
         {
             dol_syslog("You tried to create an event but mandatory property ownerid was not defined", LOG_WARNING);
         	$this->errors[] = 'ErrorPropertyUserowneridNotDefined';
@@ -764,8 +764,8 @@ class ActionComm extends CommonObject
                 $this->contactid			= $obj->fk_contact; // To have fetch_contact method working
                 $this->fk_project = $obj->fk_project; // To have fetch_projet method working
 
-                //$this->societe->id			= $obj->fk_soc;			// deprecated
-                //$this->contact->id			= $obj->fk_contact;		// deprecated
+                
+                
 
                 $this->fk_element = $obj->elementid;
                 $this->elementid = $obj->elementid;
@@ -1679,7 +1679,7 @@ class ActionComm extends CommonObject
                     }
                     else
                     {
-                        // use start date as fall-back to avoid import erros on empty end date
+                        
                         $dateend = $datestart;
                     }
 
@@ -1700,7 +1700,7 @@ class ActionComm extends CommonObject
 					// Define $urlwithroot
 					$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 					$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;			// This is to use external domain name found into config file
-					//$urlwithroot=DOL_MAIN_URL_ROOT;						// This is to use same domain name than current
+					
                     $url=$urlwithroot.'/comm/action/card.php?id='.$obj->id;
                     $event['url']=$url;
                     $event['created']=$this->db->jdate($obj->datec)-(empty($conf->global->AGENDA_EXPORT_FIX_TZ)?0:($conf->global->AGENDA_EXPORT_FIX_TZ*3600));

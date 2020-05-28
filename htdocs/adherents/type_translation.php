@@ -50,7 +50,7 @@ $result = restrictedArea($user, 'adherent', $id, 'adherent_type');
  * Actions
  */
 
-// return to translation display if cancellation
+
 if ($cancel == $langs->trans("Cancel"))
 {
 	$action = '';

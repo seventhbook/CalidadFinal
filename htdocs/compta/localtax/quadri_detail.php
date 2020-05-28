@@ -310,7 +310,7 @@ else
 	}
 	//now we have an array (x_both) indexed by rates for coll and paye
 
-	//print table headers for this quadri - incomes first
+	
 
 	$x_coll_sum = 0;
 	$x_coll_ht = 0;
@@ -435,7 +435,7 @@ else
 					print '<td class="nowrap right">';
 					$temp_vat = $local == 1 ? $fields['localtax1'] : $fields['localtax2'];
 					print price(price2num($temp_vat, 'MT'));
-					//print price($fields['vat']);
+					
 					print '</td>';
 					print '</tr>';
 
@@ -481,7 +481,7 @@ else
 	$diff = $x_coll_sum;
 
 	echo '<table class="noborder centpercent">';
-	//print table headers for this quadri - expenses now
+	
 	print '<tr class="liste_titre">';
 	print '<td class="left">'.$elementsup.'</td>';
 	print '<td class="left">'.$productsup.'</td>';

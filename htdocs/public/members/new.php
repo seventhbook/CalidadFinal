@@ -717,7 +717,7 @@ if (!empty($conf->global->MEMBER_NEWFORM_DOLIBARRTURNOVER))
 if (!empty($conf->global->MEMBER_NEWFORM_AMOUNT)
 || !empty($conf->global->MEMBER_NEWFORM_PAYONLINE))
 {
-    // $conf->global->MEMBER_NEWFORM_SHOWAMOUNT is an amount
+    
     $amount = 0;
     if (!empty($conf->global->MEMBER_NEWFORM_AMOUNT)) {
         $amount = $conf->global->MEMBER_NEWFORM_AMOUNT;
@@ -727,7 +727,7 @@ if (!empty($conf->global->MEMBER_NEWFORM_AMOUNT)
     {
         $amount = GETPOST('amount') ?GETPOST('amount') : $conf->global->MEMBER_NEWFORM_AMOUNT;
     }
-    // $conf->global->MEMBER_NEWFORM_PAYONLINE is 'paypal', 'paybox' or 'stripe'
+    
     print '<tr><td>'.$langs->trans("Subscription").'</td><td class="nowrap">';
     if (!empty($conf->global->MEMBER_NEWFORM_EDITAMOUNT))
     {

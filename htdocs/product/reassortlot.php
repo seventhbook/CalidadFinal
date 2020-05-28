@@ -134,7 +134,7 @@ if ($search_categ) $sql.= ", ".MAIN_DB_PREFIX."categorie_product as cp";
 $sql.= " WHERE p.entity IN (".getEntity('product').")";
 if ($search_categ) $sql.= " AND p.rowid = cp.fk_product";	// Join for the needed table to filter by categ
 if ($sall) $sql.=natural_search(array('p.ref','p.label','p.description','p.note'), $sall);
-// if the type is not 1, we show all products (type = 0,2,3)
+
 if (dol_strlen($type))
 {
     if ($type==1)
@@ -173,7 +173,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -255,7 +255,7 @@ if ($resql)
 		$moreforfilter.=$htmlother->select_categories(Categorie::TYPE_PRODUCT, $search_categ, 'search_categ');
 	 	$moreforfilter.='</div>';
 	}
-	//$moreforfilter.=$langs->trans("StockTooLow").' <input type="checkbox" name="toolowstock" value="1"'.($toolowstock?' checked':'').'>';
+	
 
     if (! empty($moreforfilter))
     {
@@ -370,7 +370,7 @@ if ($resql)
 		// Ref
 		print '<td class="nowrap">';
 		print $product_static->getNomUrl(1, '', 16);
-		//if ($objp->stock_theorique < $objp->seuil_stock_alerte) print ' '.img_warning($langs->trans("StockTooLow"));
+		
 		print '</td>';
 
 		// Label
@@ -385,9 +385,9 @@ if ($resql)
 			else print $objp->duration;
 			print '</td>';
 		}
-		//print '<td class="right">'.$objp->stock_theorique.'</td>';
-		//print '<td class="right">'.$objp->seuil_stock_alerte.'</td>';
-		//print '<td class="right">'.$objp->desiredstock.'</td>';
+		
+		
+		
 
 		// Warehouse
 		print '<td class="nowrap">';
@@ -408,7 +408,7 @@ if ($resql)
 		print '<td class="center">'.dol_print_date($db->jdate($objp->eatby), 'day').'</td>';
 		print '<td class="center">'.dol_print_date($db->jdate($objp->sellby), 'day').'</td>';
 		print '<td class="right">';
-        //if ($objp->seuil_stock_alerte && ($objp->stock_physique < $objp->seuil_stock_alerte)) print img_warning($langs->trans("StockTooLow")).' ';
+        
 		print $objp->stock_physique;
 		print '</td>';
 		print '<td class="right"><a href="'.DOL_URL_ROOT.'/product/stock/movement_list.php?idproduct='.$product_static->id.'&search_warehouse='.$objp->fk_entrepot.'&search_batch='.($objp->batch != 'Undefined' ? $objp->batch : 'Undefined').'">'.$langs->trans("Movements").'</a></td>';

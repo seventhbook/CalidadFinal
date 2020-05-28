@@ -239,7 +239,7 @@ if (empty($reshook))
 		$search_tobuy = "";
 		$search_vatrate = "";
 		$search_tobatch = '';
-		//$search_type='';						// There is 2 types of list: a list of product and a list of services. No list with both. So when we clear search criteria, we must keep the filter on type.
+		
 
 		$show_childproducts = '';
 		$search_accountancy_code_sell = '';
@@ -316,7 +316,7 @@ if (!empty($conf->variants->enabled) && (!empty($conf->global->PRODUIT_ATTRIBUTE
 
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 if ($sall) $sql .= natural_search(array_keys($fieldstosearchall), $sall);
-// if the type is not 1, we show all products (type = 0,2,3)
+
 if (dol_strlen($search_type) && $search_type != '-1')
 {
 	if ($search_type == 1) $sql .= " AND p.fk_product_type = 1";
@@ -389,7 +389,7 @@ if (!empty($extrafields->attributes[$object->table_element]['label'])) {
 $parameters = array();
 $reshook = $hookmanager->executeHooks('printFieldSelect', $parameters); // Note that $action and $object may have been modified by hook
 $sql .= $hookmanager->resPrint;
-//if (GETPOST("toolowstock")) $sql.= " HAVING SUM(s.reel) < p.seuil_stock_alerte";    // Not used yet
+
 $sql .= $db->order($sortfield, $sortorder);
 
 $nbtotalofrecords = '';
@@ -397,7 +397,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -458,7 +458,7 @@ if ($resql)
 	if ($search_tobuy != '') $param .= "&search_tobuy=".urlencode($search_tobuy);
     if ($search_vatrate) $sql .= natural_search('p.tva_tx', $search_vatrate);
 	if ($fourn_id > 0) $param .= ($fourn_id ? "&fourn_id=".$fourn_id : "");
-	//if ($seach_categ) $param.=($search_categ?"&search_categ=".urlencode($search_categ):"");
+	
 	if ($show_childproducts) $param .= ($show_childproducts ? "&search_show_childproducts=".urlencode($show_childproducts) : "");
 	if ($type != '') $param .= '&type='.urlencode($type);
 	if ($search_type != '') $param .= '&search_type='.urlencode($search_type);
@@ -1019,7 +1019,7 @@ if ($resql)
 			print  '<td class="right nowraponall">';
 			if ($obj->tobuy && $obj->minsellprice != '')
 			{
-				//print price($obj->minsellprice).' '.$langs->trans("HT");
+				
 				if ($product_fourn->find_min_price_product_fournisseur($obj->rowid) > 0)
 				{
 					if ($product_fourn->product_fourn_price_id > 0)

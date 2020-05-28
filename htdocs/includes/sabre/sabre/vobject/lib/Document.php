@@ -208,7 +208,7 @@ abstract class Document extends Component {
 
         if ($valueType) {
             // The valueType argument comes first to figure out the correct
-            // class.
+            
             $class = $this->getClassNameForPropertyValue($valueType);
         }
 

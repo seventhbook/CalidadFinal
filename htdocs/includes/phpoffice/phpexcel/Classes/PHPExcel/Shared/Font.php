@@ -271,7 +271,7 @@ class PHPExcel_Shared_Font
             $columnWidthAdjust = ceil(self::getTextWidthPixelsExact('n', $font, 0) * 1.07);
             try {
                 // Width of text in pixels excl. padding
-                // and addition because Excel adds some padding, just use approx width of 'n' glyph
+                
                 $columnWidth = self::getTextWidthPixelsExact($cellText, $font, $rotation) + $columnWidthAdjust;
             } catch (PHPExcel_Exception $e) {
                 $approximate = true;
@@ -281,7 +281,7 @@ class PHPExcel_Shared_Font
         if ($approximate) {
             $columnWidthAdjust = self::getTextWidthPixelsApprox('n', $font, 0);
 			// Width of text in pixels excl. padding, approximation
-			// and addition because Excel adds some padding, just use approx width of 'n' glyph
+			
 			$columnWidth = self::getTextWidthPixelsApprox($cellText, $font, $rotation) + $columnWidthAdjust;
         }
 
@@ -313,13 +313,13 @@ class PHPExcel_Shared_Font
 
 		// Get corners positions
 		$lowerLeftCornerX  = $textBox[0];
-//		$lowerLeftCornerY  = $textBox[1];
+
 		$lowerRightCornerX = $textBox[2];
-//		$lowerRightCornerY = $textBox[3];
+
 		$upperRightCornerX = $textBox[4];
-//		$upperRightCornerY = $textBox[5];
+
 		$upperLeftCornerX  = $textBox[6];
-//		$upperLeftCornerY  = $textBox[7];
+
 
 		// Consider the rotation when calculating the width
 		$textWidth = max($lowerRightCornerX - $upperLeftCornerX, $upperRightCornerX - $lowerLeftCornerX);
@@ -350,7 +350,7 @@ class PHPExcel_Shared_Font
 
 			case 'Arial':
 				// value 7 was found via interpolation by inspecting real Excel files with Arial 10 font.
-//				$columnWidth = (int) (7 * PHPExcel_Shared_String::CountCharacters($columnText));
+
                 // value 8 was set because of experience in different exports at Arial 10 font.
 				$columnWidth = (int) (8 * PHPExcel_Shared_String::CountCharacters($columnText));
 				$columnWidth = $columnWidth * $fontSize / 10; // extrapolate from font size
@@ -648,7 +648,7 @@ class PHPExcel_Shared_Font
 						break;
 
 					default:
-						// use Arial 10 workbook as an approximation, extrapolation
+						
 						$rowHeight = 12.75 * $font->getSize() / 10;
 						break;
 				}
@@ -704,7 +704,7 @@ class PHPExcel_Shared_Font
 						break;
 
 					default:
-						// use Calibri 11 workbook as an approximation, extrapolation
+						
 						$rowHeight = 15 * $font->getSize() / 11;
 						break;
 				}
@@ -755,7 +755,7 @@ class PHPExcel_Shared_Font
 						break;
 
 					default:
-						// use Verdana 10 workbook as an approximation, extrapolation
+						
 						$rowHeight = 12.75 * $font->getSize() / 10;
 						break;
 				}

@@ -78,7 +78,7 @@ if ($test) print img_picto('', 'tick.png').' '.$langs->trans("NotInstalled");
 else
 {
 	print img_picto('', 'warning').' '.$langs->trans("ModuleActivated", $langs->transnoentities("Syslog"));
-	//print ' '.$langs->trans("MoreInformation").' <a href="'.DOL_URL_ROOT.'/admin/system/xdebug.php'.'">XDebug admin page</a>';
+	
 }
 print '<br>';
 
@@ -90,7 +90,7 @@ if ($test) print img_picto('', 'tick.png').' '.$langs->trans("NotInstalled");
 else
 {
 	print img_picto('', 'warning').' '.$langs->trans("ModuleActivated", $langs->transnoentities("DebugBar"));
-    //print ' '.$langs->trans("MoreInformation").' <a href="'.DOL_URL_ROOT.'/admin/system/xdebug.php'.'">XDebug admin page</a>';
+    
 }
 print '<br>';
 
@@ -136,7 +136,7 @@ if (! $foundcache && $test)
 {
 	$foundcache++;
 	print img_picto('', 'tick.png').' '.$langs->trans("PHPModuleLoaded", "ZendOPCache");  // Should be by default starting with PHP 5.5
-	//$tmp=opcache_get_status();
+	
 	//var_dump($tmp);
 }
 $test=function_exists('apc_cache_info');
@@ -417,8 +417,8 @@ print '<strong>'.$langs->trans("HTTPCacheStaticResources").' - ';
 print $form->textwithpicto($langs->trans("CacheByServer"), $langs->trans("CacheByServerDesc"));
 print ':</strong><br>';
 // No cahce on PHP
-//print '<div id="httpcachephpok">'.img_picto('','warning.png').' '.$langs->trans("FilesOfTypeNotCompressed",'php (.php)').'</div>';
-//print '<div id="httpcachephpko">'.img_picto('','tick.png').' '.$langs->trans("FilesOfTypeNotCached",'php (.php)').'</div>';
+
+
 // Cache on rest
 print '<div id="httpcachecssok">'.img_picto('', 'tick.png').' '.$langs->trans("FilesOfTypeCached", 'css (.css)').'</div>';
 print '<div id="httpcachecssko">'.img_picto('', 'warning.png').' '.$langs->trans("FilesOfTypeNotCached", 'css (.css)').'</div>';
@@ -441,7 +441,7 @@ print '<br>';
 print '<strong>';
 print $form->textwithpicto($langs->trans("CompressionOfResources"), $langs->trans("CompressionOfResourcesDesc"));
 print '</strong>: ';
-//$tmp=getURLContent(DOL_URL_ROOT.'/index.php','GET');var_dump($tmp);
+
 print '<br>';
 // on PHP
 print '<div id="httpcompphpok">'.img_picto('', 'tick.png').' '.$langs->trans("FilesOfTypeCompressed", 'php (.php)').'</div>';
@@ -451,8 +451,8 @@ print '<div id="httpcompcssok">'.img_picto('', 'tick.png').' '.$langs->trans("Fi
 print '<div id="httpcompcssko">'.img_picto('', 'warning.png').' '.$langs->trans("FilesOfTypeNotCompressed", 'css (.css)').'</div>';
 print '<div id="httpcompcssphpok">'.img_picto('', 'tick.png').' '.$langs->trans("FilesOfTypeCompressed", 'css (.css.php)').'</div>';
 print '<div id="httpcompcssphpko">'.img_picto('', 'warning.png').' '.$langs->trans("FilesOfTypeNotCompressed", 'css (.css.php)').'</div>';
-//print '<div id="httpcompimgok">'.img_picto('','tick.png').' '.$langs->trans("FilesOfTypeCompressed",'img (.png)').'</div>';
-//print '<div id="httpcompimgko">'.img_picto('','warning.png').' '.$langs->trans("FilesOfTypeNotCompressed",'img (.png)').'</div>';
+
+
 print '<div id="httpcompjsok">'.img_picto('', 'tick.png').' '.$langs->trans("FilesOfTypeCompressed", 'javascript (.js)').'</div>';
 print '<div id="httpcompjsko">'.img_picto('', 'warning.png').' '.$langs->trans("FilesOfTypeNotCompressed", 'javascript (.js)').'</div>';
 print '<div id="httpcompjsphpok">'.img_picto('', 'tick.png').' '.$langs->trans("FilesOfTypeCompressed", 'javascript (.js.php)').'</div>';

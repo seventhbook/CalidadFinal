@@ -40,7 +40,7 @@ $contextpage=GETPOST('contextpage', 'aZ')?GETPOST('contextpage', 'aZ'):'userihm'
 
 if ($id)
 {
-    // $user est le user qui edite, $id est l'id de l'utilisateur edite
+    
     $caneditfield=((($user->id == $id) && $user->rights->user->self->creer)
     || (($user->id != $id) && $user->rights->user->user->creer));
 }
@@ -274,7 +274,7 @@ if ($action == 'edit')
     print '> '.$langs->trans("UsePersonalValue").'</td>';
     print '<td>';
     print $form->selectarray('MAIN_LANDING_PAGE', $tmparray, (! empty($object->conf->MAIN_LANDING_PAGE)?$object->conf->MAIN_LANDING_PAGE:''), 0, 0, 0, '', 1);
-    //print info_admin($langs->trans("WarningYouMayLooseAccess"), 0, 0, 0);
+    
     print '</td></tr>';
 
     // Language by default
@@ -350,7 +350,7 @@ else
         print $langs->trans($tmparray[$object->conf->MAIN_LANDING_PAGE]);
     }
     else print $object->conf->MAIN_LANDING_PAGE;
-    //print $form->selectarray('MAIN_LANDING_PAGE', $tmparray, (! empty($object->conf->MAIN_LANDING_PAGE)?$object->conf->MAIN_LANDING_PAGE:''), 0, 0, 0, '', 1);
+    
     print '</td></tr>';
 
     // Language

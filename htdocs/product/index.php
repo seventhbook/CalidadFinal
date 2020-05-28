@@ -289,7 +289,7 @@ if ((!empty($conf->product->enabled) || !empty($conf->service->enabled)) && ($us
 	$sql .= $db->order("p.tms", "DESC");
 	$sql .= $db->plimit($max, 0);
 
-	//print $sql;
+	
 	$result = $db->query($sql);
 	if ($result)
 	{

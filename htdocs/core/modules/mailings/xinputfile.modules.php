@@ -161,7 +161,7 @@ class mailing_xinputfile extends MailingTargets
 				        $other=$tab[3];
 				        if (! empty($buffer))
 				        {
-			        		//print 'xx'.dol_strlen($buffer).empty($buffer)."<br>\n";
+			        		
 				        	$id=$cpt;
 					        if (isValidEMail($email))
 					        {

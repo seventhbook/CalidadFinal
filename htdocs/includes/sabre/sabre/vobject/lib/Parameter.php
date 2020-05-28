@@ -303,17 +303,17 @@ class Parameter extends Node {
 
                 // If there's no special characters in the string, we'll use the simple
                 // format.
-                //
+                
                 // The list of special characters is defined as:
-                //
+                
                 // Any character except CONTROL, DQUOTE, ";", ":", ","
-                //
+                
                 // by the iCalendar spec:
                 // https://tools.ietf.org/html/rfc5545#section-3.1
-                //
+                
                 // And we add ^ to that because of:
                 // https://tools.ietf.org/html/rfc6868
-                //
+                
                 // But we've found that iCal (7.0, shipped with OSX 10.9)
                 // severaly trips on + characters not being quoted, so we
                 // added + as well.

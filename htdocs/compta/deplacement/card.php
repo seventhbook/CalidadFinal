@@ -523,7 +523,7 @@ elseif ($id)
 
             print '<div class="tabsAction">';
 
-            if ($object->statut < Deplacement::STATUS_REFUNDED) 	// if not refunded
+            if ($object->statut < Deplacement::STATUS_REFUNDED) 	
             {
 	            if ($user->rights->deplacement->creer)
 	            {
@@ -535,7 +535,7 @@ elseif ($id)
 	            }
             }
 
-            if ($object->statut == Deplacement::STATUS_DRAFT) 	// if draft
+            if ($object->statut == Deplacement::STATUS_DRAFT) 	
             {
                 if ($user->rights->deplacement->creer)
                 {
@@ -547,7 +547,7 @@ elseif ($id)
                 }
             }
 
-            if ($object->statut == Deplacement::STATUS_VALIDATED) 	// if validated
+            if ($object->statut == Deplacement::STATUS_VALIDATED) 	
             {
                 if ($user->rights->deplacement->creer)
                 {

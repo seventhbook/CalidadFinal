@@ -221,7 +221,7 @@ class ActionsDatapolicy
         if (!$error) {
             $this->results = array('myreturn' => 999);
             $this->resprints = 'A text to show';
-            return 0; // or return 1 to replace standard code
+            return 0; 
         } else {
             $this->errors[] = 'Error message';
             return -1;
@@ -244,17 +244,17 @@ class ActionsDatapolicy
         $error = 0; // Error counter
 
         /* 
-        //if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {
-        //    // do something only for the context 'somecontext1' or 'somecontext2'
         
-        //        // Do action on each object id
+        
+        
+        
         
         //}
 
         if (!$error) {
             $this->results = array('myreturn' => 999);
             $this->resprints = 'A text to show';
-            return 0; // or return 1 to replace standard code
+            return 0; 
         } else {
             $this->errors[] = 'Error message';
             return -1;
@@ -277,12 +277,12 @@ class ActionsDatapolicy
         $error = 0; // Error counter
 
         
-        if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  // do something only for the context 'somecontext1' or 'somecontext2'
+        if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  
             $this->resprints = '<option value="0"' . ($disabled ? ' disabled="disabled"' : '') . '>' . $langs->trans("datapolicyMassAction") . '</option>';
         }
 
         if (!$error) {
-            return 0; // or return 1 to replace standard code
+            return 0; 
         } else {
             $this->errors[] = 'Error message';
             return -1;
@@ -311,7 +311,7 @@ class ActionsDatapolicy
         dol_syslog(get_class($this) . '::executeHooks action=' . $action);
 
         
-        if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  // do something only for the context 'somecontext1' or 'somecontext2'
+        if (in_array($parameters['currentcontext'], array('somecontext1', 'somecontext2'))) {  
         }
 
         return $ret;

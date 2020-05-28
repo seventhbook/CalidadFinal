@@ -86,7 +86,7 @@ if ($action == 'update' && ! $cancel)
 		{
 			$file='init_menu_'.$key.'.sql';
 		    $fullpath=dol_buildpath($dirmenu.$file);
-		    //print 'action='.$action.' Search menu into fullpath='.$fullpath.'<br>';exit;
+		    
 
 			if (file_exists($fullpath))
 			{

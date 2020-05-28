@@ -189,7 +189,7 @@ $nbtotalofrecords = '';
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -197,7 +197,7 @@ $nbtotalofrecords = '';
 }*/
 
 $sql.= $db->plimit($conf->liste_limit+1, $offset);
-//print $sql;
+
 $result = $db->query($sql);
 if ($result)
 {
@@ -259,7 +259,7 @@ if ($result)
 	print '</td>';
 
 	print '<td class="liste_titre left">';
-	//print '<input class="flat maxwidth100" type="text" size="10" name="search_desc" value="'.$search_desc.'">';
+	
 	print '</td>';
 
 	if (! empty($arrayfields['e.user_agent']['checked']))

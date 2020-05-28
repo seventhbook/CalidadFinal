@@ -68,8 +68,8 @@ class modOpenSurvey extends DolibarrModules
 
 		// Data directories to create when module is enabled
 		$this->dirs = array();
-		//$this->dirs[0] = DOL_DATA_ROOT.'/mymodule;
-		//$this->dirs[1] = DOL_DATA_ROOT.'/mymodule/temp;
+		
+		
 
 		// Dependencies
 		$this->hidden = false;			// A condition to hide module
@@ -91,10 +91,10 @@ class modOpenSurvey extends DolibarrModules
 
 		// Add here list of php file(s) stored in includes/boxes that contains class to show a box.
 		// Example:
-		//$this->boxes[$r][1] = "myboxa.php";
-		//$r++;
-		//$this->boxes[$r][1] = "myboxb.php";
-		//$r++;
+		
+		
+		
+		
 
 		// Permissions
 		$this->rights = array();		// Permission array used by this module
@@ -120,7 +120,7 @@ class modOpenSurvey extends DolibarrModules
 
 
         // Menus
-        //-------
+        
         $r=0;
         $this->menu[$r]=array(
             'fk_menu'=>'fk_mainmenu=tools',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode

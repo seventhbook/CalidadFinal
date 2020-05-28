@@ -22,7 +22,7 @@ require '../main.inc.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
 require_once DOL_DOCUMENT_ROOT.'/adherents/class/adherent.class.php';
 require_once DOL_DOCUMENT_ROOT.'/stripe/class/stripe.class.php';
-//require_once DOL_DOCUMENT_ROOT.'/core/lib/stripe.lib.php';
+
 require_once DOL_DOCUMENT_ROOT.'/compta/bank/class/account.class.php';
 require_once DOL_DOCUMENT_ROOT.'/commande/class/commande.class.php';
 require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
@@ -34,7 +34,7 @@ $langs->loadLangs(array('compta', 'salaries', 'bills', 'hrm', 'stripe'));
 // Security check
 $socid = GETPOST("socid", "int");
 if ($user->socid) $socid=$user->socid;
-//$result = restrictedArea($user, 'salaries', '', '', '');
+
 
 $limit = GETPOST('limit', 'int')?GETPOST('limit', 'int'):$conf->liste_limit;
 $rowid = GETPOST("rowid", 'alpha');
@@ -122,7 +122,7 @@ if (!$rowid) {
 
 	foreach ($payout->data as $payout)
 	{
-		//$charge = $payout;
+		
 		//var_dump($payout);
 
 		// The metadata FULLTAG is defined by the online payment page
@@ -171,7 +171,7 @@ if (!$rowid) {
 
 
 		// Stripe customer
-		//print "<td>".$charge->customer."</td>\n";
+		
 		// Link
 		/*print "<td>";
 		if ($societestatic->id > 0)
@@ -184,17 +184,17 @@ if (!$rowid) {
 		}
 		print "</td>\n";*/
 		// Origine
-		//print "<td>";
-		////if ($charge->metadata->dol_type=="order"){
-		//	$object = new Commande($db);
-		//	$object->fetch($charge->metadata->dol_id);
-		//	print "<a href='".DOL_URL_ROOT."/commande/card.php?id=".$charge->metadata->dol_id."'>".img_picto('', 'object_order')." ".$object->ref."</a>";
+		
+		
+		
+		
+		
 		//} elseif ($charge->metadata->dol_type=="invoice"){
-		//	$object = new Facture($db);
-		//	$object->fetch($charge->metadata->dol_id);
-		//	print "<a href='".DOL_URL_ROOT."/compta/facture/card.php?facid=".$charge->metadata->dol_id."'>".img_picto('', 'object_invoice')." ".$object->ref."</a>";
+		
+		
+		
 		//}
-		//print "</td>\n";
+		
 		// Date payment
 		print '<td class="center">'.dol_print_date($payout->created, '%d/%m/%Y %H:%M')."</td>\n";
         // Date payment

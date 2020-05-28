@@ -437,7 +437,7 @@ function showWebsiteTemplates(Website $website)
 	$i = 0;
 	foreach ($dirthemes as $dir)
 	{
-		//print $dirroot.$dir;exit;
+		
 		$dirtheme = DOL_DATA_ROOT.$dir; // This include loop on $conf->file->dol_document_root
 		if (is_dir($dirtheme))
 		{

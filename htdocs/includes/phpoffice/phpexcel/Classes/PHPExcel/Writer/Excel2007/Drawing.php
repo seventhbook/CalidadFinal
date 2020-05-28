@@ -250,23 +250,23 @@ class PHPExcel_Writer_Excel2007_Drawing extends PHPExcel_Writer_Excel2007_Writer
 
 						$objWriter->endElement();
 
-//						// a:solidFill
-//						$objWriter->startElement('a:solidFill');
 
-//							// a:srgbClr
-//							$objWriter->startElement('a:srgbClr');
-//							$objWriter->writeAttribute('val', 'FFFFFF');
 
-///* SHADE
-//								// a:shade
-//								$objWriter->startElement('a:shade');
-//								$objWriter->writeAttribute('val', '85000');
-//								$objWriter->endElement();
-//*/
 
-//							$objWriter->endElement();
 
-//						$objWriter->endElement();
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 						// a:ln
 						$objWriter->startElement('a:ln');

@@ -80,7 +80,7 @@ if (is_numeric($duration_value))
 $sql .= " AND sc.fk_soc = s.rowid AND sc.fk_user = u.rowid";
 $sql .= " ORDER BY u.email ASC, s.rowid ASC, c.ref ASC"; // Order by email to allow one message per email
 
-// print $sql;
+
 $resql = $db->query($sql);
 if ($resql) {
 	$num = $db->num_rows($resql);

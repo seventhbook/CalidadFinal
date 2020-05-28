@@ -83,7 +83,7 @@ class DolEditor
         // Check if extended editor is ok. If not we force textarea
         if ((empty($conf->fckeditor->enabled) && $okforextendededitor != 'ace') || empty($okforextendededitor)) $this->tool = 'textarea';
 		if ($okforextendededitor === 'ace') $this->tool = 'ace';
-        //if ($conf->dol_use_jmobile) $this->tool = 'textarea';       // ckeditor and ace seems ok with mobile
+        
 
         // Define content and some properties
         if ($this->tool == 'ckeditor')
@@ -171,7 +171,7 @@ class DolEditor
         if (in_array($this->tool, array('textarea', 'ckeditor')))
         {
             $found = 1;
-            //$out.= '<textarea id="'.$this->htmlname.'" name="'.$this->htmlname.'" '.($this->readonly?' disabled':'').' rows="'.$this->rows.'"'.(preg_match('/%/',$this->cols)?' style="margin-top: 5px; width: '.$this->cols.'"':' cols="'.$this->cols.'"').' class="flat">';
+            
             // TODO We do not put the disabled tag because on a read form, it change style with grey.
             $out .= '<textarea id="'.$this->htmlname.'" name="'.$this->htmlname.'" rows="'.$this->rows.'"'.(preg_match('/%/', $this->cols) ? ' style="margin-top: 5px; width: '.$this->cols.'"' : ' cols="'.$this->cols.'"').' class="flat">';
             $out .= htmlspecialchars($this->content);
@@ -184,7 +184,7 @@ class DolEditor
             	if (!empty($conf->global->FCKEDITOR_SKIN)) {
 					$skin = $conf->global->FCKEDITOR_SKIN;
 				} else {
-					$skin = 'moono-lisa'; // default with ckeditor 4.6 : moono-lisa
+					$skin = 'moono-lisa'; 
 				}
 
             	$htmlencode_force = preg_match('/_encoded$/', $this->toolbarname) ? 'true' : 'false';
@@ -233,8 +233,8 @@ class DolEditor
                     // To use filemanager with old fckeditor (GPL)
                     $out .= '    filebrowserBrowseUrl : ckeditorFilebrowserBrowseUrl,';
                     $out .= '    filebrowserImageBrowseUrl : ckeditorFilebrowserImageBrowseUrl,';
-                    //$out.= '    filebrowserUploadUrl : \''.DOL_URL_ROOT.'/includes/fckeditor/editor/filemanagerdol/connectors/php/upload.php?Type=File\',';
-                    //$out.= '    filebrowserImageUploadUrl : \''.DOL_URL_ROOT.'/includes/fckeditor/editor/filemanagerdol/connectors/php/upload.php?Type=Image\',';
+                    
+                    
                     $out .= "\n";
                     // To use filemanager with ckfinder (Non free) and ckfinder directory is inside htdocs/includes
 					/* $out.= '    filebrowserBrowseUrl : \''.DOL_URL_ROOT.'/includes/ckfinder/ckfinder.html\',
@@ -298,7 +298,7 @@ class DolEditor
 
             $out .= '<pre id="'.$this->htmlname.'aceeditorid" style="'.($this->width ? 'width: '.$this->width.'px; ' : '');
             $out .= ($this->height ? ' height: '.$this->height.'px; ' : '');
-            //$out.=" min-height: 100px;";
+            
             $out .= '">';
         	$out .= htmlspecialchars($this->content);
         	$out .= '</pre>';

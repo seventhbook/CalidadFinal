@@ -97,8 +97,8 @@ if ($resql)
 	$dataseries = array();
 	$vals = array();
 	//	0=Draft -> 1=Validated -> 2=Approved -> 3=Process runing -> 4=Received partially -> 5=Received totally -> (reopen) 4=Received partially
-	//	-> 7=Canceled/Never received -> (reopen) 3=Process runing
-	//	-> 6=Canceled -> (reopen) 2=Approved
+	
+	
 	while ($i < $num)
 	{
 		$row = $db->fetch_row($resql);
@@ -146,8 +146,8 @@ if ($resql)
 
 		print '</td></tr>';
 	}
-	//if ($totalinprocess != $total)
-	//print '<tr class="liste_total"><td>'.$langs->trans("Total").' ('.$langs->trans("SuppliersOrdersRunning").')</td><td class="right">'.$totalinprocess.'</td></tr>';
+	
+	
 	print '<tr class="liste_total"><td>'.$langs->trans("Total").'</td><td class="right">'.$total.'</td></tr>';
 
 	print "</table></div><br>";
@@ -328,7 +328,7 @@ $sql .= ", ".MAIN_DB_PREFIX."societe as s";
 if (!$user->rights->societe->client->voir && !$socid) $sql .= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
 $sql .= " WHERE c.fk_soc = s.rowid";
 $sql .= " AND c.entity = ".$conf->entity;
-//$sql.= " AND c.fk_statut > 2";
+
 if (!empty($socid)) $sql .= " AND c.fk_soc = ".$socid;
 if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
 $sql .= " ORDER BY c.tms DESC";

@@ -214,7 +214,7 @@ if ($action == "correct_stock")
         	$batch = GETPOST('batch_number', 'alphanohtml');
 
         	
-        	//$sellby=GETPOST('sellby');
+        	
         	$eatby = dol_mktime(0, 0, 0, GETPOST('eatbymonth', 'int'), GETPOST('eatbyday', 'int'), GETPOST('eatbyyear', 'int'));
         	$sellby = dol_mktime(0, 0, 0, GETPOST('sellbymonth', 'int'), GETPOST('sellbyday', 'int'), GETPOST('sellbyyear', 'int'));
 
@@ -493,7 +493,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -1186,14 +1186,14 @@ if ($resql)
     	
     	print $langs->trans("NbOfProductBeforePeriod", $productlabelselected, dol_print_date($datebefore, 'day', 'gmt'));
     	
-    	//print '<td class="liste_total right" colspan="6">';
+    	
     	print ': '.$balancebefore;
     	print "<br>\n";
     	
-    	//print '<tr class="total"><td class="liste_total">';
+    	
     	print $langs->trans("NbOfProductAfterPeriod", $productlabelselected, dol_print_date($dateafter, 'day', 'gmt'));
     	
-    	//print '<td class="liste_total right" colspan="6">';
+    	
     	print ': '.$balanceafter;
     	print "<br>\n";
     	

@@ -79,7 +79,7 @@ if (($line->info_bits & 2) == 2) {
 	if ($line->description == '(DEPOSIT)') $txt = $langs->trans("Deposit");
 	elseif ($line->description == '(EXCESS RECEIVED)') $txt = $langs->trans("ExcessReceived");
 	elseif ($line->description == '(EXCESS PAID)') $txt = $langs->trans("ExcessPaid");
-	//else $txt=$langs->trans("Discount");
+	
 	print $txt;
 	print '</a>';
 	if ($line->description)
@@ -155,7 +155,7 @@ else
 	}
 	else {
 		if ($line->date_start || $line->date_end) print '<br><div class="clearboth nowraponall">'.get_date_range($line->date_start, $line->date_end, $format).'</div>';
-		//print get_date_range($line->date_start, $line->date_end, $format);
+		
 	}
 
 	// Add description in form
@@ -206,7 +206,7 @@ if (price2num($line->total_localtax1)) $positiverates .= ($positiverates ? '/' :
 if (price2num($line->total_localtax2)) $positiverates .= ($positiverates ? '/' : '').price2num($line->localtax2_tx);
 if (empty($positiverates)) $positiverates = '0';
 print vatrate($positiverates.($line->vat_src_code ? ' ('.$line->vat_src_code.')' : ''), '%', $line->info_bits);
-//print vatrate($line->tva_tx.($line->vat_src_code?(' ('.$line->vat_src_code.')'):''), '%', $line->info_bits);
+
 ?></td>
 
 	<td class="linecoluht nowrap right"><?php $coldisplay++; ?><?php print price($line->subprice); ?></td>
@@ -223,9 +223,9 @@ if ($inputalsopricewithtax) { ?>
 <?php
 if ((($line->info_bits & 2) != 2) && $line->special_code != 3) {
 	// I comment this because it shows info even when not required
-	// for example always visible on invoice but must be visible only if stock module on and stock decrease option is on invoice validation and status is not validated
+	
 	// must also not be output for most entities (proposal, intervention, ...)
-	//if($line->qty > $line->stock) print img_picto($langs->trans("StockTooLow"),"warning", 'style="vertical-align: bottom;"')." ";
+	
 	print price($line->qty, 0, '', 0, 0); // Yes, it is a quantity, not a price, but we just want the formating role of function price
 } else print '&nbsp;';
 print '</td>';

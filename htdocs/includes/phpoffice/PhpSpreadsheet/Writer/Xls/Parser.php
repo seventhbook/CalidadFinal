@@ -7,41 +7,41 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet as PhpspreadsheetWorksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Parser (used as the base for this class):
-// -----------------------------------------------------------------------------------------
-// *  Class for parsing Excel formulas
-// *
-// *  License Information:
-// *
-// *    Spreadsheet_Excel_Writer:  A library for generating Excel Spreadsheets
-// *    Copyright (c) 2002-2003 Xavier Noguer xnoguer@rezebra.com
-// *
-// *    This library is free software; you can redistribute it and/or
-// *    modify it under the terms of the GNU Lesser General Public
-// *    License as published by the Free Software Foundation; either
-// *    version 2.1 of the License, or (at your option) any later version.
-// *
-// *    This library is distributed in the hope that it will be useful,
-// *    but WITHOUT ANY WARRANTY; without even the implied warranty of
-// *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-// *    Lesser General Public License for more details.
-// *
-// *    You should have received a copy of the GNU Lesser General Public
-// *    License along with this library; if not, write to the Free Software
-// *    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Parser
 {
     /**    Constants                */
     // Sheet title in unquoted form
     // Invalid sheet title characters cannot occur in the sheet title:
-    //         *:/\?[]
+    
     // Moreover, there are valid sheet title characters that cannot occur in unquoted form (there may be more?)
     
     const REGEX_SHEET_TITLE_UNQUOTED = '[^\*\:\/\\\\\?\[\]\+\-\% \\\'\^\&\<\>\=\,\;\#\(\)\"\{\}]+';
 
     // Sheet title in quoted form (without surrounding quotes)
     // Invalid sheet title characters cannot occur in the sheet title:
-    // *:/\?[]                    (usual invalid sheet title characters)
+    
     // Single quote is represented as a pair ''
     const REGEX_SHEET_TITLE_QUOTED = '(([^\*\:\/\\\\\?\[\]\\\'])+|(\\\'\\\')+)+';
 
@@ -214,7 +214,7 @@ class Parser
      * @var array
      */
     private $functions = [
-        // function                  ptg  args  class  vol
+        
         'COUNT' => [0, -1, 0, 0],
         'IF' => [1, -1, 1, 0],
         'ISNA' => [2, 1, 1, 0],
@@ -523,7 +523,7 @@ class Parser
         
             return($this->convertFunction($token, $this->_func_args));
         }*/
-        // if it's an argument, ignore the token (the argument remains)
+        
         } elseif ($token == 'arg') {
             return '';
         }
@@ -547,7 +547,7 @@ class Parser
         }
 
         // A float
-        if (BIFFwriter::getByteOrder()) { // if it's Big Endian
+        if (BIFFwriter::getByteOrder()) { 
             $num = strrev($num);
         }
 
@@ -791,7 +791,7 @@ class Parser
                 break;
             }
         }
-        // if REF was not found add it to references array
+        
         if ($index == -1) {
             $this->references[$totalreferences] = $ref;
             $index = $totalreferences;
@@ -872,7 +872,7 @@ class Parser
     private function rangeToPackedRange($range)
     {
         preg_match('/(\$)?(\d+)\:(\$)?(\d+)/', $range, $match);
-        // return absolute rows if there is a $ in the ref
+        
         $row1_rel = empty($match[1]) ? 1 : 0;
         $row1 = $match[2];
         $row2_rel = empty($match[3]) ? 1 : 0;
@@ -913,7 +913,7 @@ class Parser
     private function cellToRowcol($cell)
     {
         preg_match('/(\$)?([A-I]?[A-Z])(\$)?(\d+)/', $cell, $match);
-        // return absolute column if there is a $ in the ref
+        
         $col_rel = empty($match[1]) ? 1 : 0;
         $col_ref = $match[2];
         $row_rel = empty($match[3]) ? 1 : 0;
@@ -972,7 +972,7 @@ class Parser
 
             if ($i < ($formula_length - 2)) {
                 $this->lookAhead = $this->formula[$i + 2];
-            } else { // if we run out of characters lookAhead becomes empty
+            } else { 
                 $this->lookAhead = '';
             }
             ++$i;
@@ -1026,7 +1026,7 @@ class Parser
 
                 break;
             default:
-                // if it's a reference A1 or $A$1 or $A1 or A$1
+                
                 if (preg_match('/^\$?[A-Ia-i]?[A-Za-z]\$?\d+$/', $token) and !preg_match('/\d/', $this->lookAhead) and ($this->lookAhead != ':') and ($this->lookAhead != '.') and ($this->lookAhead != '!')) {
                     return $token;
                 } elseif (preg_match('/^' . self::REGEX_SHEET_TITLE_UNQUOTED . '(\\:' . self::REGEX_SHEET_TITLE_UNQUOTED . ')?\\!\$?[A-Ia-i]?[A-Za-z]\$?\\d+$/u', $token) and !preg_match('/\d/', $this->lookAhead) and ($this->lookAhead != ':') and ($this->lookAhead != '.')) {
@@ -1159,7 +1159,7 @@ class Parser
             return $result;
         // If it's a negative value
         } elseif ($this->currentToken == '-') {
-            // catch "-" Term
+            
             $this->advance();
             $result2 = $this->expression();
             $result = $this->createTree('ptgUminus', $result2, '');
@@ -1167,7 +1167,7 @@ class Parser
             return $result;
         // If it's a positive value
         } elseif ($this->currentToken == '+') {
-            // catch "+" Term
+            
             $this->advance();
             $result2 = $this->expression();
             $result = $this->createTree('ptgUplus', $result2, '');
@@ -1257,7 +1257,7 @@ class Parser
             $this->advance(); // eat the ")"
             return $result;
         }
-        // if it's a reference
+        
         if (preg_match('/^\$?[A-Ia-i]?[A-Za-z]\$?\d+$/', $this->currentToken)) {
             $result = $this->createTree($this->currentToken, '', '');
             $this->advance();
@@ -1309,7 +1309,7 @@ class Parser
 
             return $result;
         } elseif (preg_match("/^[A-Z0-9\xc0-\xdc\\.]+$/i", $this->currentToken)) {
-            // if it's a function call
+            
             $result = $this->func();
 
             return $result;
@@ -1423,7 +1423,7 @@ class Parser
             $converted_tree = $this->convert($tree['right']);
             $polish .= $converted_tree;
         }
-        // if it's a function convert it here (so we can set it's arguments)
+        
         if (preg_match("/^[A-Z0-9\xc0-\xdc\\.]+$/", $tree['value']) and
             !preg_match('/^([A-Ia-i]?[A-Za-z])(\d+)$/', $tree['value']) and
             !preg_match('/^[A-Ia-i]?[A-Za-z](\\d+)\\.\\.[A-Ia-i]?[A-Za-z](\\d+)$/', $tree['value']) and

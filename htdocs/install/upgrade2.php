@@ -129,7 +129,7 @@ if (!GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'aZ
         else $dolibarr_main_db_pass = dol_decode($dolibarr_main_db_encrypted_pass);
     }
 
-    // $conf is already instancied inside inc.php
+    
     $conf->db->type = $dolibarr_main_db_type;
     $conf->db->host = $dolibarr_main_db_host;
     $conf->db->port = $dolibarr_main_db_port;
@@ -542,7 +542,7 @@ if (!GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'aZ
         }
         else
         {
-            //if (! empty($conf->modules))
+            
             if (!empty($conf->modules_parts['hooks']))     // If there is at least one module with one hook, we show message to say nothing was done
             {
                 print '<tr><td colspan="4">';
@@ -1693,7 +1693,7 @@ function migrate_price_contrat($db, $langs, $conf)
 
                 // On met a jour les 3 nouveaux champs
                 $contratligne = new ContratLigne($db);
-                //$contratligne->fetch($rowid); Non requis car le update_total ne met a jour que chp redefinis
+                
                 $contratligne->fetch($rowid);
 
                 $result = calcul_price_total($qty, $pu, $remise_percent, $vatrate, 0, 0, 0, 'HT', $info_bits, $contratligne->product_type, $tmpmysoc);

@@ -274,7 +274,7 @@ class EmailCollector extends CommonObject
         // Clear fields
         $object->ref = "copy_of_".$object->ref;
         $object->title = $langs->trans("CopyOf")." ".$object->title;
-        // ...
+        
         // Clear extrafields that are unique
         if (is_array($object->array_options) && count($object->array_options) > 0)
         {
@@ -321,7 +321,7 @@ class EmailCollector extends CommonObject
     public function fetch($id, $ref = null)
     {
         $result = $this->fetchCommon($id, $ref);
-        //if ($result > 0 && ! empty($this->table_element_line)) $this->fetchLines();
+        
         return $result;
     }
 
@@ -487,7 +487,7 @@ class EmailCollector extends CommonObject
         if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
         if ($withpicto != 2) $result .= $this->ref;
         $result .= $linkend;
-        //if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+        
 
         global $action, $hookmanager;
         $hookmanager->initHooks(array('emailcollectordao'));
@@ -524,7 +524,7 @@ class EmailCollector extends CommonObject
     	if (empty($this->labelStatus) || empty($this->labelStatusShort))
         {
             global $langs;
-            //$langs->load("mymodule");
+            
             $this->labelStatus[self::STATUS_ENABLED] = $langs->trans('Enabled');
             $this->labelStatus[self::STATUS_DISABLED] = $langs->trans('Disabled');
             $this->labelStatusShort[self::STATUS_ENABLED] = $langs->trans('Enabled');
@@ -613,7 +613,7 @@ class EmailCollector extends CommonObject
         $sql = 'SELECT rowid, type, rulevalue, status';
         $sql .= ' FROM '.MAIN_DB_PREFIX.'emailcollector_emailcollectorfilter';
         $sql .= ' WHERE fk_emailcollector = '.$this->id;
-        //$sql.= ' ORDER BY position';
+        
 
         $resql = $this->db->query($sql);
         if ($resql)
@@ -679,8 +679,8 @@ class EmailCollector extends CommonObject
         $flags = '/service=imap'; // IMAP
         if ($ssl) $flags .= '/ssl'; // '/tls'
         $flags .= '/novalidate-cert';
-        //$flags.='/readonly';
-        //$flags.='/debug';
+        
+        
         if ($norsh || !empty($conf->global->IMPA_FORCE_NORSH)) $flags .= '/norsh';
 
         $connectstringserver = '{'.$this->host.':993'.$flags.'}';
@@ -699,7 +699,7 @@ class EmailCollector extends CommonObject
     	if (function_exists('mb_convert_encoding')) {
 	    	// change spaces by entropy because mb_convert fail with spaces
 	    	$str = preg_replace("/ /", "xyxy", $str);
-	    	// if mb_convert work
+	    	
 	    	if ($str = mb_convert_encoding($str, "UTF-7")) {
 	    		// change characters
 	    		$str = preg_replace("/\+A/", "&A", $str);
@@ -707,7 +707,7 @@ class EmailCollector extends CommonObject
 	    		$str = preg_replace("/xyxy/", " ", $str);
 	    		return $str;
 	    	} else {
-	    		// print error and return false
+	    		
 	    		$this->error = "error: is not possible to encode this string '".$str."'";
 	     		return false;
 	    	}
@@ -760,7 +760,7 @@ class EmailCollector extends CommonObject
         $errorforthisaction = 0;
 
         // Overwrite values with values extracted from source email
-        // $this->actionparam = 'opportunity_status=123;abc=EXTRACT:BODY:....'
+        
         $arrayvaluetouse = dolExplodeIntoArray($actionparam, ';', '=');
         foreach ($arrayvaluetouse as $propertytooverwrite => $valueforproperty)
         {
@@ -777,19 +777,19 @@ class EmailCollector extends CommonObject
             }
             if ($tmpclass && ($tmpclass != $object->element)) continue; // Property is for another type of object
 
-            //if (property_exists($object, $tmpproperty) || preg_match('/^options_/', $tmpproperty))
+            
             if ($tmpproperty)
             {
                 $sourcestring = '';
                 $sourcefield = '';
                 $regexstring = '';
-                //$transformationstring='';
+                
                 $regforregex = array();
                 if (preg_match('/^EXTRACT:([a-zA-Z0-9]+):(.*):([^:])$/', $valueforproperty, $regforregex))
                 {
                     $sourcefield = $regforregex[1];
                     $regexstring = $regforregex[2];
-                    //$transofrmationstring=$regforregex[3];
+                    
                 }
                 elseif (preg_match('/^EXTRACT:([a-zA-Z0-9]+):(.*)$/', $valueforproperty, $regforregex))
                 {
@@ -843,7 +843,7 @@ class EmailCollector extends CommonObject
                         $matcharray = array();
                         preg_match_all('/__([a-z0-9]+(?:_[a-z0-9]+)?)__/i', $valuetouse, $matcharray);
                         //var_dump($tmpproperty.' - '.$object->$tmpproperty.' - '.$valuetouse); var_dump($matcharray);
-                        if (is_array($matcharray[1]))    // $matcharray[1] is array with list of substitution key found without the __
+                        if (is_array($matcharray[1]))    
                         {
                             foreach ($matcharray[1] as $keytoreplace)
                             {
@@ -882,7 +882,7 @@ class EmailCollector extends CommonObject
     {
         global $conf, $langs, $user;
 
-        //$conf->global->SYSLOG_FILE = 'DOL_DATA_ROOT/dolibarr_mydedicatedlofile.log';
+        
 
         require_once DOL_DOCUMENT_ROOT.'/comm/action/class/actioncomm.class.php';
 
@@ -935,13 +935,13 @@ class EmailCollector extends CommonObject
         }
         imap_errors(); // Clear stack of errors.
 
-        // $conf->global->MAIL_PREFIX_FOR_EMAIL_ID must be defined
+        
         $host = dol_getprefix('email');
 
         // Define the IMAP search string
         // See https://tools.ietf.org/html/rfc3501#section-6.4.4 for IMAPv4 (PHP not yet compatible)
         // See https://tools.ietf.org/html/rfc1064 page 13 for IMAPv2
-        //$search='ALL';
+        
         $search = 'UNDELETED'; // Seems not supported by some servers
         $searchhead = '';
         $searchfilterdoltrackid = 0;
@@ -977,7 +977,7 @@ class EmailCollector extends CommonObject
             $fromdate = 0;
             if ($this->datelastok) $fromdate = $this->datelastok;
             if ($fromdate > 0) $search .= ($search ? ' ' : '').'SINCE '.date('j-M-Y', $fromdate - 1); // SENTSINCE not supported. Date must be X-Abc-9999 (X on 1 digit if < 10)
-            //$search.=($search?' ':'').'SINCE 8-Apr-2018';
+            
         }
         dol_syslog("IMAP search string = ".$search);
         //var_dump($search);
@@ -1151,7 +1151,7 @@ class EmailCollector extends CommonObject
                 global $htmlmsg, $plainmsg, $charset, $attachments;
                 $this->getmsg($connection, $imapemail);
 
-                //$htmlmsg,$plainmsg,$charset,$attachments
+                
                 $messagetext = $plainmsg ? $plainmsg : dol_string_nohtmltag($htmlmsg, 0);
                 /*var_dump($plainmsg);
                 var_dump($htmlmsg);
@@ -1171,8 +1171,8 @@ class EmailCollector extends CommonObject
 
                 foreach($result as $part)
                 {
-                    // $part['part_object']->type seems 0 for content
-                    // $part['part_object']->type seems 5 for attachment
+                    
+                    
                     if (empty($part['part_object'])) continue;
                     if ($part['part_object']->subtype == 'HTML')
                     {
@@ -1202,9 +1202,9 @@ class EmailCollector extends CommonObject
 
                 //var_dump($messagetext);
                 //var_dump($structure->parts[0]->parts);
-                //print $header;
-                //print $messagetext;
-                //exit;
+                
+                
+                
 
                 $fromstring = $overview[0]->from;
                 $sender = $overview[0]->sender;
@@ -1379,7 +1379,7 @@ class EmailCollector extends CommonObject
                         if ($sender) $descriptionmeta = dol_concatdesc($descriptionmeta, $langs->trans("Sender").($langs->trans("Sender") != 'Sender' ? ' (Sender)' : '').' : '.dol_escape_htmltag($sender));
                         $descriptionmeta = dol_concatdesc($descriptionmeta, $langs->trans("MailTo").($langs->trans("MailTo") != 'To' ? ' (To)' : '').' : '.dol_escape_htmltag($to));
                         if ($sendtocc) $descriptionmeta = dol_concatdesc($descriptionmeta, $langs->trans("MailCC").($langs->trans("MailCC") != 'CC' ? ' (CC)' : '').' : '.dol_escape_htmltag($sendtocc));
-                        //if ($bcc) $descriptionmeta = dol_concatdesc($descriptionmeta, $langs->trans("Bcc").' : '.dol_escape_htmltag($bcc));
+                        
                     }
 
                     // Search and create thirdparty
@@ -1396,7 +1396,7 @@ class EmailCollector extends CommonObject
                             $actionparam = $operation['actionparam'];
                             $nametouseforthirdparty = '';
 
-                            // $this->actionparam = 'SET:aaa' or 'EXTRACT:BODY:....'
+                            
                             $arrayvaluetouse = dolExplodeIntoArray($actionparam, ';', '=');
                             foreach ($arrayvaluetouse as $propertytooverwrite => $valueforproperty)
                             {
@@ -1444,8 +1444,8 @@ class EmailCollector extends CommonObject
                                 }
                                 elseif (preg_match('/^(SET|SETIFEMPTY):(.*)$/', $valueforproperty, $reg))
                                 {
-                                    //if (preg_match('/^options_/', $tmpproperty)) $object->array_options[preg_replace('/^options_/', '', $tmpproperty)] = $reg[1];
-                                    //else $object->$tmpproperty = $reg[1];
+                                    
+                                    
                                     $nametouseforthirdparty = $reg[2];
                                 }
                                 else
@@ -1571,7 +1571,7 @@ class EmailCollector extends CommonObject
 	                            $actioncomm->elementtype = $fk_element_type;
 	                        }
 
-	                        //$actioncomm->extraparams = $extraparams;
+	                        
 
 	                        // Overwrite values with values extracted from source email
 	                        $errorforthisaction = $this->overwritePropertiesOfObject($actioncomm, $operation['actionparam'], $messagetext, $subject, $header);
@@ -1741,7 +1741,7 @@ class EmailCollector extends CommonObject
                         $tickettocreate->notify_tiers_at_create = 0;
                         $tickettocreate->note_private = $descriptionfull;
                         $tickettocreate->entity = $conf->entity;
-                        //$tickettocreate->fk_contact = $contactstatic->id;
+                        
 
                         // Overwrite values with values extracted from source email.
                         // This may overwrite any $projecttocreate->xxx properties.
@@ -1927,7 +1927,7 @@ class EmailCollector extends CommonObject
         $attachments = array();
 
         // HEADER
-        //$h = imap_header($mbox,$mid);
+        
         // add code here to get date, from, to, cc, subject...
 
         // BODY
@@ -1970,7 +1970,7 @@ class EmailCollector extends CommonObject
      */
     private function getpart($mbox, $mid, $p, $partno)
     {
-        // $partno = '1', '2', '2.1', '2.1.3', etc for multipart, 0 if simple
+        
         global $htmlmsg, $plainmsg, $charset, $attachments;
 
         // DECODE DATA
@@ -2008,7 +2008,7 @@ class EmailCollector extends CommonObject
             // filename may be given as 'Filename' or 'Name' or both
             $filename = ($params['filename']) ? $params['filename'] : $params['name'];
             // filename may be encoded, so see imap_mime_header_decode()
-            $attachments[$filename] = $data; // this is a problem if two files have same name
+            $attachments[$filename] = $data; 
         }
 
         // TEXT

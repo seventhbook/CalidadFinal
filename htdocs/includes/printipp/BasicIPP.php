@@ -94,7 +94,7 @@ class BasicIPP
     public $response;
     public $meta;
 
-    // protected variables;
+    
     protected $log_level = 2; // max 3: very verbose
     protected $log_type = 3; // 3: file | 1: e-mail | 0: logger
     protected $log_destination; // e-mail or file
@@ -281,7 +281,7 @@ class BasicIPP
         while (strlen($length) < 2) $length = chr(0x00) . $length;
         self::_putDebug(sprintf(_("mime type: %s") , $mime_media_type) , 2);
         $this->meta->mime_media_type = chr(0x49) // document-format tag
-            . self::_giveMeStringLength('document-format') . 'document-format' //
+            . self::_giveMeStringLength('document-format') . 'document-format' 
             . self::_giveMeStringLength($mime_media_type) . $mime_media_type; // value
         $this->setup->mime_media_type = 1;
     }
@@ -422,7 +422,7 @@ class BasicIPP
     public function setFidelity()
     {
         // whether the server can't replace any attributes
-        // (eg, 2 sided print is not possible,
+        
         // so print one sided) and DO NOT THE JOB.
         $this->meta->fidelity = chr(0x22) // boolean type  |  value-tag
             . chr(0x00) . chr(0x16) //                  name-length
@@ -435,7 +435,7 @@ class BasicIPP
     public function unsetFidelity()
     {
         // whether the server can replace any attributes
-        // (eg, 2 sided print is not possible,
+        
         // so print one sided) and DO THE JOB.
         $this->meta->fidelity = chr(0x22) //  boolean type | value-tag
             . chr(0x00) . chr(0x16) //        name-length
@@ -599,9 +599,9 @@ class BasicIPP
         return true;
     }
 
-    //
+    
     // LOGGING / DEBUGGING
-    //
+    
     /**
      * Sets log file destination. Creates the file if has permission.
      *
@@ -664,12 +664,12 @@ class BasicIPP
         return $debug;
     }
 
-    //
+    
     // OPERATIONS
-    //
+    
     public function printJob()
     {
-        // this BASIC version of printJob do not parse server
+        
         // output for job's attributes
         self::_putDebug(
             sprintf(
@@ -753,9 +753,9 @@ class BasicIPP
         return false;
     }
 
-    //
+    
     // HTTP OUTPUT
-    //
+    
     protected function _sendHttp($post_values, $uri)
     {
         /*
@@ -914,9 +914,9 @@ class BasicIPP
         return true;
     }
 
-    //
+    
     // INIT
-    //
+    
     protected function _initTags()
     {
         $this->tags_types = array(
@@ -1068,9 +1068,9 @@ class BasicIPP
         );
     }
 
-    //
+    
     // SETUP
-    //
+    
     protected function _setOperationId()
     {
         $prepend = '';
@@ -1099,9 +1099,9 @@ class BasicIPP
         self::_putDebug("job-uri is: " . $job_uri, 2);
     }
 
-    //
+    
     // RESPONSE PARSING
-    //
+    
     protected function _parseServerOutput()
     {
         $this->serveroutput->response = array();
@@ -1421,9 +1421,9 @@ class BasicIPP
     {
     }
 
-    //
+    
     // REQUEST BUILDING
-    //
+    
     protected function _stringJob()
     {
         if (!isset($this->setup->charset)) {
@@ -1916,9 +1916,9 @@ class BasicIPP
         $this->printer_tags[$attribute]['systag'] = $this->tags_types[$tag_type]['tag'];
     }
 
-    //
+    
     // DEBUGGING
-    //
+    
     protected function _putDebug($string, $level = 1)
     {
         if ($level === false) {
@@ -1934,9 +1934,9 @@ class BasicIPP
     
     }
 
-    //
+    
     // LOGGING
-    //
+    
     protected function _errorLog($string_to_log, $level)
     {
         if ($level > $this->log_level) {

@@ -50,7 +50,7 @@ class Netatmo extends AbstractService
             $storage,
             $scopes,
             $baseApiUri,
-            true // use parameter state
+            true 
         );
 
         if (null === $baseApiUri) {

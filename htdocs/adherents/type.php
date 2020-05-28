@@ -285,7 +285,7 @@ if (!$rowid && $action != 'create' && $action != 'edit')
 			print '<tr class="oddeven">';
 			print '<td>';
 			print $membertype->getNomUrl(1);
-			//<a href="'.$_SERVER["PHP_SELF"].'?rowid='.$objp->rowid.'">'.img_object($langs->trans("ShowType"),'group').' '.$objp->rowid.'</a>
+			
 			print '</td>';
 			print '<td>'.dol_escape_htmltag($objp->label).'</td>';
             print '<td class="center">';
@@ -554,7 +554,7 @@ if ($rowid > 0)
 			$resql = $db->query($sql);
 		    if ($resql) $nbtotalofrecords = $db->num_rows($result);
 		    else dol_print_error($db);
-		    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+		    if (($page * $limit) > $nbtotalofrecords)	
 		    {
 		    	$page = 0;
 		    	$offset = 0;

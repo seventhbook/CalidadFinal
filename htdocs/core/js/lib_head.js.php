@@ -314,7 +314,7 @@ function getDateFromFormat(val,format)
 	var seconde=now.getSeconds();
 
 	var i=0;
-	var d=0;    // -d- follows the date string while -i- follows the format
+	var d=0;    
 				// string
 
 	while (i < format.length)
@@ -1073,7 +1073,7 @@ function price2numjs(amount) {
 	//console.log("amount before="+amount+" rouding="+rounding)
 	var res = Math.round10(amount, - rounding);
 	// Other solution is
-	// var res = dolroundjs(amount, rounding)
+	
 	console.log("res="+res)
 	return res;
 }

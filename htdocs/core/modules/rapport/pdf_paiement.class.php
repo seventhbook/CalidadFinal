@@ -181,7 +181,7 @@ class pdf_paiement
 		switch ($this->doc_type) {
 			case "client":
 				$sql = "SELECT p.datep as dp, f.ref";
-				//$sql .= ", c.libelle as paiement_type, p.num_paiement";
+				
 				$sql.= ", c.code as paiement_code, p.num_paiement";
 				$sql.= ", p.amount as paiement_amount, f.total_ttc as facture_amount";
 				$sql.= ", pf.amount as pf_amount";
@@ -212,7 +212,7 @@ class pdf_paiement
 				break;
 			case "fourn":
 				$sql = "SELECT p.datep as dp, f.ref as ref";
-				//$sql .= ", c.libelle as paiement_type, p.num_paiement";
+				
 				$sql.= ", c.code as paiement_code, p.num_paiement";
 				$sql.= ", p.amount as paiement_amount, f.total_ttc as facture_amount";
 				$sql.= ", pf.amount as pf_amount";
@@ -293,7 +293,7 @@ class pdf_paiement
 		$pdf->SetSubject($outputlangs->transnoentities("Payments"));
 		$pdf->SetCreator("Dolibarr ".DOL_VERSION);
 		$pdf->SetAuthor($outputlangs->convToOutputCharset($user->getFullName($outputlangs)));
-		//$pdf->SetKeyWords();
+		
 		if (! empty($conf->global->MAIN_DISABLE_PDF_COMPRESSION)) $pdf->SetCompression(false);
 
 		$pdf->SetMargins($this->marge_gauche, $this->marge_haute, $this->marge_droite);   // Left, Top, Right

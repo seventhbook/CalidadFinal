@@ -125,24 +125,24 @@ class TimeZoneUtil {
     static function getTimeZone($tzid, Component $vcalendar = null, $failIfUncertain = false) {
 
         // First we will just see if the tzid is a support timezone identifier.
-        //
+        
         // The only exception is if the timezone starts with (. This is to
         // handle cases where certain microsoft products generate timezone
         // identifiers that for instance look like:
-        //
-        // (GMT+01.00) Sarajevo/Warsaw/Zagreb
-        //
+        
+        
+        
         // Since PHP 5.5.10, the first bit will be used as the timezone and
-        // this method will return just GMT+01:00. This is wrong, because it
+        
         // doesn't take DST into account.
         if ($tzid[0] !== '(') {
 
             // PHP has a bug that logs PHP warnings even it shouldn't:
             // https://bugs.php.net/bug.php?id=67881
-            //
+            
             // That's why we're checking if we'll be able to successfull instantiate
             // \DateTimeZone() before doing so. Otherwise we could simply instantiate
-            // and catch the exception.
+            
             $tzIdentifiers = \DateTimeZone::listIdentifiers();
 
             try {
@@ -166,7 +166,7 @@ class TimeZoneUtil {
         }
 
         // Some Microsoft products prefix the offset first, so let's strip that off
-        // and see if it is our tzid map.  We don't want to check for this first just
+        
         // in case there are overrides in our tzid map.
         if (preg_match('/^\((UTC|GMT)(\+|\-)[\d]{2}\:[\d]{2}\) (.*)/', $tzid, $matches)) {
             $tzidAlternate = $matches[3];
@@ -182,7 +182,7 @@ class TimeZoneUtil {
             // Note that the path in the source will never be taken from PHP 5.5.10
             // onwards. PHP 5.5.10 supports the "GMT+0100" style of format, so it
             // already gets returned early in this function. Once we drop support
-            // for versions under PHP 5.5.10, this bit can be taken out of the
+            
             // source.
             // @codeCoverageIgnoreStart
             return new \DateTimeZone('Etc/GMT' . $matches[1] . ltrim(substr($matches[2], 0, 2), '0'));

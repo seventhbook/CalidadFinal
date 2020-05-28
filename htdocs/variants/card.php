@@ -129,7 +129,7 @@ $title = $langs->trans('ProductAttributeName', dol_htmlentities($object->label))
 
 llxHeader('', $title);
 
-//print load_fiche_titre($title);
+
 
 $h = 0;
 $head[$h][0] = DOL_URL_ROOT.'/variants/card.php?id='.$object->id;

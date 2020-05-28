@@ -315,7 +315,7 @@ class PrestaShopWebservice
 				$url .= '/'.$options['id'];
 
 			// @CHANGE LDR
-			//$params = array('filter', 'display', 'sort', 'limit', 'id_shop', 'id_group_shop');
+			
 			$params = array('filter', 'display', 'sort', 'limit', 'id_shop', 'id_group_shop', 'date');
 			foreach ($params as $p)
 				foreach ($options as $k => $o)

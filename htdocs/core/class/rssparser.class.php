@@ -487,7 +487,7 @@ class RssParser
             $this->current_namespace = $ns;
         }
 
-        // if feed type isn't set, then this is first element of feed identify feed from root element
+        
         if (empty($this->_format))
         {
             if ( $el == 'rdf' ) {
@@ -518,7 +518,7 @@ class RssParser
             }
         }
 
-        // if we're in the default namespace of an RSS feed,
+        
         //  record textinput or image fields
         elseif (
         $this->_format == 'rss' &&
@@ -547,10 +547,10 @@ class RssParser
             $this->incontent = $el;
         }
 
-        // if inside an Atom content construct (e.g. content or summary) field treat tags as text
+        
         elseif ($this->_format == 'atom' && $this->incontent )
         {
-            // if tags are inlined, then flatten
+            
             $attrs_str = join(' ', array_map('map_attrs', array_keys($attrs), array_values($attrs)));
 
             $this->append_content("<$element $attrs_str>");
@@ -560,8 +560,8 @@ class RssParser
 
         // Atom support many links per containging element.
         // Magpie treats link elements of type rel='alternate'
-        // as being equivalent to RSS's simple link element.
-        //
+        
+        
         elseif ($this->_format == 'atom' && $el == 'link' )
         {
             if ( isset($attrs['rel']) && $attrs['rel'] == 'alternate' )

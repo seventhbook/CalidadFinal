@@ -107,7 +107,7 @@ class Client extends EventEmitter {
                 // We are doing in-PHP redirects, because curl's
                 // FOLLOW_LOCATION throws errors when PHP is configured with
                 // open_basedir.
-                //
+                
                 // https://github.com/fruux/sabre-http/issues/12
                 if (in_array($code, [301, 302, 307, 308]) && $redirects < $this->maxRedirects) {
 
@@ -141,7 +141,7 @@ class Client extends EventEmitter {
 
                 // If retry was still set to false, it means no event handler
                 // dealt with the problem. In this case we just re-throw the
-                // exception.
+                
                 if (!$retry) {
                     throw $e;
                 }

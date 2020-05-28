@@ -509,7 +509,7 @@ class PaymentSalary extends CommonObject
                         $this->fk_user,
                         DOL_URL_ROOT.'/user/card.php?id=',
                         $fuser->getFullName($langs),
-                        // $langs->trans("SalaryPayment").' '.$fuser->getFullName($langs).' '.dol_print_date($this->datesp,'dayrfc').' '.dol_print_date($this->dateep,'dayrfc'),
+                        
                         'user'
                     );
 

@@ -144,7 +144,7 @@ function check_user_password_ldap($usertotest, $passwordtotest, $entitytotest)
 		$ldap->searchPassword=$passwordtotest;
 
 		// Test with this->seachUser and this->searchPassword
-		//print $resultFetchLdapUser."-".$ldap->ldapUserDN."-".$ldap->searchUser.'-'.$ldap->searchPassword;exit;
+		
 		$result=$ldap->connect_bind();
 		if ($result > 0)
 		{
@@ -188,7 +188,7 @@ function check_user_password_ldap($usertotest, $passwordtotest, $entitytotest)
 							// TODO Que faire si update echoue car on update avec un login deja existant.
 						}
 
-						//$resultUpdate = $usertmp->update_ldap2dolibarr($ldap);
+						
 					}
 					unset($usertmp);
 				}

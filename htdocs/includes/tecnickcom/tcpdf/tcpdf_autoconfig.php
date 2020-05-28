@@ -1,37 +1,37 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_autoconfig.php
 // Version     : 1.1.1
 // Begin       : 2013-05-16
 // Last Update : 2014-12-18
 // Authors     : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2011-2014 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the License
 // along with TCPDF. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
+
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : Try to automatically configure some TCPDF
 //               constants if not defined.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -77,7 +77,7 @@ if (!defined('K_PATH_FONTS')) {
 }
 
 if (!defined('K_PATH_URL')) {
-	$k_path_url = K_PATH_MAIN; // default value for console mode
+	$k_path_url = K_PATH_MAIN; 
 	if (isset($_SERVER['HTTP_HOST']) AND (!empty($_SERVER['HTTP_HOST']))) {
 		if(isset($_SERVER['HTTPS']) AND (!empty($_SERVER['HTTPS'])) AND (strtolower($_SERVER['HTTPS']) != 'off')) {
 			$k_path_url = 'https://';
@@ -236,6 +236,6 @@ if (!defined('K_TIMEZONE')) {
 	define('K_TIMEZONE', @date_default_timezone_get());
 }
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

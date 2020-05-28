@@ -74,13 +74,13 @@ function dolMd2Asciidoc($content, $parser = 'dolibarr', $replaceimagepath = null
             $content = preg_replace('/'.preg_quote($keytoreplace, '/').'/m', $valafter, $content);
         }
     }
-    //if ($parser == 'dolibarr')
+    
     //{
         $content = preg_replace('/<!--.*-->/msU', '', $content);
     //}
-    //else
+    
     //{
-    //    $content = $content;
+    
     //}
 
     return $content;

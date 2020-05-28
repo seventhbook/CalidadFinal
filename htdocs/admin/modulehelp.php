@@ -83,14 +83,14 @@ $modNameLoaded=array();
 foreach ($modulesdir as $dir)
 {
 	// Load modules attributes in arrays (name, numero, orders) from dir directory
-	//print $dir."\n<br>";
+	
 	dol_syslog("Scan directory ".$dir." for module descriptor files (modXXX.class.php)");
 	$handle=@opendir($dir);
 	if (is_resource($handle))
 	{
 		while (($file = readdir($handle))!==false)
 		{
-			//print "$i ".$file."\n<br>";
+			
 		    if (is_readable($dir.$file) && substr($file, 0, 3) == 'mod'  && substr($file, dol_strlen($file) - 10) == '.class.php')
 		    {
 		        $modName = substr($file, 0, dol_strlen($file) - 10);
@@ -129,7 +129,7 @@ foreach ($modulesdir as $dir)
 								if (preg_match('/deprecated/', $objMod->version) && (empty($conf->global->$const_name) && ($conf->global->MAIN_FEATURES_LEVEL >= 0))) $modulequalified=0;
 
 		    					// We discard modules according to property disabled
-		    					//if (! empty($objMod->hidden)) $modulequalified=0;
+		    					
 
 		    					if ($modulequalified > 0)
 		    					{
@@ -172,7 +172,7 @@ foreach ($modulesdir as $dir)
 
 		    			            $orders[$i]  = $familyinfo[$familykey]['position']."_".$familykey."_".$moduleposition."_".$j;   // Sort by family, then by module position then number
 		    						$dirmod[$i]  = $dir;
-		    						//print $i.'-'.$dirmod[$i].'<br>';
+		    						
 		    			            // Set categ[$i]
 		    						$specialstring = 'unknown';
 		    			            if ($objMod->version == 'development' || $objMod->version == 'experimental') $specialstring='expdev';

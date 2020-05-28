@@ -174,7 +174,7 @@ class Scope
             $className = get_class($r);
             foreach ($properties as $property => $value) {
                 if (property_exists($className, $property)) {
-                    //if not a static property
+                    
                     array_key_exists($property, $objectVars)
                         ? $r->{$property} = $value
                         : $r::$$property = $value;

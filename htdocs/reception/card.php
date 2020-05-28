@@ -442,7 +442,7 @@ if (empty($reshook))
 
 	elseif ($action == 'setdate_livraison' && $user->rights->reception->creer)
 	{
-	    //print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
+	    
 	    $datedelivery = dol_mktime(GETPOST('liv_hour', 'int'), GETPOST('liv_min', 'int'), 0, GETPOST('liv_month', 'int'), GETPOST('liv_day', 'int'), GETPOST('liv_year', 'int'));
 
 	    $object->fetch($id);
@@ -806,8 +806,8 @@ if ($action == 'create')
             // Date delivery planned
             print '<tr><td>'.$langs->trans("DateDeliveryPlanned").'</td>';
             print '<td colspan="3">';
-            //print dol_print_date($object->date_livraison,"day");	// date_livraison come from order and will be stored into date_delivery planed.
-            $date_delivery = ($date_delivery ? $date_delivery : $object->date_livraison); // $date_delivery comes from GETPOST
+            
+            $date_delivery = ($date_delivery ? $date_delivery : $object->date_livraison); 
             print $form->selectDate($date_delivery ? $date_delivery : -1, 'date_delivery', 1, 1, 1);
             print "</td>\n";
             print '</tr>';
@@ -915,7 +915,7 @@ if ($action == 'create')
 				{
 					$numAsked++;
 
-					// $numline=$reg[2] + 1; // line of product
+					
 					$numline = $numAsked;
 					$prod = "product_".$reg[1].'_'.$reg[2];
 					$qty = "qty_".$reg[1].'_'.$reg[2];
@@ -931,7 +931,7 @@ if ($action == 'create')
 					$numAsked++;
 
 					// eat-by date dispatch
-					// $numline=$reg[2] + 1; // line of product
+					
 					$numline = $numAsked;
 					$prod = 'product_batch_'.$reg[1].'_'.$reg[2];
 					$qty = 'qty_'.$reg[1].'_'.$reg[2];
@@ -1329,7 +1329,7 @@ elseif ($id || $ref)
                     $morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
                 }
                 if ($action == 'classify') {
-                    // $morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                    
                     $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                     $morehtmlref .= '<input type="hidden" name="action" value="classin">';
                     $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1516,7 +1516,7 @@ elseif ($id || $ref)
 		{
 			if ($calculatedVolume) print ' ('.$langs->trans("SumOfProductVolumes").': ';
 			print showDimensionInBestUnit($totalVolume, 0, "volume", $langs, isset($conf->global->MAIN_VOLUME_DEFAULT_ROUND) ? $conf->global->MAIN_VOLUME_DEFAULT_ROUND : -1, isset($conf->global->MAIN_VOLUME_DEFAULT_UNIT) ? $conf->global->MAIN_VOLUME_DEFAULT_UNIT : 'no');
-			//if (empty($calculatedVolume)) print ' ('.$langs->trans("Calculated").')';
+			
 			if ($calculatedVolume) print ')';
 		}
 		print "</td>\n";
@@ -1681,7 +1681,7 @@ elseif ($id || $ref)
 		}
 		print '<td class="center">'.$langs->trans("CalculatedWeight").'</td>';
 		print '<td class="center">'.$langs->trans("CalculatedVolume").'</td>';
-		//print '<td class="center">'.$langs->trans("Size").'</td>';
+		
 		if ($object->statut == 0)
 		{
 			print '<td class="linecoledit"></td>';
@@ -1715,20 +1715,20 @@ elseif ($id || $ref)
     		$sql = "SELECT obj.rowid, obj.fk_product, obj.label, obj.description, obj.product_type as fk_product_type, obj.qty as qty_asked, obj.date_start, obj.date_end";
     		$sql .= ", ed.rowid as receptionline_id, ed.qty, ed.fk_reception as reception_id,  ed.fk_entrepot";
     		$sql .= ", e.rowid as reception_id, e.ref as reception_ref, e.date_creation, e.date_valid, e.date_delivery, e.date_reception";
-    		//if ($conf->livraison_bon->enabled) $sql .= ", l.rowid as livraison_id, l.ref as livraison_ref, l.date_delivery, ld.qty as qty_received";
+    		
     		$sql .= ', p.label as product_label, p.ref, p.fk_product_type, p.rowid as prodid, p.tobatch as product_tobatch';
     		$sql .= ', p.description as product_desc';
     		$sql .= " FROM ".MAIN_DB_PREFIX."commande_fournisseur_dispatch as ed";
     		$sql .= ", ".MAIN_DB_PREFIX."reception as e";
     		$sql .= ", ".MAIN_DB_PREFIX.$origin."det as obj";
-    		//if ($conf->livraison_bon->enabled) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."livraison as l ON l.fk_reception = e.rowid LEFT JOIN ".MAIN_DB_PREFIX."livraisondet as ld ON ld.fk_livraison = l.rowid  AND obj.rowid = ld.fk_origin_line";
+    		
     		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product as p ON obj.fk_product = p.rowid";
     		$sql .= " WHERE e.entity IN (".getEntity('reception').")";
     		$sql .= " AND obj.fk_commande = ".$origin_id;
     		$sql .= " AND obj.rowid = ed.fk_commandefourndet";
     		$sql .= " AND ed.fk_reception = e.rowid";
     		$sql .= " AND ed.fk_reception !=".$object->id;
-    		//if ($filter) $sql.= $filter;
+    		
     		$sql .= " ORDER BY obj.fk_product";
 
     		dol_syslog("get list of reception lines", LOG_DEBUG);
@@ -1743,7 +1743,7 @@ elseif ($id || $ref)
         		    $obj = $db->fetch_object($resql);
         		    if ($obj)
         		    {
-        		        // $obj->rowid is rowid in $origin."det" table
+        		        
         		        $alreadysent[$obj->rowid][$obj->receptionline_id] = array('reception_ref'=>$obj->reception_ref, 'reception_id'=>$obj->reception_id, 'warehouse'=>$obj->fk_entrepot, 'qty'=>$obj->qty, 'date_valid'=>$obj->date_valid, 'date_delivery'=>$obj->date_delivery);
         		    }
         		    $i++;
@@ -2084,7 +2084,7 @@ elseif ($id || $ref)
 			{
 				if ($user->rights->reception->creer && $object->statut > 0 && !$object->billed)
 				{
-					$label = "Close"; $paramaction = 'classifyclosed'; // = Transferred/Received
+					$label = "Close"; $paramaction = 'classifyclosed'; 
 					// Label here should be "Close" or "ClassifyBilled" if we decided to make bill on receptions instead of orders
 					if (!empty($conf->fournisseur->enabled) && !empty($conf->global->WORKFLOW_BILL_ON_RECEPTION))  // Quand l'option est on, il faut avoir le bouton en plus et non en remplacement du Close ?
 					{
@@ -2124,7 +2124,7 @@ elseif ($id || $ref)
 		print $formfile->showdocuments('reception', $objectref, $filedir, $urlsource, $genallowed, $delallowed, $object->modelpdf, 1, 0, 0, 28, 0, '', '', '', $soc->default_lang);
 
 		// Show links to link elements
-		//$linktoelem = $form->showLinkToObjectBlock($object, null, array('order'));
+		
 		$somethingshown = $form->showLinkedObjectBlock($object, '');
 
 		print '</div><div class="fichehalfright"><div class="ficheaddleft">';

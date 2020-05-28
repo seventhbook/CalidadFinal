@@ -1735,7 +1735,7 @@ class PHPExcel_Calculation {
 		$this->_workbook = $workbook;
 		$this->_cyclicReferenceStack = new PHPExcel_CalcEngine_CyclicReferenceStack();
 	    $this->_debugLog = new PHPExcel_CalcEngine_Logger($this->_cyclicReferenceStack);
-	}	//	function __construct()
+	}	
 
 
 	public function __destruct() {
@@ -1775,7 +1775,7 @@ class PHPExcel_Calculation {
 		}
 
 		return self::$_instance;
-	}	//	function getInstance()
+	}	
 
 	/**
 	 * Unset an instance of this class
@@ -1800,7 +1800,7 @@ class PHPExcel_Calculation {
 	 */
 	public function flushInstance() {
 		$this->clearCalculationCache();
-	}	//	function flushInstance()
+	}	
 
 
 	/**
@@ -1821,7 +1821,7 @@ class PHPExcel_Calculation {
 	 */
 	public final function __clone() {
 		throw new PHPExcel_Calculation_Exception ('Cloning the calculation engine is not allowed!');
-	}	//	function __clone()
+	}	
 
 
 	/**
@@ -1859,7 +1859,7 @@ class PHPExcel_Calculation {
 			return TRUE;
 		}
 		return FALSE;
-	}	//	function setArrayReturnType()
+	}	
 
 
 	/**
@@ -1870,7 +1870,7 @@ class PHPExcel_Calculation {
 	 */
 	public static function getArrayReturnType() {
 		return self::$returnArrayAsType;
-	}	//	function getArrayReturnType()
+	}	
 
 
 	/**
@@ -1881,7 +1881,7 @@ class PHPExcel_Calculation {
 	 */
 	public function getCalculationCacheEnabled() {
 		return $this->_calculationCacheEnabled;
-	}	//	function getCalculationCacheEnabled()
+	}	
 
 	/**
 	 * Enable/disable calculation cache
@@ -1892,7 +1892,7 @@ class PHPExcel_Calculation {
 	public function setCalculationCacheEnabled($pValue = TRUE) {
 		$this->_calculationCacheEnabled = $pValue;
 		$this->clearCalculationCache();
-	}	//	function setCalculationCacheEnabled()
+	}	
 
 
 	/**
@@ -1900,7 +1900,7 @@ class PHPExcel_Calculation {
 	 */
 	public function enableCalculationCache() {
 		$this->setCalculationCacheEnabled(TRUE);
-	}	//	function enableCalculationCache()
+	}	
 
 
 	/**
@@ -1908,7 +1908,7 @@ class PHPExcel_Calculation {
 	 */
 	public function disableCalculationCache() {
 		$this->setCalculationCacheEnabled(FALSE);
-	}	//	function disableCalculationCache()
+	}	
 
 
 	/**
@@ -1916,7 +1916,7 @@ class PHPExcel_Calculation {
 	 */
 	public function clearCalculationCache() {
 		$this->_calculationCache = array();
-	}	//	function clearCalculationCache()
+	}	
 
 	/**
 	 * Clear calculation cache for a specified worksheet
@@ -1927,7 +1927,7 @@ class PHPExcel_Calculation {
 		if (isset($this->_calculationCache[$worksheetName])) {
 			unset($this->_calculationCache[$worksheetName]);
 		}
-	}	//	function clearCalculationCacheForWorksheet()
+	}	
 
 	/**
 	 * Rename calculation cache for a specified worksheet
@@ -1940,7 +1940,7 @@ class PHPExcel_Calculation {
 			$this->_calculationCache[$toWorksheetName] = &$this->_calculationCache[$fromWorksheetName];
 			unset($this->_calculationCache[$fromWorksheetName]);
 		}
-	}	//	function renameCalculationCacheForWorksheet()
+	}	
 
 
 	/**
@@ -1950,7 +1950,7 @@ class PHPExcel_Calculation {
 	 */
 	public function getLocale() {
 		return self::$_localeLanguage;
-	}	//	function getLocale()
+	}	
 
 
 	/**
@@ -2030,7 +2030,7 @@ class PHPExcel_Calculation {
 			return TRUE;
 		}
 		return FALSE;
-	}	//	function setLocale()
+	}	
 
 
 
@@ -2108,7 +2108,7 @@ class PHPExcel_Calculation {
 		}
 
 		return self::_translateFormula(self::$functionReplaceFromExcel,self::$functionReplaceToLocale,$formula,',',self::$_localeArgumentSeparator);
-	}	//	function _translateFormulaToLocale()
+	}	
 
 
 	private static $functionReplaceFromLocale	= NULL;
@@ -2136,7 +2136,7 @@ class PHPExcel_Calculation {
 		}
 
 		return self::_translateFormula(self::$functionReplaceFromLocale,self::$functionReplaceToExcel,$formula,self::$_localeArgumentSeparator,',');
-	}	//	function _translateFormulaToEnglish()
+	}	
 
 
 	public static function _localeFunc($function) {
@@ -2175,7 +2175,7 @@ class PHPExcel_Calculation {
 		}
 
 		return $value;
-	}	//	function _wrapResult()
+	}	
 
 
 	/**
@@ -2194,7 +2194,7 @@ class PHPExcel_Calculation {
 			return PHPExcel_Calculation_Functions::NaN();
 		}
 		return $value;
-	}	//	function _unwrapResult()
+	}	
 
 
 
@@ -2214,7 +2214,7 @@ class PHPExcel_Calculation {
 		} catch (PHPExcel_Exception $e) {
 			throw new PHPExcel_Calculation_Exception($e->getMessage());
 		}
-	}	//	function calculate()
+	}	
 
 
 	/**
@@ -2288,7 +2288,7 @@ class PHPExcel_Calculation {
 			return PHPExcel_Calculation_Functions::NaN();
 		}
 		return $result;
-	}	//	function calculateCellValue(
+	}	
 
 
 	/**
@@ -2308,7 +2308,7 @@ class PHPExcel_Calculation {
 
 		//	Parse the formula and return the token stack
 		return $this->_parseFormula($formula);
-	}	//	function parseFormula()
+	}	
 
 
 	/**
@@ -2341,7 +2341,7 @@ class PHPExcel_Calculation {
 		$this->_calculationCacheEnabled = $resetCache;
 
 		return $result;
-	}	//	function calculateFormula()
+	}	
 
 
     public function getValueFromCache($cellReference, &$cellValue) {
@@ -2420,7 +2420,7 @@ class PHPExcel_Calculation {
 
 		//	Return the calculated value
 		return $cellValue;
-	}	//	function _calculateFormulaValue()
+	}	
 
 
 	/**
@@ -2462,7 +2462,7 @@ class PHPExcel_Calculation {
 			self::_resizeMatricesShrink($operand1,$operand2,$matrix1Rows,$matrix1Columns,$matrix2Rows,$matrix2Columns);
 		}
 		return array( $matrix1Rows,$matrix1Columns,$matrix2Rows,$matrix2Columns);
-	}	//	function _checkMatrixOperands()
+	}	
 
 
 	/**
@@ -2484,7 +2484,7 @@ class PHPExcel_Calculation {
 		}
 		$matrix = array_values($matrix);
 		return array($matrixRows,$matrixColumns);
-	}	//	function _getMatrixDimensions()
+	}	
 
 
 	/**
@@ -2527,7 +2527,7 @@ class PHPExcel_Calculation {
 				}
 			}
 		}
-	}	//	function _resizeMatricesShrink()
+	}	
 
 
 	/**
@@ -2574,7 +2574,7 @@ class PHPExcel_Calculation {
 				}
 			}
 		}
-	}	//	function _resizeMatricesExtend()
+	}	
 
 
 	/**
@@ -2609,7 +2609,7 @@ class PHPExcel_Calculation {
 			}
 		}
 		return PHPExcel_Calculation_Functions::flattenSingleValue($value);
-	}	//	function _showValue()
+	}	
 
 
 	/**
@@ -2646,7 +2646,7 @@ class PHPExcel_Calculation {
 			}
 			return $typeString.' with a value of '.$this->_showValue($value);
 		}
-	}	//	function _showTypeDetails()
+	}	
 
 
 	private function _convertMatrixReferences($formula) {
@@ -2697,12 +2697,12 @@ class PHPExcel_Calculation {
 		}
 
 		return $formula;
-	}	//	function _convertMatrixReferences()
+	}	
 
 
 	private static function _mkMatrix() {
 		return func_get_args();
-	}	//	function _mkMatrix()
+	}	
 
 
 	//	Binary Operators
@@ -2760,7 +2760,7 @@ class PHPExcel_Calculation {
 		$stack = new PHPExcel_Calculation_Token_Stack;
 		$output = array();
 		$expectingOperator = FALSE;					//	We use this test in syntax-checking the expression to determine when a
-													//		- is a negation or + is a positive operator rather than an operation
+													
 		$expectingOperand = FALSE;					//	We use this test in syntax-checking the expression to determine whether an operand
 													//		should be null in a function call
 		//	The guts of the lexical parser
@@ -2776,7 +2776,7 @@ class PHPExcel_Calculation {
 
 			if ($opCharacter == '-' && !$expectingOperator) {				//	Is it a negation instead of a minus?
 				$stack->push('Unary Operator','~');							//	Put a negation on the stack
-				++$index;													//		and drop the negation symbol
+				++$index;													
 			} elseif ($opCharacter == '%' && $expectingOperator) {
 				$stack->push('Unary Operator','%');							//	Put a percentage on the stack
 				++$index;
@@ -2886,7 +2886,7 @@ class PHPExcel_Calculation {
 				$stack->push('Brace', '(');
 				++$index;
 
-			} elseif ($isOperandOrFunction && !$expectingOperator) {	// do we now have a function/variable/number?
+			} elseif ($isOperandOrFunction && !$expectingOperator) {	
 				$expectingOperator = TRUE;
 				$expectingOperand = FALSE;
 				$val = $match[1];
@@ -2962,7 +2962,7 @@ class PHPExcel_Calculation {
 						$val = self::_wrapResult(str_replace('""','"',self::_unwrapResult($val)));
 					} elseif (is_numeric($val)) {
 						if ((strpos($val,'.') !== FALSE) || (stripos($val,'e') !== FALSE) || ($val > PHP_INT_MAX) || ($val < -PHP_INT_MAX)) {
-//							echo 'Casting '.$val.' to float<br />';
+
 							$val = (float) $val;
 						} else {
 							$val = (integer) $val;
@@ -3030,11 +3030,11 @@ class PHPExcel_Calculation {
 
 		while (($op = $stack->pop()) !== NULL) {	// pop everything off the stack and push onto output
 			if ((is_array($op) && $op['value'] == '(') || ($op === '('))
-				return $this->_raiseFormulaError("Formula Error: Expecting ')'");	// if there are any opening braces on the stack, then braces were unbalanced
+				return $this->_raiseFormulaError("Formula Error: Expecting ')'");	
 			$output[] = $op;
 		}
 		return $output;
-	}	//	function _parseFormula()
+	}	
 
 
 	private static function _dataTestReference(&$operandData)
@@ -3159,7 +3159,7 @@ class PHPExcel_Calculation {
 						break;
 					case '&'	:			//	Concatenation
 						//	If either of the operands is a matrix, we need to treat them both as matrices
-						//		(converting the other operand to a matrix if need be); then perform the required
+						
 						//		matrix operation
 						if (is_bool($operand1)) {
 							$operand1 = ($operand1) ? self::$_localeBoolean['TRUE'] : self::$_localeBoolean['FALSE'];
@@ -3202,7 +3202,7 @@ class PHPExcel_Calculation {
 						break;
 				}
 
-			// if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
+			
 			} elseif (($token === '~') || ($token === '%')) {
 				if (($arg = $stack->pop()) === NULL) return $this->_raiseFormulaError('Internal error - Operand value missing from stack');
 				$arg = $arg['value'];
@@ -3299,7 +3299,7 @@ class PHPExcel_Calculation {
 				}
 				$stack->push('Value',$cellValue,$cellRef);
 
-			// if the token is a function, pop arguments off the stack, hand them to the function, and push the result back on
+			
 			} elseif (preg_match('/^'.self::CALCULATION_REGEXP_FUNCTION.'$/i', $token, $matches)) {
 				$functionName = $matches[1];
 				$argCount = $stack->pop();
@@ -3307,7 +3307,7 @@ class PHPExcel_Calculation {
 				if ($functionName != 'MKMATRIX') {
 					$this->_debugLog->writeDebugLog('Evaluating Function ', self::_localeFunc($functionName), '() with ', (($argCount == 0) ? 'no' : $argCount), ' argument', (($argCount == 1) ? '' : 's'));
 				}
-				if ((isset(self::$_PHPExcelFunctions[$functionName])) || (isset(self::$_controlFunctions[$functionName]))) {	// function
+				if ((isset(self::$_PHPExcelFunctions[$functionName])) || (isset(self::$_controlFunctions[$functionName]))) {	
 					if (isset(self::$_PHPExcelFunctions[$functionName])) {
 						$functionCall = self::$_PHPExcelFunctions[$functionName]['functionCall'];
 						$passByReference = isset(self::$_PHPExcelFunctions[$functionName]['passByReference']);
@@ -3426,9 +3426,9 @@ class PHPExcel_Calculation {
 			}
 		}
 
-		//	return a true if the value of the operand is one that we can use in normal binary operations
+		
 		return TRUE;
-	}	//	function _validateBinaryOperand()
+	}	
 
 
 	private function _executeBinaryComparisonOperation($cellID, $operand1, $operand2, $operation, &$stack, $recursingArrays=FALSE) {
@@ -3566,7 +3566,7 @@ class PHPExcel_Calculation {
 		if (!$this->_validateBinaryOperand($cellID,$operand2,$stack)) return FALSE;
 
 		//	If either of the operands is a matrix, we need to treat them both as matrices
-		//		(converting the other operand to a matrix if need be); then perform the required
+		
 		//		matrix operation
 		if ((is_array($operand1)) || (is_array($operand2))) {
 			//	Ensure that both operands are arrays/matrices of the same size
@@ -3626,7 +3626,7 @@ class PHPExcel_Calculation {
 		//	And push the result onto the stack
 		$stack->push('Value',$result);
 		return TRUE;
-	}	//	function _executeNumericBinaryOperation()
+	}	
 
 
 	// trigger an error, but nicely, if need be
@@ -3635,7 +3635,7 @@ class PHPExcel_Calculation {
 		$this->_cyclicReferenceStack->clear();
 		if (!$this->suppressFormulaErrors) throw new PHPExcel_Calculation_Exception($errorMessage);
 		trigger_error($errorMessage, E_USER_ERROR);
-	}	//	function _raiseFormulaError()
+	}	
 
 
 	/**
@@ -3686,7 +3686,7 @@ class PHPExcel_Calculation {
 
 		// Return
 		return $returnValue;
-	}	//	function extractCellRange()
+	}	
 
 
 	/**
@@ -3752,7 +3752,7 @@ class PHPExcel_Calculation {
 
 		// Return
 		return $returnValue;
-	}	//	function extractNamedRange()
+	}	
 
 
 	/**
@@ -3768,7 +3768,7 @@ class PHPExcel_Calculation {
 		} else {
 			return FALSE;
 		}
-	}	//	function isImplemented()
+	}	
 
 
 	/**
@@ -3791,7 +3791,7 @@ class PHPExcel_Calculation {
 
 		// Return
 		return $returnValue;
-	}	//	function listFunctions()
+	}	
 
 
 	/**
@@ -3801,7 +3801,7 @@ class PHPExcel_Calculation {
 	 */
 	public function listAllFunctionNames() {
 		return array_keys(self::$_PHPExcelFunctions);
-	}	//	function listAllFunctionNames()
+	}	
 
 	/**
 	 * Get a list of implemented Excel function names
@@ -3820,7 +3820,7 @@ class PHPExcel_Calculation {
 
 		// Return
 		return $returnValue;
-	}	//	function listFunctionNames()
+	}	
 
-}	//	class PHPExcel_Calculation
+}	
 

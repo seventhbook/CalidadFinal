@@ -1,43 +1,43 @@
 <?php
-//============================================================+
+
 // File name   : tcpdi_parser.php
 // Version     : 1.0
 // Begin       : 2013-09-25
 // Last Update : 2013-09-25
 // Author      : Paul Nicholls - https://github.com/pauln
 // License     : GNU-LGPL v3 (https://www.gnu.org/copyleft/lesser.html)
-//
+
 // Based on    : tcpdf_parser.php
 // Version     : 1.0.003
 // Begin       : 2011-05-23
 // Last Update : 2013-03-17
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (https://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2011-2013 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is for use with the TCPDF software library.
-//
+
 // tcpdi_parser is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // tcpdi_parser is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the License
 // along with tcpdi_parser. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
+
+
 // See LICENSE file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : This is a PHP class for parsing PDF documents.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -47,7 +47,7 @@
  * @version 1.0
  */
 
-// include class for decoding filters
+
 if (defined('TCPDF_PATH')) require_once(constant('TCPDF_PATH').'/include/tcpdf_filters.php');
 else require_once(dirname(__FILE__).'/../tecnickcom/tcpdf/include/tcpdf_filters.php');
 
@@ -174,7 +174,7 @@ class tcpdi_parser {
      */
     public $availableBoxes = array('/MediaBox', '/CropBox', '/BleedBox', '/TrimBox', '/ArtBox');
 
-// -----------------------------------------------------------------------------
+
 
 	/**
 	 * Parse a PDF document an return an array of objects.
@@ -450,7 +450,7 @@ class tcpdi_parser {
 	 * @since 1.0.003 (2013-03-16)
 	 */
 	protected function decodeXrefStream($startxref, $xref=array()) {
-		// try to read Cross-Reference Stream
+		
 		list($xrefobj, $unused) = $this->getRawObject($startxref);
 		$xrefcrs = $this->getIndirectObject($xrefobj[1], $startxref, true);
         if (!isset($xref['xref_location'])) {
@@ -527,7 +527,7 @@ class tcpdi_parser {
 			$ddata = array();
 			// initialize first row with zeros
 			$prev_row = array_fill (0, $rowlen, 0);
-			// for each row apply PNG unpredictor
+			
 			foreach ($sdata as $k => $row) {
 				// initialize new row
 				$ddata[$k] = array();
@@ -535,9 +535,9 @@ class tcpdi_parser {
 				if (empty($predictor)) {
 					$predictor = (10 + $row[0]);
 				}
-				// for each byte on the row
+				
 				for ($i=1; $i<=$columns; ++$i) {
-					// new index
+					
 					$j = ($i - 1);
 					$row_up = $prev_row[$j];
 					if ($i == 1) {
@@ -573,7 +573,7 @@ class tcpdi_parser {
 							$pb = abs($p - $row_up);
 							$pc = abs($p - $row_upleft);
 							$pmin = min($pa, $pb, $pc);
-							// return minumum distance
+							
 							switch ($pmin) {
 								case $pa: {
 									$ddata[$k][$j] = (($row[$i] + $row_left) & 0xff);
@@ -601,18 +601,18 @@ class tcpdi_parser {
 			// complete decoding
 			unset($sdata);
 			$sdata = array();
-			// for every row
+			
 			foreach ($ddata as $k => $row) {
 				// initialize new row
 				$sdata[$k] = array(0, 0, 0);
 				if ($wb[0] == 0) {
-					// default type field
+					
 					$sdata[$k][0] = 1;
 				}
 				$i = 0; // count bytes on the row
-				// for every column
+				
 				for ($c = 0; $c < 3; ++$c) {
-					// for every byte on the column
+					
 					for ($b = 0; $b < $wb[$c]; ++$b) {
 						$sdata[$k][$c] += ($row[$i] << (($wb[$c] - 1 - $b) * 8));
 						++$i;
@@ -628,11 +628,11 @@ class tcpdi_parser {
 			}
 			foreach ($sdata as $k => $row) {
 				switch ($row[0]) {
-					case 0: { // (f) linked list of free objects
+					case 0: { 
 						++$obj_num;
 						break;
 					}
-					case 1: { // (n) objects that are in use but are not compressed
+					case 1: { 
 						// create unique object index: [object number]_[generation number]
 						$index = $obj_num.'_'.$row[2];
 						// check if object already exist
@@ -756,7 +756,7 @@ class tcpdi_parser {
 			}
 			case '[':   // \x5B LEFT SQUARE BRACKET
 			case ']': { // \x5D RIGHT SQUARE BRACKET
-				// array object
+				
 				$objtype = PDF_TYPE_ARRAY;
 				++$offset;
 				if ($char == '[') {
@@ -958,7 +958,7 @@ class tcpdi_parser {
 		} while ($element[0] != 'endobj');
 		// remove closing delimiter
 		array_pop($objdata);
-		// return raw object content
+		
 		return $objdata;
 	}
 
@@ -982,7 +982,7 @@ class tcpdi_parser {
 			// reference to indirect object
 			$object = null;
 			if (isset($this->objects[$key[0]][$key[1]])) {
-				// this object has been already parsed
+				
 				$object = $this->objects[$key[0]][$key[1]];
 			} elseif (($offset = $this->findObjectOffset($key)) !== false) {
 				// parse new object
@@ -1112,7 +1112,7 @@ class tcpdi_parser {
 						// single filter
 						$filters[] = $v[1];
 					} elseif ($v[0] == PDF_TYPE_ARRAY) {
-						// array of filters
+						
 						foreach ($v[1] as $flt) {
 							if ($flt[0] == PDF_TYPE_TOKEN) {
 								$filters[] = $flt[1];
@@ -1165,7 +1165,7 @@ class tcpdi_parser {
      *
      * @param array $obj Array of pdf-data
      */
-    private function _getPageResources ($obj) { // $obj = /Page
+    private function _getPageResources ($obj) { 
     	$obj = $this->getObjectVal($obj);
 
         // If the current object has a resources
@@ -1374,12 +1374,12 @@ class tcpdi_parser {
 	 * @since 1.0.000 (2011-05-23)
 	 */
 	public function Error($msg) {
-		// exit program and print error
+		
 		die('<strong>TCPDF_PARSER ERROR: </strong>'.$msg);
 	}
 
 } // END OF TCPDF_PARSER CLASS
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

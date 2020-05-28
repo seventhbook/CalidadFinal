@@ -156,7 +156,7 @@ if ($action == 'delete')
 			{
 				$accountline=new AccountLine($db);
 				$result=$accountline->fetch($object->fk_bank);
-				if ($result > 0) $result=$accountline->delete($user);	// $result may be 0 if not found (when bank entry was deleted manually and fk_bank point to nothing)
+				if ($result > 0) $result=$accountline->delete($user);	
 			}
 
 			if ($result >= 0)
@@ -334,7 +334,7 @@ if ($id)
 	print '<table class="border centpercent">';
 
 	// Label
-	//print '<tr><td class="titlefield">'.$langs->trans("Label").'</td><td>'.$object->label.'</td></tr>';
+	
 
 	print "<tr>";
 	print '<td class="titlefield">'.$langs->trans("DatePayment").'</td><td>';
@@ -345,7 +345,7 @@ if ($id)
 	print $form->editfieldkey($form->textwithpicto($langs->trans("PeriodEndDate"), $langs->trans("LastDayTaxIsRelatedTo")), 'datev', $object->datev, $object, $user->rights->tax->charges->creer, 'day');
 	print '</td><td>';
 	print $form->editfieldval("PeriodEndDate", 'datev', $object->datev, $object, $user->rights->tax->charges->creer, 'day');
-	//print dol_print_date($object->datev,'day');
+	
 	print '</td></tr>';
 
 	print '<tr><td>'.$langs->trans("Amount").'</td><td>'.price($object->amount).'</td></tr>';

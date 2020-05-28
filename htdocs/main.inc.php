@@ -94,8 +94,8 @@ function testSqlAndScriptInject($val, $type)
 	$inj += preg_match('/base[\s]+href/si', $val);
 	// List of dom events is on https://www.w3schools.com/jsref/dom_obj_event.asp
 	$inj += preg_match('/onmouse([a-z]*)\s*=/i', $val); // onmousexxx can be set on img or any html tag like <img title='...' onmouseover=alert(1)>
-	$inj += preg_match('/ondrag([a-z]*)\s*=/i', $val); //
-	$inj += preg_match('/ontouch([a-z]*)\s*=/i', $val); //
+	$inj += preg_match('/ondrag([a-z]*)\s*=/i', $val); 
+	$inj += preg_match('/ontouch([a-z]*)\s*=/i', $val); 
 	$inj += preg_match('/on(abort|afterprint|beforeprint|beforeunload|blur|canplay|canplaythrough|change|click|contextmenu|copy|cut)\s*=/i', $val);
 	$inj += preg_match('/on(dblclick|drop|durationchange|ended|error|focus|focusin|focusout|hashchange|input|invalid)\s*=/i', $val);
 	$inj += preg_match('/on(keydown|keypress|keyup|load|loadeddata|loadedmetadata|loadstart|offline|online|pagehide|pageshow)\s*=/i', $val);
@@ -129,7 +129,7 @@ function analyseVarsForSqlAndScriptsInjection(&$var, $type)
 		{
 			if (analyseVarsForSqlAndScriptsInjection($key, $type) && analyseVarsForSqlAndScriptsInjection($value, $type))
 			{
-				//$var[$key] = $value;	// This is useless
+				
 			}
 			else
 			{
@@ -258,7 +258,7 @@ if (isset($_SERVER["HTTP_USER_AGENT"]))
 
 
 // Force HTTPS if required ($conf->file->main_force_https is 0/1 or https dolibarr root url)
-// $_SERVER["HTTPS"] is 'on' when link is https, otherwise $_SERVER["HTTPS"] is empty or 'off'
+
 if (!empty($conf->file->main_force_https) && (empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != 'on'))
 {
 	$newurl = '';
@@ -356,7 +356,7 @@ if (!defined('NOTOKENRENEWAL'))
 }
 
 
-//$dolibarr_nocsrfcheck=1;
+
 // Check token
 
 if ((!defined('NOCSRFCHECK') && empty($dolibarr_nocsrfcheck) && !empty($conf->global->MAIN_SECURITY_CSRF_WITH_TOKEN))
@@ -373,7 +373,7 @@ if ((!defined('NOCSRFCHECK') && empty($dolibarr_nocsrfcheck) && !empty($conf->gl
 	if (GETPOSTISSET('token') && GETPOST('token', 'alpha') != $_SESSION['token'])
 	{
 		dol_syslog("--- Access to ".$_SERVER["PHP_SELF"]." refused due to invalid token, so we disable POST and some GET parameters - referer=".$_SERVER['HTTP_REFERER'].", action=".GETPOST('action', 'aZ09').", _GET|POST['token']=".GETPOST('token', 'alpha').", _SESSION['token']=".$_SESSION['token'], LOG_WARNING);
-		//print 'Unset POST by CSRF protection in main.inc.php.';	// Do not output anything because this create problems when using the BACK button on browsers.
+		
 		if ($conf->global->MAIN_FEATURES_LEVEL > 1) setEventMessages('Unset POST by CSRF protection in main.inc.php (POST for this token was already done or was done by a not allowed web page with a wrong token).'."<br>\n".'$_SERVER[REQUEST_URI] = '.$_SERVER['REQUEST_URI'].' $_SERVER[REQUEST_METHOD] = '.$_SERVER['REQUEST_METHOD'].' GETPOST(token) = '.GETPOST('token', 'alpha').' $_SESSION[token] = '.$_SESSION['token'], null, 'warnings');
 		unset($_POST);
 		unset($_GET['confirm']);
@@ -426,7 +426,7 @@ if (is_array($modulepart) && count($modulepart) > 0)
 $login = '';
 if (!defined('NOLOGIN'))
 {
-	// $authmode lists the different method of identification to be tested in order of preference.
+	
 	// Example: 'http', 'dolibarr', 'ldap', 'http,forceuser', '...'
 
 	if (defined('MAIN_AUTHENTICATION_MODE'))
@@ -1105,7 +1105,7 @@ if (!function_exists("llxHeader"))
 
 		if (empty($conf->dol_hide_leftmenu))
 		{
-			left_menu('', $help_url, '', '', 1, $title, 1); // $menumanager is retreived with a global $menumanager inside this function
+			left_menu('', $help_url, '', '', 1, $title, 1); 
 		}
 
 		// main area
@@ -1161,11 +1161,11 @@ function top_httphead($contenttype = 'text/html', $forcenocache = 0)
 			// For example, to restrict 'script', 'object', 'frames' or 'img' to some domains:
 			// script-src https://api.google.com https://anotherhost.com; object-src https://youtube.com; frame-src https://youtube.com; img-src: https://static.example.com
 			// For example, to restrict everything to one domain, except 'object', ...:
-			// default-src https://cdn.example.net; object-src 'none'
+			
 			// For example, to restrict everything to itself except img that can be on other servers:
 			
 			// Pre-existing site that uses too much inline code to fix but wants to ensure resources are loaded only over https and disable plugins:
-			// default-src http: https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'
+			
 			header("Content-Security-Policy: ".$contentsecuritypolicy);
 		}
 	}
@@ -1318,7 +1318,7 @@ function top_htmlhead($head, $title = '', $disablejs = 0, $disablehead = 0, $arr
 			}
 		}
 
-		//print 'themepath='.$themepath.' themeparam='.$themeparam;exit;
+		
 		print '<link rel="stylesheet" type="text/css" href="'.$themepath.$themeparam.'">'."\n";
 		if (!empty($conf->global->MAIN_FIX_FLASH_ON_CHROME)) print '<!-- Includes CSS that does not exists as a workaround of flash bug of chrome -->'."\n".'<link rel="stylesheet" type="text/css" href="filethatdoesnotexiststosolvechromeflashbug">'."\n";
 
@@ -1443,7 +1443,7 @@ function top_htmlhead($head, $title = '', $disablejs = 0, $disablehead = 0, $arr
                 }
                 print '<script><!-- enable ckeditor by main.inc.php -->';
                 print 'var CKEDITOR_BASEPATH = \''.$pathckeditor.'\';'."\n";
-                print 'var ckeditorConfig = \''.dol_buildpath($themesubdir.'/theme/'.$conf->theme.'/ckeditor/config.js'.($ext ? '?'.$ext : ''), 1).'\';'."\n"; // $themesubdir='' in standard usage
+                print 'var ckeditorConfig = \''.dol_buildpath($themesubdir.'/theme/'.$conf->theme.'/ckeditor/config.js'.($ext ? '?'.$ext : ''), 1).'\';'."\n"; 
                 print 'var ckeditorFilebrowserBrowseUrl = \''.DOL_URL_ROOT.'/core/filemanagerdol/browser/default/browser.php?Connector='.DOL_URL_ROOT.'/core/filemanagerdol/connectors/php/connector.php\';'."\n";
                 print 'var ckeditorFilebrowserImageBrowseUrl = \''.DOL_URL_ROOT.'/core/filemanagerdol/browser/default/browser.php?Type=Image&Connector='.DOL_URL_ROOT.'/core/filemanagerdol/connectors/php/connector.php\';'."\n";
                 print '</script>'."\n";
@@ -1478,7 +1478,7 @@ function top_htmlhead($head, $title = '', $disablejs = 0, $disablehead = 0, $arr
             print '<script src="'.DOL_URL_ROOT.'/core/js/lib_head.js.php?lang='.$langs->defaultlang.($ext ? '&'.$ext : '').'"></script>'."\n";
 
             // JS forced by modules (relative url starting with /)
-            if (!empty($conf->modules_parts['js']))		// $conf->modules_parts['js'] is array('module'=>array('file1','file2'))
+            if (!empty($conf->modules_parts['js']))		
         	{
         		$arrayjs = (array) $conf->modules_parts['js'];
 	            foreach ($arrayjs as $modjs => $filesjs)
@@ -1593,7 +1593,7 @@ function top_menu($head, $title = '', $target = '', $disablejs = 0, $disablehead
 		$logouttext = '';
 		if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER))
 		{
-			//$logouthtmltext=$appli.'<br>';
+			
 			if ($_SESSION["dol_authmode"] != 'forceuser' && $_SESSION["dol_authmode"] != 'http')
 			{
 				$logouthtmltext .= $langs->trans("Logout").'<br>';
@@ -1657,7 +1657,7 @@ function top_menu($head, $title = '', $target = '', $disablejs = 0, $disablehead
 		if (!empty($conf->modulebuilder->enabled))
 		{
 			$text = '<a href="'.DOL_URL_ROOT.'/modulebuilder/index.php?mainmenu=home&leftmenu=admintools" target="modulebuilder">';
-			//$text.= img_picto(":".$langs->trans("ModuleBuilder"), 'printer_top.png', 'class="printer"');
+			
 			$text .= '<span class="fa fa-bug atoplogin valignmiddle"></span>';
 			$text .= '</a>';
 			$toprightmenu .= @Form::textwithtooltip('', $langs->trans("ModuleBuilder"), 2, 1, $text, 'login_block_elem', 2);
@@ -1676,7 +1676,7 @@ function top_menu($head, $title = '', $target = '', $disablejs = 0, $disablehead
 			}
 			$qs .= (($qs && $morequerystring) ? '&' : '').$morequerystring;
 			$text = '<a href="'.dol_escape_htmltag($_SERVER["PHP_SELF"]).'?'.$qs.($qs ? '&' : '').'optioncss=print" target="_blank">';
-			//$text.= img_picto(":".$langs->trans("PrintContentArea"), 'printer_top.png', 'class="printer"');
+			
 			$text .= '<span class="fa fa-print atoplogin valignmiddle"></span>';
 			$text .= '</a>';
 			$toprightmenu .= @Form::textwithtooltip('', $langs->trans("PrintContentArea"), 2, 1, $text, 'login_block_elem', 2);
@@ -2415,7 +2415,7 @@ function printSearchForm($urlaction, $urlobject, $title, $htmlmorecss, $htmlinpu
 	$ret .= ' placeholder="'.strip_tags($title).'"';
 	$ret .= ($autofocus ? ' autofocus' : '');
 	$ret .= ' name="'.$htmlinputname.'" id="'.$prefhtmlinputname.$htmlinputname.'" />';
-	//$ret.='<input type="submit" class="button" style="padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px" value="'.$langs->trans("Go").'">';
+	
 	$ret .= '<button type="submit" class="button" style="padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px">';
 	$ret .= '<span class="fa fa-search"></span>';
 	$ret .= '</button>';
@@ -2449,7 +2449,7 @@ if (!function_exists("llxFooter"))
 		dol_htmloutput_events($disabledoutputofmessages);
 
 		// Code for search criteria persistence.
-		// $user->lastsearch_values was set by the GETPOST when form field search_xxx exists
+		
 		if (is_object($user) && !empty($user->lastsearch_values_tmp) && is_array($user->lastsearch_values_tmp))
 		{
 			// Clean and save data
@@ -2570,7 +2570,7 @@ if (!function_exists("llxFooter"))
 		$forceping = GETPOST('forceping', 'alpha');
 		if (($_SERVER["PHP_SELF"] == DOL_URL_ROOT.'/index.php') || $forceping)
 		{
-			//print '<!-- instance_unique_id='.$conf->file->instance_unique_id.' MAIN_FIRST_PING_OK_ID='.$conf->global->MAIN_FIRST_PING_OK_ID.' -->';
+			
 			$hash_unique_id = md5('dolibarr'.$conf->file->instance_unique_id);
 			if (empty($conf->global->MAIN_FIRST_PING_OK_DATE)
 				|| (!empty($conf->file->instance_unique_id) && ($hash_unique_id != $conf->global->MAIN_FIRST_PING_OK_ID) && ($conf->global->MAIN_FIRST_PING_OK_ID != 'disabled'))

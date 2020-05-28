@@ -271,7 +271,7 @@ class CommActionRapport
 					$text.=($status?' - ':'').$outputlangs->transnoentitiesnoconv("Project").": ".dol_htmlentitiesbr_decode($projectstatic->getNomUrl(0, 'nolink'));
 				}
 
-				//print 'd'.$text; exit;
+				
 				$nboflines=dol_nboflines($text);
 				$heightlinemax=max(2*$height, $nboflines*$height);
 				// Check if there is enough space to print record

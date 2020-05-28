@@ -85,7 +85,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
 		//	XML data type			xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
 		//	MS-persist recordset	xmlns:rs="urn:schemas-microsoft-com:rowset"
 		//	Rowset					xmlns:z="#RowsetSchema"
-		//
+		
 
 		$signature = array(
 				'<?xml version="1.0"',
@@ -684,7 +684,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
 									}
 								} else {
 									//	Convert R1C1 style references to A1 style references (but only when not quoted)
-//									echo 'Before: ',$cellDataFormula,'<br />';
+
 									$temp = explode('"',$cellDataFormula);
 									$key = false;
 									foreach($temp as &$value) {
@@ -721,7 +721,7 @@ class PHPExcel_Reader_Excel2003XML extends PHPExcel_Reader_Abstract implements P
 							}
 
 							echo 'Cell '.$columnID.$rowID.' is a '.$type.' with a value of '.(($hasCalculatedValue) ? $cellDataFormula : $cellValue).'<br />';
-//
+
 							$objPHPExcel->getActiveSheet()->getCell($columnID.$rowID)->setValueExplicit((($hasCalculatedValue) ? $cellDataFormula : $cellValue),$type);
 							if ($hasCalculatedValue) {
 

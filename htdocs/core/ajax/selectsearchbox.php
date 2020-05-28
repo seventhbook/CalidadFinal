@@ -45,7 +45,7 @@ if (! isset($usedbyinclude) || empty($usedbyinclude))
 
 include_once DOL_DOCUMENT_ROOT.'/core/lib/json.lib.php';
 
-//global $hookmanager;
+
 $hookmanager->initHooks(array('searchform'));
 
 $search_boxvalue=GETPOST('q', 'none');

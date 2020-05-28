@@ -89,7 +89,7 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
             // Set `metadata` as additive so that when it's set directly we remember
             // to clear keys that may have been previously set by sending empty
             // values for them.
-            //
+            
             // It's possible that not every object has `metadata`, but having this
             // option set when there is no `metadata` field is not harmful.
             $additiveParams = new Util\Set([
@@ -149,7 +149,7 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
 
     public function &__get($k)
     {
-        // function should return a reference, using $nullval to return a reference to null
+        
         $nullval = null;
         if (!empty($this->_values) && array_key_exists($k, $this->_values)) {
             return $this->_values[$k];
@@ -279,7 +279,7 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
             // Special-case metadata to always be cast as a StripeObject
             // This is necessary in case metadata is empty, as PHP arrays do
             // not differentiate between lists and hashes, and we consider
-            // empty arrays to be lists.
+            
             if (($k === "metadata") && (is_array($v))) {
                 $this->_values[$k] = StripeObject::constructFrom($v, $opts);
             } else {
@@ -303,12 +303,12 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
         foreach ($this->_values as $k => $v) {
             // There are a few reasons that we may want to add in a parameter for
             // update:
-            //
+            
             //   1. The `$force` option has been set.
             //   2. We know that it was modified.
             //   3. Its value is a StripeObject. A StripeObject may contain modified
             //      values within in that its parent StripeObject doesn't know about.
-            //
+            
             $original = array_key_exists($k, $this->_originalValues) ? $this->_originalValues[$k] : null;
             $unsaved = $this->_unsavedValues->includes($k);
             if ($force || $unsaved || $v instanceof StripeObject) {
@@ -342,20 +342,20 @@ class StripeObject implements \ArrayAccess, \Countable, \JsonSerializable
         // type that's been included in the response. These other resources must
         // be updated from their proper endpoints, and therefore they are not
         // included when serializing even if they've been modified.
-        //
+        
         // There are _some_ known exceptions though.
-        //
+        
         // For example, if the value is unsaved (meaning the user has set it), and
         // it looks like the API resource is persisted with an ID, then we include
         // the object so that parameters are serialized with a reference to its
         // ID.
-        //
+        
         // Another example is that on save API calls it's sometimes desirable to
         // update a customer's default source by setting a new card (or other)
         // object with `->source=` and then saving the customer. The
         // `saveWithParent` flag to override the default behavior allows us to
         // handle these exceptions.
-        //
+        
         // We throw an error if a property was set explicitly but we can't do
         // anything with it because the integration is probably not working as the
         // user intended it to.

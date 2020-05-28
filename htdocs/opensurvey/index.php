@@ -70,9 +70,9 @@ print '<tr class="liste_titre"><td colspan="2">'.$langs->trans("OpenSurveyArea")
 print '<tr class="oddeven">';
 print '<td>'.$langs->trans("NbOfSurveys").'</td><td class="right"><a href="list.php">'.$nbsondages.'</a></td>';
 print "</tr>";
-//print '<tr class="liste_total"><td>'.$langs->trans("Total").'</td><td class="right">';
-//print $total;
-//print '</td></tr>';
+
+
+
 print '</table>';
 print '</div>';
 

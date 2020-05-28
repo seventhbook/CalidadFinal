@@ -49,7 +49,7 @@ $opp_percent = price2num(GETPOST('opp_percent', 'alpha'));
 if ($id == '' && $ref == '' && ($action != "create" && $action != "add" && $action != "update" && !$_POST["cancel"])) accessforbidden();
 
 $mine = GETPOST('mode') == 'mine' ? 1 : 0;
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $hookmanager->initHooks(array('projectcard', 'globalcard'));
@@ -58,7 +58,7 @@ $object = new Project($db);
 $extrafields = new ExtraFields($db);
 
 // Load object
-//include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';  // Can't use generic include because when creating a project, ref is defined and we dont want error if fetch fails from ref.
+
 if ($id > 0 || !empty($ref))
 {
 	$ret = $object->fetch($id, $ref); // If we create project, ref may be defined into POST but record does not yet exists into database
@@ -71,7 +71,7 @@ if ($id > 0 || !empty($ref))
 
 // Security check
 $socid = GETPOST('socid', 'int');
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $object->id, 'projet&project');
 
 // fetch optionals attributes and labels
@@ -238,13 +238,13 @@ if (empty($reshook))
 		if (empty($ref))
 		{
 			$error++;
-			//$_GET["id"]=$_POST["id"]; // We return on the project card
+			
 			setEventMessages($langs->trans("ErrorFieldRequired", $langs->transnoentities("Ref")), null, 'errors');
 		}
 		if (empty($_POST["title"]))
 		{
 			$error++;
-			//$_GET["id"]=$_POST["id"]; // We return on the project card
+			
 			setEventMessages($langs->trans("ErrorFieldRequired", $langs->transnoentities("Label")), null, 'errors');
 		}
 

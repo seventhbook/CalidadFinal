@@ -32,7 +32,7 @@ class ActionsCardProduct
     public $canvas;
     public $card;
 
-    //! Template container
+    
 	public $tpl = array();
 
 	// List of fiels for action=list
@@ -378,7 +378,7 @@ class ActionsCardProduct
 		}
 		$sql.= $this->db->order($sortfield, $sortorder);
 		$sql.= $this->db->plimit($limit+1, $offset);
-		//print $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql)

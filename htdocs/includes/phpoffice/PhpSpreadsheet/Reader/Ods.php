@@ -434,7 +434,7 @@ class Ods extends BaseReader
                     switch ($key) {
                         case 'table-header-rows':
                             
-                            //          ($rowData it's not used at all and I'm not sure that PHPExcel
+                            
                             //          has an API for this)
 
 
@@ -483,7 +483,7 @@ class Ods extends BaseReader
                                         $spreadsheet->getActiveSheet()
                                             ->getComment($columnID . $rowID)
                                             ->setText($this->parseRichText($text));
-//                                                                    ->setAuthor( $author )
+
                                     }
                                 }
 

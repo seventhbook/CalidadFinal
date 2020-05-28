@@ -149,7 +149,7 @@ $fsearch = '<!-- hidden fields for form -->';
 $fsearch .= '<input type="hidden" name="token" value="'.newToken().'">';
 $fsearch .= '<input type="hidden" name="modetax" value="'.$modetax.'">';
 
-//$fsearch.='  <input type="text" name="min" value="'.$min.'">';
+
 
 
 // Show report header
@@ -348,7 +348,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
 	//now we have an array (x_both) indexed by rates for coll and paye
 
 
-	//print table headers for this quadri - incomes first
+	
 
 	$x_coll_sum = 0;
 	$x_coll_ht = 0;

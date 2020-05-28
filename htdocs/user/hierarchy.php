@@ -216,7 +216,7 @@ else
     print "</form>\n";
 }
 
-//
+
 /*print '<script type="text/javascript" language="javascript">
 jQuery(document).ready(function() {
 	function init_myfunc()

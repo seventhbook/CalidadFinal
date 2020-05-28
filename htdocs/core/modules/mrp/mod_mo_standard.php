@@ -136,7 +136,7 @@ class mod_mo_standard extends ModeleNumRefMos
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date = $object->date_creation;
 		$yymm = strftime("%y%m", $date);
 

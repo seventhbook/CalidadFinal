@@ -250,7 +250,7 @@ class PHPExcel_Writer_Excel2007_Comments extends PHPExcel_Writer_Excel2007_Write
 				$objWriter->writeElement('x:SizeWithCells', '');
 
 				// x:Anchor
-				//$objWriter->writeElement('x:Anchor', $column . ', 15, ' . ($row - 2) . ', 10, ' . ($column + 4) . ', 15, ' . ($row + 5) . ', 18');
+				
 
 				// x:AutoFill
 				$objWriter->writeElement('x:AutoFill', 'False');

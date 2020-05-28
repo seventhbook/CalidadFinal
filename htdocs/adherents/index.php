@@ -402,7 +402,7 @@ if ($resql)
 			print '<td>'.$staticmember->getNomUrl(1, 32, 'subscription').'</td>';
 			print '<td>'.get_date_range($db->jdate($obj->date_start), $db->jdate($obj->date_end)).'</td>';
 			print '<td class="right">'.price($obj->subscription).'</td>';
-			//print '<td class="right">'.$staticmember->LibStatut($obj->statut,($obj->subscription=='yes'?1:0),$db->jdate($obj->date_end_subscription),5).'</td>';
+			
 			print '<td class="right">'.dol_print_date($db->jdate($obj->datem ? $obj->datem : $obj->datec), 'dayhour').'</td>';
 			print '</tr>';
 			$i++;

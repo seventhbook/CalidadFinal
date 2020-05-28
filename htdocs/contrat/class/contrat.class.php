@@ -486,7 +486,7 @@ class Contrat extends CommonObject
 		{
 			$num = $force_number;
 		}
-		elseif (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+		elseif (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
 		{
 			$num = $this->getNextNumRef($this->thirdparty);
 		}
@@ -499,7 +499,7 @@ class Contrat extends CommonObject
 		if ($num)
 		{
 			$sql = "UPDATE ".MAIN_DB_PREFIX."contrat SET ref = '".$num."', statut = 1";
-			//$sql.= ", fk_user_valid = ".$user->id.", date_valid = '".$this->db->idate($now)."'";
+			
 			$sql .= " WHERE rowid = ".$this->id." AND statut = 0";
 
 			dol_syslog(get_class($this)."::validate", LOG_DEBUG);
@@ -608,7 +608,7 @@ class Contrat extends CommonObject
 		$this->fetch_thirdparty();
 
 		$sql = "UPDATE ".MAIN_DB_PREFIX."contrat SET statut = 0";
-		//$sql.= ", fk_user_valid = null, date_valid = null";
+		
 		$sql .= " WHERE rowid = ".$this->id." AND statut = 1";
 
 		dol_syslog(get_class($this)."::validate", LOG_DEBUG);
@@ -698,7 +698,7 @@ class Contrat extends CommonObject
 				dol_syslog($this->error, LOG_ERR);
 				$result = -2;
 			}
-			elseif ($num)   // $num = 1
+			elseif ($num)   
 			{
 				$obj = $this->db->fetch_object($resql);
 				if ($obj)
@@ -1108,7 +1108,7 @@ class Contrat extends CommonObject
     			        {
     			            if ($objcontact->source == 'internal' && in_array($objcontact->code, array('SALESREPSIGN', 'SALESREPFOLL'))) continue; // ignore this, already forced previously
 
-    			            //print $objcontact->code.'-'.$objcontact->source.'-'.$objcontact->fk_socpeople."\n";
+    			            
     			            $this->add_contact($objcontact->fk_socpeople, $objcontact->code, $objcontact->source); // May failed because of duplicate key or because code of contact type does not exists for new object
     			        }
     			    }
@@ -1354,7 +1354,7 @@ class Contrat extends CommonObject
 		if (isset($this->note_private)) $this->note_private = trim($this->note_private);
 		if (isset($this->note_public)) $this->note_public = trim($this->note_public);
 		if (isset($this->import_key)) $this->import_key = trim($this->import_key);
-		//if (isset($this->extraparams)) $this->extraparams=trim($this->extraparams);
+		
 
 		// Check parameters
 		// Put here code to add a control on parameters values
@@ -1380,7 +1380,7 @@ class Contrat extends CommonObject
 		$sql .= " note_private=".(isset($this->note_private) ? "'".$this->db->escape($this->note_private)."'" : "null").",";
 		$sql .= " note_public=".(isset($this->note_public) ? "'".$this->db->escape($this->note_public)."'" : "null").",";
 		$sql .= " import_key=".(isset($this->import_key) ? "'".$this->db->escape($this->import_key)."'" : "null")."";
-		//$sql.= " extraparams=".(isset($this->extraparams)?"'".$this->db->escape($this->extraparams)."'":"null")."";
+		
 		$sql .= " WHERE rowid=".$this->id;
 
 		$this->db->begin();
@@ -1541,7 +1541,7 @@ class Contrat extends CommonObject
 		    if (empty($pa_ht)) $pa_ht = 0;
 
 
-			// if buy price not defined, define buyprice as configured in margin admin
+			
 			if ($this->pa_ht == 0)
 			{
 				if (($result = $this->defineBuyPrice($pu_ht, $remise_percent, $fk_product)) < 0)
@@ -1733,7 +1733,7 @@ class Contrat extends CommonObject
 
 	    if (empty($pa_ht)) $pa_ht = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0)
 		{
 			if (($result = $this->defineBuyPrice($pu, $remise_percent)) < 0)
@@ -1913,12 +1913,12 @@ class Contrat extends CommonObject
 		if ($this->statut == 0) return 1;
 
 		// Load $this->lines array
-		//		$this->fetch_lines();
+		
 
-        //		$newstatut=1;
-        //		foreach($this->lines as $key => $contractline)
+        
+        
         //		{
-        //			//			if ($contractline)         // Loop on each service
+        
         //		}
 
 		return 1;
@@ -2010,7 +2010,7 @@ class Contrat extends CommonObject
 
 		$url = DOL_URL_ROOT.'/contrat/card.php?id='.$this->id;
 
-		//if ($option !== 'nolink')
+		
 		//{
 			// Add param to save lastsearch_values or not
 			$add_save_lastsearch_values = ($save_lastsearch_value == 1 ? 1 : 0);
@@ -2237,8 +2237,8 @@ class Contrat extends CommonObject
 		    $sql .= " WHERE c.statut = 1";
 		    $sql .= " AND c.rowid = cd.fk_contrat";
 		    $sql .= " AND cd.statut = 4";
-		    //$datetouse = dol_now();
-		    //$sql.= " AND cd.date_fin_validite < '".$this->db->idate($datetouse)."'";
+		    
+		    
 		}
 		$sql .= " AND c.fk_soc = s.rowid";
 		$sql .= " AND c.entity = ".$conf->entity;
@@ -2265,8 +2265,8 @@ class Contrat extends CommonObject
 			} else {
 				$warning_delay = $conf->contrat->services->expires->warning_delay;
 				$url = DOL_URL_ROOT.'/contrat/services_list.php?mainmenu=commercial&leftmenu=contracts&mode=4&sortfield=cd.date_fin_validite&sortorder=asc';
-				//$url.= '&op2day='.$arraydatetouse['mday'].'&op2month='.$arraydatetouse['mon'].'&op2year='.$arraydatetouse['year'];
-				//if ($warning_delay >= 0) $url.='&amp;filter=expired';
+				
+				
 				$label = $langs->trans("BoardRunningServices");
 				$labelShort = $langs->trans("BoardRunningServicesShort");
 			}
@@ -3005,7 +3005,7 @@ class ContratLigne extends CommonObjectLine
 		$this->fk_user_ouverture = (int) $this->fk_user_ouverture;
 		$this->fk_user_cloture = (int) $this->fk_user_cloture;
 		$this->commentaire = trim($this->commentaire);
-		//if (empty($this->subprice)) $this->subprice = 0;
+		
 		if (empty($this->price_ht)) $this->price_ht = 0;
 		if (empty($this->total_ht)) $this->total_ht = 0;
 		if (empty($this->total_tva)) $this->total_tva = 0;
@@ -3038,7 +3038,7 @@ class ContratLigne extends CommonObjectLine
 
 	    if (empty($this->pa_ht)) $this->pa_ht = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)

@@ -196,7 +196,7 @@ $filereadme = $pathofwebsite.'/README.md';
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 
 $permtouploadfile = $user->rights->website->write;
@@ -434,7 +434,7 @@ if ($action == 'addcontainer')
 		{
 			$error++;
 			$langs->load("errors");
-			setEventMessages('Error URL must start with http:// or https://', null, 'errors');
+			setEventMessages('Error URL must start with http:
 			$action = 'createcontainer';
 		}
 
@@ -451,7 +451,7 @@ if ($action == 'addcontainer')
 			$urltograbdirwithoutslash = dirname($urltograb.'.');
 			$urltograbdirrootwithoutslash = getRootURLFromURL($urltograbdirwithoutslash);
 			// Exemple, now $urltograbdirwithoutslash is https://www.dolimed.com/screenshots
-			// and $urltograbdirrootwithoutslash is https://www.dolimed.com
+			
 		}
 
 		// Check pageurl is not already used
@@ -1873,7 +1873,7 @@ if (!GETPOST('hide_websitemenu'))
 	print '<div class="centpercent websitebar">';
 
 
-	// ***** Part for web sites
+	
 	print '<!-- Bar for website -->';
 	print '<span class="websiteselection hideonsmartphoneimp minwidth100 tdoverflowmax100">';
 	print $langs->trans("Website").' : ';
@@ -2087,8 +2087,8 @@ if (!GETPOST('hide_websitemenu'))
 				$formquestion = array(
 					array('type' => 'checkbox', 'name' => 'delete_also_js', 'label' => $langs->trans("DeleteAlsoJs"), 'value' => 0),
 					array('type' => 'checkbox', 'name' => 'delete_also_medias', 'label' => $langs->trans("DeleteAlsoMedias"), 'value' => 0),
-					//array('type' => 'other','name' => 'newlang','label' => $langs->trans("Language"), 'value' => $formadmin->select_language(GETPOST('newlang', 'aZ09')?GETPOST('newlang', 'aZ09'):$langs->defaultlang, 'newlang', 0, null, '', 0, 0, 'minwidth200')),
-					//array('type' => 'other','name' => 'newwebsite','label' => $langs->trans("WebSite"), 'value' => $formwebsite->selectWebsite($object->id, 'newwebsite', 0))
+					
+					
 				);
 
 				$formconfirm = $form->formconfirm($_SERVER["PHP_SELF"].'?id='.$object->id, $langs->trans('DeleteWebsite'), '', 'confirm_deletesite', $formquestion, 0, 1, 200);
@@ -2230,7 +2230,7 @@ if (!GETPOST('hide_websitemenu'))
 			}
 		}
 
-		//print '</span>';	// end website selection
+		
 
 		print '<span class="websitetools">';
 
@@ -2536,7 +2536,7 @@ if ($action == 'editcss')
 
 	print '</td></tr>';
 
-	// .htaccess
+	
 	print '<tr><td class="tdtop">';
 	print $langs->trans('WEBSITE_HTACCESS');
 	print '</td><td>';
@@ -3180,9 +3180,9 @@ if ($action == 'preview' || $action == 'createfromclone' || $action == 'createpa
 {
 	if ($pageid > 0 && $atleastonepage)
 	{
-		// $filejs
-		// $filecss
-		// $filephp
+		
+		
+		
 
 		// Ouput page under the Dolibarr top menu
 		$objectpage->fetch($pageid);

@@ -72,7 +72,7 @@ if (!$sortorder) $sortorder = "DESC";
 $arrayfields = array(
     'type'=>array('label'=>"Type", 'checked'=>1),
     'date'=>array('label'=>"Date", 'checked'=>1),
-    //...
+    
 );
 
 // Security check
@@ -107,7 +107,7 @@ $error = 0;
 
 
 
-//$reshook = $hookmanager->executeHooks('doActions', $parameters, $object); // Note that $object may have been modified by some hooks
+
 
 
 $filesarray = array();
@@ -389,7 +389,7 @@ if ($result && $action == "dl" && !$error)
         $zip->addFromString('transactions.csv', $log);
         $zip->close();
 
-        ///Then download the zipped file.
+        
         header('Content-Type: application/zip');
         header('Content-disposition: attachment; filename='.basename($zipname));
         header('Content-Length: '.filesize($zipname));
@@ -473,12 +473,12 @@ if (!empty($date_start) && !empty($date_stop))
     print '<input type="hidden" name="date_stop"  value="'.dol_print_date($date_stop, 'dayxcard').'" />';
 
     
-    //print   '<input type="hidden" name="date_stopMonth"  value="'.dol_print_date($date_stop, '%m').'" />';
-    //print   '<input type="hidden" name="date_stopYear"  value="'.dol_print_date($date_stop, '%Y').'" />';
+    
+    
 
     
-    //print   '<input type="hidden" name="date_startMonth"  value="'.dol_print_date($date_start, '%m').'" />';
-    //print   '<input type="hidden" name="date_startYear"  value="'.dol_print_date($date_start, '%m').'" />';
+    
+    
 
     print '<input class="butAction" type="submit" value="'.$langs->trans("Download").'" />';
     print '</form>'."\n";
@@ -524,7 +524,7 @@ if (!empty($date_start) && !empty($date_stop))
             {
                 $html_class = '';
                 
-                //elseif (!empty($data['fk_paiement'])) $html_class = 'payid-'.$data['fk_paiement'];
+                
                 print '<tr class="oddeven '.$html_class.'">';
 
                 // Type

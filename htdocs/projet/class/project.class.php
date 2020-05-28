@@ -92,7 +92,7 @@ class Project extends CommonObject
     public $socid; // To store id of thirdparty
     public $thirdparty_name; // To store name of thirdparty (defined only in some cases)
 
-    public $user_author_id; //!< Id of project creator. Not defined if shared project.
+    public $user_author_id; 
 
     /**
      * @var int user close id
@@ -103,7 +103,7 @@ class Project extends CommonObject
      * @var int user close id
      */
 	public $user_close_id;
-    public $public; //!< Tell if this is a public or private project
+    public $public; 
     public $budget_amount;
     public $usage_bill_time; // Is the time spent on project must be invoiced or not
 
@@ -1540,7 +1540,7 @@ class Project extends CommonObject
 				    	$taskstatic->fetch($tasktoclone->id);
 
 				    	//manage new parent clone task id
-				    	// if the current task has child we store the original task id and the equivalent clone task id
+				    	
 						if (($taskstatic->hasChildren()) && !array_key_exists($tasktoclone->id, $tab_conv_child_parent))
 						{
 							$tab_conv_child_parent[$tasktoclone->id] = $new_task_id;
@@ -1849,7 +1849,7 @@ class Project extends CommonObject
         // For external user, no check is done on company permission because readability is managed by public status of project and assignement.
         
 
-        //print $sql;
+        
         $resql = $this->db->query($sql);
         if ($resql)
         {

@@ -449,7 +449,7 @@ if (empty($reshook))
 	{
 		$object->fetch($id);
 		$object->fetch_thirdparty();
-		//$object->fetch_lines();	// Already done into fetch
+		
 
 		// Check if there is already a discount (protection to avoid duplicate creation when resubmit post)
 		$discountcheck = new DiscountAbsolute($db);
@@ -1243,7 +1243,7 @@ if (empty($reshook))
 			elseif (GETPOST('idprodfournprice', 'alpha') > 0)
 			{
 				$qtytosearch = $qty; // Just to see if a price exists for the quantity. Not used to found vat.
-				//$qtytosearch=-1;	       // We force qty to -1 to be sure to find if a supplier price exist
+				
 				$idprod = $productsupplier->get_buyprice(GETPOST('idprodfournprice', 'alpha'), $qtytosearch);
 				$res = $productsupplier->fetch($idprod);
 			}
@@ -1252,7 +1252,7 @@ if (empty($reshook))
 			{
 				$label = $productsupplier->label;
 
-				// if we use supplier description of the products
+				
 				if (!empty($productsupplier->desc_supplier) && !empty($conf->global->PRODUIT_FOURN_TEXTS)) {
 				    $desc = $productsupplier->desc_supplier;
 				} else $desc = $productsupplier->description;
@@ -1325,7 +1325,7 @@ if (empty($reshook))
 				setEventMessages($langs->trans("ErrorQtyTooLowForThisSupplier"), null, 'errors');
 			}
 		}
-		elseif (empty($error)) // $price_ht is already set
+		elseif (empty($error)) 
 		{
 			$tva_npr = (preg_match('/\*/', $tva_tx) ? 1 : 0);
 			$tva_tx = str_replace('*', '', $tva_tx);
@@ -1344,12 +1344,12 @@ if (empty($reshook))
 
 			if ($price_ht !== '')
 			{
-				$pu_ht = price2num($price_ht, 'MU'); // $pu_ht must be rounded according to settings
+				$pu_ht = price2num($price_ht, 'MU'); 
 			}
 			else
 			{
 				$pu_ttc = price2num(GETPOST('price_ttc'), 'MU');
-				$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); // $pu_ht must be rounded according to settings
+				$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); 
 			}
 			$price_base_type = 'HT';
 			$pu_ht_devise = price2num($price_ht_devise, 'MU');
@@ -2885,7 +2885,7 @@ else
 
 		global $forceall, $senderissupplier, $dateSelector, $inputalsopricewithtax;
 		$forceall = 1; $dateSelector = 0; $inputalsopricewithtax = 1;
-		$senderissupplier = 2; // $senderissupplier=2 is same than 1 but disable test on minimum qty and disable autofill qty with minimum.
+		$senderissupplier = 2; 
 		if (!empty($conf->global->SUPPLIER_INVOICE_WITH_PREDEFINED_PRICES_ONLY)) $senderissupplier = 1;
 
 		// Show object lines

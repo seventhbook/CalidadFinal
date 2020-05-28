@@ -469,8 +469,8 @@ class AccountancyExport
 		$end_line = "\r\n";
 
 		//We should use dol_now function not time however this is wrong date to transfert in accounting
-		//$date_ecriture = dol_print_date(dol_now(), $conf->global->ACCOUNTING_EXPORT_DATE); // format must be ddmmyy
-		//$date_ecriture = dol_print_date(time(), $conf->global->ACCOUNTING_EXPORT_DATE); // format must be ddmmyy
+		
+		
 		foreach ($TData as $data) {
 			$code_compta = $data->numero_compte;
 			if (!empty($data->subledger_account))
@@ -484,7 +484,7 @@ class AccountancyExport
 
 			//We use invoice date $data->doc_date not $date_ecriture which is the transfert date
 			//maybe we should set an option for customer who prefer to keep in accounting software the tranfert date instead of invoice date ?
-			//$Tab['date_ecriture'] = $date_ecriture;
+			
 			$Tab['date_ecriture'] = dol_print_date($data->doc_date, '%d%m%y');
 			$Tab['filler'] = ' ';
 			$Tab['libelle_ecriture'] = str_pad(self::trunc(dol_string_unaccent($data->doc_ref).' '.dol_string_unaccent($data->label_operation), 20), 20);
@@ -493,24 +493,24 @@ class AccountancyExport
 
 			//elarifr le montant doit etre en centimes sans point decimal !
 			$Tab['montant'] = str_pad(abs($data->montant * 100), 12, '0', STR_PAD_LEFT); // TODO manage negative amount
-			// $Tab['montant'] = str_pad(abs($data->montant), 12, '0', STR_PAD_LEFT); // TODO manage negative amount
+			
 			$Tab['contrepartie'] = str_repeat(' ', 8);
 
 			// elarifr:  date format must be fixed format : 6 char ddmmyy = %d%m%yand not defined by user / dolibarr setting
 			if (!empty($data->date_echeance))
-				//$Tab['date_echeance'] = dol_print_date($data->date_echeance, $conf->global->ACCOUNTING_EXPORT_DATE);
+				
 				$Tab['date_echeance'] = dol_print_date($data->date_echeance, '%d%m%y'); // elarifr:  format must be ddmmyy
 			else
 				$Tab['date_echeance'] = '000000';
 
 			//elarifr please keep quadra named field lettrage(2) + codestat(3) instead of fake lettrage(5)
-			//$Tab['lettrage'] = str_repeat(' ', 5);
+			
 			$Tab['lettrage'] = str_repeat(' ', 2);
 			$Tab['codestat'] = str_repeat(' ', 3);
 			$Tab['num_piece'] = str_pad(self::trunc($data->piece_num, 5), 5);
 
 			//elarifr keep correct quadra named field instead of anon filler
-			//$Tab['filler2'] = str_repeat(' ', 20);
+			
 			$Tab['affaire'] = str_repeat(' ', 10);
 			$Tab['quantity1'] = str_repeat(' ', 10);
 			$Tab['num_piece2'] = str_pad(self::trunc($data->piece_num, 8), 8);
@@ -519,16 +519,16 @@ class AccountancyExport
 			$Tab['filler3'] = str_repeat(' ', 3);
 
 			//elarifr keep correct quadra named field instead of anon filler libelle_ecriture2 is 30 char not 32 !!!!
-			//as we use utf8, we must remove accent to have only one ascii char instead of utf8 2 chars for specials that report wrong line size that will exceed import format spec
+			
 			//todo we should filter more than only accent to avoid wrong line size
 			//TODO: remove invoice number doc_ref in libelle,
 			//TODO: we should offer an option for customer to build the libelle using invoice number / name / date in accounting software
-			//$Tab['libelle_ecriture2'] = str_pad(self::trunc(dol_string_unaccent($data->doc_ref) . ' ' . dol_string_unaccent($data->label_operation), 30), 30);
+			
 			$Tab['libelle_ecriture2'] = str_pad(self::trunc(dol_string_unaccent($data->label_operation), 30), 30);
 			$Tab['codetva'] = str_repeat(' ', 2);
 
 			//elarifr we need to keep the 10 lastest number of invoice doc_ref not the beginning part that is the unusefull almost same part
-			//$Tab['num_piece3'] = str_pad(self::trunc($data->piece_num, 10), 10);
+			
 			$Tab['num_piece3'] = substr(self::trunc($data->doc_ref, 20), -10);
 			$Tab['filler4'] = str_repeat(' ', 73);
 
@@ -562,13 +562,13 @@ class AccountancyExport
             } else {
                 print $line->subledger_account.$separator;
             }
-			//print substr(length_accountg($line->numero_compte), 0, 2) . $separator;
+			
 			print '"'.dol_trunc($line->label_operation, 40, 'right', 'UTF-8', 1).'"'.$separator;
 			print '"'.dol_trunc($line->piece_num, 15, 'right', 'UTF-8', 1).'"'.$separator;
 			print price2num(abs($line->montant)).$separator;
 			print $line->sens.$separator;
 			print $date.$separator;
-			//print 'EUR';
+			
 			print $end_line;
 		}
 	}
@@ -971,16 +971,16 @@ class AccountancyExport
 			}
 			print $nature_piece.$separator;
 			// RACI
-			//			if (! empty($line->subledger_account)) {
-			//              if ($line->doc_type == 'supplier_invoice') {
-			//                  $racine_subledger_account = '40';
+			
+			
+			
 			//              } elseif ($line->doc_type == 'customer_invoice') {
-			//                  $racine_subledger_account = '41';
+			
 			//              } else {
-			//                  $racine_subledger_account = '';
+			
 			//              }
 			//          } else {
-			$racine_subledger_account = ''; // for records of type E leave this field blank
+			$racine_subledger_account = ''; 
 			//          }
 
 			print $racine_subledger_account . $separator; // deprecated CPTG & CPTA use instead

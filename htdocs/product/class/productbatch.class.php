@@ -35,7 +35,7 @@ class Productbatch extends CommonObject
 	 */
 	public $element = 'productbatch';
 
-	private static $_table_element = 'product_batch'; //!< Name of table without prefix where object is stored
+	private static $_table_element = 'product_batch'; 
 
 	public $tms = '';
 	public $fk_product_stock;
@@ -113,12 +113,12 @@ class Productbatch extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 			}
 		}
 
@@ -236,12 +236,12 @@ class Productbatch extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 	    	}
 		}
 
@@ -284,12 +284,12 @@ class Productbatch extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 		        // want this action calls a trigger.
 
-		        //// Call triggers
-		        //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-		        //$interface=new Interfaces($this->db);
-		        //$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-		        //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-		        //// End call triggers
+		        
+		        
+		        
+		        
+		        
+		        
 			}
 		}
 
@@ -344,7 +344,7 @@ class Productbatch extends CommonObject
 		$object->statut=0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone']='createfromclone';
@@ -527,7 +527,7 @@ class Productbatch extends CommonObject
 				$tmp->qty = $obj->qty;
 				$tmp->import_key = $obj->import_key;
 
-				$ret[$tmp->batch] = $tmp; // $ret is for a $fk_product_stock and unique key is on $fk_product_stock+batch
+				$ret[$tmp->batch] = $tmp; 
 				$i++;
             }
             $db->free($resql);

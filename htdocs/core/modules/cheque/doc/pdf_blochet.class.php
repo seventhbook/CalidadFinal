@@ -75,7 +75,7 @@ class BordereauChequeBlochet extends ModeleChequeReceipts
         // Define column position
         $this->line_height = 5;
 		$this->line_per_page = 40;
-		$this->tab_height = 200;	//$this->line_height * $this->line_per_page;
+		$this->tab_height = 200;	
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -266,7 +266,7 @@ class BordereauChequeBlochet extends ModeleChequeReceipts
         $pdf->Rect(9, 14, 192, 35);
         $pdf->line(9, 19, 112, 19);
         $pdf->line(9, 25, 112, 25);
-        //$pdf->line(9, 31, 201, 31);
+        
         $pdf->line(9, 31, 112, 31);
 
         $pdf->line(30, 14, 30, 49);

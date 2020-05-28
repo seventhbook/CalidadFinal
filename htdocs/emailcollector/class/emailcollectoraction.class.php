@@ -368,7 +368,7 @@ class EmailCollectorAction extends CommonObject
         if (empty($this->labelStatus))
         {
             global $langs;
-            //$langs->load("emailcollector");
+            
             $this->labelStatus[1] = $langs->trans('Enabled');
             $this->labelStatus[0] = $langs->trans('Disabled');
         }

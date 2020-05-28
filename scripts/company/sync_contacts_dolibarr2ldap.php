@@ -71,7 +71,7 @@ print "type=" . $conf->db->type . "\n";
 print "host=" . $conf->db->host . "\n";
 print "port=" . $conf->db->port . "\n";
 print "login=" . $conf->db->user . "\n";
-// print "pass=".preg_replace('/./i','*',$conf->db->password)."\n"; // Not defined for security reasons
+
 print "database=" . $conf->db->name . "\n";
 print "\n";
 print "----- To LDAP database:\n";

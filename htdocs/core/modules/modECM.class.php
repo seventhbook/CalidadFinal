@@ -86,10 +86,10 @@ class modECM extends DolibarrModules
 
 		// Add here list of php file(s) stored in core/boxes that contains class to show a box.
 		// Example:
-        //$this->boxes[$r][1] = "myboxa.php";
-    	//$r++;
-        //$this->boxes[$r][1] = "myboxb.php";
-    	//$r++;
+        
+    	
+        
+    	
 
 		// Permissions
 		$this->rights_class = 'ecm';	// Permission key
@@ -118,7 +118,7 @@ class modECM extends DolibarrModules
 
 
         // Menus
-		//------
+		
 		$this->menus = array();			// List of menus to add
 		$r=0;
 

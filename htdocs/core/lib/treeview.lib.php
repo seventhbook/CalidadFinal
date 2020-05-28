@@ -23,7 +23,7 @@
  */
 
 
-// ------------------------------- Used by ajax tree view -----------------
+
 
 /**
  * Show indent and picto of a tree line. Return array with information of line.
@@ -46,10 +46,10 @@ function tree_showpad(&$fulltree, $key, $silent = 0)
 		$nbofdirinsub=0;
 		$nbofdocinsub=0;
 		$found=0;
-		//print 'x'.$key;
+		
 		foreach($fulltree as $key2 => $val2)
 		{
-            //print "x".$pos." ".$key2." ".$found." ".$fulltree[$key2]['level'];
+            
 			if ($found == 1) // We are after the entry to show
 			{
 				if ($fulltree[$key2]['level'] > $pos)
@@ -71,7 +71,7 @@ function tree_showpad(&$fulltree, $key, $silent = 0)
 				$found=1;
 			}
 		}
-		//print $atleastoneofthislevelafter;
+		
 
 		if (! $silent)
 		{
@@ -94,7 +94,7 @@ function tree_showpad(&$fulltree, $key, $silent = 0)
 
 
 
-// ------------------------------- Used by menu editor, category view, ... -----------------
+
 
 /**
  *  Recursive function to output a tree. <ul id="iddivjstree"><li>...</li></ul>
@@ -153,7 +153,7 @@ function tree_recur($tab, $pere, $rang, $iddivjstree = 'iddivjstree', $donoreset
 		// If an element has $pere for parent
 		if ($tab[$x]['fk_menu'] != -1 && $tab[$x]['fk_menu'] == $pere['rowid'])
 		{
-		    //print 'rang='.$rang.'-x='.$x." rowid=".$tab[$x]['rowid']." tab[x]['fk_leftmenu'] = ".$tab[$x]['fk_leftmenu']." leftmenu pere = ".$pere['leftmenu']."<br>\n";
+		    
 			if (empty($ulprinted) && ! empty($pere['rowid']))
 			{
     		    if (! empty($tree_recur_alreadyadded[$tab[$x]['rowid']]))
@@ -179,7 +179,7 @@ function tree_recur($tab, $pere, $rang, $iddivjstree = 'iddivjstree', $donoreset
 			{
 			    print $tab[$x]['entry'];
 			}
-			//print ' -> A '.$tab[$x]['rowid'].' mainmenu='.$tab[$x]['mainmenu'].' leftmenu='.$tab[$x]['leftmenu'].' fk_mainmenu='.$tab[$x]['fk_mainmenu'].' fk_leftmenu='.$tab[$x]['fk_leftmenu'].'<br>'."\n";
+			
 		    $tree_recur_alreadyadded[$tab[$x]['rowid']]=($rang + 1);
 			// And now we search all its sons of lower level
 			tree_recur($tab, $tab[$x], $rang+1, 'iddivjstree', 0, $showfk);
@@ -187,13 +187,13 @@ function tree_recur($tab, $pere, $rang, $iddivjstree = 'iddivjstree', $donoreset
 		}
 		elseif (! empty($tab[$x]['rowid']) && $tab[$x]['fk_menu'] == -1 && $tab[$x]['fk_mainmenu'] == $pere['mainmenu'] && $tab[$x]['fk_leftmenu'] == $pere['leftmenu'])
 		{
-		    //print 'rang='.$rang.'-x='.$x." rowid=".$tab[$x]['rowid']." tab[x]['fk_leftmenu'] = ".$tab[$x]['fk_leftmenu']." leftmenu pere = ".$pere['leftmenu']."<br>\n";
+		    
 		    if (empty($ulprinted) && ! empty($pere['rowid']))
 		    {
 		        if (! empty($tree_recur_alreadyadded[$tab[$x]['rowid']]))
 		        {
 		            dol_syslog('Error, record with id '.$tab[$x]['rowid'].' seems to be a child of record with id '.$pere['rowid'].' but it was already output. Complete field "leftmenu" and "mainmenu" on ALL records to avoid ambiguity.', LOG_WARNING);
-		            //print 'Error, record with id '.$tab[$x]['rowid'].' seems to be a child of record with id '.$pere['rowid'].' but it was already output. Complete field "leftmenu" and "mainmenu" on ALL records to avoid ambiguity.';
+		            
                     continue;
 		        }
 
@@ -215,10 +215,10 @@ function tree_recur($tab, $pere, $rang, $iddivjstree = 'iddivjstree', $donoreset
 			{
 			    print $tab[$x]['entry'];
 			}
-			//print ' -> B '.$tab[$x]['rowid'].' mainmenu='.$tab[$x]['mainmenu'].' leftmenu='.$tab[$x]['leftmenu'].' fk_mainmenu='.$tab[$x]['fk_mainmenu'].' fk_leftmenu='.$tab[$x]['fk_leftmenu'].'<br>'."\n";
+			
 			$tree_recur_alreadyadded[$tab[$x]['rowid']]=($rang + 1);
 			// And now we search all its sons of lower level
-			//print 'Call tree_recur for x='.$x.' rowid='.$tab[$x]['rowid']." fk_mainmenu pere = ".$tab[$x]['fk_mainmenu']." fk_leftmenu pere = ".$tab[$x]['fk_leftmenu']."<br>\n";
+			
 		    tree_recur($tab, $tab[$x], $rang+1, 'iddivjstree', 0, $showfk);
 			print '</li>';
 		}

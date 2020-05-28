@@ -75,7 +75,7 @@ class FormActions
             '50' => $langs->trans("ActionRunningShort"),
             '100' => $langs->trans("ActionDoneShort")
         );
-		// +ActionUncomplete
+		
 
         if (!empty($conf->use_javascript_ajax))
         {
@@ -90,7 +90,7 @@ class FormActions
                         select_status();
                     });
                     // FIXME use another method for update combobox
-                    //$('#val' + htmlname).change(function() {
+                    
                         //select_status();
                     //});
                 });

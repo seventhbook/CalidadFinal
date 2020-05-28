@@ -317,7 +317,7 @@ if ($object->id > 0)
 	print $object->tva_intra;
 	print '</td></tr>';
 
-	// default terms of the settlement
+	
 	$langs->load('bills');
 	print '<tr><td>';
 	print '<table width="100%" class="nobordernopadding"><tr><td>';

@@ -1,37 +1,37 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_images.php
 // Version     : 1.0.005
 // Begin       : 2002-08-03
 // Last Update : 2014-11-15
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2002-2014 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the License
 // along with TCPDF. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
+
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description :
 //   Static image methods used by the TCPDF class.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -58,7 +58,7 @@ class TCPDF_IMAGES {
 	 */
 	public static $svginheritprop = array('clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cursor', 'direction', 'display', 'fill', 'fill-opacity', 'fill-rule', 'font', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'glyph-orientation-horizontal', 'glyph-orientation-vertical', 'image-rendering', 'kerning', 'letter-spacing', 'marker', 'marker-end', 'marker-mid', 'marker-start', 'pointer-events', 'shape-rendering', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width', 'text-anchor', 'text-rendering', 'visibility', 'word-spacing', 'writing-mode');
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 
 	/**
 	 * Return the image type given the file name or array returned by getimagesize() function.
@@ -97,7 +97,7 @@ class TCPDF_IMAGES {
 	 * @public static
 	 */
 	public static function setGDImageTransparency($new_image, $image) {
-		// default transparency color (white)
+		
 		$tcol = array('red' => 255, 'green' => 255, 'blue' => 255);
 		// transparency index
 		$tid = imagecolortransparent($image);
@@ -181,7 +181,7 @@ class TCPDF_IMAGES {
 		} else {
 			$channels = intval($a['channels']);
 		}
-		// default colour space
+		
 		switch ($channels) {
 			case 1: {
 				$colspace = 'DeviceGray';
@@ -355,6 +355,6 @@ class TCPDF_IMAGES {
 
 } // END OF TCPDF_IMAGES CLASS
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

@@ -111,12 +111,12 @@ class FormMargin
 					$marginInfos['pv_products'] += $pv;
 					$marginInfos['pa_total'] +=  $pa;
 					$marginInfos['pv_total'] +=  $pv;
-					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
-					//if ($pv < 0)
 					
-					//	$marginInfos['margin_on_products'] += -1 * (abs($pv) - $pa);
+					
+					
+					
 					//}
-					//else
+					
 						$marginInfos['margin_on_products'] += $pv - $pa;
 				}
 				elseif ($conf->global->MARGIN_METHODE_FOR_DISCOUNT == '2') { // remise globale considérée comme service
@@ -124,10 +124,10 @@ class FormMargin
 					$marginInfos['pv_services'] += $pv;
 					$marginInfos['pa_total'] +=  $pa;
 					$marginInfos['pv_total'] +=  $pv;
-					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
-					//if ($pv < 0)
 					
-					//else
+					
+					
+					
 						$marginInfos['margin_on_services'] += $pv - $pa;
 				}
 				elseif ($conf->global->MARGIN_METHODE_FOR_DISCOUNT == '3') { // remise globale prise en compte uniqt sur total
@@ -142,12 +142,12 @@ class FormMargin
 					$marginInfos['pv_products'] += $pv;
 					$marginInfos['pa_total'] +=  $pa;
 					$marginInfos['pv_total'] +=  $pv;
-					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
-					//if ($pv < 0)
 					
-					//    $marginInfos['margin_on_products'] += -1 * (abs($pv) - $pa);
+					
+					
+					
 					//}
-					//else
+					
 					
 					    $marginInfos['margin_on_products'] += $pv - $pa;
 					
@@ -157,10 +157,10 @@ class FormMargin
 					$marginInfos['pv_services'] += $pv;
 					$marginInfos['pa_total'] +=  $pa;
 					$marginInfos['pv_total'] +=  $pv;
-					// if credit note, margin = -1 * (abs(selling_price) - buying_price)
-					//if ($pv < 0)
 					
-					//else
+					
+					
+					
 						$marginInfos['margin_on_services'] += $pv - $pa;
 				}
 			}
@@ -175,10 +175,10 @@ class FormMargin
 		if ($marginInfos['pv_services'] > 0)
 			$marginInfos['mark_rate_services'] = 100 * $marginInfos['margin_on_services'] / $marginInfos['pv_services'];
 
-		// if credit note, margin = -1 * (abs(selling_price) - buying_price)
-		//if ($marginInfos['pv_total'] < 0)
 		
-		//else
+		
+		
+		
 			$marginInfos['total_margin'] = $marginInfos['pv_total'] - $marginInfos['pa_total'];
 		if ($marginInfos['pa_total'] > 0)
 			$marginInfos['total_margin_rate'] = 100 * $marginInfos['total_margin'] / $marginInfos['pa_total'];

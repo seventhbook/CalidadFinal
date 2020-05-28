@@ -211,7 +211,7 @@ class FactureFournisseur extends CommonInvoice
     public $multicurrency_total_ht;
     public $multicurrency_total_tva;
     public $multicurrency_total_ttc;
-    //! id of source var_dump($$this);invoice if replacement invoice or credit note
+    
     /**
      * @var int ID
      */
@@ -519,7 +519,7 @@ class FactureFournisseur extends CommonInvoice
                 	$line = $this->lines[$i];
 
                 	// Test and convert into object this->lines[$i]. When coming from REST API, we may still have an array
-				    //if (! is_object($line)) $line=json_decode(json_encode($line), false);  // convert recursively array into object.
+				    
                 	if (!is_object($line)) $line = (object) $line;
 
                 	$sql = 'INSERT INTO '.MAIN_DB_PREFIX.'facture_fourn_det (fk_facture_fourn, special_code)';
@@ -1421,7 +1421,7 @@ class FactureFournisseur extends CommonInvoice
         {
             $num = $force_number;
         }
-        elseif (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) // empty should not happened, but when it occurs, the test save life
+        elseif (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) 
         {
             $num = $this->getNextNumRef($this->thirdparty);
         }
@@ -1518,7 +1518,7 @@ class FactureFournisseur extends CommonInvoice
             {
             	$this->ref = $num;
             	$this->statut = self::STATUS_VALIDATED;
-            	//$this->date_validation=$now; this is stored into log table
+            	
             }
 
             if (!$error)
@@ -1679,7 +1679,7 @@ class FactureFournisseur extends CommonInvoice
 			$txlocaltax1=price2num($txlocaltax1);
 			$txlocaltax2=price2num($txlocaltax2);
 			if (!preg_match('/\((.*)\)/', $txtva)) {
-				$txtva = price2num($txtva);               // $txtva can have format '5,1' or '5.1' or '5.1(XXX)', we must clean only if '5,1'
+				$txtva = price2num($txtva);               
 			}
 
 			if ($date_start && $date_end && $date_start > $date_end) {
@@ -1720,8 +1720,8 @@ class FactureFournisseur extends CommonInvoice
 	        				$this->error = "Ref ".$prod->ref." ".$langs->trans("ErrorQtyTooLowForThisSupplier");
 	        				$this->db->rollback();
 	        				dol_syslog(get_class($this)."::addline we did not found supplier price, so we can't guess unit price");
-	        				//$pu    = $prod->fourn_pu;     // We do not overwrite unit price
-	        				//$ref   = $prod->ref_fourn;    // We do not overwrite ref supplier price
+	        				
+	        				
 	        				return -1;
 	        			}
 	        			if ($result == -1)
@@ -1802,7 +1802,7 @@ class FactureFournisseur extends CommonInvoice
 			$this->line->context = $this->context;
 
 			$this->line->fk_facture_fourn = $this->id;
-			//$this->line->label=$label;	// deprecated
+			
 			$this->line->desc = $desc;
 			$this->line->ref_supplier = $ref_supplier;
 
@@ -2143,7 +2143,7 @@ class FactureFournisseur extends CommonInvoice
                 }
                 $this->date_creation     = $this->db->idate($obj->datec);
                 $this->date_modification = $this->db->idate($obj->datem);
-                //$this->date_validation   = $obj->datev; // This field is not available. Should be store into log table and using this function should be replaced with showing content of log (like for supplier orders)
+                
             }
             $this->db->free($result);
         }

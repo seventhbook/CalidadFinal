@@ -353,7 +353,7 @@ class Content extends WriterPart
                         break;
                     case Fill::FILL_GRADIENT_LINEAR:
                     case Fill::FILL_GRADIENT_PATH:
-                        /// TODO :: To be implemented
+                        
                         break;
                     case Fill::FILL_NONE:
                     default:

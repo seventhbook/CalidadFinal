@@ -159,7 +159,7 @@ class pdf_beluga extends ModelePDFProjects
 
 		if ($conf->projet->dir_output)
 		{
-			//$nblines = count($object->lines);  // This is set later with array of tasks
+			
 
 			$objectref = dol_sanitizeFileName($object->ref);
 			$dir = $conf->projet->dir_output;

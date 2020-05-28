@@ -22,15 +22,15 @@
  */
 
 // Put here all includes required by your class file
-//require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT.'/product/class/product.class.php';
+
+
+
 
 
 /**
  * 	Class to manage dictionary Countries (used by imports)
  */
-class Ccountry // extends CommonObject
+class Ccountry 
 {
 	/**
      * @var DoliDB Database handler.
@@ -47,8 +47,8 @@ class Ccountry // extends CommonObject
 	 */
 	public $errors = array();
 
-	public $element = 'ccountry'; //!< Id that identify managed objects
-	public $table_element = 'c_country'; //!< Name of table without prefix where object is stored
+	public $element = 'ccountry'; 
+	public $table_element = 'c_country'; 
 
     /**
 	 * @var int ID
@@ -132,12 +132,12 @@ class Ccountry // extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 			}
         }
 
@@ -254,12 +254,12 @@ class Ccountry // extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 	    	}
 		}
 
@@ -310,12 +310,12 @@ class Ccountry // extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 		        // want this action call a trigger.
 
-		        //// Call triggers
-		        //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-		        //$interface=new Interfaces($this->db);
-		        //$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-		        //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-		        //// End call triggers
+		        
+		        
+		        
+		        
+		        
+		        
 			}
 		}
 

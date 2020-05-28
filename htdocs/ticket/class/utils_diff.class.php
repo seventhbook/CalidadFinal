@@ -86,7 +86,7 @@ class Diff
             $diff[] = array($sequence1[$index], self::UNMODIFIED);
         }
 
-        // return the diff
+        
         return $diff;
     }
 
@@ -103,7 +103,7 @@ class Diff
         $compareCharacters = false
     ) {
 
-        // return the diff of the files
+        
         return self::compare(
             file_get_contents($file1),
             file_get_contents($file2),
@@ -152,7 +152,7 @@ class Diff
             }
         }
 
-        // return the table
+        
         return $table;
     }
 
@@ -201,7 +201,7 @@ class Diff
             }
         }
 
-        // return the diff
+        
         return $diff;
     }
 
@@ -238,7 +238,7 @@ class Diff
             $string .= $separator;
         }
 
-        // return the string
+        
         return $string;
     }
 
@@ -279,7 +279,7 @@ class Diff
             $html .= $separator;
         }
 
-        // return the HTML
+        
         return $html;
     }
 
@@ -369,7 +369,7 @@ class Diff
                 . "  </tr>\n";
         }
 
-        // return the HTML
+        
         return $html . $indentation . "</table>\n";
     }
 
@@ -397,7 +397,7 @@ class Diff
             $index++;
         }
 
-        // return the HTML
+        
         return $html;
     }
 }

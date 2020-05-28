@@ -3305,7 +3305,7 @@ class Calculation
         $stack = new Stack();
         $output = [];
         $expectingOperator = false; //    We use this test in syntax-checking the expression to determine when a
-                                                    //        - is a negation or + is a positive operator rather than an operation
+                                                    
         $expectingOperand = false; //    We use this test in syntax-checking the expression to determine whether an operand
                                                     //        should be null in a function call
         //    The guts of the lexical parser
@@ -3321,7 +3321,7 @@ class Calculation
 
             if ($opCharacter == '-' && !$expectingOperator) {                //    Is it a negation instead of a minus?
                 $stack->push('Unary Operator', '~'); //    Put a negation on the stack
-                ++$index; //        and drop the negation symbol
+                ++$index; 
             } elseif ($opCharacter == '%' && $expectingOperator) {
                 $stack->push('Unary Operator', '%'); //    Put a percentage on the stack
                 ++$index;
@@ -3431,7 +3431,7 @@ class Calculation
             } elseif ($opCharacter == '(' && !$expectingOperator) {
                 $stack->push('Brace', '(');
                 ++$index;
-            } elseif ($isOperandOrFunction && !$expectingOperator) {    // do we now have a function/variable/number?
+            } elseif ($isOperandOrFunction && !$expectingOperator) {    
                 $expectingOperator = true;
                 $expectingOperand = false;
                 $val = $match[1];
@@ -3579,7 +3579,7 @@ class Calculation
 
         while (($op = $stack->pop()) !== null) {    // pop everything off the stack and push onto output
             if ((is_array($op) && $op['value'] == '(') || ($op === '(')) {
-                return $this->raiseFormulaError("Formula Error: Expecting ')'"); // if there are any opening braces on the stack, then braces were unbalanced
+                return $this->raiseFormulaError("Formula Error: Expecting ')'"); 
             }
             $output[] = $op;
         }
@@ -3627,7 +3627,7 @@ class Calculation
         //    Loop through each token in turn
         foreach ($tokens as $tokenData) {
             $token = $tokenData['value'];
-            // if the token is a binary operator, pop the top two values off the stack, do the operation, and push the result back on the stack
+            
             if (isset(self::$binaryOperators[$token])) {
                 //    We must have two operands, error if we don't
                 if (($operand2Data = $stack->pop()) === null) {
@@ -3733,7 +3733,7 @@ class Calculation
                         break;
                     case '&':            //    Concatenation
                         //    If either of the operands is a matrix, we need to treat them both as matrices
-                        //        (converting the other operand to a matrix if need be); then perform the required
+                        
                         //        matrix operation
                         if (is_bool($operand1)) {
                             $operand1 = ($operand1) ? self::$localeBoolean['TRUE'] : self::$localeBoolean['FALSE'];
@@ -3779,7 +3779,7 @@ class Calculation
                         break;
                 }
 
-                // if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
+                
             } elseif (($token === '~') || ($token === '%')) {
                 if (($arg = $stack->pop()) === null) {
                     return $this->raiseFormulaError('Internal error - Operand value missing from stack');
@@ -3879,7 +3879,7 @@ class Calculation
                 }
                 $stack->push('Value', $cellValue, $cellRef);
 
-            // if the token is a function, pop arguments off the stack, hand them to the function, and push the result back on
+            
             } elseif (preg_match('/^' . self::CALCULATION_REGEXP_FUNCTION . '$/i', $token, $matches)) {
                 $functionName = $matches[1];
                 $argCount = $stack->pop();
@@ -3887,7 +3887,7 @@ class Calculation
                 if ($functionName != 'MKMATRIX') {
                     $this->debugLog->writeDebugLog('Evaluating Function ', self::localeFunc($functionName), '() with ', (($argCount == 0) ? 'no' : $argCount), ' argument', (($argCount == 1) ? '' : 's'));
                 }
-                if ((isset(self::$phpSpreadsheetFunctions[$functionName])) || (isset(self::$controlFunctions[$functionName]))) {    // function
+                if ((isset(self::$phpSpreadsheetFunctions[$functionName])) || (isset(self::$controlFunctions[$functionName]))) {    
                     if (isset(self::$phpSpreadsheetFunctions[$functionName])) {
                         $functionCall = self::$phpSpreadsheetFunctions[$functionName]['functionCall'];
                         $passByReference = isset(self::$phpSpreadsheetFunctions[$functionName]['passByReference']);
@@ -3955,14 +3955,14 @@ class Calculation
                     $stack->push('Value', self::wrapResult($result));
                 }
             } else {
-                // if the token is a number, boolean, string or an Excel error, push it onto the stack
+                
                 if (isset(self::$excelConstants[strtoupper($token)])) {
                     $excelConstant = strtoupper($token);
                     $stack->push('Constant Value', self::$excelConstants[$excelConstant]);
                     $this->debugLog->writeDebugLog('Evaluating Constant ', $excelConstant, ' as ', $this->showTypeDetails(self::$excelConstants[$excelConstant]));
                 } elseif ((is_numeric($token)) || ($token === null) || (is_bool($token)) || ($token == '') || ($token[0] == '"') || ($token[0] == '#')) {
                     $stack->push('Value', $token);
-                // if the token is a named range, push the named range name onto the stack
+                
                 } elseif (preg_match('/^' . self::CALCULATION_REGEXP_NAMEDRANGE . '$/i', $token, $matches)) {
                     $namedRange = $matches[6];
                     $this->debugLog->writeDebugLog('Evaluating Named Range ', $namedRange);
@@ -4020,7 +4020,7 @@ class Calculation
             }
         }
 
-        //    return a true if the value of the operand is one that we can use in normal binary operations
+        
         return true;
     }
 
@@ -4198,7 +4198,7 @@ class Calculation
         }
 
         //    If either of the operands is a matrix, we need to treat them both as matrices
-        //        (converting the other operand to a matrix if need be); then perform the required
+        
         //        matrix operation
         if ((is_array($operand1)) || (is_array($operand2))) {
             //    Ensure that both operands are arrays/matrices of the same size

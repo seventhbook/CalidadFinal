@@ -157,7 +157,7 @@ class Google extends AbstractService
     public function getAuthorizationEndpoint()
     {
         // LDR CHANGE Add approval_prompt to force the prompt if value is set to 'force' so it force return of a "refresh token" in addition to "standard token"
-        //return new Uri('https://accounts.google.com/o/oauth2/auth?access_type='.$this->accessType);
+        
         return new Uri('https://accounts.google.com/o/oauth2/auth?'.($this->approvalPrompt?'approval_prompt='.$this->approvalPrompt.'&':'').'access_type='.$this->accessType);
     }
 

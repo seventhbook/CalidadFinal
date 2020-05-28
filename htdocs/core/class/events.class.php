@@ -26,7 +26,7 @@
 /**
  *  Events class
  */
-class Events // extends CommonObject
+class Events 
 {
 	/**
 	 * @var string ID to identify managed object

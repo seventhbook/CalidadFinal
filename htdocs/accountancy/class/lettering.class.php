@@ -78,8 +78,8 @@ class Lettering extends BookKeeping
 		$sql .= "  AND (bk.lettering_code != '' OR bk.lettering_code IS NULL) ";
 		$sql .= $this->db->order('bk.doc_date', 'DESC');
 
-		// echo $sql;
-		//
+		
+		
 		$resql = $this->db->query($sql);
 		if ($resql) {
 			$num = $this->db->num_rows($resql);
@@ -291,12 +291,12 @@ class Lettering extends BookKeeping
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				// // Call triggers
-				// include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-				// $interface=new Interfaces($this->db);
-				// $result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-				// if ($result < 0) { $error++; $this->errors=$interface->errors; }
-				// // End call triggers
+				
+				
+				
+				
+				
+				
 			}
 		}
 		// Commit or rollback

@@ -53,7 +53,7 @@ $result = restrictedArea($user, 'ticket', 0, '', '', '', '');
 
 $nowyear = strftime("%Y", dol_now());
 $year = GETPOST('year') > 0 ? GETPOST('year') : $nowyear;
-//$startyear=$year-2;
+
 $startyear = $year - 1;
 $endyear = $year;
 
@@ -250,7 +250,7 @@ if (!empty($dataseries) && count($dataseries) > 1) {
         $px1->SetHorizTickIncrement(1);
         $px1->SetCssPrefix("cssboxes");
         $px1->mode = 'depth';
-        //$px1->SetTitle($langs->trans("TicketStatByStatus"));
+        
 
         $px1->draw($filenamenb, $fileurlnb);
         print $px1->show($totalnb ? 0 : 1);
@@ -300,7 +300,7 @@ if ($user->socid > 0) {
 $sql .= $db->order("t.datec", "DESC");
 $sql .= $db->plimit($max, 0);
 
-//print $sql;
+
 $result = $db->query($sql);
 if ($result) {
     $num = $db->num_rows($result);

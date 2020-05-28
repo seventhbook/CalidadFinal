@@ -55,7 +55,7 @@ if ($dolibarr_main_db_type == "mssql")  $choix=3;
 if ($dolibarr_main_db_type == "sqlite")  $choix=4;
 if ($dolibarr_main_db_type == "sqlite3")  $choix=5;
 
-//if (empty($choix)) dol_print_error('','Database type '.$dolibarr_main_db_type.' not supported into step2.php page');
+
 
 // Now we load forced values from install.forced.php file.
 $useforcedwizard=false;
@@ -127,11 +127,11 @@ if ($action == "set")
         $versionarray=$db->getVersionArray();
         print '<tr><td>'.$langs->trans("DatabaseVersion").'</td>';
         print '<td>'.$version.'</td></tr>';
-        //print '<td class="right">'.join('.',$versionarray).'</td></tr>';
+        
 
         print '<tr><td>'.$langs->trans("DatabaseName").'</td>';
         print '<td>'.$db->database_name.'</td></tr>';
-        //print '<td class="right">'.join('.',$versionarray).'</td></tr>';
+        
     }
 
     $requestnb=0;
@@ -216,14 +216,14 @@ if ($action == "set")
                 	$buffer=preg_replace('/llx_/i', $dolibarr_main_db_prefix, $buffer);
                 }
 
-                //print "<tr><td>Creation de la table $name/td>";
+                
                 $requestnb++;
 
                 dolibarr_install_syslog("step2: request: " . $buffer);
                 $resql=$db->query($buffer, 0, 'dml');
                 if ($resql)
                 {
-                    // print "<td>OK requete ==== $buffer</td></tr>";
+                    
                     $db->free($resql);
                 }
                 else
@@ -231,7 +231,7 @@ if ($action == "set")
                     if ($db->errno() == 'DB_ERROR_TABLE_ALREADY_EXISTS' ||
                     $db->errno() == 'DB_ERROR_TABLE_OR_KEY_ALREADY_EXISTS')
                     {
-                        //print "<td>Deja existante</td></tr>";
+                        
                     }
                     else
                     {
@@ -304,7 +304,7 @@ if ($action == "set")
         foreach($tabledata as $file)
         {
             $name = substr($file, 0, dol_strlen($file) - 4);
-            //print "<tr><td>Creation de la table $name</td>";
+            
             $buffer = '';
             $fp = fopen($dir.$file, "r");
             if ($fp)
@@ -317,27 +317,27 @@ if ($action == "set")
                     if ($choix == 1 && preg_match('/^--\sV([0-9\.]+)/i', $buf, $reg))
                     {
                         $versioncommande=explode('.', $reg[1]);
-                        //print var_dump($versioncommande);
-                        //print var_dump($versionarray);
+                        
+                        
                         if (count($versioncommande) && count($versionarray)
                         && versioncompare($versioncommande, $versionarray) <= 0)
                         {
                             // Version qualified, delete SQL comments
                             $buf=preg_replace('/^--\sV([0-9\.]+)/i', '', $buf);
-                            //print "Ligne $i qualifiee par version: ".$buf.'<br>';
+                            
                         }
                     }
                     if ($choix == 2 && preg_match('/^--\sPOSTGRESQL\sV([0-9\.]+)/i', $buf, $reg))
                     {
                         $versioncommande=explode('.', $reg[1]);
-                        //print var_dump($versioncommande);
-                        //print var_dump($versionarray);
+                        
+                        
                         if (count($versioncommande) && count($versionarray)
                         && versioncompare($versioncommande, $versionarray) <= 0)
                         {
                             // Version qualified, delete SQL comments
                             $buf=preg_replace('/^--\sPOSTGRESQL\sV([0-9\.]+)/i', '', $buf);
-                            //print "Ligne $i qualifiee par version: ".$buf.'<br>';
+                            
                         }
                     }
 
@@ -359,14 +359,14 @@ if ($action == "set")
                     		$buffer=preg_replace('/llx_/i', $dolibarr_main_db_prefix, $buffer);
                     	}
 
-                        //print "<tr><td>Creation des cles et index de la table $name: '$buffer'</td>";
+                        
                         $requestnb++;
 
                         dolibarr_install_syslog("step2: request: " . $buffer);
                         $resql=$db->query($buffer, 0, 'dml');
                         if ($resql)
                         {
-                            //print "<td>OK requete ==== $buffer</td></tr>";
+                            
                             $db->free($resql);
                         }
                         else
@@ -377,7 +377,7 @@ if ($action == "set")
                             $db->errno() == 'DB_ERROR_TABLE_OR_KEY_ALREADY_EXISTS' ||
                             preg_match('/duplicate key name/i', $db->error()))
                             {
-                                //print "<td>Deja existante</td></tr>";
+                                
                                 $key_exists = 1;
                             }
                             else
@@ -443,7 +443,7 @@ if ($action == "set")
                 }
                 fclose($fp);
             }
-            //$buffer=preg_replace('/;\';/',";'§",$buffer);
+            
 
             // If several requests, we loop on each of them
             $listesql=explode('§', $buffer);
@@ -470,7 +470,7 @@ if ($action == "set")
                         if ($db->errno() == 'DB_ERROR_RECORD_ALREADY_EXISTS'
                         || $db->errno() == 'DB_ERROR_KEY_NAME_ALREADY_EXISTS')
                         {
-                            //print "Insert line : ".$buffer."<br>\n";
+                            
                         }
                         else
                         {
@@ -523,7 +523,7 @@ if ($action == "set")
                 {
                 	if (preg_match('/^llx_accounting_account_/', $file)) continue;	// We discard data file of chart of account. Will be loaded when a chart is selected.
 
-                    //print 'x'.$file.'-'.$createdata.'<br>';
+                    
                     if (is_numeric($createdata) || preg_match('/'.preg_quote($createdata).'/i', $file))
                     {
                         $tablefound++;
@@ -587,13 +587,13 @@ if ($action == "set")
                     $resql=$db->query($buffer, 1);
                     if ($resql)
                     {
-                        //$db->free($resql);     // Not required as request we launch here does not return memory needs.
+                        
                     }
                     else
                     {
                         if ($db->lasterrno() == 'DB_ERROR_RECORD_ALREADY_EXISTS')
                         {
-                            //print "<tr><td>Insertion ligne : $buffer</td><td>";
+                            
                         }
                         else
                         {

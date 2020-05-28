@@ -636,7 +636,7 @@ class MultiCurrency extends CommonObject
 		global $conf, $db, $langs;
 
 		$urlendpoint = 'http://apilayer.net/api/live?access_key='.$key;
-		//$urlendpoint.='&format=1';
+		
 		$urlendpoint.=(empty($conf->global->MULTICURRENCY_APP_SOURCE) ? '' : '&source='.$conf->global->MULTICURRENCY_APP_SOURCE);
 
 		dol_syslog("Call url endpoint ".$urlendpoint);

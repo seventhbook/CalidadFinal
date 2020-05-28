@@ -222,7 +222,7 @@ else
 print load_fiche_titre($langs->trans("Translation"), $enabledisablehtml, 'title_setup');
 
 
-//print "<br>\n";
+
 
 $current_language_code=$langs->defaultlang;
 $s=picto_from_langcode($current_language_code);
@@ -414,7 +414,7 @@ if ($mode == 'searchkey')
         $i = 0;
         foreach ($modulesdir as $keydir => $tmpsearchdir)
         {
-        	$searchdir = $tmpsearchdir; // $searchdir can be '.../htdocs/core/modules/' or '.../htdocs/custom/mymodule/core/modules/'
+        	$searchdir = $tmpsearchdir; 
 
         	// Directory of translation files
         	$dir_lang = dirname(dirname($searchdir))."/langs/".$langcode; // The 2 dirname is to go up in dir for 2 levels
@@ -546,7 +546,7 @@ if ($mode == 'searchkey')
 
             if (!empty($conf->global->MAIN_FEATURES_LEVEL))
             {
-            	$transifexlangfile = '$'; // $ means 'All'
+            	$transifexlangfile = '$'; 
             	
             	$transifexurl = 'https://www.transifex.com/dolibarr-association/dolibarr/translate/#'.$langcode.'/'.$transifexlangfile.'?q=key%3A'.$key;
 

@@ -57,7 +57,7 @@ class Meta extends WriterPart
             $objWriter->writeElement('meta:keyword', $keyword);
         }
 
-        //<meta:document-statistic meta:table-count="XXX" meta:cell-count="XXX" meta:object-count="XXX"/>
+        
         $objWriter->startElement('meta:user-defined');
         $objWriter->writeAttribute('meta:name', 'Company');
         $objWriter->writeRaw($spreadsheet->getProperties()->getCompany());

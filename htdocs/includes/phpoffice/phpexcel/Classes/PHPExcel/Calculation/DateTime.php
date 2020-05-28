@@ -53,7 +53,7 @@ class PHPExcel_Calculation_DateTime {
 	 */
 	public static function _isLeapYear($year) {
 		return ((($year % 4) == 0) && (($year % 100) != 0) || (($year % 400) == 0));
-	}	//	function _isLeapYear()
+	}	
 
 
 	/**
@@ -89,7 +89,7 @@ class PHPExcel_Calculation_DateTime {
 		}
 
 		return $endDay + $endMonth * 30 + $endYear * 360 - $startDay - $startMonth * 30 - $startYear * 360;
-	}	//	function _dateDiff360()
+	}	
 
 
 	/**
@@ -114,7 +114,7 @@ class PHPExcel_Calculation_DateTime {
 			}
 		}
 		return $dateValue;
-	}	//	function _getDateValue()
+	}	
 
 
 	/**
@@ -129,7 +129,7 @@ class PHPExcel_Calculation_DateTime {
 		$timeValue = self::TIMEVALUE($timeValue);
 		PHPExcel_Calculation_Functions::setReturnDateType($saveReturnDateType);
 		return $timeValue;
-	}	//	function _getTimeValue()
+	}	
 
 
 	private static function _adjustDateByMonths($dateValue = 0, $adjustmentMonths = 0) {
@@ -155,7 +155,7 @@ class PHPExcel_Calculation_DateTime {
 			$PHPDateObject->modify($adjustDaysString);
 		}
 		return $PHPDateObject;
-	}	//	function _adjustDateByMonths()
+	}	
 
 
 	/**
@@ -195,7 +195,7 @@ class PHPExcel_Calculation_DateTime {
 		date_default_timezone_set($saveTimeZone);
 
 		return $retValue;
-	}	//	function DATETIMENOW()
+	}	
 
 
 	/**
@@ -236,7 +236,7 @@ class PHPExcel_Calculation_DateTime {
 		date_default_timezone_set($saveTimeZone);
 
 		return $retValue;
-	}	//	function DATENOW()
+	}	
 
 
 	/**
@@ -353,7 +353,7 @@ class PHPExcel_Calculation_DateTime {
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_OBJECT :
 					return PHPExcel_Shared_Date::ExcelToPHPObject($excelDateValue);
 		}
-	}	//	function DATE()
+	}	
 
 
 	/**
@@ -432,7 +432,7 @@ class PHPExcel_Calculation_DateTime {
 					}
 					return (float) PHPExcel_Shared_Date::FormattedPHPToExcel($calendar, 1, $date, $hour, $minute, $second);
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_NUMERIC :
-					return (integer) PHPExcel_Shared_Date::ExcelToPHP(PHPExcel_Shared_Date::FormattedPHPToExcel(1970, 1, 1, $hour, $minute, $second));	// -2147468400; //	-2147472000 + 3600
+					return (integer) PHPExcel_Shared_Date::ExcelToPHP(PHPExcel_Shared_Date::FormattedPHPToExcel(1970, 1, 1, $hour, $minute, $second));	
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_OBJECT :
 					$dayAdjust = 0;
 					if ($hour < 0) {
@@ -449,7 +449,7 @@ class PHPExcel_Calculation_DateTime {
 					}
 					return $phpDateObject;
 		}
-	}	//	function TIME()
+	}	
 
 
 	/**
@@ -555,7 +555,7 @@ class PHPExcel_Calculation_DateTime {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function DATEVALUE()
+	}	
 
 
 	/**
@@ -602,7 +602,7 @@ class PHPExcel_Calculation_DateTime {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TIMEVALUE()
+	}	
 
 
 	/**
@@ -699,7 +699,7 @@ class PHPExcel_Calculation_DateTime {
 				$retVal = PHPExcel_Calculation_Functions::NaN();
 		}
 		return $retVal;
-	}	//	function DATEDIF()
+	}	
 
 
 	/**
@@ -758,7 +758,7 @@ class PHPExcel_Calculation_DateTime {
 		$endYear = $PHPEndDateObject->format('Y');
 
 		return self::_dateDiff360($startDay, $startMonth, $startYear, $endDay, $endMonth, $endYear, !$method);
-	}	//	function DAYS360()
+	}	
 
 
 	/**
@@ -855,7 +855,7 @@ class PHPExcel_Calculation_DateTime {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function YEARFRAC()
+	}	
 
 
 	/**
@@ -935,7 +935,7 @@ class PHPExcel_Calculation_DateTime {
 			return 0 - ($wholeWeekDays + $partWeekDays);
 		}
 		return $wholeWeekDays + $partWeekDays;
-	}	//	function NETWORKDAYS()
+	}	
 
 
 	/**
@@ -1050,7 +1050,7 @@ class PHPExcel_Calculation_DateTime {
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_OBJECT :
 					return PHPExcel_Shared_Date::ExcelToPHPObject($endDate);
 		}
-	}	//	function WORKDAY()
+	}	
 
 
 	/**
@@ -1083,7 +1083,7 @@ class PHPExcel_Calculation_DateTime {
 		$PHPDateObject = PHPExcel_Shared_Date::ExcelToPHPObject($dateValue);
 
 		return (int) $PHPDateObject->format('j');
-	}	//	function DAYOFMONTH()
+	}	
 
 
 	/**
@@ -1148,7 +1148,7 @@ class PHPExcel_Calculation_DateTime {
 		}
 
 		return (int) $DoW;
-	}	//	function DAYOFWEEK()
+	}	
 
 
 	/**
@@ -1200,7 +1200,7 @@ class PHPExcel_Calculation_DateTime {
 		$weekOfYear = ceil($dayOfYear / 7) + 1;
 
 		return (int) $weekOfYear;
-	}	//	function WEEKOFYEAR()
+	}	
 
 
 	/**
@@ -1231,7 +1231,7 @@ class PHPExcel_Calculation_DateTime {
 		$PHPDateObject = PHPExcel_Shared_Date::ExcelToPHPObject($dateValue);
 
 		return (int) $PHPDateObject->format('n');
-	}	//	function MONTHOFYEAR()
+	}	
 
 
 	/**
@@ -1262,7 +1262,7 @@ class PHPExcel_Calculation_DateTime {
 		$PHPDateObject = PHPExcel_Shared_Date::ExcelToPHPObject($dateValue);
 
 		return (int) $PHPDateObject->format('Y');
-	}	//	function YEAR()
+	}	
 
 
 	/**
@@ -1302,7 +1302,7 @@ class PHPExcel_Calculation_DateTime {
 		$timeValue = PHPExcel_Shared_Date::ExcelToPHP($timeValue);
 
 		return (int) gmdate('G',$timeValue);
-	}	//	function HOUROFDAY()
+	}	
 
 
 	/**
@@ -1342,7 +1342,7 @@ class PHPExcel_Calculation_DateTime {
 		$timeValue = PHPExcel_Shared_Date::ExcelToPHP($timeValue);
 
 		return (int) gmdate('i',$timeValue);
-	}	//	function MINUTEOFHOUR()
+	}	
 
 
 	/**
@@ -1382,7 +1382,7 @@ class PHPExcel_Calculation_DateTime {
 		$timeValue = PHPExcel_Shared_Date::ExcelToPHP($timeValue);
 
 		return (int) gmdate('s',$timeValue);
-	}	//	function SECONDOFMINUTE()
+	}	
 
 
 	/**
@@ -1428,7 +1428,7 @@ class PHPExcel_Calculation_DateTime {
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_OBJECT :
 					return $PHPDateObject;
 		}
-	}	//	function EDATE()
+	}	
 
 
 	/**
@@ -1476,7 +1476,7 @@ class PHPExcel_Calculation_DateTime {
 			case PHPExcel_Calculation_Functions::RETURNDATE_PHP_OBJECT :
 					return $PHPDateObject;
 		}
-	}	//	function EOMONTH()
+	}	
 
-}	//	class PHPExcel_Calculation_DateTime
+}	
 

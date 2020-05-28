@@ -71,8 +71,8 @@ class box_graph_propales_permonth extends ModeleBoxes
 
 		$refreshaction = 'refresh_'.$this->boxcode;
 
-		//include_once DOL_DOCUMENT_ROOT.'/comm/propal/class/propal.class.php';
-		//$propalstatic=new Propal($this->db);
+		
+		
 
 		$startmonth = $conf->global->SOCIETE_FISCAL_MONTH_START ? ($conf->global->SOCIETE_FISCAL_MONTH_START) : 1;
 		if (empty($conf->global->GRAPH_USE_FISCAL_YEAR)) $startmonth = 1;
@@ -177,7 +177,7 @@ class box_graph_propales_permonth extends ModeleBoxes
 			{
 				$data2 = $stats->getAmountByMonthWithPrevYear($endyear, $startyear, (GETPOST('action', 'aZ09') == $refreshaction ?-1 : (3600 * 24)), ($WIDTH < 300 ? 2 : 0), $startmonth);
 				$datatype2 = array_pad(array(), ($endyear - $startyear + 1), 'bars');
-				//$datatype2 = array('lines','bars');
+				
 
 				$filenamenb = $dir."/".$prefix."propalsamountinyear-".$endyear.".png";
 				if ($mode == 'customer') $fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=propalstats&amp;file=propalsamountinyear-'.$endyear.'.png';

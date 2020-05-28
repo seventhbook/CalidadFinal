@@ -289,7 +289,7 @@ class ExpenseReport extends CommonObject
     	            foreach ($this->lines as $line)
     	            {
     	            	// Test and convert into object this->lines[$i]. When coming from REST API, we may still have an array
-    	            	//if (! is_object($line)) $line=json_decode(json_encode($line), false);  // convert recursively array into object.
+    	            	
     	            	if (!is_object($line)) {
     	            		$line = (object) $line;
     	            		$newndfline = new ExpenseReportLine($this->db);
@@ -398,7 +398,7 @@ class ExpenseReport extends CommonObject
         $this->db->begin();
 
         // get extrafields so they will be clone
-        //foreach($this->lines as $line)
+        
             
 
         // Load source object
@@ -728,7 +728,7 @@ class ExpenseReport extends CommonObject
         $sql .= " f.tms as date_modification,";
         $sql .= " f.date_valid as datev,";
         $sql .= " f.date_approve as datea,";
-        //$sql.= " f.fk_user_author as fk_user_creation,";      // This is not user of creation but user the expense is for.
+        
         $sql .= " f.fk_user_modif as fk_user_modification,";
         $sql .= " f.fk_user_valid,";
         $sql .= " f.fk_user_approve";
@@ -1155,7 +1155,7 @@ class ExpenseReport extends CommonObject
         $this->date_valid = $now; // Required for the getNextNum later.
 
 		// Define new ref
-        if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+        if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
         {
             $num = $this->getNextNumRef();
         }
@@ -1771,7 +1771,7 @@ class ExpenseReport extends CommonObject
 
 			$qty = price2num($qty);
 			if (!preg_match('/\s*\((.*)\)/', $vatrate)) {
-				$vatrate = price2num($vatrate); // $txtva can have format '5.0 (XXX)' or '5'
+				$vatrate = price2num($vatrate); 
 			}
 			$up = price2num($up);
 
@@ -1858,7 +1858,7 @@ class ExpenseReport extends CommonObject
 
 		$langs->load('trips');
 
-		if (empty($conf->global->MAIN_USE_EXPENSE_RULE)) return true; // if don't use rules
+		if (empty($conf->global->MAIN_USE_EXPENSE_RULE)) return true; 
 
 		$rulestocheck = ExpenseReportRule::getAllRule($this->line->fk_c_type_fees, $this->line->date, $this->fk_user_author);
 
@@ -1874,7 +1874,7 @@ class ExpenseReport extends CommonObject
 			if (in_array($rule->code_expense_rules_type, array('EX_DAY', 'EX_MON', 'EX_YEA'))) $amount_to_test = $this->line->getExpAmount($rule, $this->fk_user_author, $rule->code_expense_rules_type);
 			else $amount_to_test = $current_total_ttc; // EX_EXP
 
-			$amount_to_test = $amount_to_test - $current_total_ttc + $new_current_total_ttc; // if amount as been modified by a previous rule
+			$amount_to_test = $amount_to_test - $current_total_ttc + $new_current_total_ttc; 
 
 			if ($amount_to_test > $rule->amount)
 			{
@@ -2221,7 +2221,7 @@ class ExpenseReport extends CommonObject
         $sql .= " SELECT DISTINCT ugu.fk_user";
         $sql .= " FROM ".MAIN_DB_PREFIX."usergroup_user as ugu, ".MAIN_DB_PREFIX."usergroup_rights as ur, ".MAIN_DB_PREFIX."rights_def as rd";
         $sql .= " WHERE ugu.fk_usergroup = ur.fk_usergroup AND ur.fk_id = rd.id and rd.module = 'expensereport' AND rd.perms = 'approve'"; 
-        //print $sql;
+        
 
         dol_syslog(get_class($this)."::fetch_users_approver_expensereport sql=".$sql);
         $result = $this->db->query($sql);

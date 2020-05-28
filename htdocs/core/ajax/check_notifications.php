@@ -36,12 +36,12 @@ top_httphead('text/html');  // TODO Use a json mime type
 global $user, $db, $langs, $conf;
 
 $time = (int) GETPOST('time', 'int');    // Use the time parameter that is always increased by time_update, even if call is late
-//$time=dol_now();
+
 
 
 $eventfound = array();
 //Uncomment this to force a test
-//$eventfound[]=array('type'=>'agenda', 'id'=>1, 'tipo'=>'eee', 'location'=>'aaa');
+
 
 //dol_syslog('time='.$time.' $_SESSION[auto_ck_events_not_before]='.$_SESSION['auto_check_events_not_before']);
 

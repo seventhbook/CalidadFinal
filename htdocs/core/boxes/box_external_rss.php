@@ -117,7 +117,7 @@ class box_external_rss extends ModeleBoxes
 
 		// INFO on items
 		$items=$rssparser->getItems();
-        //print '<pre>'.print_r($items,true).'</pre>';
+        
 		$nbitems=count($items);
         for($line = 0; $line < $max && $line < $nbitems; $line++)
         {
@@ -131,16 +131,16 @@ class box_external_rss extends ModeleBoxes
 			{
 				if (! $date && isset($item['pubdate']))    $date=$item['pubdate'];
 				if (! $date && isset($item['dc']['date'])) $date=$item['dc']['date'];
-				//$item['dc']['language']
-				//$item['dc']['publisher']
+				
+				
 			}
 			if ($rssparser->getFormat() == 'atom')	// If Atom
 			{
 				if (! $date && isset($item['issued']))    $date=$item['issued'];
 				if (! $date && isset($item['modified']))  $date=$item['modified'];
-				//$item['issued']
-				//$item['modified']
-				//$item['atom_content']
+				
+				
+				
 			}
 			if (is_numeric($date)) $date=dol_print_date($date, "dayhour");
 

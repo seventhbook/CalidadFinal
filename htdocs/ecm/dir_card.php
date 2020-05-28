@@ -222,9 +222,9 @@ if ($action == 'update' && ! GETPOST('cancel', 'alpha'))
 			// Try to rename file if changed
 			if ($oldlabel != $ecmdir->label	&& file_exists($olddir))
 			{
-				$newdir=$ecmdir->getRelativePath(1);		// return "xxx/zzz/" from ecm directory
+				$newdir=$ecmdir->getRelativePath(1);		
 				$newdir=$conf->ecm->dir_output.'/'.$newdir;
-				//print $olddir.'-'.$newdir;
+				
 				$result=@rename($olddir, $newdir);
 				if (! $result)
 				{
@@ -482,7 +482,7 @@ if ($action != 'edit' && $action != 'delete')
 		print '<a class="butActionRefused classfortooltip" href="#" title="'.$langs->trans("NotAllowed").'">'.$langs->trans('ECMAddSection').'</a>';
 	}
 
-	//if (count($filearrayall) == 0)
+	
 	//{
 	if ($permtoadd)
 	{

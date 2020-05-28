@@ -92,7 +92,7 @@ class PHPExcel_Calculation_LookupRef {
 			if (($relativity == 3) || ($relativity == 4)) { $row = '['.$row.']'; }
 			return $sheetText.'R'.$row.'C'.$column;
 		}
-	}	//	function CELL_ADDRESS()
+	}	
 
 
 	/**
@@ -135,7 +135,7 @@ class PHPExcel_Calculation_LookupRef {
 				return (integer) PHPExcel_Cell::columnIndexFromString($cellAddress);
 			}
 		}
-	}	//	function COLUMN()
+	}	
 
 
 	/**
@@ -166,7 +166,7 @@ class PHPExcel_Calculation_LookupRef {
 		} else {
 			return $columns;
 		}
-	}	//	function COLUMNS()
+	}	
 
 
 	/**
@@ -210,7 +210,7 @@ class PHPExcel_Calculation_LookupRef {
 				return (integer) preg_replace('/[^0-9]/','',$cellAddress);
 			}
 		}
-	}	//	function ROW()
+	}	
 
 
 	/**
@@ -240,7 +240,7 @@ class PHPExcel_Calculation_LookupRef {
 		} else {
 			return $rows;
 		}
-	}	//	function ROWS()
+	}	
 
 
 	/**
@@ -274,7 +274,7 @@ class PHPExcel_Calculation_LookupRef {
 		$pCell->getHyperlink()->setUrl($linkURL);
 
 		return $displayName;
-	}	//	function HYPERLINK()
+	}	
 
 
 	/**
@@ -333,7 +333,7 @@ class PHPExcel_Calculation_LookupRef {
 		}
 
 		return PHPExcel_Calculation::getInstance()->extractCellRange($cellAddress, $pSheet, FALSE);
-	}	//	function INDIRECT()
+	}	
 
 
 	/**
@@ -427,7 +427,7 @@ class PHPExcel_Calculation_LookupRef {
 		}
 
 		return PHPExcel_Calculation::getInstance()->extractCellRange($cellAddress, $pSheet, False);
-	}	//	function OFFSET()
+	}	
 
 
 	/**
@@ -471,7 +471,7 @@ class PHPExcel_Calculation_LookupRef {
 		} else {
 			return $chooseArgs[$chosenEntry];
 		}
-	}	//	function CHOOSE()
+	}	
 
 
 	/**
@@ -526,7 +526,7 @@ class PHPExcel_Calculation_LookupRef {
 			}
 		}
 
-		// if match_type is 1 or -1, the list has to be ordered
+		
 		if ($match_type == 1) {
 			asort($lookup_array);
 			$keySet = array_keys($lookup_array);
@@ -535,12 +535,12 @@ class PHPExcel_Calculation_LookupRef {
 			$keySet = array_keys($lookup_array);
 		}
 
-		// **
+		
 		// find the match
-		// **
+		
 		// loop on the cells
 
-//		echo '<br />';
+
 		foreach($lookup_array as $i => $lookupArrayValue) {
 			if (($match_type == 0) && ($lookupArrayValue == $lookup_value)) {
 				//	exact match
@@ -548,13 +548,13 @@ class PHPExcel_Calculation_LookupRef {
 			} elseif (($match_type == -1) && ($lookupArrayValue <= $lookup_value)) {
 
 //				var_dump($lookupArrayValue);
-//				echo '<br />';
-//				echo 'Keyset = ';
+
+
 //				var_dump($keySet);
-//				echo '<br />';
+
 				$i = array_search($i,$keySet);
 
-				// if match_type is -1 <=> find the smallest value that is greater than or equal to lookup_value
+				
 				if ($i < 1){
 					// 1st cell was allready smaller than the lookup_value
 					break;
@@ -578,7 +578,7 @@ class PHPExcel_Calculation_LookupRef {
 
 		//	unsuccessful in finding a match, return #N/A error value
 		return PHPExcel_Calculation_Functions::NA();
-	}	//	function MATCH()
+	}	
 
 
 	/**
@@ -637,7 +637,7 @@ class PHPExcel_Calculation_LookupRef {
 		$rowNum = $rowKeys[--$rowNum];
 
 		return $arrayValues[$rowNum][$columnNum];
-	}	//	function INDEX()
+	}	
 
 
 	/**
@@ -662,7 +662,7 @@ class PHPExcel_Calculation_LookupRef {
 			++$column;
 		}
 		return $returnMatrix;
-	}	//	function TRANSPOSE()
+	}	
 
 
 	private static function _vlookupSort($a,$b) {
@@ -672,7 +672,7 @@ class PHPExcel_Calculation_LookupRef {
 			return 0;
 		}
 		return (strtolower($a[$firstColumn]) < strtolower($b[$firstColumn])) ? -1 : 1;
-	}	//	function _vlookupSort()
+	}	
 
 
 	/**
@@ -725,7 +725,7 @@ class PHPExcel_Calculation_LookupRef {
 
 		if ($rowNumber !== false) {
 			if ((!$not_exact_match) && ($rowValue != $lookup_value)) {
-				//	if an exact match is required, we have what we need to return an appropriate response
+				
 				return PHPExcel_Calculation_Functions::NA();
 			} else {
 				//	otherwise return the appropriate value
@@ -734,7 +734,7 @@ class PHPExcel_Calculation_LookupRef {
 		}
 
 		return PHPExcel_Calculation_Functions::NA();
-	}	//	function VLOOKUP()
+	}	
 
 
 /**
@@ -788,7 +788,7 @@ class PHPExcel_Calculation_LookupRef {
 
         if ($rowNumber !== false) {
             if ((!$not_exact_match) && ($rowValue != $lookup_value)) {
-                //  if an exact match is required, we have what we need to return an appropriate response
+                
                 return PHPExcel_Calculation_Functions::NA();
             } else {
                 //  otherwise return the appropriate value
@@ -797,7 +797,7 @@ class PHPExcel_Calculation_LookupRef {
         }
 
         return PHPExcel_Calculation_Functions::NA();
-    }   //  function HLOOKUP()
+    }   
 
 
 	/**
@@ -865,6 +865,6 @@ class PHPExcel_Calculation_LookupRef {
 		}
 
 		return self::VLOOKUP($lookup_value,$lookup_vector,2);
- 	}	//	function LOOKUP()
+ 	}	
 
-}	//	class PHPExcel_Calculation_LookupRef
+}	

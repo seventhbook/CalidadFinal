@@ -64,7 +64,7 @@ $constantes=array(
  * Actions
  */
 
-//
+
 if ($action == 'updateall')
 {
     $db->begin();
@@ -150,19 +150,19 @@ $head = member_admin_prepare_head();
 dol_fiche_head($head, 'emails', $langs->trans("Members"), -1, 'user');
 
 // TODO Use global form
-//print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
-//print '<input type="hidden" name="token" value="'.newToken().'">';
-//print '<input type="hidden" name="action" value="updateall">';
+
+
+
 
 $helptext='*'.$langs->trans("FollowingConstantsWillBeSubstituted").'<br>';
 $helptext.='__DOL_MAIN_URL_ROOT__, __ID__, __FIRSTNAME__, __LASTNAME__, __FULLNAME__, __LOGIN__, __PASSWORD__, ';
 $helptext.='__COMPANY__, __ADDRESS__, __ZIP__, __TOWN__, __COUNTRY__, __EMAIL__, __BIRTH__, __PHOTO__, __TYPE__, ';
-//$helptext.='__YEAR__, __MONTH__, __DAY__';	// Not supported
+
 
 form_constantes($constantes, 0, $helptext);
 
-//print '<div class="center"><input type="submit" class="button" value="'.$langs->trans("Update").'" name="update"></div>';
-//print '</form>';
+
+
 
 dol_fiche_end();
 

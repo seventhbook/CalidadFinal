@@ -25,7 +25,7 @@
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
 
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
 
 /**
  * Class for MyObject
@@ -285,7 +285,7 @@ class MyObject extends CommonObject
 	    if ($result > 0 && !empty($object->table_element_line)) $object->fetchLines();
 
 	    // get lines so they will be clone
-	    //foreach($this->lines as $line)
+	    
 	    
 
 	    // Reset some properties
@@ -298,7 +298,7 @@ class MyObject extends CommonObject
 	    $object->ref = empty($this->fields['ref']['default']) ? "copy_of_".$object->ref : $this->fields['ref']['default'];
 	    $object->label = empty($this->fields['label']['default']) ? $langs->trans("CopyOf")." ".$object->label : $this->fields['label']['default'];
 	    $object->status = self::STATUS_DRAFT;
-	    // ...
+	    
 	    // Clear extrafields that are unique
 	    if (is_array($object->array_options) && count($object->array_options) > 0)
 	    {
@@ -541,7 +541,7 @@ class MyObject extends CommonObject
 		$this->db->begin();
 
 		// Define new ref
-		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
 		{
 			$num = $this->getNextNumRef();
 		}
@@ -1019,7 +1019,7 @@ class MyObject extends CommonObject
 	 *
 	 * @return	int			0 if OK, <>0 if KO (this function is used also by cron so only 0 is OK)
 	 */
-	//public function doScheduledJob($param1, $param2, ...)
+	
 	public function doScheduledJob()
 	{
 		global $conf, $langs;
@@ -1036,7 +1036,7 @@ class MyObject extends CommonObject
 
 		$this->db->begin();
 
-		// ...
+		
 
 		$this->db->commit();
 

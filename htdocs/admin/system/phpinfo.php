@@ -88,7 +88,7 @@ foreach($phparray as $key => $value)
     print '<div class="div-table-responsive-no-min">';
     print '<table class="noborder">';
 	print '<tr class="liste_titre">';
-	//print '<td width="220px">'.$langs->trans("Parameter").'</td>';
+	
 	print '<td width="220px">'.$key.'</td>';
 	print '<td colspan="2">'.$langs->trans("Value").'</td>';
 	print "</tr>\n";
@@ -120,7 +120,7 @@ foreach($phparray as $key => $value)
 				print '<td>';
 				$valtoshow=$keyvalue2;
 				if ($keyparam == 'disable_functions') $valtoshow=implode(', ', explode(',', trim($valtoshow)));
-				//print $keyparam;
+				
 				print $valtoshow;
 				$i++;
 				print '</td>';

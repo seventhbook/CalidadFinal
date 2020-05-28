@@ -26,14 +26,14 @@
  */
 
 
-// $massaction must be defined
-// $objectclass and $objectlabel must be defined
-// $parameters, $object, $action must be defined for the hook.
 
-// $permissiontoread, $permissiontoadd, $permissiontodelete, $permissiontoclose may be defined
-// $uploaddir may be defined (example to $conf->projet->dir_output."/";)
-// $toselect may be defined
-// $diroutputmassaction may be defined
+
+
+
+
+
+
+
 
 
 // Protection
@@ -134,7 +134,7 @@ if (!$error && $massaction == 'confirm_presend')
 		if (empty($receiver) || $receiver == '-1') $receiver = array();
 		else $receiver = array($receiver);
 	}
-	if (!trim($_POST['sendto']) && count($receiver) == 0 && count($listofobjectthirdparties) == 1)	// if only one recipient, receiver is mandatory
+	if (!trim($_POST['sendto']) && count($receiver) == 0 && count($listofobjectthirdparties) == 1)	
 	{
 	 	$error++;
 	   	setEventMessages($langs->trans("ErrorFieldRequired", $langs->transnoentitiesnoconv("Recipient")), null, 'warnings');
@@ -214,7 +214,7 @@ if (!$error && $massaction == 'confirm_presend')
 					elseif ($val)	// Id du contact
 					{
 						$tmparray[] = $thirdparty->contact_get_property((int) $val, 'email');
-						//$sendtoid[] = $val;  TODO Add also id of contact in CC ?
+						
 					}
 				}
 			}
@@ -402,8 +402,8 @@ if (!$error && $massaction == 'confirm_presend')
 				if ($objectclass == 'FactureFournisseur')	$sendtobcc .= (empty($conf->global->MAIN_MAIL_AUTOCOPY_SUPPLIER_INVOICE_TO) ? '' : (($sendtobcc ? ", " : "").$conf->global->MAIN_MAIL_AUTOCOPY_SUPPLIER_INVOICE_TO));
 				if ($objectclass == 'Project') 			    $sendtobcc .= (empty($conf->global->MAIN_MAIL_AUTOCOPY_PROJECT_TO) ? '' : (($sendtobcc ? ", " : "").$conf->global->MAIN_MAIL_AUTOCOPY_PROJECT_TO));
 
-				// $listofqualifiedobj is array with key = object id and value is instance of qualified objects, for the current thirdparty (but thirdparty property is not loaded yet)
-				// $looparray will be an array with number of email to send for the current thirdparty (so 1 or n if n object for same thirdparty)
+				
+				
 				$looparray = array();
 				if (!$oneemailperrecipient)
 				{
@@ -422,7 +422,7 @@ if (!$error && $massaction == 'confirm_presend')
 				
                 dol_syslog("We have set an array of ".count($looparray)." emails to send. oneemailperrecipient=".$oneemailperrecipient);
                 
-                foreach ($looparray as $objectid => $objecttmp)		// $objecttmp is a real object or an empty object if we choose to send one email per thirdparty instead of one per object
+                foreach ($looparray as $objectid => $objecttmp)		
 				{
 					// Make substitution in email content
 					if (!empty($conf->projet->enabled) && method_exists($objecttmp, 'fetch_projet') && is_null($objecttmp->project))
@@ -452,7 +452,7 @@ if (!$error && $massaction == 'confirm_presend')
                     $attachedfiles = array('paths'=>array(), 'names'=>array(), 'mimes'=>array());
 					if ($oneemailperrecipient)
 					{
-						// if "one email per recipient" is check we must collate $attachedfiles by thirdparty
+						
 						if (is_array($attachedfilesThirdpartyObj[$thirdparty->id]) && count($attachedfilesThirdpartyObj[$thirdparty->id]))
 						{
 							foreach ($attachedfilesThirdpartyObj[$thirdparty->id] as $keyObjId =>  $objAttachedFiles) {
@@ -467,7 +467,7 @@ if (!$error && $massaction == 'confirm_presend')
 					}
 					elseif (!empty($attachedfilesThirdpartyObj[$thirdparty->id][$objectid])) {
 						// Create form object
-						// if "one email per recipient" isn't check we must separate $attachedfiles by object
+						
 						$attachedfiles = $attachedfilesThirdpartyObj[$thirdparty->id][$objectid];
 					}
 
@@ -808,7 +808,7 @@ if ($massaction == 'confirm_createbills')   // Create bills from orders
 			}
 		}
 
-		//$cmd->classifyBilled($user);        // Disabled. This behavior must be set or not using the workflow module.
+		
 
 		if (!empty($createbills_onebythird) && empty($TFactThird[$cmd->socid])) $TFactThird[$cmd->socid] = $objecttmp;
 		else $TFact[$objecttmp->id] = $objecttmp;
@@ -1309,8 +1309,8 @@ if (!$error && $massaction == 'generate_doc' && $permissiontoread)
             $newlang = '';
 
             if ($conf->global->MAIN_MULTILANGS && empty($newlang) && GETPOST('lang_id', 'aZ09')) $newlang = GETPOST('lang_id', 'aZ09');
-            if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($objecttmp->thirdparty->default_lang)) $newlang = $objecttmp->thirdparty->default_lang; // for proposal, order, invoice, ...
-            if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($objecttmp->default_lang)) $newlang = $objecttmp->default_lang; // for thirdparty
+            if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($objecttmp->thirdparty->default_lang)) $newlang = $objecttmp->thirdparty->default_lang; 
+            if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($objecttmp->default_lang)) $newlang = $objecttmp->default_lang; 
             if (!empty($newlang))
             {
                 $outputlangs = new Translate("", $conf);

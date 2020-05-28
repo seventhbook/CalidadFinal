@@ -62,7 +62,7 @@ $search_agenda_label = GETPOST('search_agenda_label');
 // Security check
 $id = GETPOST("id", 'int');
 $socid = 0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $id, '');
 
 if (!$user->rights->projet->lire)	accessforbidden();
@@ -157,7 +157,7 @@ if ($permok)
 }
 
 
-//print '<div class="tabsAction">';
+
 $morehtmlcenter = '';
 if (!empty($conf->agenda->enabled))
 {
@@ -165,7 +165,7 @@ if (!empty($conf->agenda->enabled))
     $morehtmlcenter .= dolGetButtonTitle($langs->trans('AddAction'), '', 'fa fa-plus-circle', DOL_URL_ROOT.'/comm/action/card.php?action=create'.$out.'&backtopage='.urlencode($_SERVER["PHP_SELF"].'?id='.$object->id), '', $addActionBtnRight);
 }
 
-//print '</div>';
+
 
 if (!empty($object->id))
 {

@@ -30,8 +30,8 @@
  * 				DOL_URL_ROOT.'/document.php?hashp=sharekey'
  */
 
-//if (! defined('NOREQUIREUSER'))	define('NOREQUIREUSER','1');	// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIREDB'))		define('NOREQUIREDB','1');		// Not disabled cause need to load personalized language
+
+
 if (!defined('NOTOKENRENEWAL'))	define('NOTOKENRENEWAL', '1');
 if (!defined('NOREQUIREMENU'))		define('NOREQUIREMENU', '1');
 if (!defined('NOREQUIREHTML'))		define('NOREQUIREHTML', '1');
@@ -118,7 +118,7 @@ if (!empty($hashp))
 	$result = $ecmfile->fetch(0, '', '', '', $hashp);
 	if ($result > 0)
 	{
-		$tmp = explode('/', $ecmfile->filepath, 2); // $ecmfile->filepath is relative to document directory
+		$tmp = explode('/', $ecmfile->filepath, 2); 
 		// filepath can be 'users/X' or 'X/propale/PR11111'
 		if (is_numeric($tmp[0])) // If first tmp is numeric, it is subdir of company for multicompany, we take next part.
 		{
@@ -131,7 +131,7 @@ if (!empty($hashp))
 			if ($moduleparttocheck == $modulepart)
 			{
 				// We remove first level of directory
-				$original_file = (($tmp[1] ? $tmp[1].'/' : '').$ecmfile->filename); // this is relative to module dir
+				$original_file = (($tmp[1] ? $tmp[1].'/' : '').$ecmfile->filename); 
 				//var_dump($original_file); exit;
 			}
 			else
@@ -142,7 +142,7 @@ if (!empty($hashp))
 		else
 		{
 			$modulepart = $moduleparttocheck;
-			$original_file = (($tmp[1] ? $tmp[1].'/' : '').$ecmfile->filename); // this is relative to module dir
+			$original_file = (($tmp[1] ? $tmp[1].'/' : '').$ecmfile->filename); 
 		}
 	}
 	else
@@ -178,7 +178,7 @@ if (empty($modulepart)) accessforbidden('Bad value for parameter modulepart');
 $check_access = dol_check_secure_access_document($modulepart, $original_file, $entity, $refname);
 $accessallowed              = $check_access['accessallowed'];
 $sqlprotectagainstexternals = $check_access['sqlprotectagainstexternals'];
-$fullpath_original_file     = $check_access['original_file']; // $fullpath_original_file is now a full path name
+$fullpath_original_file     = $check_access['original_file']; 
 
 if (!empty($hashp))
 {

@@ -193,7 +193,7 @@ class mod_expensereport_jade extends ModeleNumRefExpenseReport
 			return 0;
 		}
 
-		$date=$object->date_valid;		// $object->date does not exists
+		$date=$object->date_valid;		
 		if (empty($date))
 		{
 			$this->error = 'Date valid not defined';

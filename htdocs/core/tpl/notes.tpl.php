@@ -23,8 +23,8 @@ if (empty($object) || !is_object($object)) {
 	exit;
 }
 
-// $permissionnote 	must be defined by caller. For example $permissionnote=$user->rights->module->create
-// $cssclass   		must be defined by caller. For example $cssclass='fieldtitle"
+
+
 $module       = $object->element;
 $note_public  = 'note_public';
 $note_private = 'note_private';
@@ -68,7 +68,7 @@ elseif ($module == 'societe')     	 	 { $permission=$user->rights->societe->cree
 elseif ($module == 'contact')     		 { $permission=$user->rights->societe->creer;}
 elseif ($module == 'shipping')    		 { $permission=$user->rights->expedition->creer;}
 elseif ($module == 'product')    		 { $permission=$user->rights->produit->creer;}
-//else dol_print_error('','Bad value '.$module.' for param module');
+
 
 if (! empty($conf->fckeditor->enabled) && ! empty($conf->global->FCKEDITOR_ENABLE_SOCIETE)) $typeofdata='ckeditor:dolibarr_notes:100%:200::1:12:95%:0';	// Rem: This var is for all notes, not only thirdparties note.
 else $typeofdata='textarea:12:95%';

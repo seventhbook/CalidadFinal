@@ -77,8 +77,8 @@ class Donations extends DolibarrApi
 		}
 
 		// Add external contacts ids
-		//$this->don->contacts_ids = $this->don->liste_contact(-1,'external',1);
-		//$this->don->fetchObjectLinked();
+		
+		
 		return $this->_cleanObjectDatas($this->don);
 	}
 
@@ -105,7 +105,7 @@ class Donations extends DolibarrApi
 
         $obj_ret = array();
 
-        // case of external user, $thirdparty_ids param is ignored and replaced by user's socid
+        
         $socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $thirdparty_ids;
 
         $sql = "SELECT t.rowid";
@@ -152,7 +152,7 @@ class Donations extends DolibarrApi
                 $don_static = new Don($db);
                 if($don_static->fetch($obj->rowid)) {
                     // Add external contacts ids
-                    //$don_static->contacts_ids = $don_static->liste_contact(-1, 'external', 1);
+                    
                     $obj_ret[] = $this->_cleanObjectDatas($don_static);
                 }
                 $i++;

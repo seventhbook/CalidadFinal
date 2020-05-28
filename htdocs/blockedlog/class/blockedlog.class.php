@@ -180,7 +180,7 @@ class BlockedLog
 		if ($conf->banque->enabled) $this->trackedevents['PAYMENT_VARIOUS_MODIFY'] = 'logPAYMENT_VARIOUS_MODIFY';
 		if ($conf->banque->enabled) $this->trackedevents['PAYMENT_VARIOUS_DELETE'] = 'logPAYMENT_VARIOUS_DELETE';
 
-		// $conf->global->BANK_ENABLE_POS_CASHCONTROL must be set to 1 by all POS modules
+		
 		$moduleposenabled = ($conf->cashdesk->enabled || $conf->takepos->enabled || !empty($conf->global->BANK_ENABLE_POS_CASHCONTROL));
 		if ($moduleposenabled) $this->trackedevents['CASHCONTROL_VALIDATE'] = 'logCASHCONTROL_VALIDATE';
 	}
@@ -461,7 +461,7 @@ class BlockedLog
 				if ($key == 'lines')
 				{
 					$lineid = 0;
-					foreach ($value as $tmpline)	// $tmpline is object FactureLine
+					foreach ($value as $tmpline)	
 					{
 						$lineid++;
 						foreach ($tmpline as $keyline => $valueline)
@@ -736,7 +736,7 @@ class BlockedLog
 	{
 		try {
 			
-			//include_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
+			
 			$aaa = unserialize($data);
 			
 		} catch (Exception $e) {

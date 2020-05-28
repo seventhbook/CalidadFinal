@@ -1574,7 +1574,7 @@ class FactureRec extends CommonInvoice
 					$line->total_tva = 9.8;
 					$line->remise_percent = 50;
 				}
-				else    // (product line)
+				else    
 				{
 					$prodid = mt_rand(1, $num_prods);
 					$line->fk_product = $prodids[$prodid];

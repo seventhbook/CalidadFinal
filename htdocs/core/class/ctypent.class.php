@@ -25,7 +25,7 @@
 /**
  *	Class of dictionary type of thirdparty (used by imports)
  */
-class Ctypent // extends CommonObject
+class Ctypent 
 {
 	/**
      * @var DoliDB Database handler.
@@ -42,8 +42,8 @@ class Ctypent // extends CommonObject
 	 */
 	public $errors = array();
 
-	//var $element='ctypent';			//!< Id that identify managed objects
-	//var $table_element='ctypent';	//!< Name of table without prefix where object is stored
+	
+	
 
     /**
 	 * @var int ID
@@ -130,12 +130,12 @@ class Ctypent // extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 			}
         }
 
@@ -250,12 +250,12 @@ class Ctypent // extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 	    	}
 		}
 
@@ -299,19 +299,19 @@ class Ctypent // extends CommonObject
 		$resql = $this->db->query($sql);
     	if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
 
-		//if (! $error)
+		
 		//{
-		//	if (! $notrigger)
+		
 		//	{
 				// Uncomment this and change MYOBJECT to your own tag if you
 		        // want this action call a trigger.
 
-		        //// Call triggers
-		        //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-		        //$interface=new Interfaces($this->db);
-		        //$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-		        //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-		        //// End call triggers
+		        
+		        
+		        
+		        
+		        
+		        
 		//	}
 		//}
 

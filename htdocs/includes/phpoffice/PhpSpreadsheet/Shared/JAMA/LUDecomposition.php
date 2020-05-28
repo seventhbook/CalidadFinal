@@ -126,7 +126,7 @@ class LUDecomposition
         }
     }
 
-    //    function __construct()
+    
 
     /**
      * Get lower triangular factor.
@@ -150,7 +150,7 @@ class LUDecomposition
         return new Matrix($L);
     }
 
-    //    function getL()
+    
 
     /**
      * Get upper triangular factor.
@@ -172,7 +172,7 @@ class LUDecomposition
         return new Matrix($U);
     }
 
-    //    function getU()
+    
 
     /**
      * Return pivot permutation vector.
@@ -184,7 +184,7 @@ class LUDecomposition
         return $this->piv;
     }
 
-    //    function getPivot()
+    
 
     /**
      * Alias for getPivot.
@@ -196,7 +196,7 @@ class LUDecomposition
         return $this->getPivot();
     }
 
-    //    function getDoublePivot()
+    
 
     /**
      *    Is the matrix nonsingular?
@@ -214,7 +214,7 @@ class LUDecomposition
         return true;
     }
 
-    //    function isNonsingular()
+    
 
     /**
      * Count determinants.
@@ -235,7 +235,7 @@ class LUDecomposition
         throw new CalculationException(Matrix::MATRIX_DIMENSION_EXCEPTION);
     }
 
-    //    function det()
+    
 
     /**
      * Solve A*X = B.

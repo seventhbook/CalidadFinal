@@ -67,7 +67,7 @@ require_once('class.wsdl.php');
 // server class
 require_once('class.soap_server.php');*/
 
-// class variable emulation
+
 // cf. http://www.webkreator.com/php/techniques/php-static-class-variables.html
 $GLOBALS['_transient']['static']['nusoap_base']['globalDebugLevel'] = 9;
 
@@ -146,7 +146,7 @@ class nusoap_base {
 	* @access   public
 	*/
     var $soap_defencoding = 'ISO-8859-1';
-	//var $soap_defencoding = 'UTF-8';
+	
 
 	/**
 	* namespaces in an array of prefix => uri
@@ -183,7 +183,7 @@ class nusoap_base {
 		'string'=>'string','boolean'=>'boolean','float'=>'double','double'=>'double','decimal'=>'double',
 		'duration'=>'','dateTime'=>'string','time'=>'string','date'=>'string','gYearMonth'=>'',
 		'gYear'=>'','gMonthDay'=>'','gDay'=>'','gMonth'=>'','hexBinary'=>'string','base64Binary'=>'string',
-		// abstract "any" types
+		
 		'anyType'=>'string','anySimpleType'=>'string',
 		// derived datatypes
 		'normalizedString'=>'string','token'=>'string','language'=>'','NMTOKEN'=>'','NMTOKENS'=>'','Name'=>'','NCName'=>'','ID'=>'',
@@ -420,14 +420,14 @@ class nusoap_base {
 		} elseif (! $name) {
 			$name = 'noname';
 		}
-		// if name has ns, add ns prefix to name
+		
 		$xmlns = '';
         if($name_ns){
 			$prefix = 'nu'.rand(1000,9999);
 			$name = $prefix.':'.$name;
 			$xmlns .= " xmlns:$prefix=\"$name_ns\"";
 		}
-		// if type is prefixed, create type prefix
+		
 		if($type_ns != '' && $type_ns == $this->namespaces['xsd']){
 			// need to fix this. shouldn't default to xsd if no ns specified
 		    // w/o checking against typemap
@@ -588,7 +588,7 @@ class nusoap_base {
 						} elseif(isset($tt) && $tt == 'arrayStruct'){
 							$array_typename = 'unnamed_struct_use_soapval';
 						} else {
-							// if type is prefixed, create type prefix
+							
 							if ($tt_ns != '' && $tt_ns == $this->namespaces['xsd']){
 								 $array_typename = 'xsd:' . $tt;
 							} elseif ($tt_ns) {
@@ -607,7 +607,7 @@ class nusoap_base {
 						} else {
 							$type_str = " xsi:type=\"SOAP-ENC:Array\" SOAP-ENC:arrayType=\"".$array_typename."[$array_type]\"";
 						}
-					// empty array
+					
 					} else {
 						if ($use == 'literal') {
 							$type_str = '';
@@ -669,7 +669,7 @@ class nusoap_base {
     */
     function serializeEnvelope($body,$headers=false,$namespaces=array(),$style='rpc',$use='encoded',$encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'){
     // TODO: add an option to automatically run utf8_encode on $body and $headers
-    // if $this->soap_defencoding is UTF-8.  Not doing this automatically allows
+    
     // one to send arbitrary UTF-8 characters, not just characters that map to ISO-8859-1
 
 	$this->debug("In serializeEnvelope length=" . strlen($body) . " body (max 1000 characters)=" . substr($body, 0, 1000) . " style=$style use=$use encodingStyle=$encodingStyle");
@@ -736,7 +736,7 @@ class nusoap_base {
 	*/
 	function contractQname($qname){
 		// get element namespace
-		//$this->xdebug("Contract $qname");
+		
 		if (strrpos($qname, ':')) {
 			// get unqualified name
 			$name = substr($qname, strrpos($qname, ':') + 1);
@@ -820,7 +820,7 @@ class nusoap_base {
 		if (isset($this->namespaces[$prefix])) {
 			return $this->namespaces[$prefix];
 		}
-		//$this->setError("No namespace registered for prefix '$prefix'");
+		
 		return false;
 	}
 
@@ -963,7 +963,7 @@ function iso8601_to_timestamp($datestr){
 			}
 		}
 		return gmmktime($regs[4], $regs[5], $regs[6], $regs[2], $regs[3], $regs[1]);
-//		return strtotime("$regs[1]-$regs[2]-$regs[3] $regs[4]:$regs[5]:$regs[6]Z");
+
 	} else {
 		return false;
 	}

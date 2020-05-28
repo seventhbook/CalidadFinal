@@ -141,12 +141,12 @@ class Cpaiement
 
 			// Uncomment this and change MYOBJECT to your own tag if you
 			// want this action to call a trigger.
-			//if (!$notrigger) {
+			
 
-			//  // Call triggers
-			//  $result=$this->call_trigger('MYOBJECT_CREATE',$user);
-			//  if ($result < 0) $error++;
-			//  // End call triggers
+			
+			
+			
+			
 			//}
 		}
 
@@ -286,12 +286,12 @@ class Cpaiement
 
 		// Uncomment this and change MYOBJECT to your own tag if you
 		// want this action calls a trigger.
-		//if (!$error && !$notrigger) {
+		
 
-		//  // Call triggers
-		//  $result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-		//  if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		//  // End call triggers
+		
+		
+		
+		
 		//}
 
 		// Commit or rollback
@@ -324,12 +324,12 @@ class Cpaiement
 
 		// Uncomment this and change MYOBJECT to your own tag if you
 		// want this action calls a trigger.
-		//if (!$error && !$notrigger) {
+		
 
-		//  // Call triggers
-		//  $result=$this->call_trigger('MYOBJECT_DELETE',$user);
-		//  if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		//  // End call triggers
+		
+		
+		
+		
 		//}
 
 		if (!$error) {

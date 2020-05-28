@@ -706,7 +706,7 @@ class Mobile_Detect
      */
     public function setHttpHeaders($httpHeaders = null)
     {
-        // use global _SERVER if $httpHeaders aren't defined
+        
         if (!is_array($httpHeaders) || !count($httpHeaders)) {
             $httpHeaders = $_SERVER;
         }
@@ -793,7 +793,7 @@ class Mobile_Detect
      * @return  boolean If there were CloudFront headers to be set
      */
     public function setCfHeaders($cfHeaders = null) {
-        // use global _SERVER if $cfHeaders aren't defined
+        
         if (!is_array($cfHeaders) || !count($cfHeaders)) {
             $cfHeaders = $_SERVER;
         }

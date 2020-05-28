@@ -166,7 +166,7 @@ function buildzip() {
         rename('build/SabreDAV/vendor/sabre/dav/' . $fileName, 'build/SabreDAV/' . $fileName);
     }
 
-    // <zip destfile="build/SabreDAV-${sabredav.version}.zip" basedir="build/SabreDAV" prefix="SabreDAV/" />
+    
 
     echo "\n";
     echo "Zipping the sabredav distribution\n\n";

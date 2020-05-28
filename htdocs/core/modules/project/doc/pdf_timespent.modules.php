@@ -82,7 +82,7 @@ class pdf_timespent extends ModelePDFProjects
 		$this->posxref=$this->marge_gauche+1;
 		$this->posxlabel=$this->marge_gauche+25;
 		$this->posxtimespent=$this->marge_gauche+120;
-		//$this->posxprogress=$this->marge_gauche+140;
+		
 		$this->posxdatestart=$this->marge_gauche+152;
 		$this->posxdateend=$this->marge_gauche+170;
 		if ($this->page_largeur < 210) // To work with US executive format
@@ -90,7 +90,7 @@ class pdf_timespent extends ModelePDFProjects
 			$this->posxref-=20;
 			$this->posxlabel-=20;
 			$this->posxtimespent-=20;
-			//$this->posxprogress-=20;
+			
 			$this->posxdatestart-=20;
 			$this->posxdateend-=20;
 		}

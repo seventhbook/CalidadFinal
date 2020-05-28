@@ -59,7 +59,7 @@ class modDocumentGeneration extends DolibarrModules
 		$this->dirs = array("/documentgeneration/temp");
 
 		// Config pages
-		//$this->config_page_url = array("document.php");
+		
 
 		// Dependencies
 		$this->depends = array();

@@ -603,12 +603,12 @@ if ($id == 10)
 {
 	$localtax_typeList = array(
 		"0" => $langs->trans("No"),
-		"1" => $langs->trans("Yes").' ('.$langs->trans("Type")." 1)", //$langs->trans("%ageOnAllWithoutVAT"),
-		"2" => $langs->trans("Yes").' ('.$langs->trans("Type")." 2)", //$langs->trans("%ageOnAllBeforeVAT"),
-		"3" => $langs->trans("Yes").' ('.$langs->trans("Type")." 3)", //$langs->trans("%ageOnProductsWithoutVAT"),
-		"4" => $langs->trans("Yes").' ('.$langs->trans("Type")." 4)", //$langs->trans("%ageOnProductsBeforeVAT"),
-		"5" => $langs->trans("Yes").' ('.$langs->trans("Type")." 5)", //$langs->trans("%ageOnServiceWithoutVAT"),
-		"6" => $langs->trans("Yes").' ('.$langs->trans("Type")." 6)"	//$langs->trans("%ageOnServiceBeforeVAT"),
+		"1" => $langs->trans("Yes").' ('.$langs->trans("Type")." 1)", 
+		"2" => $langs->trans("Yes").' ('.$langs->trans("Type")." 2)", 
+		"3" => $langs->trans("Yes").' ('.$langs->trans("Type")." 3)", 
+		"4" => $langs->trans("Yes").' ('.$langs->trans("Type")." 4)", 
+		"5" => $langs->trans("Yes").' ('.$langs->trans("Type")." 5)", 
+		"6" => $langs->trans("Yes").' ('.$langs->trans("Type")." 6)"	
 	);
 }
 
@@ -859,12 +859,12 @@ if (GETPOST('actionadd') || GETPOST('actionmodify'))
             setEventMessages($db->error(), null, 'errors');
         }
     }
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+    
 }
 
 if (GETPOST('actioncancel'))
 {
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+    
 }
 
 if ($action == 'confirm_delete' && $confirm == 'yes')       // delete
@@ -1102,7 +1102,7 @@ if ($id)
 
             // Define field friendly name from its technical name
             $valuetoshow = ucfirst($fieldlist[$field]); // Par defaut
-            $valuetoshow = $langs->trans($valuetoshow); // try to translate
+            $valuetoshow = $langs->trans($valuetoshow); 
             $class = '';
 
             if ($fieldlist[$field] == 'pos') { $valuetoshow = $langs->trans("Position"); $class = 'maxwidth100'; }
@@ -1331,7 +1331,7 @@ if ($id)
             $cssprefix = '';
             $sortable = 1;
             $valuetoshow = ucfirst($fieldlist[$field]); // By defaut
-            $valuetoshow = $langs->trans($valuetoshow); // try to translate
+            $valuetoshow = $langs->trans($valuetoshow); 
 
             // Special cases
             if ($fieldlist[$field] == 'source') { $valuetoshow = $langs->trans("Contact"); }
@@ -1726,7 +1726,7 @@ if ($id)
                     {
                         print '<td class="center">';
                         if ($user->admin) print '<a href="'.$url.'action=delete">'.img_delete().'</a>';
-                        //else print '<a href="#">'.img_delete().'</a>';    // Some dictionary can be edited by other profile than admin
+                        
                         print '</td>';
                     }
                     else print '<td>&nbsp;</td>';

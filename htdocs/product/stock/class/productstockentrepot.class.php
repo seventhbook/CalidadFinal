@@ -28,8 +28,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class ProductStockEntrepot
@@ -135,14 +135,14 @@ class ProductStockEntrepot extends CommonObject
 		if (!$error) {
 			$this->id = $this->db->last_insert_id(MAIN_DB_PREFIX . $this->table_element);
 
-			//if (!$notrigger) {
+			
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action to call a trigger.
 
-				//// Call triggers
-				//$result=$this->call_trigger('MYOBJECT_CREATE',$user);
-				//if ($result < 0) $error++;
-				//// End call triggers
+				
+				
+				
+				
 			//}
 		}
 
@@ -206,7 +206,7 @@ class ProductStockEntrepot extends CommonObject
 			// fetch optionals attributes and labels
 			$this->fetch_optionals();
 
-			// $this->fetch_lines();
+			
 
 			$this->db->free($resql);
 
@@ -344,14 +344,14 @@ class ProductStockEntrepot extends CommonObject
 			dol_syslog(__METHOD__ . ' ' . implode(',', $this->errors), LOG_ERR);
 		}
 
-		//if (!$error && !$notrigger) {
+		
 			// Uncomment this and change MYOBJECT to your own tag if you
 			// want this action calls a trigger.
 
-			//// Call triggers
-			//$result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-			//if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-			//// End call triggers
+			
+			
+			
+			
 		//}
 
 		// Commit or rollback
@@ -382,14 +382,14 @@ class ProductStockEntrepot extends CommonObject
 
 		$this->db->begin();
 
-		//if (!$error && !$notrigger) {
+		
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
-				//$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-				//if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-				//// End call triggers
+				
+				
+				
+				
 		//}
 
 		if (!$error) {
@@ -438,7 +438,7 @@ class ProductStockEntrepot extends CommonObject
 		$object->id = 0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';

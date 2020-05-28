@@ -141,7 +141,7 @@ class mod_pacific extends ModeleNumRefFicheinter
 			else $max=0;
 		}
 
-		//$date=time();
+		
 		$date=$object->datec;
 		$yymm = strftime("%y%m", $date);
 

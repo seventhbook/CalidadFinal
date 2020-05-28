@@ -545,7 +545,7 @@ function dol_get_first_day_week($day, $month, $year, $gm = false)
     $seconds = $days*24*60*60;
 
     //Get first day of week
-    $tmpdaytms = date($tmparray[0])-$seconds; // $tmparray[0] is day of parameters
+    $tmpdaytms = date($tmparray[0])-$seconds; 
 	$tmpday = date("d", $tmpdaytms);
 
 	//Check first day of week is in same month than current day or not

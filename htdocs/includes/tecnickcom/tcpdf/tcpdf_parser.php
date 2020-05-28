@@ -1,36 +1,36 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_parser.php
 // Version     : 1.0.16
 // Begin       : 2011-05-23
 // Last Update : 2015-04-28
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3
-// -------------------------------------------------------------------
+
 // Copyright (C) 2011-2015 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the License
 // along with TCPDF. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
+
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : This is a PHP class for parsing PDF documents.
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -40,7 +40,7 @@
  * @version 1.0.15
  */
 
-// include class for decoding filters
+
 require_once(dirname(__FILE__).'/include/tcpdf_filters.php');
 
 /**
@@ -87,7 +87,7 @@ class TCPDF_PARSER {
 		'ignore_missing_filter_decoders' => true,
 	);
 
-// -----------------------------------------------------------------------------
+
 
 	/**
 	 * Parse a PDF document an return an array of objects.
@@ -281,7 +281,7 @@ class TCPDF_PARSER {
 	 * @since 1.0.003 (2013-03-16)
 	 */
 	protected function decodeXrefStream($startxref, $xref=array()) {
-		// try to read Cross-Reference Stream
+		
 		$xrefobj = $this->getRawObject($startxref);
 		$xrefcrs = $this->getIndirectObject($xrefobj[1], $startxref, true);
 		if (!isset($xref['trailer']) OR empty($xref['trailer'])) {
@@ -354,15 +354,15 @@ class TCPDF_PARSER {
 			$ddata = array();
 			// initialize first row with zeros
 			$prev_row = array_fill (0, $rowlen, 0);
-			// for each row apply PNG unpredictor
+			
 			foreach ($sdata as $k => $row) {
 				// initialize new row
 				$ddata[$k] = array();
 				// get PNG predictor value
 				$predictor = (10 + $row[0]);
-				// for each byte on the row
+				
 				for ($i=1; $i<=$columns; ++$i) {
-					// new index
+					
 					$j = ($i - 1);
 					$row_up = $prev_row[$j];
 					if ($i == 1) {
@@ -397,7 +397,7 @@ class TCPDF_PARSER {
 							$pb = abs($p - $row_up);
 							$pc = abs($p - $row_upleft);
 							$pmin = min($pa, $pb, $pc);
-							// return minimum distance
+							
 							switch ($pmin) {
 								case $pa: {
 									$ddata[$k][$j] = (($row[$i] + $row_left) & 0xff);
@@ -424,18 +424,18 @@ class TCPDF_PARSER {
 			} // end for each row
 			// complete decoding
 			$sdata = array();
-			// for every row
+			
 			foreach ($ddata as $k => $row) {
 				// initialize new row
 				$sdata[$k] = array(0, 0, 0);
 				if ($wb[0] == 0) {
-					// default type field
+					
 					$sdata[$k][0] = 1;
 				}
 				$i = 0; // count bytes in the row
-				// for every column
+				
 				for ($c = 0; $c < 3; ++$c) {
-					// for every byte on the column
+					
 					for ($b = 0; $b < $wb[$c]; ++$b) {
 						if (isset($row[$i])) {
 							$sdata[$k][$c] += ($row[$i] << (($wb[$c] - 1 - $b) * 8));
@@ -453,10 +453,10 @@ class TCPDF_PARSER {
 			}
 			foreach ($sdata as $k => $row) {
 				switch ($row[0]) {
-					case 0: { // (f) linked list of free objects
+					case 0: { 
 						break;
 					}
-					case 1: { // (n) objects that are in use but are not compressed
+					case 1: { 
 						// create unique object index: [object number]_[generation number]
 						$index = $obj_num.'_'.$row[2];
 						// check if object already exist
@@ -467,8 +467,8 @@ class TCPDF_PARSER {
 						break;
 					}
 					case 2: { // compressed objects
-						// $row[1] = object number of the object stream in which this object is stored
-						// $row[2] = index of this object within the object stream
+						
+						
 						$index = $row[1].'_0_'.$row[2];
 						$xref['xref'][$index] = -1;
 						break;
@@ -559,7 +559,7 @@ class TCPDF_PARSER {
 			}
 			case '[':   // \x5B LEFT SQUARE BRACKET
 			case ']': { // \x5D RIGHT SQUARE BRACKET
-				// array object
+				
 				$objtype = $char;
 				++$offset;
 				if ($char == '[') {
@@ -706,7 +706,7 @@ class TCPDF_PARSER {
 		} while (($element[0] != 'endobj') AND ($offset != $oldoffset));
 		// remove closing delimiter
 		array_pop($objdata);
-		// return raw object content
+		
 		return $objdata;
 	}
 
@@ -721,7 +721,7 @@ class TCPDF_PARSER {
 		if ($obj[0] == 'objref') {
 			// reference to indirect object
 			if (isset($this->objects[$obj[1]])) {
-				// this object has been already parsed
+				
 				return $this->objects[$obj[1]];
 			} elseif (isset($this->xref[$obj[1]])) {
 				// parse new object
@@ -763,7 +763,7 @@ class TCPDF_PARSER {
 						// single filter
 						$filters[] = $objval[1];
 					} elseif ($objval[0] == '[') {
-						// array of filters
+						
 						foreach ($objval[1] as $flt) {
 							if ($flt[0] == '/') {
 								$filters[] = $flt[1];
@@ -810,6 +810,6 @@ class TCPDF_PARSER {
 
 } // END OF TCPDF_PARSER CLASS
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

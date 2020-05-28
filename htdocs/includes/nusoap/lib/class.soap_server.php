@@ -450,7 +450,7 @@ class nusoap_server extends nusoap_base {
 		if (isset($this->headers['content-encoding']) && $this->headers['content-encoding'] != '') {
 			$this->debug('got content encoding: ' . $this->headers['content-encoding']);
 			if ($this->headers['content-encoding'] == 'deflate' || $this->headers['content-encoding'] == 'gzip') {
-		    	// if decoding works, use it. else assume data wasn't gzencoded
+		    	
 				if (function_exists('gzuncompress')) {
 					if ($this->headers['content-encoding'] == 'deflate' && $degzdata = @gzuncompress($data)) {
 						$data = $degzdata;
@@ -492,16 +492,16 @@ class nusoap_server extends nusoap_base {
 	function invoke_method() {
 		$this->debug('in invoke_method, methodname=' . $this->methodname . ' methodURI=' . $this->methodURI . ' SOAPAction=' . $this->SOAPAction);
 
-		//
-		// if you are debugging in this area of the code, your service uses a class to implement methods,
+		
+		
 		// you use SOAP RPC, and the client is .NET, please be aware of the following...
 		// when the .NET wsdl.exe utility generates a proxy, it will remove the '.' or '..' from the
 		// method name.  that is fine for naming the .NET methods.  it is not fine for properly constructing
 		// the XML request and reading the XML response.  you need to add the RequestElementName and
 		// ResponseElementName to the System.Web.Services.Protocols.SoapRpcMethodAttribute that wsdl.exe
 		// generates for the method.  these parameters are used to specify the correct XML element names
-		// for .NET to use, i.e. the names with the '.' in them.
-		//
+		
+		
 		$orig_methodname = $this->methodname;
 		if ($this->wsdl) {
 			if ($this->opData = $this->wsdl->getOperationData($this->methodname)) {
@@ -521,7 +521,7 @@ class nusoap_server extends nusoap_base {
 			$this->debug('in invoke_method, no WSDL to validate method');
 		}
 
-		// if a . is present in $this->methodname, we see if there is a class in scope,
+		
 		// which could be referred to. We will also distinguish between two deliminators,
 		// to allow methods to be called a the class or an instance
 		if (strpos($this->methodname, '..') > 0) {
@@ -574,12 +574,12 @@ class nusoap_server extends nusoap_base {
 			// debug
 			$this->debug('ERROR: request not verified against method signature');
 			$this->result = 'fault: request failed validation against method signature';
-			// return fault
+			
 			$this->fault('SOAP-ENV:Client',"Operation '$this->methodname' not defined in service.");
 			return;
 		}
 
-		// if there are parameters to pass
+		
 		$this->debug('in invoke_method, params:');
 		$this->appendDebug($this->varDump($this->methodparams));
 		$this->debug("in invoke_method, calling '$this->methodname'");
@@ -648,7 +648,7 @@ class nusoap_server extends nusoap_base {
 	*/
 	function serialize_return() {
 		$this->debug('Entering serialize_return methodname: ' . $this->methodname . ' methodURI: ' . $this->methodURI);
-		// if fault
+		
 		if (isset($this->methodreturn) && is_object($this->methodreturn) && ((get_class($this->methodreturn) == 'soap_fault') || (get_class($this->methodreturn) == 'nusoap_fault'))) {
 			$this->debug('got a fault object from method');
 			$this->fault = $this->methodreturn;
@@ -716,7 +716,7 @@ class nusoap_server extends nusoap_base {
 		}
 		$this->result = 'successful';
 		if($this->wsdl){
-			//if($this->debug_flag){
+			
             	$this->appendDebug($this->wsdl->getDebug());
             //	}
 			if (isset($this->opData['output']['encodingStyle'])) {
@@ -765,7 +765,7 @@ class nusoap_server extends nusoap_base {
 		$this->outgoing_headers[] = "Content-Type: $type" . ($charset ? '; charset=' . $charset : '');
 		//begin code to compress payload - by John
 		// NOTE: there is no way to know whether the Web server will also compress
-		// this data.
+		
 		if (strlen($payload) > 1024 && isset($this->headers) && isset($this->headers['accept-encoding'])) {	
 			if (strstr($this->headers['accept-encoding'], 'gzip')) {
 				if (function_exists('gzencode')) {
@@ -862,11 +862,11 @@ class nusoap_server extends nusoap_base {
 		$parser = new nusoap_parser($data,$this->xml_encoding,'',$this->decode_utf8);
 		// parser debug
 		$this->debug("parser debug: \n".$parser->getDebug());
-		// if fault occurred during message parsing
+		
 		if($err = $parser->getError()){
 			$this->result = 'fault: error in msg parsing: '.$err;
 			$this->fault('SOAP-ENV:Client',"error in msg parsing:\n".$err);
-		// else successfully parsed request into soapval object
+		
 		} else {
 			// get/set methodname
 			$this->methodURI = $parser->root_struct_namespace;
@@ -980,7 +980,7 @@ class nusoap_server extends nusoap_base {
         	} else {
         		$SCHEME = 'http';
         	}
-			$soapaction = "$SCHEME://$SERVER_NAME$SCRIPT_NAME/$name";
+			$soapaction = "$SCHEME:
 		}
 		if(false == $style) {
 			$style = "rpc";
@@ -1062,7 +1062,7 @@ class nusoap_server extends nusoap_base {
 			$SERVER_PORT = ':' . $SERVER_PORT;
 		}
         if(false == $namespace) {
-            $namespace = "http://$SERVER_NAME/soap/$serviceName";
+            $namespace = "http:
         }
         
         if(false == $endpoint) {
@@ -1071,7 +1071,7 @@ class nusoap_server extends nusoap_base {
         	} else {
         		$SCHEME = 'http';
         	}
-            $endpoint = "$SCHEME://$SERVER_NAME$SERVER_PORT$SCRIPT_NAME";
+            $endpoint = "$SCHEME:
         }
         
         if(false == $schemaTargetNamespace) {

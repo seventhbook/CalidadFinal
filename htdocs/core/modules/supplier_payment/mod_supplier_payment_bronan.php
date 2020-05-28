@@ -143,7 +143,7 @@ class mod_supplier_payment_bronan extends ModeleNumRefSupplierPayments
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->datepaye;
 		$yymm = strftime("%y%m", $date);
 

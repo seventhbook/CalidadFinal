@@ -65,11 +65,11 @@ class ExpenseReportStats extends Stats
 		$this->from = MAIN_DB_PREFIX.$object->table_element." as e";
 		$this->field='total_ht';
 
-		//$this->where = " e.fk_statut > 0";
-		//$this->where.= " AND e.date_valid > '2000-01-01'";    // To filter only correct "valid date". If date is invalid, the group by on it will fails. Launch a repair.php if you have.
+		
+		
 		$this->where.= ' e.entity IN ('.getEntity('expensereport').')';
 
-		//$this->where.= " AND entity = ".$conf->entity;
+		
 		if ($this->socid)
 		{
 			$this->where.=" AND e.fk_soc = ".$this->socid;

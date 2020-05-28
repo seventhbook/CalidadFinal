@@ -79,11 +79,11 @@ class modAgenda extends DolibarrModules
         $this->module_parts = array();
 
 		// Constants
-        //-----------
+        
         // List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
         // Example: $this->const=array(0=>array('MYMODULE_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
         //                             1=>array('MYMODULE_MYNEWCONST2','chaine','myvalue','This is another constant to add',0, 'current', 1)
-        // );
+        
 		$this->const = array();
 		$sqlreadactions="SELECT code, label, description FROM ".MAIN_DB_PREFIX."c_action_trigger ORDER by rang";
 		$resql = $this->db->query($sqlreadactions);
@@ -101,32 +101,32 @@ class modAgenda extends DolibarrModules
 		}
 
 		// New pages on tabs
-		// -----------------
+		
 		$this->tabs = array();
 
 		// Boxes
-		//------
+		
 		$this->boxes = array(0=>array('file'=>'box_actions.php','enabledbydefaulton'=>'Home'));
 
 		// Cronjobs
-		//------------
+		
 		$datestart=dol_now();
 		$this->cronjobs = array(
 			0=>array('label'=>'SendEmailsReminders', 'jobtype'=>'method', 'class'=>'comm/action/class/actioncomm.class.php', 'objectname'=>'ActionComm', 'method'=>'sendEmailsReminder', 'parameters'=>'', 'comment'=>'SendEMailsReminder', 'frequency'=>10, 'unitfrequency'=>60, 'priority'=>10, 'status'=>1, 'test'=>'$conf->agenda->enabled', 'datestart'=>$datestart),
 		);
 
 		// Permissions
-		//------------
+		
 		$this->rights = array();
 		$this->rights_class = 'agenda';
 		$r=0;
 
-		// $this->rights[$r][0]     Id permission (unique tous modules confondus)
-		// $this->rights[$r][1]     Libelle par defaut si traduction de cle "PermissionXXX" non trouvee (XXX = Id permission)
-		// $this->rights[$r][2]     Non utilise
-		// $this->rights[$r][3]     1=Permis par defaut, 0=Non permis par defaut
-		// $this->rights[$r][4]     Niveau 1 pour nommer permission dans code
-		// $this->rights[$r][5]     Niveau 2 pour nommer permission dans code
+		
+		
+		
+		
+		
+		
 
 		$this->rights[$r][0] = 2401;
 		$this->rights[$r][1] = 'Read actions/tasks linked to his account';
@@ -188,7 +188,7 @@ class modAgenda extends DolibarrModules
 
 		// Add here entries to declare new menus
 		// Example to declare the Top Menu entry:
-		// $this->menu[$r]=array(	'fk_menu'=>0,			// Put 0 if this is a top menu
+		
 		//							'type'=>'top',			// This is a Top menu entry
 		//							'titre'=>'MyModule top menu',
 		//							'mainmenu'=>'mymodule',
@@ -378,7 +378,7 @@ class modAgenda extends DolibarrModules
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;

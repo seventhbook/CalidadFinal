@@ -68,7 +68,7 @@ $search_valuebilled = GETPOST('search_valuebilled', 'int');
 
 // Security check
 $socid = 0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (!$user->rights->projet->lire) accessforbidden();
 
 $limit = GETPOST('limit', 'int') ?GETPOST('limit', 'int') : $conf->liste_limit;
@@ -899,13 +899,13 @@ if (($id > 0 || !empty($ref)) || $projectidforalltimes > 0)
 		{
 		    $resql = $db->query($sql);
 		    $nbtotalofrecords = $db->num_rows($resql);
-		    if (($page * $limit) > $nbtotalofrecords)	// if total of record found is smaller than page * limit, goto and load page 0
+		    if (($page * $limit) > $nbtotalofrecords)	
 		    {
 		        $page = 0;
 		        $offset = 0;
 		    }
 		}
-		// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+		
 		if (is_numeric($nbtotalofrecords) && $limit > $nbtotalofrecords)
 		{
 		    $num = $nbtotalofrecords;

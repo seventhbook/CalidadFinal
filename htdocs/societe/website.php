@@ -247,7 +247,7 @@ print '<br>';
 
 
 // Build and execute select
-// --------------------------------------------------------------------
+
 $sql = 'SELECT ';
 foreach ($objectwebsiteaccount->fields as $key => $val)
 {
@@ -287,7 +287,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -358,7 +358,7 @@ print '<table class="tagtable liste'.($moreforfilter ? " listwithfilterbefore" :
 
 
 // Fields title search
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($objectwebsiteaccount->fields as $key => $val)
 {
@@ -383,7 +383,7 @@ print '</tr>'."\n";
 
 
 // Fields title label
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($objectwebsiteaccount->fields as $key => $val)
 {
@@ -415,7 +415,7 @@ if (is_array($extrafields->attributes[$object->table_element]['computed']) && co
 }
 
 // Loop on record
-// --------------------------------------------------------------------
+
 $i = 0;
 $totalarray = array();
 while ($i < min($num, $limit))

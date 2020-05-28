@@ -116,7 +116,7 @@ class Thirdparties extends DolibarrApi
 
 		$obj_ret = array();
 
-		// case of external user, we force socids
+		
 		$socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : '';
 
 		// If the internal user must only see his customers, force searching by him
@@ -136,7 +136,7 @@ class Thirdparties extends DolibarrApi
 		if ($mode == 4) $sql .= " AND t.fournisseur IN (1)";
 		$sql .= ' AND t.entity IN ('.getEntity('societe').')';
 		if ((!DolibarrApiAccess::$user->rights->societe->client->voir && !$socids) || $search_sale > 0) $sql .= " AND t.rowid = sc.fk_soc";
-		//if ($email != NULL) $sql.= " AND s.email = \"".$email."\"";
+		
 		if ($socids) $sql .= " AND t.rowid IN (".$socids.")";
 		if ($search_sale > 0) $sql .= " AND t.rowid = sc.fk_soc"; // Join for the needed table to filter by sale
 		// Insert sale filter
@@ -277,7 +277,7 @@ class Thirdparties extends DolibarrApi
 			throw new RestException(401);
 		}
 
-		$result = $this->company->fetch($id); // include the fetch of extra fields
+		$result = $this->company->fetch($id); 
 		if (!$result) {
 			throw new RestException(404, 'Thirdparty not found');
 		}
@@ -288,7 +288,7 @@ class Thirdparties extends DolibarrApi
 
 		$this->companytoremove = new Societe($db);
 
-		$result = $this->companytoremove->fetch($idtodelete); // include the fetch of extra fields
+		$result = $this->companytoremove->fetch($idtodelete); 
 		if (!$result) {
 			throw new RestException(404, 'Thirdparty not found');
 		}
@@ -1226,8 +1226,8 @@ class Thirdparties extends DolibarrApi
 		$newlang = '';
 
 		if ($this->conf->global->MAIN_MULTILANGS && empty($newlang) && GETPOST('lang_id', 'aZ09')) $newlang = GETPOST('lang_id', 'aZ09');
-		if ($this->conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->company->thirdparty->default_lang)) $newlang = $this->company->thirdparty->default_lang; // for proposal, order, invoice, ...
-		if ($this->conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->company->default_lang)) $newlang = $this->company->default_lang; // for thirdparty
+		if ($this->conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->company->thirdparty->default_lang)) $newlang = $this->company->thirdparty->default_lang; 
+		if ($this->conf->global->MAIN_MULTILANGS && empty($newlang) && isset($this->company->default_lang)) $newlang = $this->company->default_lang; 
 		if (!empty($newlang)) {
 			$outputlangs = new Translate("", $conf);
 			$outputlangs->setDefaultLang($newlang);
@@ -1663,9 +1663,9 @@ class Thirdparties extends DolibarrApi
         // phpcs:enable
 		$object = parent::_cleanObjectDatas($object);
 
-		unset($object->nom); // ->name already defined and nom deprecated
-		unset($object->name_bis); // ->name_alias already defined
-		unset($object->note); // ->note_private and note_public already defined
+		unset($object->nom); 
+		unset($object->name_bis); 
+		unset($object->note); 
 		unset($object->departement);
 		unset($object->departement_code);
 		unset($object->pays);

@@ -138,7 +138,7 @@ class EventIterator implements \Iterator {
         if (!$this->masterEvent) {
             // No base event was found. CalDAV does allow cases where only
             // overridden instances are stored.
-            //
+            
             // In this particular case, we're just going to grab the first
             // event and use that instead. This may not always give the
             // desired result.
@@ -266,7 +266,7 @@ class EventIterator implements \Iterator {
 
         // Ignoring the following block, because PHPUnit's code coverage
         // ignores most of these lines, and this messes with our stats.
-        //
+        
         // @codeCoverageIgnoreStart
         unset(
             $event->RRULE,
@@ -357,7 +357,7 @@ class EventIterator implements \Iterator {
         } else {
             // We need to ask rruleparser for the next date.
             // We need to do this until we find a date that's not in the
-            // exception list.
+            
             do {
                 if (!$this->recurIterator->valid()) {
                     $nextDate = null;
@@ -370,7 +370,7 @@ class EventIterator implements \Iterator {
         }
 
 
-        // $nextDate now contains what rrule thinks is the next one, but an
+        
         // overridden event may cut ahead.
         if ($this->overriddenEventsIndex) {
 

@@ -180,24 +180,24 @@ class modAdherent extends DolibarrModules
 
 
         // Boxes
-        //-------
+        
         $this->boxes = array(
 			0=>array('file'=>'box_members.php','enabledbydefaulton'=>'Home'),
 			2=>array('file'=>'box_birthdays_members.php','enabledbydefaulton'=>'Home')
 		);
 
         // Permissions
-        //------------
+        
         $this->rights = array();
         $this->rights_class = 'adherent';
         $r=0;
 
-        // $this->rights[$r][0]     Id permission (unique tous modules confondus)
-        // $this->rights[$r][1]     Libelle par defaut si traduction de cle "PermissionXXX" non trouvee (XXX = Id permission)
-        // $this->rights[$r][2]     Non utilise
-        // $this->rights[$r][3]     1=Permis par defaut, 0=Non permis par defaut
-        // $this->rights[$r][4]     Niveau 1 pour nommer permission dans code
-        // $this->rights[$r][5]     Niveau 2 pour nommer permission dans code
+        
+        
+        
+        
+        
+        
 
         $r++;
         $this->rights[$r][0] = 71;
@@ -252,20 +252,20 @@ class modAdherent extends DolibarrModules
 
 
         // Menus
-        //-------
+        
         $this->menu = 1; // This module add menu entries. They are coded into menu manager.
 
 
         // Exports
-        //--------
+        
         $r = 0;
 
-        // $this->export_code[$r]          Unique code identifying the export (all modules combined)
-        // $this->export_label[$r]         Libelle by default if translation of key "ExportXXX" not found (XXX = Code)
-        // $this->export_permission[$r]    List of permission codes required to export
-        // $this->export_fields_sql[$r]    List of exportable fields in SQL codiffication
-        // $this->export_fields_name[$r]   List of exportable fields in translation codiffication
-        // $this->export_sql[$r]           SQL query that offers data for export
+        
+        
+        
+        
+        
+        
 
         $r++;
         $this->export_code[$r]=$this->rights_class.'_'.$r;
@@ -307,7 +307,7 @@ class modAdherent extends DolibarrModules
         $this->export_dependencies_array[$r]=array('subscription'=>'c.rowid'); // To add unique key if we ask a field of a child to avoid the DISTINCT to discard them
 
         // Imports
-        //--------
+        
         $r=0;
 
         $now=dol_now();

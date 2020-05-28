@@ -131,7 +131,7 @@ foreach ($files AS $file) {
 			if (substr($row, 0, 1) !== '#') {
 				// don't want lines without the separator (why should those even be here, anyway...)
 				if (strpos($row, '=')!==false) {
-					$row_array = explode('=', $row);		// $row_array[0] = key
+					$row_array = explode('=', $row);		
 					$langstrings_3d[$path_file['basename']][$line+1]=$row_array[0];
 					$langstrings_3dtrans[$path_file['basename']][$line+1]=$row_array[1];
 					$langstrings_full[]=$row_array[0];
@@ -351,19 +351,19 @@ if ((! empty($_REQUEST['unused']) && $_REQUEST['unused'] == 'true') || (isset($a
             continue;
 	    }
 
-	    //$search = '\'trans("'.$value.'")\'';
+	    
 	    $search = '-e "\''.$value.'\'" -e \'"'.$value.'"\' -e "('.$value.')" -e "('.$value.',"';
 		$string =  'grep -R -m 1 -F --exclude=includes/* --include=*.php '.$search.' '.$htdocs.'* '.$scripts.'*';
-		//print $string."<br>\n";
+		
 		exec($string, $output);
 		if (empty($output)) {
    			$unused[$value] = $line;
-       		echo $line;        // $trad contains the \n
+       		echo $line;        
 		}
 		else
 		{
 		    unset($output);
-		    //print 'X'.$output.'Y';
+		    
 		}
 	}
 

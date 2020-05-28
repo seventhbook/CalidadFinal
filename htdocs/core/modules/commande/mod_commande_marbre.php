@@ -136,7 +136,7 @@ class mod_commande_marbre extends ModeleNumRefCommandes
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->date;
 		$yymm = strftime("%y%m", $date);
 

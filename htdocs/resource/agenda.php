@@ -70,7 +70,7 @@ $object = new DolResource($db);
 $object->fetch($id, $ref);
 
 // Initialize technical objects
-//$object=new MyObject($db);
+
 $extrafields = new ExtraFields($db);
 $hookmanager->initHooks(array('agendaresource'));
 

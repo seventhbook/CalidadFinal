@@ -32,7 +32,7 @@ $langs->load('projects');
 $action=GETPOST('action', 'alpha');
 $confirm=GETPOST('confirm', 'alpha');
 $mine = $_REQUEST['mode']=='mine' ? 1 : 0;
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 $id = GETPOST('id', 'int');
 $ref= GETPOST('ref', 'alpha');
 $withproject=GETPOST('withproject', 'int');
@@ -40,9 +40,9 @@ $project_ref = GETPOST('project_ref', 'alpha');
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (!$user->rights->projet->lire) accessforbidden();
-//$result = restrictedArea($user, 'projet', $id, '', 'task'); // TODO ameliorer la verification
+
 
 $object = new Task($db);
 $projectstatic = new Project($db);
@@ -196,7 +196,7 @@ if ($object->id > 0)
 
 		// Other attributes
 		$cols = 2;
-		//include DOL_DOCUMENT_ROOT . '/core/tpl/extrafields_view.tpl.php';
+		
 
 		print '</table>';
 

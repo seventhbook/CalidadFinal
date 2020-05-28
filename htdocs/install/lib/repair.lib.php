@@ -41,7 +41,7 @@ function checkElementExist($id, $table)
 		if ($num > 0) return true;
 		else return false;
 	}
-	else return true; // for security
+	else return true; 
 }
 
 /**

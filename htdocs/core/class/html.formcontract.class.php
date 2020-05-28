@@ -72,7 +72,7 @@ class FormContract
 		$sql = 'SELECT c.rowid, c.ref, c.fk_soc, c.statut';
 		$sql.= ' FROM '.MAIN_DB_PREFIX .'contrat as c';
 		$sql.= " WHERE c.entity = ".$conf->entity;
-		//if ($contratListId) $sql.= " AND c.rowid IN (".$contratListId.")";
+		
 		if ($socid > 0)
 		{
 			// CONTRACT_ALLOW_TO_LINK_FROM_OTHER_COMPANY is 'all' or a list of ids separated by coma.
@@ -107,8 +107,8 @@ class FormContract
 					else
 					{
 						$labeltoshow=dol_trunc($obj->ref, 18);
-						//if ($obj->public) $labeltoshow.=' ('.$langs->trans("SharedProject").')';
-						//else $labeltoshow.=' ('.$langs->trans("Private").')';
+						
+						
 						if (!empty($selected) && $selected == $obj->rowid && $obj->statut > 0)
 						{
 							print '<option value="'.$obj->rowid.'" selected>'.$labeltoshow.'</option>';
@@ -135,8 +135,8 @@ class FormContract
 							{
 								$resultat='<option value="'.$obj->rowid.'"';
 								if ($disabled) $resultat.=' disabled';
-								//if ($obj->public) $labeltoshow.=' ('.$langs->trans("Public").')';
-								//else $labeltoshow.=' ('.$langs->trans("Private").')';
+								
+								
 								$resultat.='>'.$labeltoshow;
 								$resultat.='</option>';
 							}

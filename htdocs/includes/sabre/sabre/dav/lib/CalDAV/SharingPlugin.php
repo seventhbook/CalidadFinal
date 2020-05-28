@@ -246,7 +246,7 @@ class SharingPlugin extends DAV\ServerPlugin {
         // If this request handler could not deal with this POST request, it
         // will return 'null' and other plugins get a chance to handle the
         // request.
-        //
+        
         // However, we already requested the full body. This is a problem,
         // because a body can only be read once. This is why we preemptively
         // re-populated the request body with the existing data.
@@ -265,7 +265,7 @@ class SharingPlugin extends DAV\ServerPlugin {
 
                 $response->setStatus(200);
                 // Adding this because sending a response body may cause issues,
-                // and I wanted some type of indicator the response was handled.
+                
                 $response->setHeader('X-Sabre-Status', 'everything-went-well');
 
                 // Breaking the event chain
@@ -299,7 +299,7 @@ class SharingPlugin extends DAV\ServerPlugin {
 
                 $response->setStatus(200);
                 // Adding this because sending a response body may cause issues,
-                // and I wanted some type of indicator the response was handled.
+                
                 $response->setHeader('X-Sabre-Status', 'everything-went-well');
 
                 if ($url) {
@@ -339,7 +339,7 @@ class SharingPlugin extends DAV\ServerPlugin {
                 $response->setStatus(202);
 
                 // Adding this because sending a response body may cause issues,
-                // and I wanted some type of indicator the response was handled.
+                
                 $response->setHeader('X-Sabre-Status', 'everything-went-well');
 
                 // Breaking the event chain
@@ -366,7 +366,7 @@ class SharingPlugin extends DAV\ServerPlugin {
                 $response->setStatus(200);
 
                 // Adding this because sending a response body may cause issues,
-                // and I wanted some type of indicator the response was handled.
+                
                 $response->setHeader('X-Sabre-Status', 'everything-went-well');
 
                 // Breaking the event chain

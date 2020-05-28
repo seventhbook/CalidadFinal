@@ -126,7 +126,7 @@ if (empty($reshook))
     	    //If the user set a comment, we add it to the log comment
     	    $comment = ((isset($_POST['note_holiday'][$userID]) && !empty($_POST['note_holiday'][$userID])) ? ' ('.$_POST['note_holiday'][$userID].')' : '');
 
-    	    //print 'holiday: '.$val['rowid'].'-'.$userValue;
+    	    
     		if ($userValue != '')
     		{
     			// We add the modification to the log (must be before update of sold because we read current value of sold)
@@ -228,10 +228,10 @@ $i = 0;
 
 if (count($typeleaves) == 0)
 {
-    //print '<div class="info">';
+    
     print $langs->trans("NoLeaveWithCounterDefined")."<br>\n";
     print $langs->trans("GoIntoDictionaryHolidayTypes");
-    //print '</div>';
+    
 }
 else
 {
@@ -339,7 +339,7 @@ else
             	print '<td style="text-align:center">';
             	if ($canedit) print '<input type="text"'.($canedit?'':' disabled="disabled"').' value="'.$nbtoshow.'" name="nb_holiday_'.$val['rowid'].'['.$users['rowid'].']" size="5" style="text-align: center;"/>';
             	else print $nbtoshow;
-        	    //print ' '.$langs->trans('days');
+        	    
             	print '</td>'."\n";
         	}
         }

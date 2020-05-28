@@ -434,7 +434,7 @@ class Html extends BaseWriter
 
             // calculate start of <tbody>, <thead>
             $tbodyStart = $rowMin;
-            $theadStart = $theadEnd = 0; // default: no <thead>    no </thead>
+            $theadStart = $theadEnd = 0; 
             if ($sheet->getPageSetup()->isRowsToRepeatAtTopSet()) {
                 $rowsToRepeatAtTop = $sheet->getPageSetup()->getRowsToRepeatAtTop();
 
@@ -449,13 +449,13 @@ class Html extends BaseWriter
             // Loop through cells
             $row = $rowMin - 1;
             while ($row++ < $rowMax) {
-                // <thead> ?
+                
                 if ($row == $theadStart) {
                     $html .= '        <thead>' . PHP_EOL;
                     $cellType = 'th';
                 }
 
-                // <tbody> ?
+                
                 if ($row == $tbodyStart) {
                     $html .= '        <tbody>' . PHP_EOL;
                     $cellType = 'td';
@@ -479,7 +479,7 @@ class Html extends BaseWriter
                     $html .= $this->generateRow($sheet, $rowData, $row - 1, $cellType);
                 }
 
-                // </thead> ?
+                
                 if ($row == $theadEnd) {
                     $html .= '        </thead>' . PHP_EOL;
                 }
@@ -1340,7 +1340,7 @@ class Html extends BaseWriter
                 if (!$this->useInlineCss) {
                     $html .= ' class="' . $cssClass . '"';
                 } else {
-                    //** Necessary redundant code for the sake of \PhpOffice\PhpSpreadsheet\Writer\Pdf **
+                    
                     // We must explicitly write the width of the <td> element because TCPDF
                     // does not recognize e.g. <col style="width:42pt">
                     $width = 0;
@@ -1359,7 +1359,7 @@ class Html extends BaseWriter
                         $height = $this->cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow]['height'];
                         $cssClass['height'] = $height;
                     }
-                    //** end of redundant code **
+                    
 
                     $html .= ' style="' . $this->assembleCSS($cssClass) . '"';
                 }

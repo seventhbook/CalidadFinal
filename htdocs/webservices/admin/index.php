@@ -75,7 +75,7 @@ print '<table class="noborder centpercent">';
 print '<tr class="liste_titre">';
 print "<td>".$langs->trans("Parameter")."</td>";
 print "<td>".$langs->trans("Value")."</td>";
-//print "<td>".$langs->trans("Examples")."</td>";
+
 print "<td>&nbsp;</td>";
 print "</tr>";
 

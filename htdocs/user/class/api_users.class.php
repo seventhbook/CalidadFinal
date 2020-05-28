@@ -75,8 +75,8 @@ class Users extends DolibarrApi
 	        throw new RestException(401, "You are not allowed to read list of users");
 	    }
 
-	    // case of external user, $societe param is ignored and replaced by user's socid
-	    //$socid = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $societe;
+	    
+	    
 
 	    $sql = "SELECT t.rowid";
 	    $sql .= " FROM ".MAIN_DB_PREFIX."user as t";
@@ -142,8 +142,8 @@ class Users extends DolibarrApi
 	 */
     public function get($id, $includepermissions = 0)
     {
-		//if (!DolibarrApiAccess::$user->rights->user->user->lire) {
-			//throw new RestException(401);
+		
+			
 		//}
 
 		$result = $this->useraccount->fetch($id);
@@ -208,8 +208,8 @@ class Users extends DolibarrApi
     public function post($request_data = null)
     {
 	    // check user authorization
-	    //if(! DolibarrApiAccess::$user->rights->user->creer) {
-	    //   throw new RestException(401, "User creation not allowed");
+	    
+	    
 	    //}
 	    // check mandatory fields
 	    /*if (!isset($request_data["login"]))
@@ -242,8 +242,8 @@ class Users extends DolibarrApi
 	 */
     public function put($id, $request_data = null)
     {
-		//if (!DolibarrApiAccess::$user->rights->user->user->creer) {
-			//throw new RestException(401);
+		
+			
 		//}
 
 		$result = $this->useraccount->fetch($id);
@@ -334,8 +334,8 @@ class Users extends DolibarrApi
 
 		global $conf;
 
-		//if (!DolibarrApiAccess::$user->rights->user->user->supprimer) {
-			//throw new RestException(401);
+		
+			
 		//}
 		$result = $this->useraccount->fetch($id);
 		if (!$result)
@@ -393,8 +393,8 @@ class Users extends DolibarrApi
 	        throw new RestException(401, "You are not allowed to read list of groups");
 	    }
 
-	    // case of external user, $societe param is ignored and replaced by user's socid
-	    //$socid = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $societe;
+	    
+	    
 
 	    $sql = "SELECT t.rowid";
 	    $sql .= " FROM ".MAIN_DB_PREFIX."usergroup as t";
@@ -486,8 +486,8 @@ class Users extends DolibarrApi
 	 */
     public function delete($id)
     {
-		//if (!DolibarrApiAccess::$user->rights->user->user->supprimer) {
-			//throw new RestException(401);
+		
+			
 		//}
 		$result = $this->useraccount->fetch($id);
 		if (!$result)

@@ -61,7 +61,7 @@ $linkback = '<a href="'.DOL_URL_ROOT.'/admin/modules.php">'.$langs->trans("BackT
 
 print load_fiche_titre($langs->trans($page_name), $linkback);
 
-//$head = export_admin_prepare_head();
+
 $h = 0;
 $head = array();
 $head[$h][0] = DOL_URL_ROOT.'/admin/export.php';

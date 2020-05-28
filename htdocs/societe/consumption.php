@@ -121,7 +121,7 @@ if (! empty($conf->global->SOCIETE_USEPREFIX))  // Old not used prefix field
 	print '<tr><td class="titlefield">'.$langs->trans('Prefix').'</td><td colspan="3">'.$object->prefix_comm.'</td></tr>';
 }
 
-//if ($conf->agenda->enabled && $user->rights->agenda->myactions->read) $elementTypeArray['action']=$langs->transnoentitiesnoconv('Events');
+
 
 if ($object->client)
 {
@@ -320,7 +320,7 @@ if (!empty($sql_select))
 	$totalnboflines = $db->num_rows($resql);
 
 	$sql.= $db->plimit($limit + 1, $offset);
-	//print $sql;
+	
 }
 
 $disabled=0;
@@ -489,7 +489,7 @@ if ($sql_select)
 			if ($objp->description == '(DEPOSIT)') $txt=$langs->trans("Deposit");
 			elseif ($objp->description == '(EXCESS RECEIVED)') $txt=$langs->trans("ExcessReceived");
 			elseif ($objp->description == '(EXCESS PAID)') $txt=$langs->trans("ExcessPaid");
-			//else $txt=$langs->trans("Discount");
+			
 			print $txt;
 			?>
 			</a>
@@ -580,7 +580,7 @@ if ($sql_select)
 		*/
 		print '</td>';
 
-		//print '<td class="left">'.$prodreftxt.'</td>';
+		
 		if ($type_element == 'invoice' && $objp->doc_type == Facture::TYPE_CREDIT_NOTE) $objp->prod_qty=-($objp->prod_qty);
 		print '<td class="right">'.$objp->prod_qty.'</td>';
 		$total_qty+=$objp->prod_qty;

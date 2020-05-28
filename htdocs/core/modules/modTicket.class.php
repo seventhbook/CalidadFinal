@@ -45,7 +45,7 @@ class modTicket extends DolibarrModules
 
         // Id for module (must be unique).
         // Use a free id here
-        // (See in Home -> System information -> Dolibarr for list of used modules id).
+        
         $this->numero = 56000;
         // Key text used to identify module (for permissions, menus, etc...)
         $this->rights_class = 'ticket';
@@ -57,27 +57,27 @@ class modTicket extends DolibarrModules
         $this->module_position = '60';
         // Module label (no space allowed)
         // used if translation string 'ModuleXXXName' not found
-        // (where XXX is value of numeric property 'numero' of module)
+        
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         // Module description
         // used if translation string 'ModuleXXXDesc' not found
-        // (where XXX is value of numeric property 'numero' of module)
+        
         $this->description = "Incident/support ticket management";
         // Possible values for version are: 'development', 'experimental' or version
         $this->version = 'dolibarr';
         // Key used in llx_const table to save module status enabled/disabled
-        // (where MYMODULE is value of property name of module in uppercase)
+        
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         // Name of image file used for this module.
         // If file is in theme/yourtheme/img directory under name object_pictovalue.png
-        // use this->picto='pictovalue'
+        
         // If file is in module/img directory under name object_pictovalue.png
-        // use this->picto='pictovalue@module'
+        
         $this->picto = 'ticket'; // mypicto@ticket
         // Defined all module parts (triggers, login, substitutions, menus, css, etc...)
-        // for default path (eg: /ticket/core/xxxxx) (0=disable, 1=enable)
-        // for specific path of parts (eg: /ticket/core/modules/barcode)
-        // for specific css file (eg: /ticket/css/ticket.css.php)
+        
+        
+        
         $this->module_parts = array(
             // Set this to 1 if module has its own trigger directory
             'triggers' => 1,
@@ -100,7 +100,7 @@ class modTicket extends DolibarrModules
 
         // Constants
         // List of particular constants to add when module is enabled
-        // (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
+        
         // Example:
         $this->const = array(
             1 => array('TICKET_ENABLE_PUBLIC_INTERFACE', 'chaine', '0', 'Enable ticket public interface', 0),
@@ -170,7 +170,7 @@ class modTicket extends DolibarrModules
         $r++;
         $this->rights[$r][0] = 56004; // id de la permission
         $this->rights[$r][1] = "Manage tickets"; // libelle de la permission
-        //$this->rights[$r][2] = 'd'; // type de la permission (deprecie a ce jour)
+        
         $this->rights[$r][3] = 0; // La permission est-elle une permission par defaut
         $this->rights[$r][4] = 'manage';
 

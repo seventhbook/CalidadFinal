@@ -388,7 +388,7 @@ if ($result > 0)
 	}
 
 	print '</div><div class="fichehalfright"><div class="ficheaddleft">';
-	//print '<br>';
+	
 
 	// List of actions on element
 	/*include_once DOL_DOCUMENT_ROOT.'/core/class/html.formactions.class.php';

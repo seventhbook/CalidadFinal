@@ -55,7 +55,7 @@ function facture_prepare_head($object)
 		$h++;
 	}
 
-	//if ($fac->mode_reglement_code == 'PRE')
+	
 	if (! empty($conf->prelevement->enabled))
 	{
 	    $nbStandingOrders=0;
@@ -78,8 +78,8 @@ function facture_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'invoice');
 
     if (empty($conf->global->MAIN_DISABLE_NOTES_TAB))
@@ -146,8 +146,8 @@ function invoice_admin_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__'); to add new tab
-	// $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__'); to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'invoice_admin');
 
 	$head[$h][0] = DOL_URL_ROOT.'/compta/facture/admin/facture_cust_extrafields.php';
@@ -196,8 +196,8 @@ function invoice_rec_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'invoice-rec');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'invoice-rec', 'remove');

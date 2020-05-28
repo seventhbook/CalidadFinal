@@ -184,9 +184,9 @@ function calcul_price_total($qty, $pu, $remise_percent_ligne, $txtva, $uselocalt
 	// initialize result array
 	for ($i = 0; $i <= 15; $i++) $result[$i] = 0;
 
-	// if there's some localtax including vat, we calculate localtaxes (we will add later)
+	
 
-    // if input unit price is 'HT', we need to have the totals with main VAT for a correct calculation
+    
     if ($price_base_type != 'TTC')
     {
     	$tot_sans_remise_wt = price2num($tot_sans_remise * (1 + ($txtva / 100)), 'MU');
@@ -200,7 +200,7 @@ function calcul_price_total($qty, $pu, $remise_percent_ligne, $txtva, $uselocalt
     	$pu_wt = $pu;
     }
 
-	//print 'rr'.$price_base_type.'-'.$txtva.'-'.$tot_sans_remise_wt."-".$pu_wt."-".$uselocaltax1_rate."-".$localtax1_rate."-".$localtax1_type."\n";
+	
 
     $localtaxes = array(0, 0, 0);
     $apply_tax = false;
@@ -288,7 +288,7 @@ function calcul_price_total($qty, $pu, $remise_percent_ligne, $txtva, $uselocalt
 		$result[4] = price2num($result[5] - ($result3bis + $localtaxes[2]), 'MU');
 	}
 
-	// if there's some localtax without vat, we calculate localtaxes (we will add them at end)
+	
 
     //If input unit price is 'TTC', we need to have the totals without main VAT for a correct calculation
     if ($price_base_type == 'TTC')
@@ -423,7 +423,7 @@ function calcul_price_total($qty, $pu, $remise_percent_ligne, $txtva, $uselocalt
 
 	//var_dump($result);
 	// initialize result array
-	//for ($i=0; $i <= 18; $i++) $result[$i] = (float) $result[$i];
+	
 
 	dol_syslog('Price.lib::calcul_price_total MAIN_ROUNDING_RULE_TOT='.$conf->global->MAIN_ROUNDING_RULE_TOT.' pu='.$pu.' qty='.$qty.' price_base_type='.$price_base_type.' total_ht='.$result[0].'-total_vat='.$result[1].'-total_ttc='.$result[2]);
 

@@ -91,8 +91,8 @@ class PclZipProxy implements ZipInterface
 		$localpath = dirname($localname);
 		$tmpfilename = $this->tmpdir . '/' . basename($localname);
 		if (false !== file_put_contents($tmpfilename, $contents)) {
-			//print "tmpfilename=".$tmpfilename;
-			//print "localname=".$localname;
+			
+			
 			$res=$this->pclzip->delete(PCLZIP_OPT_BY_NAME, $localname);
 			$add = $this->pclzip->add($tmpfilename,
 				PCLZIP_OPT_REMOVE_PATH, $this->tmpdir,

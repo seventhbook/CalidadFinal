@@ -861,8 +861,8 @@ class FormFile
 							$tmpurlsource = preg_replace('/#[a-zA-Z0-9_]*$/', '', $urlsource);
 							$out .= '<a href="'.$tmpurlsource.((strpos($tmpurlsource, '?') === false) ? '?' : '&amp;').'action=remove_file&amp;file='.urlencode($relativepath);
 							$out .= ($param ? '&amp;'.$param : '');
-							//$out.= '&modulepart='.$modulepart; // TODO obsolete ?
-							//$out.= '&urlsource='.urlencode($urlsource); // TODO obsolete ?
+							
+							
 							$out .= '">'.img_picto($langs->trans("Delete"), 'delete').'</a>';
 						}
 						if ($printer)
@@ -1249,7 +1249,7 @@ class FormFile
 					print '<td class="minwith200">';
 
 					// Show file name with link to download
-					//print "XX".$file['name'];	//$file['name'] must be utf8
+					
 					print '<a class="paddingright" href="'.DOL_URL_ROOT.'/document.php?modulepart='.$modulepart;
 					if ($forcedownload) print '&attachment=1';
 					if (!empty($object->entity)) print '&entity='.$object->entity;
@@ -1339,7 +1339,7 @@ class FormFile
 								// Define $urlwithroot
 								$urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 								$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-								//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+								
 
 								
 								$forcedownload = 0;
@@ -1364,7 +1364,7 @@ class FormFile
 					if (!$editline)
 					{
 						// Delete or view link
-						// ($param must start with &)
+						
 						print '<td class="valignmiddle right actionbuttons nowraponall"><!-- action on files -->';
 						if ($useinecm == 1 || $useinecm == 5)
 						{
@@ -1627,7 +1627,7 @@ class FormFile
 
 				// To show ref or specific information according to view to show (defined by $module)
 				if ($modulepart == 'company' || $modulepart == 'tax') { preg_match('/(\d+)\/[^\/]+$/', $relativefile, $reg); $id = (isset($reg[1]) ? $reg[1] : ''); }
-				elseif ($modulepart == 'invoice_supplier') { preg_match('/([^\/]+)\/[^\/]+$/', $relativefile, $reg); $ref = (isset($reg[1]) ? $reg[1] : ''); if (is_numeric($ref)) { $id = $ref; $ref = ''; } }	// $ref may be also id with old supplier invoices
+				elseif ($modulepart == 'invoice_supplier') { preg_match('/([^\/]+)\/[^\/]+$/', $relativefile, $reg); $ref = (isset($reg[1]) ? $reg[1] : ''); if (is_numeric($ref)) { $id = $ref; $ref = ''; } }	
 				elseif ($modulepart == 'user' || $modulepart == 'holiday') { preg_match('/(.*)\/[^\/]+$/', $relativefile, $reg); $id = (isset($reg[1]) ? $reg[1] : ''); }
                 elseif (in_array($modulepart, array('invoice', 'propal', 'supplier_proposal', 'order', 'order_supplier', 'contract', 'product', 'project', 'fichinter', 'expensereport', 'banque')))
 				{
@@ -1686,7 +1686,7 @@ class FormFile
 
 				// File
 				print '<td>';
-				//print "XX".$file['name']; //$file['name'] must be utf8
+				
 				print '<a href="'.DOL_URL_ROOT.'/document.php?modulepart='.$modulepart;
 				if ($forcedownload) print '&attachment=1';
 				print '&file='.urlencode($relativefile).'">';

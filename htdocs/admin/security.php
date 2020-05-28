@@ -78,7 +78,7 @@ if ($action == 'activate_encrypt')
                 $sql = "UPDATE ".MAIN_DB_PREFIX."user";
                 $sql .= " SET pass_crypted = '".dol_hash($obj->pass)."', pass = NULL";
                 $sql .= " WHERE rowid=".$obj->rowid;
-                //print $sql;
+                
 
                 $resql2 = $db->query($sql);
                 if (!$resql2)
@@ -94,8 +94,8 @@ if ($action == 'activate_encrypt')
     }
     else dol_print_error($db);
 
-	//print $error." ".$sql;
-    //exit;
+	
+    
     if (!$error)
 	{
 		$db->commit();
@@ -287,7 +287,7 @@ foreach ($arrayhandler as $key => $module)
 print '</table>';
 print '</form>';
 
-//if($conf->global->MAIN_SECURITY_DISABLEFORGETPASSLINK == 1)
+
 // Patter for Password Perso
 if ($conf->global->USER_PASSWORD_GENERATED == "Perso") {
 	$tabConf = explode(";", $conf->global->USER_PASSWORD_PATTERN);

@@ -179,11 +179,11 @@ class box_graph_product_distribution extends ModeleBoxes
 					$px1->SetMaxValue($px1->GetCeilMaxValue());
 					$px1->SetWidth($WIDTH);
 					$px1->SetHeight($HEIGHT);
-					//$px1->SetYLabel($langs->trans("NumberOfBills"));
+					
 					$px1->SetShading(3);
 					$px1->SetHorizTickIncrement(1);
 					$px1->SetCssPrefix("cssboxes");
-					//$px1->mode='depth';
+					
 					$px1->SetType(array('pie'));
 					$px1->SetTitle($langs->trans("ForObject", $langs->transnoentitiesnoconv("Invoices")));
 					$px1->combine = 0.05;
@@ -237,11 +237,11 @@ class box_graph_product_distribution extends ModeleBoxes
 					$px2->SetMaxValue($px2->GetCeilMaxValue());
 					$px2->SetWidth($WIDTH);
 					$px2->SetHeight($HEIGHT);
-					//$px2->SetYLabel($langs->trans("AmountOfBillsHT"));
+					
 					$px2->SetShading(3);
 					$px2->SetHorizTickIncrement(1);
 					$px2->SetCssPrefix("cssboxes");
-					//$px2->mode='depth';
+					
 					$px2->SetType(array('pie'));
 					$px2->SetTitle($langs->trans("ForObject", $langs->transnoentitiesnoconv("Proposals")));
 					$px2->combine = 0.05;
@@ -296,11 +296,11 @@ class box_graph_product_distribution extends ModeleBoxes
 					$px3->SetMaxValue($px3->GetCeilMaxValue());
 					$px3->SetWidth($WIDTH);
 					$px3->SetHeight($HEIGHT);
-					//$px3->SetYLabel($langs->trans("AmountOfBillsHT"));
+					
 					$px3->SetShading(3);
 					$px3->SetHorizTickIncrement(1);
 					$px3->SetCssPrefix("cssboxes");
-					//$px3->mode='depth';
+					
 					$px3->SetType(array('pie'));
 					$px3->SetTitle($langs->trans("ForObject", $langs->transnoentitiesnoconv("Orders")));
 					$px3->combine = 0.05;

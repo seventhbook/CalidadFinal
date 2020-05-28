@@ -157,7 +157,7 @@ if ($resql) {
 		while ($i < $num) {
 			$obj = $db->fetch_object($resql);
 			if ($obj) {
-				// print 'Load cache for country '.strtolower($obj->label).' rowid='.$obj->rowid."\n";
+				
 				$hashlib2rowid[strtolower($obj->label)] = $obj->rowid;
 				$countries[$obj->rowid] = array('rowid' => $obj->rowid,'label' => $obj->label,'code' => $obj->code);
 			}
@@ -191,7 +191,7 @@ if ($result >= 0) {
 			$member->login = $ldapuser[$conf->global->LDAP_FIELD_LOGIN];
 			$member->pass = $ldapuser[$conf->global->LDAP_FIELD_PASSWORD];
 
-			// $member->societe;
+			
 			$member->address = $ldapuser[$conf->global->LDAP_FIELD_ADDRESS];
 			$member->zip = $ldapuser[$conf->global->LDAP_FIELD_ZIP];
 			$member->town = $ldapuser[$conf->global->LDAP_FIELD_TOWN];
@@ -216,7 +216,7 @@ if ($result >= 0) {
 				$member->datevalid = dol_stringtotime($ldapuser[$conf->global->LDAP_FIELD_MEMBER_FIRSTSUBSCRIPTION_DATE]);
 				$member->statut = $ldapuser[$conf->global->LDAP_FIELD_MEMBER_STATUS];
 			}
-			// if ($member->statut > 1) $member->statut=1;
+			
 
 			// print_r($ldapuser);
 
@@ -263,14 +263,14 @@ if ($result >= 0) {
 			// Insert first subscription
 			if ($datefirst) {
 				// Cree premiere cotisation et met a jour datefin dans adherent
-				// print "xx".$datefirst."\n";
+				
 				$crowid = $member->subscription($datefirst, $pricefirst, 0);
 			}
 
 			// Insert last subscription
 			if ($datelast) {
 				// Cree derniere cotisation et met a jour datefin dans adherent
-				// print "yy".dol_print_date($datelast)."\n";
+				
 				$crowid = $member->subscription($datelast, $pricelast, 0);
 			}
 		}

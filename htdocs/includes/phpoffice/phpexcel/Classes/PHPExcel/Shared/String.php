@@ -392,7 +392,7 @@ class PHPExcel_Shared_String
 			return $value;
 		}
 
-		// else, no conversion
+		
 		return $value;
 	}
 
@@ -505,7 +505,7 @@ class PHPExcel_Shared_String
 		}else if($from == 'UTF-16BE'){
 			return self::utf16_decode($value);
 		}
-		// else, no conversion
+		
 		return $value;
 	}
 
@@ -557,7 +557,7 @@ class PHPExcel_Shared_String
 			return iconv_strlen($value, $enc);
 		}
 
-		// else strlen
+		
 		return strlen($value);
 	}
 
@@ -579,7 +579,7 @@ class PHPExcel_Shared_String
 			return iconv_substr($pValue, $pStart, $pLength, 'UTF-8');
 		}
 
-		// else substr
+		
 		return substr($pValue, $pStart, $pLength);
 	}
 
@@ -676,7 +676,7 @@ class PHPExcel_Shared_String
 			return true;
 		}
 		return false;
-	}	//	function convertToNumberIfFraction()
+	}	
 
 	/**
 	 * Get the decimal separator. If it has not yet been set explicitly, try to obtain number

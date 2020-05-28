@@ -106,7 +106,7 @@ elseif ($modulepart == 'medias')
  * View
  */
 
-if (!isset($mode) || $mode != 'noajax')	// if ajax mode
+if (!isset($mode) || $mode != 'noajax')	
 {
 	top_httphead();
 }
@@ -165,9 +165,9 @@ if (empty($conf->use_javascript_ajax) || !empty($conf->global->MAIN_ECM_DISABLE_
 	// Load full tree from database. We will use it to define nbofsubdir and nboffilesinsubdir
 	if (empty($sqltree)) $sqltree = $ecmdirstatic->get_full_arbo(0); // Slow
 
-	// ----- This section will show a tree from a fulltree array -----
-	// $section must also be defined
-	// ----------------------------------------------------------------
+	
+	
+	
 
 	// Define fullpathselected ( _x_y_z ) of $section parameter (!! not into ajaxdirtree)
 	$fullpathselected = '';
@@ -356,7 +356,7 @@ function treeOutputForAbsoluteDir($sqltree, $selecteddir, $fullpathselecteddir, 
 				echo '<ul class="ecmjqft" style="display: none;">'."\n";
 
 				// All dirs
-				foreach ($files as $file)    // $file can be '.', '..', or 'My dir' or 'My file'
+				foreach ($files as $file)    
 				{
 					if ($file == 'temp') continue;
 

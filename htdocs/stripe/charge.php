@@ -22,7 +22,7 @@ require '../main.inc.php';
 require_once DOL_DOCUMENT_ROOT.'/societe/class/societe.class.php';
 require_once DOL_DOCUMENT_ROOT.'/adherents/class/adherent.class.php';
 require_once DOL_DOCUMENT_ROOT.'/stripe/class/stripe.class.php';
-//require_once DOL_DOCUMENT_ROOT.'/core/lib/stripe.lib.php';
+
 require_once DOL_DOCUMENT_ROOT.'/compta/bank/class/account.class.php';
 require_once DOL_DOCUMENT_ROOT.'/commande/class/commande.class.php';
 require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
@@ -34,7 +34,7 @@ $langs->loadLangs(array('compta', 'salaries', 'bills', 'hrm', 'stripe'));
 // Security check
 $socid = GETPOST("socid", "int");
 if ($user->socid) $socid=$user->socid;
-//$result = restrictedArea($user, 'salaries', '', '', '');
+
 
 $limit = GETPOST('limit', 'int')?GETPOST('limit', 'int'):$conf->liste_limit;
 $rowid = GETPOST("rowid", 'alpha');
@@ -119,7 +119,7 @@ if (!$rowid)
 		$list=\Stripe\Charge::all(array("limit" => $limit));
 	}
 
-	//print $list;
+	
 	foreach ($list->data as $charge)
 	{
 	    if ($charge->refunded=='1') {

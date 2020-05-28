@@ -170,9 +170,9 @@ $coldisplay++;
 	<?php $coldisplay++;
 	if (($line->info_bits & 2) != 2) {
 		// I comment this because it shows info even when not required
-		// for example always visible on invoice but must be visible only if stock module on and stock decrease option is on invoice validation and status is not validated
+		
 		// must also not be output for most entities (proposal, intervention, ...)
-		//if($line->qty > $line->stock) print img_picto($langs->trans("StockTooLow"),"warning", 'style="vertical-align: bottom;"')." ";
+		
 		print '<input size="3" type="text" class="flat right" name="qty" id="qty" value="'.$line->qty.'"';
 		if ($line->fk_prev_id != null) print ' readonly';
 		print '>';
@@ -228,7 +228,7 @@ $coldisplay++;
 			if (!empty($conf->global->DISPLAY_MARGIN_RATES))
 			{
 				$margin_rate = (isset($_POST["np_marginRate"]) ?GETPOST("np_marginRate", "alpha", 2) : (($line->pa_ht == 0) ? '' : price($line->marge_tx)));
-				// if credit note, dont allow to modify margin
+				
 				if ($line->subprice < 0)
 					echo '<td class="right nowrap margininfos">'.$margin_rate.'<span class="hideonsmartphone">%</span></td>';
 				else
@@ -238,7 +238,7 @@ $coldisplay++;
 			elseif (!empty($conf->global->DISPLAY_MARK_RATES))
 			{
 				$mark_rate = (isset($_POST["np_markRate"]) ?GETPOST("np_markRate", 'alpha', 2) : price($line->marque_tx));
-				// if credit note, dont allow to modify margin
+				
 				if ($line->subprice < 0)
 					echo '<td class="right nowrap margininfos">'.$mark_rate.'<span class="hideonsmartphone">%</span></td>';
 				else

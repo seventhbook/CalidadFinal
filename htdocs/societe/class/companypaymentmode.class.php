@@ -25,7 +25,7 @@
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
 
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
 
 /**
  * Class for CompanyPaymentMode
@@ -275,7 +275,7 @@ class CompanyPaymentMode extends CommonObject
 	    // Clear fields
 	    $object->ref = "copy_of_".$object->ref;
 	    $object->title = $langs->trans("CopyOf")." ".$object->title;
-	    // ...
+	    
 
 	    // Create clone
 		$object->context['createfromclone'] = 'createfromclone';

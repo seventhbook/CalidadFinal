@@ -518,7 +518,7 @@ class pdf_soleil extends ModelePDFFicheinter
 			$text.=($text?' - ':'').$langs->trans("Total").": ".$totaltime;
 		}
 		$desc=dol_htmlentitiesbr($text,1);
-		//print $outputlangs->convToOutputCharset($desc); exit;
+		
 
 		$pdf->writeHTMLCell(180, 3, 10, $tab_top + 8, $outputlangs->convToOutputCharset($desc), 0, 1);
 		$nexY = $pdf->GetY();

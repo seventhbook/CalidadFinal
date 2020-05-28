@@ -54,7 +54,7 @@ class ActionsTicket
      */
     public $errors = array();
 
-    //! Numero de l'erreur
+    
     public $errno = 0;
 
     public $template_dir;
@@ -218,7 +218,7 @@ class ActionsTicket
                 print dol_nl2br($object->message);
             }
 
-            //print '<div>' . $object->message . '</div>';
+            
         }
         if (!empty($user->rights->ticket->manage) && $action == 'edit_message_init') {
             print '<div class="center">';
@@ -277,7 +277,7 @@ class ActionsTicket
                 if (!$arraymsgs['private']
                     || ($arraymsgs['private'] == "1" && $show_private)
                 ) {
-                    //print '<tr>';
+                    
                     print '<tr class="oddeven">';
                     print '<td><strong>';
                     print dol_print_date($arraymsgs['datec'], 'dayhour');
@@ -431,7 +431,7 @@ class ActionsTicket
         }
 
         if (! $error) {
-            return 0; // or return 1 to replace standard code
+            return 0; 
         } else {
             $this->errors[] = 'Error message';
             return -1;

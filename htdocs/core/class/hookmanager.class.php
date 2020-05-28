@@ -223,13 +223,13 @@ class HookManager
         // Loop on each hook to qualify modules that have declared context
         $modulealreadyexecuted=array();
         $resaction=0; $error=0; $result='';
-        foreach($this->hooks as $context => $modules)    // $this->hooks is an array with context as key and value is an array of modules that handle this context
+        foreach($this->hooks as $context => $modules)    
         {
             if (! empty($modules))
             {
                 foreach($modules as $module => $actionclassinstance)
                 {
-                	//print "Before hook ".get_class($actionclassinstance)." method=".$method." hooktype=".$hooktype." results=".count($actionclassinstance->results)." resprints=".count($actionclassinstance->resprints)." resaction=".$resaction." result=".$result."<br>\n";
+                	
 
                     // test to avoid running twice a hook, when a module implements several active contexts
                     if (in_array($module, $modulealreadyexecuted)) continue;
@@ -252,7 +252,7 @@ class HookManager
                     // Hooks that must return int (hooks with type 'addreplace')
                     if ($hooktype == 'addreplace')
                     {
-                    	$resaction += $actionclassinstance->$method($parameters, $object, $action, $this); // $object and $action can be changed by method ($object->id during creation for example or $action to go back to other action for example)
+                    	$resaction += $actionclassinstance->$method($parameters, $object, $action, $this); 
                     	if ($resaction < 0 || ! empty($actionclassinstance->error) || (! empty($actionclassinstance->errors) && count($actionclassinstance->errors) > 0))
                     	{
                     		$error++;
@@ -270,7 +270,7 @@ class HookManager
                     	if (is_array($parameters) && ! empty($parameters['special_code']) && $parameters['special_code'] > 3 && $parameters['special_code'] != $actionclassinstance->module_number) continue;
 
                     	//dol_syslog("Call method ".$method." of class ".get_class($actionclassinstance).", module=".$module.", hooktype=".$hooktype, LOG_DEBUG);
-                    	$resaction = $actionclassinstance->$method($parameters, $object, $action, $this); // $object and $action can be changed by method ($object->id during creation for example or $action to go back to other action for example)
+                    	$resaction = $actionclassinstance->$method($parameters, $object, $action, $this); 
 
                     	if (! empty($actionclassinstance->results) && is_array($actionclassinstance->results)) $this->resArray=array_merge($this->resArray, $actionclassinstance->results);
                     	if (! empty($actionclassinstance->resprints)) $this->resPrint.=$actionclassinstance->resprints;
@@ -288,7 +288,7 @@ class HookManager
                     	}
                     }
 
-                    //print "After hook  ".get_class($actionclassinstance)." method=".$method." hooktype=".$hooktype." results=".count($actionclassinstance->results)." resprints=".count($actionclassinstance->resprints)." resaction=".$resaction." result=".$result."<br>\n";
+                    
 
                     unset($actionclassinstance->results);
                     unset($actionclassinstance->resprints);

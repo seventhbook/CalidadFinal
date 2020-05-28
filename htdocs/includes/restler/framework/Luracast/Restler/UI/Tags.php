@@ -271,7 +271,7 @@ class Tags implements ArrayAccess, Countable
                 unset($children[$i]);
                 continue;
             }
-            //echo $child;
+            
             if (isset($child->_parent) && $child->_parent != $this) {
                 //remove from current parent
                 unset($child->_parent[array_search($child, $child->_parent->children)]);

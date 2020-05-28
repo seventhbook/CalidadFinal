@@ -354,7 +354,7 @@ if (!is_array($x_coll) || !is_array($x_paye))
     //now we have an array (x_both) indexed by rates for coll and paye
 
 
-    //print table headers for this quadri - incomes first
+    
 
     $x_coll_sum = 0;
     $x_coll_ht = 0;

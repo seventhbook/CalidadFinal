@@ -165,9 +165,9 @@ class mailing_contacts1 extends MailingTargets
 		$sql.= " ".MAIN_DB_PREFIX."categorie as c,";
 		$sql.= " ".MAIN_DB_PREFIX."categorie_contact as cs";
 		$sql.= " WHERE sp.statut = 1";     // Note that null != '' is false
-		//$sql.= " AND sp.no_email = 0";
-		//$sql.= " AND sp.email != ''";
-		//$sql.= " AND sp.entity IN (".getEntity('socpeople').")";
+		
+		
+		
 		$sql.= " AND cs.fk_categorie = c.rowid";
 		$sql.= " AND cs.fk_socpeople = sp.rowid";
 		$sql.= " GROUP BY c.label";
@@ -240,9 +240,9 @@ class mailing_contacts1 extends MailingTargets
 		$sql.= " ".MAIN_DB_PREFIX."categorie as c,";
 		$sql.= " ".MAIN_DB_PREFIX."categorie_societe as cs";
 		$sql.= " WHERE sp.statut = 1";     // Note that null != '' is false
-		//$sql.= " AND sp.no_email = 0";
-		//$sql.= " AND sp.email != ''";
-		//$sql.= " AND sp.entity IN (".getEntity('socpeople').")";
+		
+		
+		
 		$sql.= " AND cs.fk_categorie = c.rowid";
 		$sql.= " AND cs.fk_soc = sp.fk_soc";
 		$sql.= " GROUP BY c.label";
@@ -282,9 +282,9 @@ class mailing_contacts1 extends MailingTargets
 		$sql.= " ".MAIN_DB_PREFIX."categorie as c,";
 		$sql.= " ".MAIN_DB_PREFIX."categorie_fournisseur as cs";
 		$sql.= " WHERE sp.statut = 1";     // Note that null != '' is false
-		//$sql.= " AND sp.no_email = 0";
-		//$sql.= " AND sp.email != ''";
-		//$sql.= " AND sp.entity IN (".getEntity('socpeople').")";
+		
+		
+		
 		$sql.= " AND cs.fk_categorie = c.rowid";
 		$sql.= " AND cs.fk_soc = sp.fk_soc";
 		$sql.= " GROUP BY c.label";

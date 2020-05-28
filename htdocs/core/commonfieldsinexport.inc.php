@@ -2,7 +2,7 @@
 
 if (empty($keyforclass) || empty($keyforclassfile) || empty($keyforelement))
 {
-    //print $keyforclass.' - '.$keyforclassfile.' - '.$keyforelement;
+    
     dol_print_error('', 'include of file commonfieldsinexport.inc.php was done but var $keyforclass or $keyforclassfile or $keyforelement was not set');
     exit;
 }
@@ -38,7 +38,7 @@ if (class_exists($keyforclass))
 			/*
 			 * case 'sellist':
 			 * $tmp='';
-			 * $tmpparam=unserialize($obj->param); // $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+			 * $tmpparam=unserialize($obj->param); 
 			 * if ($tmpparam['options'] && is_array($tmpparam['options'])) {
 			 * $tmpkeys=array_keys($tmpparam['options']);
 			 * $tmp=array_shift($tmpkeys);

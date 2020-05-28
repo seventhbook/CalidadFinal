@@ -184,7 +184,7 @@ class FormMail extends Form
 		$this->withfilereadonly = 0;
 		$this->withbodyreadonly = 0;
 		$this->withdeliveryreceiptreadonly = 0;
-		$this->withfckeditor = -1; // -1 = Auto
+		$this->withfckeditor = -1; 
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -204,7 +204,7 @@ class FormMail extends Form
 		$upload_dir = $vardir.'/temp/'; // TODO Add $keytoavoidconflict in upload_dir path
 		if (is_dir($upload_dir)) dol_delete_dir_recursive($upload_dir);
 
-		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 		unset($_SESSION["listofpaths".$keytoavoidconflict]);
 		unset($_SESSION["listofnames".$keytoavoidconflict]);
 		unset($_SESSION["listofmimes".$keytoavoidconflict]);
@@ -229,7 +229,7 @@ class FormMail extends Form
 		if (empty($file)) $file = basename($path);
 		if (empty($type)) $type = dol_mimetype($file);
 
-		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 		if (!empty($_SESSION["listofpaths".$keytoavoidconflict])) $listofpaths = explode(';', $_SESSION["listofpaths".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofnames".$keytoavoidconflict])) $listofnames = explode(';', $_SESSION["listofnames".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofmimes".$keytoavoidconflict])) $listofmimes = explode(';', $_SESSION["listofmimes".$keytoavoidconflict]);
@@ -258,7 +258,7 @@ class FormMail extends Form
 		$listofnames = array();
 		$listofmimes = array();
 
-		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 		if (!empty($_SESSION["listofpaths".$keytoavoidconflict])) $listofpaths = explode(';', $_SESSION["listofpaths".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofnames".$keytoavoidconflict])) $listofnames = explode(';', $_SESSION["listofnames".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofmimes".$keytoavoidconflict])) $listofmimes = explode(';', $_SESSION["listofmimes".$keytoavoidconflict]);
@@ -287,7 +287,7 @@ class FormMail extends Form
 		$listofnames = array();
 		$listofmimes = array();
 
-		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+		$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 		if (!empty($_SESSION["listofpaths".$keytoavoidconflict])) $listofpaths = explode(';', $_SESSION["listofpaths".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofnames".$keytoavoidconflict])) $listofnames = explode(';', $_SESSION["listofnames".$keytoavoidconflict]);
 		if (!empty($_SESSION["listofmimes".$keytoavoidconflict])) $listofmimes = explode(';', $_SESSION["listofmimes".$keytoavoidconflict]);
@@ -385,7 +385,7 @@ class FormMail extends Form
 			$listofpaths = array();
 			$listofnames = array();
 			$listofmimes = array();
-			$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; // this->trackid must be defined
+			$keytoavoidconflict = empty($this->trackid) ? '' : '-'.$this->trackid; 
 
 			if (GETPOST('mode', 'alpha') == 'init' || (GETPOST('modelmailselected', 'alpha') && GETPOST('modelmailselected', 'alpha') != '-1'))
 			{
@@ -512,7 +512,7 @@ class FormMail extends Form
 				{
 					$out .= '<tr><td class="fieldrequired minwidth200">'.$langs->trans("MailFrom").'</td><td>';
 
-					// $this->fromtype is the default value to use to select sender
+					
 					if (!($this->fromtype === 'user' && $this->fromid > 0)
 						&& !($this->fromtype === 'company')
 						&& !($this->fromtype === 'robot')
@@ -1324,7 +1324,7 @@ class FormMail extends Form
 		$sql .= " AND entity IN (".getEntity('c_email_templates').")";
 		$sql .= " AND (private = 0 OR fk_user = ".$user->id.")"; // See all public templates or templates I own.
 		if ($active >= 0) $sql .= " AND active = ".$active;
-		//if (is_object($outputlangs)) $sql.= " AND (lang = '".$outputlangs->defaultlang."' OR lang IS NULL OR lang = '')";	// Return all languages
+		
 		$sql .= $this->db->order("position,lang,label", "ASC");
 		
 
@@ -1466,7 +1466,7 @@ class FormMail extends Form
 			$tmparray['__USER_SIGNATURE__'] = 'TagSignature';
 			$tmparray['__CHECK_READ__'] = 'TagCheckMail';
 			$tmparray['__UNSUBSCRIBE__'] = 'TagUnsubscribe';
-				//,'__PERSONALIZED__' => 'Personalized'	// Hidden because not used yet in mass emailing
+				
 
 			$onlinepaymentenabled = 0;
 			if (!empty($conf->paypal->enabled)) $onlinepaymentenabled++;

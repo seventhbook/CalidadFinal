@@ -373,7 +373,7 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 			    if (!empty($_GET['action']) && (preg_match('/^create/', $_GET['action']) || preg_match('/^presend/', $_GET['action'])) && !isset($_GET[$paramname]) && !isset($_POST[$paramname]))
 				{
 					// Now search in setup to overwrite default values
-					if (!empty($user->default_values))		// $user->default_values defined from menu 'Setup - Default values'
+					if (!empty($user->default_values))		
 					{
 						if (isset($user->default_values[$relativepathstring]['createform']))
 						{
@@ -406,10 +406,10 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 					}
 				}
 				// Management of default search_filters and sort order
-				//elseif (preg_match('/list.php$/', $_SERVER["PHP_SELF"]) && ! empty($paramname) && ! isset($_GET[$paramname]) && ! isset($_POST[$paramname]))
+				
 				elseif (!empty($paramname) && !isset($_GET[$paramname]) && !isset($_POST[$paramname]))
 				{
-					if (!empty($user->default_values))		// $user->default_values defined from menu 'Setup - Default values'
+					if (!empty($user->default_values))		
 					{
 						if ($paramname == 'sortfield' || $paramname == 'sortorder')			// Sorted on which fields ? ASC or DESC ?
 						{
@@ -446,14 +446,14 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 												$out .= dol_string_nospecial($val, '', $forbidden_chars_to_replace);
 											}
 										}
-										//break;	// No break for sortfield and sortorder so we can cumulate fields (is it realy usefull ?)
+										
 									}
 								}
 							}
 						}
 						elseif (isset($user->default_values[$relativepathstring]['filters']))
 						{
-							foreach ($user->default_values[$relativepathstring]['filters'] as $defkey => $defval)	// $defkey is a querystring like 'a=b&c=d', $defval is key of user
+							foreach ($user->default_values[$relativepathstring]['filters'] as $defkey => $defval)	
 							{
 								$qualified = 0;
 								if ($defkey != '_noquery_')
@@ -615,9 +615,9 @@ function GETPOST($paramname, $check = 'none', $method = 0, $filter = null, $opti
 		{
 
 			// We save search key only if $out not empty that means:
-			// - posted value not empty, or
+			
 
-			if ($out != '')		// $out = '0' or 'abc', it is a search criteria to keep
+			if ($out != '')		
 			{
 				$user->lastsearch_values_tmp[$relativepathstring][$paramname] = $out;
 			}
@@ -761,7 +761,7 @@ function dol_buildpath($path, $type = 0, $returnemptyifnotfound = 0)
 					// Define $urlwithroot
 					$urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 					$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-					//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+					
 
 					$res = (preg_match('/^http/i', $conf->file->dol_url_root[$key]) ? '' : $urlwithroot).'/'.$path; // Test on start with http is for old conf syntax
 				}
@@ -787,7 +787,7 @@ function dol_buildpath($path, $type = 0, $returnemptyifnotfound = 0)
 						// Define $urlwithroot
 						$urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 						$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-						//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+						
 
 						$res = (preg_match('/^http/i', $conf->file->dol_url_root[$key]) ? '' : $urlwithroot).$conf->file->dol_url_root[$key].'/'.$path; // Test on start with http is for old conf syntax
 					}
@@ -965,7 +965,7 @@ function dol_escape_js($stringtoescape, $mode = 0, $noescapebackslashn = 0)
 {
 	// escape quotes and backslashes, newlines, etc.
 	$substitjs = array("&#039;"=>"\\'", "\r"=>'\\r');
-	//$substitjs['</']='<\/';	// We removed this. Should be useless.
+	
 	if (empty($noescapebackslashn)) { $substitjs["\n"] = '\\n'; $substitjs['\\'] = '\\\\'; }
 	if (empty($mode)) { $substitjs["'"] = "\\'"; $substitjs['"'] = "\\'"; }
 	elseif ($mode == 1) $substitjs["'"] = "\\'";
@@ -1194,7 +1194,7 @@ function dol_get_fiche_head($links = array(), $active = '', $title = '', $notab 
 	if (!empty($conf->dol_optimize_smallscreen)) $conf->global->MAIN_MAXTABS_IN_CARD = 2;
 
 	// Show tabs
-	// if =0 we don't use the feature
+	
 	$limittoshow = (empty($conf->global->MAIN_MAXTABS_IN_CARD) ? 99 : $conf->global->MAIN_MAXTABS_IN_CARD);
 	$displaytab = 0;
 	$nbintab = 0;
@@ -1847,7 +1847,7 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 	}
 
 	// If date undefined or "", we return ""
-	if (dol_strlen($time) == 0) return ''; // $time=0 allowed (it means 01/01/1970 00:00:00)
+	if (dol_strlen($time) == 0) return ''; 
 
 	// Clean format
 	if (preg_match('/%b/i', $format))		// There is some text to translate
@@ -1904,7 +1904,7 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 
 		// Here ret is string in PHP setup language (strftime was used). Now we convert to $outputlangs.
 		$month = adodb_strftime('%m', $timetouse);
-		$month = sprintf("%02d", $month); // $month may be return with format '06' on some installation and '6' on other, so we force it to '06'.
+		$month = sprintf("%02d", $month); 
 		if ($encodetooutput)
 		{
 			$monthtext = $outputlangs->transnoentities('Month'.$month);
@@ -1917,7 +1917,7 @@ function dol_print_date($time, $format = '', $tzoutput = 'tzserver', $outputlang
 		}
 		$ret = str_replace('__b__', $monthtextshort, $ret);
 		$ret = str_replace('__B__', $monthtext, $ret);
-		//return $ret;
+		
 	}
 	if (preg_match('/__a__/i', $format))
 	{
@@ -1970,8 +1970,8 @@ function dol_getdate($timestamp, $fast = false)
 	global $conf;
 
 	$usealternatemethod = false;
-	if ($timestamp <= 0) $usealternatemethod = true; // <= 1970
-	if ($timestamp >= 2145913200) $usealternatemethod = true; // >= 2038
+	if ($timestamp <= 0) $usealternatemethod = true; 
+	if ($timestamp >= 2145913200) $usealternatemethod = true; 
 
 	if ($usealternatemethod)
 	{
@@ -2081,7 +2081,7 @@ function dol_now($mode = 'gmt')
 	$ret = 0;
 
 	// Note that gmmktime and mktime return same value (GMT) when used without parameters
-	//if ($mode == 'gmt') $ret=gmmktime(); // Strict Standards: gmmktime(): You should be using the time() function instead
+	
 	if ($mode == 'gmt') $ret = time(); // Time for now at greenwich.
 	elseif ($mode == 'tzserver')		// Time for now with PHP server timezone added
 	{
@@ -2572,7 +2572,7 @@ function dol_print_phone($phone, $countrycode = '', $cid = 0, $socid = 0, $addli
 			$newphone = substr($newphone, 0, 3).$separ.substr($newphone, 3, 2).$separ.substr($newphone, 5, 3).$separ.substr($newphone, 8, 2).$separ.substr($newphone, 10, 2);
 		}
 		elseif (dol_strlen($phone) == 15)
-		{// +41_AB_CDE_FGH_IJKL
+		{
 			$newphone = $newphone = substr($newphone, 0, 3).$separ.substr($newphone, 3, 2).$separ.substr($newphone, 5, 3).$separ.substr($newphone, 8, 3).$separ.substr($newphone, 11, 4);
 		}
 	}
@@ -2657,7 +2657,7 @@ function dol_print_phone($phone, $countrycode = '', $cid = 0, $socid = 0, $addli
 			$newphone .= '>'.$newphonesav.'</a>';
 		}
 
-		//if (($cid || $socid) && ! empty($conf->agenda->enabled) && $user->rights->agenda->myactions->create)
+		
 		if (!empty($conf->agenda->enabled) && $user->rights->agenda->myactions->create)
 		{
 			$type = 'AC_TEL'; $link = '';
@@ -2766,7 +2766,7 @@ function dolGetCountryCodeFromIp($ip)
 	if (!empty($conf->geoipmaxmind->enabled))
 	{
 		$datafile = $conf->global->GEOIPMAXMIND_COUNTRY_DATAFILE;
-		//$datafile='/usr/share/GeoIP/GeoIP.dat';    Note that this must be downloaded datafile (not same than datafile provided with ubuntu packages)
+		
 		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
 		$countrycode = $geoip->getCountryCodeFromIP($ip);
@@ -2791,7 +2791,7 @@ function dol_user_country()
 	{
 		$ip = getUserRemoteIP();
 		$datafile = $conf->global->GEOIPMAXMIND_COUNTRY_DATAFILE;
-		//$datafile='E:\Mes Sites\Web\Admin1\awstats\maxmind\GeoIP.dat';
+		
 		include_once DOL_DOCUMENT_ROOT.'/core/class/dolgeoip.class.php';
 		$geoip = new DolGeoIP('country', $datafile);
 		$countrycode = $geoip->getCountryCodeFromIP($ip);
@@ -3073,7 +3073,7 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 	} else {
 		$pictowithouttext = preg_replace('/(\.png|\.gif|\.svg)$/', '', $picto);
 
-		//if (in_array($picto, array('switch_off', 'switch_on', 'off', 'on')))
+		
         if (empty($srconly) && in_array($pictowithouttext, array(
         		'1downarrow', '1uparrow', '1leftarrow', '1rightarrow', '1uparrow_selected', '1downarrow_selected', '1leftarrow_selected', '1rightarrow_selected',
         		'address', 'barcode', 'bank', 'bookmark', 'building', 'cash-register', 'close_title', 'cubes', 'delete', 'dolly', 'edit', 'ellipsis-h',
@@ -3212,8 +3212,8 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 				$marginleftonlyshort = 0;
 			}
 
-			//this snippet only needed since function img_edit accepts only one additional parameter: no separate one for css only.
-            //class/style need to be extracted to avoid duplicate class/style validation errors when $moreatt is added to the end of the attributes
+			
+            
             $reg = array();
 			if (preg_match('/class="([^"]+)"/', $moreatt, $reg)) {
                 $morecss .= ($morecss ? ' ' : '').$reg[1];
@@ -3248,7 +3248,7 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 		// If we ask an image into $url/$mymodule/img (instead of default path)
 		if (preg_match('/^([^@]+)@([^@]+)$/i', $picto, $regs)) {
 			$picto = $regs[1];
-			$path = $regs[2]; // $path is $mymodule
+			$path = $regs[2]; 
 		}
 
 		// Clean parameters
@@ -3268,7 +3268,7 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 			}
 		}
 
-		// $url is '' or '/custom', $path is current theme or
+		
 		$fullpathpicto = $url.'/'.$path.'/img/'.$picto;
 	}
 
@@ -3590,7 +3590,7 @@ function img_next($titlealt = 'default', $moreatt = '')
 
 	if ($titlealt == 'default') $titlealt = $langs->trans('Next');
 
-	//return img_picto($titlealt, 'next.png', $moreatt);
+	
 	return '<span class="fa fa-chevron-right paddingright paddingleft" title="'.dol_escape_htmltag($titlealt).'"></span>';
 }
 
@@ -3607,7 +3607,7 @@ function img_previous($titlealt = 'default', $moreatt = '')
 
 	if ($titlealt == 'default') $titlealt = $langs->trans('Previous');
 
-	//return img_picto($titlealt, 'previous.png', $moreatt);
+	
 	return '<span class="fa fa-chevron-left paddingright paddingleft" title="'.dol_escape_htmltag($titlealt).'"></span>';
 }
 
@@ -3734,7 +3734,7 @@ function img_mime($file, $titlealt = '', $morecss = '')
 
 	if (empty($titlealt)) $titlealt = 'Mime type: '.$mimetype;
 
-	//return img_picto_common($titlealt, 'mime/'.$mimeimg, 'class="'.$morecss.'"');
+	
 	return '<i class="fa fa-'.$mimefa.' paddingright"'.($titlealt ? ' title="'.$titlealt.'"' : '').'></i>';
 }
 
@@ -4082,16 +4082,16 @@ function getTitleFieldOfList($name, $thead = 0, $file = "", $field = "", $begin 
 
 		if (!$sortorder || $field1 != $sortfield1)
 		{
-			//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",0).'</a>';
+			
 		}
 		else
 		{
 			if (preg_match('/^DESC/', $sortorder)) {
-				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",1).'</a>';
+				
 				$sortimg .= '<span class="nowrap">'.img_up("Z-A", 0).'</span>';
 			}
 			if (preg_match('/^ASC/', $sortorder)) {
-				//$out.= '<a href="'.$file.'?sortfield='.$field.'&sortorder=desc&begin='.$begin.$options.'">'.img_up("Z-A",0).'</a>';
+				
 				$sortimg .= '<span class="nowrap">'.img_down("A-Z", 0).'</span>';
 			}
 		}
@@ -4317,7 +4317,7 @@ function print_fleche_navigation($page, $file, $options = '', $nextpage = 0, $be
 	if ((int) $limit > 0 && empty($hideselectlimit))
 	{
 		$pagesizechoices = '10:10,15:15,20:20,30:30,40:40,50:50,100:100,250:250,500:500,1000:1000,5000:5000';
-		//$pagesizechoices.=',0:'.$langs->trans("All");     // Not yet supported
+		
 		if (!empty($conf->global->MAIN_PAGESIZE_CHOICES)) $pagesizechoices = $conf->global->MAIN_PAGESIZE_CHOICES;
 
 		print '<li class="pagination">';
@@ -4553,7 +4553,7 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 			// We put in temps value of decimal ("0.00001"). Works with 0 and 2.0E-5 and 9999.10
 			$temps = sprintf("%0.10F", $amount - intval($amount)); // temps=0.0000000000 or 0.0000200000 or 9999.1000000000
 			$temps = preg_replace('/([\.1-9])0+$/', '\\1', $temps); // temps=0. or 0.00002 or 9999.1
-			$nbofdec = max(0, dol_strlen($temps) - 2); // -2 to remove "0."
+			$nbofdec = max(0, dol_strlen($temps) - 2); 
 			$amount = number_format($amount, $nbofdec, $dec, $thousand);
 		}
 
@@ -4572,7 +4572,7 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 		elseif ($rounding == 'MT') $nbofdectoround = $conf->global->MAIN_MAX_DECIMALS_TOT;
 		elseif ($rounding == 'MS') $nbofdectoround = empty($conf->global->MAIN_MAX_DECIMALS_STOCK) ? 5 : $conf->global->MAIN_MAX_DECIMALS_STOCK;
 		elseif (is_numeric($rounding))  $nbofdectoround = $rounding;
-		if (dol_strlen($nbofdectoround)) $amount = round($amount, $nbofdectoround); // $nbofdectoround can be 0.
+		if (dol_strlen($nbofdectoround)) $amount = round($amount, $nbofdectoround); 
 		else return 'ErrorBadParameterProvidedToFunction';
 
 		// Convert amount to format with dolibarr dec and thousand (this is because PHP convert a number
@@ -4582,7 +4582,7 @@ function price2num($amount, $rounding = '', $alreadysqlnb = 0)
 			// We put in temps value of decimal ("0.00001"). Works with 0 and 2.0E-5 and 9999.10
 			$temps = sprintf("%0.10F", $amount - intval($amount)); // temps=0.0000000000 or 0.0000200000 or 9999.1000000000
 			$temps = preg_replace('/([\.1-9])0+$/', '\\1', $temps); // temps=0. or 0.00002 or 9999.1
-			$nbofdec = max(0, dol_strlen($temps) - 2); // -2 to remove "0."
+			$nbofdec = max(0, dol_strlen($temps) - 2); 
 			$amount = number_format($amount, min($nbofdec, $nbofdectoround), $dec, $thousand); // Convert amount to format with dolibarr dec and thousand
 		}
 
@@ -5386,7 +5386,7 @@ function dol_mkdir($dir, $dataroot = '', $newmask = null)
 		if (preg_match("/^.:$/", $ccdir, $regs)) continue; // Si chemin Windows incomplet, on poursuit par rep suivant
 
 		// Attention, le is_dir() peut echouer bien que le rep existe.
-		// (ex selon config de open_basedir)
+		
 		if ($ccdir)
 		{
 			$ccdir_osencoded = dol_osencode($ccdir);
@@ -5460,9 +5460,9 @@ function dol_string_nohtmltag($stringtoclean, $removelinefeed = 1, $pagecodeto =
 		$pattern = "/<[^<>]+>/";
 		// Exemple of $temp: <a href="/myurl" title="<u>A title</u>">0000-021</a>
 		$temp = preg_replace($pattern, "", $temp); // pass 1
-		// $temp after pass 1: <a href="/myurl" title="A title">0000-021
+		
 		$temp = preg_replace($pattern, "", $temp); // pass 2
-		// $temp after pass 2: 0000-021
+		
 	}
 
 	$temp = dol_html_entity_decode($temp, ENT_COMPAT, $pagecodeto);
@@ -5576,8 +5576,8 @@ function dolGetFirstLineOfText($text, $nboflines = 1, $charset = 'UTF-8')
 		}
 
 		$text = strtr($text, $repTable);
-		if ($charset == 'UTF-8') { $pattern = '/(<br[^>]*>)/Uu'; }	// /U is to have UNGREEDY regex to limit to one html tag. /u is for UTF8 support
-		else $pattern = '/(<br[^>]*>)/U'; // /U is to have UNGREEDY regex to limit to one html tag.
+		if ($charset == 'UTF-8') { $pattern = '/(<br[^>]*>)/Uu'; }	
+		else $pattern = '/(<br[^>]*>)/U'; 
 		$a = preg_split($pattern, $text, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
 		$firstline = '';
@@ -5649,7 +5649,7 @@ function dol_htmlentitiesbr($stringtoencode, $nl2brmode = 0, $pagecodefrom = 'UT
 		$newstring = dol_nl2br(dol_htmlentities($newstring, ENT_COMPAT, $pagecodefrom), $nl2brmode);
 	}
 	// Other substitutions that htmlentities does not do
-	//$newstring=str_replace(chr(128),'&euro;',$newstring);	// 128 = 0x80. Not in html entity table.     // Seems useles with TCPDF. Make bug with UTF8 languages
+	
 	return $newstring;
 }
 
@@ -5775,8 +5775,8 @@ function dol_nboflines_bis($text, $maxlinesize = 0, $charset = 'UTF-8')
 	if (dol_textishtml($text)) $repTable = array("\t" => " ", "\n" => " ", "\r" => " ", "\0" => " ", "\x0B" => " ");
 
 	$text = strtr($text, $repTable);
-	if ($charset == 'UTF-8') { $pattern = '/(<br[^>]*>)/Uu'; }	// /U is to have UNGREEDY regex to limit to one html tag. /u is for UTF8 support
-	else $pattern = '/(<br[^>]*>)/U'; // /U is to have UNGREEDY regex to limit to one html tag.
+	if ($charset == 'UTF-8') { $pattern = '/(<br[^>]*>)/Uu'; }	
+	else $pattern = '/(<br[^>]*>)/U'; 
 	$a = preg_split($pattern, $text, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
 	$nblines = (int) floor((count($a) + 1) / 2);
@@ -5888,7 +5888,7 @@ function getCommonSubstitutionArray($outputlangs, $onlykey = 0, $exclude = null,
 	if (empty($exclude) || !in_array('user', $exclude))
 	{
 		// Add SIGNATURE into substitutionarray first, so, when we will make the substitution,
-		// this will include signature content first and then replace var found into content of signature
+		
 		$signature = $user->signature;
         $substitutionarray = array_merge($substitutionarray, array(
 		'__USER_SIGNATURE__' => (string) (($signature && empty($conf->global->MAIN_MAIL_DO_NOT_USE_SIGN)) ? ($onlykey == 2 ? dol_trunc(dol_string_nohtmltag($signature), 30) : $signature) : '')
@@ -7013,7 +7013,7 @@ function getLanguageCodeFromCountryCode($countrycode)
 
 	// Locale list taken from:
 	// http://stackoverflow.com/questions/3191664/
-	// list-of-all-locales-and-their-short-codes
+	
 	$locales = array(
 		'af-ZA',
 		'am-ET',
@@ -7249,7 +7249,7 @@ function complete_head_from_modules($conf, $langs, $object, &$head, &$h, $type, 
 
 			if ($mode == 'add' && !preg_match('/^\-/', $values[1]))
 			{
-				if (count($values) == 6)       // new declaration with permissions:  $value='objecttype:+tabname1:Title1:langfile@mymodule:$user->rights->mymodule->read:/mymodule/mynewtab1.php?id=__ID__'
+				if (count($values) == 6)       
 				{
 					if ($values[0] != $type) continue;
 
@@ -7690,7 +7690,7 @@ function natural_search($fields, $value, $mode = 0, $nofirstand = 0)
 			        }
 			    }
 			}
-			else    // $mode=0
+			else    
 			{
 				$tmpcrits = explode('|', $crit);
 				$i3 = 0;
@@ -8222,7 +8222,7 @@ function dolGetStatus($statusLabel = '', $statusLabelShort = '', $html = '', $st
         elseif ($displayMode === 5) {
             $return = $htmlLabelShort.' '.$htmlImg;
         }
-        else { // $displayMode >= 6
+        else { 
             $return = $htmlLabel.' '.$htmlImg;
         }
     }

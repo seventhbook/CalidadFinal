@@ -153,7 +153,7 @@ class Component extends Node {
         if (is_string($item)) {
             // If there's no dot in the name, it's an exact property name and
             // we can just wipe out all those properties.
-            //
+            
             if (strpos($item, '.') === false) {
                 unset($this->children[strtoupper($item)]);
                 return;

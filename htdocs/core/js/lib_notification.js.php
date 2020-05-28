@@ -36,7 +36,7 @@ if (! ($_SERVER['HTTP_REFERER'] === $dolibarr_main_url_root . '/' || $_SERVER['H
     top_httphead('text/javascript; charset=UTF-8');
 
     $nowtime = time();
-    //$nowtimeprevious = floor($nowtime / 60) * 60;   // auto_check_events_not_before is rounded to previous minute
+    
 
     // TODO Try to make a solution with only a javascript timer that is easier. Difficulty is to avoid notification twice when.
     /* session already started into main

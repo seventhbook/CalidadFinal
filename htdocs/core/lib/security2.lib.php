@@ -35,7 +35,7 @@
 function dol_getwebuser($mode)
 {
     $t='?';
-    if ($mode=='user')  $t=getenv('APACHE_RUN_USER');   // $_ENV['APACHE_RUN_USER'] is empty
+    if ($mode=='user')  $t=getenv('APACHE_RUN_USER');   
     if ($mode=='group') $t=getenv('APACHE_RUN_GROUP');
     return $t;
 }
@@ -53,7 +53,7 @@ function dol_getwebuser($mode)
 function checkLoginPassEntity($usertotest, $passwordtotest, $entitytotest, $authmode, $context = '')
 {
 	global $conf,$langs;
-    //global $dolauthmode;    // To return authentication finally used
+    
 
 	// Check parameters
 	if ($entitytotest == '') $entitytotest=1;
@@ -150,7 +150,7 @@ if (! function_exists('dol_loginfunction'))
 		$appli=constant('DOL_APPLICATION_TITLE');
 		$title=$appli.' '.constant('DOL_VERSION');
 		if (! empty($conf->global->MAIN_APPLICATION_TITLE)) $title=$conf->global->MAIN_APPLICATION_TITLE;
-		$titletruedolibarrversion=constant('DOL_VERSION');	// $title used by login template after the @ to inform of true Dolibarr version
+		$titletruedolibarrversion=constant('DOL_VERSION');	
 
 		// Note: $conf->css looks like '/theme/eldy/style.css.php'
 		/*
@@ -402,8 +402,8 @@ function encodedecode_dbpassconf($level = 0)
 					$config .= '$dolibarr_main_db_pass=\'crypted:'.$passwd_crypted.'\';'."\n";
 				}
 
-				//print 'passwd = '.$passwd.' - passwd_crypted = '.$passwd_crypted;
-				//exit;
+				
+				
 			}
 			else
 			{
@@ -502,7 +502,7 @@ function getRandomPassword($generic = false, $replaceambiguouschars = null, $len
 	{
 		$nomclass="modGeneratePass".ucfirst($conf->global->USER_PASSWORD_GENERATED);
 		$nomfichier=$nomclass.".class.php";
-		//print DOL_DOCUMENT_ROOT."/core/modules/security/generate/".$nomclass;
+		
 		require_once DOL_DOCUMENT_ROOT."/core/modules/security/generate/".$nomfichier;
 		$genhandler=new $nomclass($db, $conf, $langs, $user);
 		$generated_password=$genhandler->getNewGeneratedPassword();

@@ -360,7 +360,7 @@ if ($conf->use_javascript_ajax)
 
 	// Appelle de la fonction recursive (ammorce) avec recherche depuis la racine.
 	//tree_recur($data, $data[0], 0, 'iddivjstree', 0, 1);  // use this to get info on name and foreign keys of menu entry
-	tree_recur($data, $data[0], 0, 'iddivjstree', 0, 0); // $data[0] is virtual record 'racine'
+	tree_recur($data, $data[0], 0, 'iddivjstree', 0, 0); 
 
 
 	print '</td>';

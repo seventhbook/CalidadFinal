@@ -84,7 +84,7 @@ class PHPExcel_Calculation_Statistical {
 		$array2 = array_merge($array2);
 
 		return True;
-	}	//	function _checkTrendArrays()
+	}	
 
 
 	/**
@@ -102,7 +102,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return exp(self::_logBeta($p, $q));
 		}
-	}	//	function _beta()
+	}	
 
 
 	/**
@@ -131,7 +131,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return 1.0 - ($beta_gam * self::_betaFraction(1 - $x, $q, $p) / $q);
 		}
-	}	//	function _incompleteBeta()
+	}	
 
 
 	// Function cache for _logBeta function
@@ -158,7 +158,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return self::$_logBetaCache_result;
-	}	//	function _logBeta()
+	}	
 
 
 	/**
@@ -209,7 +209,7 @@ class PHPExcel_Calculation_Statistical {
 			++$m;
 		}
 		return $frac;
-	}	//	function _betaFraction()
+	}	
 
 
 	/**
@@ -336,9 +336,9 @@ class PHPExcel_Calculation_Statistical {
 		if ($y <= EPS) {
 			$res = -log(y);
 		} elseif ($y <= 1.5) {
-			// ---------------------
+			
 			//	EPS .LT. X .LE. 1.5
-			// ---------------------
+			
 			if ($y < $pnt68) {
 				$corr = -log($y);
 				$xm1 = $y;
@@ -365,9 +365,9 @@ class PHPExcel_Calculation_Statistical {
 				$res = $corr + $xm2 * ($lg_d2 + $xm2 * ($xnum / $xden));
 			}
 		} elseif ($y <= 4.0) {
-			// ---------------------
+			
 			//	1.5 .LT. X .LE. 4.0
-			// ---------------------
+			
 			$xm2 = $y - 2.0;
 			$xden = 1.0;
 			$xnum = 0.0;
@@ -377,9 +377,9 @@ class PHPExcel_Calculation_Statistical {
 			}
 			$res = $xm2 * ($lg_d2 + $xm2 * ($xnum / $xden));
 		} elseif ($y <= 12.0) {
-			// ----------------------
+			
 			//	4.0 .LT. X .LE. 12.0
-			// ----------------------
+			
 			$xm4 = $y - 4.0;
 			$xden = -1.0;
 			$xnum = 0.0;
@@ -389,9 +389,9 @@ class PHPExcel_Calculation_Statistical {
 			}
 			$res = $lg_d4 + $xm4 * ($xnum / $xden);
 		} else {
-			// ---------------------------------
+			
 			//	Evaluate for argument .GE. 12.0
-			// ---------------------------------
+			
 			$res = 0.0;
 			if ($y <= $lg_frtbig) {
 				$res = $lg_c[6];
@@ -405,23 +405,23 @@ class PHPExcel_Calculation_Statistical {
 				$res += $y * ($corr - 1.0);
 			}
 		} else {
-			// --------------------------
+			
 			//	Return for bad arguments
-			// --------------------------
+			
 			$res = MAX_VALUE;
 		}
-		// ------------------------------
+		
 		//	Final adjustments and return
-		// ------------------------------
+		
 		self::$_logGammaCache_x = $x;
 		self::$_logGammaCache_result = $res;
 		return $res;
-	}	//	function _logGamma()
+	}	
 
 
-	//
+	
 	//	Private implementation of the incomplete Gamma function
-	//
+	
 	private static function _incompleteGamma($a,$x) {
 		static $max = 32;
 		$summer = 0;
@@ -433,12 +433,12 @@ class PHPExcel_Calculation_Statistical {
 			$summer += (pow($x,$n) / $divisor);
 		}
 		return pow($x,$a) * exp(0-$x) * $summer;
-	}	//	function _incompleteGamma()
+	}	
 
 
-	//
+	
 	//	Private implementation of the Gamma function
-	//
+	
 	private static function _gamma($data) {
 		if ($data == 0.0) return 0;
 
@@ -460,7 +460,7 @@ class PHPExcel_Calculation_Statistical {
 			$summer += ($p[$j] / ++$y);
 		}
 		return exp(0 - $tmp + log(SQRT2PI * $summer / $x));
-	}	//	function _gamma()
+	}	
 
 
 	/***************************************************************************
@@ -537,7 +537,7 @@ class PHPExcel_Calculation_Statistical {
 		}
 		//	If 0 < p < 1, return a null value
 		return PHPExcel_Calculation_Functions::NULL();
-	}	//	function _inverse_ncdf()
+	}	
 
 
 	private static function _inverse_ncdf2($prob) {
@@ -580,14 +580,14 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return $z;
-	}	//	function _inverse_ncdf2()
+	}	
 
 
 	private static function _inverse_ncdf3($p) {
 		//	ALGORITHM AS241 APPL. STATIST. (1988) VOL. 37, NO. 3.
 		//	Produces the normal deviate Z corresponding to a given lower
 		//	tail area of P; Z is accurate to about 1 part in 10**16.
-		//
+		
 		//	This is a PHP version of the original FORTRAN code that can
 		//	be found at http://lib.stat.cmu.edu/apstat/
 		
@@ -680,7 +680,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return $z;
-	}	//	function _inverse_ncdf3()
+	}	
 
 
 	/**
@@ -729,7 +729,7 @@ class PHPExcel_Calculation_Statistical {
 			return $returnValue / $aCount;
 		}
 		return PHPExcel_Calculation_Functions::NaN();
-	}	//	function AVEDEV()
+	}	
 
 
 	/**
@@ -771,7 +771,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return PHPExcel_Calculation_Functions::DIV0();
 		}
-	}	//	function AVERAGE()
+	}	
 
 
 	/**
@@ -819,7 +819,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return PHPExcel_Calculation_Functions::DIV0();
 		}
-	}	//	function AVERAGEA()
+	}	
 
 
 	/**
@@ -866,7 +866,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return PHPExcel_Calculation_Functions::DIV0();
 		}
-	}	//	function AVERAGEIF()
+	}	
 
 
 	/**
@@ -902,7 +902,7 @@ class PHPExcel_Calculation_Statistical {
 			return self::_incompleteBeta($value,$alpha,$beta);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BETADIST()
+	}	
 
 
 	/**
@@ -956,7 +956,7 @@ class PHPExcel_Calculation_Statistical {
 			return round($rMin + $guess * ($rMax - $rMin),12);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BETAINV()
+	}	
 
 
 	/**
@@ -1002,7 +1002,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BINOMDIST()
+	}	
 
 
 	/**
@@ -1031,7 +1031,7 @@ class PHPExcel_Calculation_Statistical {
 			return 1 - (self::_incompleteGamma($degrees/2,$value/2) / self::_gamma($degrees/2));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function CHIDIST()
+	}	
 
 
 	/**
@@ -1073,7 +1073,7 @@ class PHPExcel_Calculation_Statistical {
 					$xNew = $x - $dx;
 				}
 				// If the NR fails to converge (which for example may be the
-				// case if the initial guess is too rough) we apply a bisection
+				
 				// step to determine a more narrow interval around the root.
 				if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
 					$xNew = ($xLo + $xHi) / 2;
@@ -1087,7 +1087,7 @@ class PHPExcel_Calculation_Statistical {
 			return round($x,12);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function CHIINV()
+	}	
 
 
 	/**
@@ -1116,7 +1116,7 @@ class PHPExcel_Calculation_Statistical {
 			return self::NORMSINV(1 - $alpha / 2) * $stdDev / sqrt($size);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function CONFIDENCE()
+	}	
 
 
 	/**
@@ -1146,7 +1146,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getCorrelation();
-	}	//	function CORREL()
+	}	
 
 
 	/**
@@ -1181,7 +1181,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function COUNT()
+	}	
 
 
 	/**
@@ -1212,7 +1212,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function COUNTA()
+	}	
 
 
 	/**
@@ -1243,7 +1243,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function COUNTBLANK()
+	}	
 
 
 	/**
@@ -1278,7 +1278,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function COUNTIF()
+	}	
 
 
 	/**
@@ -1305,7 +1305,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getCovariance();
-	}	//	function COVAR()
+	}	
 
 
 	/**
@@ -1415,7 +1415,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function CRITBINOM()
+	}	
 
 
 	/**
@@ -1464,7 +1464,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return self::NA();
-	}	//	function DEVSQ()
+	}	
 
 
 	/**
@@ -1497,7 +1497,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function EXPONDIST()
+	}	
 
 
 	/**
@@ -1520,7 +1520,7 @@ class PHPExcel_Calculation_Statistical {
 			return 0.5 * log((1+$value)/(1-$value));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function FISHER()
+	}	
 
 
 	/**
@@ -1540,7 +1540,7 @@ class PHPExcel_Calculation_Statistical {
 			return (exp(2 * $value) - 1) / (exp(2 * $value) + 1);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function FISHERINV()
+	}	
 
 
 	/**
@@ -1573,7 +1573,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getValueOfYForX($xValue);
-	}	//	function FORECAST()
+	}	
 
 
 	/**
@@ -1606,7 +1606,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function GAMMADIST()
+	}	
 
 
 	/**
@@ -1653,7 +1653,7 @@ class PHPExcel_Calculation_Statistical {
 					$xNew = $x - $dx;
 				}
 				// If the NR fails to converge (which for example may be the
-				// case if the initial guess is too rough) we apply a bisection
+				
 				// step to determine a more narrow interval around the root.
 				if (($xNew < $xLo) || ($xNew > $xHi) || ($pdf == 0.0)) {
 					$xNew = ($xLo + $xHi) / 2;
@@ -1667,7 +1667,7 @@ class PHPExcel_Calculation_Statistical {
 			return $x;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function GAMMAINV()
+	}	
 
 
 	/**
@@ -1688,7 +1688,7 @@ class PHPExcel_Calculation_Statistical {
 			return log(self::_gamma($value));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function GAMMALN()
+	}	
 
 
 	/**
@@ -1748,7 +1748,7 @@ class PHPExcel_Calculation_Statistical {
 		}
 
 		return $returnArray;
-	}	//	function GROWTH()
+	}	
 
 
 	/**
@@ -1796,7 +1796,7 @@ class PHPExcel_Calculation_Statistical {
 		} else {
 			return $returnValue;
 		}
-	}	//	function HARMEAN()
+	}	
 
 
 	/**
@@ -1833,7 +1833,7 @@ class PHPExcel_Calculation_Statistical {
 				   PHPExcel_Calculation_MathTrig::COMBIN($populationNumber,$sampleNumber);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function HYPGEOMDIST()
+	}	
 
 
 	/**
@@ -1860,7 +1860,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getIntersect();
-	}	//	function INTERCEPT()
+	}	
 
 
 	/**
@@ -1900,7 +1900,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function KURT()
+	}	
 
 
 	/**
@@ -1942,7 +1942,7 @@ class PHPExcel_Calculation_Statistical {
 			return $mArgs[$entry];
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function LARGE()
+	}	
 
 
 	/**
@@ -1995,7 +1995,7 @@ class PHPExcel_Calculation_Statistical {
 						  $bestFitLinear->getIntersect()
 						);
 		}
-	}	//	function LINEST()
+	}	
 
 
 	/**
@@ -2054,7 +2054,7 @@ class PHPExcel_Calculation_Statistical {
 						  $bestFitExponential->getIntersect()
 						);
 		}
-	}	//	function LOGEST()
+	}	
 
 
 	/**
@@ -2083,7 +2083,7 @@ class PHPExcel_Calculation_Statistical {
 			return exp($mean + $stdDev * self::NORMSINV($probability));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function LOGINV()
+	}	
 
 
 	/**
@@ -2109,7 +2109,7 @@ class PHPExcel_Calculation_Statistical {
 			return self::NORMSDIST((log($value) - $mean) / $stdDev);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function LOGNORMDIST()
+	}	
 
 
 	/**
@@ -2146,7 +2146,7 @@ class PHPExcel_Calculation_Statistical {
 			return 0;
 		}
 		return $returnValue;
-	}	//	function MAX()
+	}	
 
 
 	/**
@@ -2187,7 +2187,7 @@ class PHPExcel_Calculation_Statistical {
 			return 0;
 		}
 		return $returnValue;
-	}	//	function MAXA()
+	}	
 
 
 	/**
@@ -2227,7 +2227,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function MAXIF()
+	}	
 
 
 	/**
@@ -2271,7 +2271,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function MEDIAN()
+	}	
 
 
 	/**
@@ -2308,7 +2308,7 @@ class PHPExcel_Calculation_Statistical {
 			return 0;
 		}
 		return $returnValue;
-	}	//	function MIN()
+	}	
 
 
 	/**
@@ -2349,7 +2349,7 @@ class PHPExcel_Calculation_Statistical {
 			return 0;
 		}
 		return $returnValue;
-	}	//	function MINA()
+	}	
 
 
 	/**
@@ -2389,13 +2389,13 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function MINIF()
+	}	
 
 
-	//
+	
 	//	Special variant of array_count_values that isn't limited to strings and integers,
 	//		but can work with floating point numbers as values
-	//
+	
 	private static function _modeCalc($data) {
 		$frequencyArray = array();
 		foreach($data as $datum) {
@@ -2423,7 +2423,7 @@ class PHPExcel_Calculation_Statistical {
 			return PHPExcel_Calculation_Functions::NA();
 		}
 		return $frequencyArray[0]['value'];
-	}	//	function _modeCalc()
+	}	
 
 
 	/**
@@ -2460,7 +2460,7 @@ class PHPExcel_Calculation_Statistical {
 
 		// Return
 		return $returnValue;
-	}	//	function MODE()
+	}	
 
 
 	/**
@@ -2498,7 +2498,7 @@ class PHPExcel_Calculation_Statistical {
 			return (PHPExcel_Calculation_MathTrig::COMBIN($failures + $successes - 1,$successes - 1)) * (pow($probability,$successes)) * (pow(1 - $probability,$failures)) ;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function NEGBINOMDIST()
+	}	
 
 
 	/**
@@ -2533,7 +2533,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function NORMDIST()
+	}	
 
 
 	/**
@@ -2562,7 +2562,7 @@ class PHPExcel_Calculation_Statistical {
 			return (self::_inverse_ncdf($probability) * $stdDev) + $mean;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function NORMINV()
+	}	
 
 
 	/**
@@ -2579,7 +2579,7 @@ class PHPExcel_Calculation_Statistical {
 		$value	= PHPExcel_Calculation_Functions::flattenSingleValue($value);
 
 		return self::NORMDIST($value, 0, 1, True);
-	}	//	function NORMSDIST()
+	}	
 
 
 	/**
@@ -2592,7 +2592,7 @@ class PHPExcel_Calculation_Statistical {
 	 */
 	public static function NORMSINV($value) {
 		return self::NORMINV($value, 0, 1);
-	}	//	function NORMSINV()
+	}	
 
 
 	/**
@@ -2642,7 +2642,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function PERCENTILE()
+	}	
 
 
 	/**
@@ -2688,7 +2688,7 @@ class PHPExcel_Calculation_Statistical {
 		}
 
 		return round($pos / $valueAdjustor,$significance);
-	}	//	function PERCENTRANK()
+	}	
 
 
 	/**
@@ -2716,7 +2716,7 @@ class PHPExcel_Calculation_Statistical {
 			return round(PHPExcel_Calculation_MathTrig::FACT($numObjs) / PHPExcel_Calculation_MathTrig::FACT($numObjs - $numInSet));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function PERMUT()
+	}	
 
 
 	/**
@@ -2753,7 +2753,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function POISSON()
+	}	
 
 
 	/**
@@ -2784,7 +2784,7 @@ class PHPExcel_Calculation_Statistical {
 			return self::PERCENTILE($aArgs,$entry);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function QUARTILE()
+	}	
 
 
 	/**
@@ -2819,7 +2819,7 @@ class PHPExcel_Calculation_Statistical {
 		}
 
 		return ++$pos;
-	}	//	function RANK()
+	}	
 
 
 	/**
@@ -2846,7 +2846,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getGoodnessOfFit();
-	}	//	function RSQ()
+	}	
 
 
 	/**
@@ -2884,7 +2884,7 @@ class PHPExcel_Calculation_Statistical {
 			return $summer * ($count / (($count-1) * ($count-2)));
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function SKEW()
+	}	
 
 
 	/**
@@ -2911,7 +2911,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getSlope();
-	}	//	function SLOPE()
+	}	
 
 
 	/**
@@ -2952,7 +2952,7 @@ class PHPExcel_Calculation_Statistical {
 			return $mArgs[$entry];
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SMALL()
+	}	
 
 
 	/**
@@ -2977,7 +2977,7 @@ class PHPExcel_Calculation_Statistical {
 			return ($value - $mean) / $stdDev ;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function STANDARDIZE()
+	}	
 
 
 	/**
@@ -3025,7 +3025,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function STDEV()
+	}	
 
 
 	/**
@@ -3077,7 +3077,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function STDEVA()
+	}	
 
 
 	/**
@@ -3124,7 +3124,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function STDEVP()
+	}	
 
 
 	/**
@@ -3176,7 +3176,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::DIV0();
-	}	//	function STDEVPA()
+	}	
 
 
 	/**
@@ -3203,7 +3203,7 @@ class PHPExcel_Calculation_Statistical {
 
 		$bestFitLinear = trendClass::calculate(trendClass::TREND_LINEAR,$yValues,$xValues);
 		return $bestFitLinear->getStdevOfResiduals();
-	}	//	function STEYX()
+	}	
 
 
 	/**
@@ -3264,7 +3264,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TDIST()
+	}	
 
 
 	/**
@@ -3305,7 +3305,7 @@ class PHPExcel_Calculation_Statistical {
 					$xNew = $x - $dx;
 				}
 				// If the NR fails to converge (which for example may be the
-				// case if the initial guess is too rough) we apply a bisection
+				
 				// step to determine a more narrow interval around the root.
 				if (($xNew < $xLo) || ($xNew > $xHi) || ($result == 0.0)) {
 					$xNew = ($xLo + $xHi) / 2;
@@ -3319,7 +3319,7 @@ class PHPExcel_Calculation_Statistical {
 			return round($x,12);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TINV()
+	}	
 
 
 	/**
@@ -3350,7 +3350,7 @@ class PHPExcel_Calculation_Statistical {
 		}
 
 		return $returnArray;
-	}	//	function TREND()
+	}	
 
 
 	/**
@@ -3395,7 +3395,7 @@ class PHPExcel_Calculation_Statistical {
 			return self::AVERAGE($mArgs);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TRIMMEAN()
+	}	
 
 
 	/**
@@ -3437,7 +3437,7 @@ class PHPExcel_Calculation_Statistical {
 			$returnValue = ($summerA - $summerB) / ($aCount * ($aCount - 1));
 		}
 		return $returnValue;
-	}	//	function VARFunc()
+	}	
 
 
 	/**
@@ -3490,7 +3490,7 @@ class PHPExcel_Calculation_Statistical {
 			$returnValue = ($summerA - $summerB) / ($aCount * ($aCount - 1));
 		}
 		return $returnValue;
-	}	//	function VARA()
+	}	
 
 
 	/**
@@ -3532,7 +3532,7 @@ class PHPExcel_Calculation_Statistical {
 			$returnValue = ($summerA - $summerB) / ($aCount * $aCount);
 		}
 		return $returnValue;
-	}	//	function VARP()
+	}	
 
 
 	/**
@@ -3585,7 +3585,7 @@ class PHPExcel_Calculation_Statistical {
 			$returnValue = ($summerA - $summerB) / ($aCount * $aCount);
 		}
 		return $returnValue;
-	}	//	function VARPA()
+	}	
 
 
 	/**
@@ -3619,7 +3619,7 @@ class PHPExcel_Calculation_Statistical {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function WEIBULL()
+	}	
 
 
 	/**
@@ -3646,6 +3646,6 @@ class PHPExcel_Calculation_Statistical {
 		$n = count($dataSet);
 
 		return 1 - self::NORMSDIST((self::AVERAGE($dataSet) - $m0)/($sigma/SQRT($n)));
-	}	//	function ZTEST()
+	}	
 
-}	//	class PHPExcel_Calculation_Statistical
+}	

@@ -46,7 +46,7 @@ $backtopage = GETPOST('backtopage', 'alpha');
 // Security check
 if ($user->socid) $socid = $user->socid;
 // TODO ajouter regle pour restreindre acces paiement
-//$result = restrictedArea($user, 'facture', $id,'');
+
 
 $object = new Paiement($db);
 

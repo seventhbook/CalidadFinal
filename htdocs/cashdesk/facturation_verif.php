@@ -59,7 +59,7 @@ switch($action)
 			$result = $db->query($sql);
 			if ($result)
 			{
-				// ... et enregistrement dans l'objet
+				
 				if ( $db->num_rows($result) )
 				{
 					$ret=array();
@@ -133,7 +133,7 @@ switch($action)
 					$tmpvat = price2num(preg_replace('/\s*\(.*\)/', '', $tva_tx));
 					$tmpprodvat = price2num(preg_replace('/\s*\(.*\)/', '', $prod->tva_tx));
 
-					// if price ht is forced (ie: calculated by margin rate and cost price). TODO Why this ?
+					
 					if (! empty($price_ht)) {
 					    $pu_ht = price2num($price_ht, 'MU');
 					    $pu_ttc = price2num($pu_ht * (1 + ($tmpvat / 100)), 'MU');
@@ -151,7 +151,7 @@ switch($action)
 					$obj_facturation->id($ret['rowid']);
 					$obj_facturation->ref($ret['ref']);
 					$obj_facturation->stock($ret['reel']);
-					//$obj_facturation->prix($ret['price']);
+					
 					$obj_facturation->prix($pu_ht);
 
 

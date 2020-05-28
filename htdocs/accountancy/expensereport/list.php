@@ -118,7 +118,7 @@ include DOL_DOCUMENT_ROOT.'/core/actions_massactions.inc.php';
 
 if ($massaction == 'ventil') {
 	$msg = '';
-    //print '<div><font color="red">' . $langs->trans("Processing") . '...</font></div>';
+    
     if (!empty($mesCasesCochees)) {
         $msg = '<div>'.$langs->trans("SelectedLines").': '.count($mesCasesCochees).'</div>';
         $msg .= '<div class="detail">';
@@ -222,7 +222,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;

@@ -95,7 +95,7 @@ class box_comptes extends ModeleBoxes
             $sql.= ' LEFT JOIN ' . MAIN_DB_PREFIX . 'accounting_journal as aj ON aj.rowid=b.fk_accountancy_journal';
             $sql.= " WHERE b.entity = ".$conf->entity;
 			$sql.= " AND clos = 0";
-			//$sql.= " AND courant = 1";
+			
 			$sql.= " ORDER BY label";
 			$sql.= $this->db->plimit($max, 0);
 

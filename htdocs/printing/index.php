@@ -55,7 +55,7 @@ foreach ($result as $driver) {
     $langs->load($driver);
     $printer = new $classname($db);
     if ($conf->global->{$printer->active}) {
-        //$printer->listJobs('commande');
+        
         $result = $printer->listJobs();
         print $printer->resprint;
 

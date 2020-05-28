@@ -22,7 +22,7 @@ use Monolog\Logger;
  * Example:
  * <code>
  * $debugbar->addCollector(new CacheCacheCollector(CacheManager::get('default')));
- * // or
+ * 
  * $debugbar->addCollector(new CacheCacheCollector());
  * $debugbar['cache']->addCache(CacheManager::get('default'));
  * </code>

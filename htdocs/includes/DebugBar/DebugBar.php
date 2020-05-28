@@ -443,7 +443,7 @@ class DebugBar implements ArrayAccess
         return $this->jsRenderer;
     }
 
-    // --------------------------------------------
+    
     // ArrayAccess implementation
 
     public function offsetSet($key, $value)

@@ -65,7 +65,7 @@ if (! empty($conf->global->DAV_RESTRICT_ON_IP))
 		dol_syslog('Remote ip is '.$ipremote.', not into list '.$conf->global->DAV_RESTRICT_ON_IP);
 		print 'DAV not allowed from the IP '.$ipremote;
 		header('HTTP/1.1 503 DAV not allowed from your IP '.$ipremote);
-		//print $conf->global->DAV_RESTRICT_ON_IP;
+		
 		exit(0);
 	}
 }
@@ -157,16 +157,16 @@ if (! empty($conf->ecm->enabled) && ! empty($conf->global->DAV_ALLOW_ECM_DIR))
 
 
 // Principals Backend
-//$principalBackend = new \Sabre\DAVACL\PrincipalBackend\Dolibarr($user,$db);
-// /principals
-//$nodes[] = new \Sabre\DAVACL\PrincipalCollection($principalBackend);
+
+
+
 // CardDav & CalDav Backend
-//$carddavBackend   = new \Sabre\CardDAV\Backend\Dolibarr($user,$db,$langs);
-//$caldavBackend    = new \Sabre\CalDAV\Backend\Dolibarr($user,$db,$langs, $cdavLib);
-// /addressbook
-//$nodes[] = new \Sabre\CardDAV\AddressBookRoot($principalBackend, $carddavBackend);
-// /calendars
-//$nodes[] = new \Sabre\CalDAV\CalendarRoot($principalBackend, $caldavBackend);
+
+
+
+
+
+
 
 
 // The rootnode needs in turn to be passed to the server class
@@ -199,11 +199,11 @@ if (empty($conf->global->DAV_DISABLE_BROWSER))
 }
 
 // Automatically guess (some) contenttypes, based on extension
-//$server->addPlugin(new \Sabre\DAV\Browser\GuessContentType());
 
-//$server->addPlugin(new \Sabre\CardDAV\Plugin());
-//$server->addPlugin(new \Sabre\CalDAV\Plugin());
-//$server->addPlugin(new \Sabre\DAVACL\Plugin());
+
+
+
+
 
 // Temporary file filter
 /*$tempFF = new \Sabre\DAV\TemporaryFileFilterPlugin($tmpDir);

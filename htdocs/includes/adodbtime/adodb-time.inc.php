@@ -587,7 +587,7 @@ function adodb_date_test()
 	$lastyear = 0;
 
 	// we generate a timestamp, convert it to a date, and convert it back to a timestamp
-	// and check if the roundtrip broke the original timestamp value.
+	
 	print "Testing $start to ".($start+$yrs).", or $max seconds, offset=$offset: ";
 	$cnt = 0;
 	for ($max += $i; $i < $max; $i += $offset) {
@@ -665,7 +665,7 @@ function _adodb_is_leap_year($year)
 
 	if ($year % 400 == 0) {
 		return true;
-	// if gregorian calendar (>1582), century not-divisible by 400 is not leap
+	
 	} else if ($year > 1582 && $year % 100 == 0 ) {
 		return false;
 	}
@@ -701,7 +701,7 @@ function adodb_year_digit_check($y)
 			$c0 = $century - 1;
 		}
 		$c1 *= 100;
-		// if 2-digit year is less than 30 years in future, set it to this century
+		
 		// otherwise if more than 30 years in future, then we set 2-digit year to the prev century.
 		if (($y + $c1) < $yr+30) $y = $y + $c1;
 		else $y = $y + $c0*100;
@@ -757,7 +757,7 @@ function adodb_getdate($d=false,$fast=false)
 	if ($d === false) return getdate();
 	if (!defined('ADODB_TEST_DATES')) {
 		if ((abs($d) <= 0x7FFFFFFF)) { // check if number in 32-bit signed range
-			if (!defined('ADODB_NO_NEGATIVE_TS') || $d >= 0) // if windows, must be +ve integer
+			if (!defined('ADODB_NO_NEGATIVE_TS') || $d >= 0) 
 				return @getdate($d);
 		}
 	}
@@ -801,7 +801,7 @@ global $_month_table_normal,$_month_table_leaf;
 	$_hour_power = 3600;
 	$_min_power = 60;
 
-	if ($d < -12219321600) $d -= 86400*10; // if 15 Oct 1582 or earlier, gregorian correction
+	if ($d < -12219321600) $d -= 86400*10; 
 
 	$_month_table_normal = array("",31,28,31,30,31,30,31,31,30,31,30,31);
 	$_month_table_leaf = array("",31,29,31,30,31,30,31,31,30,31,30,31);
@@ -854,7 +854,7 @@ global $_month_table_normal,$_month_table_leaf;
 		if ($is_gmt) $origd = $d;
 		// The valid range of a 32bit signed timestamp is typically from
 		// Fri, 13 Dec 1901 20:45:54 GMT to Tue, 19 Jan 2038 03:14:07 GMT
-		//
+		
 
 		# old algorithm iterates through all years. new algorithm does it in
 		# 10 year blocks
@@ -1024,7 +1024,7 @@ static $jan1_1971;
 	if (!defined('ADODB_TEST_DATES')) {
 		if ((abs($d) <= 0x7FFFFFFF)) { // check if number in 32-bit signed range
 
-			if (!defined('ADODB_NO_NEGATIVE_TS') || $d >= $jan1_1971) // if windows, must be +ve integer
+			if (!defined('ADODB_NO_NEGATIVE_TS') || $d >= $jan1_1971) 
 				return ($is_gmt)? @gmdate($fmt,$d): @date($fmt,$d);
 
 		}
@@ -1194,7 +1194,7 @@ function adodb_mktime($hr,$min,$sec,$mon=false,$day=false,$year=false,$is_dst=fa
 			return $is_gmt? @gmmktime($hr,$min,$sec): @mktime($hr,$min,$sec);
 		}
 
-		// for windows, we don't check 1970 because with timezone differences,
+		
 		// 1 Jan 1970 could generate negative timestamp, which is illegal
 		$usephpfns = (1970 < $year && $year < 2038
 			|| !defined('ADODB_NO_NEGATIVE_TS') && (1901 < $year && $year < 2038)
@@ -1280,8 +1280,8 @@ function adodb_mktime($hr,$min,$sec,$mon=false,$day=false,$year=false,$is_dst=fa
 		$_day_time = $hr * $_hour_power + $min * $_min_power + $sec;
 		$_day_time = $_day_power - $_day_time;
 		$ret = -( $_total_date * $_day_power + $_day_time - $gmt_different);
-		if ($ret < -12220185600) $ret += 10*86400; // if earlier than 5 Oct 1582 - gregorian correction
-		else if ($ret < -12219321600) $ret = -12219321600; // if in limbo, reset to 15 Oct 1582.
+		if ($ret < -12220185600) $ret += 10*86400; 
+		else if ($ret < -12219321600) $ret = -12219321600; 
 	}
 	return $ret;
 }
@@ -1298,7 +1298,7 @@ global $ADODB_DATE_LOCALE;
 
 	if (!defined('ADODB_TEST_DATES')) {
 		if ((abs($ts) <= 0x7FFFFFFF)) { // check if number in 32-bit signed range
-			if (!defined('ADODB_NO_NEGATIVE_TS') || $ts >= 0) // if windows, must be +ve integer
+			if (!defined('ADODB_NO_NEGATIVE_TS') || $ts >= 0) 
 				return ($is_gmt)? @gmstrftime($fmt,$ts): @strftime($fmt,$ts);
 
 		}

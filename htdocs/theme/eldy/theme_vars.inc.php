@@ -43,7 +43,7 @@ if (!defined('ISLOADEDBYSTEELSHEET'))	// File is run after an include of a php p
 		}
 		else
 		{
-			// for now we use the same configuration for all types of color blind
+			
 			$theme_datacolor = array(array(248, 220, 1), array(9, 85, 187), array(42, 208, 255), array(0, 0, 0), array(169, 169, 169), array(253, 102, 136), array(120, 154, 190), array(146, 146, 55), array(0, 52, 251), array(196, 226, 161), array(222, 160, 41), array(85, 135, 150), array(150, 135, 80), array(150, 80, 150));
 		}
 	}
@@ -96,7 +96,7 @@ $badgeDark      = '#343a40';
 $badgeLight     = '#f8f9fa';
 
 // badge color ajustement for color blind
-$colorblind_deuteranopes_badgeSuccess   = '#37de5d'; //! text color black
+$colorblind_deuteranopes_badgeSuccess   = '#37de5d'; 
 $colorblind_deuteranopes_badgeSuccess_textColor7 = '#000';
 $colorblind_deuteranopes_badgeWarning   = '#e4e411';
 
@@ -116,7 +116,7 @@ $badgeStatus8 = '#993013';
 $badgeStatus9 = '#e7f0f0';
 
 // status color ajustement for color blind
-$colorblind_deuteranopes_badgeStatus4 = $colorblind_deuteranopes_badgeStatus7 = $colorblind_deuteranopes_badgeSuccess; //! text color black
+$colorblind_deuteranopes_badgeStatus4 = $colorblind_deuteranopes_badgeStatus7 = $colorblind_deuteranopes_badgeSuccess; 
 $colorblind_deuteranopes_badgeStatus_textColor4 = $colorblind_deuteranopes_badgeStatus_textColor7 = '#000';
 $colorblind_deuteranopes_badgeStatus1 = $colorblind_deuteranopes_badgeWarning;
 $colorblind_deuteranopes_badgeStatus_textColor1 = '#000';

@@ -96,7 +96,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 		$reshook = $hookmanager->executeHooks('getDirList', $parameters, $object);
 	}
 
-	// $hookmanager->resArray may contain array stacked by other modules
+	
 	if (empty($reshook))
 	{
 		if (!is_dir($newpath)) return array();
@@ -106,7 +106,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 			$filedate = '';
 			$filesize = '';
 
-			while (false !== ($file = readdir($dir)))        // $file is always a basename (into directory $newpath)
+			while (false !== ($file = readdir($dir)))        
 			{
 				if (!utf8_check($file)) $file = utf8_encode($file); // To be sure data is stored in utf8 in memory
 				$fullpathfile = ($newpath ? $newpath.'/' : '').$file;
@@ -158,7 +158,7 @@ function dol_dir_list($path, $types = "all", $recursive = 0, $filter = "", $excl
 							}
 						}
 
-						// if we're in a directory and we want recursive behavior, call this function again
+						
 						if ($recursive)
 						{
 							if (empty($donotfollowsymlinks) || !is_link($path."/".$file))
@@ -363,7 +363,7 @@ function completeFileArrayWithDatabaseInfo(&$filearray, $relativedir)
 
 				$ecmfile->filepath = $rel_dir;
 				$ecmfile->filename = $filename;
-				$ecmfile->label = md5_file(dol_osencode($filearray[$key]['fullname'])); // $destfile is a full path to file
+				$ecmfile->label = md5_file(dol_osencode($filearray[$key]['fullname'])); 
 				$ecmfile->fullpath_orig = $filearray[$key]['fullname'];
 				$ecmfile->gen_or_uploaded = 'unknown';
 				$ecmfile->description = ''; // indexed content
@@ -529,7 +529,7 @@ function dol_count_nb_of_line($file)
 	$nb = 0;
 
 	$newfile = dol_osencode($file);
-	//print 'x'.$file;
+	
 	$fp = fopen($newfile, 'r');
 	if ($fp)
 	{
@@ -694,7 +694,7 @@ function dol_copy($srcfile, $destfile, $newmask = 0, $overwriteifexists = 1)
 	}
 	// Copy with overwriting if exists
 	$result = @copy($newpathofsrcfile, $newpathofdestfile);
-	//$result=copy($newpathofsrcfile, $newpathofdestfile);	// To see errors, remove @
+	
 	if (!$result)
 	{
 		dol_syslog("files.lib.php::dol_copy failed to copy", LOG_WARNING);
@@ -734,7 +734,7 @@ function dolCopyDir($srcfile, $destfile, $newmask, $overwriteifexists, $arrayrep
 	if (empty($srcfile) || empty($destfile)) return -1;
 
 	$destexists = dol_is_dir($destfile);
-	//if (! $overwriteifexists && $destexists) return 0;	// The overwriteifexists is for files only, so propagated to dol_copy only.
+	
 
 	if (!$destexists)
 	{
@@ -904,7 +904,7 @@ function dol_move($srcfile, $destfile, $newmask = 0, $overwriteifexists = 1, $te
 
 					$ecmfile->filepath = $rel_dir;
 					$ecmfile->filename = $filename;
-					$ecmfile->label = md5_file(dol_osencode($destfile)); // $destfile is a full path to file
+					$ecmfile->label = md5_file(dol_osencode($destfile)); 
 					$ecmfile->fullpath_orig = $srcfile;
 					$ecmfile->gen_or_uploaded = 'unknown';
 					$ecmfile->description = ''; // indexed content
@@ -1027,7 +1027,7 @@ function dol_move_uploaded_file($src_file, $dest_file, $allowoverwrite, $disable
 					return 'ErrorFileSizeTooLarge';
 				case UPLOAD_ERR_PARTIAL:	// 3
 					return 'ErrorPartialFile';
-				case UPLOAD_ERR_NO_TMP_DIR:	//
+				case UPLOAD_ERR_NO_TMP_DIR:	
 					return 'ErrorNoTmpDir';
 				case UPLOAD_ERR_CANT_WRITE:
 					return 'ErrorFailedToWriteInDir';
@@ -1199,7 +1199,7 @@ function dol_delete_file($file, $disableglob = 0, $nophperrors = 0, $nohook = 0,
 						{
 							$rel_filetodelete = preg_replace('/^[\\/]/', '', $rel_filetodelete);
 
-							if (is_object($db) && $indexdatabase)		// $db may not be defined when lib is in a context with define('NOREQUIREDB',1)
+							if (is_object($db) && $indexdatabase)		
 							{
 								dol_syslog("Try to remove also entries in database for full relative path = ".$rel_filetodelete, LOG_DEBUG);
 								include_once DOL_DOCUMENT_ROOT.'/ecm/class/ecmfiles.class.php';
@@ -1560,13 +1560,13 @@ function dol_add_file_process($upload_dir, $allowoverwrite = 0, $donotupdatesess
 				$destfile = dol_sanitizeFileName($info['filename'].($info['extension']!='' ? ('.'.strtolower($info['extension'])) : ''));
 
 				// We apply dol_string_nohtmltag also to clean file names (this remove duplicate spaces) because
-				// this function is also applied when we make try to download file (by the GETPOST(filename, 'alphanohtml') call).
+				
 				$destfile = dol_string_nohtmltag($destfile);
 				$destfull = dol_string_nohtmltag($destfull);
 
 				$resupload = dol_move_uploaded_file($TFile['tmp_name'][$i], $destfull, $allowoverwrite, 0, $TFile['error'][$i], 0, $varfiles);
 
-				if (is_numeric($resupload) && $resupload > 0)   // $resupload can be 'ErrorFileAlreadyExists'
+				if (is_numeric($resupload) && $resupload > 0)   
 				{
 					global $maxwidthsmall, $maxheightsmall, $maxwidthmini, $maxheightmini;
 
@@ -2113,11 +2113,11 @@ function dol_compress_dir($inputdir, $outputfile, $mode = "zip", $excludefiles =
 			 include_once ODTPHP_PATHTOPCLZIP.'/pclzip.lib.php';
 			 $archive = new PclZip($outputfile);
 			 $archive->add($inputfile, PCLZIP_OPT_REMOVE_PATH, dirname($inputfile));
-			 //$archive->add($inputfile);
+			 
 			 return 1;
 			 }
 			 else*/
-			//if (class_exists('ZipArchive') && ! empty($conf->global->MAIN_USE_ZIPARCHIVE_FOR_ZIP_COMPRESS))
+			
 			if (class_exists('ZipArchive'))
 			{
 				$foundhandler = 1;
@@ -2618,7 +2618,7 @@ function dol_check_secure_access_document($modulepart, $original_file, $entity, 
 			$accessallowed = 1;
 		}
 		$original_file = $conf->deplacement->dir_output.'/'.$original_file;
-		//$sqlprotectagainstexternals = "SELECT fk_soc as fk_soc FROM ".MAIN_DB_PREFIX."fichinter WHERE ref='".$db->escape($refname)."' AND entity=".$conf->entity;
+		
 	}
 	// Wrapping pour les propales
 	elseif (($modulepart == 'propal' || $modulepart == 'propale') && !empty($conf->propal->multidir_output[$entity]))
@@ -3075,14 +3075,14 @@ function getFilesUpdated(&$file_list, SimpleXMLElement $dir, $path = '', $pathre
 
 	$exclude = 'install';
 
-	foreach ($dir->md5file as $file)    // $file is a simpleXMLElement
+	foreach ($dir->md5file as $file)    
 	{
 		$filename = $path.$file['name'];
 		$file_list['insignature'][] = $filename;
 		$expectedsize = (empty($file['size']) ? '' : $file['size']);
 		$expectedmd5 = (string) $file;
 
-		//if (preg_match('#'.$exclude.'#', $filename)) continue;
+		
 
 		if (!file_exists($pathref.'/'.$filename))
 		{
@@ -3104,7 +3104,7 @@ function getFilesUpdated(&$file_list, SimpleXMLElement $dir, $path = '', $pathre
 		}
 	}
 
-	foreach ($dir->dir as $subdir)			// $subdir['name'] is  '' or '/accountancy/admin' for example
+	foreach ($dir->dir as $subdir)			
 	{
 		getFilesUpdated($file_list, $subdir, $path.$subdir['name'].'/', $pathref, $checksumconcat);
 	}

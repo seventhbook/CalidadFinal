@@ -50,7 +50,7 @@ class PlistFormat extends DependentMultiFormat
      */
     public function encode($data, $humanReadable = false)
     {
-        //require_once 'CFPropertyList.php';
+        
         if (!isset(self::$compact)) {
             self::$compact = !$humanReadable;
         }

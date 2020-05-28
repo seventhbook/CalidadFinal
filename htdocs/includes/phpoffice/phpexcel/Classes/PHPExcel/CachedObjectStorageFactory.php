@@ -133,7 +133,7 @@ class PHPExcel_CachedObjectStorageFactory
     public static function getCacheStorageMethod()
     {
         return self::$_cacheStorageMethod;
-    }   //    function getCacheStorageMethod()
+    }   
 
 
     /**
@@ -144,7 +144,7 @@ class PHPExcel_CachedObjectStorageFactory
     public static function getCacheStorageClass()
     {
         return self::$_cacheStorageClass;
-    }   //    function getCacheStorageClass()
+    }   
 
 
     /**
@@ -155,7 +155,7 @@ class PHPExcel_CachedObjectStorageFactory
     public static function getAllCacheStorageMethods()
     {
         return self::$_storageMethods;
-    }   //    function getCacheStorageMethods()
+    }   
 
 
     /**
@@ -173,7 +173,7 @@ class PHPExcel_CachedObjectStorageFactory
             }
         }
         return $activeMethods;
-    }   //    function getCacheStorageMethods()
+    }   
 
 
     /**
@@ -208,7 +208,7 @@ class PHPExcel_CachedObjectStorageFactory
             self::$_cacheStorageMethod = $method;
         }
         return TRUE;
-    }   //    function initialize()
+    }   
 
 
     /**
@@ -234,7 +234,7 @@ class PHPExcel_CachedObjectStorageFactory
         }
 
         return FALSE;
-    }   //    function getInstance()
+    }   
 
 
     /**

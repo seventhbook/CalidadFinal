@@ -37,7 +37,7 @@ if (empty($module)) $module='ecm';
 $paramwithoutsection=preg_replace('/&?section=(\d+)/', '', $param);
 
 $openeddir='/';		// The root directory shown
-// $preopened		// The dir to have preopened
+
 
 ?>
 

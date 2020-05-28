@@ -189,7 +189,7 @@ function limitChars(textarea, limit, infodiv)
             else
             {
                 print '<tr><td class="'.$morecss.'">'.$langs->trans("SmsFrom")."</td><td>";
-                //print '<input type="text" name="fromname" size="30" value="'.$this->fromsms.'">';
+                
                 if ($conf->global->MAIN_SMS_SENDMODE == 'ovh')        // For backward compatibility        @deprecated
                 {
                     dol_include_once('/ovh/class/ovhsms.class.php');
@@ -210,7 +210,7 @@ function limitChars(textarea, limit, infodiv)
                         dol_print_error('', 'Error to get list of senders: '.$e->getMessage());
                     }
                 }
-                elseif (!empty($conf->global->MAIN_SMS_SENDMODE))    // $conf->global->MAIN_SMS_SENDMODE looks like a value 'class@module'
+                elseif (!empty($conf->global->MAIN_SMS_SENDMODE))    
                 {
                     $tmp=explode('@', $conf->global->MAIN_SMS_SENDMODE);
                     $classfile=$tmp[0]; $module=(empty($tmp[1])?$tmp[0]:$tmp[1]);
@@ -266,7 +266,7 @@ function limitChars(textarea, limit, infodiv)
         if ($this->withto || is_array($this->withto))
         {
             print '<tr><td>';
-            //$moretext=$langs->trans("YouCanUseCommaSeparatorForSeveralRecipients");
+            
             $moretext='';
             print $form->textwithpicto($langs->trans("SmsTo"), $moretext);
             print '</td><td>';

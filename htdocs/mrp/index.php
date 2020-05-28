@@ -75,13 +75,13 @@ if ($conf->use_javascript_ajax)
 
     	$totalnb=0;
     	$dataseries=array();
-    	// -1=Canceled, 0=Draft, 1=Validated, (2=Accepted/On process not managed for customer orders), 3=Closed (Sent/Received, billed or not)
+    	
     	while ($i < $num)
     	{
     		$obj = $db->fetch_object($resql);
     		if ($obj)
     		{
-    			//if ($row[1]!=-1 && ($row[1]!=3 || $row[2]!=1))
+    			
     			{
     				$dataseries[$obj->status]=array(0=>$staticmo->LibStatut($obj->status), $obj->nb);
     				$totalnb+=$obj->nb;

@@ -30,13 +30,13 @@ class DolibarrDebugBar extends DebugBar
 	{
 		global $conf;
 
-		//$this->addCollector(new PhpInfoCollector());
-		//$this->addCollector(new DolMessagesCollector());
+		
+		
 		$this->addCollector(new DolRequestDataCollector());
-		//$this->addCollector(new DolConfigCollector());      // Disabled for security purpose
+		
 		$this->addCollector(new DolTimeDataCollector());
 		$this->addCollector(new DolMemoryCollector());
-		//$this->addCollector(new DolExceptionsCollector());
+		
 		$this->addCollector(new DolQueryCollector());
 		$this->addCollector(new DolibarrCollector());
 		if ($conf->syslog->enabled) {
@@ -52,7 +52,7 @@ class DolibarrDebugBar extends DebugBar
 	public function getRenderer()
 	{
 	    $renderer = parent::getJavascriptRenderer(DOL_URL_ROOT.'/includes/DebugBar/Resources');
-	    //$renderer->disableVendor('jquery');
+	    
 	    $renderer->disableVendor('fontawesome');
 	    $renderer->disableVendor('highlightjs');
 	    return $renderer;

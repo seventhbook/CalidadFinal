@@ -152,7 +152,7 @@ class FichinterRec extends Fichinter
             $sql .= ", date_last_gen";
             $sql .= ", nb_gen_done";
             $sql .= ", nb_gen_max";
-            // $sql.= ", auto_validate";
+            
 
             $sql .= ") VALUES (";
             $sql .= "'".$this->db->escape($this->title)."'";
@@ -181,7 +181,7 @@ class FichinterRec extends Fichinter
             $sql .= ", ".(!empty($this->date_last_gen) ? "'".$this->db->idate($this->date_last_gen)."'" : 'null');
             $sql .= ", 0"; // we start à 0
             $sql .= ", ".$this->nb_gen_max;
-            // $sql.= ", ".$this->auto_validate;
+            
             $sql .= ")";
 
             if ($this->db->query($sql)) {
@@ -192,7 +192,7 @@ class FichinterRec extends Fichinter
                  */
                 $num = count($fichintsrc->lines);
                 for ($i = 0; $i < $num; $i++) {
-                    //$result=$fichintlignesrc->fetch($fichintsrc->lines[$i]->id);
+                    
 
                     //var_dump($fichintsrc->lines[$i]);
                     $result_insert = $this->addline(
@@ -506,19 +506,19 @@ class FichinterRec extends Fichinter
             $sql .= ", description";
             $sql .= ", date";
             $sql .= ", duree";
-            //$sql.= ", price";
-            //$sql.= ", qty";
-            //$sql.= ", tva_tx";
+            
+            
+            
             $sql .= ", fk_product";
             $sql .= ", product_type";
             $sql .= ", remise_percent";
-            //$sql.= ", subprice";
+            
             $sql .= ", remise";
             $sql .= ", total_ht";
             $sql .= ", total_tva";
             $sql .= ", total_ttc";
             $sql .= ", rang";
-            //$sql.= ", special_code";
+            
             $sql .= ", fk_unit";
             $sql .= ") VALUES (";
             $sql .= (int) $this->id;
@@ -526,19 +526,19 @@ class FichinterRec extends Fichinter
             $sql .= ", ".(!empty($desc) ? "'".$this->db->escape($desc)."'" : "null");
             $sql .= ", ".(!empty($datei) ? "'".$this->db->idate($datei)."'" : "null");
             $sql .= ", ".$duration;
-            //$sql.= ", ".price2num($pu_ht);
-            //$sql.= ", ".(!empty($qty)? $qty :(!empty($duration)? $duration :"null"));
-            //$sql.= ", ".price2num($txtva);
+            
+            
+            
             $sql .= ", ".(!empty($fk_product) ? $fk_product : "null");
             $sql .= ", ".$product_type;
             $sql .= ", ".(!empty($remise_percent) ? $remise_percent : "null");
-            //$sql.= ", '".price2num($pu_ht)."'";
+            
             $sql .= ", null";
             $sql .= ", '".price2num($total_ht)."'";
             $sql .= ", '".price2num($total_tva)."'";
             $sql .= ", '".price2num($total_ttc)."'";
             $sql .= ", ".(int) $rang;
-            //$sql.= ", ".$special_code;
+            
             $sql .= ", ".(!empty($fk_unit) ? $fk_unit : "null");
             $sql .= ")";
 

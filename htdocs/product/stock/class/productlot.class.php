@@ -27,8 +27,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class with list of lots and properties
@@ -258,7 +258,7 @@ class Productlot extends CommonObject
 
 				$this->id = $obj->rowid;
 				$this->ref = $obj->rowid;
-				//$this->ref = $obj->fk_product.'_'.$obj->batch;
+				
 
 				$this->batch = $obj->batch;
 				$this->entity = (!empty($obj->entity) ? $obj->entity : $conf->entity); // Prevent "null" entity
@@ -403,15 +403,15 @@ class Productlot extends CommonObject
 
 		$this->db->begin();
 
-		//if (!$error) {
-			//if (!$notrigger) {
+		
+			
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
-				//$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-				//if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-				//// End call triggers
+				
+				
+				
+				
 			//}
 		//}
 
@@ -461,7 +461,7 @@ class Productlot extends CommonObject
 		$object->id = 0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';
@@ -513,7 +513,7 @@ class Productlot extends CommonObject
         // phpcs:enable
 	    global $langs;
 
-	    //$langs->load('stocks');
+	    
 
 	    return '';
 	}

@@ -167,7 +167,7 @@ class CommentParser
                 case 0 :
                     $description[] = $line;
                     if (count($description) > 3) {
-                        // if more than 3 lines take only first line
+                        
                         $longDescription = $description;
                         $description[] = array_shift($longDescription);
                         $mode = 1;

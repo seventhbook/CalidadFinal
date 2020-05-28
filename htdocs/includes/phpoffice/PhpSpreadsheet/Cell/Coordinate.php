@@ -264,7 +264,7 @@ abstract class Coordinate
             return $indexCache[$pString];
         }
         //    It's surprising how costly the strtoupper() and ord() calls actually are, so we use a lookup array rather than use ord()
-        //        and make it case insensitive to get rid of the strtoupper() as well. Because it's a static, there's no significant
+        
         //        memory overhead either
         static $columnLookup = [
             'A' => 1, 'B' => 2, 'C' => 3, 'D' => 4, 'E' => 5, 'F' => 6, 'G' => 7, 'H' => 8, 'I' => 9, 'J' => 10, 'K' => 11, 'L' => 12, 'M' => 13,
@@ -274,7 +274,7 @@ abstract class Coordinate
         ];
 
         //    We also use the language construct isset() rather than the more costly strlen() function to match the length of $pString
-        //        for improved performance
+        
         if (isset($pString[0])) {
             if (!isset($pString[1])) {
                 $indexCache[$pString] = $columnLookup[$pString];

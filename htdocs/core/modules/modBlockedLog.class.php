@@ -62,11 +62,11 @@ class modBlockedLog extends DolibarrModules
         $this->dirs = array();
 
         // Config pages
-        //-------------
+        
         $this->config_page_url = array('blockedlog.php?withtab=1@blockedlog');
 
         // Dependancies
-        //-------------
+        
         $this->hidden = false;	// A condition to disable module
         $this->depends = array('always'=>'modFacture');	   // List of modules id that must be enabled if this module is enabled
         $this->requiredby = array();	                   // List of modules id to disable if this one is disabled
@@ -96,21 +96,21 @@ class modBlockedLog extends DolibarrModules
             && $this->alreadyUsed());
 
         // Constants
-        //-----------
+        
         $this->const = array(
             1=>array('BLOCKEDLOG_DISABLE_NOT_ALLOWED_FOR_COUNTRY', 'chaine', 'FR', 'This is list of country code where the module may be mandatory', 0, 'current', 0)
         );
 
         // New pages on tabs
-        // -----------------
+        
         $this->tabs = array();
 
         // Boxes
-        //------
+        
         $this->boxes = array();
 
         // Permissions
-        // -----------------
+        
         $this->rights = array();		// Permission array used by this module
 
         $r=0;
@@ -121,7 +121,7 @@ class modBlockedLog extends DolibarrModules
         $this->rights[$r][5] = '';
 
         // Main menu entries
-        // -----------------
+        
         $r=0;
         $this->menu[$r]=array(
         'fk_menu'=>'fk_mainmenu=tools',		    // Use 'fk_mainmenu=xxx' or 'fk_mainmenu=xxx,fk_leftmenu=yyy' where xxx is mainmenucode and yyy is a leftmenucode

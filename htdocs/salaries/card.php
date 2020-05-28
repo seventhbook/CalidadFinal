@@ -185,7 +185,7 @@ if ($action == 'delete')
 			{
 				$accountline = new AccountLine($db);
 				$result = $accountline->fetch($object->fk_bank);
-				if ($result > 0) $result = $accountline->delete($user); // $result may be 0 if not found (when bank entry was deleted manually and fk_bank point to nothing)
+				if ($result > 0) $result = $accountline->delete($user); 
 			}
 
 			if ($result >= 0)
@@ -404,7 +404,7 @@ if ($id)
 				$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
 			}
 			if ($action == 'classify') {
-				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+				
 				$morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 				$morehtmlref.='<input type="hidden" name="action" value="classin">';
 				$morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';

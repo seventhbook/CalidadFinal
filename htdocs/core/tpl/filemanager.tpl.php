@@ -190,8 +190,8 @@ if (empty($action) || $action == 'editfile' || $action == 'file_manager' || preg
         print '<div id="filetree" class="ecmfiletree">';
 
         // Variables that may be defined:
-        // $_GET['modulepart'], $_GET['openeddir'], $_GET['sortfield'], $_GET['sortorder']
-        // $_POST['dir']
+        
+        
         $mode='noajax';
         if (empty($url)) $url=DOL_URL_ROOT.'/ecm/index.php';
         include DOL_DOCUMENT_ROOT.'/core/ajax/ajaxdirtree.php';
@@ -234,9 +234,9 @@ if (! empty($conf->use_javascript_ajax) && empty($conf->global->MAIN_ECM_DISABLE
 {
 	//var_dump($modulepart);
 	// Variables that may be defined:
-	// $_GET['modulepart'], $_GET['openeddir'], $_GET['sortfield'], $_GET['sortorder']
-	// $_POST['dir']
-	// $_POST['section_dir'], $_POST['section_id'], $_POST['token'], $_POST['max_file_size'], $_POST['sendit']
+	
+	
+	
 	if (GETPOST('section_dir', 'alpha')) { $preopened=GETPOST('section_dir', 'alpha'); }
 
 	include DOL_DOCUMENT_ROOT.'/ecm/tpl/enablefiletreeajax.tpl.php';

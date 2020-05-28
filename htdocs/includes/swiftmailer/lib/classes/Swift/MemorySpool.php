@@ -59,7 +59,7 @@ class Swift_MemorySpool implements Swift_Spool
      */
     public function queueMessage(Swift_Mime_SimpleMessage $message)
     {
-        //clone the message to make sure it is not changed while in the queue
+        
         $this->messages[] = clone $message;
 
         return true;
@@ -94,7 +94,7 @@ class Swift_MemorySpool implements Swift_Spool
                 if ($retries) {
                     // re-queue the message at the end of the queue to give a chance
                     // to the other messages to be sent, in case the failure was due to
-                    // this message and not just the transport failing
+                    
                     array_unshift($this->messages, $message);
 
                     // wait half a second before we try again

@@ -228,11 +228,11 @@ class CurlClient implements ClientInterface
         // status code in cases where one can be determined right away (say
         // on an authentication problem for example), and saves the "large"
         // request body from being ever sent.
-        //
+        
         // Unfortunately, the bindings don't currently correctly handle the
         // success case (in which the server sends back a 100 CONTINUE), so
         // we'll error under that condition. To compensate for that problem
-        // for the time being, override cURL's behavior by simply always
+        
         // sending an empty `Expect:` header.
         array_push($headers, 'Expect: ');
 
@@ -378,14 +378,14 @@ class CurlClient implements ClientInterface
     {
         // Apply exponential backoff with $initialNetworkRetryDelay on the
         // number of $numRetries so far as inputs. Do not allow the number to exceed
-        // $maxNetworkRetryDelay.
+        
         $sleepSeconds = min(
             Stripe::getInitialNetworkRetryDelay() * 1.0 * pow(2, $numRetries - 1),
             Stripe::getMaxNetworkRetryDelay()
         );
 
         // Apply some jitter by randomizing the value in the range of
-        // ($sleepSeconds / 2) to ($sleepSeconds).
+        
         $sleepSeconds *= 0.5 * (1 + $this->randomGenerator->randFloat());
 
         // But never sleep less than the base sleep seconds.
@@ -435,7 +435,7 @@ class CurlClient implements ClientInterface
     private function canSafelyUseHttp2()
     {
         // Versions of curl older than 7.60.0 don't respect GOAWAY frames
-        // (cf. https://github.com/curl/curl/issues/2416), which Stripe use.
+        
         $curlVersion = curl_version()['version'];
         return (version_compare($curlVersion, '7.60.0') >= 0);
     }

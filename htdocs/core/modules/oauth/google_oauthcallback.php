@@ -31,7 +31,7 @@ use OAuth\OAuth2\Service\Google;
 // Define $urlwithroot
 $urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 
 
@@ -43,8 +43,8 @@ $backtourl = GETPOST('backtourl', 'alpha');
  * Create a new instance of the URI class with the current URI, stripping the query string
  */
 $uriFactory = new \OAuth\Common\Http\Uri\UriFactory();
-//$currentUri = $uriFactory->createFromSuperGlobalArray($_SERVER);
-//$currentUri->setQuery('');
+
+
 $currentUri = $uriFactory->createFromAbsolute($urlwithroot.'/core/modules/oauth/google_oauthcallback.php');
 
 
@@ -56,8 +56,8 @@ $currentUri = $uriFactory->createFromAbsolute($urlwithroot.'/core/modules/oauth/
 $serviceFactory = new \OAuth\ServiceFactory();
 $httpClient = new \OAuth\Common\Http\Client\CurlClient();
 // TODO Set options for proxy and timeout
-// $params=array('CURLXXX'=>value, ...)
-//$httpClient->setCurlParameters($params);
+
+
 $serviceFactory->setHttpClient($httpClient);
 
 // Dolibarr storage
@@ -80,7 +80,7 @@ if ($action != 'delete' && empty($requestedpermissionsarray))
 //var_dump($requestedpermissionsarray);exit;
 
 // Instantiate the Api service using the credentials, http client and storage mechanism for the token
-// $requestedpermissionsarray contains list of scopes.
+
 // Conversion into URL is done by Reflection on constant with name SCOPE_scope_in_uppercase
 /** @var $apiService Service */
 $apiService = $serviceFactory->createService('Google', $credentials, $storage, $requestedpermissionsarray);
@@ -114,13 +114,13 @@ if (! empty($_GET['code']))     // We are coming from oauth provider page
 	dol_syslog("We are coming from the oauth provider page");
 	//llxHeader('',$langs->trans("OAuthSetup"));
 
-    //$linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1">'.$langs->trans("BackToModuleList").'</a>';
-    //print load_fiche_titre($langs->trans("OAuthSetup"),$linkback,'title_setup');
+    
+    
 
     //dol_fiche_head();
     // retrieve the CSRF state parameter
     $state = isset($_GET['state']) ? $_GET['state'] : null;
-    //print '<table>';
+    
 
     // This was a callback request from service, get the token
     try {

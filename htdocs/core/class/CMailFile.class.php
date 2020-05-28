@@ -73,9 +73,9 @@ class CMailFile
 	 * @var string CSS
 	 */
 	public $css;
-	//! Defined css style for body background
+	
     public $styleCSS;
-	//! Defined background directly in body tag
+	
     public $bodyCSS;
 
     public $msgid;
@@ -275,7 +275,7 @@ class CMailFile
 		if ($this->sendmode == 'mail')
 		{
 			// Use mail php function (default PHP method)
-			// ------------------------------------------
+			
 
 			$smtp_headers = "";
 			$mime_headers = "";
@@ -284,7 +284,7 @@ class CMailFile
 
 			// Define smtp_headers (this also set ->msgid)
 			$smtp_headers = $this->write_smtpheaders();
-			if (!empty($moreinheader)) $smtp_headers .= $moreinheader; // $moreinheader contains the \r\n
+			if (!empty($moreinheader)) $smtp_headers .= $moreinheader; 
 
 			// Define mime_headers
 			$mime_headers = $this->write_mimeheaders($filename_list, $mimefilename_list);
@@ -322,7 +322,7 @@ class CMailFile
 		elseif ($this->sendmode == 'smtps')
 		{
 			// Use SMTPS library
-			// ------------------------------------------
+			
 
 			require_once DOL_DOCUMENT_ROOT.'/core/class/smtps.class.php';
 			$smtps = new SMTPs();
@@ -393,9 +393,9 @@ class CMailFile
             require_once DOL_DOCUMENT_ROOT.'/includes/swiftmailer/lib/swift_required.php';
 
             // Create the message
-            //$this->message = Swift_Message::newInstance();
+            
             $this->message = new Swift_Message();
-            //$this->message = new Swift_SignedMessage();
+            
             // Adding a trackid header to a message
             $headers = $this->message->getHeaders();
             $headers->addTextHeader('X-Dolibarr-TRACKID', $trackid.'@'.$host);
@@ -414,7 +414,7 @@ class CMailFile
             }
 
             // Set the From address with an associative array
-            //$this->message->setFrom(array('john@doe.com' => 'John Doe'));
+            
             if (!empty($from)) {
                 try {
                     $result = $this->message->setFrom($this->getArrayAddress($from));
@@ -493,7 +493,7 @@ class CMailFile
 		else
 		{
 			// Send mail method not correctly defined
-			// --------------------------------------
+			
 			$this->error = 'Bad value for sendmode';
 		}
 	}
@@ -617,7 +617,7 @@ class CMailFile
 			if ($this->sendmode == 'mail')
 			{
 				// Use mail php function (default PHP method)
-				// ------------------------------------------
+				
 				dol_syslog("CMailFile::sendfile addr_to=".$this->addr_to.", subject=".$this->subject, LOG_DEBUG);
 				dol_syslog("CMailFile::sendfile header=\n".$this->headers, LOG_DEBUG);
 				//dol_syslog("CMailFile::sendfile message=\n".$message);
@@ -716,7 +716,7 @@ class CMailFile
 				}
 
 				// Use SMTPS library
-				// ------------------------------------------
+				
 				$this->smtps->setTransportType(0); // Only this method is coded in SMTPs library
 
 				// Clean parameters
@@ -768,7 +768,7 @@ class CMailFile
 					if (!empty($conf->global->MAIN_MAIL_DEBUG)) $this->smtps->setDebug(true);
 
 					$result = $this->smtps->sendMsg();
-					//print $result;
+					
 
 					if (!empty($conf->global->MAIN_MAIL_DEBUG)) $this->dump_mail();
 
@@ -789,7 +789,7 @@ class CMailFile
 			elseif ($this->sendmode == 'swiftmailer')
 			{
                 // Use Swift Mailer library
-                // ------------------------------------------
+                
                 require_once DOL_DOCUMENT_ROOT.'/includes/swiftmailer/lib/swift_required.php';
 
 				// Clean parameters
@@ -806,7 +806,7 @@ class CMailFile
 
 				if (!empty($conf->global->$keyforsmtpid)) $this->transport->setUsername($conf->global->$keyforsmtpid);
 				if (!empty($conf->global->$keyforsmtppw)) $this->transport->setPassword($conf->global->$keyforsmtppw);
-				//$smtps->_msgReplyTo  = 'reply@web.com';
+				
 
 				// Switch content encoding to base64 - avoid the doubledot issue with quoted-printable
                 $contentEncoderBase64 = new Swift_Mime_ContentEncoder_Base64ContentEncoder();
@@ -828,7 +828,7 @@ class CMailFile
 					// To use the ArrayLogger
 					$this->logger = new Swift_Plugins_Loggers_ArrayLogger();
 					// Or to use the Echo Logger
-					//$this->logger = new Swift_Plugins_Loggers_EchoLogger();
+					
 					$this->mailer->registerPlugin(new Swift_Plugins_LoggerPlugin($this->logger));
 				}
 				// send mail
@@ -852,7 +852,7 @@ class CMailFile
 			else
 			{
 				// Send mail method not correctly defined
-				// --------------------------------------
+				
 
 				return 'Bad value for sendmode';
 			}
@@ -943,11 +943,11 @@ class CMailFile
 			}
 			elseif ($this->sendmode == 'smtps')
 			{
-				fputs($fp, $this->smtps->log); // this->smtps->log is filled only if MAIN_MAIL_DEBUG was set to on
+				fputs($fp, $this->smtps->log); 
 			}
 			elseif ($this->sendmode == 'swiftmailer')
 			{
-				fputs($fp, $this->logger->dump()); // this->logger is filled only if MAIN_MAIL_DEBUG was set to on
+				fputs($fp, $this->logger->dump()); 
 			}
 
 			fclose($fp);
@@ -1146,7 +1146,7 @@ class CMailFile
 		}
 
 		// Make RFC2045 Compliant, split lines
-		//$strContent = rtrim(chunk_split($strContent));    // Function chunck_split seems ko if not used on a base64 content
+		
 		// TODO Encode main content into base64 and use the chunk_split, or quoted-printable
 		$strContent = rtrim(wordwrap($strContent, 75, empty($conf->global->MAIN_FIX_FOR_BUGGED_MTA) ? "\r\n" : "\n")); // TODO Using this method creates unexpected line break on text/plain content.
 
@@ -1286,7 +1286,7 @@ class CMailFile
 	/**
 	 * Try to create a socket connection
 	 *
-	 * @param 	string		$host		Add ssl:// for SSL/TLS.
+	 * @param 	string		$host		Add ssl:
 	 * @param 	int			$port		Example: 25, 465
 	 * @return	int						Socket id if ok, 0 if KO
 	 */
@@ -1326,7 +1326,7 @@ class CMailFile
 					$host, // Host to test, IP or domain. Add ssl:// for SSL/TLS.
 					$port, // which Port number to use
 					$errno, // actual system level error
-					$errstr, // and any text that goes with the error
+					$errstr, 
 					$timeout     // timeout for reading/writing data over the socket
 			)) {
 				// Windows still does not have support for this timeout function

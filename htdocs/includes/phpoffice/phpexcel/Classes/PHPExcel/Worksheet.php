@@ -412,7 +412,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
      */
 	public function getCellCacheController() {
         return $this->_cellCollection;
-    }    //    function getCellCacheController()
+    }    
 
 
     /**
@@ -2589,14 +2589,14 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
         // Flush cache
         $this->_cellCollection->getCacheData('A1');
         // Build a reference table from images
-//        $imageCoordinates = array();
-//        $iterator = $this->getDrawingCollection()->getIterator();
-//        while ($iterator->valid()) {
-//            $imageCoordinates[$iterator->current()->getCoordinates()] = true;
-//
-//            $iterator->next();
+
+
+
+
+
+
 //        }
-//
+
         // Lookup highest column and highest row if cells are cleaned
         $colRow = $this->_cellCollection->getHighestRowAndColumn();
         $highestRow = $colRow['row'];
@@ -2673,12 +2673,12 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
      */
     public function getHyperlink($pCellCoordinate = 'A1')
     {
-        // return hyperlink if we already have one
+        
         if (isset($this->_hyperlinkCollection[$pCellCoordinate])) {
             return $this->_hyperlinkCollection[$pCellCoordinate];
         }
 
-        // else create hyperlink
+        
         $this->_hyperlinkCollection[$pCellCoordinate] = new PHPExcel_Cell_Hyperlink();
         return $this->_hyperlinkCollection[$pCellCoordinate];
     }
@@ -2728,12 +2728,12 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
      */
     public function getDataValidation($pCellCoordinate = 'A1')
     {
-        // return data validation if we already have one
+        
         if (isset($this->_dataValidationCollection[$pCellCoordinate])) {
             return $this->_dataValidationCollection[$pCellCoordinate];
         }
 
-        // else create data validation
+        
         $this->_dataValidationCollection[$pCellCoordinate] = new PHPExcel_Cell_DataValidation();
         return $this->_dataValidationCollection[$pCellCoordinate];
     }
@@ -2891,7 +2891,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
 		}
 		$pValue = str_replace(' ', '_', $pValue);//Excel does this automatically without flinching, we are doing the same
 		// Syntax check
-        // throw an exception if not valid
+        
 		self::_checkSheetCodeName($pValue);
 
 		// We use the same code that setTitle to find a valid codeName else not using a space (Excel don't like) but a '_'
@@ -2920,7 +2920,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
 
 				$pValue = $pValue . '_' . $i;// ok, we have a valid name
 				//codeName is'nt used in formula : no need to call for an update
-				//return $this->setTitle($altTitle,$updateFormulaCellReferences);
+				
 			}
 		}
 

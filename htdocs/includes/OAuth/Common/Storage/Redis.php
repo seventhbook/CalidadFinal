@@ -71,7 +71,7 @@ class Redis implements TokenStorageInterface
      */
     public function storeAccessToken($service, TokenInterface $token)
     {
-        // (over)write the token
+        
         $this->redis->hset($this->key, $service, serialize($token));
         $this->cachedTokens[$service] = $token;
 
@@ -153,7 +153,7 @@ class Redis implements TokenStorageInterface
      */
     public function storeAuthorizationState($service, $state)
     {
-        // (over)write the token
+        
         $this->redis->hset($this->stateKey, $service, $state);
         $this->cachedStates[$service] = $state;
 

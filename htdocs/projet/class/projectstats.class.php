@@ -63,14 +63,14 @@ class ProjectStats extends Stats
 		$sql .= " SUM(t.opp_amount), t.fk_opp_status, cls.code, cls.label";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->socid)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= ", ".MAIN_DB_PREFIX."c_lead_status as cls";
 		$sql .= $this->buildWhere();
 		// For external user, no check is done on company permission because readability is managed by public status of project and assignement.
-		//if ($socid > 0) $sql.= " AND t.fk_soc = ".$socid;
+		
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $socid) $sql.= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id.") OR (s.rowid IS NULL))";
+		
 		$sql .= " AND t.fk_opp_status = cls.rowid";
 		$sql .= " AND t.fk_statut <> 0";     // We want historic also, so all projects not draft
 		$sql .= " GROUP BY t.fk_opp_status, cls.code, cls.label";
@@ -130,13 +130,13 @@ class ProjectStats extends Stats
 		$sql.= " SUM(t.opp_amount * ".$this->db->ifsql("t.opp_percent IS NULL".($wonlostfilter?" OR cls.code IN ('WON','LOST')":""), '0', 't.opp_percent')." / 100) as weighted";
 		$sql.= " FROM " . MAIN_DB_PREFIX . "projet as t LEFT JOIN ".MAIN_DB_PREFIX."c_lead_status as cls ON cls.rowid = t.fk_opp_status";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql.= $this->buildWhere();
 		// For external user, no check is done on company permission because readability is managed by public status of project and assignement.
-		//if ($socid > 0) $sql.= " AND t.fk_soc = ".$socid;
+		
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $socid) $sql.= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id.") OR (s.rowid IS NULL))";
+		
 		$sql.= " GROUP BY year";
 		$sql.= $this->db->order('year', 'DESC');
 
@@ -177,7 +177,7 @@ class ProjectStats extends Stats
 		if (! empty($this->status))
 			$sqlwhere[] = " t.fk_opp_status IN (" . $this->status . ")";
 
-		if (! $user->rights->projet->all->lire) $sqlwhere[] = " t.rowid IN (".$projectsListId.")";     // public and assigned to, or restricted to company for external users
+		if (! $user->rights->projet->all->lire) $sqlwhere[] = " t.rowid IN (".$projectsListId.")";     
 
 		if (count($sqlwhere) > 0) {
 			$sqlwhere_str = ' WHERE ' . implode(' AND ', $sqlwhere);
@@ -202,8 +202,8 @@ class ProjectStats extends Stats
 		$sql = "SELECT date_format(t.datec,'%m') as dm, COUNT(*) as nb";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= $this->buildWhere();
 		$sql .= " GROUP BY dm";
 		$sql .= $this->db->order('dm', 'DESC');
@@ -231,8 +231,8 @@ class ProjectStats extends Stats
 		$sql = "SELECT date_format(t.datec,'%m') as dm, SUM(t.opp_amount)";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= $this->buildWhere();
 		$sql .= " GROUP BY dm";
 		$sql .= $this->db->order('dm', 'DESC');
@@ -305,7 +305,7 @@ class ProjectStats extends Stats
 			}
 
 			$data = array();
-			// $data = array('xval'=>array(0=>xlabel,1=>yval1,2=>yval2...),...)
+			
 			for ($i = 0 ; $i < 12 ; $i++)
 			{
 				$data[$i][]=$datay[$endyear][$i][0];	// set label
@@ -355,8 +355,8 @@ class ProjectStats extends Stats
 		$sql = "SELECT date_format(t.datec,'%m') as dm, SUM(t.opp_amount * ".$this->db->ifsql("t.opp_percent IS NULL".($wonlostfilter?" OR cls.code IN ('WON','LOST')":""), '0', 't.opp_percent')." / 100)";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t LEFT JOIN ".MAIN_DB_PREFIX.'c_lead_status as cls ON t.fk_opp_status = cls.rowid';
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= $this->buildWhere();
 		$sql .= " GROUP BY dm";
 		$sql .= $this->db->order('dm', 'DESC');
@@ -420,7 +420,7 @@ class ProjectStats extends Stats
 			}
 
 			$data = array ();
-			// $data = array('xval'=>array(0=>xlabel,1=>yval1,2=>yval2...),...)
+			
 			for($i = 0; $i < 12; $i ++) {
 				$data[$i][] = $datay[$endyear][$i][0]; // set label
 				$year = $startyear;
@@ -465,8 +465,8 @@ class ProjectStats extends Stats
 		$sql = "SELECT date_format(t.datec,'%m') as dm, count(t.opp_amount)";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= $this->buildWhere();
 		$sql .= " GROUP BY dm";
 		$sql .= $this->db->order('dm', 'DESC');
@@ -478,8 +478,8 @@ class ProjectStats extends Stats
 		$sql = "SELECT date_format(t.datec,'%m') as dm, count(t.opp_amount)";
 		$sql .= " FROM " . MAIN_DB_PREFIX . "projet as t";
 		// No check is done on company permission because readability is managed by public status of project and assignement.
-		//if (! $user->rights->societe->client->voir && ! $user->soc_id)
-		//	$sql .= " INNER JOIN " . MAIN_DB_PREFIX . "societe_commerciaux as sc ON sc.fk_soc=t.fk_soc AND sc.fk_user=" . $user->id;
+		
+		
 		$sql .= $this->buildWhere();
 		$sql .= " GROUP BY dm";
 		$sql .= $this->db->order('dm', 'DESC');

@@ -71,9 +71,9 @@ class modAsset extends DolibarrModules
 		$this->picto = 'generic';
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
-		// for default path (eg: /asset/core/xxxxx) (0=disable, 1=enable)
-		// for specific path of parts (eg: /asset/core/modules/barcode)
-		// for specific css file (eg: /asset/css/assets.css.php)
+		
+		
+		
 		$this->module_parts = array();
 
 		$this->dirs = array();
@@ -106,10 +106,10 @@ class modAsset extends DolibarrModules
 		// Array to add new pages in new tabs
 		$this->tabs = array();
 		// Example:
-		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@assets:$user->rights->assets->read:/assets/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-		// $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@assets:$user->rights->othermodule->read:/assets/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
-		// $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
-		//
+		
+		
+		
+		
 		// Where objecttype can be
 		// 'categories_x'	  to add a tab in category view (replace 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
 		// 'contact'          to add a tab in contact view
@@ -182,7 +182,7 @@ class modAsset extends DolibarrModules
         $this->rights[$r][5] = '';					// In php code, permission will be checked by test if ($user->rights->asset->level1->level2)
 
         // Menus
-        //-------
+        
         $this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 	}
 

@@ -1303,7 +1303,7 @@ else
 	{
 		$object->fetch_thirdparty();
 
-		$soc = $object->thirdparty; // $soc is used later
+		$soc = $object->thirdparty; 
 
 		$result = $object->fetch_lines(); // This also init $this->nbofserviceswait, $this->nbofservicesopened, $this->nbofservicesexpired=, $this->nbofservicesclosed
 		if ($result < 0) {
@@ -2177,8 +2177,8 @@ else
 				}
 
 				// On peut supprimer entite si
-				// - Droit de creer + mode brouillon (erreur creation)
-				// - Droit de supprimer
+				
+				
 				if (($user->rights->contrat->creer && $object->statut == 0) || $user->rights->contrat->supprimer)
 				{
 					print '<div class="inline-block divButAction"><a class="butActionDelete" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&amp;action=delete">'.$langs->trans("Delete").'</a></div>';

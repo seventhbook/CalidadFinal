@@ -22,10 +22,10 @@
  *	\brief      Main TakePOS screen
  */
 
-//if (! defined('NOREQUIREUSER'))	define('NOREQUIREUSER','1');	// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIREDB'))		define('NOREQUIREDB','1');		// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIRESOC'))		define('NOREQUIRESOC','1');
-//if (! defined('NOREQUIRETRAN'))		define('NOREQUIRETRAN','1');
+
+
+
+
 if (!defined('NOCSRFCHECK'))		define('NOCSRFCHECK', '1');
 if (!defined('NOTOKENRENEWAL'))	define('NOTOKENRENEWAL', '1');
 if (!defined('NOREQUIREMENU'))		define('NOREQUIREMENU', '1');
@@ -39,7 +39,7 @@ require_once DOL_DOCUMENT_ROOT.'/categories/class/categorie.class.php';
 require_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/hookmanager.class.php';
 
-$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0); // $place is id of table for Bar or Restaurant
+$place = (GETPOST('place', 'int') > 0 ? GETPOST('place', 'int') : 0); 
 $action = GETPOST('action', 'alpha');
 $setterminal = GETPOST('setterminal', 'int');
 
@@ -105,7 +105,7 @@ $categories = $categorie->get_full_arbo('product', (($conf->global->TAKEPOS_ROOT
 
 
 // Search root category to know its level
-//$conf->global->TAKEPOS_ROOT_CATEGORY_ID=0;
+
 $levelofrootcategory = 0;
 if ($conf->global->TAKEPOS_ROOT_CATEGORY_ID > 0)
 {
@@ -365,7 +365,7 @@ function ClickProduct(position) {
 		if (idproduct=="") return;
 		// Call page invoice.php to generate the section with product lines
 		$("#poslines").load("invoice.php?action=addline&place="+place+"&idproduct="+idproduct, function() {
-			//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+			
 		});
 	}
 
@@ -375,7 +375,7 @@ function ClickProduct(position) {
 function deleteline() {
 	console.log("Delete line");
 	$("#poslines").load("invoice.php?action=deleteline&place="+place+"&idline="+selectedline, function() {
-		//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+		
 	});
 	ClearSearch();
 }
@@ -415,7 +415,7 @@ function TakeposOrderNotes() {
 function Refresh() {
 	console.log("Refresh");
 	$("#poslines").load("invoice.php?place="+place, function() {
-		//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+		
 	});
 }
 
@@ -425,7 +425,7 @@ function New() {
 	var r = confirm('<?php echo ($place > 0 ? $langs->transnoentitiesnoconv("ConfirmDeletionOfThisPOSSale") : $langs->transnoentitiesnoconv("ConfirmDiscardOfThisPOSSale")); ?>');
 	if (r == true) {
     	$("#poslines").load("invoice.php?action=delete&place="+place, function() {
-    		//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+    		
     	});
 		ClearSearch();
 	}
@@ -470,7 +470,7 @@ function Edit(number) {
         if (editaction=='qty' && editnumber!=""){
             $("#poslines").load("invoice.php?action=updateqty&place="+place+"&idline="+selectedline+"&number="+editnumber, function() {
                 editnumber="";
-                //$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+                
                 $("#qty").html("<?php echo $langs->trans("Qty"); ?>");
             });
 
@@ -486,7 +486,7 @@ function Edit(number) {
         if (editaction=='p' && editnumber!=""){
             $("#poslines").load("invoice.php?action=updateprice&place="+place+"&idline="+selectedline+"&number="+editnumber, function() {
                 editnumber="";
-                //$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+                
                 $("#price").html("<?php echo $langs->trans("Price"); ?>");
             });
 
@@ -502,7 +502,7 @@ function Edit(number) {
         if (editaction=='r' && editnumber!=""){
             $("#poslines").load("invoice.php?action=updatereduction&place="+place+"&idline="+selectedline+"&number="+editnumber, function() {
                 editnumber="";
-                //$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+                
                 $("#reduction").html("<?php echo $langs->trans("ReductionShort"); ?>");
             });
 
@@ -540,14 +540,14 @@ function Edit(number) {
 function TakeposPrintingOrder(){
 	console.log("TakeposPrintingOrder");
 	$("#poslines").load("invoice.php?action=order&place="+place, function() {
-		//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+		
 	});
 }
 
 function TakeposPrintingTemp(){
 	console.log("TakeposPrintingTemp");
 	$("#poslines").load("invoice.php?action=temp&place="+place, function() {
-		//$('#poslines').scrollTop($('#poslines')[0].scrollHeight);
+		
 	});
 }
 
@@ -555,7 +555,7 @@ function OpenDrawer(){
 	console.log("OpenDrawer");
 	$.ajax({
 		type: "POST",
-		url: 'http://<?php print $conf->global->TAKEPOS_PRINT_SERVER;?>:8111/print',
+		url: 'http:
 		data: "opendrawer"
 	});
 }
@@ -795,11 +795,11 @@ $menus[$r++]=array('title'=>'<span class="fa fa-sign-out-alt paddingrightonly"><
 			<div class="wrapper" <?php if ($count == ($MAXCATEG - 2)) echo 'onclick="MoreCategories(\'less\');"'; elseif ($count == ($MAXCATEG - 1)) echo 'onclick="MoreCategories(\'more\');"'; else echo 'onclick="LoadProducts('.$count.');"'; ?> id="catdiv<?php echo $count; ?>">
 				<?php
 				if ($count == ($MAXCATEG - 2)) {
-				    //echo '<img class="imgwrapper" src="img/arrow-prev-top.png" height="100%" id="catimg'.$count.'" />';
+				    
 				    echo '<span class="fa fa-chevron-left centerinmiddle" style="font-size: 5em;"></span>';
 				}
 				elseif ($count == ($MAXCATEG - 1)) {
-				    //echo '<img class="imgwrapper" src="img/arrow-next-top.png" height="100%" id="catimg'.$count.'" />';
+				    
 				    echo '<span class="fa fa-chevron-right centerinmiddle" style="font-size: 5em;"></span>';
 				}
 				else
@@ -830,11 +830,11 @@ $menus[$r++]=array('title'=>'<span class="fa fa-sign-out-alt paddingrightonly"><
     			<div class="wrapper2" id='prodiv<?php echo $count; ?>' <?php if ($count == ($MAXPRODUCT - 2)) {?> onclick="MoreProducts('less');" <?php } if ($count == ($MAXPRODUCT - 1)) {?> onclick="MoreProducts('more');" <?php } else echo 'onclick="ClickProduct('.$count.');"'; ?>>
     				<?php
     				if ($count == ($MAXPRODUCT - 2)) {
-    				    //echo '<img class="imgwrapper" src="img/arrow-prev-top.png" height="100%" id="proimg'.$count.'" />';
+    				    
     				    echo '<span class="fa fa-chevron-left centerinmiddle" style="font-size: 5em;"></span>';
     				}
     				elseif ($count == ($MAXPRODUCT - 1)) {
-    				    //echo '<img class="imgwrapper" src="img/arrow-next-top.png" height="100%" id="proimg'.$count.'" />';
+    				    
     				    echo '<span class="fa fa-chevron-right centerinmiddle" style="font-size: 5em;"></span>';
     				}
     				else

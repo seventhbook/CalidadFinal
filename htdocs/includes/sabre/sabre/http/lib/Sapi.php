@@ -131,7 +131,7 @@ class Sapi {
                     break;
 
                 // mod_php on apache will put credentials in these variables.
-                // (fast)cgi does not usually do this, however.
+                
                 case 'PHP_AUTH_USER' :
                     if (isset($serverArray['PHP_AUTH_PW'])) {
                         $headers['Authorization'] = 'Basic ' . base64_encode($value . ':' . $serverArray['PHP_AUTH_PW']);

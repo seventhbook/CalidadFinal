@@ -1286,8 +1286,8 @@ class Societe extends CommonObject
 						if ($result > 0)
 						{
 							$lmember->company = $this->name;
-							//$lmember->firstname=$this->firstname?$this->firstname:$lmember->firstname;	// We keep firstname and lastname of member unchanged
-							//$lmember->lastname=$this->lastname?$this->lastname:$lmember->lastname;		// We keep firstname and lastname of member unchanged
+							
+							
 							$lmember->address = $this->address;
 							$lmember->zip = $this->zip;
 							$lmember->town = $this->town;
@@ -1457,7 +1457,7 @@ class Societe extends CommonObject
 				dol_syslog($this->error, LOG_ERR);
 				$result = -2;
 			}
-			elseif ($num)   // $num = 1
+			elseif ($num)   
 			{
 				$obj = $this->db->fetch_object($resql);
 
@@ -2506,7 +2506,7 @@ class Societe extends CommonObject
 				$sepa = "("; $sepb = ")";
 				if ($mode == 'email')
 				{
-					//$sepa="&lt;"; $sepb="&gt;";
+					
 					$sepa = "<"; $sepb = ">";
 				}
 				$i = 0;
@@ -3556,7 +3556,7 @@ class Societe extends CommonObject
 		}
 		else
 		{
-			// $this->error deja positionne
+			
 			dol_syslog(get_class($this)."::create_from_member - 2 - ".$this->error." - ".join(',', $this->errors), LOG_ERR);
 
 			$this->db->rollback();
@@ -4060,7 +4060,7 @@ class Societe extends CommonObject
 					&& $obj->fk_statut != $tmpobject::STATUS_DRAFT    		// Not a draft
 					&& $obj->fk_statut != $tmpobject::STATUS_ABANDONED	    // Not abandonned
 					&& $obj->fk_statut != $tmpobject::STATUS_CLOSED)   		// Not classified as paid
-				//$sql .= " AND (fk_statut <> 3 OR close_code <> 'abandon')";		// Not abandonned for undefined reason
+				
 				{
 					$paiement = $tmpobject->getSommePaiement();
 					$creditnotes = $tmpobject->getSumCreditNotesUsed();
@@ -4069,7 +4069,7 @@ class Societe extends CommonObject
 					$outstandingOpened += $obj->total_ttc - $paiement - $creditnotes - $deposits;
 				}
 
-                //if credit note is converted but not used
+                
                 // TODO Do this also for customer ?
                 if ($mode == 'supplier' && $obj->type == FactureFournisseur::TYPE_CREDIT_NOTE && $tmpobject->isCreditNoteUsed())
                 {

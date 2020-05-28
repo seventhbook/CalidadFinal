@@ -57,7 +57,7 @@ function dol_setcache($memoryid, $data)
        	}
 
 	    $memoryid=session_name().'_'.$memoryid;
-		//$dolmemcache->setOption(Memcached::OPT_COMPRESSION, false);
+		
 		$dolmemcache->add($memoryid, $data);    // This fails if key already exists
 		$rescode=$dolmemcache->getResultCode();
 		if ($rescode == 0)
@@ -81,7 +81,7 @@ function dol_setcache($memoryid, $data)
        	}
 
        	$memoryid=session_name().'_'.$memoryid;
-		//$dolmemcache->setOption(Memcached::OPT_COMPRESSION, false);
+		
 		$result=$dolmemcache->add($memoryid, $data);    // This fails if key already exists
 		if ($result)
 		{
@@ -124,11 +124,11 @@ function dol_getcache($memoryid)
        	}
 
 		$memoryid=session_name().'_'.$memoryid;
-		//$m->setOption(Memcached::OPT_COMPRESSION, false);
-		//print "Get memoryid=".$memoryid;
+		
+		
 		$data=$m->get($memoryid);
 		$rescode=$m->getResultCode();
-		//print "memoryid=".$memoryid." - rescode=".$rescode." - data=".count($data)."\n<br>";
+		
 		//var_dump($data);
 		if ($rescode == 0)
 		{
@@ -151,9 +151,9 @@ function dol_getcache($memoryid)
        	}
 
        	$memoryid=session_name().'_'.$memoryid;
-		//$m->setOption(Memcached::OPT_COMPRESSION, false);
+		
 		$data=$m->get($memoryid);
-		//print "memoryid=".$memoryid." - rescode=".$rescode." - data=".count($data)."\n<br>";
+		
 		//var_dump($data);
 		if ($data)
 		{
@@ -218,12 +218,12 @@ function dol_setshmop($memoryid, $data)
 {
 	global $shmkeys,$shmoffset;
 
-	//print 'dol_setshmop memoryid='.$memoryid."<br>\n";
+	
 	if (empty($shmkeys[$memoryid]) || ! function_exists("shmop_write")) return 0;
 	$shmkey=dol_getshmopaddress($memoryid);
 	$newdata=serialize($data);
 	$size=strlen($newdata);
-	//print 'dol_setshmop memoryid='.$memoryid." shmkey=".$shmkey." newdata=".$size."bytes<br>\n";
+	
 	$handle=shmop_open($shmkey, 'c', 0644, 6+$size);
 	if ($handle)
 	{
@@ -255,7 +255,7 @@ function dol_getshmop($memoryid)
 
 	if (empty($shmkeys[$memoryid]) || ! function_exists("shmop_open")) return 0;
 	$shmkey=dol_getshmopaddress($memoryid);
-	//print 'dol_getshmop memoryid='.$memoryid." shmkey=".$shmkey."<br>\n";
+	
 	$handle=@shmop_open($shmkey, 'a', 0, 0);
 	if ($handle)
 	{

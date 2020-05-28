@@ -312,7 +312,7 @@ if (empty($reshook))
 							}
 							else
 							{
-								//if cheack read is use then update prospect contact status
+								
 								if (strpos($message, '__CHECK_READ__') !== false)
 								{
 									//Update status communication of thirdparty prospect

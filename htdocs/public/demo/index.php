@@ -137,7 +137,7 @@ foreach ($modulesdir as $dir)
     {
         while (($file = readdir($handle))!==false)
         {
-            //print "$i ".$file."\n<br>";
+            
             if (is_readable($dir.$file) && substr($file, 0, 3) == 'mod'  && substr($file, dol_strlen($file) - 10) == '.class.php')
             {
                 $modName = substr($file, 0, dol_strlen($file) - 10);
@@ -170,7 +170,7 @@ foreach ($modulesdir as $dir)
                             $modules[$i] = $objMod;
                             $filename[$i]= $modName;
                             $orders[$i]  = $objMod->family."_".$j;   // Tri par famille puis numero module
-                            //print "x".$modName." ".$orders[$i]."\n<br>";
+                            
                             $dirmod[$i] = $dirroot;
                             $j++;
                             $i++;
@@ -196,7 +196,7 @@ asort($orders);
 
 if (GETPOST('action', 'aZ09') == 'gotodemo')     // Action run when we click on "Start" after selection modules
 {
-	//print 'ee'.GETPOST("demochoice");
+	
 	$disablestring='';
 	// If we disable modules using a profile choice
 	if (GETPOST("demochoice"))
@@ -294,16 +294,16 @@ foreach ($demoprofiles as $profilearray)
 {
 	if ($profilearray['default'] >= 0)
 	{
-	    //print $profilearray['lang'];
+	    
 	    if (! empty($profilearray['lang'])) $langs->load($profilearray['lang']);
 
 		$url=$_SERVER["PHP_SELF"].'?action=gotodemo';
 		$urlwithmod=$url.'&amp;demochoice='.$profilearray['key'];
 		// Should work with DOL_URL_ROOT='' or DOL_URL_ROOT='/dolibarr'
-		//print "xx".$_SERVER["PHP_SELF"].' '.DOL_URL_ROOT.'<br>';
+		
 
         $urlfrom=preg_replace('/^'.preg_quote(DOL_URL_ROOT, '/').'/i', '', $_SERVER["PHP_SELF"]);
-		//print $urlfrom;
+		
 
 		if (! empty($profilearray['url']))
 		{
@@ -366,7 +366,7 @@ foreach ($demoprofiles as $profilearray)
     		//var_dump($modules);
     		foreach($orders as $index => $key) // Loop on qualified (enabled) modules
     		{
-    			//print $index.' '.$key;
+    			
     			$val = $modules[$index];
     		    $modulekeyname=strtolower($val->name);
 
@@ -384,7 +384,7 @@ foreach ($demoprofiles as $profilearray)
                 else
                 {
                     $modulo=($j % $nbcolsmod);
-        		    //if ($modulo == 0) print '<tr>';
+        		    
                     print '<!-- id='.$val->numero.' -->';
                     print '<div class="nowrap">';
                     print '<input type="checkbox" class="checkbox" id="id'.$modulekeyname.'" name="'.$modulekeyname.'" value="1" title="'.dol_escape_htmltag($val->getName()).'"';
@@ -392,7 +392,7 @@ foreach ($demoprofiles as $profilearray)
                     if (! in_array($modulekeyname, $alwaysuncheckedmodules)  && (! in_array($modulekeyname, $listofdisabledmodules) || in_array($modulekeyname, $alwayscheckedmodules))) print ' checked';
                     print '> <label for="id'.$modulekeyname.'" class="inline-block demomaxoveflow" title="'.dol_escape_htmltag($val->getName()).'">'.$val->getName().'</label><br>';
                     print '</div>';
-                    //if ($modulo == ($nbcolsmod - 1)) print '</tr>';
+                    
                     $j++;
                 }
     		}
@@ -428,7 +428,7 @@ if (! empty($conf->google->enabled) && ! empty($conf->global->MAIN_GOOGLE_AD_CLI
 		print 'google_ad_slot = "'.$conf->global->MAIN_GOOGLE_AD_SLOT.'";'."\n";
 		print 'google_ad_width = '.$conf->global->MAIN_GOOGLE_AD_WIDTH.';'."\n";
 		print 'google_ad_height = '.$conf->global->MAIN_GOOGLE_AD_HEIGHT.';'."\n";
-		print '//-->'."\n";
+		print '
 		print '</script>'."\n";
 		print '<script type="text/javascript"'."\n";
 		print 'src="http://pagead2.googlesyndication.com/pagead/show_ads.js">'."\n";

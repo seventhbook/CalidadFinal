@@ -1,36 +1,36 @@
 <?php
-//============================================================+
+
 // File name   : tcpdf_filters.php
 // Version     : 1.0.001
 // Begin       : 2011-05-23
 // Last Update : 2014-04-25
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
-// -------------------------------------------------------------------
+
 // Copyright (C) 2011-2013 Nicola Asuni - Tecnick.com LTD
-//
+
 // This file is part of TCPDF software library.
-//
+
 // TCPDF is free software: you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-//
+
 // TCPDF is distributed in the hope that it will be useful, but
 // WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU Lesser General Public License for more details.
-//
+
 // You should have received a copy of the License
 // along with TCPDF. If not, see
-// <http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT>.
-//
+
+
 // See LICENSE.TXT file for more information.
-// -------------------------------------------------------------------
-//
+
+
 // Description : This is a PHP class for decoding common PDF filters (PDF 32000-2008 - 7.4 Filters).
-//
-//============================================================+
+
+
 
 /**
  * @file
@@ -56,7 +56,7 @@ class TCPDF_FILTERS {
 	 */
 	private static $available_filters = array('ASCIIHexDecode', 'ASCII85Decode', 'LZWDecode', 'FlateDecode', 'RunLengthDecode');
 
-// -----------------------------------------------------------------------------
+
 
 	/**
 	 * Get a list of available decoding filters.
@@ -125,7 +125,7 @@ class TCPDF_FILTERS {
 		}
 	}
 
-	// --- FILTERS (PDF 32000-2008 - 7.4 Filters) ------------------------------
+	
 
 	/**
 	 * Standard
@@ -216,7 +216,7 @@ class TCPDF_FILTERS {
 		$tuple = 0;
 		$pow85 = array((85*85*85*85), (85*85*85), (85*85), 85, 1);
 		$last_pos = ($data_length - 1);
-		// for each byte
+		
 		for ($i = 0; $i < $data_length; ++$i) {
 			// get char value
 			$char = ord($data[$i]);
@@ -294,7 +294,7 @@ class TCPDF_FILTERS {
 		}
 		// previous val
 		$prev_index = 0;
-		// while we encounter EOD marker (257), read code_length bits
+		
 		while (($data_length > 0) AND (($index = bindec(substr($bitstring, 0, $bitlen))) != 257)) {
 			// remove read bits from string
 			$bitstring = substr($bitstring, $bitlen);
@@ -381,13 +381,13 @@ class TCPDF_FILTERS {
 				// a length value of 128 denote EOD
 				break;
 			} elseif ($byte < 128) {
-				// if the length byte is in the range 0 to 127
+				
 				// the following length + 1 (1 to 128) bytes shall be copied literally during decompression
 				$decoded .= substr($data, ($i + 1), ($byte + 1));
 				// move to next block
 				$i += ($byte + 2);
 			} else {
-				// if length is in the range 129 to 255,
+				
 				// the following single byte shall be copied 257 - length (2 to 128) times during decompression
 				$decoded .= str_repeat($data[($i + 1)], (257 - $byte));
 				// move to next block
@@ -407,7 +407,7 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterCCITTFaxDecode($data) {
 		self::Error('~decodeFilterCCITTFaxDecode: this method has not been yet implemented');
-		//return $data;
+		
 	}
 
 	/**
@@ -420,7 +420,7 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterJBIG2Decode($data) {
 		self::Error('~decodeFilterJBIG2Decode: this method has not been yet implemented');
-		//return $data;
+		
 	}
 
 	/**
@@ -433,7 +433,7 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterDCTDecode($data) {
 		self::Error('~decodeFilterDCTDecode: this method has not been yet implemented');
-		//return $data;
+		
 	}
 
 	/**
@@ -446,7 +446,7 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterJPXDecode($data) {
 		self::Error('~decodeFilterJPXDecode: this method has not been yet implemented');
-		//return $data;
+		
 	}
 
 	/**
@@ -459,10 +459,10 @@ class TCPDF_FILTERS {
 	 */
 	public static function decodeFilterCrypt($data) {
 		self::Error('~decodeFilterCrypt: this method has not been yet implemented');
-		//return $data;
+		
 	}
 
-	// --- END FILTERS SECTION -------------------------------------------------
+	
 
 	/**
 	 * Throw an exception.
@@ -476,6 +476,6 @@ class TCPDF_FILTERS {
 
 } // END OF TCPDF_FILTERS CLASS
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

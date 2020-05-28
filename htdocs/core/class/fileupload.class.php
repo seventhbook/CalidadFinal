@@ -519,7 +519,7 @@ class FileUpload
 		if ($upload && is_array($upload['tmp_name']))
 		{
 			// param_name is an array identifier like "files[]",
-			// $_FILES is a multi-dimensional array:
+			
 			foreach ($upload['tmp_name'] as $index => $value) {
                 $info[] = $this->handleFileUpload(
                     $upload['tmp_name'][$index],
@@ -532,7 +532,7 @@ class FileUpload
 			}
 		} elseif ($upload || isset($_SERVER['HTTP_X_FILE_NAME'])) {
 			// param_name is a single object identifier like "file",
-			// $_FILES is a one-dimensional array:
+			
             $info[] = $this->handleFileUpload(
                 isset($upload['tmp_name']) ? $upload['tmp_name'] : null,
                 isset($_SERVER['HTTP_X_FILE_NAME']) ? $_SERVER['HTTP_X_FILE_NAME'] : (isset($upload['name']) ? $upload['name'] : null),

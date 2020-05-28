@@ -23,13 +23,13 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 	    $valsnb = array();
 	    $valsamount = array();
 	    $dataseries = array();
-	    // -1=Canceled, 0=Draft, 1=Validated, (2=Accepted/On process not managed for customer orders), 3=Closed (Sent/Received, billed or not)
+	    
 	    while ($i < $num)
 	    {
 	        $obj = $db->fetch_object($resql);
 	        if ($obj)
 	        {
-	            //if ($row[1]!=-1 && ($row[1]!=3 || $row[2]!=1))
+	            
 	            {
 	                $valsnb[$obj->opp_status] = $obj->nb;
 	                $valsamount[$obj->opp_status] = $obj->opp_amount;
@@ -61,8 +61,8 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 	        if ($code) $labelStatus = $langs->trans("OppStatus".$code);
 	        if (empty($labelStatus)) $labelStatus = $listofopplabel[$status];
 
-	        //$labelStatus .= ' ('.$langs->trans("Coeff").': '.price2num($listofoppstatus[$status]).')';
-	        //$labelStatus .= ' - '.price2num($listofoppstatus[$status]).'%';
+	        
+	        
 
 	        $dataseries[] = array($labelStatus, (isset($valsamount[$status]) ? (float) $valsamount[$status] : 0));
 	        if (!$conf->use_javascript_ajax)
@@ -90,11 +90,11 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 
 	        print '</td></tr>';
 	    }
-	    //if ($totalinprocess != $total)
-	    //print '<tr class="liste_total"><td>'.$langs->trans("Total").' ('.$langs->trans("CustomersOrdersRunning").')</td><td class="right">'.$totalinprocess.'</td></tr>';
+	    
+	    
 	    print '<tr class="liste_total"><td class="maxwidth200 tdoverflow">'.$langs->trans("OpportunityTotalAmount").' ('.$langs->trans("WonLostExcluded").')</td><td class="right">'.price($totalamount, 0, '', 1, -1, -1, $conf->currency).'</td></tr>';
 	    print '<tr class="liste_total"><td class="minwidth200 tdoverflow">';
-	    //print $langs->trans("OpportunityPonderatedAmount").' ('.$langs->trans("WonLostExcluded").')';
+	    
 	    print $form->textwithpicto($langs->trans("OpportunityPonderatedAmount").' ('.$langs->trans("WonLostExcluded").')', $langs->trans("OpportunityPonderatedAmountDesc"), 1);
 	    print '</td><td class="right">'.price(price2num($ponderated_opp_amount, 'MT'), 0, '', 1, -1, -1, $conf->currency).'</td></tr>';
 	    print "</table>";

@@ -37,7 +37,7 @@ $element = GETPOST('element', 'alpha');
 
 top_httphead();
 
-//print '<!-- Ajax page called with url '.dol_escape_htmltag($_SERVER["PHP_SELF"]).'?'.dol_escape_htmltag($_SERVER["QUERY_STRING"]).' -->'."\n";
+
 
 // Load original field value
 if (isset($action) && ! empty($action))
@@ -93,12 +93,12 @@ if (isset($action) && ! empty($action))
 				$relativepathtosearchparent=$relativepathmissing;
 				//dol_syslog("Try to find parent id for directory ".$relativepathtosearchparent);
 				if (preg_match('/\//', $relativepathtosearchparent))
-					//while (preg_match('/\//',$relativepathtosearchparent))
+					
 				{
 					$relativepathtosearchparent=preg_replace('/\/[^\/]*$/', '', $relativepathtosearchparent);
 					$txt="Is relative parent path ".$relativepathtosearchparent." for ".$relativepathmissing." found in sql tree ?";
 					dol_syslog($txt);
-					//print $txt." -> ";
+					
 					$parentdirisindatabase=0;
 					foreach($sqltree as $dirsqldesc)
 					{
@@ -111,14 +111,14 @@ if (isset($action) && ! empty($action))
 					if ($parentdirisindatabase > 0)
 					{
 						dol_syslog("Yes with id ".$parentdirisindatabase);
-						//print "Yes with id ".$parentdirisindatabase."<br>\n";
+						
 						$fk_parent=$parentdirisindatabase;
-						//break;  // We found parent, we can stop the while loop
+						
 					}
 					else
 					{
 						dol_syslog("No");
-						//print "No<br>\n";
+						
 					}
 				}
 				else
@@ -136,7 +136,7 @@ if (isset($action) && ! empty($action))
 
 					$txt="We create directory ".$ecmdirtmp->label." with parent ".$fk_parent;
 					dol_syslog($txt);
-					//print $txt."<br>\n";
+					
 					$id = $ecmdirtmp->create($user);
 					if ($id > 0)
 					{
@@ -157,7 +157,7 @@ if (isset($action) && ! empty($action))
 				else {
 					$txt="Parent of ".$dirdesc['fullname']." not found";
 					dol_syslog($txt);
-					//print $txt."<br>\n";
+					
 				}
 			}
 		}
@@ -171,7 +171,7 @@ if (isset($action) && ! empty($action))
 				$mesg.=$dirtotest." not found onto disk. We delete from database dir with id=".$dirdesc['id']."<br>\n";
 				$ecmdirtmp->id=$dirdesc['id'];
 				$ecmdirtmp->delete($user, 'databaseonly');
-				//exit;
+				
 			}
 	    }
 

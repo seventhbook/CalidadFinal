@@ -54,7 +54,7 @@ class DolGeoIP
 			if ($geoipversion == '2' || ($geoipversion != 'php' && ! function_exists('geoip_country_code_by_name')))
 		    {
 		    	if ($geoipversion == '1') $res=include_once GEOIP_PATH.'geoip.inc';
-		    	//else $res=include_once DOL_DOCUMENT_ROOT.'/includes/geoip2/vendor/autoload.php';
+		    	
 		    	else require_once DOL_DOCUMENT_ROOT.'/includes/geoip2/geoip2.phar';
 		    }
 		}
@@ -64,7 +64,7 @@ class DolGeoIP
 			if ($geoipversion == '2' || ($geoipversion != 'php' && ! function_exists('geoip_country_code_by_name')))
 		    {
 		    	if ($geoipversion == '1') $res=include_once GEOIP_PATH.'geoipcity.inc';
-		    	//else $res=include_once DOL_DOCUMENT_ROOT.'/includes/geoip2/vendor/autoload.php';
+		    	
 		    	else require_once DOL_DOCUMENT_ROOT.'/includes/geoip2/geoip2.phar';
 		    }
 		}
@@ -104,8 +104,8 @@ class DolGeoIP
 		else
 		{
 		    $this->gi = 'NOGI';    // We are using embedded php geoip functions
-		    //print 'function_exists(geoip_country_code_by_name))='.function_exists('geoip_country_code_by_name');
-		    //print geoip_database_info();
+		    
+		    
 		}
 	}
 
@@ -142,7 +142,7 @@ class DolGeoIP
 						return strtolower($record->country->isoCode);
 					}
 					catch(Exception $e) {
-						//return $e->getMessage();
+						
 						return '';
 					}
 				}
@@ -161,7 +161,7 @@ class DolGeoIP
 						return strtolower($record->country->isoCode);
 					}
 					catch(Exception $e) {
-						//return $e->getMessage();
+						
 						return '';
 					}
 				}
@@ -199,7 +199,7 @@ class DolGeoIP
 				return $record->country->isoCode;
 			}
 			catch(Exception $e) {
-				//return $e->getMessage();
+				
 				return '';
 			}
 		}

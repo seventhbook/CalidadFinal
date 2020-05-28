@@ -550,7 +550,7 @@ class Lessc {
 		}
 
 		$i = -1; // no args
-		// try to match by arity or by argument literal
+		
 		foreach ($remainingArgs as $i => $arg) {
 			switch ($arg[0]) {
 				case "lit":
@@ -633,7 +633,7 @@ class Lessc {
 	}
 
 	// sets all argument names in $args to either the default value
-	// or the one passed in through $values
+	
 	protected function zipSetArgs($args, $orderedValues, $keywordValues) {
 		$assignedValues = array();
 
@@ -652,7 +652,7 @@ class Lessc {
 					$value = $a[2];
 				} else {
 					$this->throwError("Failed to assign arg " . $a[1]);
-					$value = null; // :(
+					$value = null; 
 				}
 
 				$value = $this->reduce($value);
@@ -826,8 +826,8 @@ class Lessc {
 	public function compileValue($value) {
 		switch ($value[0]) {
 			case 'list':
-				// [1] - delimiter
-				// [2] - array of values
+				
+				
 				return implode($value[1], array_map(array($this, 'compileValue'), $value[2]));
 			case 'raw_color':
 				if (!empty($this->formatter->compressColors)) {
@@ -835,18 +835,18 @@ class Lessc {
 				}
 				return $value[1];
 			case 'keyword':
-				// [1] - the keyword
+				
 				return $value[1];
 			case 'number':
 				list(, $num, $unit) = $value;
-				// [1] - the number
-				// [2] - the unit
+				
+				
 				if ($this->numberPrecision !== null) {
 					$num = round($num, $this->numberPrecision);
 				}
 				return $num . $unit;
 			case 'string':
-				// [1] - contents of string (includes quotes)
+				
 				list(, $delim, $content) = $value;
 				foreach ($content as &$part) {
 					if (is_array($part)) {
@@ -855,10 +855,10 @@ class Lessc {
 				}
 				return $delim . implode($content) . $delim;
 			case 'color':
-				// [1] - red component (either number or a %)
-				// [2] - green component
-				// [3] - blue component
-				// [4] - optional alpha component
+				
+				
+				
+				
 				list(, $r, $g, $b) = $value;
 				$r = round($r);
 				$g = round($g);
@@ -2659,7 +2659,7 @@ class lessc_parser {
 								$this->append(array('block', $block), $s);
 							}
 
-							// this is done here so comments aren't bundled into he block that
+							
 							// was just closed
 							$this->whitespace();
 							return true;
@@ -2867,7 +2867,7 @@ class lessc_parser {
 				return true;
 			}
 
-			// try a variable
+			
 			if ($this->variable($var)) {
 				$value = array('variable', $var);
 				return true;
@@ -3136,7 +3136,7 @@ class lessc_parser {
 
 		// consume an argument definition list surrounded by ()
 		// each argument is a variable name with optional value
-		// or at the end a ... or a variable named followed by ...
+		
 		// arguments are separated by , unless a ; is in the list, then ; is the
 		// delimiter.
 		protected function argumentDef(&$args, &$isVararg) {
@@ -3242,7 +3242,7 @@ class lessc_parser {
 		}
 
 		// consume a list of tags
-		// this accepts a hanging delimiter
+		
 		protected function tags(&$tags, $simple = false, $delim = ',') {
 			$tags = array();
 			while ($this->tag($tt, $simple)) {
@@ -3254,7 +3254,7 @@ class lessc_parser {
 			return true;
 		}
 
-		// list of tags of specifying mixin path
+		
 		// optionally separated by > (lazy, accepts extra >)
 		protected function mixinTags(&$tags) {
 			$tags = array();
@@ -3379,7 +3379,7 @@ class lessc_parser {
 					}
 				}
 
-				if ($this->unit($unit)) { // for keyframes
+				if ($this->unit($unit)) { 
 					$parts[] = $unit[1];
 					$parts[] = $unit[2];
 					continue;
@@ -3416,7 +3416,7 @@ class lessc_parser {
 				$args = array();
 				while (true) {
 					$ss = $this->seek();
-					// this ugly nonsense is for ie filter properties
+					
 					if ($this->keyword($name) && $this->literal('=') && $this->expressionList($value)) {
 						$args[] = array("string", "", array($name, "=", $value));
 					} else {
@@ -3603,8 +3603,8 @@ class lessc_parser {
 
 
 		// advance counter to next occurrence of $what
-		// $until - don't include $what in advance
-		// $allowNewline, if string, will be used as valid char set
+		
+		
 		protected function to($what, &$out, $until = false, $allowNewline = false) {
 			if (is_string($allowNewline)) {
 				$validChars = $allowNewline;
@@ -3617,7 +3617,7 @@ class lessc_parser {
 			return true;
 		}
 
-		// try to match something on head of buffer
+		
 		protected function match($regex, &$out, $eatWhitespace = null) {
 			if ($eatWhitespace === null) $eatWhitespace = $this->eatWhiteDefault;
 

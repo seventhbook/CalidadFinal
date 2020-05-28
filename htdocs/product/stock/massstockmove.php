@@ -139,8 +139,8 @@ if ($action == 'addline')
 		$_SESSION['massstockmove'] = json_encode($listofdata);
 
 		unset($id_product);
-		//unset($id_sw);
-		//unset($id_tw);
+		
+		
 		unset($qty);
 	}
 }
@@ -190,7 +190,7 @@ if ($action == 'createmovements')
 				if (!empty($product->pmp)) $pricesrc = $product->pmp;
 				$pricedest = $pricesrc;
 
-				//print 'price src='.$pricesrc.', price dest='.$pricedest;exit;
+				
 
 				if (empty($conf->productbatch->enabled) || !$product->hasbatch())		// If product does not need lot/serial
 				{
@@ -340,7 +340,7 @@ print '<input type="hidden" name="action" value="addline">';
 
 print '<div class="div-table-responsive-no-min">';
 print '<table class="liste centpercent">';
-//print '<div class="tagtable centpercent">';
+
 
 $param = '';
 

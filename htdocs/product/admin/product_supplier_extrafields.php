@@ -73,7 +73,7 @@ elseif (empty($conf->service->enabled))
 	$textobject = $langs->trans('Products');
 }
 
-//$help_url='EN:Module Third Parties setup|FR:Paramétrage_du_module_Tiers';
+
 $help_url='';
 llxHeader('', $title, $help_url);
 

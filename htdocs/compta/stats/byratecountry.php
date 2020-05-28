@@ -87,7 +87,7 @@ if (empty($date_start) || empty($date_end)) // We define date_start and date_end
 	}
 }
 
-// $date_start and $date_end are defined. We force $year_start and $nbofyear
+
 $tmps = dol_getdate($date_start);
 $year_start = $tmps['year'];
 $tmpe = dol_getdate($date_end);
@@ -142,7 +142,7 @@ llxHeader('', $langs->trans("TurnoverReport"), '', '', 0, 0, '', '', $morequerys
 $fsearch .= '  <input type="hidden" name="year" value="'.$year.'">';
 $fsearch .= '  <input type="hidden" name="modetax" value="'.$modetax.'">';
 
-//$fsearch.='  <input type="text" name="min" value="'.$min.'">';
+
 
 
 // Show report header

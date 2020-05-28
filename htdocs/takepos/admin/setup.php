@@ -259,7 +259,7 @@ print '<td colspan="2">';
 include_once DOL_DOCUMENT_ROOT.'/core/class/html.formmail.class.php';
 $formmail = new FormMail($db);
 $nboftemplates = $formmail->fetchAllEMailTemplate('facture_send', $user, null, -1); // We set lang=null to get in priority record with no lang
-//$arraydefaultmessage = $formmail->getEMailTemplate($db, $tmp[1], $user, null, 0, 1, '');
+
 $arrayofmessagename = array();
 if (is_array($formmail->lines_model)) {
     foreach ($formmail->lines_model as $modelmail) {

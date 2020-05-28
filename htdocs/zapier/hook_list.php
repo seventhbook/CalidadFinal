@@ -59,8 +59,8 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
-//if (! $sortorder) $sortorder="DESC";
+
+
 
 // Initialize technical objects
 $object = new Hook($db);
@@ -87,10 +87,10 @@ if (!$sortorder) {
 $socid = 0;
 if ($user->socid > 0) {
     // Protection if external user
-    //$socid = $user->socid;
+    
     accessforbidden();
 }
-//$result = restrictedArea($user, 'mymodule', $id, '');
+
 
 // Initialize array of search criterias
 $search_all = trim(GETPOST("search_all", 'alpha'));
@@ -176,13 +176,13 @@ $form = new Form($db);
 
 $now = dol_now();
 
-//$help_url="EN:Module_Hook|FR:Module_Hook_FR|ES:Módulo_Hook";
+
 $help_url = '';
 $title = $langs->trans('ListOf', $langs->transnoentitiesnoconv("Hooks"));
 
 
 // Build and execute select
-// --------------------------------------------------------------------
+
 $sql = 'SELECT ';
 foreach ($object->fields as $key => $val) {
     $sql .= 't.'.$key.', ';
@@ -248,12 +248,12 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST)) {
     $resql = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($resql);
     if (($page * $limit) > $nbtotalofrecords) {
-        // if total of record found is smaller than page * limit, goto and load page 0
+        
         $page = 0;
         $offset = 0;
     }
 }
-// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+
 if (is_numeric($nbtotalofrecords) && $limit > $nbtotalofrecords) {
     $num = $nbtotalofrecords;
 } else {
@@ -278,7 +278,7 @@ if ($num == 1 && !empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $
 
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $title, $help_url);
 
@@ -335,17 +335,17 @@ print '<input type="hidden" name="page" value="'.$page.'">';
 print '<input type="hidden" name="contextpage" value="'.$contextpage.'">';
 
 $newcardbutton = '';
-//if ($user->rights->mymodule->creer)
+
 //{
     $newcardbutton = '<a class="butActionNew" href="hook_card.php?action=create&backtopage='.urlencode($_SERVER['PHP_SELF']).'"><span class="valignmiddle text-plus-circle">'.$langs->trans('New').'</span>';
     $newcardbutton .= '<span class="fa fa-plus-circle valignmiddle"></span>';
     $newcardbutton .= '</a>';
 //}
-//else
+
 //{
-//    $newcardbutton='<a class="butActionNewRefused" href="#"><span class="valignmiddle text-plus-circle">'.$langs->trans('New').'</span>;
-//    $newcardbutton.= '<span class="fa fa-plus-circle valignmiddle"></span>';
-//    $newcardbutton.= '</a>';
+
+
+
 //}
 
 print_barre_liste($title, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, $massactionbutton, $num, $nbtotalofrecords, 'title_companies', 0, $newcardbutton, '', $limit);
@@ -387,7 +387,7 @@ print '<table class="tagtable liste'.($moreforfilter ? " listwithfilterbefore" :
 
 
 // Fields title search
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($object->fields as $key => $val) {
     $cssforfield = '';
@@ -423,7 +423,7 @@ print '</tr>'."\n";
 
 
 // Fields title label
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 foreach ($object->fields as $key => $val) {
     $cssforfield = '';
@@ -466,7 +466,7 @@ if (is_array($extrafields->attributes[$object->table_element]['computed']) && co
 
 
 // Loop on record
-// --------------------------------------------------------------------
+
 $i = 0;
 $totalarray = array();
 while ($i < min($num, $limit)) {

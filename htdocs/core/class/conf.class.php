@@ -33,7 +33,7 @@
 class Conf
 {
     /** \public */
-    //! To store properties found in conf file
+    
     public $file;
 
     /**
@@ -41,21 +41,21 @@ class Conf
      */
     public $db;
 
-    //! To store properties found into database
+    
     public $global;
-    //! To store browser info
+    
     public $browser;
 
-    //! To store if javascript/ajax is enabked
+    
     public $use_javascript_ajax;
-    //! To store if javascript/ajax is enabked
+    
     public $disable_compute;
-	//! Used to store current currency (ISO code like 'USD', 'EUR', ...)
+	
 	public $currency;
-	//! Used to store current css (from theme)
+	
 	public $theme; // Contains current theme ("eldy", "auguria", ...)
 	public $css; // Contains full path of css page ("/theme/eldy/style.css.php", ...)
-    //! Used to store current menu handler
+    
 	public $standard_menu;
     // List of activated modules
     public $modules = array();
@@ -85,11 +85,11 @@ class Conf
      */
     public $loghandlers = array();
 
-    //! To store properties of multi-company
+    
     public $multicompany;
-	//! Used to store running instance for multi-company (default 1)
+	
 	public $entity = 1;
-	//! Used to store list of entities to use for each element
+	
 	public $entities = array();
 
 	public $dol_hide_topmenu; // Set if we force param dol_hide_topmenu into login url
@@ -116,7 +116,7 @@ class Conf
 		$this->medias			= new stdClass();
 		$this->multicompany = new stdClass();
 
-		//! Charset for HTML output and for storing data in memory
+		
 		$this->file->character_set_client = 'UTF-8'; // UTF-8, ISO-8859-1
 
 		// First level object
@@ -173,7 +173,7 @@ class Conf
 				$value = $objp->value;
 				if ($key)
 				{
-					//if (! defined("$key")) define("$key", $value);	// In some cases, the constant might be already forced (Example: SYSLOG_HANDLERS during install)
+					
 					$this->global->$key = $value;
 
 					if ($value && preg_match('/^MAIN_MODULE_/', $key))
@@ -185,7 +185,7 @@ class Conf
 							$partname = 'tabs';
 							$params = explode(':', $value, 2);
 							if (!isset($this->modules_parts[$partname]) || !is_array($this->modules_parts[$partname])) { $this->modules_parts[$partname] = array(); }
-							$this->modules_parts[$partname][$params[0]][] = $value; // $value may be a string or an array
+							$this->modules_parts[$partname][$params[0]][] = $value; 
 						}
 						// If this is constant for all generic part activated by a module. It initializes
 						// modules_parts['login'], modules_parts['menus'], modules_parts['substitutions'], modules_parts['triggers'], modules_parts['tpl'],
@@ -203,7 +203,7 @@ class Conf
 							elseif (in_array($partname, array('models', 'theme'))) $value = '/'.$modulename.'/';
 							elseif (in_array($partname, array('sms'))) $value = '/'.$modulename.'/';
 							elseif ($value == 1) $value = '/'.$modulename.'/core/modules/'.$partname.'/'; // ex: partname = societe
-							$this->modules_parts[$partname] = array_merge($this->modules_parts[$partname], array($modulename => $value)); // $value may be a string or an array
+							$this->modules_parts[$partname] = array_merge($this->modules_parts[$partname], array($modulename => $value)); 
 						}
                         // If this is a module constant (must be at end)
 						elseif (preg_match('/^MAIN_MODULE_([0-9A-Z_]+)$/i', $key, $reg))
@@ -311,7 +311,7 @@ class Conf
 			{
 				if (!empty($this->$module->enabled))
 				{
-					foreach ($dirs as $type => $name)  // $type is 'output' or 'temp'
+					foreach ($dirs as $type => $name)  
 					{
 						$subdir = ($type == 'temp' ? '/temp' : '');
 						// For multicompany sharings
@@ -445,7 +445,7 @@ class Conf
 
 
 		// Set some default values
-		//$this->global->MAIN_LIST_FILTER_ON_DAY=1;		// On filter that show date, we must show input field for day before or after month
+		
         $this->global->MAIN_MAIL_USE_MULTI_PART = 1;
 
 		// societe
@@ -552,7 +552,7 @@ class Conf
 		if (!isset($this->global->MAIN_MAX_DECIMALS_SHOWN)) $this->global->MAIN_MAX_DECIMALS_SHOWN = 8;
 
 		// Default pdf option
-		if (!isset($this->global->MAIN_PDF_DASH_BETWEEN_LINES)) $this->global->MAIN_PDF_DASH_BETWEEN_LINES = 1; // use dash between lines
+		if (!isset($this->global->MAIN_PDF_DASH_BETWEEN_LINES)) $this->global->MAIN_PDF_DASH_BETWEEN_LINES = 1; 
 		if (!isset($this->global->PDF_ALLOW_HTML_FOR_FREE_TEXT)) $this->global->PDF_ALLOW_HTML_FOR_FREE_TEXT = 1; // allow html content into free footer text
 
 		// Default max file size for upload

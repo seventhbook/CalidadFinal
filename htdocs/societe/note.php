@@ -81,8 +81,8 @@ if ($object->id > 0)
     dol_banner_tab($object, 'socid', $linkback, ($user->socid?0:1), 'rowid', 'nom');
 
     $cssclass='titlefield';
-    //if ($action == 'editnote_public') $cssclass='titlefieldcreate';
-    //if ($action == 'editnote_private') $cssclass='titlefieldcreate';
+    
+    
 
     print '<div class="fichecenter">';
 
@@ -116,9 +116,9 @@ if ($object->id > 0)
 
     print '</div>';
 
-    //print '<br>';
+    
 
-    //print '<div class="underbanner clearboth"></div>';
+    
     include DOL_DOCUMENT_ROOT.'/core/tpl/notes.tpl.php';
 
     dol_fiche_end();

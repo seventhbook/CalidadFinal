@@ -90,7 +90,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::ArgumentTypeException);
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -105,7 +105,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 			}
 		}
 		return true;
-	}	//	function isFullRank()
+	}	
 
 
 	/**
@@ -124,7 +124,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 			}
 		}
 		return new PHPExcel_Shared_JAMA_Matrix($H);
-	}	//	function getH()
+	}	
 
 
 	/**
@@ -145,7 +145,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 			}
 		}
 		return new PHPExcel_Shared_JAMA_Matrix($R);
-	}	//	function getR()
+	}	
 
 
 	/**
@@ -182,7 +182,7 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 		}
 		*/
 		return new PHPExcel_Shared_JAMA_Matrix($Q);
-	}	//	function getQ()
+	}	
 
 
 	/**
@@ -229,6 +229,6 @@ class PHPExcel_Shared_JAMA_QRDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::MatrixDimensionException);
 		}
-	}	//	function solve()
+	}	
 
 }	//	PHPExcel_Shared_JAMA_class QRDecomposition

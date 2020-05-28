@@ -22,11 +22,11 @@
  */
 
 
-// $action must be defined
-// $permissiontoedit must be defined to permission to edit object
-// $object must be defined
-// $langs must be defined
-// $hidedetails, $hidedesc, $hideref must de defined
+
+
+
+
+
 
 if ($action == 'up' && $permissiontoedit)
 {

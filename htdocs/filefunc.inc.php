@@ -58,16 +58,16 @@ if (defined('DOL_INC_FOR_VERSION_ERROR')) return;
 // Define vars
 $conffiletoshowshort = "conf.php";
 // Define localization of conf file
-// --- Start of part replaced by Dolibarr packager makepack-dolibarr
+
 $conffile = "conf/conf.php";
 $conffiletoshow = "htdocs/conf/conf.php";
 // For debian/redhat like systems
-//$conffile = "/etc/dolibarr/conf.php";
-//$conffiletoshow = "/etc/dolibarr/conf.php";
+
+
 
 
 // Include configuration
-// --- End of part replaced by Dolibarr packager makepack-dolibarr
+
 
 
 // Include configuration
@@ -164,7 +164,7 @@ if (! defined('NOCSRFCHECK') && empty($dolibarr_nocsrfcheck))
     	}
     	if ($csrfattack)
     	{
-    		//print 'NOCSRFCHECK='.defined('NOCSRFCHECK').' REQUEST_METHOD='.$_SERVER['REQUEST_METHOD'].' HTTP_HOST='.$_SERVER['HTTP_HOST'].' HTTP_REFERER='.$_SERVER['HTTP_REFERER'];
+    		
 
     		// Note: We can't use dol_escape_htmltag here to escape output because lib functions.lib.ph is not yet loaded.
     		print "Access refused by CSRF protection in main.inc.php. Referer of form (".htmlentities($_SERVER['HTTP_REFERER'], ENT_COMPAT, 'UTF-8').") is outside the server that serve this page (with method = ".htmlentities($_SERVER['REQUEST_METHOD'], ENT_COMPAT, 'UTF-8').").\n";
@@ -214,29 +214,29 @@ foreach($paths as $tmppath)	// We check to find (B+start of C)=A
 {
     if (empty($tmppath)) continue;
     $concatpath.='/'.$tmppath;
-    //if ($tmppath) $concatpath.='/'.$tmppath;
-    //print $_SERVER["SCRIPT_NAME"].'-'.$pathroot.'-'.$concatpath.'-'.$real_dolibarr_main_document_root.'-'.realpath($pathroot.$concatpath).'<br>';
+    
+    
     if ($real_dolibarr_main_document_root == @realpath($pathroot.$concatpath))    // @ avoid warning when safe_mode is on.
     {
-        //print "Found relative url = ".$concatpath;
+        
     	$tmp3=$concatpath;
         $found=1;
         break;
     }
-    //else print "Not found yet for concatpath=".$concatpath."<br>\n";
+    
 }
-//print "found=".$found." dolibarr_main_url_root=".$dolibarr_main_url_root."\n";
+
 if (! $found) $tmp=$dolibarr_main_url_root; // If autodetect fails (Ie: when using apache alias that point outside default DOCUMENT_ROOT).
 else $tmp='http'.(((empty($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != 'on') && (empty($_SERVER["SERVER_PORT"])||$_SERVER["SERVER_PORT"]!=443))?'':'s').'://'.$_SERVER["SERVER_NAME"].((empty($_SERVER["SERVER_PORT"])||$_SERVER["SERVER_PORT"]==80||$_SERVER["SERVER_PORT"]==443)?'':':'.$_SERVER["SERVER_PORT"]).($tmp3?(preg_match('/^\//', $tmp3)?'':'/').$tmp3:'');
-//print "tmp1=".$tmp1." tmp2=".$tmp2." tmp3=".$tmp3." tmp=".$tmp."\n";
+
 if (! empty($dolibarr_main_force_https)) $tmp=preg_replace('/^http:/i', 'https:', $tmp);
 define('DOL_MAIN_URL_ROOT', $tmp);											// URL absolute root (https://sss/dolibarr, ...)
 $uri=preg_replace('/^http(s?):\/\//i', '', constant('DOL_MAIN_URL_ROOT'));	// $uri contains url without http*
-$suburi = strstr($uri, '/');												// $suburi contains url without domain:port
+$suburi = strstr($uri, '/');												
 if ($suburi == '/') $suburi = '';											// If $suburi is /, it is now ''
 define('DOL_URL_ROOT', $suburi);											// URL relative root ('', '/dolibarr', ...)
 
-//print DOL_MAIN_URL_ROOT.'-'.DOL_URL_ROOT."\n";
+
 
 // Define prefix MAIN_DB_PREFIX
 define('MAIN_DB_PREFIX', $dolibarr_main_db_prefix);
@@ -284,7 +284,7 @@ if (! file_exists(DOL_DOCUMENT_ROOT ."/core/lib/functions.lib.php"))
 // Included by default
 include_once DOL_DOCUMENT_ROOT .'/core/lib/functions.lib.php';
 include_once DOL_DOCUMENT_ROOT .'/core/lib/security.lib.php';
-//print memory_get_usage();
+
 
 // If password is encoded, we decode it
 if (preg_match('/crypted:/i', $dolibarr_main_db_pass) || ! empty($dolibarr_main_db_encrypted_pass))

@@ -18,8 +18,8 @@
 
 use Luracast\Restler\RestException;
 
-//require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
-//require_once DOL_DOCUMENT_ROOT.'/categories/class/categorie.class.php';
+
+
 
 
 /**
@@ -125,7 +125,7 @@ class Contacts extends DolibarrApi
 		    throw new RestException(401, 'No permission to read contacts');
 		}
 
-        // case of external user, $thirdparty_ids param is ignored and replaced by user's socid
+        
 		$socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $thirdparty_ids;
 
 		// If the internal user must only see his customers, force searching by him
@@ -307,8 +307,8 @@ class Contacts extends DolibarrApi
 	 */
     public function createUser($id, $request_data = null)
     {
-	    //if (!DolibarrApiAccess::$user->rights->user->user->creer) {
-	    //throw new RestException(401);
+	    
+	    
 	    //}
 
 	    if (!isset($request_data["login"]))

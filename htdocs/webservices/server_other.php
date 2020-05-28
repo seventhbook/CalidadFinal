@@ -197,7 +197,7 @@ function getDocument($authentication, $modulepart, $file, $refname = '')
 	$original_file = $file;
 	$type=dol_mimetype($original_file);
 	
-	//$relativepath = $relativefilepath . $ref.'.pdf';
+	
 
 	$accessallowed=0;
 

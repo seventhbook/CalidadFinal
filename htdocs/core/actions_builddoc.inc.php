@@ -22,12 +22,12 @@
  */
 
 
-// $action must be defined
-// $id must be defined
-// $object must be defined and must have a method generateDocument().
-// $permissiontoadd must be defined
-// $upload_dir must be defined (example $conf->projet->dir_output . "/";)
-// $hidedetails, $hidedesc, $hideref and $moreparams may have been set or not.
+
+
+
+
+
+
 
 if (!empty($permissioncreate) && empty($permissiontoadd)) $permissiontoadd = $permissioncreate; // For backward compatibility
 
@@ -56,10 +56,10 @@ if ($action == 'builddoc' && $permissiontoadd)
     	}
 
         // Special case to force bank account
-        //if (property_exists($object, 'fk_bank'))
+        
         //{
         if (GETPOST('fk_bank', 'int')) {
-            // this field may come from an external module
+            
             $object->fk_bank = GETPOST('fk_bank', 'int');
         } elseif (!empty($object->fk_account)) {
             $object->fk_bank = $object->fk_account;
@@ -70,8 +70,8 @@ if ($action == 'builddoc' && $permissiontoadd)
         $newlang = '';
 
         if ($conf->global->MAIN_MULTILANGS && empty($newlang) && GETPOST('lang_id', 'aZ09')) $newlang = GETPOST('lang_id', 'aZ09');
-        if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($object->thirdparty->default_lang)) $newlang = $object->thirdparty->default_lang; // for proposal, order, invoice, ...
-        if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($object->default_lang)) $newlang = $object->default_lang; // for thirdparty
+        if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($object->thirdparty->default_lang)) $newlang = $object->thirdparty->default_lang; 
+        if ($conf->global->MAIN_MULTILANGS && empty($newlang) && isset($object->default_lang)) $newlang = $object->default_lang; 
         if (!empty($newlang))
         {
             $outputlangs = new Translate("", $conf);

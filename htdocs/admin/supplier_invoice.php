@@ -396,7 +396,7 @@ foreach ($dirmodels as $reldir)
                     if (in_array($name, $def))
                     {
                         print '<td class="center">'."\n";
-                        //if ($conf->global->INVOICE_SUPPLIER_ADDON_PDF != "$name")
+                        
                         //{
                             // Even if choice is the default value, we allow to disable it: For supplier invoice, we accept to have no doc generation at all
                             print '<a href="'.$_SERVER["PHP_SELF"].'?action=del&amp;value='.$name.'&amp;scan_dir='.$module->scandir.'&amp;label='.urlencode($module->name).'&amp;type=invoice_supplier">';
@@ -420,7 +420,7 @@ foreach ($dirmodels as $reldir)
                     print '<td class="center">';
                     if ($conf->global->INVOICE_SUPPLIER_ADDON_PDF == "$name")
                     {
-                        //print img_picto($langs->trans("Default"),'on');
+                        
                         // Even if choice is the default value, we allow to disable it: For supplier invoice, we accept to have no doc generation at all
                         print '<a href="'.$_SERVER["PHP_SELF"].'?action=unsetdoc&amp;value='.$name.'&amp;scan_dir='.$module->scandir.'&amp;label='.urlencode($module->name).'&amp;type=invoice_supplier"" alt="'.$langs->trans("Disable").'">'.img_picto($langs->trans("Enabled"), 'on').'</a>';
                     }

@@ -19,12 +19,12 @@
  */
 
 // Following var must be set:
-// $arrayofselected = array of id selected
-// $object
-// $objecttmp=new Propal($db);
-// $topicmail="SendSupplierProposalRef";
-// $modelmail="supplier_proposal_send";
-// $trackid='ord'.$object->id;
+
+
+
+
+
+
 
 
 if ($massaction == 'predeletedraft')
@@ -120,7 +120,7 @@ if ($massaction == 'presend')
 	$formmail->withtoccc = $conf->global->MAIN_EMAIL_USECCC;
 	$formmail->withtopic = $langs->transnoentities($topicmail, '__REF__', '__REFCLIENT__');
 	$formmail->withfile = 1;
-	// $formmail->withfile = 2; Not yet supported in mass action
+	
 	$formmail->withmaindocfile = 1; // Add a checkbox "Attach also main document"
 	if ($objecttmp->element != 'societe') {
 		$formmail->withfile = '<span class="hideonsmartphone">'.$langs->trans("OnlyPDFattachmentSupported").'</span>';
@@ -151,7 +151,7 @@ if ($massaction == 'presend')
 	$formmail->param['models'] = $modelmail;
 	$formmail->param['models_id'] = GETPOST('modelmailselected', 'int');
 	$formmail->param['id'] = join(',', $arrayofselected);
-	// $formmail->param['returnurl']=$_SERVER["PHP_SELF"].'?id='.$object->id;
+	
 	if (! empty($conf->global->MAILING_LIMIT_SENDBYWEB) && count($listofselectedthirdparties) > $conf->global->MAILING_LIMIT_SENDBYWEB)
 	{
 		$langs->load("errors");

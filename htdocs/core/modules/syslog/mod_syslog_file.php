@@ -148,7 +148,7 @@ class mod_syslog_file extends LogHandler implements LogHandlerInterface
 			if (! defined('SYSLOG_FILE_NO_ERROR') || ! constant('SYSLOG_FILE_NO_ERROR'))
 			{
 				// Do not break dolibarr usage if log fails
-				//throw new Exception('Failed to open log file '.basename($logfile));
+				
 				print 'Failed to open log file '.($dolibarr_main_prod?basename($logfile):$logfile);
 			}
 		}

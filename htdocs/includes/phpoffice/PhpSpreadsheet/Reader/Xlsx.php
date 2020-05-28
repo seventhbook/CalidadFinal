@@ -469,8 +469,8 @@ class Xlsx extends BaseReader
                         $docProps = $excel->getProperties();
                         $docProps->setCreator((string) self::getArrayItem($xmlCore->xpath('dc:creator')));
                         $docProps->setLastModifiedBy((string) self::getArrayItem($xmlCore->xpath('cp:lastModifiedBy')));
-                        $docProps->setCreated(strtotime(self::getArrayItem($xmlCore->xpath('dcterms:created')))); //! respect xsi:type
-                        $docProps->setModified(strtotime(self::getArrayItem($xmlCore->xpath('dcterms:modified')))); //! respect xsi:type
+                        $docProps->setCreated(strtotime(self::getArrayItem($xmlCore->xpath('dcterms:created')))); 
+                        $docProps->setModified(strtotime(self::getArrayItem($xmlCore->xpath('dcterms:modified')))); 
                         $docProps->setTitle((string) self::getArrayItem($xmlCore->xpath('dc:title')));
                         $docProps->setDescription((string) self::getArrayItem($xmlCore->xpath('dc:description')));
                         $docProps->setSubject((string) self::getArrayItem($xmlCore->xpath('dc:subject')));
@@ -746,7 +746,7 @@ class Xlsx extends BaseReader
                             $docSheet = $excel->createSheet();
                             //    Use false for $updateFormulaCellReferences to prevent adjustment of worksheet
                             //        references in formula cells... during the load, all formulae should be correct,
-                            //        and we're simply bringing the worksheet name in line with the formula, not the
+                            
                             //        reverse
                             $docSheet->setTitle((string) $eleSheet['name'], false, false);
                             $fileWorksheet = $worksheets[(string) self::getArrayItem($eleSheet->attributes('http://schemas.openxmlformats.org/officeDocument/2006/relationships'), 'id')];

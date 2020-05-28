@@ -161,7 +161,7 @@ class MenuManager
 
         	$lastlevel = array();
         	print '<!-- Generate menu list from menu handler '.$this->name.' -->'."\n";
-        	foreach($this->menu->liste as $key => $val)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+        	foreach($this->menu->liste as $key => $val)		
         	{
         		print '<ul class="ulmenu" data-inset="true">';
         		print '<li class="lilevel0">';
@@ -224,7 +224,7 @@ class MenuManager
 					}
 
 					$lastlevel2 = array();
-					foreach($submenu->liste as $key2 => $val2)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+					foreach($submenu->liste as $key2 => $val2)		
         			{
 						$showmenu=true;
 						if (! empty($conf->global->MAIN_MENU_HIDE_UNAUTHORIZED) && empty($val2['enabled'])) $showmenu=false;

@@ -75,7 +75,7 @@ class mod_expensereport_sand extends ModeleNumRefExpenseReport
 		$texte .= '<table class="nobordernopadding" width="100%">';
 
 		$tooltip = $langs->trans("GenericMaskCodes", $langs->transnoentities("ExpenseReport"), $langs->transnoentities("ExpenseReport"));
-		//$tooltip.=$langs->trans("GenericMaskCodes2");
+		
 		$tooltip .= $langs->trans("GenericMaskCodes3");
 		$tooltip .= $langs->trans("GenericMaskCodes4a", $langs->transnoentities("ExpenseReport"), $langs->transnoentities("ExpenseReport"));
 		$tooltip .= $langs->trans("GenericMaskCodes5");
@@ -137,7 +137,7 @@ class mod_expensereport_sand extends ModeleNumRefExpenseReport
 			return 0;
 		}
 
-		$date = $object->date_valid; // $object->date does not exists
+		$date = $object->date_valid; 
 		if (empty($date))
 		{
 			$this->error = 'Date valid not defined';

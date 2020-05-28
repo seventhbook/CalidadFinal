@@ -268,7 +268,7 @@ if ($socid > 0)
 
 	if ($isSupplier) {
 		if ($isCustomer) {
-			print '</div>'; // class="fichehalfleft"
+			print '</div>'; 
 			print '<div class="fichehalfright">';
 			print '<div class="ficheaddleft">';
 			print load_fiche_titre($langs->trans("SupplierDiscounts"), '', '');
@@ -325,9 +325,9 @@ if ($socid > 0)
 		}
 
 		if ($isCustomer) {
-			print '</div>'; // class="ficheaddleft"
-			print '</div>'; // class="fichehalfright"
-			print '</div>'; // class="fichecenter"
+			print '</div>'; 
+			print '</div>'; 
+			print '</div>'; 
 		}
 	}
 }

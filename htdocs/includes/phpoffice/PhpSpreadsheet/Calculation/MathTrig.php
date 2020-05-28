@@ -7,9 +7,9 @@ use Matrix\Matrix;
 
 class MathTrig
 {
-    //
+    
     //    Private method to return an array of the factors of the input value
-    //
+    
     private static function factors($value)
     {
         $startVal = floor(sqrt($value));
@@ -1282,7 +1282,7 @@ class MathTrig
                     // Is not a value within our criteria
                     $valid = false;
 
-                    break; // if false found, don't need to check other conditions
+                    break; 
                 }
             }
 

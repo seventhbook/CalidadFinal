@@ -53,7 +53,7 @@ switch ($action)
 		$invoice->type= Facture::TYPE_STANDARD;
 
 		// To use a specific numbering module for POS, reset $conf->global->FACTURE_ADDON and other vars here
-		// and restore values just after
+		
 		$sav_FACTURE_ADDON='';
 		if (! empty($conf->global->POS_ADDON))
 		{
@@ -65,7 +65,7 @@ switch ($action)
 			// To force prefix only for POS with mars module
 			if (! empty($conf->global->POS_NUMBERING_MARS_FORCE_PREFIX)) $conf->global->INVOICE_NUMBERING_MARS_FORCE_PREFIX = $conf->global->POS_NUMBERING_MARS_FORCE_PREFIX;
 			// To force rule only for POS with mercure
-			//...
+			
 		}
 
 		$num=$invoice->getNextNumRef($company);
@@ -99,7 +99,7 @@ switch ($action)
 		}
 		else
 		{
-		    //$txtDatePaiement=$_POST['txtDatePaiement'];
+		    
 		    $datePaiement=dol_mktime(0, 0, 0, $_POST['txtDatePaiementmonth'], $_POST['txtDatePaiementday'], $_POST['txtDatePaiementyear']);
 		    $txtDatePaiement=dol_print_date($datePaiement, 'dayrfc');
 			$obj_facturation->paiementLe($txtDatePaiement);
@@ -132,7 +132,7 @@ switch ($action)
 		{
 			case 'DIF':
 				$mode_reglement_id = 0;
-				//$cond_reglement_id = dol_getIdFromCode($db,'RECEP','cond_reglement','code','rowid')
+				
 				$cond_reglement_id = 0;
 				break;
 			case 'ESP':
@@ -217,7 +217,7 @@ switch ($action)
 		$invoice->mode_reglement_id=$mode_reglement_id;
 		$invoice->module_source = 'cashdesk';
 		$invoice->pos_source = '0';
-		//print "c=".$invoice->cond_reglement_id." m=".$invoice->mode_reglement_id; exit;
+		
 
 		// Si paiement differe ...
 		if ( $obj_facturation->getSetPaymentMode() == 'DIF' )
@@ -326,7 +326,7 @@ switch ($action)
                     	{
                     		// We set status to payed
                     		$result=$invoice->set_paid($user);
-                  			//print 'set paid';exit;
+                  			
                     	}
                     }
 				}

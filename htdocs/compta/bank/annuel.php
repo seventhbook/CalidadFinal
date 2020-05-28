@@ -70,7 +70,7 @@ $form = new Form($db);
 
 // Get account informations
 $object = new Account($db);
-if ($id > 0 && !preg_match('/,/', $id))	// if for a particular account and not a list
+if ($id > 0 && !preg_match('/,/', $id))	
 {
 	$result = $object->fetch($id);
 	$id = $object->id;
@@ -479,9 +479,9 @@ else
 	unset($tblyear[1]);
 	unset($tblyear[2]);
 
-	print '<div class="fichecenter"><div class="fichehalfleft"><div align="center">'; // do not use class="center" here, it will have no effect for the js graph inside.
+	print '<div class="fichecenter"><div class="fichehalfleft"><div align="center">'; 
 	print $show1;
-	print '</div></div><div class="fichehalfright"><div class="ficheaddleft"><div align="center">'; // do not use class="center" here, it will have no effect for the js graph inside.
+	print '</div></div><div class="fichehalfright"><div class="ficheaddleft"><div align="center">'; 
 	print $show2;
 	print '</div></div></div></div>';
 	print '<div style="clear:both"></div>';

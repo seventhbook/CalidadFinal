@@ -162,7 +162,7 @@ if ($socid > 0)
     $sql .= " GROUP BY s.nom, s.rowid, s.code_client, f.rowid, f.ref, f.total, f.datef, f.paye, f.fk_statut, f.type";
     $sql .= $db->order($sortfield, $sortorder);
     // TODO: calculate total to display then restore pagination
-    //$sql.= $db->plimit($conf->liste_limit +1, $offset);
+    
 
     dol_syslog('margin:tabs:thirdpartyMargins.php', LOG_DEBUG);
     $result = $db->query($sql);

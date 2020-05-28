@@ -145,7 +145,7 @@ else
 	$sql .= $db->plimit($conf->liste_limit + 1, $offset);
 }
 
-//print $sql;
+
 $result = $db->query($sql);
 if ($result)
 {

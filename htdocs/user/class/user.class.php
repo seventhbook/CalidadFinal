@@ -131,11 +131,11 @@ class User extends CommonObject
 	 */
 	public $entity;
 
-	//! Clear password in memory
+	
 	public $pass;
-	//! Clear password in database (defined if DATABASE_PWD_ENCRYPTED=0)
+	
 	public $pass_indatabase;
-	//! Encrypted password in database (always defined)
+	
 	public $pass_indatabase_crypted;
 
 	/**
@@ -152,7 +152,7 @@ class User extends CommonObject
      */
     public $datem;
 
-	//! If this is defined, it is an external user
+	
 	/**
 	 * @deprecated
 	 * @see $socid
@@ -520,9 +520,9 @@ class User extends CommonObject
 			{
 				if (!empty($obj->page) && !empty($obj->type) && !empty($obj->param))
 				{
-					// $obj->page is relative URL with or without params
-					// $obj->type can be 'filters', 'sortorder', 'createform', ...
-					// $obj->param is key or param
+					
+					
+					
 					$pagewithoutquerystring = $obj->page;
 					$pagequeries = '';
 					$reg = array();
@@ -953,7 +953,7 @@ class User extends CommonObject
 					else
 					{
 						if (empty($this->rights->$module->$perms)) $this->nb_rights++;
-						// if we have already define a subperm like this $this->rights->$module->level1->level2 with llx_user_rights, we don't want override level1 because the level2 can be not define on user group
+						
 						if (!is_object($this->rights->$module->$perms)) $this->rights->$module->$perms = 1;
 					}
 				}
@@ -1279,7 +1279,7 @@ class User extends CommonObject
 					}
 					else
 					{
-						//$this->error=$interface->error;
+						
 						dol_syslog(get_class($this)."::create ".$this->error, LOG_ERR);
 						$this->db->rollback();
 						return -3;
@@ -1373,7 +1373,7 @@ class User extends CommonObject
 		}
 		else
 		{
-			// $this->error deja positionne
+			
 			dol_syslog(get_class($this)."::create_from_contact - 0");
 
 			$this->db->rollback();
@@ -1450,7 +1450,7 @@ class User extends CommonObject
 		}
 		else
 		{
-			// $this->error deja positionne
+			
 			$this->db->rollback();
 			return -2;
 		}
@@ -1663,7 +1663,7 @@ class User extends CommonObject
 					require_once DOL_DOCUMENT_ROOT.'/adherents/class/adherent.class.php';
 
 					// This user is linked with a member, so we also update member information
-					// if this is an update.
+					
 					$adh = new Adherent($this->db);
 					$result = $adh->fetch($this->fk_member);
 
@@ -1719,7 +1719,7 @@ class User extends CommonObject
 					require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
 
 					// This user is linked with a contact, so we also update contact information
-					// if this is an update.
+					
 					$tmpobj = new Contact($this->db);
 					$result = $tmpobj->fetch($this->contact_id);
 
@@ -1731,9 +1731,9 @@ class User extends CommonObject
 						$tmpobj->gender = $this->gender;
 						$tmpobj->birth = $this->birth;
 
-						//$tmpobj->pass=$this->pass;
+						
 
-						//$tmpobj->societe=(empty($tmpobj->societe) && $this->societe_id ? $this->societe_id : $tmpobj->societe);
+						
 
 						$tmpobj->email = $this->email;
 
@@ -1907,7 +1907,7 @@ class User extends CommonObject
 						require_once DOL_DOCUMENT_ROOT.'/adherents/class/adherent.class.php';
 
 						// This user is linked with a member, so we also update members informations
-						// if this is an update.
+						
 						$adh = new Adherent($this->db);
 						$result = $adh->fetch($this->fk_member);
 
@@ -2423,7 +2423,7 @@ class User extends CommonObject
 		$linkstart .= $linkclose.'>';
 		$linkend = '</a>';
 
-		//if ($withpictoimg == -1) $result.='<div class="nowrap">';
+		
 		$result .= (($option == 'nolink') ? '' : $linkstart);
 		if ($withpictoimg)
 		{
@@ -2443,7 +2443,7 @@ class User extends CommonObject
 			if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)) $result .= '</span>';
 		}
 		$result .= (($option == 'nolink') ? '' : $linkend);
-		//if ($withpictoimg == -1) $result.='</div>';
+		
 
 		$result .= $companylink;
 
@@ -2522,7 +2522,7 @@ class User extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_ENABLED] = $langs->trans('Enabled');
 			$this->labelStatus[self::STATUS_DISABLED] = $langs->trans('Disabled');
 			$this->labelStatusShort[self::STATUS_ENABLED] = $langs->trans('Enabled');
@@ -2628,7 +2628,7 @@ class User extends CommonObject
 		// When password is modified
 		if (!empty($this->pass))
 		{
-			if (!empty($conf->global->LDAP_FIELD_PASSWORD))				$info[$conf->global->LDAP_FIELD_PASSWORD] = $this->pass; // this->pass = mot de passe non crypte
+			if (!empty($conf->global->LDAP_FIELD_PASSWORD))				$info[$conf->global->LDAP_FIELD_PASSWORD] = $this->pass; 
 			if (!empty($conf->global->LDAP_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass, 4); // Create OpenLDAP MD5 password (TODO add type of encryption)
 		}
 		// Set LDAP password if possible
@@ -2647,7 +2647,7 @@ class User extends CommonObject
 			// Use $this->pass_indatabase value if exists
 			elseif (!empty($this->pass_indatabase))
 			{
-				if (!empty($conf->global->LDAP_FIELD_PASSWORD))				$info[$conf->global->LDAP_FIELD_PASSWORD] = $this->pass_indatabase; // $this->pass_indatabase = mot de passe non crypte
+				if (!empty($conf->global->LDAP_FIELD_PASSWORD))				$info[$conf->global->LDAP_FIELD_PASSWORD] = $this->pass_indatabase; 
 				if (!empty($conf->global->LDAP_FIELD_PASSWORD_CRYPTED))		$info[$conf->global->LDAP_FIELD_PASSWORD_CRYPTED] = dol_hash($this->pass_indatabase, 4); // md5 for OpenLdap TODO add type of encryption
 			}
 		}
@@ -2733,8 +2733,8 @@ class User extends CommonObject
 		$this->admin = 0;
 		$this->login = 'dolibspec';
 		$this->pass = 'dolibspec';
-		//$this->pass_indatabase='dolibspec';									Set after a fetch
-		//$this->pass_indatabase_crypted='e80ca5a88c892b0aaaf7e154853bccab';	Set after a fetch
+		
+		
 		$this->datec = $now;
 		$this->datem = $now;
 
@@ -2742,8 +2742,8 @@ class User extends CommonObject
 		$this->datepreviouslogin = $now;
 		$this->statut = 1;
 
-		//$this->societe_id = 1;	For external users
-		//$this->contact_id = 1;	For external users
+		
+		
 		$this->entity = 1;
 	}
 
@@ -2794,7 +2794,7 @@ class User extends CommonObject
 		$sql = "SELECT count(mc.email) as nb";
 		$sql .= " FROM ".MAIN_DB_PREFIX."mailing_cibles as mc";
 		$sql .= " WHERE mc.email = '".$this->db->escape($this->email)."'";
-		$sql .= " AND mc.statut NOT IN (-1,0)"; // -1 erreur, 0 non envoye, 1 envoye avec succes
+		$sql .= " AND mc.statut NOT IN (-1,0)"; 
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -3047,7 +3047,7 @@ class User extends CommonObject
 		// Exclude leaf including $deleteafterid from tree
 		if ($deleteafterid)
 		{
-			//print "Look to discard user ".$deleteafterid."\n";
+			
 			$keyfilter1 = '^'.$deleteafterid.'$';
 			$keyfilter2 = '_'.$deleteafterid.'$';
 			$keyfilter3 = '^'.$deleteafterid.'_';
@@ -3186,7 +3186,7 @@ class User extends CommonObject
 		$sql = "SELECT count(u.rowid) as nb";
 		$sql .= " FROM ".MAIN_DB_PREFIX."user as u";
 		$sql .= " WHERE u.statut > 0";
-		//$sql.= " AND employee != 0";
+		
 		$sql .= " AND u.entity IN (".getEntity('user').")";
 
 		$resql = $this->db->query($sql);

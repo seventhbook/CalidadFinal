@@ -501,7 +501,7 @@ class ExtraFields
         		$sql .= " FROM ".MAIN_DB_PREFIX."extrafields";
         		$sql .= " WHERE elementtype = '".$elementtype."'";
         		$sql .= " AND name = '".$attrname."'";
-        		//$sql.= " AND entity IN (0,".$conf->entity.")";      Do not test on entity here. We want to see if there is still on field remaning in other entities before deleting field in table
+        		
                 $resql = $this->db->query($sql);
                 if ($resql)
                 {
@@ -851,7 +851,7 @@ class ExtraFields
 
 		// If already loaded
 		// TODO Enable this cache test
-		// if (empty($forceload) && ! empty($this->attributes[$tab->elementtype]['loaded'])) return $array_name_label;
+		
 
 		// Set array of label of entity
 		// Remove completely loading of label. This should be done by presentation.
@@ -873,7 +873,7 @@ class ExtraFields
 		// We should not have several time this request. If we have, there is some optimization to do by calling a simple $extrafields->fetch_optionals() in top of code and not into subcode
 		$sql = "SELECT rowid,name,label,type,size,elementtype,fieldunique,fieldrequired,param,pos,alwayseditable,perms,langs,list,totalizable,fielddefault,fieldcomputed,entity,enabled,help";
 		$sql .= " FROM ".MAIN_DB_PREFIX."extrafields";
-		//$sql.= " WHERE entity IN (0,".$conf->entity.")";    // Filter is done later
+		
 		if ($elementtype) $sql .= " WHERE elementtype = '".$elementtype."'"; // Filed with object->table_element
 		$sql .= " ORDER BY pos";
 
@@ -1140,14 +1140,14 @@ class ExtraFields
 		}
 		elseif ($type == 'price')
 		{
-			if (!empty($value)) {		// $value in memory is a php numeric, we format it into user number format.
+			if (!empty($value)) {		
 				$value = price($value);
 			}
 			$out = '<input type="text" class="flat '.$morecss.' maxwidthonsmartphone" name="'.$keyprefix.$key.$keysuffix.'" id="'.$keyprefix.$key.$keysuffix.'" value="'.$value.'" '.($moreparam ? $moreparam : '').'> '.$langs->getCurrencySymbol($conf->currency);
 		}
 		elseif ($type == 'double')
 		{
-			if (!empty($value)) {		// $value in memory is a php numeric, we format it into user number format.
+			if (!empty($value)) {		
 				$value = price($value);
 			}
 			$out = '<input type="text" class="flat '.$morecss.' maxwidthonsmartphone" name="'.$keyprefix.$key.$keysuffix.'" id="'.$keyprefix.$key.$keysuffix.'" value="'.$value.'" '.($moreparam ? $moreparam : '').'> ';
@@ -1266,7 +1266,7 @@ class ExtraFields
                         $sqlwhere .= ' AND entity = '.$conf->entity;
                     }
                     $sql .= $sqlwhere;
-                    //print $sql;
+                    
 
                     $sql .= ' ORDER BY '.implode(', ', $fields_label);
 
@@ -1480,8 +1480,8 @@ class ExtraFields
                     if (in_array($InfoFieldList[0], array('tablewithentity'))) {
                         $sqlwhere .= ' AND entity = '.$conf->entity;
                     }
-                    // $sql.=preg_replace('/^ AND /','',$sqlwhere);
-                    // print $sql;
+                    
+                    
 
                     $sql .= $sqlwhere;
                     dol_syslog(get_class($this).'::showInputField type=chkbxlst', LOG_DEBUG);
@@ -1560,7 +1560,7 @@ class ExtraFields
 		}
 		elseif ($type == 'link')
 		{
-			$param_list=array_keys($param['options']);				// $param_list='ObjectName:classPath'
+			$param_list=array_keys($param['options']);				
 			$showempty=(($required && $default != '')?0:1);
 			$out=$form->selectForForms($param_list[0], $keyprefix.$key.$keysuffix, $value, $showempty, '', '', $morecss);
 		}
@@ -1633,7 +1633,7 @@ class ExtraFields
 
 		if ($hidden) return '';		// This is a protection. If field is hidden, we should just not call this method.
 
-		//if ($computed) $value =		// $value is already calculated into $value before calling this method
+		
 
 		$showsize=0;
 		if ($type == 'date')
@@ -1653,7 +1653,7 @@ class ExtraFields
 		elseif ($type == 'double')
 		{
 			if (!empty($value)) {
-				//$value=price($value);
+				
 				$sizeparts = explode(",", $size);
 				$number_decimals = $sizeparts[1];
 				$value = price($value, 0, $langs, 0, 0, $number_decimals, '');
@@ -1681,7 +1681,7 @@ class ExtraFields
 		}
 		elseif ($type == 'price')
 		{
-			//$value = price($value, 0, $langs, 0, 0, -1, $conf->currency);
+			
 			if ($value || $value == '0') $value = price($value, 0, $langs, 0, 0, -1);
 		}
 		elseif ($type == 'select')
@@ -1723,7 +1723,7 @@ class ExtraFields
 				$sql .= " WHERE ".$selectkey."='".$this->db->escape($value)."'";
 			}
 
-			//$sql.= ' AND entity = '.$conf->entity;
+			
 
 			dol_syslog(get_class($this).':showOutputField:$type=sellist', LOG_DEBUG);
 			$resql = $this->db->query($sql);
@@ -1809,8 +1809,8 @@ class ExtraFields
 			if (strpos($InfoFieldList[4], 'extra') !== false) {
 				$sql .= ' as main';
 			}
-			// $sql.= " WHERE ".$selectkey."='".$this->db->escape($value)."'";
-			// $sql.= ' AND entity = '.$conf->entity;
+			
+			
 
 			dol_syslog(get_class($this) . ':showOutputField:$type=chkbxlst', LOG_DEBUG);
 			$resql = $this->db->query($sql);
@@ -1858,7 +1858,7 @@ class ExtraFields
 			// Only if something to display (perf)
 			if ($value)		// If we have -1 here, pb is into insert, not into ouptut (fix insert instead of changing code here to compensate)
 			{
-				$param_list = array_keys($param['options']); // $param_list='ObjectName:classPath'
+				$param_list = array_keys($param['options']); 
 
 				$InfoFieldList = explode(":", $param_list[0]);
 				$classname = $InfoFieldList[0];
@@ -1898,7 +1898,7 @@ class ExtraFields
 			if ($showsize > 48) $showsize = 48;
 		}
 
-		//print $type.'-'.$size;
+		
 		$out = $value;
 
 		return $out;
@@ -2060,7 +2060,7 @@ class ExtraFields
 				        || (!is_array($_POST["options_".$key]) && empty($_POST["options_".$key]) && $this->attributes[$object->table_element]['type'][$key] == 'select')
 						|| (is_array($_POST["options_".$key]) && empty($_POST["options_".$key])))
 					{
-						//print 'ccc'.$value.'-'.$this->attributes[$object->table_element]['required'][$key];
+						
 						$nofillrequired++;
 						$error_field_required[] = $langs->transnoentitiesnoconv($value);
 					}

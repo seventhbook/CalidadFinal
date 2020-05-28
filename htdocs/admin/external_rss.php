@@ -49,7 +49,7 @@ $action=GETPOST('action', 'aZ09');
 // positionne la variable pour le nombre de rss externes
 $sql ="SELECT ".$db->decrypt('name')." as name FROM ".MAIN_DB_PREFIX."const";
 $sql.=" WHERE ".$db->decrypt('name')." LIKE 'EXTERNAL_RSS_URLRSS_%'";
-//print $sql;
+
 $result=$db->query($sql);	// We can't use SELECT MAX() because EXTERNAL_RSS_URLRSS_10 is lower than EXTERNAL_RSS_URLRSS_9
 if ($result)
 {
@@ -72,7 +72,7 @@ if ($action == 'add' || GETPOST("modify"))
     if (! empty($_POST[$external_rss_urlrss]))
     {
         $boxlabel='(ExternalRSSInformations)';
-        //$external_rss_url = "external_rss_url_" . $_POST["norss"];
+        
 
         $db->begin();
 
@@ -246,7 +246,7 @@ if ($resql)
 		$idrss = $reg[1];
 		$keyrsstitle="EXTERNAL_RSS_TITLE_".$idrss;
 		$keyrssurl="EXTERNAL_RSS_URLRSS_".$idrss;
-        //print "x".$idrss;
+        
 
         $rssparser=new RssParser($db);
 		$result = $rssparser->parser($conf->global->$keyrssurl, 5, 300, $conf->externalrss->dir_temp);

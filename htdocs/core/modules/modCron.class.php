@@ -61,11 +61,11 @@ class modCron extends DolibarrModules
         $this->dirs = array();
 
         // Config pages
-        //-------------
+        
         $this->config_page_url = array("cron.php@cron");
 
 		// Dependancies
-		//-------------
+		
 		$this->hidden = !empty($conf->global->MODULE_CRON_DISABLED); // A condition to disable module
 		$this->depends = array(); // List of modules id that must be enabled if this module is enabled
 		$this->requiredby = array(); // List of modules id to disable if this one is disabled
@@ -73,7 +73,7 @@ class modCron extends DolibarrModules
 		$this->langfiles = array("cron");
 
 		// Constants
-		//-----------
+		
 		$this->const = array(
 				0=>array(
 					'CRON_KEY',
@@ -86,11 +86,11 @@ class modCron extends DolibarrModules
 				),);
 
         // New pages on tabs
-        // -----------------
+        
         $this->tabs = array();
 
         // Boxes
-        //------
+        
         $this->boxes = array();
 
 		// Cronjobs

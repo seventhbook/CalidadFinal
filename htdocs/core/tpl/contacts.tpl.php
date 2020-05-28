@@ -223,7 +223,7 @@ foreach($arrayofsource as $source) {
 		</div>
 		<div class="tagtd"><?php echo $tab[$i]['libelle']; ?></div>
 		<div class="tagtd center">
-		<?php //if ($object->statut >= 0) echo '<a href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&amp;action=swapstatut&amp;ligne='.$tab[$i]['rowid'].'">';
+		<?php 
 		if ($tab[$i]['source']=='internal')
 		{
 			echo $userstatic->LibStatut($tab[$i]['statuscontact'], 3);
@@ -232,7 +232,7 @@ foreach($arrayofsource as $source) {
 		{
 			echo $contactstatic->LibStatut($tab[$i]['statuscontact'], 3);
 		}
-		//if ($object->statut >= 0) echo '</a>'; ?>
+		
 		</div>
 		<div class="tagtd nowrap right">
 		<?php if ($permission) { ?>

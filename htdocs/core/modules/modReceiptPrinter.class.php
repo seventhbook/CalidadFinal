@@ -87,12 +87,12 @@ class modReceiptPrinter extends DolibarrModules
         $this->rights_class = 'receiptprinter';
 
         $r=0;
-        // $this->rights[$r][0]     Id permission (unique tous modules confondus)
-        // $this->rights[$r][1]     Libelle par defaut si traduction de cle "PermissionXXX" non trouvee (XXX = Id permission)
-        // $this->rights[$r][2]     Non utilise
-        // $this->rights[$r][3]     1=Permis par defaut, 0=Non permis par defaut
-        // $this->rights[$r][4]     Niveau 1 pour nommer permission dans code
-        // $this->rights[$r][5]     Niveau 2 pour nommer permission dans code
+        
+        
+        
+        
+        
+        
 
         $r++;
         $this->rights[$r][0] = 67000;
@@ -106,7 +106,7 @@ class modReceiptPrinter extends DolibarrModules
         $r=0;
 
         // This is to declare the Top Menu entry:
-        //$this->menu[$r]=array(  'fk_menu'=>'fk_mainmenu=home,fk_leftmenu=admintools',               // Put 0 if this is a top menu
+        
         //                        'type'=>'left',                 // This is a Top menu entry
         //                        'titre'=>'MenuDirectPrinting',
         //                        'mainmenu'=>'printing',

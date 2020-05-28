@@ -320,7 +320,7 @@ if ($optioncss != '')       $param.='&optioncss='.urlencode($optioncss);
 if (GETPOST('withtab', 'alpha')) $param.='&withtab='.urlencode(GETPOST('withtab', 'alpha'));
 
 // Add $param from extra fields
-//include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_search_param.tpl.php';
+
 
 print '<form method="POST" id="searchFormList" action="'.$_SERVER["PHP_SELF"].'">';
 
@@ -369,10 +369,10 @@ print '<tr class="liste_titre_filter">';
 print '<td class="liste_titre">&nbsp;</td>';
 
 print '<td class="liste_titre">';
-//print $langs->trans("from").': ';
+
 print $form->selectDate($search_start, 'search_start');
-//print '<br>';
-//print $langs->trans("to").': ';
+
+
 print $form->selectDate($search_end, 'search_end');
 print '</td>';
 
@@ -467,7 +467,7 @@ if (is_array($blocks))
 	{
 		$object_link = $block->getObjectLink();
 
-		//if (empty($search_showonlyerrors) || ! $checkresult[$block->id] || ($loweridinerror && $block->id >= $loweridinerror))
+		
 		if (empty($search_showonlyerrors) || ! $checkresult[$block->id])
 		{
 		   	print '<tr class="oddeven">';
@@ -480,7 +480,7 @@ if (is_array($blocks))
 
 			// User
 		   	print '<td>';
-		   	//print $block->getUser()
+		   	
 		   	print $block->user_fullname;
 		   	print '</td>';
 

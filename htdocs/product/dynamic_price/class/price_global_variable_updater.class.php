@@ -44,8 +44,8 @@ class PriceGlobalVariableUpdater
      */
     public $errors = array();
 
-    public $types=array(0, 1);				//!< Updater types
-    public $update_min = 5;				//!< Minimal update rate
+    public $types=array(0, 1);				
+    public $update_min = 5;				
 
     /**
      * @var int ID
@@ -66,8 +66,8 @@ class PriceGlobalVariableUpdater
      */
     public $fk_variable;
 
-    public $update_interval;				//!< Interval in mins
-    public $next_update;					//!< Next update timestamp
+    public $update_interval;				
+    public $next_update;					
     public $last_status;
 
     /**
@@ -127,10 +127,10 @@ class PriceGlobalVariableUpdater
                 // Uncomment this and change MYOBJECT to your own tag if you
                 // want this action calls a trigger.
 
-                //// Call triggers
-                //$result=$this->call_trigger('MYOBJECT_CREATE',$user);
-                //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-                //// End call triggers
+                
+                
+                
+                
             }
         }
 
@@ -225,17 +225,17 @@ class PriceGlobalVariableUpdater
         $resql = $this->db->query($sql);
         if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
 
-        // if (! $error)
+        
         // {
-        //     if (! $notrigger)
+        
         //     {
-        //         // Uncomment this and change MYOBJECT to your own tag if you
-        //         // want this action calls a trigger.
+        
+        
 
-        //         //// Call triggers
-        //         //$result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-        //         //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-        //         //// End call triggers
+        
+        
+        
+        
         //     }
         // }
 
@@ -271,17 +271,17 @@ class PriceGlobalVariableUpdater
 
         $this->db->begin();
 
-        //if (! $error)
+        
         //{
-        //    if (! $notrigger)
+        
         //    {
                 // Uncomment this and change MYOBJECT to your own tag if you
                 // want this action calls a trigger.
 
-                //// Call triggers
-                //$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-                //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-                //// End call triggers
+                
+                
+                
+                
         //    }
         //}
 

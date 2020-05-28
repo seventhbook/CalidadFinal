@@ -494,7 +494,7 @@ class FormCompany extends Form
 					if ($obj->code)		// We exclude empty line, we will add it later
 					{
 						$labelcountry = (($langs->trans("Country".$obj->country_code) != "Country".$obj->country_code) ? $langs->trans("Country".$obj->country_code) : $obj->country);
-						$labeljs = (($langs->trans("JuridicalStatus".$obj->code) != "JuridicalStatus".$obj->code) ? $langs->trans("JuridicalStatus".$obj->code) : ($obj->label != '-' ? $obj->label : '')); // $obj->label is already in output charset (converted by database driver)
+						$labeljs = (($langs->trans("JuridicalStatus".$obj->code) != "JuridicalStatus".$obj->code) ? $langs->trans("JuridicalStatus".$obj->code) : ($obj->label != '-' ? $obj->label : '')); 
 						$arraydata[$obj->code] = array('code'=>$obj->code, 'label'=>$labeljs, 'label_sort'=>$labelcountry.'_'.$labeljs, 'country_code'=>$obj->country_code, 'country'=>$labelcountry);
 					}
 					$i++;

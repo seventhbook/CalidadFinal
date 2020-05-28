@@ -622,7 +622,7 @@ if (empty($reshook))
             if (empty($newsup)) {
                 $sql = "DELETE FROM ".MAIN_DB_PREFIX."oauth_token WHERE fk_soc = ".$object->id." AND service = '".$service."' AND entity = ".$conf->entity;
                 // TODO Add site and site_account on oauth_token table
-                //$sql = "DELETE FROM ".MAIN_DB_PREFIX."oauth_token WHERE site = 'stripe' AND (site_account IS NULL or site_account = '".$site_account."') AND fk_soc = ".$object->id." AND service = '".$service."' AND entity = ".$conf->entity;
+                
             } else {
                 try {
                     $stripesup = \Stripe\Account::retrieve($db->escape(GETPOST('key_account_supplier', 'alpha')));
@@ -723,7 +723,7 @@ if (empty($reshook))
 				    $cu = $stripe->customerStripe($object, $stripeacc, $servicestatus);
 				    $card = $cu->sources->retrieve("$source");
 				    if ($card) {
-					    // $card->detach();  Does not work with card_, only with src_
+					    
 					    if (method_exists($card, 'detach')) {
 							$card->detach();
 						} else {
@@ -827,7 +827,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 		print '<tr><td class="titlefield">'.$langs->trans('Prefix').'</td><td colspan="3">'.$object->prefix_comm.'</td></tr>';
 	}
 
-	//if ($conf->agenda->enabled && $user->rights->agenda->myactions->read) $elementTypeArray['action']=$langs->transnoentitiesnoconv('Events');
+	
 
 	print '<div class="fichecenter">';
 
@@ -934,7 +934,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 			print '<input type="hidden" name="token" value="'.newToken().'">';
 			print '<input type="hidden" name="socid" value="'.$object->id.'">';
 			print '<input type="hidden" name="companybankid" value="'.$rib->id.'">';
-			//print '<input type="submit" class="button" name="syncstripecustomer" value="'.$langs->trans("CreateSupplierOnStripe").'">';
+			
 			print '</form>';
 		}
 		print '</td></tr>';
@@ -1035,7 +1035,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 		// Show local sources
 		if (!empty($conf->global->STRIPE_ALLOW_LOCAL_CARD))
 		{
-			//$societeaccount = new SocieteAccount($db);
+			
 			$companypaymentmodetemp = new CompanyPaymentMode($db);
 
 			$sql = 'SELECT rowid FROM '.MAIN_DB_PREFIX."societe_rib";
@@ -1164,11 +1164,11 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 				$connect = '';
 				print $src->id;
 				if (!empty($stripeacc)) $connect = $stripeacc.'/';
-				//$url='https://dashboard.stripe.com/'.$connect.'test/sources/'.$src->id;
+				
 				$url = 'https://dashboard.stripe.com/'.$connect.'test/search?query='.$src->id;
 				if ($servicestatus)
 				{
-				    //$url='https://dashboard.stripe.com/'.$connect.'sources/'.$src->id;
+				    
 				    $url = 'https://dashboard.stripe.com/'.$connect.'search?query='.$src->id;
 				}
 				print " <a href='".$url."' target='_stripe'>".img_picto($langs->trans('ShowInStripe'), 'globe')."</a>";
@@ -1277,7 +1277,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 				print '</td>';
 				print '<td>';
 				print $langs->trans("Remote");
-				//if ($src->cvc_check == 'fail') print ' - CVC check fail';
+				
 				print '</td>';
 				print '<td>';
 				//var_dump($src);
@@ -1416,9 +1416,9 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 				}
                 // Already output after
                 // } elseif ($val == 'BIC') {
-                //     $string .= $rib->bic.' ';
+                
                 // } elseif ($val == 'IBAN') {
-                //     $string .= $rib->iban.' ';*/
+                
 				//}
 			}
 			if (!empty($rib->label) && $rib->number) {
@@ -1451,7 +1451,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 			if (!empty($conf->prelevement->enabled))
 			{
 				// RUM
-				//print '<td>'.$prelevement->buildRumNumber($object->code_client, $rib->datec, $rib->id).'</td>';
+				
 				print '<td>'.$rib->rum.'</td>';
 
 				print '<td>'.dol_print_date($rib->date_rum, 'day').'</td>';
@@ -1605,7 +1605,7 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
 	/*
     include_once DOL_DOCUMENT_ROOT.'/core/modules/bank/modules_bank.php';
     $modellist=ModeleBankAccountDoc::liste_modeles($db);
-    //print '<td>';
+    
     if (is_array($modellist) && count($modellist) == 1)    // If there is only one element
     {
         $arraykeys=array_keys($modellist);
@@ -1613,13 +1613,13 @@ if ($socid && $action != 'edit' && $action != 'create' && $action != 'editcard' 
     }
     $out.= $form->selectarray('model', $modellist, $modelselected, 0, 0, 0, '', 0, 0, 0, '', 'minwidth100');
     $out.= ajax_combobox('model');
-    //print $out;
+    
     $buttonlabel=$langs->trans("Generate");
     $genbutton = '<input class="button buttongen" id="'.$forname.'_generatebutton" name="'.$forname.'_generatebutton"';
     $genbutton.= ' type="submit" value="'.$buttonlabel.'"';
     $genbutton.= '>';
     print $genbutton;
-    //print '</td>';     // TODO Add link to generate doc
+    
     */
 }
 

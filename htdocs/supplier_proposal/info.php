@@ -67,8 +67,8 @@ $linkback = '<a href="' . DOL_URL_ROOT . '/supplier_proposal/list.php?restore_la
 
 $morehtmlref='<div class="refidno">';
 // Ref supplier
-//$morehtmlref.=$form->editfieldkey("RefSupplier", 'ref_supplier', $object->ref_supplier, $object, $user->rights->fournisseur->commande->creer, 'string', '', 0, 1);
-//$morehtmlref.=$form->editfieldval("RefSupplier", 'ref_supplier', $object->ref_supplier, $object, $user->rights->fournisseur->commande->creer, 'string', '', null, null, '', 1);
+
+
 // Thirdparty
 $morehtmlref.=$langs->trans('ThirdParty') . ' : ' . $object->thirdparty->getNomUrl(1);
 // Project
@@ -79,11 +79,11 @@ if (! empty($conf->projet->enabled))
     if ($user->rights->supplier_proposal->creer)
     {
         if ($action != 'classify') {
-        	//$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
+        	
 			$morehtmlref.=' : ';
         }
         if ($action == 'classify') {
-            //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+            
             $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
             $morehtmlref.='<input type="hidden" name="action" value="classin">';
             $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';

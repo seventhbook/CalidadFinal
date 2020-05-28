@@ -186,7 +186,7 @@ class Response implements Element {
 
         // We are overriding the parser for {DAV:}prop. This deserializer is
         // almost identical to the one for Sabre\Xml\Element\KeyValue.
-        //
+        
         // The difference is that if there are any child-elements inside of
         // {DAV:}prop, that have no value, normally any deserializers are
         // called. But we don't want this, because a singular element without

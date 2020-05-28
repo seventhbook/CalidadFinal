@@ -126,7 +126,7 @@ if (empty($reshook))
 
 				$offsetforchartofaccount = 0;
 				// Get the comment line '-- ADD CCCNNNNN to rowid...' to find CCCNNNNN (CCC is country num, NNNNN is id of accounting account)
-				// and pass CCCNNNNN + (num of company * 100 000 000) as offset to the run_sql as a new parameter to say to update sql on the fly to add offset to rowid and account_parent value.
+				
 				// This is to be sure there is no conflict for each chart of account, whatever is country, whatever is company when multicompany is used.
 				$tmp = file_get_contents($sqlfile);
 				if (preg_match('/-- ADD (\d+) to rowid/ims', $tmp, $reg))
@@ -199,7 +199,7 @@ $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."accounting_system as asy ON aa.fk_pcg_vers
 if ($db->type == 'pgsql') $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."accounting_account as a2 ON a2.rowid = aa.account_parent AND a2.entity = ".$conf->entity;
 else $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."accounting_account as a2 ON a2.rowid = aa.account_parent AND a2.entity = ".$conf->entity;
 $sql .= " WHERE asy.rowid = ".$pcgver;
-//print $sql;
+
 if (strlen(trim($search_account))) {
 	$lengthpaddingaccount = 0;
 	if ($conf->global->ACCOUNTING_LENGTH_GACCOUNT || $conf->global->ACCOUNTING_LENGTH_AACCOUNT) {
@@ -246,7 +246,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$resql = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($resql);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;

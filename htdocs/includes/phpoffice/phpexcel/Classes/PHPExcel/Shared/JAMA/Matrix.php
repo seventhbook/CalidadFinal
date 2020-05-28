@@ -112,7 +112,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -122,7 +122,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function getArray() {
 		return $this->A;
-	}	//	function getArray()
+	}	
 
 
 	/**
@@ -132,7 +132,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function getRowDimension() {
 		return $this->m;
-	}	//	function getRowDimension()
+	}	
 
 
 	/**
@@ -142,7 +142,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function getColumnDimension() {
 		return $this->n;
-	}	//	function getColumnDimension()
+	}	
 
 
 	/**
@@ -155,7 +155,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function get($i = null, $j = null) {
 		return $this->A[$i][$j];
-	}	//	function get()
+	}	
 
 
 	/**
@@ -200,7 +200,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						}
 						return $R;
 						break;
-				//$R = array of row indices; $C = array of column indices
+				
 				case 'array,array':
 						list($RL, $CL) = $args;
 						if (count($RL) > 0) { $m = count($RL); } else { throw new PHPExcel_Calculation_Exception(self::ArgumentBoundsException); }
@@ -213,7 +213,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						}
 						return $R;
 						break;
-				//$RL = array of row indices; $CL = array of column indices
+				
 				case 'array,array':
 						list($RL, $CL) = $args;
 						if (count($RL) > 0) { $m = count($RL); } else { throw new PHPExcel_Calculation_Exception(self::ArgumentBoundsException); }
@@ -239,7 +239,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						}
 						return $R;
 						break;
-				//$RL = array of row indices
+				
 				case 'array,integer,integer':
 						list($RL, $j0, $jF) = $args;
 						if (count($RL) > 0) { $m = count($RL); } else { throw new PHPExcel_Calculation_Exception(self::ArgumentBoundsException); }
@@ -259,7 +259,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function getMatrix()
+	}	
 
 
 	/**
@@ -279,7 +279,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::ArgumentTypeException);
 		}
-	}	//	function checkMatrixDimensions()
+	}	
 
 
 
@@ -295,7 +295,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	public function set($i = null, $j = null, $c = null) {
 		// Optimized set version just has this
 		$this->A[$i][$j] = $c;
-	}	//	function set()
+	}	
 
 
 	/**
@@ -308,7 +308,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function identity($m = null, $n = null) {
 		return $this->diagonal($m, $n, 1);
-	}	//	function identity()
+	}	
 
 
 	/**
@@ -326,7 +326,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 			$R->set($i, $i, $c);
 		}
 		return $R;
-	}	//	function diagonal()
+	}	
 
 
 	/**
@@ -347,7 +347,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::ArgumentTypeException);
 		}
-	}	//	function getMatrixByRow()
+	}	
 
 
 	/**
@@ -368,7 +368,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::ArgumentTypeException);
 		}
-	}	//	function getMatrixByCol()
+	}	
 
 
 	/**
@@ -385,7 +385,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 			}
 		}
 		return $R;
-	}	//	function transpose()
+	}	
 
 
 	/**
@@ -401,7 +401,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 			$s += $this->A[$i][$i];
 		}
 		return $s;
-	}	//	function trace()
+	}	
 
 
 	/**
@@ -411,7 +411,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 *	@return Matrix Unary minus matrix
 	 */
 	public function uminus() {
-	}	//	function uminus()
+	}	
 
 
 	/**
@@ -447,7 +447,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function plus()
+	}	
 
 
 	/**
@@ -497,7 +497,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function plusEquals()
+	}	
 
 
 	/**
@@ -533,7 +533,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function minus()
+	}	
 
 
 	/**
@@ -583,7 +583,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function minusEquals()
+	}	
 
 
 	/**
@@ -620,7 +620,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayTimes()
+	}	
 
 
 	/**
@@ -671,7 +671,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayTimesEquals()
+	}	
 
 
 	/**
@@ -727,7 +727,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayRightDivide()
+	}	
 
 
 	/**
@@ -764,7 +764,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayRightDivideEquals()
+	}	
 
 
 	/**
@@ -801,7 +801,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayLeftDivide()
+	}	
 
 
 	/**
@@ -838,7 +838,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function arrayLeftDivideEquals()
+	}	
 
 
 	/**
@@ -929,7 +929,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function times()
+	}	
 
 
 	/**
@@ -979,7 +979,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function power()
+	}	
 
 
 	/**
@@ -1014,7 +1014,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::PolymorphicArgumentException);
 		}
-	}	//	function concat()
+	}	
 
 
 	/**
@@ -1031,7 +1031,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 			$QR = new PHPExcel_Shared_JAMA_QRDecomposition($this);
 			return $QR->solve($B);
 		}
-	}	//	function solve()
+	}	
 
 
 	/**
@@ -1041,7 +1041,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 	 */
 	public function inverse() {
 		return $this->solve($this->identity($this->m, $this->m));
-	}	//	function inverse()
+	}	
 
 
 	/**
@@ -1053,5 +1053,5 @@ class PHPExcel_Shared_JAMA_Matrix {
 	public function det() {
 		$L = new PHPExcel_Shared_JAMA_LUDecomposition($this);
 		return $L->det();
-	}	//	function det()
-}	//	class PHPExcel_Shared_JAMA_Matrix
+	}	
+}	

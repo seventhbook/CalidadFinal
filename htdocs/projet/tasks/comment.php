@@ -49,7 +49,7 @@ $planned_workload=((GETPOST('planned_workloadhour', 'int')!='' || GETPOST('plann
 
 // Security check
 $socid=0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (! $user->rights->projet->lire) accessforbidden();
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
@@ -62,7 +62,7 @@ $projectstatic = new Project($db);
 // fetch optionals attributes and labels
 $extrafields->fetch_name_optionals_label($object->table_element);
 
-// include comment actions
+
 include DOL_DOCUMENT_ROOT.'/core/actions_comments.inc.php';
 
 // Retreive First Task ID of Project if withprojet is on to allow project prev next to work
@@ -225,7 +225,7 @@ if ($id > 0 || !empty($ref))
 
             // Other attributes
             $cols = 2;
-            //include DOL_DOCUMENT_ROOT . '/core/tpl/extrafields_view.tpl.php';
+            
 
             print '</table>';
 

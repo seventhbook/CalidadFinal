@@ -58,7 +58,7 @@ top_htmlhead('', '', 0, 0, '', $arrayofcss);
 $parameters=array('entity' => GETPOST('entity', 'int'));
 $reshook = $hookmanager->executeHooks('getLoginPageOptions', $parameters);    // Note that $action and $object may have been modified by some hooks.
 if (is_array($hookmanager->resArray) && ! empty($hookmanager->resArray)) {
-	$morelogincontent = $hookmanager->resArray; // (deprecated) For compatibility
+	$morelogincontent = $hookmanager->resArray; 
 } else {
 	$morelogincontent = $hookmanager->resPrint;
 }
@@ -135,7 +135,7 @@ $disabled=0;
 $langs->load("companies");
 if (! empty($conf->global->CASHDESK_ID_THIRDPARTY)) $disabled=1; // If a particular third party is defined, we disable choice
 print $form->select_company(GETPOST('socid', 'int')?GETPOST('socid', 'int'):$conf->global->CASHDESK_ID_THIRDPARTY, 'socid', '(s.client IN (1,3) AND s.status = 1)', !$disabled, $disabled, 0, array(), 0, 'maxwidth300');
-//print '<input name="warehouse_id" class="texte_login" type="warehouse_id" value="" />';
+
 print '</td>';
 print "</tr>\n";
 

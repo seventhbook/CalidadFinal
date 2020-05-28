@@ -106,7 +106,7 @@ else
 		print '<td>'.$langs->trans("FieldsLinked").'</td>';
 		print '</tr>';
 
-		//$sql = "DESCRIBE ".$table;
+		
 		$sql = "SHOW FULL COLUMNS IN ".$db->escape($table);
 
 		$resql = $db->query($sql);

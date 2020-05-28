@@ -301,13 +301,13 @@ if ($search_status <> '')
 	}
 	if ($search_status == -2)	// To process
 	{
-		//$sql.= ' AND c.fk_statut IN (1,2,3) AND c.facture = 0';
+		
 		$sql .= " AND ((c.fk_statut IN (1,2)) OR (c.fk_statut = 3 AND c.facture = 0))"; // If status is 2 and facture=1, it must be selected
 	}
 	if ($search_status == -3)	// To bill
 	{
-		//$sql.= ' AND c.fk_statut in (1,2,3)';
-		//$sql.= ' AND c.facture = 0'; // invoice not created
+		
+		
 		$sql .= ' AND ((c.fk_statut IN (1,2)) OR (c.fk_statut = 3 AND c.facture = 0))'; // validated, in process or closed but not billed
 	}
 }
@@ -343,7 +343,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
 
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -351,7 +351,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 }
 
 $sql .= $db->plimit($limit + 1, $offset);
-//print $sql;
+
 
 $resql = $db->query($sql);
 if ($resql)
@@ -839,7 +839,7 @@ if ($resql)
 							// Get local and virtual stock and store it into cache
 							if (empty($productstat_cache[$generic_commande->lines[$lig]->fk_product])) {
 								$generic_product->load_stock('nobatch');
-								//$generic_product->load_virtual_stock();   Already included into load_stock
+								
 								$productstat_cache[$generic_commande->lines[$lig]->fk_product]['stock_reel'] = $generic_product->stock_reel;
 								$productstat_cachevirtual[$generic_commande->lines[$lig]->fk_product]['stock_reel'] = $generic_product->stock_theorique;
 							} else {

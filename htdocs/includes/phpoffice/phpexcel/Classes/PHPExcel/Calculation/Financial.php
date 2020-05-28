@@ -62,7 +62,7 @@ class PHPExcel_Calculation_Financial {
 	private static function _lastDayOfMonth($testDate)
 	{
 		return ($testDate->format('d') == $testDate->format('t'));
-	}	//	function _lastDayOfMonth()
+	}	
 
 
 	/**
@@ -76,7 +76,7 @@ class PHPExcel_Calculation_Financial {
 	private static function _firstDayOfMonth($testDate)
 	{
 		return ($testDate->format('d') == 1);
-	}	//	function _firstDayOfMonth()
+	}	
 
 
 	private static function _coupFirstPeriodDate($settlement, $maturity, $frequency, $next)
@@ -98,7 +98,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return PHPExcel_Shared_Date::PHPToExcel($result);
-	}	//	function _coupFirstPeriodDate()
+	}	
 
 
 	private static function _validFrequency($frequency)
@@ -111,7 +111,7 @@ class PHPExcel_Calculation_Financial {
 			return true;
 		}
 		return false;
-	}	//	function _validFrequency()
+	}	
 
 
 	/**
@@ -146,7 +146,7 @@ class PHPExcel_Calculation_Financial {
 				return PHPExcel_Calculation_Functions::NaN();
 		}
 		return $daysPerYear;
-	}	//	function _daysPerYear()
+	}	
 
 
 	private static function _interestAndPrincipal($rate=0, $per=0, $nper=0, $pv=0, $fv=0, $type=0)
@@ -159,7 +159,7 @@ class PHPExcel_Calculation_Financial {
 			$capital += $principal;
 		}
 		return array($interest, $principal);
-	}	//	function _interestAndPrincipal()
+	}	
 
 
 	/**
@@ -216,14 +216,14 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenIssueAndSettlement = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $settlement, $basis);
 			if (!is_numeric($daysBetweenIssueAndSettlement)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndSettlement;
 			}
 
 			return $par * $rate * $daysBetweenIssueAndSettlement;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ACCRINT()
+	}	
 
 
 	/**
@@ -265,13 +265,13 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenIssueAndSettlement = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $settlement, $basis);
 			if (!is_numeric($daysBetweenIssueAndSettlement)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndSettlement;
 			}
 			return $par * $rate * $daysBetweenIssueAndSettlement;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ACCRINTM()
+	}	
 
 
 	/**
@@ -352,7 +352,7 @@ class PHPExcel_Calculation_Financial {
 			$cost -= $fNRate;
 		}
 		return $fNRate;
-	}	//	function AMORDEGRC()
+	}	
 
 
 	/**
@@ -412,7 +412,7 @@ class PHPExcel_Calculation_Financial {
 		} else {
 			return 0.0;
 		}
-	}	//	function AMORLINC()
+	}	
 
 
 	/**
@@ -470,7 +470,7 @@ class PHPExcel_Calculation_Financial {
 		$prev = self::_coupFirstPeriodDate($settlement, $maturity, $frequency, False);
 
 		return PHPExcel_Calculation_DateTime::YEARFRAC($prev, $settlement, $basis) * $daysPerYear;
-	}	//	function COUPDAYBS()
+	}	
 
 
 	/**
@@ -540,7 +540,7 @@ class PHPExcel_Calculation_Financial {
 					return 360 / $frequency;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function COUPDAYS()
+	}	
 
 
 	/**
@@ -598,7 +598,7 @@ class PHPExcel_Calculation_Financial {
 		$next = self::_coupFirstPeriodDate($settlement, $maturity, $frequency, True);
 
 		return PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $next, $basis) * $daysPerYear;
-	}	//	function COUPDAYSNC()
+	}	
 
 
 	/**
@@ -654,7 +654,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return self::_coupFirstPeriodDate($settlement, $maturity, $frequency, True);
-	}	//	function COUPNCD()
+	}	
 
 
 	/**
@@ -725,7 +725,7 @@ class PHPExcel_Calculation_Financial {
 					return ceil($daysBetweenSettlementAndMaturity / 30);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function COUPNUM()
+	}	
 
 
 	/**
@@ -781,7 +781,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return self::_coupFirstPeriodDate($settlement, $maturity, $frequency, False);
-	}	//	function COUPPCD()
+	}	
 
 
 	/**
@@ -828,7 +828,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return $interest;
-	}	//	function CUMIPMT()
+	}	
 
 
 	/**
@@ -875,7 +875,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return $principal;
-	}	//	function CUMPRINC()
+	}	
 
 
 	/**
@@ -945,7 +945,7 @@ class PHPExcel_Calculation_Financial {
 			return $depreciation;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function DB()
+	}	
 
 
 	/**
@@ -1004,7 +1004,7 @@ class PHPExcel_Calculation_Financial {
 			return $depreciation;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function DDB()
+	}	
 
 
 	/**
@@ -1049,14 +1049,14 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 
 			return ((1 - $price / $redemption) / $daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function DISC()
+	}	
 
 
 	/**
@@ -1092,7 +1092,7 @@ class PHPExcel_Calculation_Financial {
 		$cents /= $fraction;
 		$cents *= pow(10,ceil(log10($fraction)));
 		return $dollars + $cents;
-	}	//	function DOLLARDE()
+	}	
 
 
 	/**
@@ -1128,7 +1128,7 @@ class PHPExcel_Calculation_Financial {
 		$cents *= $fraction;
 		$cents *= pow(10,-ceil(log10($fraction)));
 		return $dollars + $cents;
-	}	//	function DOLLARFR()
+	}	
 
 
 	/**
@@ -1156,7 +1156,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return pow((1 + $nominal_rate / $npery), $npery) - 1;
-	}	//	function EFFECT()
+	}	
 
 
 	/**
@@ -1199,7 +1199,7 @@ class PHPExcel_Calculation_Financial {
 		} else {
 			return -$pv - $pmt * $nper;
 		}
-	}	//	function FV()
+	}	
 
 
 	/**
@@ -1224,7 +1224,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return $principal;
-	}	//	function FVSCHEDULE()
+	}	
 
 
 	/**
@@ -1266,14 +1266,14 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 
 			return (($redemption / $investment) - 1) / ($daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function INTRATE()
+	}	
 
 
 	/**
@@ -1311,7 +1311,7 @@ class PHPExcel_Calculation_Financial {
 		// Calculate
 		$interestAndPrincipal = self::_interestAndPrincipal($rate, $per, $nper, $pv, $fv, $type);
 		return $interestAndPrincipal[0];
-	}	//	function IPMT()
+	}	
 
 	/**
 	 * IRR
@@ -1371,7 +1371,7 @@ class PHPExcel_Calculation_Financial {
 				return $x_mid;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function IRR()
+	}	
 
 
 	/**
@@ -1412,7 +1412,7 @@ class PHPExcel_Calculation_Financial {
 			}
 		}
 		return($returnValue);
-	}	//	function ISPMT()
+	}	
 
 
 	/**
@@ -1458,7 +1458,7 @@ class PHPExcel_Calculation_Financial {
 				/ ($npv_neg * ($rr)), (1.0 / ($n - 1))) - 1.0;
 
 		return (is_finite($mirr) ? $mirr : PHPExcel_Calculation_Functions::VALUE());
-	}	//	function MIRR()
+	}	
 
 
 	/**
@@ -1481,7 +1481,7 @@ class PHPExcel_Calculation_Financial {
 
 		// Calculate
 		return $npery * (pow($effect_rate + 1, 1 / $npery) - 1);
-	}	//	function NOMINAL()
+	}	
 
 
 	/**
@@ -1520,7 +1520,7 @@ class PHPExcel_Calculation_Financial {
 			}
 			return (-$pv -$fv) / $pmt;
 		}
-	}	//	function NPER()
+	}	
 
 	/**
 	 * NPV
@@ -1547,7 +1547,7 @@ class PHPExcel_Calculation_Financial {
 
 		// Return
 		return $returnValue;
-	}	//	function NPV()
+	}	
 
 	/**
 	 * PMT
@@ -1579,7 +1579,7 @@ class PHPExcel_Calculation_Financial {
 		} else {
 			return (-$pv - $fv) / $nper;
 		}
-	}	//	function PMT()
+	}	
 
 
 	/**
@@ -1614,7 +1614,7 @@ class PHPExcel_Calculation_Financial {
 		// Calculate
 		$interestAndPrincipal = self::_interestAndPrincipal($rate, $per, $nper, $pv, $fv, $type);
 		return $interestAndPrincipal[1];
-	}	//	function PPMT()
+	}	
 
 
 	public static function PRICE($settlement, $maturity, $rate, $yield, $redemption, $frequency, $basis=0) {
@@ -1655,7 +1655,7 @@ class PHPExcel_Calculation_Financial {
 		$result -= $rfp * ($a / $e);
 
 		return $result;
-	}	//	function PRICE()
+	}	
 
 
 	/**
@@ -1691,14 +1691,14 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 
 			return $redemption * (1 - $discount * $daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function PRICEDISC()
+	}	
 
 
 	/**
@@ -1740,19 +1740,19 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenIssueAndSettlement = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $settlement, $basis);
 			if (!is_numeric($daysBetweenIssueAndSettlement)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndSettlement;
 			}
 			$daysBetweenIssueAndSettlement *= $daysPerYear;
 			$daysBetweenIssueAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $maturity, $basis);
 			if (!is_numeric($daysBetweenIssueAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndMaturity;
 			}
 			$daysBetweenIssueAndMaturity *= $daysPerYear;
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 			$daysBetweenSettlementAndMaturity *= $daysPerYear;
@@ -1762,7 +1762,7 @@ class PHPExcel_Calculation_Financial {
 				   (($daysBetweenIssueAndSettlement / $daysPerYear) * $rate * 100));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function PRICEMAT()
+	}	
 
 
 	/**
@@ -1795,7 +1795,7 @@ class PHPExcel_Calculation_Financial {
 		} else {
 			return -$fv - $pmt * $nper;
 		}
-	}	//	function PV()
+	}	
 
 
 	/**
@@ -1868,7 +1868,7 @@ class PHPExcel_Calculation_Financial {
 			++$i;
 		}
 		return $rate;
-	}	//	function RATE()
+	}	
 
 
 	/**
@@ -1904,14 +1904,14 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 
 			return $investment / ( 1 - ($discount * $daysBetweenSettlementAndMaturity));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function RECEIVED()
+	}	
 
 
 	/**
@@ -1937,7 +1937,7 @@ class PHPExcel_Calculation_Financial {
 			return ($cost - $salvage) / $life;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SLN()
+	}	
 
 
 	/**
@@ -1965,7 +1965,7 @@ class PHPExcel_Calculation_Financial {
 			return (($cost - $salvage) * ($life - $period + 1) * 2) / ($life * ($life + 1));
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SYD()
+	}	
 
 
 	/**
@@ -2003,7 +2003,7 @@ class PHPExcel_Calculation_Financial {
 		}
 
 		return (365 * $discount) / (360 - $discount * $daysBetweenSettlementAndMaturity);
-	}	//	function TBILLEQ()
+	}	
 
 
 	/**
@@ -2037,7 +2037,7 @@ class PHPExcel_Calculation_Financial {
 				++$maturity;
 				$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity) * 360;
 				if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-					//	return date error
+					
 					return $daysBetweenSettlementAndMaturity;
 				}
 			} else {
@@ -2055,7 +2055,7 @@ class PHPExcel_Calculation_Financial {
 			return $price;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TBILLPRICE()
+	}	
 
 
 	/**
@@ -2085,7 +2085,7 @@ class PHPExcel_Calculation_Financial {
 				++$maturity;
 				$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity) * 360;
 				if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-					//	return date error
+					
 					return $daysBetweenSettlementAndMaturity;
 				}
 			} else {
@@ -2099,7 +2099,7 @@ class PHPExcel_Calculation_Financial {
 			return ((100 - $price) / $price) * (360 / $daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function TBILLYIELD()
+	}	
 
 
 	public static function XIRR($values, $dates, $guess = 0.1) {
@@ -2174,7 +2174,7 @@ class PHPExcel_Calculation_Financial {
 			$xnpv += $values[$i] / pow(1 + $rate, PHPExcel_Calculation_DateTime::DATEDIF($dates[0],$dates[$i],'d') / 365);
 		}
 		return (is_finite($xnpv)) ? $xnpv : PHPExcel_Calculation_Functions::VALUE();
-	}	//	function XNPV()
+	}	
 
 
 	/**
@@ -2214,7 +2214,7 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity,$basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 			$daysBetweenSettlementAndMaturity *= $daysPerYear;
@@ -2222,7 +2222,7 @@ class PHPExcel_Calculation_Financial {
 			return (($redemption - $price) / $price) * ($daysPerYear / $daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function YIELDDISC()
+	}	
 
 
 	/**
@@ -2264,19 +2264,19 @@ class PHPExcel_Calculation_Financial {
 			}
 			$daysBetweenIssueAndSettlement = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $settlement, $basis);
 			if (!is_numeric($daysBetweenIssueAndSettlement)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndSettlement;
 			}
 			$daysBetweenIssueAndSettlement *= $daysPerYear;
 			$daysBetweenIssueAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($issue, $maturity, $basis);
 			if (!is_numeric($daysBetweenIssueAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenIssueAndMaturity;
 			}
 			$daysBetweenIssueAndMaturity *= $daysPerYear;
 			$daysBetweenSettlementAndMaturity = PHPExcel_Calculation_DateTime::YEARFRAC($settlement, $maturity, $basis);
 			if (!is_numeric($daysBetweenSettlementAndMaturity)) {
-				//	return date error
+				
 				return $daysBetweenSettlementAndMaturity;
 			}
 			$daysBetweenSettlementAndMaturity *= $daysPerYear;
@@ -2286,6 +2286,6 @@ class PHPExcel_Calculation_Financial {
 				   ($daysPerYear / $daysBetweenSettlementAndMaturity);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function YIELDMAT()
+	}	
 
-}	//	class PHPExcel_Calculation_Financial
+}	

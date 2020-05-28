@@ -79,7 +79,7 @@ if (function_exists('socket_create'))
     if (empty($socket)) die('Unable to prepare a socket');
     //socket_bind($sock, $address, $port) or die('Unable to bind on address='.$address.' port='.$port);
     //socket_listen($sock);
-    //$client = socket_accept($sock);
+    
     $client=socket_connect($socket, $address, $port);
     if ($client)
     {

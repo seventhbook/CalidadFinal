@@ -127,7 +127,7 @@ if ($id > 0 || !empty($ref))
 		if ($user->rights->propale->lire)
 		{
 			$sql = "SELECT DISTINCT s.nom as name, s.rowid as socid, p.rowid as propalid, p.ref, d.total_ht as amount,";
-			//$sql .= " p.ref_supplier,";
+			
 			$sql .= "p.date_valid, p.fk_statut as statut, d.rowid, d.qty";
 			if (!$user->rights->societe->client->voir && !$socid)
 				$sql .= ", sc.fk_soc, sc.fk_user ";

@@ -156,7 +156,7 @@ if ($id > 0 || !empty($ref))
             if (!$user->rights->societe->client->voir && !$socid) $sql .= ", sc.fk_soc, sc.fk_user";
             $sql .= $db->order($sortfield, $sortorder);
             // TODO: calculate total to display then restore pagination
-            //$sql.= $db->plimit($conf->liste_limit +1, $offset);
+            
             dol_syslog('margin:tabs:productMargins.php', LOG_DEBUG);
             $result = $db->query($sql);
             if ($result) {

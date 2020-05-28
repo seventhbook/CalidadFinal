@@ -114,13 +114,13 @@ class ZapierApi extends DolibarrApi
             'thirdparties' => 'Thirparties',
             'contacts' => 'Contacts',
         );
-        // $result = $this->hook->fetch($id);
-        // if (! $result ) {
-        //     throw new RestException(404, 'Hook not found');
+        
+        
+        
         // }
 
-        // if (! DolibarrApi::_checkAccessToResource('hook', $this->hook->id)) {
-        //     throw new RestException(401, 'Access not allowed for login '.DolibarrApiAccess::$user->login);
+        
+        
         // }
 
         return $arraychoices;
@@ -171,8 +171,8 @@ class ZapierApi extends DolibarrApi
         $sql.= " WHERE 1 = 1";
 
         // Example of use $mode
-        //if ($mode == 1) $sql.= " AND s.client IN (1, 3)";
-        //if ($mode == 2) $sql.= " AND s.client IN (2, 3)";
+        
+        
 
         $tmpobject = new Hook($db);
         if ($tmpobject->ismultientitymanaged) {
@@ -263,15 +263,15 @@ class ZapierApi extends DolibarrApi
         );
     }
 
-    // /**
-    //  * Update hook
-    //  *
-    //  * @param int   $id             Id of hook to update
-    //  * @param array $request_data   Datas
-    //  * @return int
-    //  *
-    //  * @url	PUT /hooks/{id}
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*public function put($id, $request_data = null)
     {
         if (! DolibarrApiAccess::$user->rights->zapier->write) {

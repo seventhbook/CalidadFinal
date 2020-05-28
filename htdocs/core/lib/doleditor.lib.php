@@ -81,7 +81,7 @@ function show_skin($fuser, $edit = 0)
    	print '</td>';
    	print '</tr>';
 
-    //
+    
     print '<tr class="oddeven"><td colspan="'.$colspan.'">';
 
     print '<table class="nobordernopadding" width="100%"><tr><td><div class="center">';
@@ -89,7 +89,7 @@ function show_skin($fuser, $edit = 0)
     $i = 0;
     foreach ($dirskins as $dir)
     {
-    	//print $dirroot.$dir;exit;
+    	
     	$dirskin = dol_buildpath($dir, 0); // This include loop on $conf->file->dol_document_root
     	$urltheme = dol_buildpath($dir, 1);
 

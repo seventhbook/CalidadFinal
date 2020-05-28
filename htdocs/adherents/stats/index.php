@@ -70,7 +70,7 @@ $stats = new AdherentStats($db, $socid, $userid);
 // Build graphic number of object
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 
 $filenamenb = $dir.'/subscriptionsnbinyear-'.$year.'.png';
@@ -105,7 +105,7 @@ if (! $mesg)
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 $filenameamount = $dir.'/subscriptionsamountinyear-'.$year.'.png';
 $fileurlamount = DOL_URL_ROOT.'/viewimage.php?modulepart=memberstats&file=subscriptionsamountinyear-'.$year.'.png';
@@ -194,9 +194,9 @@ foreach ($data as $val)
     }
     print '<tr class="oddeven" height="24">';
     print '<td class="center">';
-    //print '<a href="month.php?year='.$year.'">';
+    
     print $year;
-    //print '</a>';
+    
     print '</td>';
     print '<td class="right">'.$val['nb'].'</td>';
     print '<td class="right">'.price(price2num($val['total'], 'MT'), 1).'</td>';

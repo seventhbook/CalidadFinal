@@ -487,7 +487,7 @@ class Translate
     				    $key=$obj->transkey;
     					$value=$obj->transvalue;
 
-						//print "Domain=$domain, found a string for $tab[0] with value $tab[1]<br>";
+						
 						if (empty($this->tab_translate[$key]))    // If translation was already found, we must not continue, even if MAIN_FORCELANGDIR is set (MAIN_FORCELANGDIR is to replace lang dir, not to overwrite entries)
 						{
 							// Convert some strings: Parse and render carriage returns. Also, change '\\s' int '\s' because transifex sync pull the string '\s' into string '\\s'
@@ -820,7 +820,7 @@ class Translate
 			{
 				// Test si fichier dans repertoire de la langue alternative
 				if ($this->defaultlang != "en_US") $filenamealt = $searchdir."/langs/en_US/".$filename;
-				//else $filenamealt = $searchdir."/langs/fr_FR/".$filename;
+				
 				if (is_readable(dol_osencode($filenamealt))) return true;
 			}
 		}
@@ -988,7 +988,7 @@ class Translate
 		$sql.= " FROM ".MAIN_DB_PREFIX."c_currencies";
 		$sql.= " WHERE active = 1";
 		if (! empty($currency_code)) $sql.=" AND code_iso = '".$db->escape($currency_code)."'";
-		//$sql.= " ORDER BY code_iso ASC"; // Not required, a sort is done later
+		
 
 		dol_syslog(get_class($this).'::loadCacheCurrencies', LOG_DEBUG);
 		$resql = $db->query($sql);
@@ -1011,7 +1011,7 @@ class Translate
 				$i++;
 			}
 			if (empty($currency_code)) $this->cache_currencies_all_loaded=true;
-			//print count($label).' '.count($this->cache_currencies);
+			
 
 			// Resort cache
 			array_multisort($label, SORT_ASC, $this->cache_currencies);

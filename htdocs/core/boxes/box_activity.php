@@ -99,7 +99,7 @@ class box_activity extends ModeleBoxes
         $tmpdate= dol_time_plus_duree(dol_now(), -1*$nbofperiod, "m");
 
 
-        // list the summary of the propals
+        
         if (! empty($conf->propal->enabled) && $user->rights->propale->lire)
         {
         	include_once DOL_DOCUMENT_ROOT.'/comm/propal/class/propal.class.php';
@@ -187,7 +187,7 @@ class box_activity extends ModeleBoxes
         	}
         }
 
-        // list the summary of the orders
+        
         if (! empty($conf->commande->enabled) && $user->rights->commande->lire) {
             include_once DOL_DOCUMENT_ROOT.'/commande/class/commande.class.php';
             $commandestatic=new Commande($this->db);
@@ -270,7 +270,7 @@ class box_activity extends ModeleBoxes
         }
 
 
-        // list the summary of the bills
+        
         if (! empty($conf->facture->enabled) && $user->rights->facture->lire)
         {
         	include_once DOL_DOCUMENT_ROOT.'/compta/facture/class/facture.class.php';

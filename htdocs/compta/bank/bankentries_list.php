@@ -758,7 +758,7 @@ if ($resql)
 		print '<br>';
 	}
 
-	/// ajax to adjust value date with plus and less picto
+	
 	print '
     <script type="text/javascript">
     $(function() {

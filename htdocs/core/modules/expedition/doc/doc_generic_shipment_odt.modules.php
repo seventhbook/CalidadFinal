@@ -306,7 +306,7 @@ class doc_generic_shipment_odt extends ModelePdfExpedition
 						$socobject = $object->contact;
 					else {
 						$socobject = $object->thirdparty;
-						// if we have a SHIIPPING contact and we dont use it as recipient we store the contact object for later use
+						
 						$contactobject = $object->contact;
 					}
 				} else {
@@ -354,8 +354,8 @@ class doc_generic_shipment_odt extends ModelePdfExpedition
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

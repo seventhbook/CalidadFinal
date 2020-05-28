@@ -23,7 +23,7 @@ class FormStyles
         'submit' => '.row>label{ &nbsp; }^button[id=$id# type=submit disabled=$disabled#]{$label#}',
         'fieldset' => 'fieldset>legend{$label#}',
         'checkbox' => '.row>label>input[id=$id# name=$name# value=$value# type=checkbox checked=$selected# required=$required# autofocus=$autofocus# accept=$accept# disabled=$disabled#]+{$label#}',
-        //------------- TYPE BASED STYLES ---------------------//
+        
         'checkbox-array' => 'fieldset>legend{$label#}+section*options>label>input[name=$name# value=$value# type=checkbox checked=$selected# required=$required# autofocus=$autofocus# accept=$accept#]+{ $text#}',
         'select-array' => 'label{$label#}+select[name=$name# required=$required# multiple style="height: auto;background-image: none; outline: inherit;"]>option[value=$value# selected=$selected#]{$text#}*options',
     );
@@ -36,10 +36,10 @@ class FormStyles
         'submit' => 'button.btn.btn-primary[id=$id# type=submit]{$label#} disabled=$disabled#',
         'fieldset' => 'fieldset>legend{$label#}',
         'checkbox' => '.checkbox>label>input[id=$id# name=$name# value=$value# type=checkbox checked=$selected# required=$required# autofocus=$autofocus# disabled=$disabled#]+{$label#}^p.help-block>{$error#}',
-        //------------- TYPE BASED STYLES ---------------------//
+        
         'checkbox-array' => 'fieldset>legend{$label#}>.checkbox*options>label>input[name=$name# value=$value# type=checkbox checked=$selected# required=$required#]{$text#}',
         'select-array' => '.form-group>label{$label#}+select.form-control[name=$name# multiple=$multiple# required=$required#] size=$options#>option[value=$value# selected=$selected#]{$text#}*options',
-        //------------- CUSTOM STYLES ---------------------//
+        
         'radio-inline' => '.form-group>label{$label# : &nbsp;}+label.radio-inline*options>input.radio[name=$name# value=$value# type=radio checked=$selected# required=$required#]+{$text#}',
     );
     public static $foundation5 = array(
@@ -51,9 +51,9 @@ class FormStyles
         'submit' => 'button.button[id=$id# type=submit disabled=$disabled#]{$label#}',
         'fieldset' => 'fieldset>legend{$label#}',
         'checkbox' => 'label>input[id=$id# name=$name# value=$value# type=checkbox checked=$selected# required=$required# autofocus=$autofocus# disabled=$disabled#]+{ $label#}',
-        //------------- TYPE BASED STYLES ---------------------//
+        
         'checkbox-array' => 'fieldset>legend{$label#}+label*options>input[name=$name# value=$value# type=checkbox checked=$selected# required=$required# autofocus=$autofocus#]+{ $text#}',
         'select-array' => 'label{$label#}+select[name=$name# required=$required# multiple style="height: auto;background-image: none; outline: inherit;"]>option[value=$value# selected=$selected#]{$text#}*options',
-        //------------- CUSTOM STYLES ---------------------//
+        
     );
 }

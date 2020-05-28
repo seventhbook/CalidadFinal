@@ -94,7 +94,7 @@ $stats = new DeplacementStats($db, $socid, $useridtofilter);
 
 
 // Build graphic number of object
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 
@@ -129,7 +129,7 @@ if (!$mesg)
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
 
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 $filenameamount = $dir."/tripsexpensesamountinyear-".$year.".png";
 $fileurlamount = DOL_URL_ROOT.'/viewimage.php?modulepart=tripsexpensesstats&amp;file=tripsexpensesamountinyear-'.$year.'.png';

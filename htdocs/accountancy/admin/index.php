@@ -163,7 +163,7 @@ $title = $langs->trans('ConfigAccountingExpert');
 llxHeader('', $title);
 
 $linkback = '';
-//$linkback = '<a href="' . DOL_URL_ROOT . '/admin/modules.php?restore_lastsearch_values=1">' . $langs->trans("BackToModuleList") . '</a>';
+
 print load_fiche_titre($langs->trans('ConfigAccountingExpert'), $linkback, 'accountancy');
 
 print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
@@ -180,15 +180,15 @@ print "</tr>\n";
 print '<tr ' . $bc[false] . '><td width="200"><input type="radio" name="accounting_mode" value="RECETTES-DEPENSES"' . ($accounting_mode != 'CREANCES-DETTES' ? ' checked' : '') . '> ' . $langs->trans('OptionModeTrue') . '</td>';
 print '<td colspan="2">' . nl2br($langs->trans('OptionModeTrueDesc'));
 // Write info on way to count VAT
-// if (! empty($conf->global->MAIN_MODULE_COMPTABILITE))
+
 // {
-// // print "<br>\n";
-// // print nl2br($langs->trans('OptionModeTrueInfoModuleComptabilite'));
+
+
 // }
-// else
+
 // {
-// // print "<br>\n";
-// // print nl2br($langs->trans('OptionModeTrueInfoExpert'));
+
+
 // }
 print "</td></tr>\n";
 print '<tr ' . $bc[true] . '><td width="200"><input type="radio" name="accounting_mode" value="CREANCES-DETTES"' . ($accounting_mode == 'CREANCES-DETTES' ? ' checked' : '') . '> ' . $langs->trans('OptionModeVirtual') . '</td>';

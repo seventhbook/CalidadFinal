@@ -66,7 +66,7 @@ print '<ul><li>';
 print '<a href="https://www.gnu.org/copyleft/gpl.html">GNU-GPL v3+</a></li>';
 print '</li></ul>';
 
-//print "<br>\n";
+
 
 print $langs->trans("Developpers").':';
 print '<ul>';
@@ -74,7 +74,7 @@ print '<li>'.$langs->trans("SourcesRepository").': <a href="https://www.github.c
 print '<li>'.$langs->trans("SeeWikiForAllTeam").': <a href="https://wiki.dolibarr.org/index.php/Dolibarr_Project" target="_blank" rel="external">https://wiki.dolibarr.org/index.php/Dolibarr_Project</a></li>';
 print '</ul>';
 
-//print "<br>\n";
+
 
 print $langs->trans("OtherInformations").':';
 
@@ -139,7 +139,7 @@ print '</div><div class="fichehalfright">';
 print $langs->trans("HelpCenter").':';
 print '<ul>';
 print '<li>';
-//print $langs->trans("SeeWikiPage",'http://wiki.dolibarr.org/index.php/List_of_OpenSource_Software_companies_and_freelancers');
+
 print '<a target="_blank" href="'.DOL_URL_ROOT.'/support/index.php" data-ajax="false">'.$langs->trans("HelpCenter").'</a>';
 print '</li>';
 print '</ul>';

@@ -1018,7 +1018,7 @@ class pdf_canelle extends ModelePDFSuppliersInvoices
 		$pdf->SetFont('', '', $default_font_size - 4);
 
 		// Loop on each deposits and credit notes included
-		//
+		
 
 		// Loop on each payment
 		$sql = "SELECT p.datep as date, p.fk_paiement as type, p.num_paiement as num, pf.amount as amount, pf.multicurrency_amount,";

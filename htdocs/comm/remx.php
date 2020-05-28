@@ -58,8 +58,8 @@ if (GETPOST('cancel', 'alpha') && !empty($backtopage))
 
 if ($action == 'confirm_split' && GETPOST("confirm") == 'yes')
 {
-	//if ($user->rights->societe->creer)
-	//if ($user->rights->facture->creer)
+	
+	
 
 	$amount_ttc_1 = GETPOST('amount_ttc_1', 'alpha');
 	$amount_ttc_1 = price2num($amount_ttc_1);
@@ -158,8 +158,8 @@ if ($action == 'confirm_split' && GETPOST("confirm") == 'yes')
 
 if ($action == 'setremise' && $user->rights->societe->creer)
 {
-	//if ($user->rights->societe->creer)
-	//if ($user->rights->facture->creer)
+	
+	
 
 	$amount_ht = GETPOST('amount_ht');
 	$desc = GETPOST('desc', 'alpha');
@@ -209,8 +209,8 @@ if ($action == 'setremise' && $user->rights->societe->creer)
 
 if (GETPOST('action', 'aZ09') == 'confirm_remove' && GETPOST("confirm") == 'yes')
 {
-	//if ($user->rights->societe->creer)
-	//if ($user->rights->facture->creer)
+	
+	
 
 	$db->begin();
 
@@ -575,7 +575,7 @@ if ($socid > 0)
 
 	if ($isSupplier) {
 		if ($isCustomer) {
-			print '</div>'; // class="fichehalfleft"
+			print '</div>'; 
 			print '<div class="fichehalfright fichehalfright-lg">';
 			print '<div class="ficheaddleft">';
 			print load_fiche_titre($langs->trans("SupplierDiscounts"), '', '');
@@ -729,9 +729,9 @@ if ($socid > 0)
 		}
 
 		if ($isCustomer) {
-			print '</div>'; // class="ficheaddleft"
-			print '</div>'; // class="fichehalfright"
-			print '</div>'; // class="fichecenter"
+			print '</div>'; 
+			print '</div>'; 
+			print '</div>'; 
 		}
 	}
 
@@ -920,7 +920,7 @@ if ($socid > 0)
 
 	if ($isSupplier) {
 		if ($isCustomer) {
-			print '</div>'; // class="fichehalfleft"
+			print '</div>'; 
 			print '<div class="fichehalfright fichehalfright-lg">';
 			print '<div class="ficheaddleft">';
 			print load_fiche_titre($langs->trans("SupplierDiscounts"), '', '');
@@ -1094,9 +1094,9 @@ if ($socid > 0)
 		}
 
 		if ($isCustomer) {
-			print '</div>'; // class="ficheaddleft"
-			print '</div>'; // class="fichehalfright"
-			print '</div>'; // class="fichecenter"
+			print '</div>'; 
+			print '</div>'; 
+			print '</div>'; 
 		}
 	}
 }

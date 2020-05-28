@@ -167,17 +167,17 @@ class pdf_standard extends ModeleExpenseReport
 		$this->posxpiece=$this->marge_gauche+1;
 		$this->posxcomment=$this->marge_gauche+10;
 		
-		//$this->posxtype=107;
-		//$this->posxprojet=120;
+		
+		
 		$this->posxtva=130;
 		$this->posxup=145;
 		$this->posxqty=168;
 		$this->postotalttc=178;
 		
-		//     $this->posxtva-=20;
-		//     $this->posxup-=20;
-		//     $this->posxqty-=20;
-		//     $this->postotalttc-=20;
+		
+		
+		
+		
 		// }
 		if ($this->page_largeur < 210) // To work with US executive format
 		{
@@ -372,7 +372,7 @@ class pdf_standard extends ModeleExpenseReport
                         // There is a pagebreak
 						$pdf->rollbackTransaction(true);
 						$pageposafter = $pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						if (empty($showpricebeforepagebreak)) {
                             $pdf->AddPage('', '', true);
                             if (!empty($tplidx)) {
@@ -433,15 +433,15 @@ class pdf_standard extends ModeleExpenseReport
 
                     
                     // Search number of lines coming to know if there is enough room
-					// if ($i < ($nblines - 1))	// If it's not last line
-			
-					//     //Fetch current description to know on which line the next one should be placed
-			
-					// 	$follow_type = $object->lines[$i]->type_fees_code;
-
-					// 	//on compte le nombre de ligne afin de verifier la place disponible (largeur de ligne 52 caracteres)
 					
-					// 	$nbLineTypeNeed = dol_nboflines_bis($follow_type,4,$outputlangs->charset_output);
+			
+					
+			
+					
+
+					
+					
+					
 
             
 					// }
@@ -594,7 +594,7 @@ class pdf_standard extends ModeleExpenseReport
 
         // Date
         
-        //$pdf->MultiCell($this->posxtype-$this->posxdate-0.8, 4, dol_print_date($object->lines[$linenumber]->date,"day",false,$outputlangs), 0, 'C');
+        
 
         // Type
         $pdf->SetXY($this->posxtype - 1, $curY);
@@ -618,11 +618,11 @@ class pdf_standard extends ModeleExpenseReport
         
 
         // Project
-        //if (! empty($conf->projet->enabled))
         
-        //    $pdf->SetFont('','', $default_font_size - 1);
-        //    $pdf->SetXY($this->posxprojet, $curY);
-        //    $pdf->MultiCell($this->posxtva-$this->posxprojet-0.8, 4, $object->lines[$linenumber]->projet_ref, 0, 'C');
+        
+        
+        
+        
         //}
 
         // VAT Rate
@@ -942,27 +942,27 @@ $image_fondue = $conf->mycompany->dir_output.'/fondu_vert_.jpg';
 
 		// Date
 		
-		//if (empty($hidetop))
 		
-		//	$pdf->SetXY($this->posxdate-1, $tab_top+1);
-		//	$pdf->MultiCell($this->posxtype-$this->posxdate-1,2, $outputlangs->transnoentities("Date"),'','C');
+		
+		
+		
 		//}
 
 		// Type
 		
-		//if (empty($hidetop))
 		
-		//	$pdf->SetXY($this->posxtype-1, $tab_top+1);
-		//	$pdf->MultiCell($this->posxprojet-$this->posxtype - 1, 2, $outputlangs->transnoentities("Type"), '', 'C');
+		
+		
+		
 		//}
 
-        //if (!empty($conf->projet->enabled))
         
-        //    // Project
         
-    	//	if (empty($hidetop)) {
-        //        $pdf->SetXY($this->posxprojet - 1, $tab_top + 1);
-        //        $pdf->MultiCell($this->posxtva - $this->posxprojet - 1, 2, $outputlangs->transnoentities("Project"), '', 'C');
+        
+        
+    	
+        
+        
     	//	}
         //}
 

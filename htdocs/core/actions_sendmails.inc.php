@@ -22,13 +22,13 @@
  *  \brief			Code for actions on sending mails from object page
  */
 
-// $mysoc must be defined
-// $id must be defined
-// $paramname may be defined
-// $autocopy may be defined (used to know the automatic BCC to add)
-// $triggersendname must be set (can be '')
-// $actiontypecode can be set
-// $object and $uobject may be defined
+
+
+
+
+
+
+
 
 /*
  * Add file in email form
@@ -190,7 +190,7 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
 				{
 					$tmparray[] = dol_string_nospecial($contact->getFullName($langs), ' ', array(",")).' <'.$contact->email.'>';
 				}
-				elseif ($val)	// $val is the Id of a contact
+				elseif ($val)	
 				{
 					$tmparray[] = $thirdparty->contact_get_property((int) $val, 'email');
 					$sendtoid[] = $val;
@@ -240,10 +240,10 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
 				{
 					$tmparray[] = dol_string_nospecial($contact->name, ' ', array(",")).' <'.$contact->email.'>';
 				}
-				elseif ($val)				// $val is the Id of a contact
+				elseif ($val)				
 				{
 					$tmparray[] = $thirdparty->contact_get_property((int) $val, 'email');
-					//$sendtoid[] = $val;  TODO Add also id of contact in CC ?
+					
 				}
 			}
 		}
@@ -267,7 +267,7 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
             // Define $urlwithroot
             $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
             $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-            //$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+            
 
 		    require_once DOL_DOCUMENT_ROOT.'/core/class/CMailFile.class.php';
 
@@ -311,14 +311,14 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
 			$subject = GETPOST('subject', 'none');
 
 			// Make a change into HTML code to allow to include images from medias directory with an external reabable URL.
-			// <img alt="" src="/dolibarr_dev/htdocs/viewimage.php?modulepart=medias&amp;entity=1&amp;file=image/ldestailleur_166x166.jpg" style="height:166px; width:166px" />
+			
 			// become
-			// <img alt="" src="'.$urlwithroot.'viewimage.php?modulepart=medias&amp;entity=1&amp;file=image/ldestailleur_166x166.jpg" style="height:166px; width:166px" />
+			
 			$message = preg_replace('/(<img.*src=")[^\"]*viewimage\.php([^\"]*)modulepart=medias([^\"]*)file=([^\"]*)("[^\/]*\/>)/', '\1'.$urlwithroot.'/viewimage.php\2modulepart=medias\3file=\4\5', $message);
 
 			$sendtobcc = GETPOST('sendtoccc');
 			// Autocomplete the $sendtobcc
-			// $autocopy can be MAIN_MAIL_AUTOCOPY_PROPOSAL_TO, MAIN_MAIL_AUTOCOPY_ORDER_TO, MAIN_MAIL_AUTOCOPY_INVOICE_TO, MAIN_MAIL_AUTOCOPY_SUPPLIER_PROPOSAL_TO...
+			
 			if (!empty($autocopy))
 			{
 				$sendtobcc .= (empty($conf->global->$autocopy) ? '' : (($sendtobcc ? ", " : "").$conf->global->$autocopy));
@@ -343,7 +343,7 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
 			// Create form object
 			include_once DOL_DOCUMENT_ROOT.'/core/class/html.formmail.class.php';
 			$formmail = new FormMail($db);
-			$formmail->trackid = $trackid; // $trackid must be defined
+			$formmail->trackid = $trackid; 
 
 			$attachedfiles = $formmail->get_attached_files();
 			$filepath = $attachedfiles['paths'];
@@ -354,7 +354,7 @@ if (($action == 'send' || $action == 'relance') && !$_POST['addfile'] && !$_POST
 			/* This code must be now included into the hook mail, method sendMailAfter
 			if (! empty($conf->dolimail->enabled))
 			{
-				$mailfromid = explode("#", $_POST['frommail'],3);	// $_POST['frommail'] = 'aaa#Sent# <aaa@aaa.com>'	// TODO Use a better way to define Sent dir.
+				$mailfromid = explode("#", $_POST['frommail'],3);	
 				if (count($mailfromid)==0) $from = $_POST['fromname'] . ' <' . $_POST['frommail'] .'>';
 				else
 				{

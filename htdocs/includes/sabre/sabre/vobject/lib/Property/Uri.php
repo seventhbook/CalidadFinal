@@ -49,11 +49,11 @@ class Uri extends Text {
         if (!isset($parameters['VALUE']) && in_array($this->name, ['URL', 'PHOTO'])) {
             // If we are encoding a URI value, and this URI value has no
             // VALUE=URI parameter, we add it anyway.
-            //
+            
             // This is not required by any spec, but both Apple iCal and Apple
             // AddressBook (at least in version 10.8) will trip over this if
-            // this is not set, and so it improves compatibility.
-            //
+            
+            
             // See Issue #227 and #235
             $parameters['VALUE'] = new Parameter($this->root, 'VALUE', 'URI');
         }
@@ -78,7 +78,7 @@ class Uri extends Text {
         // specifically escapes the colon (:) with a blackslash. While I have
         // no clue why they thought that was a good idea, I'm unescaping it
         // anyway.
-        //
+        
         // Good thing backslashes are not allowed in urls. Makes it easy to
         // assume that a backslash is always intended as an escape character.
         if ($this->name === 'URL') {

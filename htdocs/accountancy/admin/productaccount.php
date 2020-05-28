@@ -296,7 +296,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -534,7 +534,7 @@ if ($result)
 		if ($accounting_product_mode == 'ACCOUNTANCY_BUY') {
     		// Accounting account buy
 			print '<td class="left">';
-			//$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
+			
 			if (empty($defaultvalue)) $defaultvalue=$compta_prodbuy;
 			$codesell=length_accountg($obj->accountancy_code_buy);
 			if (! empty($obj->aaid)) $defaultvalue = '';     // Do not suggest default new value is code is already valid
@@ -543,7 +543,7 @@ if ($result)
 		} elseif ($accounting_product_mode == 'ACCOUNTANCY_SELL') {
 			// Accounting account sell
 			print '<td class="left">';
-			//$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
+			
 			if (empty($defaultvalue)) $defaultvalue=$compta_prodsell;
 			$codesell=length_accountg($obj->accountancy_code_sell);
 			
@@ -553,7 +553,7 @@ if ($result)
 		} elseif ($accounting_product_mode == 'ACCOUNTANCY_SELL_INTRA') {
             // Accounting account sell intra (In EEC)
             print '<td class="left">';
-            //$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
+            
             if (empty($defaultvalue)) $defaultvalue=$compta_prodsell;
             $codesell=length_accountg($obj->accountancy_code_sell_intra);
             
@@ -563,7 +563,7 @@ if ($result)
         } else {
             // Accounting account sell export (Out of EEC)
             print '<td class="left">';
-            //$defaultvalue=GETPOST('codeventil_' . $product_static->id,'alpha');        This is id and we need a code
+            
             if (empty($defaultvalue)) $defaultvalue=$compta_prodsell;
             $codesell=length_accountg($obj->accountancy_code_sell_export);
             if (! empty($obj->aaid)) $defaultvalue = '';     // Do not suggest default new value is code is already valid

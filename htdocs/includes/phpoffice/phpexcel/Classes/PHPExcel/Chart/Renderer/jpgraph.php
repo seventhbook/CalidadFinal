@@ -95,7 +95,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		$seriesPlot->SetColor(self::$_colourSet[self::$_plotColour++]);
 
 		return $seriesPlot;
-	}	//	function _formatPointMarker()
+	}	
 
 
 	private function _formatDataSetLabels($groupID, $datasetLabels, $labelCount, $rotation = '') {
@@ -124,7 +124,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		}
 
 		return $datasetLabels;
-	}	//	function _formatDataSetLabels()
+	}	
 
 
 	private function _percentageSumCalculation($groupID,$seriesCount) {
@@ -145,7 +145,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		}
 
 		return $sumValues;
-	}	//	function _percentageSumCalculation()
+	}	
 
 
 	private function _percentageAdjustValues($dataValues,$sumValues) {
@@ -154,7 +154,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		}
 
 		return $dataValues;
-	}	//	function _percentageAdjustValues()
+	}	
 
 
 	private function _getCaption($captionElement) {
@@ -169,7 +169,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 			}
 		}
 		return $caption;
-	}	//	function _getCaption()
+	}	
 
 
 	private function _renderTitle() {
@@ -177,7 +177,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		if (!is_null($title)) {
 			$this->_graph->title->Set($title);
 		}
-	}	//	function _renderTitle()
+	}	
 
 
 	private function _renderLegend() {
@@ -208,7 +208,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		} else {
 			$this->_graph->legend->Hide();
 		}
-	}	//	function _renderLegend()
+	}	
 
 
 	private function _renderCartesianPlotArea($type='textlin') {
@@ -245,14 +245,14 @@ class PHPExcel_Chart_Renderer_jpgraph
 				}
 			}
 		}
-	}	//	function _renderCartesianPlotArea()
+	}	
 
 
 	private function _renderPiePlotArea($doughnut = False) {
 		$this->_graph = new PieGraph(self::$_width,self::$_height);
 
 		$this->_renderTitle();
-	}	//	function _renderPiePlotArea()
+	}	
 
 
 	private function _renderRadarPlotArea() {
@@ -260,7 +260,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		$this->_graph->SetScale('lin');
 
 		$this->_renderTitle();
-	}	//	function _renderRadarPlotArea()
+	}	
 
 
 	private function _renderPlotLine($groupID, $filled = false, $combination = false, $dimensions = '2d') {
@@ -323,7 +323,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 			$groupPlot = new AccLinePlot($seriesPlots);
 		}
 		$this->_graph->Add($groupPlot);
-	}	//	function _renderPlotLine()
+	}	
 
 
 	private function _renderPlotBar($groupID, $dimensions = '2d') {
@@ -408,7 +408,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		}
 
 		$this->_graph->Add($groupPlot);
-	}	//	function _renderPlotBar()
+	}	
 
 
 	private function _renderPlotScatter($groupID,$bubble) {
@@ -453,7 +453,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
 			$this->_graph->Add($seriesPlot);
 		}
-	}	//	function _renderPlotScatter()
+	}	
 
 
 	private function _renderPlotRadar($groupID) {
@@ -491,7 +491,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
 			$this->_graph->Add($seriesPlot);
 		}
-	}	//	function _renderPlotRadar()
+	}	
 
 
 	private function _renderPlotContour($groupID) {
@@ -511,7 +511,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		$seriesPlot = new ContourPlot($dataValues);
 
 		$this->_graph->Add($seriesPlot);
-	}	//	function _renderPlotContour()
+	}	
 
 
 	private function _renderPlotStock($groupID) {
@@ -550,7 +550,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		$seriesPlot->SetWidth(20);
 
 		$this->_graph->Add($seriesPlot);
-	}	//	function _renderPlotStock()
+	}	
 
 
 	private function _renderAreaChart($groupCount, $dimensions = '2d') {
@@ -561,7 +561,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotLine($i,True,False,$dimensions);
 		}
-	}	//	function _renderAreaChart()
+	}	
 
 
 	private function _renderLineChart($groupCount, $dimensions = '2d') {
@@ -572,7 +572,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotLine($i,False,False,$dimensions);
 		}
-	}	//	function _renderLineChart()
+	}	
 
 
 	private function _renderBarChart($groupCount, $dimensions = '2d') {
@@ -583,7 +583,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotBar($i,$dimensions);
 		}
-	}	//	function _renderBarChart()
+	}	
 
 
 	private function _renderScatterChart($groupCount) {
@@ -596,7 +596,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotScatter($i,false);
 		}
-	}	//	function _renderScatterChart()
+	}	
 
 
 	private function _renderBubbleChart($groupCount) {
@@ -607,7 +607,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotScatter($i,true);
 		}
-	}	//	function _renderBubbleChart()
+	}	
 
 
 	private function _renderPieChart($groupCount, $dimensions = '2d', $doughnut = False, $multiplePlots = False) {
@@ -682,7 +682,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 				$this->_graph->Add($seriesPlot);
 			}
 		}
-	}	//	function _renderPieChart()
+	}	
 
 
 	private function _renderRadarChart($groupCount) {
@@ -693,7 +693,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($groupID = 0; $groupID < $groupCount; ++$groupID) {
 			$this->_renderPlotRadar($groupID);
 		}
-	}	//	function _renderRadarChart()
+	}	
 
 
 	private function _renderStockChart($groupCount) {
@@ -704,7 +704,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($groupID = 0; $groupID < $groupCount; ++$groupID) {
 			$this->_renderPlotStock($groupID);
 		}
-	}	//	function _renderStockChart()
+	}	
 
 
 	private function _renderContourChart($groupCount,$dimensions) {
@@ -715,7 +715,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 		for($i = 0; $i < $groupCount; ++$i) {
 			$this->_renderPlotContour($i);
 		}
-	}	//	function _renderContourChart()
+	}	
 
 
 	private function _renderCombinationChart($groupCount,$dimensions,$outputDestination) {
@@ -762,7 +762,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
 		$this->_graph->Stroke($outputDestination);
 		return true;
-	}	//	function _renderCombinationChart()
+	}	
 
 
 	public function render($outputDestination) {
@@ -840,7 +840,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
 		$this->_graph->Stroke($outputDestination);
 		return true;
-	}	//	function render()
+	}	
 
 
 	/**
@@ -850,6 +850,6 @@ class PHPExcel_Chart_Renderer_jpgraph
 	{
 		$this->_graph	= null;
 		$this->_chart	= $chart;
-	}	//	function __construct()
+	}	
 
 }	//	PHPExcel_Chart_Renderer_jpgraph

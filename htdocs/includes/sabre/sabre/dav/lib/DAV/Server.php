@@ -1087,7 +1087,7 @@ class Server extends EventEmitter implements LoggerAwareInterface {
         // It is possible for an event handler to modify the content of the
         // body, before it gets written. If this is the case, $modified
         // should be set to true.
-        //
+        
         // If $modified is true, we must not send back an ETag.
         $modified = false;
         if (!$this->emit('beforeCreateFile', [$uri, &$data, $parent, &$modified])) return false;
@@ -1121,7 +1121,7 @@ class Server extends EventEmitter implements LoggerAwareInterface {
         // It is possible for an event handler to modify the content of the
         // body, before it gets written. If this is the case, $modified
         // should be set to true.
-        //
+        
         // If $modified is true, we must not send back an ETag.
         $modified = false;
         if (!$this->emit('beforeWriteContent', [$uri, $node, &$data, &$modified])) return false;
@@ -1393,7 +1393,7 @@ class Server extends EventEmitter implements LoggerAwareInterface {
             // that date. If it hasn't been changed, we return a 304
             // header
             // Note that this header only has to be checked if there was no If-None-Match header
-            // as per the HTTP spec.
+            
             $date = HTTP\Util::parseHTTPDate($ifModifiedSince);
 
             if ($date) {
@@ -1436,10 +1436,10 @@ class Server extends EventEmitter implements LoggerAwareInterface {
 
         // Now the hardest, the If: header. The If: header can contain multiple
         // urls, ETags and so-called 'state tokens'.
-        //
+        
         // Examples of state tokens include lock-tokens (as defined in rfc4918)
-        // and sync-tokens (as defined in rfc6578).
-        //
+        
+        
         // The only proper way to deal with these, is to emit events, that a
         // Sync and Lock plugin can pick up.
         $ifConditions = $this->getIfConditions($request);

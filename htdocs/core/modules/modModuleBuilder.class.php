@@ -60,11 +60,11 @@ class modModuleBuilder extends DolibarrModules
         $this->dirs = array();
 
         // Config pages
-        //-------------
+        
         $this->config_page_url = array('setup.php@modulebuilder');
 
         // Dependencies
-        //-------------
+        
 	    $this->hidden = false;	// A condition to disable module
 	    $this->depends = array();		// List of modules id that must be enabled if this module is enabled
         $this->requiredby = array();	// List of modules id to disable if this one is disabled
@@ -72,19 +72,19 @@ class modModuleBuilder extends DolibarrModules
         $this->langfiles = array();
 
         // Constants
-        //-----------
+        
 
 
         // New pages on tabs
-        // -----------------
+        
         $this->tabs = array();
 
         // Boxes
-        //------
+        
         $this->boxes = array();
 
         // Permissions
-        //------------
+        
         $this->rights = array();		// Permission array used by this module
         $this->rights_class = 'modulebuilder';
 
@@ -99,7 +99,7 @@ class modModuleBuilder extends DolibarrModules
 
 
         // Main menu entries
-        //------------------
+        
         $this->menu = array();
 
         $this->menu[$r]=array('fk_menu'=>'fk_mainmenu=home,fk_leftmenu=admintools',

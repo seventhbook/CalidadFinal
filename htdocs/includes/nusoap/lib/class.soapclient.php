@@ -177,7 +177,7 @@ class nusoap_client extends nusoap_base  {
 		}
 		// serialize parameters
 		if($this->endpointType == 'wsdl' && $opData = $this->getOperationData($operation)){
-			// use WSDL for operation
+			
 			$this->opData = $opData;
 			$this->debug("found operation");
 			$this->appendDebug('opData=' . $this->varDump($opData));
@@ -310,7 +310,7 @@ class nusoap_client extends nusoap_base  {
 				// we are only going to return the first part here...sorry about that
 				return $return;
 			} else {
-				// array of return values
+				
 				if(is_array($return)){
 					// multiple 'out' parameters, which we return wrapped up
 					// in the array
@@ -339,7 +339,7 @@ class nusoap_client extends nusoap_base  {
 		$this->appendDebug($this->wsdl->getDebug());
 		$this->wsdl->clearDebug();
 		$this->debug('checkWSDL');
-		// catch errors
+		
 		if ($errstr = $this->wsdl->getError()) {
 			$this->appendDebug($this->wsdl->getDebug());
 			$this->wsdl->clearDebug();
@@ -442,10 +442,10 @@ class nusoap_client extends nusoap_base  {
 					$this->responseData = $http->send($msg,$timeout,$response_timeout,$this->cookies);
 				} elseif(preg_match('/^https/',$this->endpoint)){
 				
-					//if(phpversion() == '4.3.0-dev'){
-						//$response = $http->send($msg,$timeout,$response_timeout);
-                   		//$this->request = $http->outgoing_payload;
-						//$this->response = $http->incoming_payload;
+					
+						
+                   		
+						
 					//} else
 					$this->responseData = $http->sendHTTPS($msg,$timeout,$response_timeout,$this->cookies);
 				} else {
@@ -516,7 +516,7 @@ class nusoap_client extends nusoap_base  {
 		$parser = new nusoap_parser($data,$this->xml_encoding,$this->operation,$this->decode_utf8);
 		// add parser debug data to our debug
 		$this->appendDebug($parser->getDebug());
-		// if parse errors
+		
 		if($errstr = $parser->getError()){
 			$this->setError( $errstr);
 			// destroy the parser object
@@ -533,7 +533,7 @@ class nusoap_client extends nusoap_base  {
             $this->document = $parser->document;
 			// destroy the parser object
 			unset($parser);
-			// return decode message
+			
 			return $return;
 		}
 	 }
@@ -705,7 +705,7 @@ class nusoap_client extends nusoap_base  {
 			$this->debug("Error from _getProxyClassCode, so return NULL");
 			return null;
 		}
-		// eval the class
+		
 		eval($evalStr);
 		// instantiate proxy object
 		eval("\$proxy = new nusoap_proxy_$r('');");
@@ -782,7 +782,7 @@ class nusoap_client extends nusoap_base  {
 					$paramCommentStr = 'void';
 				}
 				$opData['namespace'] = !isset($opData['namespace']) ? 'http://testuri.com' : $opData['namespace'];
-				$evalStr .= "// $paramCommentStr
+				$evalStr .= "
 	function " . str_replace('.', '__', $operation) . "($paramStr) {
 		\$params = array($paramArrayStr);
 		return \$this->call('$operation', \$params, '".$opData['namespace']."', '".(isset($opData['soapAction']) ? $opData['soapAction'] : '')."');

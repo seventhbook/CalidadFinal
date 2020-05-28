@@ -481,7 +481,7 @@ foreach ($fieldlist as $field => $value)
 	// Determine le nom du champ par rapport aux noms possibles
 	// dans les dictionnaires de donnees
 	$valuetoshow = ucfirst($fieldlist[$field]); // Par defaut
-	$valuetoshow = $langs->trans($valuetoshow); // try to translate
+	$valuetoshow = $langs->trans($valuetoshow); 
 	$align = "left";
 	if ($fieldlist[$field] == 'fk_user') { $valuetoshow = $langs->trans("Owner"); }
 	if ($fieldlist[$field] == 'lang') { $valuetoshow = (empty($conf->global->MAIN_MULTILANGS) ? '&nbsp;' : $langs->trans("Language")); }
@@ -605,7 +605,7 @@ foreach ($fieldsforcontent as $tmpfieldlist)
 
 
 $colspan = count($fieldlist) + 1;
-//print '<tr><td colspan="'.$colspan.'">&nbsp;</td></tr>';	// Keep &nbsp; to have a line with enough height
+
 
 print '</table>';
 print '</div>';
@@ -702,7 +702,7 @@ if ($resql)
         $sortable=$tmp['sortable'];
 		*/
         $valuetoshow = ucfirst($fieldlist[$field]); // By defaut
-        $valuetoshow = $langs->trans($valuetoshow); // try to translate
+        $valuetoshow = $langs->trans($valuetoshow); 
         if ($fieldlist[$field] == 'fk_user') { $valuetoshow = $langs->trans("Owner"); }
         if ($fieldlist[$field] == 'lang') { $valuetoshow = $langs->trans("Language"); }
         if ($fieldlist[$field] == 'type') { $valuetoshow = $langs->trans("Type"); }
@@ -906,7 +906,7 @@ if ($resql)
                 if ($iserasable)
                 {
                     print ' &nbsp; <a href="'.$url.'action=delete">'.img_delete().'</a>';
-                    //else print '<a href="#">'.img_delete().'</a>';    // Some dictionary can be edited by other profile than admin
+                    
                 }
                 print '</td>';
 

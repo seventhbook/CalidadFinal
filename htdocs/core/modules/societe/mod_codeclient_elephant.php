@@ -103,7 +103,7 @@ class mod_codeclient_elephant extends ModeleThirdPartyCode
 		$texte .= '<table class="nobordernopadding" width="100%">';
 
 		$tooltip = $langs->trans("GenericMaskCodes", $langs->transnoentities("ThirdParty"), $langs->transnoentities("ThirdParty"));
-		//$tooltip.=$langs->trans("GenericMaskCodes2");	Not required for third party numbering
+		
 		$tooltip .= $langs->trans("GenericMaskCodes3");
 		$tooltip .= $langs->trans("GenericMaskCodes4b");
 		$tooltip .= $langs->trans("GenericMaskCodes5");
@@ -217,12 +217,12 @@ class mod_codeclient_elephant extends ModeleThirdPartyCode
 		if ($type == 0)
 		{
 			$field = 'code_client';
-			//$where = ' AND client in (1,2)';
+			
 		}
 		elseif ($type == 1)
 		{
 			$field = 'code_fournisseur';
-			//$where = ' AND fournisseur = 1';
+			
 		}
 		else return -1;
 

@@ -211,7 +211,7 @@ if ($action == 'create' || empty($action))
     dol_fiche_head(null, '0', '', -1);
 
     $linkback = '';
-    // $linkback = '<a href="' . DOL_URL_ROOT . '/expensereport/payment/list.php">' . $langs->trans("BackToList") . '</a>';
+    
 
     dol_banner_tab($expensereport, 'ref', $linkback, 1, 'ref', 'ref', '');
 

@@ -457,7 +457,7 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 					{
 						$curX = $this->posxpicture-1;
 						$pdf->Image($realpatharray[$i], $curX + (($this->posxtva-$this->posxpicture-$imglinesize['width'])/2), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300);	// Use 300 dpi
-						// $pdf->Image does not increase value return by getY, so we save it manually
+						
 						$posYAfterImage=$curY+$imglinesize['height'];
 					}
 					// Description of product line
@@ -580,8 +580,8 @@ class pdf_muscadet extends ModelePDFSuppliersOrders
 					$vatrate=(string) $object->lines[$i]->tva_tx;
 
 					// Retrieve type from database for backward compatibility with old records
-					if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') // if tax type not defined
-					&& (! empty($localtax1_rate) || ! empty($localtax2_rate))) // and there is local tax
+					if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') 
+					&& (! empty($localtax1_rate) || ! empty($localtax2_rate))) 
 					{
 						$localtaxtmp_array=getLocalTaxesFromRate($vatrate, 0, $mysoc, $object->thirdparty);
 						$localtax1_type = $localtaxtmp_array[0];

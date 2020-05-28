@@ -149,12 +149,12 @@ class modFicheinter extends DolibarrModules
 
 
         // Menus
-        //-------
+        
         $this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
         //Exports
-        //--------
+        
         $r=1;
 
         $this->export_code[$r]=$this->rights_class.'_'.$r;
@@ -172,13 +172,13 @@ class modFicheinter extends DolibarrModules
         	'fd.rowid'=>'InterLineId',
 			'fd.date'=>"InterLineDate",'fd.duree'=>"InterLineDuration",'fd.description'=>"InterLineDesc"
 		);
-        //$this->export_TypeFields_array[$r]=array(
+        
 		//	's.rowid'=>"List:societe:nom",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','s.fk_pays'=>'List:c_country:label',
 		//	's.phone'=>'Text','s.siren'=>'Text','s.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','s.code_compta'=>'Text',
 		//	's.code_compta_fournisseur'=>'Text','f.ref'=>"Text",'f.datec'=>"Date",'f.duree'=>"Duree",'f.fk_statut'=>'Statut','f.description'=>"Text",
 		//	'f.datee'=>"Date",'f.dateo'=>"Date",'f.fulldayevent'=>"Boolean",'fd.date'=>"Date",'fd.duree'=>"Duree",'fd.description'=>"Text",
 		//	'fd.total_ht'=>"Numeric"
-		//);
+		
         $this->export_TypeFields_array[$r]=array(
         	's.rowid'=>"Numeric",'s.nom'=>'Text','s.address'=>'Text','s.zip'=>'Text','s.town'=>'Text','s.fk_pays'=>'List:c_country:label','s.phone'=>'Text','s.siren'=>'Text',
 			's.siret'=>'Text','s.ape'=>'Text','s.idprof4'=>'Text','s.code_compta'=>'Text','s.code_compta_fournisseur'=>'Text',

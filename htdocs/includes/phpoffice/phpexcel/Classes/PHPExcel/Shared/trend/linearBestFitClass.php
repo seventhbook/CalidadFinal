@@ -55,7 +55,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
 	 **/
 	public function getValueOfYForX($xValue) {
 		return $this->getIntersect() + $this->getSlope() * $xValue;
-	}	//	function getValueOfYForX()
+	}	
 
 
 	/**
@@ -66,7 +66,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
 	 **/
 	public function getValueOfXForY($yValue) {
 		return ($yValue - $this->getIntersect()) / $this->getSlope();
-	}	//	function getValueOfXForY()
+	}	
 
 
 	/**
@@ -80,7 +80,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
 		$intersect = $this->getIntersect($dp);
 
 		return 'Y = '.$intersect.' + '.$slope.' * X';
-	}	//	function getEquation()
+	}	
 
 
 	/**
@@ -92,7 +92,7 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
 	 */
 	private function _linear_regression($yValues, $xValues, $const) {
 		$this->_leastSquareFit($yValues, $xValues,$const);
-	}	//	function _linear_regression()
+	}	
 
 
 	/**
@@ -106,6 +106,6 @@ class PHPExcel_Linear_Best_Fit extends PHPExcel_Best_Fit
 		if (parent::__construct($yValues, $xValues) !== False) {
 			$this->_linear_regression($yValues, $xValues, $const);
 		}
-	}	//	function __construct()
+	}	
 
-}	//	class linearBestFit
+}	

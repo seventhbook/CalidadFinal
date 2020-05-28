@@ -555,23 +555,23 @@ class Contact extends CommonObject
 				}
 				
 				// {
-				// 	$tmpobj->skype = $this->skype;
-				// 	$usermustbemodified++;
+				
+				
 				// }
-				// if ($tmpobj->twitter != $this->twitter)
+				
 				// {
-				// 	$tmpobj->twitter = $this->twitter;
-				// 	$usermustbemodified++;
+				
+				
 				// }
-				// if ($tmpobj->facebook != $this->facebook)
+				
 				// {
-				// 	$tmpobj->facebook = $this->facebook;
-				// 	$usermustbemodified++;
+				
+				
 				// }
-				// if ($tmpobj->linkedin != $this->linkedin)
+				
 				// {
-				//     $tmpobj->linkedin = $this->linkedin;
-				//     $usermustbemodified++;
+				
+				
 				// }
 				if ($usermustbemodified)
 				{
@@ -1068,7 +1068,7 @@ class Contact extends CommonObject
 		$error = 0;
 
 		
-		//$this->old_firstname = $obj->firstname;
+		
 
 		$this->db->begin();
 
@@ -1238,7 +1238,7 @@ class Contact extends CommonObject
 		$sql = "SELECT count(mc.email) as nb";
 		$sql .= " FROM ".MAIN_DB_PREFIX."mailing_cibles as mc, ".MAIN_DB_PREFIX."mailing as m";
 		$sql .= " WHERE mc.fk_mailing=m.rowid AND mc.email = '".$this->db->escape($this->email)."' ";
-		$sql .= " AND m.entity IN (".getEntity($this->element).") AND mc.statut NOT IN (-1,0)"; // -1 error, 0 not sent, 1 sent with success
+		$sql .= " AND m.entity IN (".getEntity($this->element).") AND mc.statut NOT IN (-1,0)"; 
 
 		$resql = $this->db->query($sql);
 		if ($resql)

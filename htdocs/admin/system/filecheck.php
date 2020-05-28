@@ -187,7 +187,7 @@ if (!$error && $xml)
         $out .= '</tr>'."\n";
 
         $i = 0;
-        foreach ($xml->dolibarr_constants[0]->constant as $constant)    // $constant is a simpleXMLElement
+        foreach ($xml->dolibarr_constants[0]->constant as $constant)    
         {
             $constname = $constant['name'];
             $constvalue = (string) $constant;

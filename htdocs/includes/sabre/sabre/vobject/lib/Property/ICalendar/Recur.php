@@ -287,7 +287,7 @@ class Recur extends Property {
                         }
                     }
                 }
-                // if there is no valid entry left, remove the whole value
+                
                 if (is_array($value) && empty($values[$key])) {
                     unset($values[$key]);
                 }
@@ -309,7 +309,7 @@ class Recur extends Property {
                         }
                     }
                 }
-                // if there is no valid entry left, remove the whole value
+                
                 if (is_array($value) && empty($values[$key])) {
                     unset($values[$key]);
                 }
@@ -331,7 +331,7 @@ class Recur extends Property {
                         }
                     }
                 }
-                // if there is no valid entry left, remove the whole value
+                
                 if (is_array($value) && empty($values[$key])) {
                     unset($values[$key]);
                 }

@@ -196,38 +196,38 @@ class PHPExcel_Worksheet_AutoFilter_Column_Rule
 
 
 	/* Rule Operators (Numeric, Boolean etc) */
-//	const AUTOFILTER_COLUMN_RULE_BETWEEN			= 'between';		//	greaterThanOrEqual 1 && lessThanOrEqual 2
+
 	/* Rule Operators (Numeric Special) which are translated to standard numeric operators with calculated values */
-//	const AUTOFILTER_COLUMN_RULE_TOPTEN				= 'topTen';			//	greaterThan calculated value
-//	const AUTOFILTER_COLUMN_RULE_TOPTENPERCENT		= 'topTenPercent';	//	greaterThan calculated value
-//	const AUTOFILTER_COLUMN_RULE_ABOVEAVERAGE		= 'aboveAverage';	//	Value is calculated as the average
-//	const AUTOFILTER_COLUMN_RULE_BELOWAVERAGE		= 'belowAverage';	//	Value is calculated as the average
+
+
+
+
 	/* Rule Operators (String) which are set as wild-carded values */
-//	const AUTOFILTER_COLUMN_RULE_BEGINSWITH			= 'beginsWith';			// A*
-//	const AUTOFILTER_COLUMN_RULE_ENDSWITH			= 'endsWith';			// *Z
-//	const AUTOFILTER_COLUMN_RULE_CONTAINS			= 'contains';			// *B*
-//	const AUTOFILTER_COLUMN_RULE_DOESNTCONTAIN		= 'notEqual';			//	notEqual *B*
+
+
+
+
 	/* Rule Operators (Date Special) which are translated to standard numeric operators with calculated values */
-//	const AUTOFILTER_COLUMN_RULE_BEFORE				= 'lessThan';
-//	const AUTOFILTER_COLUMN_RULE_AFTER				= 'greaterThan';
-//	const AUTOFILTER_COLUMN_RULE_YESTERDAY			= 'yesterday';
-//	const AUTOFILTER_COLUMN_RULE_TODAY				= 'today';
-//	const AUTOFILTER_COLUMN_RULE_TOMORROW			= 'tomorrow';
-//	const AUTOFILTER_COLUMN_RULE_LASTWEEK			= 'lastWeek';
-//	const AUTOFILTER_COLUMN_RULE_THISWEEK			= 'thisWeek';
-//	const AUTOFILTER_COLUMN_RULE_NEXTWEEK			= 'nextWeek';
-//	const AUTOFILTER_COLUMN_RULE_LASTMONTH			= 'lastMonth';
-//	const AUTOFILTER_COLUMN_RULE_THISMONTH			= 'thisMonth';
-//	const AUTOFILTER_COLUMN_RULE_NEXTMONTH			= 'nextMonth';
-//	const AUTOFILTER_COLUMN_RULE_LASTQUARTER		= 'lastQuarter';
-//	const AUTOFILTER_COLUMN_RULE_THISQUARTER		= 'thisQuarter';
-//	const AUTOFILTER_COLUMN_RULE_NEXTQUARTER		= 'nextQuarter';
-//	const AUTOFILTER_COLUMN_RULE_LASTYEAR			= 'lastYear';
-//	const AUTOFILTER_COLUMN_RULE_THISYEAR			= 'thisYear';
-//	const AUTOFILTER_COLUMN_RULE_NEXTYEAR			= 'nextYear';
-//	const AUTOFILTER_COLUMN_RULE_YEARTODATE			= 'yearToDate';			//	<dynamicFilter val="40909" type="yearToDate" maxVal="41113"/>
-//	const AUTOFILTER_COLUMN_RULE_ALLDATESINMONTH	= 'allDatesInMonth';	//	<dynamicFilter type="M2"/> for Month/February
-//	const AUTOFILTER_COLUMN_RULE_ALLDATESINQUARTER	= 'allDatesInQuarter';	//	<dynamicFilter type="Q2"/> for Quarter 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 * Autofilter Column

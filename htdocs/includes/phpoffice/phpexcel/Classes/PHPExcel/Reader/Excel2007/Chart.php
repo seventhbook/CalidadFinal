@@ -48,7 +48,7 @@ class PHPExcel_Reader_Excel2007_Chart
 			}
 		}
 		return null;
-	}	//	function _getAttribute()
+	}	
 
 
 	private static function _readColor($color,$background=false) {
@@ -199,7 +199,7 @@ class PHPExcel_Reader_Excel2007_Chart
 		$chart = new PHPExcel_Chart($chartName,$title,$legend,$plotArea,$plotVisOnly,$dispBlanksAs,$XaxisLabel,$YaxisLabel);
 
 		return $chart;
-	}	//	function readChart()
+	}	
 
 
 	private static function _chartTitle($titleDetails,$namespacesChartMeta,$type) {
@@ -224,7 +224,7 @@ class PHPExcel_Reader_Excel2007_Chart
 		}
 
 		return new PHPExcel_Chart_Title($caption, $titleLayout);
-	}	//	function _chartTitle()
+	}	
 
 
 	private static function _chartLayoutDetails($chartDetail,$namespacesChartMeta) {
@@ -241,7 +241,7 @@ class PHPExcel_Reader_Excel2007_Chart
 			$layout[$detailKey] = self::_getAttribute($detail, 'val', 'string');
 		}
 		return new PHPExcel_Chart_Layout($layout);
-	}	//	function _chartLayoutDetails()
+	}	
 
 
 	private static function _chartDataSeries($chartDetail,$namespacesChartMeta,$plotType) {
@@ -292,7 +292,7 @@ class PHPExcel_Reader_Excel2007_Chart
 			}
 		}
 		return new PHPExcel_Chart_DataSeries($plotType,$multiSeriesType,$plotOrder,$seriesLabel,$seriesCategory,$seriesValues,$smoothLine);
-	}	//	function _chartDataSeries()
+	}	
 
 
 	private static function _chartDataSeriesValueSet($seriesDetail, $namespacesChartMeta, $marker = null, $smoothLine = false) {
@@ -320,7 +320,7 @@ class PHPExcel_Reader_Excel2007_Chart
 			return new PHPExcel_Chart_DataSeriesValues('String',$seriesSource,$seriesData['formatCode'],$seriesData['pointCount'],$seriesData['dataValues'],$marker,$smoothLine);
 		}
 		return null;
-	}	//	function _chartDataSeriesValueSet()
+	}	
 
 
 	private static function _chartDataSeriesValues($seriesValueSet,$dataType='n') {
@@ -355,7 +355,7 @@ class PHPExcel_Reader_Excel2007_Chart
 					  'pointCount'	=> $pointCount,
 					  'dataValues'	=> $seriesVal
 					);
-	}	//	function _chartDataSeriesValues()
+	}	
 
 
 	private static function _chartDataSeriesValuesMultiLevel($seriesValueSet,$dataType='n') {
@@ -388,7 +388,7 @@ class PHPExcel_Reader_Excel2007_Chart
 					  'pointCount'	=> $pointCount,
 					  'dataValues'	=> $seriesVal
 					);
-	}	//	function _chartDataSeriesValuesMultiLevel()
+	}	
 
 	private static function _parseRichText($titleDetailPart = null) {
 		$value = new PHPExcel_RichText();

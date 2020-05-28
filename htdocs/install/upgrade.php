@@ -124,7 +124,7 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
         else $dolibarr_main_db_pass = dol_decode($dolibarr_main_db_encrypted_pass);
     }
 
-    // $conf is already instancied inside inc.php
+    
     $conf->db->type = $dolibarr_main_db_type;
     $conf->db->host = $dolibarr_main_db_host;
     $conf->db->port = $dolibarr_main_db_port;
@@ -196,7 +196,7 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
 
         // Test database version requirement
         $versionmindb=explode('.', $db::VERSIONMIN);
-        //print join('.',$versionarray).' - '.join('.',$versionmindb);
+        
         if (count($versionmindb) && count($versionarray)
         	&& versioncompare($versionarray, $versionmindb) < 0)
         {
@@ -211,9 +211,9 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
         {
 			$dbversion_disallowed=array(
 				array('type'=>'mysql','version'=>array(5,5,40)),
-				array('type'=>'mysqli','version'=>array(5,5,40)) //,
-				//array('type'=>'mysql','version'=>array(5,5,41)),
-				//array('type'=>'mysqli','version'=>array(5,5,41))
+				array('type'=>'mysqli','version'=>array(5,5,40)) 
+				
+				
 			);
 			$listofforbiddenversion='';
 			foreach ($dbversion_disallowed as $dbversion_totest)
@@ -222,7 +222,7 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
 			}
 			foreach ($dbversion_disallowed as $dbversion_totest)
 			{
-		        //print $db->type.' - '.join('.',$versionarray).' - '.versioncompare($dbversion_totest['version'],$versionarray)."<br>\n";
+		        
 		        if ($dbversion_totest['type'] == $db->type
 		        	&& (versioncompare($dbversion_totest['version'], $versionarray) == 0 || versioncompare($dbversion_totest['version'], $versionarray)<=-4 || versioncompare($dbversion_totest['version'], $versionarray)>=4)
 		        )
@@ -272,7 +272,7 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
             	// Database prefix filter
             	if (preg_match('/^'.MAIN_DB_PREFIX.'/', $val))
             	{
-            		//print "x".$val."<br>";
+            		
             		$sql = "SHOW CREATE TABLE ".$val;
             		$resql = $db->query($sql);
             		if ($resql)
@@ -374,18 +374,18 @@ if (! GETPOST('action', 'aZ09') || preg_match('/upgrade/i', GETPOST('action', 'a
 	            $listoffileprocessed[$dir.$file]=$dir.$file;
 
 	            // Scan if there is migration scripts that depends of Dolibarr version
-	            // for modules htdocs/module/sql or htdocs/custom/module/sql (files called "dolibarr_x.y.z-a.b.c.sql")
+	            
 	            $modulesfile = array();
 	            foreach ($conf->file->dol_document_root as $type => $dirroot)
 	            {
-	            	$handlemodule=@opendir($dirroot);		// $dirroot may be '..'
+	            	$handlemodule=@opendir($dirroot);		
 	            	if (is_resource($handlemodule))
 	            	{
 	            		while (($filemodule = readdir($handlemodule))!==false)
 	            		{
 	            			if (! preg_match('/\./', $filemodule) && is_dir($dirroot.'/'.$filemodule.'/sql'))	// We exclude filemodule that contains . (are not directories) and are not directories.
 	            			{
-	            				//print "Scan for ".$dirroot . '/' . $filemodule . '/sql/'.$file;
+	            				
 	            				if (is_file($dirroot . '/' . $filemodule . '/sql/dolibarr_'.$file))
 	            				{
 	            					$modulesfile[$dirroot . '/' . $filemodule . '/sql/dolibarr_'.$file] = '/' . $filemodule . '/sql/dolibarr_'.$file;

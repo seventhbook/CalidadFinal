@@ -262,7 +262,7 @@ if ($action == 'create')
 
 	print '<table class="noborder centpercent">';
 	print '<tr class="liste_titre">';
-	//print '<td>'.$langs->trans("SocialContribution").'</td>';
+	
 	print '<td class="left">'.$langs->trans("DateDue").'</td>';
 	print '<td class="right">'.$langs->trans("Amount").'</td>';
 	print '<td class="right">'.$langs->trans("AlreadyPaid").'</td>';

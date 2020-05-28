@@ -319,7 +319,7 @@ if (empty($reshook))
 							if ($discountid > 0)
 							{
 								$result = $object->insert_discount($discountid);
-								//$result=$discount->link_to_invoice($lineid,$id);
+								
 							}
 							else
 							{
@@ -475,7 +475,7 @@ if ($status)
 }
 if ($search_billed > 0) $title .= ' - '.$langs->trans("Billed");
 
-//$help_url="EN:Module_Customers_Orders|FR:Module_Commandes_Clients|ES:Módulo_Pedidos_de_clientes";
+
 $help_url = '';
 // llxHeader('',$title,$help_url);
 
@@ -558,7 +558,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -628,7 +628,7 @@ if ($resql)
 		'builddoc'=>$langs->trans("PDFMerge"),
 	    'presend'=>$langs->trans("SendByMail"),
 	);
-	//if($user->rights->fournisseur->facture->creer) $arrayofmassactions['createbills']=$langs->trans("CreateInvoiceForThisCustomer");
+	
 	if ($user->rights->fournisseur->commande->supprimer) $arrayofmassactions['predelete'] = '<span class="fa fa-trash paddingrightonly"></span>'.$langs->trans("Delete");
 	if (in_array($massaction, array('presend', 'predelete', 'createbills'))) $arrayofmassactions = array();
 	$massactionbutton = $form->selectMassAction('', $arrayofmassactions);

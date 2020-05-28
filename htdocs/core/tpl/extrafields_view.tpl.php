@@ -70,10 +70,10 @@ if (empty($reshook) && is_array($extrafields->attributes[$object->table_element]
 		{
 			$perms = dol_eval($extrafields->attributes[$object->table_element]['perms'][$key], 1);
 		}
-		//print $key.'-'.$enabled.'-'.$perms.'-'.$label.$_POST["options_" . $key].'<br>'."\n";
+		
 
 		if (empty($enabled)) continue; // 0 = Never visible field
-		if (abs($enabled) != 1 && abs($enabled) != 3 && abs($enabled) != 5 && abs($enabled) != 4) continue; // <> -1 and <> 1 and <> 3 = not visible on forms, only on list <> 4 = not visible at the creation
+		if (abs($enabled) != 1 && abs($enabled) != 3 && abs($enabled) != 5 && abs($enabled) != 4) continue; 
 		if (empty($perms)) continue; // 0 = Not visible
 
 		// Load language if required
@@ -153,12 +153,12 @@ if (empty($reshook) && is_array($extrafields->attributes[$object->table_element]
 			if (in_array($extrafields->attributes[$object->table_element]['type'][$key], array('date', 'datetime')))
 			{
 				$datenotinstring = $object->array_options['options_'.$key];
-				// print 'X'.$object->array_options['options_' . $key].'-'.$datenotinstring.'x';
+				
 				if (!is_numeric($object->array_options['options_'.$key]))	// For backward compatibility
 				{
 					$datenotinstring = $db->jdate($datenotinstring);
 				}
-				//print 'x'.$object->array_options['options_' . $key].'-'.$datenotinstring.' - '.dol_print_date($datenotinstring, 'dayhour');
+				
 				$value = isset($_POST["options_".$key]) ? dol_mktime($_POST["options_".$key."hour"], $_POST["options_".$key."min"], 0, $_POST["options_".$key."month"], $_POST["options_".$key."day"], $_POST["options_".$key."year"]) : $datenotinstring;
 			}
 			//TODO Improve element and rights detection

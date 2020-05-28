@@ -63,7 +63,7 @@ class PHPExcel_Calculation_TextData {
 		if (ord($c{0}) >= 254 && ord($c{0}) <= 255) //error
 			return PHPExcel_Calculation_Functions::VALUE();
 		return 0;
-	}	//	function _uniord()
+	}	
 
 	/**
 	 * CHARACTER
@@ -107,7 +107,7 @@ class PHPExcel_Calculation_TextData {
 			return str_replace(self::$_invalidChars, '', trim($stringValue, "\x00..\x1F"));
 		}
 		return NULL;
-	}	//	function TRIMNONPRINTABLE()
+	}	
 
 
 	/**
@@ -126,7 +126,7 @@ class PHPExcel_Calculation_TextData {
 			return trim(preg_replace('/ +/',' ',trim($stringValue, ' ')), ' ');
 		}
 		return NULL;
-	}	//	function TRIMSPACES()
+	}	
 
 
 	/**
@@ -155,7 +155,7 @@ class PHPExcel_Calculation_TextData {
 			if (strlen($characters) > 0) { $character = substr($characters, 0, 1); }
 			return ord($character);
 		}
-	}	//	function ASCIICODE()
+	}	
 
 
 	/**
@@ -182,7 +182,7 @@ class PHPExcel_Calculation_TextData {
 
 		// Return
 		return $returnValue;
-	}	//	function CONCATENATE()
+	}	
 
 
 	/**
@@ -218,7 +218,7 @@ class PHPExcel_Calculation_TextData {
 
 		return PHPExcel_Style_NumberFormat::toFormattedString($value, $mask);
 
-	}	//	function DOLLAR()
+	}	
 
 
 	/**
@@ -254,7 +254,7 @@ class PHPExcel_Calculation_TextData {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SEARCHSENSITIVE()
+	}	
 
 
 	/**
@@ -290,7 +290,7 @@ class PHPExcel_Calculation_TextData {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function SEARCHINSENSITIVE()
+	}	
 
 
 	/**
@@ -319,7 +319,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return (string) $valueResult;
-	}	//	function FIXEDFORMAT()
+	}	
 
 
 	/**
@@ -346,7 +346,7 @@ class PHPExcel_Calculation_TextData {
 		} else {
 			return substr($value, 0, $chars);
 		}
-	}	//	function LEFT()
+	}	
 
 
 	/**
@@ -375,7 +375,7 @@ class PHPExcel_Calculation_TextData {
 		} else {
 			return substr($value, --$start, $chars);
 		}
-	}	//	function MID()
+	}	
 
 
 	/**
@@ -402,7 +402,7 @@ class PHPExcel_Calculation_TextData {
 		} else {
 			return substr($value, strlen($value) - $chars);
 		}
-	}	//	function RIGHT()
+	}	
 
 
 	/**
@@ -423,7 +423,7 @@ class PHPExcel_Calculation_TextData {
 		} else {
 			return strlen($value);
 		}
-	}	//	function STRINGLENGTH()
+	}	
 
 
 	/**
@@ -442,7 +442,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return PHPExcel_Shared_String::StrToLower($mixedCaseString);
-	}	//	function LOWERCASE()
+	}	
 
 
 	/**
@@ -461,7 +461,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return PHPExcel_Shared_String::StrToUpper($mixedCaseString);
-	}	//	function UPPERCASE()
+	}	
 
 
 	/**
@@ -480,7 +480,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return PHPExcel_Shared_String::StrToTitle($mixedCaseString);
-	}	//	function PROPERCASE()
+	}	
 
 
 	/**
@@ -502,7 +502,7 @@ class PHPExcel_Calculation_TextData {
 		$right = self::RIGHT($oldText,self::STRINGLENGTH($oldText)-($start+$chars)+1);
 
 		return $left.$newText.$right;
-	}	//	function REPLACE()
+	}	
 
 
 	/**
@@ -549,7 +549,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return $text;
-	}	//	function SUBSTITUTE()
+	}	
 
 
 	/**
@@ -565,7 +565,7 @@ class PHPExcel_Calculation_TextData {
 			return $testValue;
 		}
 		return Null;
-	}	//	function RETURNSTRING()
+	}	
 
 
 	/**
@@ -584,7 +584,7 @@ class PHPExcel_Calculation_TextData {
 		}
 
 		return (string) PHPExcel_Style_NumberFormat::toFormattedString($value,$format);
-	}	//	function TEXTFORMAT()
+	}	
 
 	/**
 	 * VALUE

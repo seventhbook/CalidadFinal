@@ -61,7 +61,7 @@ if ($action == 'setvalue' && $user->admin)
 	    	$newkey = '';
 
 	    	$shortkey = preg_replace('/_key$/', '', $key);
-    		//print $shortkey.'<br>';
+    		
 
 	    	if (preg_match('/^NOTIF_(.*)_old_(.*)_key/', $key, $reg))
 	    	{
@@ -69,7 +69,7 @@ if ($action == 'setvalue' && $user->admin)
 
 				$newkey = 'NOTIFICATION_FIXEDEMAIL_'.$reg[1].'_THRESHOLD_HIGHER_'.((int) GETPOST($shortkey.'_amount'));
 				$newval = GETPOST($shortkey.'_key');
-				//print $newkey.' - '.$newval.'<br>';
+				
 	    	}
 	    	elseif (preg_match('/^NOTIF_(.*)_new_key/', $key, $reg))
 	    	{
@@ -153,7 +153,7 @@ print '<tr class="liste_titre">';
 print '<td>'.$langs->trans("Label").'</td>';
 /*print '<td>'.$langs->trans("Code").'</td>';
  print '<td>'.$langs->trans("Label").'</td>';*/
-//print '<td class="right">'.$langs->trans("NbOfTargetedContacts").'</td>';
+
 print "</tr>\n";
 
 // Load array of available notifications
@@ -166,7 +166,7 @@ print '<td>';
 $i = 0;
 foreach ($listofnotifiedevents as $notifiedevent)
 {
-    $label = $langs->trans("Notify_".$notifiedevent['code']); //!=$langs->trans("Notify_".$notifiedevent['code'])?$langs->trans("Notify_".$notifiedevent['code']):$notifiedevent['label'];
+    $label = $langs->trans("Notify_".$notifiedevent['code']); 
     $elementLabel = $langs->trans(ucfirst($notifiedevent['elementtype']));
 
     if ($notifiedevent['elementtype'] == 'order_supplier') $elementLabel = $langs->trans('SupplierOrder');
@@ -210,7 +210,7 @@ $listofnotifiedevents = $notificationtrigger->getListOfManagedEvents();
 
 foreach ($listofnotifiedevents as $notifiedevent)
 {
-    $label = $langs->trans("Notify_".$notifiedevent['code']); //!=$langs->trans("Notify_".$notifiedevent['code'])?$langs->trans("Notify_".$notifiedevent['code']):$notifiedevent['label'];
+    $label = $langs->trans("Notify_".$notifiedevent['code']); 
 
     $elementLabel = $langs->trans(ucfirst($notifiedevent['elementtype']));
 	// Special cases

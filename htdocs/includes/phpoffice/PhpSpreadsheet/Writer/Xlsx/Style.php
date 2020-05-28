@@ -258,10 +258,10 @@ class Style extends WriterPart
         $objWriter->startElement('font');
         //    Weird! The order of these elements actually makes a difference when opening Xlsx
         //        files in Excel2003 with the compatibility pack. It's not documented behaviour,
-        //        and makes for a real WTF!
+        
 
         // Bold. We explicitly write this element also when false (like MS Office Excel 2007 does
-        // for conditional formatting). Otherwise it will apparently not be picked up in conditional
+        
         // formatting style dialog
         if ($pFont->getBold() !== null) {
             $objWriter->startElement('b');

@@ -55,7 +55,7 @@ if (!empty($conf->global->MAIN_USE_ADVANCED_PERMS))
 // Define value to know what current user can do on properties of edited user
 if ($id)
 {
-    // $user est le user qui edite, $id est l'id de l'utilisateur edite
+    
     $caneditfield = ((($user->id == $id) && $user->rights->user->self->creer)
     || (($user->id != $id) && $user->rights->user->user->creer));
     $caneditpassword = ((($user->id == $id) && $user->rights->user->self->password)
@@ -87,7 +87,7 @@ if ($id > 0 || !empty($ref))
 {
 	$result = $object->fetch($id, $ref, '', 1);
 	$object->getrights();
-	//$upload_dir = $conf->user->multidir_output[$object->entity] . "/" . $object->id ;
+	
 	// For users, the upload_dir is always $conf->user->entity for the moment
 	$upload_dir = $conf->user->dir_output."/".$object->id;
 }

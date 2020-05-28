@@ -105,7 +105,7 @@ if (($date_start < dol_time_plus_duree($date_end, -1, 'y')) || ($date_start > $d
 	$date_end = dol_time_plus_duree($date_start - 1, 1, 'y');
 }
 
-// $date_start and $date_end are defined. We force $start_year and $nbofyear
+
 $tmps=dol_getdate($date_start);
 $start_year = $tmps['year'];
 $start_month = $tmps['mon'];
@@ -175,12 +175,12 @@ if ($modecompta=="CREANCES-DETTES")
 	$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode", '<a href="'.$_SERVER["PHP_SELF"].'?year='.$start_year.(GETPOST("month")>0?'&month='.GETPOST("month"):'').'&modecompta=RECETTES-DEPENSES">', '</a>').')';
 	if (! empty($conf->accounting->enabled)) $calcmode.='<br>('.$langs->trans("SeeReportInBookkeepingMode", '<a href="'.$_SERVER["PHP_SELF"].'?year='.$start_year.'&modecompta=BOOKKEEPING">', '</a>').')';
 	$period=$form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
-	//$periodlink='<a href="'.$_SERVER["PHP_SELF"].'?year='.($year-1).'&modecompta='.$modecompta.'">'.img_previous().'</a> <a href="'.$_SERVER["PHP_SELF"].'?year='.($year+1).'&modecompta='.$modecompta.'">'.img_next().'</a>';
+	
 	$description=$langs->trans("RulesResultDue");
 	if (! empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description.= $langs->trans("DepositsAreNotIncluded");
 	else  $description.= $langs->trans("DepositsAreIncluded");
 	$builddate=dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta=="RECETTES-DEPENSES") {
 	$name=$langs->trans("AnnualByAccountInputOutputMode");
@@ -188,17 +188,17 @@ elseif ($modecompta=="RECETTES-DEPENSES") {
 	$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode", '<a href="'.$_SERVER["PHP_SELF"].'?year='.$year.(GETPOST("month")>0?'&month='.GETPOST("month"):'').'&modecompta=CREANCES-DETTES">', '</a>').')';
 	if (! empty($conf->accounting->enabled)) $calcmode.='<br>('.$langs->trans("SeeReportInBookkeepingMode", '<a href="'.$_SERVER["PHP_SELF"].'?year='.$year.'&modecompta=BOOKKEEPING">', '</a>').')';
 	$period=$form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
-	//$periodlink='<a href="'.$_SERVER["PHP_SELF"].'?year='.($year-1).'&modecompta='.$modecompta.'">'.img_previous().'</a> <a href="'.$_SERVER["PHP_SELF"].'?year='.($year+1).'&modecompta='.$modecompta.'">'.img_next().'</a>';
+	
 	$description=$langs->trans("RulesResultInOut");
 	$builddate=dol_now();
-	//$exportlink=$langs->trans("NotYetAvailable");
+	
 }
 elseif ($modecompta=="BOOKKEEPING")
 {
 	$name = $langs->trans("ReportInOut").', '.$langs->trans("ByPersonalizedAccountGroups");
 	$calcmode=$langs->trans("CalcModeBookkeeping");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=CREANCES-DETTES">','</a>').')';
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year_start='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
+	
+	
 	$period=$form->selectDate($date_start, 'date_start', 0, 0, 0, '', 1, 0).' - '.$form->selectDate($date_end, 'date_end', 0, 0, 0, '', 1, 0);
 	$arraylist=array('no'=>$langs->trans("No"), 'yes'=>$langs->trans("AccountWithNonZeroValues"), 'all'=>$langs->trans("All"));
 	$period.=' &nbsp; &nbsp; '.$langs->trans("DetailByAccount").' '. $form->selectarray('showaccountdetail', $arraylist, $showaccountdetail, 0);
@@ -206,8 +206,8 @@ elseif ($modecompta=="BOOKKEEPING")
 	$exportlink = '';
 	$description=$langs->trans("RulesResultBookkeepingPersonalized").
 	$description.=' ('.$langs->trans("SeePageForSetup", DOL_URL_ROOT.'/accountancy/admin/categories_list.php?search_country_id='.$mysoc->country_id.'&mainmenu=accountancy&leftmenu=accountancy_admin', $langs->transnoentitiesnoconv("Accountancy").' / '.$langs->transnoentitiesnoconv("Setup").' / '.$langs->transnoentitiesnoconv("AccountingCategory")).')';
-	//if (! empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) $description.= $langs->trans("DepositsAreNotIncluded");
-	//else  $description.= $langs->trans("DepositsAreIncluded");
+	
+	
 	$builddate=dol_now();
 }
 
@@ -246,13 +246,13 @@ print	'</tr>';
 
 if ($modecompta == 'CREANCES-DETTES')
 {
-	//if (! empty($date_start) && ! empty($date_end))
-	//	$sql.= " AND f.datef >= '".$db->idate($date_start)."' AND f.datef <= '".$db->idate($date_end)."'";
+	
+	
 }
 elseif ($modecompta=="RECETTES-DEPENSES")
 {
-	//if (! empty($date_start) && ! empty($date_end))
-	//	$sql.= " AND p.datep >= '".$db->idate($date_start)."' AND p.datep <= '".$db->idate($date_end)."'";
+	
+	
 }
 elseif ($modecompta=="BOOKKEEPING")
 {
@@ -275,9 +275,9 @@ elseif ($modecompta=="BOOKKEEPING")
 
 			print '<div class="warning">Warning: There is '.$num_rows.' accounts in your ledger table that are not set into a reporting group</div>';
 			$i = 0;
-			//while ($i < $num) {
-			//	$obj = $db->fetch_object($resql);
-			//	$i++;
+			
+			
+			
 			//}
 		}
 	}
@@ -317,7 +317,7 @@ elseif ($modecompta=="BOOKKEEPING")
 				$result = strtr($formula, $vars);
 
 				//var_dump($result);
-				//$r = $AccCat->calculate($result);
+				
 				$r = dol_eval($result, 1);
 				//var_dump($r);
 
@@ -336,7 +336,7 @@ elseif ($modecompta=="BOOKKEEPING")
 
 				$result = strtr($formula, $vars);
 
-				//$r = $AccCat->calculate($result);
+				
 				$r = dol_eval($result, 1);
 
 				print '<td class="liste_total right">' . price($r) . '</td>';
@@ -350,7 +350,7 @@ elseif ($modecompta=="BOOKKEEPING")
 						}
 						$result = strtr($formula, $vars);
 
-						//$r = $AccCat->calculate($result);
+						
 						$r = dol_eval($result, 1);
 
 						print '<td class="liste_total right">' . price($r) . '</td>';
@@ -364,7 +364,7 @@ elseif ($modecompta=="BOOKKEEPING")
 						}
 						$result = strtr($formula, $vars);
 
-						//$r = $AccCat->calculate($result);
+						
 						$r = dol_eval($result, 1);
 
 						print '<td class="liste_total right">' . price($r) . '</td>';
@@ -425,7 +425,7 @@ elseif ($modecompta=="BOOKKEEPING")
 					// Each month
 					$resultN = 0;
 					foreach ($months as $k => $v) {
-						$monthtoprocess = $k + 1;            // ($k+1) is month 1, 2, ..., 12
+						$monthtoprocess = $k + 1;            
 						$yeartoprocess = $start_year;
 						if (($k + 1) < $start_month)
 							$yeartoprocess++;

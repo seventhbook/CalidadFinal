@@ -16,7 +16,7 @@ if (empty($conf->global->EXPENSEREPORT_DISABLE_ATTACHMENT_ON_LINES))
     {
         print '<tr class="trattachnewfilenow'.(empty($tredited)?' oddeven nohover':' '.$tredited).'"'.(! GETPOSTISSET('sendit') && empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER)?' style="display: none"':'').'>';
         print '<td colspan="'.$colspan.'">';
-        //print '<span class="opacitymedium">'.$langs->trans("AttachTheNewLineToTheDocument").'</span><br>';
+        
         $modulepart='expensereport'; $maxheightmini=48;
         $relativepath=(! empty($object->ref)?dol_sanitizeFileName($object->ref):'').'/';
         $filei=0;
@@ -30,7 +30,7 @@ if (empty($conf->global->EXPENSEREPORT_DISABLE_ATTACHMENT_ON_LINES))
             if (image_format_supported($file['name']) > 0)
             {
                 $minifile=getImageFileNameForSize($file['name'], '_mini'); // For new thumbs using same ext (in lower case however) than original
-                //print $file['path'].'/'.$minifile.'<br>';
+                
                 $urlforhref=getAdvancedPreviewUrl($modulepart, $relativepath.$fileinfo['filename'].'.'.strtolower($fileinfo['extension']), 1, '&entity='.(!empty($object->entity)?$object->entity:$conf->entity));
                 if (empty($urlforhref)) {
                     $urlforhref=DOL_URL_ROOT.'/viewimage.php?modulepart='.$modulepart.'&entity='.(!empty($object->entity)?$object->entity:$conf->entity).'&file='.urlencode($fileinfo['relativename'].'.'.strtolower($fileinfo['extension']));

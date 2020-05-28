@@ -486,7 +486,7 @@ class PHPExcel_Reader_OOCalc extends PHPExcel_Reader_Abstract implements PHPExce
 									}
 								}
 
-//								echo '<b>'.$columnID.$rowID.'</b><br />';
+
 								$cellDataText = (isset($namespacesContent['text'])) ?
 									$cellData->children($namespacesContent['text']) :
 									'';

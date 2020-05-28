@@ -503,7 +503,7 @@ class Ticket extends CommonObject
                 $this->ref = $obj->ref;
                 $this->track_id = $obj->track_id;
                 $this->fk_soc = $obj->fk_soc;
-                $this->socid = $obj->fk_soc; // for fetch_thirdparty() method
+                $this->socid = $obj->fk_soc; 
                 $this->fk_project = $obj->fk_project;
                 $this->origin_email = $obj->origin_email;
                 $this->fk_user_create = $obj->fk_user_create;
@@ -964,7 +964,7 @@ class Ticket extends CommonObject
         $object->statut = 0;
 
         // Clear fields
-        // ...
+        
         // Create clone
         $object->context['createfromclone'] = 'createfromclone';
         $result = $object->create($user);
@@ -1351,7 +1351,7 @@ class Ticket extends CommonObject
         if ($withpicto) $result .= img_object(($notooltip ? '' : $label), ($this->picto ? $this->picto : 'generic'), ($notooltip ? (($withpicto != 2) ? 'class="paddingright"' : '') : 'class="'.(($withpicto != 2) ? 'paddingright ' : '').'classfortooltip"'), 0, 0, $notooltip ? 0 : 1);
         if ($withpicto != 2) $result .= $this->ref;
         $result .= $linkend;
-        //if ($withpicto != 2) $result.=(($addlabel && $this->label) ? $sep . dol_trunc($this->label, ($addlabel > 1 ? $addlabel : 0)) : '');
+        
 
         return $result;
     }
@@ -1502,7 +1502,7 @@ class Ticket extends CommonObject
             $contacts = array_merge($contacts, $array_company);
         }
 
-        // foreach contact send email with notification message
+        
         if (count($contacts) > 0) {
             foreach ($contacts as $key => $info_sendto) {
                 $message = '';
@@ -2169,7 +2169,7 @@ class Ticket extends CommonObject
                     // Define $urlwithroot
                     $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
                     $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-                    //$urlwithroot=DOL_MAIN_URL_ROOT;                        // This is to use same domain name than current
+                    
                     if ($link) {
                         $message .= "\n".$urlwithroot.$link;
                     }
@@ -2724,7 +2724,7 @@ class Ticket extends CommonObject
         $langs->load("mails");
 
         include_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
-        //$contactstatic = new Contact($this->db);
+        
 
         // If no receiver defined, load all ticket linked contacts
         if (!is_array($array_receiver) || !count($array_receiver) > 0) {

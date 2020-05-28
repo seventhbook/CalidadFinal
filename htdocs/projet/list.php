@@ -48,7 +48,7 @@ $title = $langs->trans("Projects");
 
 // Security check
 $socid = (is_numeric($_GET["socid"]) ? $_GET["socid"] : 0);
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if ($socid > 0)
 {
 	$soc = new Societe($db);
@@ -99,7 +99,7 @@ $search_eday	= GETPOST('search_eday', 'int');
 $search_emonth	= GETPOST('search_emonth', 'int');
 $search_eyear	= GETPOST('search_eyear', 'int');
 
-if ($search_status == '') $search_status = -1; // -1 or 1
+if ($search_status == '') $search_status = -1; 
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
 $object = new Project($db);
@@ -310,14 +310,14 @@ $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_lead_status as cls on p.fk_opp_status = 
 if (!empty($search_categ)) $sql .= ' LEFT JOIN '.MAIN_DB_PREFIX."categorie_project as cs ON p.rowid = cs.fk_project"; // We'll need this table joined to the select in order to filter by categ
 // We'll need this table joined to the select in order to filter by sale
 // No check is done on company permission because readability is managed by public status of project and assignement.
-//if ($search_sale > 0 || (! $user->rights->societe->client->voir && ! $socid)) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe_commerciaux as sc ON sc.fk_soc = s.rowid";
+
 if ($search_sale > 0) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe_commerciaux as sc ON sc.fk_soc = s.rowid";
 if ($search_project_user > 0)
 {
 	$sql .= ", ".MAIN_DB_PREFIX."element_contact as ecp";
 }
 $sql .= " WHERE p.entity IN (".getEntity('project').')';
-if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")"; // public and assigned to, or restricted to company for external users
+if (!$user->rights->projet->all->lire) $sql .= " AND p.rowid IN (".$projectsListId.")"; 
 // No need to check if company is external user, as filtering of projects must be done by getProjectsAuthorizedForUser
 if ($socid > 0) $sql .= " AND (p.fk_soc = ".$socid.")"; // This filter if when we use a hard coded filter on company on url (not related to filter for external users)
 if ($search_categ > 0)    $sql .= " AND cs.fk_categorie = ".$db->escape($search_categ);
@@ -345,10 +345,10 @@ if ($search_opp_status)
 }
 if ($search_public != '') $sql .= " AND p.public = ".$db->escape($search_public);
 // For external user, no check is done on company permission because readability is managed by public status of project and assignement.
-//if ($socid > 0) $sql.= " AND s.rowid = ".$socid;
+
 if ($search_sale > 0) $sql .= " AND sc.fk_user = ".$search_sale;
 // No check is done on company permission because readability is managed by public status of project and assignement.
-//if (! $user->rights->societe->client->voir && ! $socid) $sql.= " AND ((s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id.") OR (s.rowid IS NULL))";
+
 if ($search_project_user > 0) $sql .= " AND ecp.fk_c_type_contact IN (".join(',', array_keys($listofprojectcontacttype)).") AND ecp.element_id = p.rowid AND ecp.fk_socpeople = ".$search_project_user;
 if ($search_opp_amount != '') $sql .= natural_search('p.opp_amount', $search_opp_amount, 1);
 if ($search_budget_amount != '') $sql .= natural_search('p.budget_amount', $search_budget_amount, 1);
@@ -368,7 +368,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -828,7 +828,7 @@ while ($i < min($num, $limit))
 		if (!empty($arrayfields['p.opp_amount']['checked']))
 		{
 			print '<td class="right">';
-			//if ($obj->opp_status_code)
+			
 			if (strcmp($obj->opp_amount, ''))
 			{
 				print price($obj->opp_amount, 1, $langs, 1, -1, -1, '');

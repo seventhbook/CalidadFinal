@@ -81,7 +81,7 @@ class modGeneratePassPerso extends ModeleGenPassword
 		$this->user = $user;
 
 		if (empty($conf->global->USER_PASSWORD_PATTERN)) {
-			// default value (8carac, 1maj, 1digit, 1spe,  3 repeat, no ambi at auto generation.
+			
 			dolibarr_set_const($db, "USER_PASSWORD_PATTERN", '8;1;1;1;3;1', 'chaine', 0, '', $conf->entity);
 		}
 
@@ -110,9 +110,9 @@ class modGeneratePassPerso extends ModeleGenPassword
 		$pattern = $this->Min.(!empty($this->NbMaj) ? $this->Maj : '').(!empty($this->NbNum) ? $this->Nb : '').(!empty($this->NbSpe) ? $this->Spe : '');
 		$this->All = str_shuffle($pattern);
 
-		//$this->All = str_shuffle($this->Maj. $this->Min. $this->Nb. $this->Spe);
-		//$this->All = $this->Maj. $this->Min. $this->Nb. $this->Spe;
-		//$this->All =  $this->Spe;
+		
+		
+		
 	}
 
 	/**

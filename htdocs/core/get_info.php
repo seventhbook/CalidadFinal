@@ -23,13 +23,13 @@
  *       \brief      File to return a single page with just logged user info, to be used by other frontend
  */
 
-//if (! defined('NOREQUIREUSER'))   define('NOREQUIREUSER','1');	// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIREDB'))   define('NOREQUIREDB','1');		// Not disabled cause need to load personalized language
-//if (! defined('NOREQUIRESOC'))    define('NOREQUIRESOC','1');
-//if (! defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');		// Not disabled cause need to do translations
+
+
+
+
 if (!defined('NOCSRFCHECK'))     define('NOCSRFCHECK', 1);
 if (!defined('NOTOKENRENEWAL'))  define('NOTOKENRENEWAL', 1);
-//if (! defined('NOLOGIN')) define('NOLOGIN',1);					// Not disabled cause need to load personalized language
+
 if (!defined('NOREQUIREMENU'))  define('NOREQUIREMENU', 1);
 
 require_once '../main.inc.php';
@@ -58,7 +58,7 @@ top_htmlhead($head, $title, 0, 0, $arrayofjs, $arrayofcss);
 
 print '<body>'."\n";
 print '<div style="padding: 20px;">';
-//print '<br>';
+
 
 $nbofsearch = 0;
 
@@ -80,13 +80,13 @@ if (!empty($conf->global->MAIN_FEATURES_LEVEL)) $appli .= "<br>".$langs->trans("
 $logouttext = '';
 if (empty($conf->global->MAIN_OPTIMIZEFORTEXTBROWSER))
 {
-	//$logouthtmltext=$appli.'<br>';
+	
 	if ($_SESSION["dol_authmode"] != 'forceuser' && $_SESSION["dol_authmode"] != 'http')
 	{
 		$logouthtmltext .= $langs->trans("Logout").'<br>';
 
 		$logouttext .= '<a href="'.DOL_URL_ROOT.'/user/logout.php">';
-		//$logouttext .= img_picto($langs->trans('Logout').":".$langs->trans('Logout'), 'logout_top.png', 'class="login"', 0, 0, 1);
+		
 		$logouttext .= '<span class="fa fa-sign-out atoplogin"></span>';
 		$logouttext .= '</a>';
 	}
@@ -126,7 +126,7 @@ else $toprightmenu .= $result; // For backward compatibility
 if (!empty($conf->modulebuilder->enabled))
 {
 	$text = '<a href="'.DOL_URL_ROOT.'/modulebuilder/index.php?mainmenu=home&leftmenu=admintools" target="modulebuilder">';
-	//$text.= img_picto(":".$langs->trans("ModuleBuilder"), 'printer_top.png', 'class="printer"');
+	
 	$text .= '<span class="fa fa-bug atoplogin"></span>';
 	$text .= '</a>';
 	$toprightmenu .= @Form::textwithtooltip('', $langs->trans("ModuleBuilder"), 2, 1, $text, 'login_block_elem', 2);
@@ -146,7 +146,7 @@ if (empty($conf->global->MAIN_PRINT_DISABLELINK) && empty($conf->global->MAIN_OP
 	}
 	$qs.=(($qs && $morequerystring)?'&':'').$morequerystring;
 	$text ='<a href="'.dol_escape_htmltag($_SERVER["PHP_SELF"]).'?'.$qs.($qs?'&':'').'optioncss=print" target="_blank">';
-	//$text.= img_picto(":".$langs->trans("PrintContentArea"), 'printer_top.png', 'class="printer"');
+	
 	$text.='<span class="fa fa-print atoplogin"></span>';
 	$text.='</a>';
 	$toprightmenu.=@Form::textwithtooltip('',$langs->trans("PrintContentArea"),2,1,$text,'login_block_elem',2);
@@ -182,12 +182,12 @@ if (empty($conf->global->MAIN_HELP_DISABLELINK) && empty($conf->global->MAIN_OPT
 		if ($mode == 'wiki') $text.=sprintf($helpbaseurl,urlencode(html_entity_decode($helppage)));
 		else $text.=sprintf($helpbaseurl,$helppage);
 		$text.='">';
-		//$text.=img_picto('', 'helpdoc_top').' ';
+		
 		$text.='<span class="fa fa-question-circle atoplogin"></span>';
-		//$toprightmenu.=$langs->trans($mode == 'wiki' ? 'OnlineHelp': 'Help');
-		//if ($mode == 'wiki') $text.=' ('.dol_trunc(strtr($helppage,'_',' '),8).')';
+		
+		
 		$text.='</a>';
-		//$toprightmenu.='</div>'."\n";
+		
 		$toprightmenu.=@Form::textwithtooltip('',$title,2,1,$text,'login_block_elem',2);
 	}
 }

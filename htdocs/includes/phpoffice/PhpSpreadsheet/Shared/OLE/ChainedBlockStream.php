@@ -189,7 +189,7 @@ class ChainedBlockStream
     // bool mkdir ( string path, int mode, int options )
     // bool rmdir ( string path, int options )
     // bool dir_opendir ( string path, int options )
-    // array url_stat ( string path, int flags )
+    
     // string dir_readdir ( void )
     // bool dir_rewinddir ( void )
     // bool dir_closedir ( void )

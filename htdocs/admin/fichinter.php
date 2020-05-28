@@ -564,7 +564,7 @@ print '</td><td class="right">';
 print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 print "</td></tr>\n";
 print '</form>';
-// print products on fichinter
+
 print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<input type="hidden" name="action" value="set_FICHINTER_PRINT_PRODUCTS">';
@@ -610,7 +610,7 @@ print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">'
 print '</td>';
 print '</tr>';
 print '</form>';
-// use date without hour
+
 print '<form action="'.$_SERVER["PHP_SELF"].'" method="post">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<input type="hidden" name="action" value="set_FICHINTER_DATE_WITHOUT_HOUR">';

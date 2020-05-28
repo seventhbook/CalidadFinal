@@ -75,7 +75,7 @@ $conffile = "../conf/conf.php";
 $conffiletoshow = "htdocs/conf/conf.php";
 // For debian/redhat like systems
 
-//$conffiletoshow = "/etc/dolibarr/conf.php";
+
 
 
 // Load conf file if it is already defined
@@ -144,7 +144,7 @@ define('DOL_CLASS_PATH', 'class/');                             // Filsystem pat
 define('DOL_DATA_ROOT', (isset($dolibarr_main_data_root)?$dolibarr_main_data_root:DOL_DOCUMENT_ROOT . '/../documents'));
 define('DOL_MAIN_URL_ROOT', (isset($dolibarr_main_url_root)?$dolibarr_main_url_root:''));           // URL relative root
 $uri=preg_replace('/^http(s?):\/\//i', '', constant('DOL_MAIN_URL_ROOT'));  // $uri contains url without http*
-$suburi = strstr($uri, '/');       // $suburi contains url without domain
+$suburi = strstr($uri, '/');       
 if ($suburi == '/') $suburi = '';   // If $suburi is /, it is now ''
 define('DOL_URL_ROOT', $suburi);    // URL relative root ('', '/dolibarr', ...)
 

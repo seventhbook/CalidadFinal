@@ -192,7 +192,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::AVERAGE($colData);
-	}	//	function DAVERAGE()
+	}	
 
 
 	/**
@@ -245,7 +245,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::COUNT($colData);
-	}	//	function DCOUNT()
+	}	
 
 
 	/**
@@ -294,7 +294,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::COUNTA($colData);
-	}	//	function DCOUNTA()
+	}	
 
 
 	/**
@@ -345,7 +345,7 @@ class PHPExcel_Calculation_Database {
 		}
 
 		return $colData[0];
-	}	//	function DGET()
+	}	
 
 
 	/**
@@ -392,7 +392,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::MAX($colData);
-	}	//	function DMAX()
+	}	
 
 
 	/**
@@ -439,7 +439,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::MIN($colData);
-	}	//	function DMIN()
+	}	
 
 
 	/**
@@ -485,7 +485,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_MathTrig::PRODUCT($colData);
-	}	//	function DPRODUCT()
+	}	
 
 
 	/**
@@ -532,7 +532,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::STDEV($colData);
-	}	//	function DSTDEV()
+	}	
 
 
 	/**
@@ -579,7 +579,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::STDEVP($colData);
-	}	//	function DSTDEVP()
+	}	
 
 
 	/**
@@ -625,7 +625,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_MathTrig::SUM($colData);
-	}	//	function DSUM()
+	}	
 
 
 	/**
@@ -672,7 +672,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::VARFunc($colData);
-	}	//	function DVAR()
+	}	
 
 
 	/**
@@ -719,7 +719,7 @@ class PHPExcel_Calculation_Database {
 
 		// Return
 		return PHPExcel_Calculation_Statistical::VARP($colData);
-	}	//	function DVARP()
+	}	
 
 
-}	//	class PHPExcel_Calculation_Database
+}	

@@ -88,7 +88,7 @@ if ($action == 'create')
 	{
 		if (!is_array($selected))
 		{
-			//$error++;
+			
 			setEventMessages($langs->trans('Error_OrderNotChecked'), null, 'errors');
 			$action = '';
 		} else {
@@ -461,7 +461,7 @@ if (($action != 'create' && $action != 'add') && !$error) {
 
 	// Find order that are not already invoiced
 	//No need due to the billed status
-	//$sql .= " AND c.rowid NOT IN (SELECT fk_source FROM " . MAIN_DB_PREFIX . "element_element WHERE targettype='invoice_supplier')";
+	
 
 	if ($socid)
 		$sql .= ' AND s.rowid = '.$socid;
@@ -475,8 +475,8 @@ if (($action != 'create' && $action != 'add') && !$error) {
 	}
 
 	// Date filter
-	//$sql.= dolSqlDateFilter("c.date_commande", GETPOST("date_startday", 'int'), GETPOST("date_startmonth", 'int'), GETPOST("date_startyear", 'int'));
-	//$sql.= dolSqlDateFilter("c.date_livraison", $search_deliveryday, $search_deliverymonth, $search_deliveryyear);
+	
+	
 	if ($date_start)
 		$sql .= " AND c.date_commande >= '".$db->idate($date_start)."'";
 	if ($date_end)
@@ -533,7 +533,7 @@ if (($action != 'create' && $action != 'add') && !$error) {
 		print '<input class="flat" size="10" type="text" name="sref" value="'.$sref.'">';
 		print '</td>';
 
-		// print '<td class="liste_titre">';
+		
 		print '<td class="liste_titre left">';
 		print '<input class="flat" type="text" size="10" name="sref_client" value="'.$sref_client.'">';
         print '</td>';
@@ -621,7 +621,7 @@ if (($action != 'create' && $action != 'add') && !$error) {
 		print '<input type="hidden" name="socid" value="'.$socid.'">';
 		print '<input type="hidden" name="action" value="create">';
 		print '<input type="hidden" name="origin" value="order_supplier"><br>';
-		// print '<a class="butAction" href="index.php">'.$langs->trans("GoBack").'</a>';
+		
 		print '<input type="submit" class="butAction" name="createbill" value="'.$langs->trans("GenerateBill").'">';
 		print '</div>';
 		print '</div>';

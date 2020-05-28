@@ -211,7 +211,7 @@ class Form
 					$valuetoshow = price2num($editvalue ? $editvalue : $value);
 					$ret .= '<input type="text" id="'.$htmlname.'" name="'.$htmlname.'" value="'.($valuetoshow != '' ?price($valuetoshow) : '').'"'.($tmp[1] ? ' size="'.$tmp[1].'"' : '').'>';
 				}
-				elseif (preg_match('/^text/', $typeofdata) || preg_match('/^note/', $typeofdata))	// if wysiwyg is enabled $typeofdata = 'ckeditor'
+				elseif (preg_match('/^text/', $typeofdata) || preg_match('/^note/', $typeofdata))	
 				{
 					$tmp = explode(':', $typeofdata);
 					$cols = $tmp[2];
@@ -579,7 +579,7 @@ class Form
 		elseif ($type == 'superadmin') $img = img_picto($alt, 'redstar');
 		elseif ($type == 'admin') $img = img_picto($alt, 'star');
 		elseif ($type == 'warning') $img = img_warning($alt);
-		elseif ($type != 'none') $img = img_picto($alt, $type); // $type can be an image path
+		elseif ($type != 'none') $img = img_picto($alt, $type); 
 
 		return $this->textwithtooltip($text, $htmltext, ((($tooltiptrigger && !$img) || strpos($type, 'clickable')) ? 3 : 2), $direction, $img, $extracss, $notabs, '', $noencodehtmltext, $tooltiptrigger, $forcenowrap);
 	}
@@ -1688,7 +1688,7 @@ class Form
 				include_once DOL_DOCUMENT_ROOT.'/core/lib/ajax.lib.php';
 				$out .= ajax_combobox($htmlname);
 
-				// do not use maxwidthonsmartphone by default. Set it by caller so auto size to 100% will work when not defined
+				
 				$out .= '<select class="flat'.($morecss ? ' minwidth100imp '.$morecss : ' minwidth200').'" id="'.$htmlname.'" name="'.$htmlname.($multiple ? '[]' : '').'" '.($multiple ? 'multiple' : '').' '.($disabled ? ' disabled' : '').'>';
 				if ($show_empty && !$multiple) $out .= '<option value="-1"'.((empty($selected) || in_array(-1, $selected)) ? ' selected' : '').'>&nbsp;</option>'."\n";
 				if ($show_every) $out .= '<option value="-2"'.((in_array(-2, $selected)) ? ' selected' : '').'>-- '.$langs->trans("Everybody").' --</option>'."\n";
@@ -1719,7 +1719,7 @@ class Form
 						$out .= '>';
 					}
 
-					// $fullNameMode is 0=Lastname+Firstname (MAIN_FIRSTNAME_NAME_POSITION=1), 1=Firstname+Lastname (MAIN_FIRSTNAME_NAME_POSITION=0)
+					
 					$fullNameMode = 0;
 					if (empty($conf->global->MAIN_FIRSTNAME_NAME_POSITION))
 					{
@@ -2157,7 +2157,7 @@ class Form
 			$sql .= ' AND e.statut IN ('.$this->db->escape(implode(',', $warehouseStatusArray)).')'; // Return line if product is inside the selected stock. If not, an empty line will be returned so we will count 0.
 		}
 
-		// include search in supplier ref
+		
 		if (!empty($conf->global->MAIN_SEARCH_PRODUCT_BY_FOURN_REF))
 		{
             $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product_fournisseur_price as pfp ON p.rowid = pfp.fk_product";
@@ -2785,7 +2785,7 @@ class Form
 
 			$num = $this->db->num_rows($result);
 
-			//$out.='<select class="flat" id="select'.$htmlname.'" name="'.$htmlname.'">';	// remove select to have id same with combo and ajax
+			
 			$out .= '<select class="flat maxwidthonsmartphone'.($morecss ? ' '.$morecss : '').'" id="'.$htmlname.'" name="'.$htmlname.'">';
 			if (!$selected) $out .= '<option value="0" selected>&nbsp;</option>';
 			else $out .= '<option value="0">&nbsp;</option>';
@@ -3041,7 +3041,7 @@ class Form
 					$objp = $this->db->fetch_object($result);
 
 					$opt = '<option value="'.$objp->idprodfournprice.'"';
-					//if there is only one supplier, preselect it
+					
 					if ($num == 1 || ($selected_supplier > 0 && $objp->fk_soc == $selected_supplier)) {
 						$opt .= ' selected';
 					}
@@ -3194,7 +3194,7 @@ class Form
 				$i++;
 			}
 
-			//$this->cache_conditions_paiements=dol_sort_array($this->cache_conditions_paiements, 'label', 'asc', 0, 0, 1);		// We use the field sortorder of table
+			
 
 			return $num;
 		}
@@ -5271,7 +5271,7 @@ class Form
 					}
 				}
 				$return .= '>';
-				//if (! empty($conf->global->MAIN_VAT_SHOW_POSITIVE_RATES))
+				
 				if ($mysoc->country_code == 'IN' || !empty($conf->global->MAIN_VAT_LABEL_IS_POSITIVE_RATES))
 				{
 					$return .= $rate['labelpositiverates'];
@@ -6182,7 +6182,7 @@ class Form
 				if (is_array($id)) {
 					if (in_array($key, $id) && !$disabled) $out .= ' selected'; // To preselect a value
 				} else {
-					$id = (string) $id;	// if $id = 0, then $id = '0'
+					$id = (string) $id;	
 					if ($id != '' && $id == $key && !$disabled) $out .= ' selected'; // To preselect a value
 				}
 				if ($nohtmlescape) $out .= ' data-html="'.dol_escape_htmltag($selectOptionValue).'"';
@@ -6260,7 +6260,7 @@ class Form
 				    	    $.each( data, function( key, value ) {
 				    	       result.push({id: key, text: value.text});
                             });
-			    			//return {results:[{id:\'none\', text:\'aa\'}, {id:\'rrr\', text:\'Red\'},{id:\'bbb\', text:\'Search a into projects\'}], more:false}
+			    			
 			    			//console.log(result);
 			    			return {results: result, more: false}
 			    		},
@@ -6462,7 +6462,7 @@ class Form
 				$out .= 'function formatResult(record) {'."\n";
 				if ($elemtype == 'category')
 				{
-					$out .= '	//return \'<span><img src="'.DOL_URL_ROOT.'/theme/eldy/img/object_category.png'.'"> <a href="'.DOL_URL_ROOT.'/categories/viewcat.php?type=0&id=\'+record.id+\'">\'+record.text+\'</a></span>\';
+					$out .= '	
 									  	return \'<span><img src="'.DOL_URL_ROOT.'/theme/eldy/img/object_category.png'.'"> \'+record.text+\'</span>\';';
 				}
 				else
@@ -6473,7 +6473,7 @@ class Form
 				$out .= 'function formatSelection(record) {'."\n";
 				if ($elemtype == 'category')
 				{
-					$out .= '	//return \'<span><img src="'.DOL_URL_ROOT.'/theme/eldy/img/object_category.png'.'"> <a href="'.DOL_URL_ROOT.'/categories/viewcat.php?type=0&id=\'+record.id+\'">\'+record.text+\'</a></span>\';
+					$out .= '	
 									  	return \'<span><img src="'.DOL_URL_ROOT.'/theme/eldy/img/object_category.png'.'"> \'+record.text+\'</span>\';';
 				}
 				else
@@ -6645,7 +6645,7 @@ class Form
 			$toprint = array();
 			foreach ($categories as $c)
 			{
-				$ways = $c->print_all_ways(); // $ways[0] = "ccc2 >> ccc2a >> ccc2a1" with html formated text
+				$ways = $c->print_all_ways(); 
 				foreach ($ways as $way)
 				{
 					$toprint[] = '<li class="select2-search-choice-dolibarr noborderoncategories"'.($c->color ? ' style="background: #'.$c->color.';"' : ' style="background: #aaa"').'>'.img_object('', 'category').' '.$way.'</li>';
@@ -7186,7 +7186,7 @@ class Form
 		// Left part of banner
 		if ($morehtmlleft)
 		{
-			if ($conf->browser->layout == 'phone') $ret .= '<!-- morehtmlleft --><div class="floatleft">'.$morehtmlleft.'</div>'; // class="center" to have photo in middle
+			if ($conf->browser->layout == 'phone') $ret .= '<!-- morehtmlleft --><div class="floatleft">'.$morehtmlleft.'</div>'; 
 			else $ret .= '<!-- morehtmlleft --><div class="inline-block floatleft">'.$morehtmlleft.'</div>';
 		}
 

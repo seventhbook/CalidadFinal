@@ -169,7 +169,7 @@ if ($action == 'testprinter' && $user->admin) {
 if ($action == 'testtemplate' && $user->admin) {
     $error=0;
     
-    //     $error++;
+    
     //     setEventMessages($langs->trans("PrinterIdEmpty"), null, 'errors');
     // }
 

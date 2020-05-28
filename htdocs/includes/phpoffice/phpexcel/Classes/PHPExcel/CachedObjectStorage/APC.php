@@ -71,7 +71,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
             $this->_currentCellIsDirty = false;
         }
         $this->_currentObjectID = $this->_currentObject = null;
-    }    //    function _storeData()
+    }    
 
 
     /**
@@ -94,7 +94,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
         $this->_currentCellIsDirty = true;
 
         return $cell;
-    }    //    function addCacheData()
+    }    
 
 
     /**
@@ -121,7 +121,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
             return true;
         }
         return false;
-    }    //    function isDataSet()
+    }    
 
 
     /**
@@ -159,7 +159,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
 
         //    Return requested entry
         return $this->_currentObject;
-    }    //    function getCacheData()
+    }    
 
 
 	/**
@@ -189,7 +189,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
 
         //    Delete the entry from our cell address array
         parent::deleteCacheData($pCoord);
-    }    //    function deleteCacheData()
+    }    
 
 
     /**
@@ -221,7 +221,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
             }
         }
         $this->_cachePrefix = $newCachePrefix;
-    }    //    function copyCellCollection()
+    }    
 
 
     /**
@@ -242,7 +242,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
 
         //    detach ourself from the worksheet, so that it can then delete this object successfully
         $this->_parent = null;
-    }    //    function unsetWorksheetCells()
+    }    
 
 
     /**
@@ -261,7 +261,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
 
             parent::__construct($parent);
         }
-    }    //    function __construct()
+    }    
 
 
     /**
@@ -272,7 +272,7 @@ class PHPExcel_CachedObjectStorage_APC extends PHPExcel_CachedObjectStorage_Cach
         foreach($cacheList as $cellID) {
             apc_delete($this->_cachePrefix.$cellID.'.cache');
         }
-    }    //    function __destruct()
+    }    
 
 
     /**

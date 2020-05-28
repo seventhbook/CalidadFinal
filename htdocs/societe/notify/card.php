@@ -370,7 +370,7 @@ if ($result > 0)
 			if (! $first) print ', ';
 			$first=0;
 			$valemail=trim($valemail);
-    		//print $keyemail.' - '.$valemail.' - '.$reg[1].'<br>';
+    		
 			if (isValidEmail($valemail, 1))
 			{
 				if ($valemail == '__SUPERVISOREMAIL__') print $valemail;
@@ -430,7 +430,7 @@ if ($result > 0)
     {
         $result = $db->query($sql);
         $nbtotalofrecords = $db->num_rows($result);
-        if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+        if (($page * $limit) > $nbtotalofrecords)	
         {
         	$page = 0;
         	$offset = 0;
@@ -516,7 +516,7 @@ if ($result > 0)
 				print $orderstatic->getNomUrl(1);
             }
            	print '</td>';*/
-            // print
+            
             print'<td class="right">'.dol_print_date($db->jdate($obj->daten), 'dayhour').'</td>';
             print '</tr>';
             $i++;

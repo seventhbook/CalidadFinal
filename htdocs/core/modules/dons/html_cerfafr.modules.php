@@ -163,7 +163,7 @@ class html_cerfafr extends ModeleDon
 				$form = implode('', file($donmodel));
 				$form = str_replace('__REF__', $don->id, $form);
 				$form = str_replace('__DATE__', dol_print_date($don->date, 'day', false, $outputlangs), $form);
-				//$form = str_replace('__IP__',$user->ip,$form); // TODO $user->ip not exist
+				
 				$form = str_replace('__AMOUNT__', price($don->amount), $form);
 				$form = str_replace('__AMOUNTLETTERS__', $this->amountToLetters($don->amount), $form);
 				$form = str_replace('__CURRENCY__', $outputlangs->transnoentitiesnoconv("Currency".$currency), $form);
@@ -188,7 +188,7 @@ class html_cerfafr extends ModeleDon
 				$form = str_replace('__DonationRecipient__', $outputlangs->trans("DonationRecipient"), $form);
 				$form = str_replace('__DonationDatePayment__', $outputlangs->trans("DonationDatePayment"), $form);
 				$form = str_replace('__PaymentMode__', $outputlangs->trans("PaymentMode"), $form);
-				// $form = str_replace('__CodeDon__',$CodeDon,$form);
+				
 				$form = str_replace('__Name__', $outputlangs->trans("Name"), $form);
 				$form = str_replace('__Address__', $outputlangs->trans("Address"), $form);
 				$form = str_replace('__Zip__', $outputlangs->trans("Zip"), $form);

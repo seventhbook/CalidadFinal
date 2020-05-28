@@ -720,7 +720,7 @@ class Plugin extends DAV\ServerPlugin {
 
             if (!$principalCollection instanceof IPrincipalCollection) {
                 // Not a principal collection, we're simply going to ignore
-                // this.
+                
                 continue;
             }
 
@@ -770,7 +770,7 @@ class Plugin extends DAV\ServerPlugin {
             $principalCollection = $this->server->tree->getNodeForPath($uri);
             if (!$principalCollection instanceof IPrincipalCollection) {
                 // Not a principal collection, we're simply going to ignore
-                // this.
+                
                 continue;
             }
 
@@ -850,7 +850,7 @@ class Plugin extends DAV\ServerPlugin {
         $server->resourceTypeMapping['Sabre\\DAVACL\\IPrincipal'] = '{DAV:}principal';
 
         // Mapping the group-member-set property to the HrefList property
-        // class.
+        
         $server->xml->elementMap['{DAV:}group-member-set'] = 'Sabre\\DAV\\Xml\\Property\\Href';
         $server->xml->elementMap['{DAV:}acl'] = 'Sabre\\DAVACL\\Xml\\Property\\Acl';
         $server->xml->elementMap['{DAV:}acl-principal-prop-set'] = 'Sabre\\DAVACL\\Xml\\Request\\AclPrincipalPropSetReport';
@@ -917,10 +917,10 @@ class Plugin extends DAV\ServerPlugin {
                 // checked, however, we're deleting the node beforehand and
                 // creating a new one after, so this is handled by the
                 // beforeUnbind event.
-                //
+                
                 // The creation of the new node is handled by the beforeBind
                 // event.
-                //
+                
                 // If MOVE is used beforeUnbind will also be used to check if
                 // the sourcenode can be deleted.
                 $this->checkPrivileges($path, '{DAV:}read', self::R_RECURSIVE);
@@ -1383,7 +1383,7 @@ class Plugin extends DAV\ServerPlugin {
                 if (count($childRequestedProperties) === 0) continue;
 
                 // We only have to do the expansion if the property was found
-                // and it contains an href element.
+                
                 if (!array_key_exists($propertyName, $node[200])) continue;
 
                 if (!$node[200][$propertyName] instanceof DAV\Xml\Property\Href) {

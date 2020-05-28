@@ -186,14 +186,14 @@ if ($action == 'selectfield')     // Selection of field at step 2
         if (!empty($fieldsentitiesarray[$field]) && !empty($fieldsdependenciesarray[$fieldsentitiesarray[$field]]))
         {
             // We found a dependency on the type of field
-            $tmp = $fieldsdependenciesarray[$fieldsentitiesarray[$field]]; // $fieldsdependenciesarray=array('element'=>'fd.rowid') or array('element'=>array('fd.rowid','ab.rowid'))
+            $tmp = $fieldsdependenciesarray[$fieldsentitiesarray[$field]]; 
             if (is_array($tmp)) $listofdependencies = $tmp;
             else $listofdependencies = array($tmp);
         }
         elseif (!empty($field) && !empty($fieldsdependenciesarray[$field]))
         {
             // We found a dependency on a dedicated field
-            $tmp = $fieldsdependenciesarray[$field]; // $fieldsdependenciesarray=array('fd.fieldx'=>'fd.rowid') or array('fd.fieldx'=>array('fd.rowid','ab.rowid'))
+            $tmp = $fieldsdependenciesarray[$field]; 
             if (is_array($tmp)) $listofdependencies = $tmp;
             else $listofdependencies = array($tmp);
         }
@@ -405,7 +405,7 @@ if ($step == 4 && $action == 'submitFormField')
 	if (is_array($objexport->array_export_TypeFields[0]))
 	{
 		$_SESSION["export_filtered_fields"] = array();
-		foreach ($objexport->array_export_TypeFields[0] as $code => $type)	// $code: s.fieldname $value: Text|Boolean|List:ccc
+		foreach ($objexport->array_export_TypeFields[0] as $code => $type)	
 		{
 			$newcode = (string) preg_replace('/\./', '_', $code);
 			

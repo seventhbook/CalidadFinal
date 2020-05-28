@@ -95,6 +95,6 @@ class mod_codecompta_panicum extends ModeleAccountancyCode
 			else $this->code = (($societe->code_compta != "")?$societe->code_compta:'');
 		}
 
-		return 0; // return ok
+		return 0; 
 	}
 }

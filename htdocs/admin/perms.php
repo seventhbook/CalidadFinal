@@ -77,7 +77,7 @@ $modulesdir = dolGetModulesDirs();
 foreach ($modulesdir as $dir)
 {
 	// Load modules attributes in arrays (name, numero, orders) from dir directory
-	//print $dir."\n<br>";
+	
 	$handle = @opendir(dol_osencode($dir));
 	if (is_resource($handle))
 	{
@@ -104,7 +104,7 @@ foreach ($modulesdir as $dir)
 					{
 						$ret = $objMod->insert_permissions(0);
 						$modules[$objMod->rights_class] = $objMod;
-						//print "modules[".$objMod->rights_class."]=$objMod;";
+						
 					}
 				}
 			}

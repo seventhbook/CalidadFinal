@@ -84,7 +84,7 @@ $sql.= " FROM ".MAIN_DB_PREFIX."actioncomm as a,";
 $sql.= " ".MAIN_DB_PREFIX."user as u";
 $sql.= " WHERE a.fk_user_author = u.rowid";
 $sql.= ' AND a.entity IN ('.getEntity('agenda').')';
-//$sql.= " AND percent = 100";
+
 $sql.= " GROUP BY year, month, df";
 $sql.= " ORDER BY year DESC, month DESC, df DESC";
 
@@ -93,7 +93,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -102,7 +102,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 
 $sql.= $db->plimit($limit+1, $offset);
 
-//print $sql;
+
 dol_syslog("select", LOG_DEBUG);
 $resql=$db->query($sql);
 if ($resql)
@@ -167,7 +167,7 @@ if ($resql)
 			if (file_exists($file))
 			{
 				print '<td class="tdoverflowmax300">';
-				//print '<a data-ajax="false" href="'.DOL_URL_ROOT.'/document.php?page='.$page.'&amp;file='.urlencode($relativepath).'&amp;modulepart=actionsreport">'.img_pdf().'</a>';
+				
 
 				$filearray=array('name'=>basename($file),'fullname'=>$file,'type'=>'file');
 				$out='';

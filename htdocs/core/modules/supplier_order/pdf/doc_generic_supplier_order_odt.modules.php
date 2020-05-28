@@ -297,7 +297,7 @@ class doc_generic_supplier_order_odt extends ModelePDFSuppliersOrders
 					if (!empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) $socobject = $object->contact;
 					else {
                         $socobject = $object->thirdparty;
-               			// if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+               			
             			$contactobject = $object->contact;
                     }
 				}

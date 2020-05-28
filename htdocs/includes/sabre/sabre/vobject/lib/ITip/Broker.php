@@ -288,7 +288,7 @@ class Broker {
         } else {
             // We need to update an existing object with all the new
             // information. We can just remove all existing components
-            // and create new ones.
+            
             foreach ($existingObject->getComponents() as $component) {
                 $existingObject->remove($component);
             }
@@ -558,7 +558,7 @@ class Broker {
 
                 // We need to find out that this change is significant. If it's
                 // not, systems may opt to not send messages.
-                //
+                
                 // We do this based on the 'significantChangeHash' which is
                 // some value that changes if there's a certain set of
                 // properties changed in the event, or simply if there's a

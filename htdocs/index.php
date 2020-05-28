@@ -612,10 +612,10 @@ if (empty($conf->global->MAIN_DISABLE_GLOBAL_WORKBOARD)) {
         }
     }
 
-    $openedDashBoardSize = 'info-box-sm'; // use sm by default
+    $openedDashBoardSize = 'info-box-sm'; 
     foreach ($dashboardgroup as $dashbordelement) {
         if (is_array($dashbordelement['stats']) && count($dashbordelement['stats']) > 2) {
-            $openedDashBoardSize = ''; // use default info box size : big
+            $openedDashBoardSize = ''; 
             break;
         }
     }
@@ -671,7 +671,7 @@ if (empty($conf->global->MAIN_DISABLE_GLOBAL_WORKBOARD)) {
                 $groupKeyLowerCase = strtolower($groupKey);
                 $nbTotalForGroup = 0;
 
-                // global stats
+                
                 $globalStatsKey = false;
                 if (!empty($groupElement['globalStatsKey']) && empty($groupElement['globalStats'])) { // can be filled by hook
                     $globalStatsKey = $groupElement['globalStatsKey'];
@@ -970,7 +970,7 @@ if ($user->admin && empty($conf->global->MAIN_REMOVE_INSTALL_WARNING))
     {
         $langs->load("errors");
         
-        //if (! empty($message)) $message.='<br>';
+        
         $message .= info_admin($langs->transnoentities("WarningConfFileMustBeReadOnly").' '.$langs->trans("WarningUntilDirRemoved", DOL_DOCUMENT_ROOT."/install"), 0, 0, '1', 'clearboth');
     }
 
@@ -978,7 +978,7 @@ if ($user->admin && empty($conf->global->MAIN_REMOVE_INSTALL_WARNING))
     {
         print $message;
         
-        //print info_admin($langs->trans("WarningUntilDirRemoved",DOL_DOCUMENT_ROOT."/install"));
+        
     }
 }
 

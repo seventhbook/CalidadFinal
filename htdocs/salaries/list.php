@@ -126,7 +126,7 @@ if ($typeid) {
 }
 $sql .= $db->order($sortfield, $sortorder);
 
-//$sql.= " GROUP BY u.rowid, u.lastname, u.firstname, s.rowid, s.fk_user, s.amount, s.label, s.datev, s.fk_typepayment, s.num_payment, pst.code";
+
 $totalnboflines = 0;
 $result = $db->query($sql);
 if ($result)
@@ -257,7 +257,7 @@ if ($result)
 	        print '<td>';
 	        if ($obj->fk_bank > 0)
 	        {
-	        	//$accountstatic->fetch($obj->fk_bank);
+	        	
 	            $accountstatic->id = $obj->bid;
 	            $accountstatic->ref = $obj->bref;
 	            $accountstatic->number = $obj->bnumber;

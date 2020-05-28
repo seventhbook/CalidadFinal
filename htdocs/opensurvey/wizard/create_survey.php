@@ -93,8 +93,8 @@ if (GETPOST("creation_sondage_date") || GETPOST("creation_sondage_autre"))
 		{
 			$testdate = true;
 			$_SESSION['champdatefin'] = dol_print_date($champdatefin, 'dayrfc');
-			//$testdate = false;
-			//$_SESSION['champdatefin'] = dol_print_date($champdatefin,'dayrfc');
+			
+			
 			setEventMessages('ExpireDate', null, 'warnings');
 		}
 	}

@@ -103,7 +103,7 @@ if (preg_match('/crypted:/i', $dolibarr_main_db_pass) || ! empty($dolibarr_main_
     else $dolibarr_main_db_pass = dol_decode($dolibarr_main_db_encrypted_pass);
 }
 
-// $conf is already instancied inside inc.php
+
 $conf->db->type = $dolibarr_main_db_type;
 $conf->db->host = $dolibarr_main_db_host;
 $conf->db->port = $dolibarr_main_db_port;
@@ -1020,8 +1020,8 @@ if ($ok && GETPOST('clean_product_stock_batch', 'alpha'))
                             {
                                 
                                 
-                                //$sql2.=" SET ".$obj->psrowid.", '000000', ".($obj->reel - $obj->reelbatch).")";
-                                //$sql2.=" WHERE fk_product_stock = ".$obj->psrowid"
+                                
+                                
                             }
                         }
                     }
@@ -1368,7 +1368,7 @@ if ($ok && GETPOST('force_utf8_on_tables', 'alpha'))
 
         foreach($listoftables as $table)
         {
-        	// do not convert llx_const if mysql encrypt/decrypt is used
+        	
         	if ($conf->db->dolibarr_main_db_encryption != 0 && preg_match('/\_const$/', $table)) continue;
 
             print '<tr><td colspan="2">';
@@ -1398,7 +1398,7 @@ if ($ok && GETPOST('force_utf8_on_tables', 'alpha'))
     }
 }
 
-//
+
 if ($ok && GETPOST('repair_link_dispatch_lines_supplier_order_lines')) {
     /*
      * This script is meant to be run when upgrading from a dolibarr version < 3.8

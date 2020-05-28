@@ -329,7 +329,7 @@ if ($action == 'confirm_resize' && GETPOSTISSET("file") && GETPOSTISSET("sizex")
 
 		    $ecmfile->filepath = $rel_dir;
 		    $ecmfile->filename = $filename;
-		    $ecmfile->label = md5_file(dol_osencode($fullpath)); // $fullpath is a full path to file
+		    $ecmfile->label = md5_file(dol_osencode($fullpath)); 
 		    $ecmfile->fullpath_orig = $fullpath;
 		    $ecmfile->gen_or_uploaded = 'unknown';
 		    $ecmfile->description = ''; // indexed content
@@ -399,7 +399,7 @@ if ($action == 'confirm_crop')
 
 		    $ecmfile->filepath = $rel_dir;
 		    $ecmfile->filename = $filename;
-		    $ecmfile->label = md5_file(dol_osencode($fullpath)); // $fullpath is a full path to file
+		    $ecmfile->label = md5_file(dol_osencode($fullpath)); 
 		    $ecmfile->fullpath_orig = $fullpath;
 		    $ecmfile->gen_or_uploaded = 'unknown';
 		    $ecmfile->description = ''; // indexed content

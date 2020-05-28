@@ -890,7 +890,7 @@ class Productcustomerprice extends CommonObject
 		$object->statut = 0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';

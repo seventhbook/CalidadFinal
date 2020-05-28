@@ -251,9 +251,9 @@ class PHPExcel
 		case 'data':
 			if(is_array($this->_ribbonXMLData) && array_key_exists($What,$this->_ribbonXMLData)){
 				$ReturnData=$this->_ribbonXMLData[$What];
-			}//else $ReturnData stay at null
+			}
 			break;
-		}//default: $ReturnData at null
+		}
 		return $ReturnData;
 	}
 
@@ -389,7 +389,7 @@ class PHPExcel
     public function __destruct() {
         PHPExcel_Calculation::unsetInstance($this);
         $this->disconnectWorksheets();
-    }    //    function __destruct()
+    }    
 
     /**
      * Disconnect all worksheets from this PHPExcel workbook object,
@@ -415,7 +415,7 @@ class PHPExcel
 	public function getCalculationEngine()
 	{
 		return $this->_calculationEngine;
-	}	//	function getCellCacheController()
+	}	
 
     /**
      * Get properties
@@ -777,7 +777,7 @@ class PHPExcel
      */
     public function addNamedRange(PHPExcel_NamedRange $namedRange) {
         if ($namedRange->getScope() == null) {
-            // global scope
+            
             $this->_namedRanges[$namedRange->getName()] = $namedRange;
         } else {
             // local scope
@@ -1079,7 +1079,7 @@ class PHPExcel
         }
 
         // remove cellXfs without references and create mapping so we can update xfIndex
-        // for all cells and columns
+        
         $countNeededCellXfs = 0;
         foreach ($this->_cellXfCollection as $index => $cellXf) {
             if ($countReferencesCellXf[$index] > 0 || $index == 0) { // we must never remove the first cellXf
@@ -1104,20 +1104,20 @@ class PHPExcel
         // update the xfIndex for all cells, row dimensions, column dimensions
         foreach ($this->getWorksheetIterator() as $sheet) {
 
-            // for all cells
+            
             foreach ($sheet->getCellCollection(false) as $cellID) {
                 $cell = $sheet->getCell($cellID);
                 $cell->setXfIndex( $map[$cell->getXfIndex()] );
             }
 
-            // for all row dimensions
+            
             foreach ($sheet->getRowDimensions() as $rowDimension) {
                 if ($rowDimension->getXfIndex() !== null) {
                     $rowDimension->setXfIndex( $map[$rowDimension->getXfIndex()] );
                 }
             }
 
-            // for all column dimensions
+            
             foreach ($sheet->getColumnDimensions() as $columnDimension) {
                 $columnDimension->setXfIndex( $map[$columnDimension->getXfIndex()] );
             }

@@ -128,7 +128,7 @@ class Acl implements Element, HtmlOutput {
         foreach ($this->privileges as $privilege) {
 
             echo '<tr>';
-            // if it starts with a {, it's a special principal
+            
             if ($privilege['principal'][0] === '{') {
                 echo '<td>', $html->xmlName($privilege['principal']), '</td>';
             } else {

@@ -278,7 +278,7 @@ class doc_generic_stock_odt extends ModelePDFStock
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -325,7 +325,7 @@ class doc_generic_stock_odt extends ModelePDFStock
                         $socobject = $object->contact;
                     } else {
                         $socobject = $object->thirdparty;
-                        // if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+                        
                         $contactobject = $object->contact;
                     }
 				}
@@ -374,8 +374,8 @@ class doc_generic_stock_odt extends ModelePDFStock
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

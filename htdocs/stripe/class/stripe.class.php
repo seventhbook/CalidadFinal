@@ -724,11 +724,11 @@ class Stripe extends CommonObject
 						} else {
 							if (!preg_match('/^pm_/', $cardref))
 							{
-								//$card = $cu->sources->retrieve($cardref, array("stripe_account" => $stripeacc));		// this API fails when array stripe_account is provided
+								
 								$card = $cu->sources->retrieve($cardref);
 							}
 							else {
-								//$card = \Stripe\PaymentMethod::retrieve($cardref, array("stripe_account" => $stripeacc));		// Don't know if this works
+								
 								$card = \Stripe\PaymentMethod::retrieve($cardref);
 							}
 						}
@@ -1099,7 +1099,7 @@ class Stripe extends CommonObject
 			dol_syslog($e->getMessage(), LOG_WARNING, 0, '_stripe');
 		} catch (\Stripe\Error\Authentication $e) {
 			// Authentication with Stripe's API failed
-			// (maybe you changed API keys recently)
+			
 			$error++;
 			dol_syslog($e->getMessage(), LOG_WARNING, 0, '_stripe');
 		} catch (\Stripe\Error\ApiConnection $e) {

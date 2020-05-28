@@ -161,7 +161,7 @@ class mailing_thirdparties_services_expired extends MailingTargets
             return -1;
         }
 
-        // ----- Your code end here -----
+        
 
         return parent::addTargetsToDatabase($mailing_id, $cibles);
     }
@@ -178,8 +178,8 @@ class mailing_thirdparties_services_expired extends MailingTargets
     public function getSqlArrayForStats()
     {
 
-        //var $statssql=array();
-        //$this->statssql[0]="SELECT field1 as label, count(distinct(email)) as nb FROM mytable WHERE email IS NOT NULL";
+        
+        
 
         return array();
     }

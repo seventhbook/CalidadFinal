@@ -37,9 +37,9 @@ abstract class ActionsContactCardCommon
     public $canvas;
     public $card;
 
-	//! Template container
+	
 	public $tpl = array();
-	//! Object container
+	
 	public $object;
 
 	/**

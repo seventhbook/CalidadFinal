@@ -151,20 +151,20 @@ class pdf_typhon extends ModelePDFDeliveryOrder
 		// Define position of columns
 		$this->posxdesc=$this->marge_gauche+1;
 		$this->posxcomm=112;
-		//$this->posxtva=112;
-		//$this->posxup=126;
+		
+		
 		$this->posxqty=165;
 		$this->posxremainingqty=185;
-		//$this->posxdiscount=162;
-		//$this->postotalht=174;
+		
+		
 		if ($this->page_largeur < 210) // To work with US executive format
 		{
 			$this->posxcomm-=20;
-			//$this->posxtva-=20;
-			//$this->posxup-=20;
+			
+			
 			$this->posxqty-=20;
-			//$this->posxdiscount-=20;
-			//$this->postotalht-=20;
+			
+			
 		}
 
 		$this->tva=array();

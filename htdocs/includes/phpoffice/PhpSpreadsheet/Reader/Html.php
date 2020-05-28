@@ -256,7 +256,7 @@ class Html extends BaseReader
             if (trim($cellContent) > '') {
                 //    Only actually write it if there's content in the string
                 //    Write to worksheet to be done here...
-                //    ... we return the cell so we can mess about with styles more easily
+                
                 $sheet->setCellValue($column . $row, $cellContent);
                 $this->dataArray[$row][$column] = $cellContent;
             }

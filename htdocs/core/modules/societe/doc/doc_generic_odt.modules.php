@@ -145,9 +145,9 @@ class doc_generic_odt extends ModeleThirdPartyDoc
 		if (!empty($conf->global->COMPANY_ADDON_PDF_ODT_PATH))
 		{
 			$texte .= $langs->trans("NumberOfModelFilesFound").': <b>';
-			//$texte.=$nbofiles?'<a id="a_'.get_class($this).'" href="#">':'';
+			
 			$texte .= $nbofiles;
-			//$texte.=$nbofiles?'</a>':'';
+			
 			$texte .= '</b>';
 		}
 
@@ -229,7 +229,7 @@ class doc_generic_odt extends ModeleThirdPartyDoc
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(s|t)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -252,12 +252,12 @@ class doc_generic_odt extends ModeleThirdPartyDoc
 				}
 				$file = $dir.'/'.$filename;
 				$object->builddoc_filename = $filename; // For triggers
-				//print "newfileformat=".$newfileformat;
-				//print "newdir=".$dir;
-				//print "newfile=".$newfile;
-				//print "file=".$file;
-				//print "conf->societe->dir_temp=".$conf->societe->dir_temp;
-				//exit;
+				
+				
+				
+				
+				
+				
 
 				dol_mkdir($conf->societe->multidir_temp[$object->entity]);
 
@@ -280,7 +280,7 @@ class doc_generic_odt extends ModeleThirdPartyDoc
 					dol_syslog($e->getMessage(), LOG_INFO);
 					return -1;
 				}
-				//print $odfHandler->__toString()."\n";
+				
 
                 // Replace tags of lines for contacts
                 $contact_arrray = array();
@@ -340,7 +340,7 @@ class doc_generic_odt extends ModeleThirdPartyDoc
                 	{
                 		$this->error = $e->getMessage();
                 		dol_syslog($this->error, LOG_WARNING);
-                		//return -1;
+                		
                 	}
                 }
 

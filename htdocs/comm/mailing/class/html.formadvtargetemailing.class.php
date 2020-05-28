@@ -168,7 +168,7 @@ class FormAdvTargetEmailing extends Form
 		if (!empty($conf->global->USER_HIDE_INACTIVE_IN_COMBOBOX))
 			$sql_usr .= " AND u2.statut<>0 ";
 		$sql_usr .= " ORDER BY name ASC";
-		// print $sql_usr;exit;
+		
 
 		$resql_usr = $this->db->query($sql_usr);
 		if ($resql_usr) {
@@ -257,7 +257,7 @@ class FormAdvTargetEmailing extends Form
 			if (!empty($InfoFieldList[1])) {
 				$sql .= " ORDER BY nom";
 			}
-			// $sql.= ' WHERE entity = '.$conf->entity;
+			
 
 			$resql = $this->db->query($sql);
 			if ($resql) {

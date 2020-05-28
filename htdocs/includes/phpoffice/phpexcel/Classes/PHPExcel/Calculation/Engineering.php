@@ -737,7 +737,7 @@ class PHPExcel_Calculation_Engineering {
 					  'imaginary'	=> $imaginary,
 					  'suffix'		=> $suffix
 					);
-	}	//	function _parseComplex()
+	}	
 
 
 	/**
@@ -771,7 +771,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return substr($xVal, -10);
-	}	//	function _nbrConversionFormat()
+	}	
 
 	/**
 	 *	BESSELI
@@ -824,7 +824,7 @@ class PHPExcel_Calculation_Engineering {
 			return (is_nan($fResult)) ? PHPExcel_Calculation_Functions::NaN() : $fResult;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BESSELI()
+	}	
 
 
 	/**
@@ -878,7 +878,7 @@ class PHPExcel_Calculation_Engineering {
 			return (is_nan($fResult)) ? PHPExcel_Calculation_Functions::NaN() : $fResult;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BESSELJ()
+	}	
 
 
 	private static function _Besselk0($fNum) {
@@ -895,7 +895,7 @@ class PHPExcel_Calculation_Engineering {
 					(0.587872e-2 + $y * (-0.251540e-2 + $y * 0.53208e-3))))));
 		}
 		return $fRet;
-	}	//	function _Besselk0()
+	}	
 
 
 	private static function _Besselk1($fNum) {
@@ -912,7 +912,7 @@ class PHPExcel_Calculation_Engineering {
 					(0.325614e-2 + $y * (-0.68245e-3)))))));
 		}
 		return $fRet;
-	}	//	function _Besselk1()
+	}	
 
 
 	/**
@@ -960,7 +960,7 @@ class PHPExcel_Calculation_Engineering {
 			return (is_nan($fBk)) ? PHPExcel_Calculation_Functions::NaN() : $fBk;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BESSELK()
+	}	
 
 
 	private static function _Bessely0($fNum) {
@@ -978,7 +978,7 @@ class PHPExcel_Calculation_Engineering {
 			$fRet = sqrt(0.636619772 / $fNum) * (sin($xx) * $f1 + $z * cos($xx) * $f2);
 		}
 		return $fRet;
-	}	//	function _Bessely0()
+	}	
 
 
 	private static function _Bessely1($fNum) {
@@ -993,7 +993,7 @@ class PHPExcel_Calculation_Engineering {
 			$fRet = sqrt(0.636619772 / $fNum) * sin($fNum - 2.356194491);
 		}
 		return $fRet;
-	}	//	function _Bessely1()
+	}	
 
 
 	/**
@@ -1040,7 +1040,7 @@ class PHPExcel_Calculation_Engineering {
 			return (is_nan($fBy)) ? PHPExcel_Calculation_Functions::NaN() : $fBy;
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function BESSELY()
+	}	
 
 
 	/**
@@ -1086,7 +1086,7 @@ class PHPExcel_Calculation_Engineering {
 			return '-'.(512-bindec($x));
 		}
 		return bindec($x);
-	}	//	function BINTODEC()
+	}	
 
 
 	/**
@@ -1140,7 +1140,7 @@ class PHPExcel_Calculation_Engineering {
 		$hexVal = (string) strtoupper(dechex(bindec($x)));
 
 		return self::_nbrConversionFormat($hexVal,$places);
-	}	//	function BINTOHEX()
+	}	
 
 
 	/**
@@ -1194,7 +1194,7 @@ class PHPExcel_Calculation_Engineering {
 		$octVal = (string) decoct(bindec($x));
 
 		return self::_nbrConversionFormat($octVal,$places);
-	}	//	function BINTOOCT()
+	}	
 
 
 	/**
@@ -1250,7 +1250,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return self::_nbrConversionFormat($r,$places);
-	}	//	function DECTOBIN()
+	}	
 
 
 	/**
@@ -1304,7 +1304,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return self::_nbrConversionFormat($r,$places);
-	}	//	function DECTOHEX()
+	}	
 
 
 	/**
@@ -1358,7 +1358,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return self::_nbrConversionFormat($r,$places);
-	}	//	function DECTOOCT()
+	}	
 
 
 	/**
@@ -1406,7 +1406,7 @@ class PHPExcel_Calculation_Engineering {
 		$binVal = decbin(hexdec($x));
 
 		return substr(self::_nbrConversionFormat($binVal,$places),-10);
-	}	//	function HEXTOBIN()
+	}	
 
 
 	/**
@@ -1439,7 +1439,7 @@ class PHPExcel_Calculation_Engineering {
 			return PHPExcel_Calculation_Functions::NaN();
 		}
 		return hexdec($x);
-	}	//	function HEXTODEC()
+	}	
 
 
 	/**
@@ -1488,7 +1488,7 @@ class PHPExcel_Calculation_Engineering {
 		$octVal = decoct(hexdec($x));
 
 		return self::_nbrConversionFormat($octVal,$places);
-	}	//	function HEXTOOCT()
+	}	
 
 
 	/**
@@ -1539,7 +1539,7 @@ class PHPExcel_Calculation_Engineering {
 		$r = decbin(octdec($x));
 
 		return self::_nbrConversionFormat($r,$places);
-	}	//	function OCTTOBIN()
+	}	
 
 
 	/**
@@ -1572,7 +1572,7 @@ class PHPExcel_Calculation_Engineering {
 			return PHPExcel_Calculation_Functions::NaN();
 		}
 		return octdec($x);
-	}	//	function OCTTODEC()
+	}	
 
 
 	/**
@@ -1618,7 +1618,7 @@ class PHPExcel_Calculation_Engineering {
 		$hexVal = strtoupper(dechex(octdec($x)));
 
 		return self::_nbrConversionFormat($hexVal,$places);
-	}	//	function OCTTOHEX()
+	}	
 
 
 	/**
@@ -1669,7 +1669,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function COMPLEX()
+	}	
 
 
 	/**
@@ -1691,7 +1691,7 @@ class PHPExcel_Calculation_Engineering {
 
 		$parsedComplex = self::_parseComplex($complexNumber);
 		return $parsedComplex['imaginary'];
-	}	//	function IMAGINARY()
+	}	
 
 
 	/**
@@ -1712,7 +1712,7 @@ class PHPExcel_Calculation_Engineering {
 
 		$parsedComplex = self::_parseComplex($complexNumber);
 		return $parsedComplex['real'];
-	}	//	function IMREAL()
+	}	
 
 
 	/**
@@ -1732,7 +1732,7 @@ class PHPExcel_Calculation_Engineering {
 		$parsedComplex = self::_parseComplex($complexNumber);
 
 		return sqrt(($parsedComplex['real'] * $parsedComplex['real']) + ($parsedComplex['imaginary'] * $parsedComplex['imaginary']));
-	}	//	function IMABS()
+	}	
 
 
 	/**
@@ -1767,7 +1767,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return M_PI - atan($parsedComplex['imaginary'] / abs($parsedComplex['real']));
 		}
-	}	//	function IMARGUMENT()
+	}	
 
 
 	/**
@@ -1795,7 +1795,7 @@ class PHPExcel_Calculation_Engineering {
 													 )
 									  );
 		}
-	}	//	function IMCONJUGATE()
+	}	
 
 
 	/**
@@ -1819,7 +1819,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::IMCONJUGATE(self::COMPLEX(cos($parsedComplex['real']) * cosh($parsedComplex['imaginary']),sin($parsedComplex['real']) * sinh($parsedComplex['imaginary']),$parsedComplex['suffix']));
 		}
-	}	//	function IMCOS()
+	}	
 
 
 	/**
@@ -1843,7 +1843,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::COMPLEX(sin($parsedComplex['real']) * cosh($parsedComplex['imaginary']),cos($parsedComplex['real']) * sinh($parsedComplex['imaginary']),$parsedComplex['suffix']);
 		}
-	}	//	function IMSIN()
+	}	
 
 
 	/**
@@ -1872,7 +1872,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::COMPLEX($d1 * $r,$d2 * $r,$parsedComplex['suffix']);
 		}
-	}	//	function IMSQRT()
+	}	
 
 
 	/**
@@ -1903,7 +1903,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::COMPLEX($logR,$t,$parsedComplex['suffix']);
 		}
-	}	//	function IMLN()
+	}	
 
 
 	/**
@@ -1929,7 +1929,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return self::IMPRODUCT(log10(EULER),self::IMLN($complexNumber));
-	}	//	function IMLOG10()
+	}	
 
 
 	/**
@@ -1955,7 +1955,7 @@ class PHPExcel_Calculation_Engineering {
 		}
 
 		return self::IMPRODUCT(log(EULER,2),self::IMLN($complexNumber));
-	}	//	function IMLOG2()
+	}	
 
 
 	/**
@@ -1987,7 +1987,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::COMPLEX($eX,$eY,$parsedComplex['suffix']);
 		}
-	}	//	function IMEXP()
+	}	
 
 
 	/**
@@ -2022,7 +2022,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return self::COMPLEX($rPower * cos($theta),$rPower * sin($theta),$parsedComplex['suffix']);
 		}
-	}	//	function IMPOWER()
+	}	
 
 
 	/**
@@ -2066,7 +2066,7 @@ class PHPExcel_Calculation_Engineering {
 		} else {
 			return $r;
 		}
-	}	//	function IMDIV()
+	}	
 
 
 	/**
@@ -2099,7 +2099,7 @@ class PHPExcel_Calculation_Engineering {
 		$d2 = $parsedComplex1['imaginary'] - $parsedComplex2['imaginary'];
 
 		return self::COMPLEX($d1,$d2,$parsedComplex1['suffix']);
-	}	//	function IMSUB()
+	}	
 
 
 	/**
@@ -2135,7 +2135,7 @@ class PHPExcel_Calculation_Engineering {
 
 		if ($returnValue['imaginary'] == 0.0) { $activeSuffix = ''; }
 		return self::COMPLEX($returnValue['real'],$returnValue['imaginary'],$activeSuffix);
-	}	//	function IMSUM()
+	}	
 
 
 	/**
@@ -2171,7 +2171,7 @@ class PHPExcel_Calculation_Engineering {
 
 		if ($returnValue['imaginary'] == 0.0) { $activeSuffix = ''; }
 		return self::COMPLEX($returnValue['real'],$returnValue['imaginary'],$activeSuffix);
-	}	//	function IMPRODUCT()
+	}	
 
 
 	/**
@@ -2194,7 +2194,7 @@ class PHPExcel_Calculation_Engineering {
 		$b	= PHPExcel_Calculation_Functions::flattenSingleValue($b);
 
 		return (int) ($a == $b);
-	}	//	function DELTA()
+	}	
 
 
 	/**
@@ -2217,12 +2217,12 @@ class PHPExcel_Calculation_Engineering {
 		$step	= PHPExcel_Calculation_Functions::flattenSingleValue($step);
 
 		return (int) ($number >= $step);
-	}	//	function GESTEP()
+	}	
 
 
-	//
+	
 	//	Private method to calculate the erf value
-	//
+	
 	private static $_two_sqrtpi = 1.128379167095512574;
 
 	public static function _erfVal($x) {
@@ -2244,7 +2244,7 @@ class PHPExcel_Calculation_Engineering {
 			}
 		} while (abs($term / $sum) > PRECISION);
 		return self::$_two_sqrtpi * $sum;
-	}	//	function _erfVal()
+	}	
 
 
 	/**
@@ -2278,12 +2278,12 @@ class PHPExcel_Calculation_Engineering {
 			}
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ERF()
+	}	
 
 
-	//
+	
 	//	Private method to calculate the erfc value
-	//
+	
 	private static $_one_sqrtpi = 0.564189583547756287;
 
 	private static function _erfcVal($x) {
@@ -2309,7 +2309,7 @@ class PHPExcel_Calculation_Engineering {
 			$q2 = $b / $d;
 		} while ((abs($q1 - $q2) / $q2) > PRECISION);
 		return self::$_one_sqrtpi * exp(-$x * $x) * $q2;
-	}	//	function _erfcVal()
+	}	
 
 
 	/**
@@ -2335,7 +2335,7 @@ class PHPExcel_Calculation_Engineering {
 			return self::_erfcVal($x);
 		}
 		return PHPExcel_Calculation_Functions::VALUE();
-	}	//	function ERFC()
+	}	
 
 
 	/**
@@ -2350,7 +2350,7 @@ class PHPExcel_Calculation_Engineering {
 			$conversionGroups[] = $conversionUnit['Group'];
 		}
 		return array_merge(array_unique($conversionGroups));
-	}	//	function getConversionGroups()
+	}	
 
 
 	/**
@@ -2368,7 +2368,7 @@ class PHPExcel_Calculation_Engineering {
 			}
 		}
 		return $conversionGroups;
-	}	//	function getConversionGroupUnits()
+	}	
 
 
 	/**
@@ -2387,7 +2387,7 @@ class PHPExcel_Calculation_Engineering {
 			}
 		}
 		return $conversionGroups;
-	}	//	function getConversionGroupUnitDetails()
+	}	
 
 
 	/**
@@ -2398,7 +2398,7 @@ class PHPExcel_Calculation_Engineering {
 	 */
 	public static function getConversionMultipliers() {
 		return self::$_conversionMultipliers;
-	}	//	function getConversionGroups()
+	}	
 
 
 	/**
@@ -2499,6 +2499,6 @@ class PHPExcel_Calculation_Engineering {
 			return $value + 273.15;
 		}
 		return ($value * self::$_unitConversions[$unitGroup1][$fromUOM][$toUOM]) / $toMultiplier;
-	}	//	function CONVERTUOM()
+	}	
 
-}	//	class PHPExcel_Calculation_Engineering
+}	

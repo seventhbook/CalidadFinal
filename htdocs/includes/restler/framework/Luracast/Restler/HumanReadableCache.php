@@ -39,16 +39,16 @@ class HumanReadableCache implements iCache
     {
         if (is_array($data)) {
             $s = '$o = array();' . PHP_EOL . PHP_EOL;
-            $s .= '// ** THIS IS AN AUTO GENERATED FILE.'
+            $s .= '
                 . ' DO NOT EDIT MANUALLY ** ';
             foreach ($data as $key => $value) {
                 $s .= PHP_EOL . PHP_EOL .
-                    "//==================== $key ===================="
+                    "
                     . PHP_EOL . PHP_EOL;
                 if (is_array($value)) {
                     $s .= '$o[\'' . $key . '\'] = array();';
                     foreach ($value as $ke => $va) {
-                        $s .= PHP_EOL . PHP_EOL . "//==== $key $ke ===="
+                        $s .= PHP_EOL . PHP_EOL . "
                             . PHP_EOL . PHP_EOL;
                         $s .= '$o[\'' . $key . '\'][\'' . $ke . '\'] = ' .
                             str_replace('  ', '    ',

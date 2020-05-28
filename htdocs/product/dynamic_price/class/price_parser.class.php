@@ -97,7 +97,7 @@ class PriceParser
         18, internal error
         */
         if (empty($this->error_parser)) {
-            return $langs->trans("ErrorPriceExpressionUnknown", 0); //this is not supposed to happen
+            return $langs->trans("ErrorPriceExpressionUnknown", 0); 
         }
         list($code, $info) = $this->error_parser;
         if (in_array($code, array(9, 14, 19, 20))) //Errors which have 0 arg
@@ -222,7 +222,7 @@ class PriceParser
             {
                 $last_result = $em->evaluate($expr);
                 $this->error_parser = $em->last_error_code;
-                if ($this->error_parser !== null) { //$em->last_error_code is null if no error happened, so just check if error_parser is not null
+                if ($this->error_parser !== null) { 
                     $this->error_expr = $expr;
                     return -3;
                 }

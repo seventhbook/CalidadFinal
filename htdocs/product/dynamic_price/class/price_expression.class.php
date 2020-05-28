@@ -101,15 +101,15 @@ class PriceExpression
         {
             $this->id = $this->db->last_insert_id(MAIN_DB_PREFIX.$this->table_element);
 
-            //if (! $notrigger)
+            
             //{
                 // Uncomment this and change MYOBJECT to your own tag if you
                 // want this action calls a trigger.
 
-                //// Call triggers
-                //$result=$this->call_trigger('MYOBJECT_CREATE',$user);
-                //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-                //// End call triggers
+                
+                
+                
+                
             //}
         }
 
@@ -277,17 +277,17 @@ class PriceExpression
         $resql = $this->db->query($sql);
         if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
 
-        // if (! $error)
+        
         // {
-        //     if (! $notrigger)
+        
         //     {
-        //         // Uncomment this and change MYOBJECT to your own tag if you
-        //         // want this action calls a trigger.
+        
+        
 
-        //         //// Call triggers
-        //         //$result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-        //         //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-        //         //// End call triggers
+        
+        
+        
+        
         //     }
         // }
 
@@ -325,17 +325,17 @@ class PriceExpression
 
         $this->db->begin();
 
-        //if (! $error)
+        
         //{
-        //    if (! $notrigger)
+        
         //    {
                 // Uncomment this and change MYOBJECT to your own tag if you
                 // want this action calls a trigger.
 
-                //// Call triggers
-                //$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-                //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-                //// End call triggers
+                
+                
+                
+                
         //    }
         //}
 

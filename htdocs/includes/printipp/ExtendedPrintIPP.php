@@ -1186,7 +1186,7 @@ class ExtendedPrintIPP extends PrintIPP
         {
         $document_format = chr(0x49) // document-format tag
             . self::_giveMeStringLength('document-format')
-            . 'document-format' // 
+            . 'document-format' 
             . self::_giveMeStringLength($document_format)
             . $document_format;
         } // value

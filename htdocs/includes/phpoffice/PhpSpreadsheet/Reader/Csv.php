@@ -212,7 +212,7 @@ class Csv extends BaseReader
             ) / count($series);
         }
 
-        // ... and pick the delimiter with the smallest mean square deviation (in case of ties, the order in potentialDelimiters is respected)
+        
         $min = INF;
         foreach ($potentialDelimiters as $delimiter) {
             if (!isset($meanSquareDeviations[$delimiter])) {
@@ -261,7 +261,7 @@ class Csv extends BaseReader
         $matches = [];
         preg_match('/(' . $enclosure . ')/', $line, $matches);
 
-        // if we still have an enclosure then we need to read the next line aswell
+        
         if (count($matches) > 0) {
             $line = $this->getNextLine($line);
         }

@@ -859,4 +859,4 @@ class EigenvalueDecomposition {
 		return new Matrix($D);
 	}
 
-}	//	class EigenvalueDecomposition
+}	

@@ -265,12 +265,12 @@ class modFournisseur extends DolibarrModules
 
 
 	    // Menus
-	    //-------
+	    
 	    $this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -330,7 +330,7 @@ class modFournisseur extends DolibarrModules
 						break;
 					case 'sellist':
 						$tmp='';
-						$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+						$tmpparam=unserialize($obj->param);	
 						if ($tmpparam['options'] && is_array($tmpparam['options'])) {
 							$var=array_keys($tmpparam['options']);
 							$tmp=array_shift($var);
@@ -370,7 +370,7 @@ class modFournisseur extends DolibarrModules
 						break;
 					case 'sellist':
 						$tmp='';
-						$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+						$tmpparam=unserialize($obj->param);	
 						if ($tmpparam['options'] && is_array($tmpparam['options'])) $tmp=array_shift(array_keys($tmpparam['options']));
 						if (preg_match('/[a-z0-9_]+:[a-z0-9_]+:[a-z0-9_]+/', $tmp)) $typeFilter="List:".$tmp;
 						break;
@@ -447,7 +447,7 @@ class modFournisseur extends DolibarrModules
 						break;
 					case 'sellist':
 						$tmp='';
-						$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+						$tmpparam=unserialize($obj->param);	
 						if ($tmpparam['options'] && is_array($tmpparam['options'])) $tmp=array_shift(array_keys($tmpparam['options']));
 						if (preg_match('/[a-z0-9_]+:[a-z0-9_]+:[a-z0-9_]+/', $tmp)) $typeFilter="List:".$tmp;
 						break;
@@ -534,7 +534,7 @@ class modFournisseur extends DolibarrModules
 						break;
 					case 'sellist':
 						$tmp='';
-						$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+						$tmpparam=unserialize($obj->param);	
 						$tmpkey=array_keys($tmpparam['options']);
 						if ($tmpparam['options'] && is_array($tmpparam['options'])) $tmp=array_shift($tmpkey);
 						if (preg_match('/[a-z0-9_]+:[a-z0-9_]+:[a-z0-9_]+/', $tmp)) $typeFilter="List:".$tmp;
@@ -572,7 +572,7 @@ class modFournisseur extends DolibarrModules
 						break;
 					case 'sellist':
 						$tmp='';
-						$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+						$tmpparam=unserialize($obj->param);	
 
 						if ($tmpparam['options'] && is_array($tmpparam['options'])) {
 							$tmpparam_param_key=array_keys($tmpparam['options']);

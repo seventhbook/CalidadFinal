@@ -87,19 +87,19 @@ if (!$id && empty($ref))
     if ($type == '0')
     {
         $helpurl = 'EN:Module_Products|FR:Module_Produits|ES:M&oacute;dulo_Productos';
-        //$title=$langs->trans("StatisticsOfProducts");
+        
         $title = $langs->trans("Statistics");
     }
     elseif ($type == '1')
     {
         $helpurl = 'EN:Module_Services_En|FR:Module_Services|ES:M&oacute;dulo_Servicios';
-        //$title=$langs->trans("StatisticsOfServices");
+        
         $title = $langs->trans("Statistics");
     }
     else
     {
         $helpurl = 'EN:Module_Services_En|FR:Module_Services|ES:M&oacute;dulo_Servicios';
-        //$title=$langs->trans("StatisticsOfProductsOrServices");
+        
         $title = $langs->trans("Statistics");
     }
 
@@ -188,9 +188,9 @@ if ($result || empty($id))
 		if ($conf->categorie->enabled)
 		{
     		print '<tr><td class="titlefield">'.$langs->trans("Categories").'</td><td>';
-    		//$moreforfilter.='<div class="divsearchfield">';
+    		
     		$moreforfilter .= $htmlother->select_categories(Categorie::TYPE_PRODUCT, $search_categ, 'search_categ', 1);
-    		//$moreforfilter.='</div>';
+    		
     		print $moreforfilter;
     		print '</td></tr>';
 		}
@@ -235,7 +235,7 @@ if ($result || empty($id))
 	else print '<br>';
 	print '<br>';
 
-	//print '<table width="100%">';
+	
 
 	// Generation des graphs
 	$dir = (!empty($conf->product->multidir_temp[$object->entity]) ? $conf->product->multidir_temp[$object->entity] : $conf->service->multidir_temp[$object->entity]);
@@ -346,7 +346,7 @@ if ($result || empty($id))
 					$px->SetHeight($HEIGHT);
 					$px->SetHorizTickIncrement(1);
 					$px->SetShading(3);
-					//print 'x '.$key.' '.$graphfiles[$key]['file'];
+					
 
 					$url = DOL_URL_ROOT.'/viewimage.php?modulepart='.$graphfiles[$key]['modulepart'].'&entity='.$object->entity.'&file='.urlencode($graphfiles[$key]['file']);
 					$px->draw($dir."/".$graphfiles[$key]['file'], $url);

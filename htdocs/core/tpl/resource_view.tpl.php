@@ -34,7 +34,7 @@ if( (array) $linked_resources && count($linked_resources) > 0)
 	{
 		$object_resource = fetchObjectByElement($linked_resource['resource_id'], $linked_resource['resource_type']);
 
-		//$element_id = $linked_resource['rowid'];
+		
 
 		if ($mode == 'edit' && $linked_resource['rowid'] == GETPOST('lineid'))
 		{

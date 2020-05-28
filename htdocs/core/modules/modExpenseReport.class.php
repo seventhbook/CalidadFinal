@@ -63,7 +63,7 @@ class modExpenseReport extends DolibarrModules
 		// Dependencies
 		$this->hidden = false;			// A condition to hide module
 		$this->depends = array();		// List of module class names as string that must be enabled if this module is enabled
-		// $this->conflictwith = array("modDeplacement"); // Deactivate for access on old information
+		
 		$this->requiredby = array();	// List of modules id to disable if this one is disabled
 		$this->phpmin = array(5,4);					// Minimum version of PHP required by module
 		$this->need_dolibarr_version = array(3,7);	// Minimum version of Dolibarr required by module
@@ -169,7 +169,7 @@ class modExpenseReport extends DolibarrModules
 		$r++;
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 		// Exports

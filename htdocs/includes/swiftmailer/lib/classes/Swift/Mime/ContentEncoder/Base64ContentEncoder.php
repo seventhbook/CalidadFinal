@@ -55,8 +55,8 @@ class Swift_Mime_ContentEncoder_Base64ContentEncoder extends Swift_Encoder_Base6
                 break;
             }
 
-            // if we're not on the last block of the ouput stream, make sure $streamTheseBytes ends with a complete triplet of data
-            // and carry over remainder 1-2 bytes to the next loop iteration
+            
+            
             if (!$atEOF) {
                 $excessBytes = $bytesLength % 3;
                 if ($excessBytes !== 0) {

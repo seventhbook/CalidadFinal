@@ -235,7 +235,7 @@ class ExportExcel extends ModeleExports
 
             $this->workbook = new PHPExcel();
             $this->workbook->getProperties()->setCreator($user->getFullName($outputlangs).' - '.DOL_APPLICATION_TITLE.' '.DOL_VERSION);
-            //$this->workbook->getProperties()->setLastModifiedBy('Dolibarr '.DOL_VERSION);
+            
             $this->workbook->getProperties()->setTitle(basename($file));
             $this->workbook->getProperties()->setSubject(basename($file));
             $this->workbook->getProperties()->setDescription(DOL_APPLICATION_TITLE.' '.DOL_VERSION);
@@ -257,7 +257,7 @@ class ExportExcel extends ModeleExports
 	public function write_header($outputlangs)
 	{
         // phpcs:enable
-		//$outputlangs->charset_output='ISO-8859-1';	// Because Excel 5 format is ISO
+		
 
 		return 0;
 	}
@@ -286,9 +286,9 @@ class ExportExcel extends ModeleExports
 		    $formatheader =$this->workbook->addformat();
     		$formatheader->set_bold();
     		$formatheader->set_color('blue');
-    		//$formatheader->set_size(12);
-    		//$formatheader->set_font("Courier New");
-    		//$formatheader->set_align('center');
+    		
+    		
+    		
 		}
 		else
 		{
@@ -300,7 +300,7 @@ class ExportExcel extends ModeleExports
 		foreach($array_selected_sorted as $code => $value)
 		{
             $alias=$array_export_fields_label[$code];
-			//print "dd".$alias;
+			
 			if (empty($alias)) dol_print_error('', 'Bad value for field with code='.$code.'. Try to redefine export.');
     		if (! empty($conf->global->MAIN_USE_PHP_WRITEEXCEL))
     		{
@@ -379,10 +379,10 @@ class ExportExcel extends ModeleExports
         		{
             		$formatdate=$this->workbook->addformat();
             		$formatdate->set_num_format('yyyy-mm-dd');
-            		//$formatdate->set_num_format(0x0f);
+            		
         		    $arrayvalue=preg_split('/[.,]/', xl_parse_date($newvalue));
-    				//print "x".$arrayvalue[0].'.'.strval($arrayvalue[1]).'<br>';
-    				$newvalue=strval($arrayvalue[0]).'.'.strval($arrayvalue[1]);	// $newvalue=strval(36892.521); directly does not work because . will be convert into , later
+    				
+    				$newvalue=strval($arrayvalue[0]).'.'.strval($arrayvalue[1]);	
         		    $this->worksheet->write($this->row, $this->col, $newvalue, PHPExcel_Shared_Date::PHPToExcel($formatdate));
         		}
         		else
@@ -399,10 +399,10 @@ class ExportExcel extends ModeleExports
     		    {
             		$formatdatehour=$this->workbook->addformat();
             		$formatdatehour->set_num_format('yyyy-mm-dd hh:mm:ss');
-            		//$formatdatehour->set_num_format(0x0f);
+            		
             		$arrayvalue=preg_split('/[.,]/', xl_parse_date($newvalue));
-    				//print "x".$arrayvalue[0].'.'.strval($arrayvalue[1]).'<br>';
-    				$newvalue=strval($arrayvalue[0]).'.'.strval($arrayvalue[1]);	// $newvalue=strval(36892.521); directly does not work because . will be convert into , later
+    				
+    				$newvalue=strval($arrayvalue[0]).'.'.strval($arrayvalue[1]);	
     		        $this->worksheet->write($this->row, $this->col, $newvalue, $formatdatehour);
     		    }
     		    else
@@ -423,7 +423,7 @@ class ExportExcel extends ModeleExports
 				{
     		    	if ($typefield == 'Text' || $typefield == 'TextAuto')
     		    	{
-    		    		//$this->workbook->getActiveSheet()->getCellByColumnAndRow($this->col, $this->row+1)->setValueExplicit($newvalue, PHPExcel_Cell_DataType::TYPE_STRING);
+    		    		
 						$this->workbook->getActiveSheet()->SetCellValueByColumnAndRow($this->col, $this->row+1, (string) $newvalue);
     		    		$coord=$this->workbook->getActiveSheet()->getCellByColumnAndRow($this->col, $this->row+1)->getCoordinate();
     		    		$this->workbook->getActiveSheet()->getStyle($coord)->getNumberFormat()->setFormatCode('@');

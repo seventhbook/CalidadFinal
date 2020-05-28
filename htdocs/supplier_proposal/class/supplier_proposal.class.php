@@ -472,8 +472,8 @@ class SupplierProposal extends CommonObject
                             $this->error = "Ref " . $prod->ref . " " . $langs->trans("ErrorQtyTooLowForThisSupplier");
                             $this->db->rollback();
                             dol_syslog(get_class($this)."::addline we did not found supplier price, so we can't guess unit price");
-                            //$pu    = $prod->fourn_pu;     // We do not overwrite unit price
-                            //$ref   = $prod->ref_fourn;    // We do not overwrite ref supplier price
+                            
+                            
                             return -1;
                         }
                         if ($result == -1)
@@ -1454,7 +1454,7 @@ class SupplierProposal extends CommonObject
             $soc->fetch($this->socid);
 
             // Define new ref
-            if (! $error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+            if (! $error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
             {
                 $num = $this->getNextNumRef($soc);
             }
@@ -1763,7 +1763,7 @@ class SupplierProposal extends CommonObject
                     $newlang=(GETPOST('lang_id', 'aZ09') ? GETPOST('lang_id', 'aZ09') : $this->thirdparty->default_lang);
                     $outputlangs->setDefaultLang($newlang);
                 }
-                //$ret=$object->fetch($id);    // Reload to get new records
+                
                 $this->generateDocument($modelpdf, $outputlangs, $hidedetails, $hidedesc, $hideref);
             }
 
@@ -2651,7 +2651,7 @@ class SupplierProposal extends CommonObject
                 $obj = $this->db->fetch_object($resql);
 
                 $this->lines[$i]					= new SupplierProposalLine($this->db);
-                $this->lines[$i]->id				= $obj->rowid; // for backward compatibility
+                $this->lines[$i]->id				= $obj->rowid; 
                 $this->lines[$i]->rowid				= $obj->rowid;
                 $this->lines[$i]->label 			= $obj->custom_label;
                 $this->lines[$i]->description 		= $obj->description;
@@ -3033,7 +3033,7 @@ class SupplierProposalLine extends CommonObjectLine
 
         if (empty($this->pa_ht)) $this->pa_ht=0;
 
-        // if buy price not defined, define buyprice as configured in margin admin
+        
         if ($this->pa_ht == 0)
         {
             if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)
@@ -3216,7 +3216,7 @@ class SupplierProposalLine extends CommonObjectLine
 
         if (empty($this->pa_ht)) $this->pa_ht=0;
 
-        // if buy price not defined, define buyprice as configured in margin admin
+        
         if ($this->pa_ht == 0)
         {
             if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)

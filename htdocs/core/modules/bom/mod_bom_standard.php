@@ -136,7 +136,7 @@ class mod_bom_standard extends ModeleNumRefboms
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->date_creation;
 		$yymm = strftime("%y%m", $date);
 

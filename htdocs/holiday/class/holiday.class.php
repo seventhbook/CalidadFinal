@@ -1085,7 +1085,7 @@ class Holiday extends CommonObject
 			}
 			elseif ($halfday == -1)
 			{
-				// new start afternoon, new end afternoon
+				
 				if ($dateStart >= $infos_CP['date_debut'] && $dateStart <= $infos_CP['date_fin'])
 				{
 					if ($dateStart < $infos_CP['date_fin'] || in_array($infos_CP['halfday'], array(0, -1))) return false;
@@ -1098,7 +1098,7 @@ class Holiday extends CommonObject
 			}
 			elseif ($halfday == 1)
 			{
-				// new start morning, new end morning
+				
 				if ($dateStart >= $infos_CP['date_debut'] && $dateStart <= $infos_CP['date_fin'])
 				{
 					if ($dateStart < $dateEnd) return false;
@@ -1111,7 +1111,7 @@ class Holiday extends CommonObject
 			}
 			elseif ($halfday == 2)
 			{
-				// new start afternoon, new end morning
+				
 				if ($dateStart >= $infos_CP['date_debut'] && $dateStart <= $infos_CP['date_fin'])
 				{
 					if ($dateStart < $infos_CP['date_fin'] || in_array($infos_CP['halfday'], array(0, -1))) return false;

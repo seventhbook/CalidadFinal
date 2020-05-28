@@ -133,7 +133,7 @@ class mod_chequereceipt_mint extends ModeleNumRefChequeReceipts
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->date_bordereau;
 		$yymm = strftime("%y%m", $date);
 

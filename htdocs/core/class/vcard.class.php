@@ -87,7 +87,7 @@ class vCard
     public $properties;
     public $filename;
 
-    //var $encoding="UTF-8";
+    
     public $encoding="ISO-8859-1;ENCODING=QUOTED-PRINTABLE";
 
 
@@ -117,7 +117,7 @@ class vCard
      */
     public function setPhoto($type, $photo)
     {
-        // $type = "GIF" | "JPEG"
+        
         $this->properties["PHOTO;TYPE=$type;ENCODING=BASE64"] = base64_encode($photo);
     }
 
@@ -157,7 +157,7 @@ class vCard
      */
     public function setBirthday($date)
     {
-        // $date format is YYYY-MM-DD - RFC 2425 and RFC 2426
+        
         $this->properties["BDAY"] = dol_print_date($date, 'dayrfc');
     }
 
@@ -176,7 +176,7 @@ class vCard
      */
     public function setAddress($postoffice = "", $extended = "", $street = "", $city = "", $region = "", $zip = "", $country = "", $type = "HOME;POSTAL")
     {
-        // $type may be DOM | INTL | POSTAL | PARCEL | HOME | WORK or any combination of these: e.g. "WORK;PARCEL;POSTAL"
+        
         $key = "ADR";
         if ($type!="") $key.= ";$type";
         $key.= ";CHARSET=".$this->encoding;
@@ -184,7 +184,7 @@ class vCard
 
         if ($this->properties["LABEL;$type;CHARSET=".$this->encoding] == "")
         {
-            //$this->setLabel($postoffice, $extended, $street, $city, $region, $zip, $country, $type);
+            
         }
     }
 
@@ -295,7 +295,7 @@ class vCard
      */
     public function setURL($url, $type = "")
     {
-        // $type may be WORK | HOME
+        
         $key = "URL";
         if ($type!="") $key.= ";$type";
         $this->properties[$key] = $url;
@@ -310,7 +310,7 @@ class vCard
     {
         $text = "BEGIN:VCARD\r\n";
         $text.= "VERSION:3.0\r\n";
-        //$text.= "VERSION:2.1\r\n";
+        
         foreach($this->properties as $key => $value)
         {
             $text.= "$key:$value\r\n";

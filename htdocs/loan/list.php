@@ -88,7 +88,7 @@ if (empty($reshook))
 
 $now = dol_now();
 
-//$help_url="EN:Module_MyObject|FR:Module_MyObject_FR|ES:Módulo_MyObject";
+
 $help_url = '';
 $title = $langs->trans('Loans');
 
@@ -109,14 +109,14 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$resql = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($resql);
-	if (($page * $limit) > $nbtotalofrecords)	// if total of record found is smaller than page * limit, goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
 	}
 }
 
-// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+
 if (is_numeric($nbtotalofrecords) && ($limit > $nbtotalofrecords || empty($limit)))
 {
 	$num = $nbtotalofrecords;
@@ -136,7 +136,7 @@ else
 }
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $title, $help_url);
 
@@ -190,7 +190,7 @@ if ($resql)
 	print '</td>';
 
 	// Fields title label
-	// --------------------------------------------------------------------
+	
 	print '<tr class="liste_titre">';
 	print_liste_field_titre("Ref", $_SERVER["PHP_SELF"], "l.rowid", "", $param, "", $sortfield, $sortorder);
 	print_liste_field_titre("Label", $_SERVER["PHP_SELF"], "l.label", "", $param, '', $sortfield, $sortorder, 'left ');
@@ -204,7 +204,7 @@ if ($resql)
 	print "</tr>\n";
 
 	// Loop on record
-	// --------------------------------------------------------------------
+	
 	$i = 0;
 	$totalarray = array();
 	while ($i < ($limit ? min($num, $limit) : $num))
@@ -249,7 +249,7 @@ if ($resql)
 	if ($num == 0)
 	{
 		$colspan = 7;
-		//foreach ($arrayfields as $key => $val) { if (!empty($val['checked'])) $colspan++; }
+		
 		print '<tr><td colspan="'.$colspan.'" class="opacitymedium">'.$langs->trans("NoRecordFound").'</td></tr>';
 	}
 

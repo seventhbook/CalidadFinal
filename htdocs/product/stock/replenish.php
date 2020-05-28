@@ -146,14 +146,14 @@ if ($action == 'order' && isset($_POST['valid']))
 	                    $line->qty = $qty;
 	                    $line->fk_product = $idprod;
 
-	                    //$product = new Product($db);
+	                    
 	                    
 	                    if (!empty($conf->global->MAIN_MULTILANGS))
 	                    {
 	                        $productsupplier->getMultiLangs();
 	                    }
 
-						// if we use supplier description of the products
+						
 						if (!empty($productsupplier->desc_supplier) && !empty($conf->global->PRODUIT_FOURN_TEXTS)) {
 							$desc = $productsupplier->desc_supplier;
 						} else {
@@ -337,7 +337,7 @@ $sql .= $hookmanager->resPrint;
 
 $sql .= ' WHERE p.entity IN ('.getEntity('product').')';
 if ($sall) $sql .= natural_search(array('p.ref', 'p.label', 'p.description', 'p.note'), $sall);
-// if the type is not 1, we show all products (type = 0,2,3)
+
 if (dol_strlen($type)) {
     if ($type == 1) {
         $sql .= ' AND p.fk_product_type = 1';
@@ -688,7 +688,7 @@ while ($i < ($limit ? min($num, $limit) : $num))
 		$result = $prod->load_stats_reception(0, '4');
 
 		
-		//print $prod->stats_reception['qty'];
+		
 		$ordered = $prod->stats_commande_fournisseur['qty'] - $prod->stats_reception['qty'];
 
 		$desiredstock = ($objp->desiredstockpse ? $objp->desiredstockpse : $objp->desiredstock);

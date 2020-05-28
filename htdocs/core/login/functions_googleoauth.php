@@ -27,7 +27,7 @@
 
 
 
-//include_once DOL_DOCUMENT_ROOT.'/core/class/openid.class.php';
+
 
 
 /**
@@ -56,7 +56,7 @@ function check_user_password_googleoauth($usertotest, $passwordtotest, $entityto
         $openid->SetTrustRoot($protocol . $_SERVER["HTTP_HOST"]);
         $openid->SetRequiredFields(array('email','fullname'));
         $_SESSION['dol_entity'] = $_POST["entity"];
-        //$openid->SetOptionalFields(array('dob','gender','postcode','country','language','timezone'));
+        
         if ($openid->sendDiscoveryRequestToGetXRDS())
         {
             $openid->SetApprovedURL($protocol . $_SERVER["HTTP_HOST"] . $_SERVER["SCRIPT_NAME"]);      // Send Response from OpenID server to this script

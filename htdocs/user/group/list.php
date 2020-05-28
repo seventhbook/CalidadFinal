@@ -166,8 +166,8 @@ if ($resql)
 
     $moreforfilter = '';
 
-	//$varpage=empty($contextpage)?$_SERVER["PHP_SELF"]:$contextpage;
-	//$selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);	// This also change content of $arrayfields
+	
+	
 
     print '<div class="div-table-responsive">';
     print '<table class="tagtable liste'.($moreforfilter ? " listwithfilterbefore" : "").'">'."\n";

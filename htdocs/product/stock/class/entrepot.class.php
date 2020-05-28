@@ -594,7 +594,7 @@ class Entrepot extends CommonObject
 		$sql.= " WHERE ps.fk_entrepot = ".$this->id;
 		$sql.= " AND ps.fk_product = p.rowid";
 
-		//print $sql;
+		
 		$result = $this->db->query($sql);
 		if ($result)
 		{
@@ -628,7 +628,7 @@ class Entrepot extends CommonObject
 		$sql.= " WHERE ps.fk_entrepot = ".$this->id;
 		$sql.= " AND ps.fk_product = p.rowid";
 
-		//print $sql;
+		
 		$result = $this->db->query($sql);
 		if ($result)
 		{

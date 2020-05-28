@@ -115,7 +115,7 @@ if (empty($date_start) || empty($date_end)) // We define date_start and date_end
 	// TODO We define q
 }
 
-// $date_start and $date_end are defined. We force $year_start and $nbofyear
+
 $tmps=dol_getdate($date_start);
 $year_start = $tmps['year'];
 $tmpe=dol_getdate($date_end);
@@ -171,7 +171,7 @@ if ($modecompta=="BOOKKEEPINGCOLLECTED") $modecompta="RECETTES-DEPENSES";
 if ($modecompta=="CREANCES-DETTES") {
 	$name=$langs->trans("Turnover").', '.$langs->trans("ByProductsAndServices");
 	$calcmode=$langs->trans("CalcModeDebt");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInInputOutputMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=RECETTES-DEPENSES">','</a>').')';
+	
 
 	$description=$langs->trans("RulesCADue");
 	if (! empty($conf->global->FACTURE_DEPOSITS_ARE_JUST_PAYMENTS)) {
@@ -186,7 +186,7 @@ elseif ($modecompta=="RECETTES-DEPENSES")
 {
 	$name=$langs->trans("TurnoverCollected").', '.$langs->trans("ByProductsAndServices");
 	$calcmode=$langs->trans("CalcModeEngagement");
-	//$calcmode.='<br>('.$langs->trans("SeeReportInDueDebtMode",'<a href="'.$_SERVER["PHP_SELF"].'?year='.$year_start.'&modecompta=CREANCES-DETTES">','</a>').')';
+	
 
 	$description=$langs->trans("RulesCAIn");
 	$description.= $langs->trans("DepositsAreIncluded");
@@ -422,7 +422,7 @@ if ($modecompta == 'CREANCES-DETTES')
 				print '<a href="#">';
 			}*/
 			print price($amount_ht[$key]);
-			//print '</a>';
+			
 			print '</td>';
 
 			// Amount with VAT
@@ -433,7 +433,7 @@ if ($modecompta == 'CREANCES-DETTES')
 				print '<a href="#">';
 			}*/
 			print price($amount[$key]);
-			//print '</a>';
+			
 			print '</td>';
 
 			// Percent;
@@ -462,7 +462,7 @@ if ($modecompta == 'CREANCES-DETTES')
 
 	print '</form>';
 } else {
-	// $modecompta != 'CREANCES-DETTES'
+	
 	// "Calculation of part of each product for accountancy in this mode is not possible. When a partial payment (for example 5 euros) is done on an
 	// invoice with 2 product (product A for 10 euros and product B for 20 euros), what is part of paiment for product A and part of paiment for product B ?
 	// Because there is no way to know this, this report is not relevant.

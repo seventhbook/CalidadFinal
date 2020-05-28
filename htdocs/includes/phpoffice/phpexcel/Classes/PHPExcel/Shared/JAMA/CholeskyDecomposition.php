@@ -75,7 +75,7 @@ class CholeskyDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(JAMAError(ArgumentTypeException));
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -85,7 +85,7 @@ class CholeskyDecomposition {
 	 */
 	public function isSPD() {
 		return $this->isspd;
-	}	//	function isSPD()
+	}	
 
 
 	/**
@@ -96,7 +96,7 @@ class CholeskyDecomposition {
 	 */
 	public function getL() {
 		return new Matrix($this->L);
-	}	//	function getL()
+	}	
 
 
 	/**
@@ -144,6 +144,6 @@ class CholeskyDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(JAMAError(ArgumentTypeException));
 		}
-	}	//	function solve()
+	}	
 
-}	//	class CholeskyDecomposition
+}	

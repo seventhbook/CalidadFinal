@@ -63,7 +63,7 @@ require_once DOL_DOCUMENT_ROOT.'/comm/action/class/actioncomm.class.php';
 if (empty($conf->agenda->enabled)) accessforbidden('', 0, 0, 1);
 
 // Not older than
-if (! isset($conf->global->MAIN_AGENDA_EXPORT_PAST_DELAY)) $conf->global->MAIN_AGENDA_EXPORT_PAST_DELAY=100;	// default limit
+if (! isset($conf->global->MAIN_AGENDA_EXPORT_PAST_DELAY)) $conf->global->MAIN_AGENDA_EXPORT_PAST_DELAY=100;	
 
 // Define format, type and filter
 $format='ical';
@@ -127,7 +127,7 @@ $filename=$shortfilename;
 // Complete long filename
 foreach ($filters as $key => $value)
 {
-    //if ($key == 'notolderthan')    $filename.='-notolderthan'.$value; This filter key is already added before and does not need to be in filename
+    
 	if ($key == 'year')            $filename.='-year'.$value;
     if ($key == 'id')              $filename.='-id'.$value;
     if ($key == 'idfrom')          $filename.='-idfrom'.$value;
@@ -165,10 +165,10 @@ if ($format == 'ical' || $format == 'vcal')
 	{
 		$attachment = true;
 		if (isset($_GET["attachment"])) $attachment=$_GET["attachment"];
-		//$attachment = false;
+		
 		$contenttype='text/calendar';
 		if (isset($_GET["contenttype"])) $contenttype=$_GET["contenttype"];
-		//$contenttype='text/plain';
+		
 		$outputencoding='UTF-8';
 
 		if ($contenttype)       header('Content-Type: '.$contenttype.($outputencoding?'; charset='.$outputencoding:''));
@@ -200,10 +200,10 @@ if ($format == 'rss')
 	{
 		$attachment = false;
 		if (isset($_GET["attachment"])) $attachment=$_GET["attachment"];
-		//$attachment = false;
+		
 		$contenttype='application/rss+xml';
 		if (isset($_GET["contenttype"])) $contenttype=$_GET["contenttype"];
-		//$contenttype='text/plain';
+		
 		$outputencoding='UTF-8';
 
 		if ($contenttype)       header('Content-Type: '.$contenttype.($outputencoding?'; charset='.$outputencoding:''));

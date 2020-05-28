@@ -585,7 +585,7 @@ function createInvoice($authentication, $invoice)
 
         foreach($arrayoflines as $key => $line)
         {
-            // $key can be 'line' or '0','1',...
+            
             $newline=new FactureLigne($db);
             $newline->product_type=$line['type'];
             $newline->desc=$line['desc'];
@@ -677,7 +677,7 @@ function createInvoiceFromOrder($authentication, $id_order = '', $ref_order = ''
 		$error++; $errorcode='KO'; $errorlabel="order id or ref or ref_ext is mandatory.";
 	}
 
-	//////////////////////
+	
 	if (! $error)
 	{
 		$fuser->getrights();

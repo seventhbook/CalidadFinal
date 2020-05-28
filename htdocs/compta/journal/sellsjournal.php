@@ -208,7 +208,7 @@ else {
 
 print '<table class="noborder centpercent">';
 print '<tr class="liste_titre">';
-//print "<td>".$langs->trans("JournalNum")."</td>";
+
 print '<td>'.$langs->trans('Date').'</td><td>'.$langs->trans('Piece').' ('.$langs->trans('InvoiceRef').')</td>';
 print '<td>'.$langs->trans('Account').'</td>';
 print '<td>'.$langs->trans('Type').'</td><td class="right">'.$langs->trans('Debit').'</td><td class="right">'.$langs->trans('Credit').'</td>';

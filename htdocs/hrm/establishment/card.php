@@ -359,7 +359,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 
 	// Object card
-	// ------------------------------------------------------------
+	
 
 	$linkback = '<a href="' . DOL_URL_ROOT . '/hrm/admin/admin_establishment.php' . (! empty($socid) ? '?socid=' . $socid : '') . '">' . $langs->trans("BackToList") . '</a>';
 
@@ -370,7 +370,7 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 
     print '<div class="fichecenter">';
-    //print '<div class="fichehalfleft">';
+    
     print '<div class="underbanner clearboth"></div>';
     print '<table class="border centpercent">'."\n";
 

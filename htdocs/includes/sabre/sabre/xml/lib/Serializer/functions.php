@@ -189,7 +189,7 @@ function standardSerializer(Writer $writer, $value) {
 
     } elseif (is_array($value) && array_key_exists('name', $value)) {
 
-        // if the array had a 'name' element, we assume that this array
+        
         // describes a 'name' and optionally 'attributes' and 'value'.
 
         $name = $value['name'];
@@ -208,7 +208,7 @@ function standardSerializer(Writer $writer, $value) {
             if (is_int($name)) {
 
                 // This item has a numeric index. We just loop through the
-                // array and throw it back in the writer.
+                
                 standardSerializer($writer, $item);
 
             } elseif (is_string($name) && is_array($item) && isset($item['attributes'])) {

@@ -129,7 +129,7 @@ class Import
 						$bool=$user->rights->{$perm[0]}->{$perm[1]};
 						}
 						if ($perm[0]=='user' && $user->admin) $bool=true;
-						//print $bool." $perm[0]"."<br>";
+						
 						*/
 
 						// Load lang file

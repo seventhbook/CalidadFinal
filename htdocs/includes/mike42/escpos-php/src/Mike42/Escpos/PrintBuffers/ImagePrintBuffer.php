@@ -93,7 +93,7 @@ class ImagePrintBuffer implements PrintBuffer
         $image -> setImageFormat('png');
         $image -> drawImage($draw);
         // debugging if you want to view the images yourself
-        //$image -> writeImage("test.png");
+        
 
         /* Save image */
         $escposImage = new ImagickEscposImage();

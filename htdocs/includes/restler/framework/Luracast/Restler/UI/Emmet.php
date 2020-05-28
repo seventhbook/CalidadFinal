@@ -185,7 +185,7 @@ class Emmet
                 $isInChild = false;
                 while ($tokens) {
                     switch (array_shift($tokens)) {
-                        //class
+                        
                         case '.':
                             $offsetTokens = array_values($tokens);
                             array_unshift($offsetTokens, '.');
@@ -276,7 +276,7 @@ class Emmet
                             $tag[] = $child;
                             $tag = $child;
                             break;
-                        //clone
+                        
                         case '*':
                             $times = array_shift($tokens);
                             $removeCount = 2;
@@ -337,7 +337,7 @@ class Emmet
                             $round = 1;
                             $offsetTokens = null;
                             $tag = $source;
-                            $tokens = array(); //$remainingTokens;
+                            $tokens = array(); 
                             break;
                     }
                 }

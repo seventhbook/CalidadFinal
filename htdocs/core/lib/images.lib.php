@@ -201,7 +201,7 @@ function dol_imageResizeOrCrop($file, $mode, $newWidth, $newHeight, $src_x = 0, 
 		case 2:	// Jpg
 			$img = imagecreatefromjpeg($filetoread);
 			$extImg = '.jpg';
-			$newquality = 100; // % quality maximum
+			$newquality = 100; 
 			break;
 		case 3:	// Png
 			$img = imagecreatefrompng($filetoread);
@@ -265,7 +265,7 @@ function dol_imageResizeOrCrop($file, $mode, $newWidth, $newHeight, $src_x = 0, 
 	$imgThumbName = $file;
 
 	// Check if permission are ok
-	//$fp = fopen($imgThumbName, "w");
+	
 	//fclose($fp);
 
 	// Create image on disk
@@ -389,9 +389,9 @@ function correctExifImageOrientation($fileSource, $fileDest, $quality = 95)
 
 					return $image;
 				}
-			} // if there is some rotation necessary
-		} // if have the exif orientation info
-	} // if function exists
+			} 
+		} 
+	} 
 
 	return false;
 }
@@ -470,7 +470,7 @@ function vignette($file, $maxWidth = 160, $maxHeight = 120, $extName = '_small',
 	{
 		// On cree toujours les vignettes
 		dol_syslog("File size is smaller than thumb size", LOG_DEBUG);
-		//return 'Le fichier '.$file.' ne necessite pas de creation de vignette';
+		
 	}
 
 	$imgfonction = '';
@@ -633,7 +633,7 @@ function vignette($file, $maxWidth = 160, $maxHeight = 120, $extName = '_small',
 	}
 
 	// Initialisation des variables selon l'extension de l'image
-	// $targetformat is 0 by default, in such case, we keep original extension
+	
 	switch ($targetformat)
 	{
 		case IMAGETYPE_GIF:	    // 1
@@ -673,12 +673,12 @@ function vignette($file, $maxWidth = 160, $maxHeight = 120, $extName = '_small',
 
 	$fileName = preg_replace('/(\.gif|\.jpeg|\.jpg|\.png|\.bmp)$/i', '', $file); // On enleve extension quelquesoit la casse
 	$fileName = basename($fileName);
-	//$imgThumbName = $dirthumb.'/'.getImageFileNameForSize(basename($file), $extName, $extImgTarget);   // Full path of thumb file
+	
 	$imgThumbName = getImageFileNameForSize($file, $extName, $extImgTarget); // Full path of thumb file
 
 
 	// Check if permission are ok
-	//$fp = fopen($imgThumbName, "w");
+	
 	//fclose($fp);
 
 	// Create image on disk

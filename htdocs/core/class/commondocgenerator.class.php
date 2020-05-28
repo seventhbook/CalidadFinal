@@ -479,11 +479,11 @@ abstract class CommonDocGenerator
 			$totalUp = 0;
 			foreach ($object->lines as $line)
 			{
-			    // $line->tva_tx format depends on database field accuraty, no reliable. This is kept for backward compatibility
+			    
 				if (empty($resarray[$array_key.'_total_vat_'.$line->tva_tx])) $resarray[$array_key.'_total_vat_'.$line->tva_tx]=0;
 				$resarray[$array_key.'_total_vat_'.$line->tva_tx]+=$line->total_tva;
 				$resarray[$array_key.'_total_vat_locale_'.$line->tva_tx]=price($resarray[$array_key.'_total_vat_'.$line->tva_tx]);
-			    // $vatformated is vat without not expected chars (so 20, or 8.5 or 5.99 for example)
+			    
 				$vatformated=vatrate($line->tva_tx);
 				if (empty($resarray[$array_key.'_total_vat_'.$vatformated])) $resarray[$array_key.'_total_vat_'.$vatformated]=0;
 				$resarray[$array_key.'_total_vat_'.$vatformated]+=$line->total_tva;
@@ -542,7 +542,7 @@ abstract class CommonDocGenerator
 		$resarray = array(
 			'line_fulldesc'=>doc_getlinedesc($line, $outputlangs),
 			'line_product_ref'=>$line->product_ref,
-			'line_product_ref_fourn'=>$line->ref_fourn, // for supplier doc lines
+			'line_product_ref_fourn'=>$line->ref_fourn, 
 			'line_product_label'=>$line->product_label,
 			'line_product_type'=>$line->product_type,
 			'line_desc'=>$line->desc,
@@ -846,7 +846,7 @@ abstract class CommonDocGenerator
 					if ($id != "")
 					{
 						$param = $extrafields->attributes[$object->table_element]['param'][$key];
-						$param_list=array_keys($param['options']);              // $param_list='ObjectName:classPath'
+						$param_list=array_keys($param['options']);              
 						$InfoFieldList = explode(":", $param_list[0]);
 						$classname=$InfoFieldList[0];
 						$classpath=$InfoFieldList[1];
@@ -941,7 +941,7 @@ abstract class CommonDocGenerator
         $countFlexCol = 0;
         foreach ($this->cols as $colKey =>& $colDef)
         {
-            if(!$this->getColumnStatus($colKey)) continue; // continue if disabled
+            if(!$this->getColumnStatus($colKey)) continue; 
 
             if(!empty($colDef['scale'])){
                 // In case of column width is defined by percentage
@@ -1041,7 +1041,7 @@ abstract class CommonDocGenerator
         // prepare wanted rank
         $rank = -1;
 
-        // try to get rank from target column
+        
         if (!empty($targetCol)) {
             $rank = $this->getColumnRank($targetCol);
             if ($rank >= 0 && $insertAfterTarget) { $rank++; }

@@ -58,8 +58,8 @@ else
 
 if ($action == 'add' || GETPOST('modify', 'alpha'))
 {
-    $ftp_name = "FTP_NAME_" . $entry;// $_POST["numero_entry"];
-	$ftp_server = "FTP_SERVER_" . $entry; //$_POST["numero_entry"];
+    $ftp_name = "FTP_NAME_" . $entry;
+	$ftp_server = "FTP_SERVER_" . $entry; 
 
 	$error=0;
 
@@ -230,7 +230,7 @@ else
 
 		    preg_match('/([0-9]+)$/i', $obj->name, $reg);
 			$idrss = $reg[0];
-			//print "x".join(',',$reg)."=".$obj->name."=".$idrss;
+			
 
 			print "<form name=\"externalrssconfig\" action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">";
 			print '<input type="hidden" name="token" value="'.newToken().'">';

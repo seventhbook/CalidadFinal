@@ -40,8 +40,8 @@ function payment_prepare_head(Paiement $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'payment');
 
 	$head[$h][0] = DOL_URL_ROOT.'/compta/paiement/info.php?id='.$object->id;
@@ -75,8 +75,8 @@ function payment_supplier_prepare_head(Paiement $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'payment_supplier');
 
 	$head[$h][0] = DOL_URL_ROOT.'/fourn/paiement/info.php?id='.$object->id;
@@ -166,7 +166,7 @@ function getOnlinePaymentUrl($mode, $type, $ref = '', $amount = '9.99', $freetag
 	// Define $urlwithroot
 	$urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 	$urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-	//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+	
 
 	$urltouse = DOL_MAIN_URL_ROOT;
 	if ($localorexternal) $urltouse = $urlwithroot;

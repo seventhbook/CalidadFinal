@@ -119,7 +119,7 @@ class mod_syslog_syslog extends LogHandler implements LogHandlerInterface
 		}
 		else $facility = constant('LOG_USER');
 
-		// (int) is required to avoid error parameter 3 expected to be long
+		
 		openlog('dolibarr', LOG_PID | LOG_PERROR, (int) $facility);
 		syslog($content['level'], $content['message']);
 		closelog();

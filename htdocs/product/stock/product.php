@@ -789,7 +789,7 @@ if (empty($reshook))
 			print '<a class="butActionRefused classfortooltip" href="#" title="'.$langs->trans("NotEnoughPermissions").'">'.$langs->trans("CorrectStock").'</a>';
 		}
 
-		//if (($user->rights->stock->mouvement->creer) && ! $object->hasbatch())
+		
 		if ($user->rights->stock->mouvement->creer)
 		{
 			if (!$variants || !empty($conf->global->VARIANT_ALLOW_STOCK_MOVEMENT_ON_VARIANT_PARENT)) {

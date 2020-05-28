@@ -49,7 +49,7 @@ $planned_workload = ((GETPOST('planned_workloadhour', 'int') != '' || GETPOST('p
 
 // Security check
 $socid = 0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 if (!$user->rights->projet->lire) accessforbidden();
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context
@@ -72,7 +72,7 @@ if ($id > 0 || !empty($ref))
 	}
 }
 
-// include comment actions
+
 include DOL_DOCUMENT_ROOT.'/core/actions_comments.inc.php';
 
 /*
@@ -141,7 +141,7 @@ print '</td></tr>';
 
 // Other attributes
 $cols = 2;
-// include DOL_DOCUMENT_ROOT . '/core/tpl/extrafields_view.tpl.php';
+
 
 print '</table>';
 

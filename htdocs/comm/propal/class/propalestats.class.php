@@ -88,7 +88,7 @@ class PropaleStats extends Stats
 
     		$this->where.= " p.fk_statut > 0";    // Validated, accepted, refused and closed
         }
-		//$this->where.= " AND p.fk_soc = s.rowid AND p.entity = ".$conf->entity;
+		
 		$this->where.= " AND p.entity IN (".getEntity('propal').")";
 		if (!$user->rights->societe->client->voir && !$this->socid) $this->where .= " AND p.fk_soc = sc.fk_soc AND sc.fk_user = " .$user->id;
 		if($this->socid)
@@ -225,7 +225,7 @@ class PropaleStats extends Stats
     	$sql.= " AND ".$this->field_date." BETWEEN '".$this->db->idate(dol_get_first_day($year, 1, false))."' AND '".$this->db->idate(dol_get_last_day($year, 12, false))."'";
 		$sql.= " GROUP BY product.ref";
         $sql.= $this->db->order('nb', 'DESC');
-        //$sql.= $this->db->plimit(20);
+        
 
 		return $this->_getAllByProduct($sql);
 	}

@@ -22,9 +22,9 @@
  */
 
 
-// $action must be defined
-// $object must be defined
-// $permissiondellink must be defined
+
+
+
 
 $dellinkid = GETPOST('dellinkid', 'int');
 $addlinkid = GETPOST('idtolinkto', 'int');

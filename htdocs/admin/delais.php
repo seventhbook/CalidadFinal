@@ -308,8 +308,8 @@ if ($action == 'edit') {
 
 $offset = 0;
 $cursor = 10; // By default
-//if (! empty($conf->global->MAIN_METEO_OFFSET)) $offset=$conf->global->MAIN_METEO_OFFSET;
-//if (! empty($conf->global->MAIN_METEO_GAP)) $cursor=$conf->global->MAIN_METEO_GAP;
+
+
 $level0 = $offset; if (!empty($conf->global->MAIN_METEO_LEVEL0)) $level0 = $conf->global->MAIN_METEO_LEVEL0;
 $level1 = $offset + 1 * $cursor; if (!empty($conf->global->MAIN_METEO_LEVEL1)) $level1 = $conf->global->MAIN_METEO_LEVEL1;
 $level2 = $offset + 2 * $cursor; if (!empty($conf->global->MAIN_METEO_LEVEL2)) $level2 = $conf->global->MAIN_METEO_LEVEL2;

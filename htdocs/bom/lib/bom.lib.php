@@ -49,12 +49,12 @@ function bomAdminPrepareHead()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	//$this->tabs = array(
+	
 	//	'entity:+tabname:Title:@bom:/bom/mypage.php?id=__ID__'
-	//); // to add new tab
-	//$this->tabs = array(
+	
+	
 	//	'entity:-tabname:Title:@bom:/bom/mypage.php?id=__ID__'
-	//); // to remove a tab
+	
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'bom');
 
 	return $head;
@@ -113,12 +113,12 @@ function bomPrepareHead($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    //$this->tabs = array(
+    
     //	'entity:+tabname:Title:@bom:/bom/mypage.php?id=__ID__'
-    //); // to add new tab
-    //$this->tabs = array(
+    
+    
     //	'entity:-tabname:Title:@bom:/bom/mypage.php?id=__ID__'
-    //); // to remove a tab
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'bom');
 
     return $head;

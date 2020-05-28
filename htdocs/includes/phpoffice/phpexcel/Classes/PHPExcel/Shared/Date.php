@@ -95,7 +95,7 @@ class PHPExcel_Shared_Date
 			return TRUE;
 		}
 		return FALSE;
-	}	//	function setExcelCalendar()
+	}	
 
 
 	/**
@@ -105,7 +105,7 @@ class PHPExcel_Shared_Date
 	 */
 	public static function getExcelCalendar() {
 		return self::$_excelBaseDate;
-	}	//	function getExcelCalendar()
+	}	
 
 
 	/**
@@ -148,7 +148,7 @@ class PHPExcel_Shared_Date
 
 		// Return
 		return $returnValue + $timezoneAdjustment;
-	}	//	function ExcelToPHP()
+	}	
 
 
 	/**
@@ -169,7 +169,7 @@ class PHPExcel_Shared_Date
 		$dateObj->setTime($hours,$minutes,$seconds);
 
 		return $dateObj;
-	}	//	function ExcelToPHPObject()
+	}	
 
 
 	/**
@@ -198,7 +198,7 @@ class PHPExcel_Shared_Date
 		date_default_timezone_set($saveTimeZone);
 
 		return $retValue;
-	}	//	function PHPToExcel()
+	}	
 
 
 	/**
@@ -214,10 +214,10 @@ class PHPExcel_Shared_Date
 	 */
 	public static function FormattedPHPToExcel($year, $month, $day, $hours=0, $minutes=0, $seconds=0) {
 		if (self::$_excelBaseDate == self::CALENDAR_WINDOWS_1900) {
-			//
+			
 			//	Fudge factor for the erroneous fact that the year 1900 is treated as a Leap Year in MS Excel
 			//	This affects every date following 28th February 1900
-			//
+			
 			$excel1900isLeapYear = TRUE;
 			if (($year == 1900) && ($month <= 2)) { $excel1900isLeapYear = FALSE; }
 			$my_excelBaseDate = 2415020;
@@ -242,7 +242,7 @@ class PHPExcel_Shared_Date
 		$excelTime = (($hours * 3600) + ($minutes * 60) + $seconds) / 86400;
 
 		return (float) $excelDate + $excelTime;
-	}	//	function FormattedPHPToExcel()
+	}	
 
 
 	/**
@@ -257,7 +257,7 @@ class PHPExcel_Shared_Date
 				$pCell->getCoordinate()
 			)->getNumberFormat()
 		);
-	}	//	function isDateTime()
+	}	
 
 
 	/**
@@ -268,7 +268,7 @@ class PHPExcel_Shared_Date
 	 */
 	public static function isDateTimeFormat(PHPExcel_Style_NumberFormat $pFormat) {
 		return self::isDateTimeFormatCode($pFormat->getFormatCode());
-	}	//	function isDateTimeFormat()
+	}	
 
 
 	private static	$possibleDateFormatCharacters = 'eymdHs';
@@ -338,7 +338,7 @@ class PHPExcel_Shared_Date
 
 		// No date...
 		return FALSE;
-	}	//	function isDateTimeFormatCode()
+	}	
 
 
 	/**

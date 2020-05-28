@@ -227,7 +227,7 @@ if ($action == 'confirm_reject_check' && $confirm == 'yes' && $user->rights->ban
 	{
 		setEventMessages($langs->trans("CheckRejectedAndInvoicesReopened"), null, 'mesgs');
 		//header("Location: ".DOL_URL_ROOT.'/compta/paiement/card.php?id='.$paiement_id);
-		//exit;
+		
 		$action = '';
 	}
 	else

@@ -67,7 +67,7 @@ else
 	dol_print_error($db);
 }
 
-//$triggers = dol_sort_array($triggers, 'code', 'asc', 0, 0, 1);
+
 
 
 /*
@@ -95,7 +95,7 @@ if ($action == "save" && empty($cancel))
 	foreach ($triggers as $trigger)
 	{
 		$keyparam = 'MAIN_AGENDA_ACTIONAUTO_'.$trigger['code'];
-		//print "param=".$param." - ".$_POST[$param];
+		
 		if ($search_event === '' || preg_match('/'.preg_quote($search_event, '/').'/i', $keyparam))
 		{
 			$res = dolibarr_set_const($db, $keyparam, (GETPOST($keyparam, 'alpha') ?GETPOST($keyparam, 'alpha') : ''), 'chaine', 0, '', $conf->entity);
@@ -176,7 +176,7 @@ if (!empty($triggers))
 			$module = $tmparray[1];
 		}
 
-		//print 'module='.$module.'<br>';
+		
 		if (!empty($conf->$module->enabled))
 		{
 			// Discard special case: If option FICHINTER_CLASSIFY_BILLED is not set, we discard both trigger FICHINTER_CLASSIFY_BILLED and FICHINTER_CLASSIFY_UNBILLED

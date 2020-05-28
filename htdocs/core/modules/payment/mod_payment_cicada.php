@@ -143,7 +143,7 @@ class mod_payment_cicada extends ModeleNumRefPayments
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->datepaye;
 		$yymm = strftime("%y%m", $date);
 

@@ -104,7 +104,7 @@ class Projects extends DolibarrApi
 
         $obj_ret = array();
 
-        // case of external user, $thirdparty_ids param is ignored and replaced by user's socid
+        
         $socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : $thirdparty_ids;
 
         // If the internal user must only see his customers, force searching by him
@@ -231,7 +231,7 @@ class Projects extends DolibarrApi
         }
         $this->project->getLinesArray(DolibarrApiAccess::$user);
         $result = array();
-        foreach ($this->project->lines as $line)      // $line is a task
+        foreach ($this->project->lines as $line)      
         {
             if ($includetimespent == 1)
             {
@@ -573,7 +573,7 @@ class Projects extends DolibarrApi
         unset($object->weekWorkLoad);
         unset($object->weekWorkLoad);
 
-        //unset($object->lines);            // for task we use timespent_lines, but for project we use lines
+        
 
         unset($object->total_ht);
         unset($object->total_tva);

@@ -38,12 +38,12 @@ $version='1.7';
 $error=0;
 
 
-// -------------------- START OF YOUR CODE HERE --------------------
+
 // Include Dolibarr environment
 require_once $path."../../htdocs/master.inc.php";
 // After this $db, $mysoc, $langs and $conf->entity are defined. Opened handler to database will be closed at end of file.
 
-//$langs->setDefaultLang('en_US'); 	// To change default language of $langs
+
 $langs->load("main");				// To load language file for default language
 @set_time_limit(0);
 
@@ -62,7 +62,7 @@ require_once DOL_DOCUMENT_ROOT."/user/class/user.class.php";
 
 // Create user object
 $obj = new User($db);
-//$obj->initAsSpecimen();
+
 
 $obj->login = 'ABCDEF';
 $obj->nom   = 'ABCDEF';
@@ -91,7 +91,7 @@ else
 }
 
 
-// -------------------- END OF YOUR CODE --------------------
+
 
 if (! $error)
 {

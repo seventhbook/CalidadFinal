@@ -284,10 +284,10 @@ class Date
     public static function formattedPHPToExcel($year, $month, $day, $hours = 0, $minutes = 0, $seconds = 0)
     {
         if (self::$excelCalendar == self::CALENDAR_WINDOWS_1900) {
-            //
+            
             //    Fudge factor for the erroneous fact that the year 1900 is treated as a Leap Year in MS Excel
             //    This affects every date following 28th February 1900
-            //
+            
             $excel1900isLeapYear = true;
             if (($year == 1900) && ($month <= 2)) {
                 $excel1900isLeapYear = false;

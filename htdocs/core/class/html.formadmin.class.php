@@ -148,7 +148,7 @@ class FormAdmin
             foreach($dirmenuarray as $dirtoscan)
             {
                 $dir=$dirroot.$dirtoscan;
-                //print $dir.'<br>';
+                
                 if (is_dir($dir))
                 {
     	            $handle=opendir($dir);
@@ -226,7 +226,7 @@ class FormAdmin
         // phpcs:enable
         global $langs,$conf;
 
-        //$expdevmenu=array('smartphone_backoffice.php','smartphone_frontoffice.php');  // Menu to disable if $conf->global->MAIN_FEATURES_LEVEL is not set
+        
         $expdevmenu=array();
 
 		$menuarray=array();

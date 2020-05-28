@@ -127,7 +127,7 @@ class PHPExcel_Settings
             return TRUE;
         }
         return FALSE;
-    } // function setZipClass()
+    } 
 
 
     /**
@@ -141,7 +141,7 @@ class PHPExcel_Settings
     public static function getZipClass()
     {
         return self::$_zipClass;
-    } // function getZipClass()
+    } 
 
 
     /**
@@ -152,7 +152,7 @@ class PHPExcel_Settings
     public static function getCacheStorageMethod()
     {
         return PHPExcel_CachedObjectStorageFactory::getCacheStorageMethod();
-    } // function getCacheStorageMethod()
+    } 
 
 
     /**
@@ -163,7 +163,7 @@ class PHPExcel_Settings
     public static function getCacheStorageClass()
     {
         return PHPExcel_CachedObjectStorageFactory::getCacheStorageClass();
-    } // function getCacheStorageClass()
+    } 
 
 
     /**
@@ -179,7 +179,7 @@ class PHPExcel_Settings
     )
     {
         return PHPExcel_CachedObjectStorageFactory::initialize($method, $arguments);
-    } // function setCacheStorageMethod()
+    } 
 
 
     /**
@@ -191,7 +191,7 @@ class PHPExcel_Settings
     public static function setLocale($locale='en_us')
     {
         return PHPExcel_Calculation::getInstance()->setLocale($locale);
-    } // function setLocale()
+    } 
 
 
     /**
@@ -208,7 +208,7 @@ class PHPExcel_Settings
         if (!self::setChartRendererName($libraryName))
             return FALSE;
         return self::setChartRendererPath($libraryBaseDir);
-    } // function setChartRenderer()
+    } 
 
 
     /**
@@ -228,7 +228,7 @@ class PHPExcel_Settings
         self::$_chartRendererName = $libraryName;
 
         return TRUE;
-    } // function setChartRendererName()
+    } 
 
 
     /**
@@ -245,7 +245,7 @@ class PHPExcel_Settings
         self::$_chartRendererPath = $libraryBaseDir;
 
         return TRUE;
-    } // function setChartRendererPath()
+    } 
 
 
     /**
@@ -258,7 +258,7 @@ class PHPExcel_Settings
     public static function getChartRendererName()
     {
         return self::$_chartRendererName;
-    } // function getChartRendererName()
+    } 
 
 
     /**
@@ -270,7 +270,7 @@ class PHPExcel_Settings
     public static function getChartRendererPath()
     {
         return self::$_chartRendererPath;
-    } // function getChartRendererPath()
+    } 
 
 
     /**
@@ -289,7 +289,7 @@ class PHPExcel_Settings
         if (!self::setPdfRendererName($libraryName))
             return FALSE;
         return self::setPdfRendererPath($libraryBaseDir);
-    } // function setPdfRenderer()
+    } 
 
 
     /**
@@ -311,7 +311,7 @@ class PHPExcel_Settings
         self::$_pdfRendererName = $libraryName;
 
         return TRUE;
-    } // function setPdfRendererName()
+    } 
 
 
     /**
@@ -328,7 +328,7 @@ class PHPExcel_Settings
         self::$_pdfRendererPath = $libraryBaseDir;
 
         return TRUE;
-    } // function setPdfRendererPath()
+    } 
 
 
     /**
@@ -343,7 +343,7 @@ class PHPExcel_Settings
     public static function getPdfRendererName()
     {
         return self::$_pdfRendererName;
-    } // function getPdfRendererName()
+    } 
 
     /**
      * Return the directory path to the PDF Rendering Library that PHPExcel is currently configured to use
@@ -354,7 +354,7 @@ class PHPExcel_Settings
     public static function getPdfRendererPath()
     {
         return self::$_pdfRendererPath;
-    } // function getPdfRendererPath()
+    } 
 
     /**
      * Set default options for libxml loader
@@ -370,7 +370,7 @@ class PHPExcel_Settings
             @libxml_disable_entity_loader($options == (LIBXML_DTDLOAD | LIBXML_DTDATTR)); 
         }
         self::$_libXmlLoaderOptions = $options;
-    } // function setLibXmlLoaderOptions
+    } 
 
     /**
      * Get default options for libxml loader.
@@ -387,5 +387,5 @@ class PHPExcel_Settings
             @libxml_disable_entity_loader(self::$_libXmlLoaderOptions == (LIBXML_DTDLOAD | LIBXML_DTDATTR));
         }
         return self::$_libXmlLoaderOptions;
-    } // function getLibXmlLoaderOptions
+    } 
 }

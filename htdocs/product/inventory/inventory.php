@@ -72,9 +72,9 @@ if (empty($action) && empty($id) && empty($ref)) $action = 'view';
 include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be include, not include_once.
 
 // Security check - Protection if external user
-//if ($user->socid > 0) accessforbidden();
-//if ($user->socid > 0) $socid = $user->socid;
-//$result = restrictedArea($user, 'mymodule', $id);
+
+
+
 
 if (empty($conf->global->MAIN_USE_ADVANCED_PERMS))
 {
@@ -184,7 +184,7 @@ if ($object->id > 0)
 
 
 	// Object card
-	// ------------------------------------------------------------
+	
 	$linkback = '<a href="'.DOL_URL_ROOT.'/product/inventory/list.php'.(!empty($socid) ? '?socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
@@ -205,7 +205,7 @@ if ($object->id > 0)
 	        {
 	            $morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
 	            if ($action == 'classify') {
-	                //$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+	                
 	                $morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 	                $morehtmlref.='<input type="hidden" name="action" value="classin">';
 	                $morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -318,10 +318,10 @@ if ($object->id > 0)
 
 
 	print '<div class="fichecenter">';
-	//print '<div class="fichehalfleft">';
+	
 	print '<div class="clearboth"></div>';
 
-	//print load_fiche_titre($langs->trans('Consumption'), '', '');
+	
 
 	print '<div class="div-table-responsive-no-min">';
 	print '<table id="tablelines" class="noborder noshadow centpercent">';
@@ -420,7 +420,7 @@ if ($object->id > 0)
 	print '</table>';
 	print '</div>';
 
-	//print '</div>';
+	
 	print '</div>';
 
 	if ($action == 'edit') {

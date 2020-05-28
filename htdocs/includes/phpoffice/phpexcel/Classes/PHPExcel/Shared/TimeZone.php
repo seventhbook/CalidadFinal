@@ -69,7 +69,7 @@ class PHPExcel_Shared_TimeZone
 			return TRUE;
 		}
 		return FALSE;
-	}	//	function setTimezone()
+	}	
 
 
 	/**
@@ -79,7 +79,7 @@ class PHPExcel_Shared_TimeZone
 	 */
 	public static function getTimeZone() {
 		return self::$_timezone;
-	}	//	function getTimezone()
+	}	
 
 
 	/**

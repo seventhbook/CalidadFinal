@@ -116,7 +116,7 @@ foreach ($includeconstants as $countrycode => $tmp) {
 }
 print "\n";
 
-//$outputfile=dirname(__FILE__).'/../htdocs/install/filelist-'.$release.'.xml';
+
 $outputdir=dirname(dirname(__FILE__)).'/htdocs/install';
 print 'Delete current files '.$outputdir.'/filelist*.xml'."\n";
 dol_delete_file($outputdir.'/filelist*.xml', 0, 1, 1);
@@ -152,7 +152,7 @@ $dir='';
 $needtoclose=0;
 foreach ($files as $filetmp) {
     $file = $filetmp['fullname'];
-    //$newdir = str_replace(dirname(__FILE__).'/../htdocs', '', dirname($file));
+    
     $newdir = str_replace(DOL_DOCUMENT_ROOT, '', dirname($file));
     if ($newdir!=$dir) {
         if ($needtoclose)
@@ -194,7 +194,7 @@ $dir='';
 $needtoclose=0;
 foreach ($files as $filetmp) {
     $file = $filetmp['fullname'];
-    //$newdir = str_replace(dirname(__FILE__).'/../scripts', '', dirname($file));
+    
     $newdir = str_replace(DOL_DOCUMENT_ROOT, '', dirname($file));
     $newdir = str_replace(dirname(__FILE__).'/../scripts', '', dirname($file));
     if ($newdir!=$dir) {

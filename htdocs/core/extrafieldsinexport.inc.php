@@ -2,14 +2,14 @@
 
 if (empty($keyforselect) || empty($keyforelement) || empty($keyforaliasextra))
 {
-    //print $keyforselet.' - '.$keyforelement.' - '.$keyforaliasextra;
+    
     dol_print_error('', 'include of file extrafieldsinexport.inc.php was done but var $keyforselect or $keyforelement or $keyforaliasextra was not set');
     exit;
 }
 
 // Add extra fields
 $sql="SELECT name, label, type, param, fieldcomputed, fielddefault FROM ".MAIN_DB_PREFIX."extrafields WHERE elementtype = '".$keyforselect."' AND type != 'separate' AND entity IN (0, ".$conf->entity.') ORDER BY pos ASC';
-//print $sql;
+
 $resql=$this->db->query($sql);
 if ($resql)    // This can fail when class is used on old database (during migration for example)
 {
@@ -37,7 +37,7 @@ if ($resql)    // This can fail when class is used on old database (during migra
 			case 'select':
 			    if (! empty($conf->global->EXPORT_LABEL_FOR_SELECT))
 			    {
-    			    $tmpparam=unserialize($obj->param);	// $tmpparam may be array with 'options' = array(key1=>val1, key2=>val2 ...)
+    			    $tmpparam=unserialize($obj->param);	
     			    if ($tmpparam['options'] && is_array($tmpparam['options'])) {
     			        $typeFilter="Select:".$obj->param;
     			    }
@@ -45,7 +45,7 @@ if ($resql)    // This can fail when class is used on old database (during migra
 			    break;
 			case 'sellist':
 				$tmp='';
-				$tmpparam=unserialize($obj->param);	// $tmp ay be array 'options' => array 'c_currencies:code_iso:code_iso' => null
+				$tmpparam=unserialize($obj->param);	
 				if ($tmpparam['options'] && is_array($tmpparam['options'])) {
 					$tmpkeys=array_keys($tmpparam['options']);
 					$tmp=array_shift($tmpkeys);

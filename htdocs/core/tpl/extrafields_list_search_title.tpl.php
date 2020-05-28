@@ -10,7 +10,7 @@ if (empty($conf) || ! is_object($conf))
 if (empty($extrafieldsobjectkey) && is_object($object)) $extrafieldsobjectkey=$object->table_element;
 
 // Loop to show all columns of extrafields for the title line
-if (! empty($extrafieldsobjectkey))	// $extrafieldsobject is the $object->table_element like 'societe', 'socpeople', ...
+if (! empty($extrafieldsobjectkey))	
 {
 	if (is_array($extrafields->attributes[$extrafieldsobjectkey]['label']) && count($extrafields->attributes[$extrafieldsobjectkey]['label']))
 	{

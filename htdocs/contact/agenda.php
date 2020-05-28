@@ -148,9 +148,9 @@ if ($socid > 0)
 
 if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 {
-    // -----------------------------------------
+    
     // When used with CANVAS
-    // -----------------------------------------
+    
     if (empty($object->error) && $id)
  	{
  		$object = new Contact($db);
@@ -162,9 +162,9 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 }
 else
 {
-    // -----------------------------------------
+    
     // When used in standard mode
-    // -----------------------------------------
+    
 
     // Confirm deleting contact
     if ($user->rights->societe->contact->supprimer)
@@ -244,17 +244,17 @@ else
         $permok = $user->rights->agenda->myactions->create;
         if ((!empty($objthirdparty->id) || !empty($objcon->id)) && $permok)
         {
-            //$out.='<a href="'.DOL_URL_ROOT.'/comm/action/card.php?action=create';
+            
             if (is_object($objthirdparty) && get_class($objthirdparty) == 'Societe') $out .= '&amp;socid='.$objthirdparty->id;
             $out .= (!empty($objcon->id) ? '&amp;contactid='.$objcon->id : '').'&amp;backtopage=1&amp;percentage=-1';
-        	//$out.=$langs->trans("AddAnAction").' ';
-        	//$out.=img_picto($langs->trans("AddAnAction"),'filenew');
-        	//$out.="</a>";
+        	
+        	
+        	
     	}
 
 
-    	//print '<div class="tabsAction">';
-        //print '</div>';
+    	
+        
 
     	$newcardbutton = '';
     	if (!empty($conf->agenda->enabled))

@@ -593,7 +593,7 @@ if ($action == 'charge' && !empty($conf->stripe->enabled))
     		$action = '';
     	} catch (\Stripe\Error\Authentication $e) {
     		// Authentication with Stripe's API failed
-    		// (maybe you changed API keys recently)
+    		
     		$error++;
     		$errormessage = "ErrorAuthentication ".$e->getMessage();
     		dol_syslog($errormessage, LOG_WARNING, 0, '_stripe');
@@ -895,7 +895,7 @@ if (!$source)
 	print '</td></tr>'."\n";
 
 	// We do not add fields shipToName, shipToStreet, shipToCity, shipToState, shipToCountryCode, shipToZip, shipToStreet2, phoneNum
-	// as they don't exists (buyer is unknown, tag is free).
+	
 }
 
 
@@ -2032,7 +2032,7 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
     	    var elements = stripe.elements();
 
     	    // Custom styling can be passed to options when creating an Element.
-    	    // (Note that this demo uses a wider set of styles than the guide below.)
+    	    
     	    var style = {
     	      base: {
     	        color: '#32325d',
@@ -2079,7 +2079,7 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
     	    var elements = stripe.elements();
 
     	    // Custom styling can be passed to options when creating an Element.
-    	    // (Note that this demo uses a wider set of styles than the guide below.)
+    	    
     	    var style = {
     	      base: {
     	        color: '#32325d',
@@ -2183,7 +2183,7 @@ if (preg_match('/^dopayment/', $action))			// If we choosed/click on the payment
     	    var elements = stripe.elements();
 
     	    // Custom styling can be passed to options when creating an Element.
-    	    // (Note that this demo uses a wider set of styles than the guide below.)
+    	    
     	    var style = {
     	      base: {
     	        color: '#32325d',

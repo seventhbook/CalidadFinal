@@ -1,10 +1,10 @@
 <?php
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
-// +----------------------------------------------------------------------+
+
 // | PHP Version 4                                                        |
-// +----------------------------------------------------------------------+
+
 // | Copyright (c) 1997-2002 The PHP Group                                |
-// +----------------------------------------------------------------------+
+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
 // | available at through the world-wide-web at                           |
@@ -12,12 +12,12 @@
 // | If you did not receive a copy of the PHP license and are unable to   |
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
-// +----------------------------------------------------------------------+
+
 // | Author: Xavier Noguer <xnoguer@php.net>                              |
 // | Based on OLE::Storage_Lite by Kawai, Takanori                        |
-// +----------------------------------------------------------------------+
-//
-// $Id: Root.php,v 1.9 2005/04/23 21:53:49 dufuz Exp $
+
+
+
 
 
 /**
@@ -96,7 +96,7 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 		$aList = array();
 		PHPExcel_Shared_OLE_PPS::_savePpsSetPnt($aList, array($this));
 		// calculate values for header
-		list($iSBDcnt, $iBBcnt, $iPPScnt) = $this->_calcSize($aList); //, $rhInfo);
+		list($iSBDcnt, $iBBcnt, $iPPScnt) = $this->_calcSize($aList); 
 		// Save Header
 		$this->_saveHeader($iSBDcnt, $iBBcnt, $iPPScnt);
 
@@ -268,11 +268,11 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 					(($raList[$i]->Type == PHPExcel_Shared_OLE::OLE_PPS_TYPE_ROOT) && isset($raList[$i]->_data)))
 				{
 					// Write Data
-					//if (isset($raList[$i]->_PPS_FILE)) {
-					//	$iLen = 0;
+					
+					
 					//	fseek($raList[$i]->_PPS_FILE, 0); // To The Top
-					//	while($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
-					//		$iLen += strlen($sBuff);
+					
+					
 					//		fwrite($FILE, $sBuff);
 					//	}
 					//} else {
@@ -289,9 +289,9 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 								(($raList[$i]->Size % $this->_BIG_BLOCK_SIZE)? 1: 0));
 				}
 				// Close file for each PPS, and unlink it
-				//if (isset($raList[$i]->_PPS_FILE)) {
+				
 				//	fclose($raList[$i]->_PPS_FILE);
-				//	$raList[$i]->_PPS_FILE = null;
+				
 				//	unlink($raList[$i]->_tmp_filename);
 				//}
 			}
@@ -327,11 +327,11 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 					}
 					fwrite($FILE, pack("V", -2));
 
-					//// Add to Data String(this will be written for RootEntry)
-					//if ($raList[$i]->_PPS_FILE) {
+					
+					
 					//	fseek($raList[$i]->_PPS_FILE, 0); // To The Top
-					//	while ($sBuff = fread($raList[$i]->_PPS_FILE, 4096)) {
-					//		$sRes .= $sBuff;
+					
+					
 					//	}
 					//} else {
 						$sRes .= $raList[$i]->_data;

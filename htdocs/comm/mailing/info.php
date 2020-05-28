@@ -72,13 +72,13 @@ if ($object->fetch($id) >= 0)
 
 	print '<div class="underbanner clearboth"></div><br>';
 
-	//print '<table width="100%"><tr><td>';
+	
 	$object->user_creation = $object->user_creat;
 	$object->date_creation = $object->date_creat;
 	$object->user_validation = $object->user_valid;
 	$object->date_validation = $object->date_valid;
 	dol_print_object_info($object, 0);
-	//print '</td></tr></table>';
+	
 
 
 	dol_fiche_end();

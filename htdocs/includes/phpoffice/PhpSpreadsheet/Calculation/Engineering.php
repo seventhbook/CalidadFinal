@@ -2313,9 +2313,9 @@ class Engineering
         return (int) ($number >= $step);
     }
 
-    //
+    
     //    Private method to calculate the erf value
-    //
+    
     private static $twoSqrtPi = 1.128379167095512574;
 
     public static function erfVal($x)
@@ -2569,9 +2569,9 @@ class Engineering
         return self::ERF($limit);
     }
 
-    //
+    
     //    Private method to calculate the erfc value
-    //
+    
     private static $oneSqrtPi = 0.564189583547756287;
 
     private static function erfcVal($x)

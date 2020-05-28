@@ -41,7 +41,7 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 	 * @return	void
      */
 	protected function _storeData() {
-	}	//	function _storeData()
+	}	
 
     /**
      * Add or Update a cell in cache identified by coordinate address
@@ -58,7 +58,7 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 		$this->_currentObjectID = $pCoord;
 
 		return $cell;
-	}	//	function addCacheData()
+	}	
 
 
     /**
@@ -81,7 +81,7 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 
 		//	Return requested entry
 		return $this->_cellCache[$pCoord];
-	}	//	function getCacheData()
+	}	
 
 
 	/**
@@ -120,6 +120,6 @@ class PHPExcel_CachedObjectStorage_Memory extends PHPExcel_CachedObjectStorage_C
 
 		//	detach ourself from the worksheet, so that it can then delete this object successfully
 		$this->_parent = null;
-	}	//	function unsetWorksheetCells()
+	}	
 
 }

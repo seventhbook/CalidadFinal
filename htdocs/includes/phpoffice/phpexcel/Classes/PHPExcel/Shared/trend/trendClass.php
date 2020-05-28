@@ -151,6 +151,6 @@ class trendClass
 			default	:
 				return false;
 		}
-	}	//	function calculate()
+	}	
 
-}	//	class trendClass
+}	

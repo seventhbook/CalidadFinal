@@ -84,9 +84,9 @@ $(document).ready(function(){
 						} else {
 							$("#<?php echo $tagidfortablednd; ?> .drag").each(
 									function( intIndex ) {
-										// $(this).removeClass("pair impair");
-										//if (intIndex % 2 == 0) $(this).addClass('impair');
-										//if (intIndex % 2 == 1) $(this).addClass('pair');
+										
+										
+										
 									});
 						}
 					});

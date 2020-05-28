@@ -81,7 +81,7 @@ if (! isset($_POST['datesrfc']) && ! isset($_POST['datesday']) && ! empty($conf-
 {
 	$new=dol_now();
 	$tmp=dol_getdate($new);
-	//$datee=$now
+	
 	
 	$dates=dol_get_first_day($tmp['year'], 1);
 }
@@ -93,7 +93,7 @@ if ($id == '' && $ref == '')
 }
 
 $mine = $_REQUEST['mode']=='mine' ? 1 : 0;
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 $object = new Project($db);
 
@@ -102,7 +102,7 @@ if(! empty($conf->global->PROJECT_ALLOW_COMMENT_ON_PROJECT) && method_exists($ob
 
 // Security check
 $socid=$object->socid;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet',  $object->id, 'projet&project');
 
 $hookmanager->initHooks(array('projectOverview'));
@@ -748,7 +748,7 @@ foreach ($listofreferent as $key => $value)
 		}
 	}
 }
-// and the final balance
+
 print '<tr class="liste_total">';
 print '<td class="right" colspan=2 >'.$langs->trans("Profit").'</td>';
 print '<td class="right" >'.price(price2num($balance_ht, 'MT')).'</td>';
@@ -851,8 +851,8 @@ foreach ($listofreferent as $key => $value)
 		print '</td>';
 		// Thirdparty or user
 		print '<td>';
-		if (in_array($tablename, array('projet_task')) && $key == 'project_task') print ''; // if $key == 'project_task', we don't want details per user
-		elseif (in_array($tablename, array('payment_various'))) print ''; // if $key == 'payment_various', we don't have any thirdparty
+		if (in_array($tablename, array('projet_task')) && $key == 'project_task') print ''; 
+		elseif (in_array($tablename, array('payment_various'))) print ''; 
 		elseif (in_array($tablename, array('expensereport_det', 'don', 'projet_task', 'stock_mouvement', 'payment_salary'))) print $langs->trans("User");
 		else print $langs->trans("ThirdParty");
 		print '</td>';
@@ -1025,7 +1025,7 @@ foreach ($listofreferent as $key => $value)
 				}
 				elseif (in_array($tablename, array('projet_task')))
 				{
-				    $tmpprojtime = $element->getSumOfAmount($elementuser, $dates, $datee); // $element is a task. $elementuser may be empty
+				    $tmpprojtime = $element->getSumOfAmount($elementuser, $dates, $datee); 
                     print '<a href="'.DOL_URL_ROOT.'/projet/tasks/time.php?id='.$idofelement.'&withproject=1">';
 				    print convertSecondToTime($tmpprojtime['nbseconds'], 'allhourmin');
                 	print '</a>';
@@ -1058,7 +1058,7 @@ foreach ($listofreferent as $key => $value)
 	                	print $tmpuser2->getNomUrl(1, '', 48);
                 	}
                 }
-                elseif ($tablename == 'projet_task' && $key == 'project_task_time')	// if $key == 'project_task', we don't want details per user
+                elseif ($tablename == 'projet_task' && $key == 'project_task_time')	
                 {
                     print $elementuser->getNomUrl(1);
                 }
@@ -1250,8 +1250,8 @@ foreach ($listofreferent as $key => $value)
                 elseif ($tablename != 'projet_task' || !empty($conf->salaries->enabled)) print ''.$langs->trans("TotalHT").' : '.price($total_ht);
 			}
 			print '</td>';
-			//if (empty($value['disableamount']) && ! in_array($tablename, array('projet_task'))) print '<td class="right" width="100">'.$langs->trans("TotalTTC").' : '.price($total_ttc).'</td>';
-			//elseif (empty($value['disableamount']) && in_array($tablename, array('projet_task'))) print '<td class="right" width="100"></td>';
+			
+			
 			print '<td class="right">';
 			if (empty($value['disableamount']))
 			{

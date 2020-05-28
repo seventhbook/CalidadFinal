@@ -148,8 +148,8 @@ function product_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'product');
 
     // Notes
@@ -234,8 +234,8 @@ function productlot_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'productlot');
 
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'productlot', 'remove');
@@ -282,8 +282,8 @@ function product_admin_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'product_admin');
 
 	$head[$h][0] = DOL_URL_ROOT.'/product/admin/product_extrafields.php';
@@ -317,8 +317,8 @@ function product_lot_admin_prepare_head()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, null, $head, $h, 'product_lot_admin');
 
     $head[$h][0] = DOL_URL_ROOT.'/product/admin/product_lot_extrafields.php';

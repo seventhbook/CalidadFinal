@@ -74,8 +74,8 @@ if (!$action)
 
 
 // Define $urlwithroot
-//$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT,'/').'$/i','',trim($dolibarr_main_url_root));
-//$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
+
+
 $urlwithroot = DOL_MAIN_URL_ROOT; // This is to use same domain name than current. For Paypal payment, we can use internal URL like localhost.
 
 
@@ -165,7 +165,7 @@ $logo = $mysoc->logo;
 $paramlogo = 'ONLINE_SIGN_LOGO_'.$suffix;
 if (!empty($conf->global->$paramlogo)) $logosmall = $conf->global->$paramlogo;
 elseif (!empty($conf->global->ONLINE_SIGN_LOGO)) $logosmall = $conf->global->ONLINE_SIGN_LOGO;
-//print '<!-- Show logo (logosmall='.$logosmall.' logo='.$logo.') -->'."\n";
+
 // Define urllogo
 $urllogo = '';
 $urllogofull = '';

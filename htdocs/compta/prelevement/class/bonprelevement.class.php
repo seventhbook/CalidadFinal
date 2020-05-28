@@ -482,7 +482,7 @@ class BonPrelevement extends CommonObject
 							$paiement = new Paiement($this->db);
 							$paiement->datepaye     = $date;
 							$paiement->amounts      = $cursoramounts; // Array with detail of dispatching of payments for each invoice
-							$paiement->paiementid   = 3; //
+							$paiement->paiementid   = 3; 
 							$paiement->num_payment = $this->ref;  // Set ref of direct debit note
 							$paiement->num_paiement = $this->ref; // For bacward compatibility
 							$paiement->id_prelevement = $this->id;
@@ -832,7 +832,7 @@ class BonPrelevement extends CommonObject
 			$sql .= " AND pfd.traite = 0";
 			$sql .= " AND f.total_ttc > 0";
 			
-			//if ($agence) $sql.= " AND sr.code_guichet = '".$conf->global->PRELEVEMENT_CODE_GUICHET."'";
+			
 
 			dol_syslog(__METHOD__."::Read invoices, sql=".$sql, LOG_DEBUG);
 
@@ -1691,7 +1691,7 @@ class BonPrelevement extends CommonObject
 		$XML_DEBITOR = '';
 		$XML_DEBITOR .= '			<DrctDbtTxInf>'.$CrLf;
 		$XML_DEBITOR .= '				<PmtId>'.$CrLf;
-		// $XML_DEBITOR .='					<EndToEndId>'.('AS-'.dol_trunc($row_ref,20).'-'.$Rowing).'</EndToEndId>'.$CrLf;          // ISO20022 states that EndToEndId has a MaxLength of 35 characters
+		
 		$XML_DEBITOR .= '					<EndToEndId>'.(($conf->global->PRELEVEMENT_END_TO_END != "") ? $conf->global->PRELEVEMENT_END_TO_END : ('AS-'.dol_trunc($row_ref, 20)).'-'.$Rowing).'</EndToEndId>'.$CrLf; // ISO20022 states that EndToEndId has a MaxLength of 35 characters
 		$XML_DEBITOR .= '				</PmtId>'.$CrLf;
 		$XML_DEBITOR .= '				<InstdAmt Ccy="EUR">'.round($row_somme, 2).'</InstdAmt>'.$CrLf;
@@ -1724,7 +1724,7 @@ class BonPrelevement extends CommonObject
 		$XML_DEBITOR .= '				</DbtrAcct>'.$CrLf;
 		$XML_DEBITOR .= '				<RmtInf>'.$CrLf;
 		
-		// $XML_DEBITOR .='					<Ustrd>'.dol_trunc($row_ref, 135).'</Ustrd>'.$CrLf;        // 140 max
+		
 		$XML_DEBITOR .= '					<Ustrd>'.(($conf->global->PRELEVEMENT_USTRD != "") ? $conf->global->PRELEVEMENT_USTRD : dol_trunc($row_ref, 135)).'</Ustrd>'.$CrLf; // 140 max
 		$XML_DEBITOR .= '				</RmtInf>'.$CrLf;
 		$XML_DEBITOR .= '			</DrctDbtTxInf>'.$CrLf;

@@ -88,9 +88,9 @@ class ExportExcel2007new extends ModeleExports
 
 		if (empty($this->disabled))
 		{
-                //require_once PHPEXCEL_PATH.'PHPExcel.php';
-                //require_once PHPEXCEL_PATH.'PHPExcel/Style/Alignment.php';
-    		    //$this->label_lib='PhpExcel';
+                
+                
+    		    
     		    require_once PHPEXCELNEW_PATH.'Spreadsheet.php';
     		    $this->label_lib = 'PhpSpreadSheet';
                 $this->version_lib = '1.6.0'; // No way to get info from library
@@ -195,8 +195,8 @@ class ExportExcel2007new extends ModeleExports
 
     	$outputlangs->load("exports");
 
-        //require_once PHPEXCEL_PATH.'PHPExcel.php';
-        //require_once PHPEXCEL_PATH.'PHPExcel/Style/Alignment.php';
+        
+        
 	    require_once DOL_DOCUMENT_ROOT.'/includes/phpoffice/autoloader.php';
 	    require_once DOL_DOCUMENT_ROOT.'/includes/Psr/autoloader.php';
 	    require_once PHPEXCELNEW_PATH.'Spreadsheet.php';
@@ -211,10 +211,10 @@ class ExportExcel2007new extends ModeleExports
             }
 	    }
 
-        //$this->workbook = new PHPExcel();
+        
         $this->workbook = new Spreadsheet();
         $this->workbook->getProperties()->setCreator($user->getFullName($outputlangs).' - '.DOL_APPLICATION_TITLE.' '.DOL_VERSION);
-        //$this->workbook->getProperties()->setLastModifiedBy('Dolibarr '.DOL_VERSION);
+        
         $this->workbook->getProperties()->setTitle(basename($file));
         $this->workbook->getProperties()->setSubject(basename($file));
         $this->workbook->getProperties()->setDescription(DOL_APPLICATION_TITLE.' '.DOL_VERSION);
@@ -236,7 +236,7 @@ class ExportExcel2007new extends ModeleExports
 	public function write_header($outputlangs)
 	{
         // phpcs:enable
-		//$outputlangs->charset_output='ISO-8859-1';	// Because Excel 5 format is ISO
+		
 
 		return 0;
 	}
@@ -268,7 +268,7 @@ class ExportExcel2007new extends ModeleExports
 		foreach ($array_selected_sorted as $code => $value)
 		{
             $alias = $array_export_fields_label[$code];
-			//print "dd".$alias;
+			
 			if (empty($alias)) dol_print_error('', 'Bad value for field with code='.$code.'. Try to redefine export.');
     		if (!empty($conf->global->MAIN_USE_PHP_WRITEEXCEL))
     		{
@@ -356,7 +356,7 @@ class ExportExcel2007new extends ModeleExports
 			{
     	    	if ($typefield == 'Text' || $typefield == 'TextAuto')
     	    	{
-    	    		//$this->workbook->getActiveSheet()->getCellByColumnAndRow($this->col, $this->row+1)->setValueExplicit($newvalue, PHPExcel_Cell_DataType::TYPE_STRING);
+    	    		
 					$this->workbook->getActiveSheet()->SetCellValueByColumnAndRow($this->col, $this->row + 1, (string) $newvalue);
     	    		$coord = $this->workbook->getActiveSheet()->getCellByColumnAndRow($this->col, $this->row + 1)->getCoordinate();
     	    		$this->workbook->getActiveSheet()->getStyle($coord)->getNumberFormat()->setFormatCode('@');

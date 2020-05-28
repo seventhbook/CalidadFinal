@@ -27,8 +27,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT.'/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
+
+
 
 /**
  * Class Website
@@ -479,7 +479,7 @@ class Website extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
+				
 			}
 		}
 
@@ -657,7 +657,7 @@ class Website extends CommonObject
 		    	$filewrapper = $pathofwebsitenew.'/wrapper.php';
 
 		    	// Generate the index.php page to be the home page
-		    	//-------------------------------------------------
+		    	
 		    	$result = dolSaveIndexPage($pathofwebsitenew, $fileindex, $filetpl, $filewrapper);
 		    }
 		}
@@ -744,7 +744,7 @@ class Website extends CommonObject
 		if (empty($this->labelStatus) || empty($this->labelStatusShort))
 		{
 			global $langs;
-			//$langs->load("mymodule");
+			
 			$this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Disabled');
 			$this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Enabled');
 			$this->labelStatusShort[self::STATUS_DRAFT] = $langs->trans('Disabled');
@@ -1237,7 +1237,7 @@ class Website extends CommonObject
 
 		$url = $_SERVER["REQUEST_URI"];
 		$url = preg_replace('/(\?|&)l=([a-zA-Z_]*)/', '', $url); // We remove param l from url
-		//$url = preg_replace('/(\?|&)lang=([a-zA-Z_]*)/', '', $url);	// We remove param lang from url
+		
 		$url .= (preg_match('/\?/', $url) ? '&' : '?').'l=';
 
 		$HEIGHTOPTION = 40;

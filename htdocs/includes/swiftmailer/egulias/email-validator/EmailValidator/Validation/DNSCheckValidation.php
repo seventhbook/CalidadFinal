@@ -21,7 +21,7 @@ class DNSCheckValidation implements EmailValidation
 
     public function isValid($email, EmailLexer $emailLexer)
     {
-        // use the input to check DNS if we cannot extract something similar to a domain
+        
         $host = $email;
 
         // Arguable pattern to extract the domain. Not aiming to validate the domain nor the email

@@ -413,7 +413,7 @@ class InterfaceActionsAuto extends DolibarrTriggers
             }
 
             // Parameters $object->sendtoid defined by caller
-            //$object->sendtoid=0;
+            
 		}
 		elseif ($action == 'PROPOSAL_SUPPLIER_VALIDATE')
 		{
@@ -890,7 +890,7 @@ class InterfaceActionsAuto extends DolibarrTriggers
 		$actioncomm->errors_to     = $object->errors_to;
 
 		// Object linked (if link is for thirdparty, contact, project it is a recording error. We should not have links in link table
-		// for such objects because there is already a dedicated field into table llx_actioncomm.
+		
 		if (! in_array($elementtype, array('societe','contact','project')))
 		{
 			$actioncomm->fk_element  = $elementid;

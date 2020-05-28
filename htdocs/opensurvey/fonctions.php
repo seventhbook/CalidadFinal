@@ -49,8 +49,8 @@ function opensurvey_prepare_head(Opensurveysondage $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'opensurveypoll');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'opensurveypoll', 'remove');
@@ -75,7 +75,7 @@ function llxHeaderSurvey($title, $head = "", $disablejs = 0, $disablehead = 0, $
 	global $conf, $langs, $mysoc;
 	global $dolibarr_main_url_root;
 
-	//$replacemainarea = (empty($conf->dol_hide_leftmenu) ? '<div>' : '').'<div>';
+	
 
 	top_htmlhead($head, $title, $disablejs, $disablehead, $arrayofjs, $arrayofcss); // Show html headers
 	print '<body id="mainbody" class="publicnewmemberform">';
@@ -98,7 +98,7 @@ function llxHeaderSurvey($title, $head = "", $disablejs = 0, $disablehead = 0, $
 	$paramlogo = 'ONLINE_PAYMENT_LOGO_'.$suffix;
 	if (!empty($conf->global->$paramlogo)) $logosmall = $conf->global->$paramlogo;
 	elseif (!empty($conf->global->ONLINE_PAYMENT_LOGO)) $logosmall = $conf->global->ONLINE_PAYMENT_LOGO;
-	//print '<!-- Show logo (logosmall='.$logosmall.' logo='.$logo.') -->'."\n";
+	
 	// Define urllogo
 	$urllogo = '';
 	$urllogofull = '';
@@ -163,8 +163,8 @@ function get_server_name()
 	global $dolibarr_main_url_root;
 
 	$urlwithouturlroot=preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
-	//$urlwithroot=$urlwithouturlroot.DOL_URL_ROOT;		// This is to use external domain name found into config file
-	//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+	
+	
 
 	$url=$urlwithouturlroot.dol_buildpath('/opensurvey/', 1);
 

@@ -78,11 +78,11 @@ class DonationStats extends Stats
 
         $object=new Don($this->db);
 		$this->from = MAIN_DB_PREFIX.$object->table_element." as d";
-		//$this->from.= ", ".MAIN_DB_PREFIX."societe as s";
-		//$this->field='weight';	// Warning, unit of weight is NOT USED AND MUST BE
+		
+		
 		$this->where.= " d.fk_statut > 0";    // Not draft and not cancelled
 
-		//$this->where.= " AND c.fk_soc = s.rowid AND c.entity = ".$conf->entity;
+		
 		$this->where.= " AND d.entity = ".$conf->entity;
 		if ($this->userid > 0) $this->where.=' WHERE c.fk_user_author = '.$this->userid;
     }

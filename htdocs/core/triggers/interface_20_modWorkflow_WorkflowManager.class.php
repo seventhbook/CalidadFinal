@@ -359,11 +359,11 @@ class InterfaceWorkflowManager extends DolibarrTriggers
      */
     private function shouldClassify($conf, $totalonlinkedelements, $object_total_ht)
     {
-        // if the configuration allows unmatching amounts, allow classification anyway
+        
         if (!empty($conf->global->WORKFLOW_CLASSIFY_IF_AMOUNTS_ARE_DIFFERENTS)) {
             return true;
         }
-        // if the amount are same, allow classification, else deny
+        
         return (price2num($totalonlinkedelements, 'MT') == price2num($object_total_ht, 'MT'));
     }
 }

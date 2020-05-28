@@ -123,7 +123,7 @@ class Forms implements iFilter
                 );
 
         } catch (RestException $e) {
-            //echo $e->getErrorMessage();
+            
             $info = false;
         }
         if (!$info)

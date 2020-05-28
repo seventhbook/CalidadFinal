@@ -80,7 +80,7 @@ function rebuildObjectClass($destdir, $module, $objectname, $newmask, $readdir =
         return -3;
     }
 
-    //$pathoffiletoedittmp=$destdir.'/class/'.strtolower($objectname).'.class.php.tmp';
+    
     //dol_delete_file($pathoffiletoedittmp, 0, 1, 1);
 
     try
@@ -160,28 +160,28 @@ function rebuildObjectClass($destdir, $module, $objectname, $newmask, $readdir =
         }
 
         $texttoinsert .= "\t".');'."\n";
-		//print ($texttoinsert);exit;
+		
 
         if (count($object->fields))
         {
-        	//$typetotypephp=array('integer'=>'integer', 'duration'=>'integer', 'varchar'=>'string');
+        	
 
         	foreach ($object->fields as $key => $val)
             {
                 $i++;
-                //$typephp=$typetotypephp[$val['type']];
+                
                 $texttoinsert .= "\t".'public $'.$key.";";
-                //if ($key == 'rowid')  $texttoinsert.= ' AUTO_INCREMENT PRIMARY KEY';
-                //if ($key == 'entity') $texttoinsert.= ' DEFAULT 1';
-                //$texttoinsert.= ($val['notnull']?' NOT NULL':'');
-                //if ($i < count($object->fields)) $texttoinsert.=";";
+                
+                
+                
+                
                 $texttoinsert .= "\n";
             }
         }
 
         $texttoinsert .= "\t".'// END MODULEBUILDER PROPERTIES';
 
-        //print($texttoinsert);exit;
+        
 
         $contentclass = preg_replace('/\/\/ BEGIN MODULEBUILDER PROPERTIES.*END MODULEBUILDER PROPERTIES/ims', $texttoinsert, $contentclass);
 

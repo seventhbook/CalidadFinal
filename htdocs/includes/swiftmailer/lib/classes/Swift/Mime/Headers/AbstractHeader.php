@@ -211,13 +211,13 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
         // If it's not valid
 
         if (!preg_match('/^'.self::PHRASE_PATTERN.'$/D', $phraseStr)) {
-            // .. but it is just ascii text, try escaping some characters
-            // and make it a quoted-string
+            
+            
             if (preg_match('/^[\x00-\x08\x0B\x0C\x0E-\x7F]*$/D', $phraseStr)) {
                 $phraseStr = $this->escapeSpecials($phraseStr, array('"'));
                 $phraseStr = '"'.$phraseStr.'"';
             } else {
-                // ... otherwise it needs encoding
+                
                 // Determine space remaining on line if first line
                 if ($shorten) {
                     $usedLength = strlen($header->getFieldName().': ');

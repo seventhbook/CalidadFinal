@@ -241,11 +241,11 @@ class modAccounting extends DolibarrModules
 		$r++;
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -264,7 +264,7 @@ class modAccounting extends DolibarrModules
 
 
 		// Imports
-		//--------
+		
 		$r=0;
 
 		// General ledger

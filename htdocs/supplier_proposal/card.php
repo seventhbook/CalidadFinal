@@ -629,7 +629,7 @@ if (empty($reshook))
 				}
 				elseif (GETPOST('idprodfournprice', 'alpha') > 0)
 				{
-					//$qtytosearch=$qty; 	   // Just to see if a price exists for the quantity. Not used to found vat.
+					
 					$qtytosearch = -1; // We force qty to -1 to be sure to find if the supplier price that exists
 					$idprod = $productsupplier->get_buyprice(GETPOST('idprodfournprice', 'alpha'), $qtytosearch);
 					$res = $productsupplier->fetch($idprod);
@@ -639,7 +639,7 @@ if (empty($reshook))
 				{
 					$label = $productsupplier->label;
 
-					// if we use supplier description of the products
+					
 					if (!empty($productsupplier->desc_supplier) && !empty($conf->global->PRODUIT_FOURN_TEXTS)) {
 					    $desc = $productsupplier->desc_supplier;
 					} else $desc = $productsupplier->description;
@@ -735,12 +735,12 @@ if (empty($reshook))
 
 				if ($price_ht !== '')
 				{
-					$pu_ht = price2num($price_ht, 'MU'); // $pu_ht must be rounded according to settings
+					$pu_ht = price2num($price_ht, 'MU'); 
 				}
 				else
 				{
 					$pu_ttc = price2num(GETPOST('price_ttc'), 'MU');
-					$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); // $pu_ht must be rounded according to settings
+					$pu_ht = price2num($pu_ttc / (1 + ($tva_tx / 100)), 'MU'); 
 				}
 				$price_base_type = 'HT';
 				$pu_ht_devise = price2num($price_ht_devise, 'MU');
@@ -1389,8 +1389,8 @@ if ($action == 'create')
 		// Create an array for form
 		$formquestion = array(
 							// 'text' => $langs->trans("ConfirmClone"),
-							// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-							// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' =>
+							
+							
 							// 1),
 							array('type' => 'other', 'name' => 'socid', 'label' => $langs->trans("SelectThirdParty"), 'value' => $form->select_company(GETPOST('socid', 'int'), 'socid', 's.fournisseur=1')));
 		// Paiement incomplet. On demande si motif = escompte ou autre
@@ -1778,7 +1778,7 @@ if ($action == 'create')
 	// Add free products/services form
 	global $forceall, $senderissupplier, $dateSelector, $inputalsopricewithtax;
 	$forceall = 1; $dateSelector = 0; $inputalsopricewithtax = 1;
-	$senderissupplier = 2; // $senderissupplier=2 is same than 1 but disable test on minimum qty.
+	$senderissupplier = 2; 
 	if (!empty($conf->global->SUPPLIER_PROPOSAL_WITH_PREDEFINED_PRICES_ONLY)) $senderissupplier = 1;
 
 	if (!empty($object->lines))

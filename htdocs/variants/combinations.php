@@ -98,7 +98,7 @@ $productCombination2ValuePairs1 = array();
 if ($_POST) {
 	if (($action == 'add' || $action == 'create') && empty($massaction) && !GETPOST('selectvariant', 'alpha'))	// We click on Create all defined combinations
 	{
-		//$features = GETPOST('features', 'array');
+		
         $features = $_SESSION['addvariant_'.$object->id];
 
 		if (!$features) {
@@ -515,7 +515,7 @@ if (!empty($id) || !empty($ref))
 				print '<select class="flat minwidth100" id="attribute" name="attribute">';
 				print '<option value="-1">&nbsp;</option>';
 				foreach ($prodattr_all as $attr) {
-					//print '<option value="'.$attr->id.'"'.($attr->id == GETPOST('attribute', 'int') ? ' selected="selected"' : '').'>'.$attr->label.'</option>';
+					
 					print '<option value="'.$attr->id.'">'.$attr->label.'</option>';
 				}
 				print '</select>';

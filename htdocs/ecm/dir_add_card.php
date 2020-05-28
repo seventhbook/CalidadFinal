@@ -221,9 +221,9 @@ $formecm=new FormEcm($db);
 
 if ($action == 'create')
 {
-	//***********************
+	
 	// Create
-	//***********************
+	
 	print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
 	print '<input type="hidden" name="token" value="'.newToken().'">';
 	print '<input type="hidden" name="action" value="add">';
@@ -271,9 +271,9 @@ if ($action == 'create')
 
 if (empty($action) || $action == 'delete_section')
 {
-	//***********************
+	
 	// List
-	//***********************
+	
 	print load_fiche_titre($langs->trans("ECMSectionOfDocuments"));
 	print '<br>';
 
@@ -282,7 +282,7 @@ if (empty($action) || $action == 'delete_section')
 	print $langs->trans("ECMSection").': ';
 	print img_picto('','object_dir').' ';
 	print '<a href="'.DOL_URL_ROOT.'/ecm/dir_add_card.php">'.$langs->trans("ECMRoot").'</a>';
-	//print ' -> <b>'.$ecmdir->getNomUrl(1).'</b><br>';
+	
 	print "<br><br>";
     */
 

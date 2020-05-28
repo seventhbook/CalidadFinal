@@ -38,7 +38,7 @@ $version='1.0';
 $error=0;
 
 
-// -------------------- START OF YOUR CODE HERE --------------------
+
 @set_time_limit(0);							// No timeout for this script
 define('EVEN_IF_ONLY_LOGIN_ALLOWED', 1);		// Set this define to 0 if you want to lock your script when dolibarr setup is "locked to admin user only".
 
@@ -55,9 +55,9 @@ if (! $res && file_exists("../../master.inc.php")) $res=@include "../../master.i
 if (! $res && file_exists("../../../master.inc.php")) $res=@include "../../../master.inc.php";
 if (! $res) die("Include of master fails");
 // After this $db, $mysoc, $langs, $conf and $hookmanager are defined (Opened $db handler to database will be closed at end of file).
-// $user is created but empty.
 
-//$langs->setDefaultLang('en_US'); 	// To change default language of $langs
+
+
 $langs->load("main");				// To load language file for default language
 
 // Load user and its permissions
@@ -82,7 +82,7 @@ $db->begin();
 
 // Examples for manipulating class MyObject
 //dol_include_once("/mymodule/class/myobject.class.php");
-//$myobject=new MyObject($db);
+
 
 // Example for inserting creating object in database
 /*
@@ -157,7 +157,7 @@ else
 */
 
 
-// -------------------- END OF YOUR CODE --------------------
+
 
 if (! $error)
 {

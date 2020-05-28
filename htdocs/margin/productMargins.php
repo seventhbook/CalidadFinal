@@ -89,7 +89,7 @@ $form = new Form($db);
 llxHeader('', $langs->trans("Margins").' - '.$langs->trans("Products"));
 
 $text = $langs->trans("Margins");
-//print load_fiche_titre($text);
+
 
 // Show tabs
 $head = marges_prepare_head($user);
@@ -209,7 +209,7 @@ if ($id > 0) $sql .= " GROUP BY p.label, p.rowid, p.fk_product_type, p.ref, p.en
 else $sql .= " GROUP BY p.label, p.rowid, p.fk_product_type, p.ref, p.entity";
 $sql .= $db->order($sortfield, $sortorder);
 // TODO: calculate total to display then restore pagination
-//$sql.= $db->plimit($conf->liste_limit +1, $offset);
+
 
 dol_syslog('margin::productMargins.php', LOG_DEBUG);
 $result = $db->query($sql);
@@ -300,7 +300,7 @@ if ($result)
 				    print img_object('', 'product').' '.$langs->trans("NotPredefinedProducts");
 				}
 				print "</td>\n";
-				//print "<td>".$product_static->getNomUrl(1)."</td>\n";
+				
 			}
 			print "<td class=\"right\">".price(price2num($pv, 'MT'))."</td>\n";
 			print "<td class=\"right\">".price(price2num($pa, 'MT'))."</td>\n";

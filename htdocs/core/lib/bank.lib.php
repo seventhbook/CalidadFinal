@@ -48,7 +48,7 @@ function bank_prepare_head(Account $object)
     $head[$h][2] = 'journal';
     $h++;
 
-    //    if ($conf->global->MAIN_FEATURES_LEVEL >= 1)
+    
     //    {
     $head[$h][0] = DOL_URL_ROOT."/compta/bank/treso.php?account=".$object->id;
     $head[$h][1] = $langs->trans("PlannedTransactions");
@@ -104,8 +104,8 @@ function bank_prepare_head(Account $object)
 
 	// Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'bank');
 
     /*$head[$h][0] = DOL_URL_ROOT . "/compta/bank/info.php?id=" . $object->id;
@@ -142,8 +142,8 @@ function bank_admin_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'bank_admin');
 
 	$head[$h][0] = DOL_URL_ROOT.'/admin/bank_extrafields.php';
@@ -217,8 +217,8 @@ function various_payment_prepare_head($object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'various_payment');
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
@@ -300,7 +300,7 @@ function checkBanForAccount($account)
         // Concatenation des differents codes.
         $rib = strtolower(trim($account->code_banque).trim($account->code_guichet).trim($account->number).trim($account->cle));
         // On remplace les eventuelles lettres par des chiffres.
-        //$rib = strtr($rib, "abcdefghijklmnopqrstuvwxyz","12345678912345678912345678");	//Ne marche pas
+        
         $rib = strtr($rib, "abcdefghijklmnopqrstuvwxyz", "12345678912345678923456789");
         // Separation du rib en 3 groupes de 7 + 1 groupe de 2.
         // Multiplication de chaque groupe par les coef du tableau

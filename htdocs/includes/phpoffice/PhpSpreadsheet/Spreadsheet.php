@@ -912,7 +912,7 @@ class Spreadsheet
     public function addNamedRange(NamedRange $namedRange)
     {
         if ($namedRange->getScope() == null) {
-            // global scope
+            
             $this->namedRanges[$namedRange->getName()] = $namedRange;
         } else {
             // local scope
@@ -1232,7 +1232,7 @@ class Spreadsheet
         }
 
         // remove cellXfs without references and create mapping so we can update xfIndex
-        // for all cells and columns
+        
         $countNeededCellXfs = 0;
         foreach ($this->cellXfCollection as $index => $cellXf) {
             if ($countReferencesCellXf[$index] > 0 || $index == 0) { // we must never remove the first cellXf
@@ -1256,20 +1256,20 @@ class Spreadsheet
 
         // update the xfIndex for all cells, row dimensions, column dimensions
         foreach ($this->getWorksheetIterator() as $sheet) {
-            // for all cells
+            
             foreach ($sheet->getCoordinates(false) as $coordinate) {
                 $cell = $sheet->getCell($coordinate);
                 $cell->setXfIndex($map[$cell->getXfIndex()]);
             }
 
-            // for all row dimensions
+            
             foreach ($sheet->getRowDimensions() as $rowDimension) {
                 if ($rowDimension->getXfIndex() !== null) {
                     $rowDimension->setXfIndex($map[$rowDimension->getXfIndex()]);
                 }
             }
 
-            // for all column dimensions
+            
             foreach ($sheet->getColumnDimensions() as $columnDimension) {
                 $columnDimension->setXfIndex($map[$columnDimension->getXfIndex()]);
             }

@@ -374,7 +374,7 @@ if ($id)
 	$project->fetch_thirdparty();
 }
 
-$onlyopenedproject = 1; // or -1
+$onlyopenedproject = 1; 
 $morewherefilter = '';
 
 if ($search_project_ref) $morewherefilter .= natural_search(array("p.ref", "p.title"), $search_project_ref);
@@ -496,7 +496,7 @@ if (!empty($conf->global->MAIN_DEFAULT_WORKING_DAYS))
 
 for ($idw = 0; $idw < 7; $idw++)
 {
-	$dayinloopfromfirstdaytoshow = dol_time_plus_duree($firstdaytoshow, $idw, 'd'); // $firstdaytoshow is a date with hours = 0
+	$dayinloopfromfirstdaytoshow = dol_time_plus_duree($firstdaytoshow, $idw, 'd'); 
 	$dayinloop = dol_time_plus_duree($startday, $idw, 'd');
 
 	$statusofholidaytocheck = '3';
@@ -608,7 +608,7 @@ print '<th class="maxwidth75 right">'.$langs->trans("TimeSpent").($usertoprocess
 
 for ($idw = 0; $idw < 7; $idw++)
 {
-	$dayinloopfromfirstdaytoshow = dol_time_plus_duree($firstdaytoshow, $idw, 'd'); // $firstdaytoshow is a date with hours = 0
+	$dayinloopfromfirstdaytoshow = dol_time_plus_duree($firstdaytoshow, $idw, 'd'); 
 	$dayinloop = dol_time_plus_duree($startday, $idw, 'd');
 
 	$cssweekend = '';

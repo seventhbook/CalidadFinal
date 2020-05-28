@@ -259,7 +259,7 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
         $sql.= " WHERE ".$rowidcol." = '".$rowid."'";
 
         dol_syslog("actionmodify", LOG_DEBUG);
-        //print $sql;
+        
         $resql = $db->query($sql);
         if ($resql)
         {
@@ -303,12 +303,12 @@ if (GETPOST('actionadd', 'alpha') || GETPOST('actionmodify', 'alpha'))
         	$db->rollback();
         }
     }
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+    
 }
 
 if (GETPOST('actioncancel', 'alpha'))
 {
-    //$_GET["id"]=GETPOST('id', 'int');       // Force affichage dictionnaire en cours d'edition
+    
 }
 
 if ($action == 'confirm_delete' && $confirm == 'yes')       // delete
@@ -441,7 +441,7 @@ if ($id)
     $sql=$tabsql[$id];
     $sql.=$db->order($sortfield, $sortorder);
     $sql.=$db->plimit($limit+1, $offset);
-    //print $sql;
+    
 
     $fieldlist=explode(',', $tabfield[$id]);
 
@@ -464,7 +464,7 @@ if ($id)
             // Determine le nom du champ par rapport aux noms possibles
             // dans les dictionnaires de donnees
             $valuetoshow=ucfirst($fieldlist[$field]);   // Par defaut
-            $valuetoshow=$langs->trans($valuetoshow);   // try to translate
+            $valuetoshow=$langs->trans($valuetoshow);   
             $align='';
             if ($fieldlist[$field]=='lang')            { $valuetoshow=$langs->trans("Language"); }
             if ($valuetoshow != '')
@@ -552,7 +552,7 @@ if ($id)
                 $sortable=$tmp['sortable'];
 				*/
                 $valuetoshow=ucfirst($fieldlist[$field]);   // Par defaut
-                $valuetoshow=$langs->trans($valuetoshow);   // try to translate
+                $valuetoshow=$langs->trans($valuetoshow);   
                 if ($fieldlist[$field]=='lang')            { $valuetoshow=$langs->trans("Language"); }
                 if ($fieldlist[$field]=='type')            { $valuetoshow=$langs->trans("Type"); }
                 if ($fieldlist[$field]=='code')            { $valuetoshow=$langs->trans("Code"); }

@@ -139,8 +139,8 @@ function user_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'user');
 
 	if ((!empty($conf->salaries->enabled) && !empty($user->rights->salaries->read))
@@ -235,8 +235,8 @@ function group_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'group');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'group', 'remove');
@@ -279,8 +279,8 @@ function user_admin_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'useradmin');
 
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'useradmin', 'remove');
@@ -696,7 +696,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 	   	{
 	   		print $formother->showColor($conf->global->THEME_ELDY_BACKTITLE1, $langs->trans("Default"));
 	   	}
-		print ' &nbsp; <span class="nowraponall">('.$langs->trans("Default").': <strong>'.$default.'</strong>) ';  // $colorbacktitle1 in CSS
+		print ' &nbsp; <span class="nowraponall">('.$langs->trans("Default").': <strong>'.$default.'</strong>) ';  
 		print $form->textwithpicto('', $langs->trans("NotSupportedByAllThemes").', '.$langs->trans("PressF5AfterChangingThis"));
 		print '</span>';
 		print '</td>';
@@ -829,7 +829,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 			else
 			{
 				
-				//print '<span style="color: #000078">'.$langs->trans("Default").'</span>';
+				
 				print $langs->trans("Default");
 			}
 		}
@@ -861,7 +861,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '<td>'.$langs->trans("HighlightLinesColor").'</td>';
 		print '<td colspan="'.($colspan-1).'">';
 		
-		//print ' &nbsp; ('.$langs->trans("NotSupportedByAllThemes").', '.$langs->trans("PressF5AfterChangingThis").')';
+		
 		if ($edit)
 		{
 			if ($conf->global->THEME_ELDY_USE_HOVER == '1') $color=colorArrayToHex(colorStringToArray($colorbacklinepairhover));
@@ -907,7 +907,7 @@ function showSkins($fuser, $edit = 0, $foruserprofile = false)
 		print '<td>'.$langs->trans("HighlightLinesChecked").'</td>';
 		print '<td colspan="'.($colspan - 1).'">';
 		
-		//print ' &nbsp; ('.$langs->trans("NotSupportedByAllThemes").', '.$langs->trans("PressF5AfterChangingThis").')';
+		
 		if ($edit)
 		{
 			if ($conf->global->THEME_ELDY_USE_CHECKED == '1') $color = 'e6edf0';

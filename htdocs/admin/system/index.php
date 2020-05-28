@@ -94,9 +94,9 @@ if ($db->type == 'pgsql')
 {
 	// Check option standard_conforming_strings is on
 	$paramarray = $db->getServerParametersValues('standard_conforming_strings');
-    //	if ($paramarray['standard_conforming_strings'] != 'on' && $paramarray['standard_conforming_strings'] != 1)
+    
     //	{
-    //		$langs->load("errors");
+    
     //	}
 }
 print '<br>';
@@ -110,7 +110,7 @@ print '</table>';
 print '<br>';
 
 
-//print "<br>\n";
+
 print info_admin($langs->trans("SystemInfoDesc")).'<br>';
 
 // End of page

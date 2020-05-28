@@ -94,7 +94,7 @@ if ($mode)
         $tab='statsstate';
 
         $data = array();
-        $sql.="SELECT COUNT(d.rowid) as nb, MAX(d.datevalid) as lastdate, MAX(s.dateadh) as lastsubscriptiondate, co.code, co.label, c.nom as label2"; //
+        $sql.="SELECT COUNT(d.rowid) as nb, MAX(d.datevalid) as lastdate, MAX(s.dateadh) as lastsubscriptiondate, co.code, co.label, c.nom as label2"; 
         $sql.=" FROM ".MAIN_DB_PREFIX."adherent as d";
         $sql.=" LEFT JOIN ".MAIN_DB_PREFIX."c_departements as c on d.state_id = c.rowid";
         $sql.=" LEFT JOIN ".MAIN_DB_PREFIX."c_regions as r on c.fk_region = r.code_region";
@@ -105,7 +105,7 @@ if ($mode)
         $sql.=" GROUP BY co.label, co.code, c.nom";
         
     }
-    if ($mode == 'memberbyregion') //
+    if ($mode == 'memberbyregion') 
     {
         $label=$langs->trans("Country");
         $label2=$langs->trans("Region"); //département
@@ -120,7 +120,7 @@ if ($mode)
         $sql.=" LEFT JOIN ".MAIN_DB_PREFIX."subscription as s ON s.fk_adherent = d.rowid";
         $sql.=" WHERE d.entity IN (".getEntity('adherent').")";
         $sql.=" AND d.statut = 1";
-        $sql.=" GROUP BY co.label, co.code, r.nom"; //+
+        $sql.=" GROUP BY co.label, co.code, r.nom"; 
         
     }
     if ($mode == 'memberbytown')
@@ -165,7 +165,7 @@ if ($mode)
                             'lastsubscriptiondate'=>$db->jdate($obj->lastsubscriptiondate)
                 );
             }
-            if ($mode == 'memberbyregion') //+
+            if ($mode == 'memberbyregion') 
             {
                 $data[]=array(
                     'label'=>(($obj->code && $langs->trans("Country".$obj->code)!="Country".$obj->code)?$langs->trans("Country".$obj->code):($obj->label?$obj->label:$langs->trans("Unknown"))),
@@ -224,7 +224,7 @@ else
     if ($mode == 'memberbycountry') print $langs->trans("MembersByCountryDesc").'<br>';
     elseif ($mode == 'memberbystate') print $langs->trans("MembersByStateDesc").'<br>';
     elseif ($mode == 'memberbytown') print $langs->trans("MembersByTownDesc").'<br>';
-    elseif ($mode == 'memberbyregion') print $langs->trans("MembersByRegion").'<br>';//+
+    elseif ($mode == 'memberbyregion') print $langs->trans("MembersByRegion").'<br>';
     else
     {
         print $langs->trans("MembersStatisticsDesc").'<br>';
@@ -234,8 +234,8 @@ else
         print '<a href="'.$_SERVER["PHP_SELF"].'?mode=memberbystate">'.$langs->trans("MembersStatisticsByState").'</a><br>';
         print '<br>';
         print '<a href="'.$_SERVER["PHP_SELF"].'?mode=memberbytown">'.$langs->trans("MembersStatisticsByTown").'</a><br>';
-        print '<br>';//+
-		print '<a href="'.$_SERVER["PHP_SELF"].'?mode=memberbyregion">'.$langs->trans("MembersStatisticsByRegion").'</a><br>';//+
+        print '<br>';
+		print '<a href="'.$_SERVER["PHP_SELF"].'?mode=memberbyregion">'.$langs->trans("MembersStatisticsByRegion").'</a><br>';
     }
     print '<br>';
 }
@@ -286,7 +286,7 @@ if (count($arrayjs) && $mode == 'memberbycountry')
     print "};\n";
     print "</script>\n";
 
-    // print the div tag that will contain the map
+    
     print '<div class="center" id="'.$mode.'"></div>'."\n";
     print '<br>';
 }

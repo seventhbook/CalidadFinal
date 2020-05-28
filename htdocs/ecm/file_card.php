@@ -86,7 +86,7 @@ $file = new stdClass();
 $file->section_id = $ecmdir->id;
 $file->label = $urlfile;
 
-$relativetodocument = 'ecm/'.$relativepath; // $relativepath is relative to ECM dir, we need relative to document
+$relativetodocument = 'ecm/'.$relativepath; 
 $filepath = $relativepath.$file->label;
 $filepathtodocument = $relativetodocument.$file->label;
 
@@ -129,7 +129,7 @@ if ($action == 'update')
     $newlabel = GETPOST('label', 'alpha');
 	$shareenabled = GETPOST('shareenabled', 'alpha');
 
-    //$db->begin();
+    
 
     $olddir = $ecmdir->getRelativePath(0); // Relative to ecm
     $olddirrelativetodocument = 'ecm/'.$olddir; // Relative to document
@@ -143,7 +143,7 @@ if ($action == 'update')
     // Now we update index of file
     $db->begin();
 
-    //print $oldfile.' - '.$newfile;
+    
     if ($newlabel != $oldlabel)
     {
         $result = dol_move($oldfile, $newfile); // This include update of database
@@ -291,8 +291,8 @@ print '</td></tr>';
 
 print '<tr><td>'.$langs->trans("HashOfFileContent").'</td><td>';
 $object = new EcmFiles($db);
-//$filenametosearch=basename($filepath);
-//$filedirtosearch=basedir($filepath);
+
+
 $object->fetch(0, '', $filepathtodocument);
 if (!empty($object->label))
 {
@@ -307,7 +307,7 @@ print '</td></tr>';
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 // Link for internal download
 print '<tr><td>'.$langs->trans("DirectDownloadInternalLink").'</td><td>';
@@ -340,8 +340,8 @@ if (!empty($object->share))
 		if ($forcedownload) $paramlink .= ($paramlink ? '&' : '').'attachment=1';
 
 		$fulllink = $urlwithroot.'/document.php'.($paramlink ? '?'.$paramlink : '');
-		//if (! empty($object->ref))       $fulllink.='&hashn='.$object->ref;		// Hash of file path
-		//elseif (! empty($object->label)) $fulllink.='&hashc='.$object->label;		// Hash of file content
+		
+		
 
 		print img_picto('', 'globe').' ';
 		if ($action != 'edit') print '<input type="text" class="quatrevingtpercent" id="downloadlink" name="downloadexternallink" value="'.dol_escape_htmltag($fulllink).'">';

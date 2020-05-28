@@ -141,11 +141,11 @@ class modProduct extends DolibarrModules
         $r++;
 
         // Menus
-        //-------
+        
 
         $this->menu = 1; // This module adds menu entries. They are coded into menu manager.
 		// Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -330,7 +330,7 @@ class modProduct extends DolibarrModules
 		}
 
 		// Imports
-		//--------
+		
 		$r=0;
 
 		// Import list of products
@@ -381,7 +381,7 @@ class modProduct extends DolibarrModules
 			'p.datec' => 'DateCreation',
 			'p.cost_price' => "CostPrice",
 		);
-        if (!empty($conf->stock->enabled)) {//if Stock module enabled
+        if (!empty($conf->stock->enabled)) {
             $this->import_fields_array[$r] = array_merge($this->import_fields_array[$r], array(
                 'p.seuil_stock_alerte' => 'StockLimit', //lower limit for warning
                 'p.pmp' => 'PMPValue', //weighted average price

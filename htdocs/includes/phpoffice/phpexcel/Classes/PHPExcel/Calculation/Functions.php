@@ -121,7 +121,7 @@ class PHPExcel_Calculation_Functions {
 			return True;
 		}
 		return False;
-	}	//	function setCompatibilityMode()
+	}	
 
 
 	/**
@@ -137,7 +137,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function getCompatibilityMode() {
 		return self::$compatibilityMode;
-	}	//	function getCompatibilityMode()
+	}	
 
 
 	/**
@@ -160,7 +160,7 @@ class PHPExcel_Calculation_Functions {
 			return True;
 		}
 		return False;
-	}	//	function setReturnDateType()
+	}	
 
 
 	/**
@@ -176,7 +176,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function getReturnDateType() {
 		return self::$ReturnDateType;
-	}	//	function getReturnDateType()
+	}	
 
 
 	/**
@@ -188,7 +188,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function DUMMY() {
 		return '#Not Yet Implemented';
-	}	//	function DUMMY()
+	}	
 
 
 	/**
@@ -200,7 +200,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function DIV0() {
 		return self::$_errorCodes['divisionbyzero'];
-	}	//	function DIV0()
+	}	
 
 
 	/**
@@ -218,7 +218,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function NA() {
 		return self::$_errorCodes['na'];
-	}	//	function NA()
+	}	
 
 
 	/**
@@ -232,7 +232,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function NaN() {
 		return self::$_errorCodes['num'];
-	}	//	function NaN()
+	}	
 
 
 	/**
@@ -246,7 +246,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function NAME() {
 		return self::$_errorCodes['name'];
-	}	//	function NAME()
+	}	
 
 
 	/**
@@ -260,7 +260,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function REF() {
 		return self::$_errorCodes['reference'];
-	}	//	function REF()
+	}	
 
 
 	/**
@@ -274,7 +274,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function NULL() {
 		return self::$_errorCodes['null'];
-	}	//	function NULL()
+	}	
 
 
 	/**
@@ -288,7 +288,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function VALUE() {
 		return self::$_errorCodes['value'];
-	}	//	function VALUE()
+	}	
 
 
 	public static function isMatrixValue($idx) {
@@ -324,7 +324,7 @@ class PHPExcel_Calculation_Functions {
 
 			return $operator.$operand;
 		}
-	}	//	function _ifCondition()
+	}	
 
 
 	/**
@@ -344,7 +344,7 @@ class PHPExcel_Calculation_Functions {
 			++$i;
 		}
 		return self::NA();
-	}	//	function ERROR_TYPE()
+	}	
 
 
 	/**
@@ -359,7 +359,7 @@ class PHPExcel_Calculation_Functions {
 		}
 
 		return is_null($value);
-	}	//	function IS_BLANK()
+	}	
 
 
 	/**
@@ -372,7 +372,7 @@ class PHPExcel_Calculation_Functions {
 		$value		= self::flattenSingleValue($value);
 
 		return self::IS_ERROR($value) && (!self::IS_NA($value));
-	}	//	function IS_ERR()
+	}	
 
 
 	/**
@@ -387,7 +387,7 @@ class PHPExcel_Calculation_Functions {
 		if (!is_string($value))
 			return false;
 		return in_array($value, array_values(self::$_errorCodes));
-	}	//	function IS_ERROR()
+	}	
 
 
 	/**
@@ -400,7 +400,7 @@ class PHPExcel_Calculation_Functions {
 		$value		= self::flattenSingleValue($value);
 
 		return ($value === self::NA());
-	}	//	function IS_NA()
+	}	
 
 
 	/**
@@ -417,7 +417,7 @@ class PHPExcel_Calculation_Functions {
 		if ((is_bool($value)) || ((is_string($value)) && (!is_numeric($value))))
 			return self::VALUE();
 		return ($value % 2 == 0);
-	}	//	function IS_EVEN()
+	}	
 
 
 	/**
@@ -434,7 +434,7 @@ class PHPExcel_Calculation_Functions {
 		if ((is_bool($value)) || ((is_string($value)) && (!is_numeric($value))))
 			return self::VALUE();
 		return (abs($value) % 2 == 1);
-	}	//	function IS_ODD()
+	}	
 
 
 	/**
@@ -450,7 +450,7 @@ class PHPExcel_Calculation_Functions {
 			return False;
 		}
 		return is_numeric($value);
-	}	//	function IS_NUMBER()
+	}	
 
 
 	/**
@@ -463,7 +463,7 @@ class PHPExcel_Calculation_Functions {
 		$value		= self::flattenSingleValue($value);
 
 		return is_bool($value);
-	}	//	function IS_LOGICAL()
+	}	
 
 
 	/**
@@ -476,7 +476,7 @@ class PHPExcel_Calculation_Functions {
 		$value		= self::flattenSingleValue($value);
 
 		return (is_string($value) && !self::IS_ERROR($value));
-	}	//	function IS_TEXT()
+	}	
 
 
 	/**
@@ -487,7 +487,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function IS_NONTEXT($value = NULL) {
 		return !self::IS_TEXT($value);
-	}	//	function IS_NONTEXT()
+	}	
 
 
 	/**
@@ -497,7 +497,7 @@ class PHPExcel_Calculation_Functions {
 	 */
 	public static function VERSION() {
 		return 'PHPExcel 1.8.1, 2015-04-30';
-	}	//	function VERSION()
+	}	
 
 
 	/**
@@ -537,7 +537,7 @@ class PHPExcel_Calculation_Functions {
 				break;
 		}
 		return 0;
-	}	//	function N()
+	}	
 
 
 	/**
@@ -586,7 +586,7 @@ class PHPExcel_Calculation_Functions {
 			return 2;
 		}
 		return 0;
-	}	//	function TYPE()
+	}	
 
 
 	/**
@@ -618,7 +618,7 @@ class PHPExcel_Calculation_Functions {
 		}
 
 		return $arrayValues;
-	}	//	function flattenArray()
+	}	
 
 
 	/**
@@ -650,7 +650,7 @@ class PHPExcel_Calculation_Functions {
 		}
 
 		return $arrayValues;
-	}	//	function flattenArrayIndexed()
+	}	
 
 
 	/**
@@ -665,39 +665,39 @@ class PHPExcel_Calculation_Functions {
 		}
 
 		return $value;
-	}	//	function flattenSingleValue()
+	}	
 
-}	//	class PHPExcel_Calculation_Functions
+}	
 
 
-//
+
 //	There are a few mathematical functions that aren't available on all versions of PHP for all platforms
 //	These functions aren't available in Windows implementations of PHP prior to version 5.3.0
 //	So we test if they do exist for this version of PHP/operating platform; and if not we create them
-//
+
 if (!function_exists('acosh')) {
 	function acosh($x) {
 		return 2 * log(sqrt(($x + 1) / 2) + sqrt(($x - 1) / 2));
-	}	//	function acosh()
+	}	
 }
 
 if (!function_exists('asinh')) {
 	function asinh($x) {
 		return log($x + sqrt(1 + $x * $x));
-	}	//	function asinh()
+	}	
 }
 
 if (!function_exists('atanh')) {
 	function atanh($x) {
 		return (log(1 + $x) - log(1 - $x)) / 2;
-	}	//	function atanh()
+	}	
 }
 
 
-//
+
 //	Strangely, PHP doesn't have a mb_str_replace multibyte function
 //	As we'll only ever use this function with UTF-8 characters, we can simply "hard-code" the character set
-//
+
 if ((!function_exists('mb_str_replace')) &&
 	(function_exists('mb_substr')) && (function_exists('mb_strlen')) && (function_exists('mb_strpos'))) {
 	function mb_str_replace($search, $replace, $subject) {

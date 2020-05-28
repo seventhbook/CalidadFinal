@@ -35,15 +35,15 @@ require_once DOL_DOCUMENT_ROOT .'/core/db/DoliDB.class.php';
  */
 class DoliDBPgsql extends DoliDB
 {
-    //! Database type
+    
     public $type='pgsql';            // Name of manager
-    //! Database label
+    
 	const LABEL='PostgreSQL';      // Label of manager
-	//! Charset
+	
     public $forcecharset='UTF8';       // Can't be static as it may be forced with a dynamic value
-    //! Collate used to force collate when creating database
+    
     public $forcecollate='';			// Can't be static as it may be forced with a dynamic value
-	//! Version min database
+	
 	const VERSIONMIN='9.0.0';	// Version min database
 	/** @var resource Resultset of last query */
 	private $_results;
@@ -76,7 +76,7 @@ class DoliDBPgsql extends DoliDB
 
 		$this->transaction_opened=0;
 
-		//print "Name DB: $host,$user,$pass,$name<br>";
+		
 
 		if (! function_exists("pg_connect"))
 		{
@@ -97,7 +97,7 @@ class DoliDBPgsql extends DoliDB
 		}
 
 		// Essai connexion serveur
-		//print "$host, $user, $pass, $name, $port";
+		
 		$this->db = $this->connect($host, $user, $pass, $name, $port);
 
 		if ($this->db)
@@ -170,7 +170,7 @@ class DoliDBPgsql extends DoliDB
 		    $line = preg_replace('/GROUP_CONCAT/i', 'STRING_AGG', $line);
 			$line = preg_replace('/ SEPARATOR/i', ',', $line);
 			$line = preg_replace('/STRING_AGG\(([^,\)]+)\)/i', 'STRING_AGG(\\1, \',\')', $line);
-			//print $line."\n";
+			
 
 		    if ($type == 'auto')
 		    {
@@ -195,13 +195,13 @@ class DoliDBPgsql extends DoliDB
     			// Process case: "CREATE TABLE llx_mytable(rowid integer NOT NULL AUTO_INCREMENT PRIMARY KEY,code..."
     			if (preg_match('/[\s\t\(]*(\w*)[\s\t]+int.*auto_increment/i', $line, $reg)) {
     				$newline=preg_replace('/([\s\t\(]*)([a-zA-Z_0-9]*)[\s\t]+int.*auto_increment[^,]*/i', '\\1 \\2 SERIAL PRIMARY KEY', $line);
-                    //$line = "-- ".$line." replaced by --\n".$newline;
+                    
                     $line=$newline;
     			}
 
     			if (preg_match('/[\s\t\(]*(\w*)[\s\t]+bigint.*auto_increment/i', $line, $reg)) {
     				$newline=preg_replace('/([\s\t\(]*)([a-zA-Z_0-9]*)[\s\t]+bigint.*auto_increment[^,]*/i', '\\1 \\2 BIGSERIAL PRIMARY KEY', $line);
-    				//$line = "-- ".$line." replaced by --\n".$newline;
+    				
     				$line=$newline;
     			}
 
@@ -223,7 +223,7 @@ class DoliDBPgsql extends DoliDB
     			$line=preg_replace('/text\([0-9]+\)/i', 'text', $line);
 
     			// change not null datetime field to null valid ones
-    			// (to support remapping of "zero time" to null
+    			
     			$line=preg_replace('/datetime not null/i', 'datetime', $line);
     			$line=preg_replace('/datetime/i', 'timestamp', $line);
 
@@ -344,23 +344,23 @@ class DoliDBPgsql extends DoliDB
 
 			// Remove () in the tables in FROM if 1 table
 			$line=preg_replace('/FROM\s*\((([a-z_]+)\s+as\s+([a-z_]+)\s*)\)/i', 'FROM \\1', $line);
-			//print $line."\n";
+			
 
 			// Remove () in the tables in FROM if 2 table
 			$line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2', $line);
-			//print $line."\n";
+			
 
 			// Remove () in the tables in FROM if 3 table
 			$line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2, \\3', $line);
-			//print $line."\n";
+			
 
 			// Remove () in the tables in FROM if 4 table
 			$line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2, \\3, \\4', $line);
-			//print $line."\n";
+			
 
 			// Remove () in the tables in FROM if 5 table
 			$line=preg_replace('/FROM\s*\(([a-z_]+\s+as\s+[a-z_]+)\s*,\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*),\s*([a-z_]+\s+as\s+[a-z_]+\s*)\)/i', 'FROM \\1, \\2, \\3, \\4, \\5', $line);
-			//print $line."\n";
+			
 
 			// Replace espacing \' by ''.
 			// By default we do not (should be already done by db->escape function if required
@@ -368,7 +368,7 @@ class DoliDBPgsql extends DoliDB
 			// be compatible with standard_conforming_strings=on that considers \ as ordinary character).
 			if ($unescapeslashquot) $line=preg_replace("/\\\'/", "''", $line);
 
-			//print "type=".$type." newline=".$line."<br>\n";
+			
 		}
 
 		return $line;
@@ -406,7 +406,7 @@ class DoliDBPgsql extends DoliDB
 	 */
     public function connect($host, $login, $passwd, $name, $port = 0)
 	{
-		// use pg_pconnect() instead of pg_connect() if you want to use persistent connection costing 1ms, instead of 30ms for non persistent
+		
 
 		$this->db = false;
 
@@ -419,14 +419,14 @@ class DoliDBPgsql extends DoliDB
 
 		if (! $name) $name="postgres";    // When try to connect using admin user
 
-		// try first Unix domain socket (local)
+		
 		if ((! empty($host) && $host == "socket") && ! defined('NOLOCALSOCKETPGCONNECT'))
 		{
-			$con_string = "dbname='".$name."' user='".$login."' password='".$passwd."'";    // $name may be empty
+			$con_string = "dbname='".$name."' user='".$login."' password='".$passwd."'";    
 			$this->db = @pg_connect($con_string);
 		}
 
-		// if local connection failed or not requested, use TCP/IP
+		
 		if (! $this->db)
 		{
 		    if (! $host) $host = "localhost";
@@ -506,7 +506,7 @@ class DoliDBPgsql extends DoliDB
 
 		// Convert MySQL syntax to PostgresSQL syntax
 		$query=$this->convertSQLFromMysql($query, $type, ($this->unescapeslashquot && $this->standard_conforming_strings));
-		//print "After convertSQLFromMysql:\n".$query."<br>\n";
+		
 
 		if (! empty($conf->global->MAIN_DB_AUTOFIX_BAD_SQL_REQUEST))
 		{
@@ -536,7 +536,7 @@ class DoliDBPgsql extends DoliDB
 
 		$ret = @pg_query($this->db, $query);
 
-		//print $query;
+		
 		if (! preg_match("/^COMMIT/i", $query) && ! preg_match("/^ROLLBACK/i", $query)) // Si requete utilisateur, on la sauvegarde ainsi que son resultset
 		{
 			if (! $ret)
@@ -799,14 +799,14 @@ class DoliDBPgsql extends DoliDB
     public function last_insert_id($tab, $fieldid = 'rowid')
 	{
         // phpcs:enable
-		//$result = pg_query($this->db,"SELECT MAX(".$fieldid.") FROM ".$tab);
+		
 		$result = pg_query($this->db, "SELECT currval('".$tab."_".$fieldid."_seq')");
 		if (! $result)
 		{
 			print pg_last_error($this->db);
 			exit;
 		}
-		//$nbre = pg_num_rows($result);
+		
 		$row = pg_fetch_result($result, 0, 0);
 		return $row;
 	}
@@ -888,7 +888,7 @@ class DoliDBPgsql extends DoliDB
 		if (empty($collation)) $collation=$this->forcecollate;
 
 		// Test charset match LC_TYPE (pgsql error otherwise)
-		//print $charset.' '.setlocale(LC_CTYPE,'0'); exit;
+		
 
 		$sql='CREATE DATABASE "'.$database.'" OWNER "'.$owner.'" ENCODING \''.$charset.'\'';
 		dol_syslog($sql, LOG_DEBUG);
@@ -1335,7 +1335,7 @@ class DoliDBPgsql extends DoliDB
      */
     public function getPathOfRestore()
 	{
-		//$tool='pg_restore';
+		
 		$tool='psql';
 
 		$fullpathofdump='/pathtopgrestore/'.$tool;

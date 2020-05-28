@@ -249,7 +249,7 @@ class doc_generic_contract_odt extends ModelePDFContract
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -291,7 +291,7 @@ class doc_generic_contract_odt extends ModelePDFContract
                         $socobject = $object->contact;
                     } else {
                         $socobject = $object->thirdparty;
-                        // if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+                        
                         $contactobject = $object->contact;
                     }
 				}

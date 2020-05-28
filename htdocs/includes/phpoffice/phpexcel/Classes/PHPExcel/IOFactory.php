@@ -88,7 +88,7 @@ class PHPExcel_IOFactory
      */
 	public static function getSearchLocations() {
 		return self::$_searchLocations;
-	}	//	function getSearchLocations()
+	}	
 
 	/**
 	 * Set search locations
@@ -104,7 +104,7 @@ class PHPExcel_IOFactory
 		} else {
 			throw new PHPExcel_Reader_Exception('Invalid parameter passed.');
 		}
-	}	//	function setSearchLocations()
+	}	
 
 	/**
 	 * Add search location
@@ -117,7 +117,7 @@ class PHPExcel_IOFactory
 	 */
 	public static function addSearchLocation($type = '', $location = '', $classname = '') {
 		self::$_searchLocations[] = array( 'type' => $type, 'path' => $location, 'class' => $classname );
-	}	//	function addSearchLocation()
+	}	
 
 	/**
 	 * Create PHPExcel_Writer_IWriter
@@ -147,7 +147,7 @@ class PHPExcel_IOFactory
 
 		// Nothing found...
 		throw new PHPExcel_Reader_Exception("No $searchType found for type $writerType");
-	}	//	function createWriter()
+	}	
 
 	/**
 	 * Create PHPExcel_Reader_IReader
@@ -176,7 +176,7 @@ class PHPExcel_IOFactory
 
 		// Nothing found...
 		throw new PHPExcel_Reader_Exception("No $searchType found for type $readerType");
-	}	//	function createReader()
+	}	
 
 	/**
 	 * Loads PHPExcel from file using automatic PHPExcel_Reader_IReader resolution
@@ -190,7 +190,7 @@ class PHPExcel_IOFactory
 	public static function load($pFilename) {
 		$reader = self::createReaderForFile($pFilename);
 		return $reader->load($pFilename);
-	}	//	function load()
+	}	
 
 	/**
 	 * Identify file type using automatic PHPExcel_Reader_IReader resolution
@@ -207,7 +207,7 @@ class PHPExcel_IOFactory
 		$classType = explode('_',$className);
 		unset($reader);
 		return array_pop($classType);
-	}	//	function identify()
+	}	
 
 	/**
 	 * Create PHPExcel_Reader_IReader for file using automatic PHPExcel_Reader_IReader resolution
@@ -284,5 +284,5 @@ class PHPExcel_IOFactory
 		}
 
 		throw new PHPExcel_Reader_Exception('Unable to identify a reader for this file');
-	}	//	function createReaderForFile()
+	}	
 }

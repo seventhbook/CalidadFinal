@@ -41,8 +41,8 @@ function expensereport_prepare_head($object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'expensereport');
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
@@ -100,8 +100,8 @@ function payment_expensereport_prepare_head(PaymentExpenseReport $object)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'payment_expensereport');
 
 	$head[$h][0] = DOL_URL_ROOT.'/expensereport/payment/info.php?id='.$object->id;
@@ -151,8 +151,8 @@ function expensereport_admin_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'expensereport_admin');
 
 	$head[$h][0] = DOL_URL_ROOT.'/admin/expensereport_extrafields.php';

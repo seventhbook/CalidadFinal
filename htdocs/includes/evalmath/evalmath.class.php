@@ -19,9 +19,9 @@ SYNOPSIS
       $result = $m->evaluate('-8(5/2)^2*(1-sqrt(4))-8');
       // create your own variables
       $m->evaluate('a = e^(ln(pi))');
-      // or functions
+      
       $m->evaluate('f(x,y) = x^2 + y^2 - 2x*y + 1');
-      // and then use them
+      
       $result = $m->evaluate('3*f(42,a)');
 
 DESCRIPTION
@@ -118,16 +118,16 @@ class EvalMath
         $this->last_error_code = null;
         $expr = trim($expr);
         if (substr($expr, -1, 1) == ';') $expr = substr($expr, 0, strlen($expr)-1); // strip semicolons at the end
-        //===============
+        
         // is it a variable assignment?
         if (preg_match('/^\s*([a-z]\w*)\s*=\s*(.+)$/', $expr, $matches)) {
             if (in_array($matches[1], $this->vb)) { // make sure we're not assigning to a constant
                 return $this->trigger(1, "cannot assign to constant '$matches[1]'", $matches[1]);
             }
             if (($tmp = $this->pfx($this->nfx($matches[2]))) === false) return false; // get the result and make sure it's good
-            $this->v[$matches[1]] = $tmp; // if so, stick it in the variable array
-            return $this->v[$matches[1]]; // and return the resulting value
-        //===============
+            $this->v[$matches[1]] = $tmp; 
+            return $this->v[$matches[1]]; 
+        
         // is it a function assignment?
         } elseif (preg_match('/^\s*([a-z]\w*)\s*\(\s*([a-z]\w*(?:\s*,\s*[a-z]\w*)*)\s*\)\s*=\s*(.+)$/', $expr, $matches)) {
             $fnn = $matches[1]; // get the function name
@@ -149,7 +149,7 @@ class EvalMath
             }
             $this->f[$fnn] = array('args'=>$args, 'func'=>$stack);
             return true;
-        //===============
+        
         } else {
             return $this->pfx($this->nfx($expr)); // straight up evaluation, woo
         }
@@ -169,7 +169,7 @@ class EvalMath
         return $output;
     }
 
-    //===================== HERE BE INTERNAL METHODS ====================\\
+    
 
     // Convert infix to postfix notation
     function nfx($expr) {
@@ -184,7 +184,7 @@ class EvalMath
         $ops_p = array('+'=>0,'-'=>0,'*'=>1,'/'=>1,'_'=>1,'^'=>2); // operator precedence
 
         $expecting_op = false; // we use this in syntax-checking the expression
-                               // and determining when a - is a negation
+                               
 
         if (preg_match("/[^\w\s+*^\/()\.,-]/", $expr, $matches)) { // make sure the characters are all good
             return $this->trigger(4, "illegal character '{$matches[0]}'", $matches[0]);
@@ -194,13 +194,13 @@ class EvalMath
             $op = substr($expr, $index, 1); // get the first character at the current index
             // find out if we're currently at the beginning of a number/variable/function/parenthesis/operand
             $ex = preg_match('/^([a-z]\w*\(?|\d+(?:\.\d*)?|\.\d+|\()/', substr($expr, $index), $match);
-            //===============
+            
             if ($op == '-' and !$expecting_op) { // is it a negation instead of a minus?
                 $stack->push('_'); // put a negation on the stack
                 $index++;
             } elseif ($op == '_') { // we have to explicitly deny this, because it's legal on the stack
                 return $this->trigger(4, "illegal character '_'", "_"); // but not in the input expression
-            //===============
+            
             } elseif ((in_array($op, $ops) or $ex) and $expecting_op) { // are we putting an operator on the stack?
                 if ($ex) { // are we expecting an operator but have a number/variable/function/opening parethesis?
                     $op = '*'; $index--; // it's an implicit multiplication
@@ -213,7 +213,7 @@ class EvalMath
                 $stack->push($op); // finally put OUR operator onto the stack
                 $index++;
                 $expecting_op = false;
-            //===============
+            
             } elseif ($op == ')' and $expecting_op) { // ready to close a parenthesis?
                 while (($o2 = $stack->pop()) != '(') { // pop off the stack back to the last (
                     if (is_null($o2)) return $this->trigger(5, "unexpected ')'", ")");
@@ -234,7 +234,7 @@ class EvalMath
                     }
                 }
                 $index++;
-            //===============
+            
             } elseif ($op == ',' and $expecting_op) { // did we just finish a function argument?
                 while (($o2 = $stack->pop()) != '(') {
                     if (is_null($o2)) return $this->trigger(5, "unexpected ','", ","); // oops, never had a (
@@ -247,13 +247,13 @@ class EvalMath
                 $stack->push('('); // put the ( back on, we'll need to pop back to it again
                 $index++;
                 $expecting_op = false;
-            //===============
+            
             } elseif ($op == '(' and !$expecting_op) {
                 $stack->push('('); // that was easy
                 $index++;
                 $allow_neg = true;
-            //===============
-            } elseif ($ex and !$expecting_op) { // do we now have a function/variable/number?
+            
+            } elseif ($ex and !$expecting_op) { 
                 $expecting_op = true;
                 $val = $match[1];
                 if (preg_match("/^([a-z]\w*)\($/", $val, $matches)) { // may be func, or variable w/ implicit multiplication against parentheses...
@@ -270,7 +270,7 @@ class EvalMath
                     $output[] = $val;
                 }
                 $index += strlen($val);
-            //===============
+            
             } elseif ($op == ')') { // miscellaneous error checking
                 return $this->trigger(5, "unexpected ')'", ")");
             } elseif (in_array($op, $ops) and !$expecting_op) {
@@ -291,7 +291,7 @@ class EvalMath
 
         }
         while (!is_null($op = $stack->pop())) { // pop everything off the stack and push onto output
-            if ($op == '(') return $this->trigger(11, "expecting ')'", ")"); // if there are (s on the stack, ()s were unbalanced
+            if ($op == '(') return $this->trigger(11, "expecting ')'", ")"); 
             $output[] = $op;
         }
         return $output;
@@ -305,7 +305,7 @@ class EvalMath
         $stack = new EvalMathStack();
 
         foreach ($tokens as $token) { // nice and easy
-            // if the token is a binary operator, pop two values off the stack, do the operation, and push the result back on
+            
             if (in_array($token, array('+', '-', '*', '/', '^'))) {
                 if (is_null($op2 = $stack->pop())) return $this->trigger(12, "internal error");
                 if (is_null($op1 = $stack->pop())) return $this->trigger(13, "internal error");
@@ -322,15 +322,15 @@ class EvalMath
                     case '^':
                         $stack->push(pow($op1, $op2)); break;
                 }
-            // if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
+            
             } elseif ($token == "_") {
                 $stack->push(-1*$stack->pop());
-            // if the token is a function, pop arguments off the stack, hand them to the function, and push the result back on
+            
             } elseif (preg_match("/^([a-z]\w*)\($/", $token, $matches)) { // it's a function!
                 $fnn = $matches[1];
                 if (in_array($fnn, $this->fb)) { // built-in function:
                     if (is_null($op1 = $stack->pop())) return $this->trigger(15, "internal error");
-                    $fnn = preg_replace("/^arc/", "a", $fnn); // for the 'arc' trig synonyms
+                    $fnn = preg_replace("/^arc/", "a", $fnn); 
                     if ($fnn == 'ln') $fnn = 'log';
                     eval('$stack->push(' . $fnn . '($op1));'); // perfectly safe eval()
                 } elseif (array_key_exists($fnn, $this->f)) { // user function
@@ -341,7 +341,7 @@ class EvalMath
                     }
                     $stack->push($this->pfx($this->f[$fnn]['func'], $args)); // yay... recursion!!!!
                 }
-            // if the token is a number or variable, push it on the stack
+            
             } else {
                 if (is_numeric($token)) {
                     $stack->push($token);

@@ -101,7 +101,7 @@ if (! defined('JS_JQUERY_DISABLE_DROPDOWN'))
                             console.log("We reposition top by "+pix);
                             $(this).parent().parent().find(\'dd\').css("top", pix);
                       }
-                      // $(".dropdown dd ul").slideToggle(\'fast\');
+                      
                   });
                   $(".dropdowncloseonclick").on(\'click\', function () {
                      console.log("Link has class dropdowncloseonclick, so we close/hide the popup ul");

@@ -86,7 +86,7 @@ $yearofday=GETPOST('addtimeyear');
 
 $daytoparse = $now;
 if ($yearofday && $monthofday && $dayofday) {$daytoparse=dol_mktime(0, 0, 0, $monthofday, $dayofday, $yearofday);}	// xxxofday is value of day after submit action 'addtime'
-elseif ($year && $month && $day){ $daytoparse=dol_mktime(0, 0, 0, $month, $day, $year);	}						// this are value submited after submit of action 'submitdateselect'
+elseif ($year && $month && $day){ $daytoparse=dol_mktime(0, 0, 0, $month, $day, $year);	}						
 
 
 if (empty($search_usertoprocessid) || $search_usertoprocessid == $user->id)
@@ -380,7 +380,7 @@ if ($id)
 	$project->fetch_thirdparty();
 }
 
-$onlyopenedproject = 1; // or -1
+$onlyopenedproject = 1; 
 $morewherefilter = '';
 
 if ($search_project_ref) {$morewherefilter .= natural_search(array("p.ref", "p.title"), $search_project_ref);}
@@ -624,7 +624,7 @@ if (!empty($conf->global->MAIN_DEFAULT_WORKING_DAYS))
 }
 
 $statusofholidaytocheck = '3';
-$isavailablefordayanduser = $holiday->verifDateHolidayForTimestamp($usertoprocess->id, $daytoparse, $statusofholidaytocheck); // $daytoparse is a date with hours = 0
+$isavailablefordayanduser = $holiday->verifDateHolidayForTimestamp($usertoprocess->id, $daytoparse, $statusofholidaytocheck); 
 $isavailable[$daytoparse] = $isavailablefordayanduser; // in projectLinesPerWeek later, we are using $firstdaytoshow and dol_time_plus_duree to loop on each day
 
 $tmparray = dol_getdate($daytoparse, true); // detail of current day

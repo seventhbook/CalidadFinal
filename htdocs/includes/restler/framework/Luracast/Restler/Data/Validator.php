@@ -442,7 +442,7 @@ class Validator implements iValidate
                 ? $info->message
                 : "Invalid value specified for $name";
 
-            //if a validation method is specified
+            
             if (!empty($info->method)) {
                 $method = $info->method;
                 $info->method = '';
@@ -677,7 +677,7 @@ class Validator implements iValidate
                     if (!is_array($input)) {
                         break;
                     }
-                    //do type conversion
+                    
                     if (class_exists($info->type)) {
                         $input = $info->filterArray($input, false);
                         $implements = class_implements($info->type);

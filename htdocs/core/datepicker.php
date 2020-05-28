@@ -27,9 +27,9 @@
  */
 
 if (! defined('NOREQUIREUSER'))   define('NOREQUIREUSER', '1');	// disabled
-//if (! defined('NOREQUIREDB'))   define('NOREQUIREDB','1');	// Not disabled cause need to load personalized language
+
 if (! defined('NOREQUIRESOC'))    define('NOREQUIRESOC', '1');
-//if (! defined('NOREQUIRETRAN')) define('NOREQUIRETRAN','1');	// Not disabled cause need to do translations
+
 if (! defined('NOCSRFCHECK'))     define('NOCSRFCHECK', 1);
 if (! defined('NOTOKENRENEWAL'))  define('NOTOKENRENEWAL', 1);
 if (! defined('NOLOGIN')) define('NOLOGIN', 1);					// disabled
@@ -107,7 +107,7 @@ if (isset($_GET["m"]) && isset($_GET["y"]))
 // If parameters provided, we show calendar
 if ($qualified)
 {
-	//print $_GET["cm"].",".$_GET["sd"].",".$_GET["m"].",".$_GET["y"];exit;
+	
 	displayBox(GETPOST("sd", 'alpha'), GETPOST("m", 'int'), GETPOST("y", 'int'));
 }
 else
@@ -145,9 +145,9 @@ function displayBox($selectedDate, $month, $year)
 {
 	global $langs,$conf;
 
-	//print "$selectedDate,$month,$year";
+	
 	$thedate=dol_mktime(12, 0, 0, $month, 1, $year);
-	//print "thedate=$thedate";
+	
 	$today=dol_now();
 	$todayArray=dol_getdate($today);
 	if($selectedDate != "00000000")
@@ -194,7 +194,7 @@ function displayBox($selectedDate, $month, $year)
 		echo '<td width="', (int) (($i+1)*100/7) - (int) ($i*100/7), '%">', $langs->trans($day_names[($i + $startday) % 7]), '</td>', "\n";
 	}
 	print '</tr>';
-	//print "x ".$thedate." y";			// $thedate = first day of month
+	
 	$firstdate=dol_getdate($thedate);
 	//var_dump($firstdateofweek);
 	$mydate=dol_get_first_day_week(1, $month, $year, true);	// mydate = cursor date
@@ -207,7 +207,7 @@ function displayBox($selectedDate, $month, $year)
 		if ($mydate < $firstdate)	// At first run
 		{
 			echo "<tr class=\"dpWeek\">";
-			//echo $conf->global->MAIN_START_WEEK.' '.$firstdate["wday"].' '.$startday;
+			
 			$cols=0;
 			for ($i = 0; $i < 7; $i++)
 			{
@@ -249,7 +249,7 @@ function displayBox($selectedDate, $month, $year)
 
 		if (($mydate["wday"] + 1) % 7 == $startday) echo "</TR>\n";
 
-		//$thedate=strtotime("tomorrow",$thedate);
+		
 		$day++;
 		$thedate=dol_mktime(12, 0, 0, $month, $day, $year);
 		if ($thedate == '')

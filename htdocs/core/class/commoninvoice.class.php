@@ -271,7 +271,7 @@ abstract class CommonInvoice extends CommonObject
 		if ($option == 'validated') $sql.= ' AND fk_statut = 1';
 		// PROTECTION BAD DATA
 		// In case the database is corrupted and there is a valid replectement invoice
-		// and another no, priority is given to the valid one.
+		
 		// Should not happen (unless concurrent access and 2 people have created a
 		// replacement invoice for the same invoice at the same time)
 		$sql.= ' ORDER BY fk_statut DESC';
@@ -324,7 +324,7 @@ abstract class CommonInvoice extends CommonObject
 		$sql = 'SELECT p.ref, pf.amount, pf.multicurrency_amount, p.fk_paiement, p.datep, p.num_paiement as num, t.code';
 		$sql.= ' FROM '.MAIN_DB_PREFIX.$table.' as pf, '.MAIN_DB_PREFIX.$table2.' as p, '.MAIN_DB_PREFIX.'c_paiement as t';
 		$sql.= ' WHERE pf.'.$field.' = '.$this->id;
-		//$sql.= ' WHERE pf.'.$field.' = 1';
+		
 		$sql.= ' AND pf.'.$field2.' = p.rowid';
 		$sql.= ' AND p.fk_paiement = t.id';
 		$sql.= ' AND p.entity IN (' . getEntity($sharedentity).')';
@@ -400,7 +400,7 @@ abstract class CommonInvoice extends CommonObject
 				if (empty($conf->global->INVOICE_CAN_ALWAYS_BE_REMOVED) && $maxref != '' && $maxref != $this->ref) return -2;
 
 				// TODO If there is payment in bookkeeping, check payment is not dispatched in accounting
-				// ...
+				
 
 				if ($this->situation_cycle_ref && method_exists($this, 'is_last_in_cycle'))
 				{

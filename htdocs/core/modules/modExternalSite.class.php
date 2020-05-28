@@ -77,7 +77,7 @@ class modExternalSite extends DolibarrModules
 		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
 		// Example: $this->const=array(0=>array('MYMODULE_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
 		//                             1=>array('MYMODULE_MYNEWCONST2','chaine','myvalue','This is another constant to add',0)
-		// );
+		
 		$this->const = array(0=>array('EXTERNALSITE_LABEL','chaine','ExternalSite','To declare label to use into external site menu entry', 0));
 
 		// Boxes
@@ -86,17 +86,17 @@ class modExternalSite extends DolibarrModules
 
 		// Add here list of php file(s) stored in core/boxes that contains class to show a box.
 		// Example:
-        //$this->boxes[$r][1] = "myboxa.php";
-    	//$r++;
-        //$this->boxes[$r][1] = "myboxb.php";
-    	//$r++;
+        
+    	
+        
+    	
 
 		// Permissions
 		$this->rights_class = 'externalsite';	// Permission key
 		$this->rights = array();		// Permission array used by this module
 
         // Menus
-		//------
+		
 		$r=0;
 
 		$this->menu[$r]=array(

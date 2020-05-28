@@ -105,7 +105,7 @@ class VCardConverter {
             } elseif ($property instanceof Property\VCard\DateAndOrTime) {
 
                 // In vCard 4, the birth year may be optional. This is not the
-                // case for vCard 3. Apple has a workaround for this that
+                
                 // allows applications that support Apple's extension still
                 // omit birthyears in vCard 3, but applications that do not
                 // support this, will just use a random birthyear. We're
@@ -248,7 +248,7 @@ class VCardConverter {
         }
 
         // Lastly, we need to see if there's a need for a VALUE parameter.
-        //
+        
         // We can do that by instantating a empty property with that name, and
         // seeing if the default valueType is identical to the current one.
         $tempProperty = $output->createProperty($newProperty->name);

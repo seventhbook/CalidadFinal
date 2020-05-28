@@ -84,7 +84,7 @@ $sql .= " AND sc.fk_soc = s.rowid";
 $sql .= " AND sc.fk_user = u.rowid";
 $sql .= " ORDER BY u.email ASC, s.rowid ASC, f.ref ASC"; // Order by email to allow one message per email
 
-// print $sql;
+
 $resql = $db->query($sql);
 if ($resql) {
 	$num = $db->num_rows($resql);

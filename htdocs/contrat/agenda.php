@@ -168,7 +168,7 @@ if ($id > 0)
 				$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
 			}
 			if ($action == 'classify') {
-				//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+				
 				$morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 				$morehtmlref.='<input type="hidden" name="action" value="classin">';
 				$morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -216,17 +216,17 @@ if ($id > 0)
 	$permok=$user->rights->agenda->myactions->create;
 	if ((! empty($objthirdparty->id) || ! empty($objcon->id)) && $permok)
 	{
-		//$out.='<a href="'.DOL_URL_ROOT.'/comm/action/card.php?action=create';
+		
 		if (get_class($objthirdparty) == 'Societe') $out.='&amp;socid='.$objthirdparty->id;
 		$out.=(! empty($objcon->id)?'&amp;contactid='.$objcon->id:'').'&amp;backtopage=1&amp;percentage=-1';
-		//$out.=$langs->trans("AddAnAction").' ';
-		//$out.=img_picto($langs->trans("AddAnAction"),'filenew');
-		//$out.="</a>";
+		
+		
+		
 	}*/
 
 
-	//print '<div class="tabsAction">';
-	//print '</div>';
+	
+	
 
 
 	$newcardbutton = '';

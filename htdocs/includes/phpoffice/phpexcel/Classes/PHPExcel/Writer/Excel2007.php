@@ -149,7 +149,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
 								 );
 
     	//	Initialise writer parts
-		//		and Assign their parent IWriters
+		
 		foreach ($writerPartsArray as $writer => $class) {
 			$this->_writerParts[$writer] = new $class($this);
 		}
@@ -245,7 +245,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
 			// Add [Content_Types].xml to ZIP file
 			$objZip->addFromString('[Content_Types].xml', 			$this->getWriterPart('ContentTypes')->writeContentTypes($this->_spreadSheet, $this->_includeCharts));
 
-			//if hasMacros, add the vbaProject.bin file, Certificate file(if exists)
+			
 			if($this->_spreadSheet->hasMacros()){
 				$macrosCode=$this->_spreadSheet->getMacrosCode();
 				if(!is_null($macrosCode)){// we have the code ?

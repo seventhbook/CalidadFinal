@@ -129,12 +129,12 @@ class Ctyperesource
 
 			// Uncomment this and change MYOBJECT to your own tag if you
 			// want this action to call a trigger.
-			//if (!$notrigger) {
+			
 
-			//  // Call triggers
-			//  $result=$this->call_trigger('MYOBJECT_CREATE',$user);
-			//  if ($result < 0) $error++;
-			//  // End call triggers
+			
+			
+			
+			
 			//}
 		}
 
@@ -192,9 +192,9 @@ class Ctyperesource
 
 			// Retrieve all extrafields for invoice
 			// fetch optionals attributes and labels
-			// $this->fetch_optionals();
+			
 
-			// $this->fetch_lines();
+			
 
 			$this->db->free($resql);
 
@@ -329,12 +329,12 @@ class Ctyperesource
 
 		// Uncomment this and change MYOBJECT to your own tag if you
 		// want this action calls a trigger.
-		//if (!$error && !$notrigger) {
+		
 
-		//  // Call triggers
-		//  $result=$this->call_trigger('MYOBJECT_MODIFY',$user);
-		//  if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		//  // End call triggers
+		
+		
+		
+		
 		//}
 
 		// Commit or rollback
@@ -367,12 +367,12 @@ class Ctyperesource
 
 		// Uncomment this and change MYOBJECT to your own tag if you
 		// want this action calls a trigger.
-		//if (!$error && !$notrigger) {
+		
 
-		//  // Call triggers
-		//  $result=$this->call_trigger('MYOBJECT_DELETE',$user);
-		//  if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-		//  // End call triggers
+		
+		
+		
+		
 		//}
 
 		// If you need to delete child tables to, you can insert them here
@@ -423,7 +423,7 @@ class Ctyperesource
 		$object->id = 0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';

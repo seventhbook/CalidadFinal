@@ -105,7 +105,7 @@ if ($action == 'delete')
 			{
 				$accountline = new AccountLine($db);
 				$result = $accountline->fetch($object->fk_bank);
-				if ($result > 0) $result = $accountline->delete($user); // $result may be 0 if not found (when bank entry was deleted manually and fk_bank point to nothing)
+				if ($result > 0) $result = $accountline->delete($user); 
 			}
 
 			if ($result >= 0)

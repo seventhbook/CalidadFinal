@@ -272,21 +272,21 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
 					$objWriter->endElement();
 
 					// Superscript / subscript
-//					if ($element->getFont()->getSuperScript() || $element->getFont()->getSubScript()) {
-//						$objWriter->startElement($prefix.'vertAlign');
-//						if ($element->getFont()->getSuperScript()) {
-//							$objWriter->writeAttribute('val', 'superscript');
+
+
+
+
 //						} else if ($element->getFont()->getSubScript()) {
-//							$objWriter->writeAttribute('val', 'subscript');
+
 //						}
-//						$objWriter->endElement();
+
 //					}
-//
+
 				$objWriter->endElement();
 
 				// t
 				$objWriter->startElement($prefix.'t');
-//					$objWriter->writeAttribute('xml:space', 'preserve');	//	Excel2010 accepts, Excel2007 complains
+
 					$objWriter->writeRawData(PHPExcel_Shared_String::ControlCharacterPHP2OOXML( $element->getText() ));
 				$objWriter->endElement();
 

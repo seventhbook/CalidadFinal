@@ -192,7 +192,7 @@ else
 
 	print '<br>';
 	print load_fiche_titre('', '', '', 0, 0, '', '-> '.$langs->trans("SummaryOfVatExigibilityUsedByDefault"));
-	//print ' ('.$langs->trans("CanBeChangedWhenMakingInvoice").')';
+	
 
 
 	print '<table class="noborder centpercent">';

@@ -64,7 +64,7 @@ class modLabel extends DolibarrModules
 		$this->phpmin = array(5,4);		// Minimum version of PHP required by module
 
 		// Config pages
-		// $this->config_page_url = array("label.php");
+		
 
 		// Constants
 		$this->const = array();

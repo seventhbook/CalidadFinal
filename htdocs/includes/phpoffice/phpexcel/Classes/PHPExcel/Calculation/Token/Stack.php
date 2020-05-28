@@ -57,7 +57,7 @@ class PHPExcel_Calculation_Token_Stack {
 	 */
 	public function count() {
 		return $this->_count;
-	}	//	function count()
+	}	
 
 	/**
 	 * Push a new entry onto the stack
@@ -77,7 +77,7 @@ class PHPExcel_Calculation_Token_Stack {
 				$this->_stack[($this->_count - 1)]['localeValue'] = $localeFunction;
 			}
 		}
-	}	//	function push()
+	}	
 
 	/**
 	 * Pop the last entry from the stack
@@ -89,7 +89,7 @@ class PHPExcel_Calculation_Token_Stack {
 			return $this->_stack[--$this->_count];
 		}
 		return NULL;
-	}	//	function pop()
+	}	
 
 	/**
 	 * Return an entry from the stack without removing it
@@ -102,7 +102,7 @@ class PHPExcel_Calculation_Token_Stack {
 			return NULL;
 		}
 		return $this->_stack[$this->_count - $n];
-	}	//	function last()
+	}	
 
 	/**
 	 * Clear the stack
@@ -112,4 +112,4 @@ class PHPExcel_Calculation_Token_Stack {
 		$this->_count = 0;
 	}
 
-}	//	class PHPExcel_Calculation_Token_Stack
+}	

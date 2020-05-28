@@ -71,7 +71,7 @@ class HtmlFormat extends DependentFormat
 
     public function __construct()
     {
-        //============ SESSION MANAGEMENT =============//
+        
         if (static::$handleSession) {
             if (session_start() && isset($_SESSION['flash'])) {
                 static::$data['flash'] = $_SESSION['flash'];

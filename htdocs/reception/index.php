@@ -180,7 +180,7 @@ if ($resql)
 }
 
 
-//print '</td><td valign="top" width="70%">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 

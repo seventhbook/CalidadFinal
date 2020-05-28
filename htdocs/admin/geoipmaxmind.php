@@ -174,7 +174,7 @@ if ($geoip)
 	*/
 	//var_dump($_SERVER);
 	$ip = getUserRemoteIP();
-	//$ip='91.161.249.43';
+	
 	$isip=is_ip($ip);
 	if ($isip == 1)
 	{

@@ -381,7 +381,7 @@ class ImportCsv extends ModeleImports
 					
 				}
 
-				// array of fields to column index
+				
                 $arrayfield = array();
                 foreach($sort_array_match_file_to_database as $key => $val) {
                     $arrayfield[$val] = ($key-1);
@@ -716,7 +716,7 @@ class ImportCsv extends ModeleImports
 							}
 
 							// Other tests
-							// ...
+							
 						}
 
 						// Define $listfields and $listvalues to build SQL request
@@ -753,7 +753,7 @@ class ImportCsv extends ModeleImports
 							$keyfield = preg_replace('/^'.preg_quote($alias, '/').'\./', '', $key);
     				        $listfields[] = $keyfield;
                             $listvalues[] = $lastinsertid;
-    				        //print $key."-".$val."-".$listfields."-".$listvalues."<br>";exit;
+    				        
     				    }
     				    elseif (preg_match('/^const-/', $val))
     				    {

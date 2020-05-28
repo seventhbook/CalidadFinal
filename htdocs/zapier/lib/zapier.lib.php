@@ -46,12 +46,12 @@ function zapierAdminPrepareHead()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    //$this->tabs = array(
+    
     //	'entity:+tabname:Title:@zapier:/zapier/mypage.php?id=__ID__'
-    //); // to add new tab
-    //$this->tabs = array(
+    
+    
     //	'entity:-tabname:Title:@zapier:/zapier/mypage.php?id=__ID__'
-    //); // to remove a tab
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'zapier');
 
     return $head;

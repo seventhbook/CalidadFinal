@@ -369,7 +369,7 @@ if ($action == 'create')
 	if (!$selectedcode) $selectedcode = $conf->currency;
 	print $form->selectCurrency((isset($_POST["account_currency_code"]) ? $_POST["account_currency_code"] : $selectedcode), 'account_currency_code');
 	
-	//print '<input type="hidden" name="account_currency_code" value="'.$conf->currency.'">';
+	
 	print '</td></tr>';
 
 	// Status
@@ -859,7 +859,7 @@ else
 		if (!$selectedcode) $selectedcode = $conf->currency;
 		print $form->selectCurrency((isset($_POST["account_currency_code"]) ? $_POST["account_currency_code"] : $selectedcode), 'account_currency_code');
 		
-		//print '<input type="hidden" name="account_currency_code" value="'.$conf->currency.'">';
+		
 		print '</td></tr>';
 
 		// Status

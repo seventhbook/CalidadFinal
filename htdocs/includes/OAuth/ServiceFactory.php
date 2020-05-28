@@ -110,7 +110,7 @@ class ServiceFactory
         $apiVersion = ""
     ) {
         if (!$this->httpClient) {
-            // for backwards compatibility.
+            
             $this->httpClient = new StreamClient();
         }
 

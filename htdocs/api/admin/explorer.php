@@ -50,7 +50,7 @@ if (empty($conf->global->MAIN_MODULE_API))
 
 $api = new DolibarrApi($db);
 
-$api->r->addAPIClass('Luracast\\Restler\\Resources'); //this creates resources.json at API Root
+$api->r->addAPIClass('Luracast\\Restler\\Resources'); 
 $api->r->setSupportedFormats('JsonFormat', 'XmlFormat');
 $api->r->addAuthenticationClass('DolibarrApiAccess', '');
 
@@ -76,7 +76,7 @@ foreach ($modulesdir as $dir)
                 // Defined if module is enabled
                 $enabled = true;
                 $module = $part = $obj = strtolower(preg_replace('/^mod/i', '', $modulename));
-                //if ($part == 'propale') $part='propal';
+                
                 if ($module == 'societe') {
 					$obj = 'thirdparty';
 				}
@@ -128,24 +128,24 @@ foreach ($modulesdir as $dir)
                             {
                                 $classname=$reg[1];
                                 $classname = str_replace('Api_','',ucwords($reg[1])).'Api';
-                                //$classname = str_replace('Api_','',ucwords($reg[1]));
+                                
                                 $classname = ucfirst($classname);
                                 require_once $dir_part.$file_searched;
 
-                                // if (class_exists($classname))
+                                
                                 // {
                                 //     dol_syslog("Found API classname=".$classname);
-                                //     $api->r->addAPIClass($classname,'');
+                                
 
-                                //     require_once DOL_DOCUMENT_ROOT.'/includes/restler/framework/Luracast/Restler/Routes.php';
-                                //     $tmpclass = new ReflectionClass($classname);
-                                //     try {
-                                //         $classMetadata = CommentParser::parse($tmpclass->getDocComment());
+                                
+                                
+                                
+                                
                                 //     } catch (Exception $e) {
-                                //         throw new RestException(500, "Error while parsing comments of `$classname` class. " . $e->getMessage());
+                                
                                 //     }
 
-                                //     //$listofapis[]=array('classname'=>$classname, 'fullpath'=>$file_searched);
+                                
                                 // }
                             }*/
                         }
@@ -169,7 +169,7 @@ print load_fiche_titre($langs->trans("ApiSetup"), $linkback, 'title_setup');
 // Define $urlwithroot
 $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-//$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+
 
 // Show message
 print '<br>';
@@ -202,7 +202,7 @@ foreach ($listofapis['v1'] as $key => $val)
                 print "\n<br>\n".$langs->trans("Class").': '.$newclass.'<br>'."\n";
                 $oldclass = $newclass;
             }
-            //print $key.' - '.$val['classname'].' - '.$val['fullpath']." - ".DOL_MAIN_URL_ROOT.'/api/index.php/'.strtolower(preg_replace('/Api$/','',$val['classname']))."/xxx<br>\n";
+            
             $url = $urlwithroot.'/api/index.php/'.$key;
             $url .= '?api_key=token';
             print img_picto('', 'globe').' '.$method.' <a href="'.$url.'" target="_blank">'.$url."</a><br>\n";

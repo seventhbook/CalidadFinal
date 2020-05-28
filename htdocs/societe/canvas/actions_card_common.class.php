@@ -37,9 +37,9 @@ abstract class ActionsCardCommon
     public $canvas;
     public $card;
 
-	//! Template container
+	
 	public $tpl = array();
-	//! Object container
+	
 	public $object;
 
 	/**
@@ -63,7 +63,7 @@ abstract class ActionsCardCommon
      */
     protected function getObject($id, $ref = '')
     {
-    	//$ret = $this->getInstanceDao();
+    	
 
     	$object = new Societe($this->db);
     	if (! empty($id) || ! empty($ref)) $object->fetch($id, $ref);
@@ -290,8 +290,8 @@ abstract class ActionsCardCommon
             if (! empty($conf->global->MAIN_MULTILANGS))
             {
                 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-                //$s=picto_from_langcode($this->default_lang);
-                //print ($s?$s.' ':'');
+                
+                
                 $langs->load("languages");
                 $this->tpl['default_lang'] = ($this->default_lang?$langs->trans('Language_'.$this->object->default_lang):'');
             }

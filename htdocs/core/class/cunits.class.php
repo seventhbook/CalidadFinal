@@ -25,7 +25,7 @@
 /**
  *	Class of dictionary type of thirdparty (used by imports)
  */
-class CUnits // extends CommonObject
+class CUnits 
 {
 	/**
      * @var DoliDB Database handler.
@@ -43,8 +43,8 @@ class CUnits // extends CommonObject
 	public $errors = array();
 	public $records = array();
 
-	//var $element='ctypent';			//!< Id that identify managed objects
-	//var $table_element='ctypent';	//!< Name of table without prefix where object is stored
+	
+	
 
     /**
 	 * @var int ID
@@ -124,17 +124,17 @@ class CUnits // extends CommonObject
         {
             $this->id = $this->db->last_insert_id(MAIN_DB_PREFIX."c_units");
 
-			//if (! $notrigger)
+			
 			//{
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 			//}
         }
 
@@ -342,19 +342,19 @@ class CUnits // extends CommonObject
         $resql = $this->db->query($sql);
     	if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 
-		//if (! $error)
+		
 		//{
-		//	if (! $notrigger)
+		
 		//	{
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action call a trigger.
 
-	            //// Call triggers
-	            //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-	            //$interface=new Interfaces($this->db);
-	            //$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-	            //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	            //// End call triggers
+	            
+	            
+	            
+	            
+	            
+	            
 	    //	}
 		//}
 
@@ -398,19 +398,19 @@ class CUnits // extends CommonObject
 		$resql = $this->db->query($sql);
     	if (!$resql) { $error++; $this->errors[] = "Error ".$this->db->lasterror(); }
 
-		//if (! $error)
+		
 		//{
-		//	if (! $notrigger)
+		
 		//	{
 				// Uncomment this and change MYOBJECT to your own tag if you
 		        // want this action call a trigger.
 
-		        //// Call triggers
-		        //include_once DOL_DOCUMENT_ROOT . '/core/class/interfaces.class.php';
-		        //$interface=new Interfaces($this->db);
-		        //$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-		        //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-		        //// End call triggers
+		        
+		        
+		        
+		        
+		        
+		        
 		//	}
 		//}
 

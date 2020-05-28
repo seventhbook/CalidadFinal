@@ -48,8 +48,8 @@ require '../../../../main.inc.php';
  * of the current folder.
 -->
 <?php
-//$arrayofjs=array('js/common.js');
-//echo top_htmlhead($head, $title, $disablejs, $disablehead, $arrayofjs, $arrayofcss);	// Show html headers
+
+
 ?>
 <html>
 	<head>

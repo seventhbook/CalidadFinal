@@ -25,8 +25,8 @@
 
 // Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT."/core/class/commonobject.class.php";
-//require_once DOL_DOCUMENT_ROOT."/societe/class/societe.class.php";
-//require_once DOL_DOCUMENT_ROOT."/product/class/product.class.php";
+
+
 
 
 /**
@@ -649,7 +649,7 @@ class Opensurveysondage extends CommonObject
         if (empty($this->labelStatus) || empty($this->labelStatusShort))
         {
             global $langs;
-            //$langs->load("mymodule");
+            
             $this->labelStatus[self::STATUS_DRAFT] = $langs->trans('Draft');
             $this->labelStatus[self::STATUS_VALIDATED] = $langs->trans('Opened');
             $this->labelStatus[self::STATUS_CLOSED] = $langs->trans('Closed');

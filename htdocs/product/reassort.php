@@ -130,7 +130,7 @@ if ($search_categ) $sql .= ", ".MAIN_DB_PREFIX."categorie_product as cp";
 $sql .= " WHERE p.entity IN (".getEntity('product').")";
 if ($search_categ) $sql .= " AND p.rowid = cp.fk_product"; // Join for the needed table to filter by categ
 if ($sall) $sql .= natural_search(array('p.ref', 'p.label', 'p.description', 'p.note'), $sall);
-// if the type is not 1, we show all products (type = 0,2,3)
+
 if (dol_strlen($type))
 {
     if ($type == 1)
@@ -163,7 +163,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -343,7 +343,7 @@ if ($resql)
 		print '<tr>';
 		print '<td class="nowrap">';
 		print $product->getNomUrl(1, '', 16);
-		//if ($objp->stock_theorique < $objp->seuil_stock_alerte) print ' '.img_warning($langs->trans("StockTooLow"));
+		
 		print '</td>';
 		print '<td>'.$product->label.'</td>';
 
@@ -356,7 +356,7 @@ if ($resql)
 			else print $objp->duration;
 			print '</td>';
 		}
-		//print '<td class="right">'.$objp->stock_theorique.'</td>';
+		
 		print '<td class="right">'.$objp->seuil_stock_alerte.'</td>';
 		print '<td class="right">'.$objp->desiredstock.'</td>';
 		// Real stock

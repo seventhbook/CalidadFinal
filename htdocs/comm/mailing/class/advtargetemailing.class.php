@@ -159,12 +159,12 @@ class AdvanceTargetingMailing extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
 				
 				
 				
 				
-				//// End call triggers
+				
+				
 			}
 		}
 
@@ -421,12 +421,12 @@ class AdvanceTargetingMailing extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
 				
 				
 				
 				
-				//// End call triggers
+				
+				
 		
 		
 
@@ -469,12 +469,12 @@ class AdvanceTargetingMailing extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 				// want this action calls a trigger.
 
-				//// Call triggers
 				
 				
 				
 				
-				//// End call triggers
+				
+				
 			}
 		}
 

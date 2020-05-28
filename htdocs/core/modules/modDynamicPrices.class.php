@@ -57,29 +57,29 @@ class modDynamicPrices extends DolibarrModules
         $this->dirs = array();
 
         // Config pages
-        //-------------
+        
 		$this->config_page_url = array("dynamic_prices.php@product");
 
         // Dependancies
-        //-------------
+        
         $this->depends = array();
         $this->requiredby = array();
         $this->langfiles = array("other");
 
         // Constants
-        //-----------
+        
         $this->const = array();
 
         // New pages on tabs
-        // -----------------
+        
         $this->tabs = array();
 
         // Boxes
-        //------
+        
         $this->boxes = array();
 
         // Permissions
-        //------------
+        
         $this->rights = array();
         $this->rights_class = 'dynamicprices';
         $r=0;

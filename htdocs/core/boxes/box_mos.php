@@ -92,7 +92,7 @@ class box_mos extends ModeleBoxes
             $sql.= ", c.tms";
             $sql.= ", c.ref";
             $sql.= ", c.status";
-            //$sql.= ", c.fk_user_valid";
+            
             $sql.= " FROM ".MAIN_DB_PREFIX."product as p";
             $sql.= ", ".MAIN_DB_PREFIX."mrp_mo as c";
             $sql.= " WHERE c.fk_product = p.rowid";

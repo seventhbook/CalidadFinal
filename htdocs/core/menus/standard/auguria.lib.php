@@ -475,7 +475,7 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 				}
 			}
 
-			// $menu_array[$i]['url'] can be a relative url, a full external url. We try substitution
+			
 
 			$menu_array[$i]['url'] = make_substitutions($menu_array[$i]['url'], $substitarray);
 
@@ -494,7 +494,7 @@ function print_left_auguria_menu($db, $menu_array_before, $menu_array_after, &$t
 				{
 					$param .= ($param ? '&' : '').'leftmenu=';
 				}
-				//$url.="idmenu=".$menu_array[$i]['rowid'];    // Already done by menuLoad
+				
 				$url = dol_buildpath($url, 1).($param ? '?'.$param : '');
 				$shorturlwithoutparam = $shorturl;
 				$shorturl = $shorturl.($param ? '?'.$param : '');

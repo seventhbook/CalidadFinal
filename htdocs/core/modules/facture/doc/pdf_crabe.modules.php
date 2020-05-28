@@ -266,7 +266,7 @@ class pdf_crabe extends ModelePDFFactures
 				foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
 				{
 					$filename = $obj['photo'];
-					//if ($obj['photo_vignette']) $filename='thumbs/'.$obj['photo_vignette'];
+					
 					$realpath = $dir.$filename;
 					break;
 				}
@@ -506,7 +506,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						$curX = $this->posxpicture - 1;
 						$pdf->Image($realpatharray[$i], $curX + (($this->posxtva - $this->posxpicture - $imglinesize['width']) / 2), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300); // Use 300 dpi
-						// $pdf->Image does not increase value return by getY, so we save it manually
+						
 						$posYAfterImage = $curY + $imglinesize['height'];
 					}
 
@@ -520,7 +520,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						$pdf->rollbackTransaction(true);
 						$pageposafter = $pageposbefore;
-						//print $pageposafter.'-'.$pageposbefore;exit;
+						
 						$pdf->setPageOrientation('', 1, $heightforfooter); // The only function to edit the bottom margin of current page to set it.
 						pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxpicture - $curX - $progress_width, 3, $curX, $curY, $hideref, $hidedesc);
 						$pageposafter = $pdf->getPage();
@@ -641,8 +641,8 @@ class pdf_crabe extends ModelePDFFactures
 					$vatrate = (string) $object->lines[$i]->tva_tx;
 
 					// Retrieve type from database for backward compatibility with old records
-					if ((!isset($localtax1_type) || $localtax1_type == '' || !isset($localtax2_type) || $localtax2_type == '') // if tax type not defined
-					&& (!empty($localtax1_rate) || !empty($localtax2_rate))) // and there is local tax
+					if ((!isset($localtax1_type) || $localtax1_type == '' || !isset($localtax2_type) || $localtax2_type == '') 
+					&& (!empty($localtax1_rate) || !empty($localtax2_rate))) 
 					{
 						$localtaxtmp_array = getLocalTaxesFromRate($vatrate, 0, $object->thirdparty, $mysoc);
 						$localtax1_type = $localtaxtmp_array[0];
@@ -666,7 +666,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80, 80, 80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY + 1, $this->page_largeur - $this->marge_droite, $nexY + 1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -875,7 +875,7 @@ class pdf_crabe extends ModelePDFFactures
 		$sql .= " FROM ".MAIN_DB_PREFIX."paiement_facture as pf, ".MAIN_DB_PREFIX."paiement as p";
 		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_paiement as cp ON p.fk_paiement = cp.id";
 		$sql .= " WHERE pf.fk_paiement = p.rowid AND pf.fk_facture = ".$object->id;
-		//$sql.= " WHERE pf.fk_paiement = p.rowid AND pf.fk_facture = 1";
+		
 		$sql .= " ORDER BY p.datep";
 
 		$resql = $this->db->query($sql);
@@ -1186,7 +1186,7 @@ class pdf_crabe extends ModelePDFFactures
 			    // FIXME amount of vat not supported with multicurrency
 
 				//Local tax 1 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
+				
 				//{
 				foreach ($this->localtax1 as $localtax_type => $localtax_rate)
 				{
@@ -1196,7 +1196,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1219,7 +1219,7 @@ class pdf_crabe extends ModelePDFFactures
 				}
 	      		//}
 				//Local tax 2 before VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
+				
 				//{
 				foreach ($this->localtax2 as $localtax_type => $localtax_rate)
 				{
@@ -1229,7 +1229,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 
 
@@ -1280,7 +1280,7 @@ class pdf_crabe extends ModelePDFFactures
 				}
 
 				//Local tax 1 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
+				
 				//{
 				foreach ($this->localtax1 as $localtax_type => $localtax_rate) {
 					if (in_array((string) $localtax_type, array('2', '4', '6'))) continue;
@@ -1289,7 +1289,7 @@ class pdf_crabe extends ModelePDFFactures
 					{
 						if ($tvakey != 0)    // On affiche pas taux 0
 						{
-							//$this->atleastoneratenotnull++;
+							
 
 							$index++;
 							$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1311,7 +1311,7 @@ class pdf_crabe extends ModelePDFFactures
 				}
 	      		//}
 				//Local tax 2 after VAT
-				//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
+				
 				//{
 				foreach ($this->localtax2 as $localtax_type => $localtax_rate)
 				{
@@ -1319,7 +1319,7 @@ class pdf_crabe extends ModelePDFFactures
 
 					foreach ($localtax_rate as $tvakey => $tvaval)
 					{
-						//$this->atleastoneratenotnull++;
+						
 
 						$index++;
 						$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1411,7 +1411,7 @@ class pdf_crabe extends ModelePDFFactures
 		$pdf->SetTextColor(0, 0, 0);
 		$creditnoteamount = $object->getSumCreditNotesUsed(($conf->multicurrency->enabled && $object->multicurrency_tx != 1) ? 1 : 0); // Warning, this also include excess received
 		$depositsamount = $object->getSumDepositsUsed(($conf->multicurrency->enabled && $object->multicurrency_tx != 1) ? 1 : 0);
-		//print "x".$creditnoteamount."-".$depositsamount;exit;
+		
 		$resteapayer = price2num($total_ttc - $deja_regle - $creditnoteamount - $depositsamount, 'MT');
 		if (!empty($object->paye)) $resteapayer = 0;
 
@@ -1500,7 +1500,7 @@ class pdf_crabe extends ModelePDFFactures
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top - 4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (!empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur - $this->marge_droite - $this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1523,8 +1523,8 @@ class pdf_crabe extends ModelePDFFactures
 			$pdf->line($this->posxpicture - 1, $tab_top, $this->posxpicture - 1, $tab_top + $tab_height);
 			if (empty($hidetop))
 			{
-				//$pdf->SetXY($this->posxpicture-1, $tab_top+1);
-				//$pdf->MultiCell($this->posxtva-$this->posxpicture-1,2, $outputlangs->transnoentities("Photo"),'','C');
+				
+				
 			}
 		}
 

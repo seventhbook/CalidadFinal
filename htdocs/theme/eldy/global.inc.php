@@ -1841,7 +1841,7 @@ a.tmenuimage:hover{
     {
         if (empty($val) || in_array($val, $divalreadydefined)) continue;
         if (in_array($val, $divnotrequired)) continue;
-        //print "XXX".$val;
+        
 
         // Search img file in module dir
         $found = 0; $url = '';
@@ -2044,7 +2044,7 @@ div.login_block {
 	<?php print $right; ?>: 0;
 	top: <?php print $disableimages ? '4px' : '0'; ?>;
 	line-height: 10px;
-	<?php // echo (empty($disableimages) && $maxwidthloginblock)?'max-width: '.$maxwidthloginblock.'px;':''; ?>
+	<?php 
 	<?php if (GETPOST('optioncss', 'aZ09') == 'print') { ?>
 	display: none;
 	<?php } ?>

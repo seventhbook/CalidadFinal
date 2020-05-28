@@ -79,9 +79,9 @@ function barcode_print($code, $encoding = "ANY", $scale = 2, $mode = "png")
         return $error;
     }
     if (! $mode) $mode="png";
-    //if (preg_match("/^(text|txt|plain)$/i",$mode)) print barcode_outtext($bars['text'],$bars['bars']);
-    //elseif (preg_match("/^(html|htm)$/i",$mode)) print barcode_outhtml($bars['text'],$bars['bars'], $scale,0, 0);
-    //else
+    
+    
+    
     barcode_outimage($bars['text'], $bars['bars'], $scale, $mode);
     return $bars;
 }
@@ -249,11 +249,11 @@ function barcode_encode_genbarcode($code, $encoding)
     $code=preg_replace("/[\\\|]/", "_", $code);
 
     $command=escapeshellarg($genbarcode_loc);
-    //$paramclear=" \"".str_replace("\"", "\\\"",$code)."\" \"".str_replace("\"", "\\\"",strtoupper($encoding))."\"";
+    
     $paramclear=" ".escapeshellarg($code)." ".escapeshellarg(strtoupper($encoding));
 
     $fullcommandclear=$command." ".$paramclear." 2>&1";
-    //print $fullcommandclear."<br>\n";exit;
+    
 
     dol_syslog("Run command ".$fullcommandclear);
     $fp=popen($fullcommandclear, "r");
@@ -304,7 +304,7 @@ function barcode_outimage($text, $bars, $scale = 1, $mode = "png", $total_y = 0,
     global $bar_color, $bg_color, $text_color;
     global $font_loc, $filebarcode;
 
-    //print "$text, $bars, $scale, $mode, $total_y, $space, $font_loc, $filebarcode<br>";
+    
     //var_dump($text);
     //var_dump($bars);
     //var_dump($font_loc);

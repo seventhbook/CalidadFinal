@@ -272,8 +272,8 @@ print '<br>';
 
 dol_htmloutput_errors($mesg);
 
-//print img_picto('','puce').' '.$langs->trans("PrintsheetForOneBarCode").'<br>';
-//print '<br>';
+
+
 
 print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
 print '<input type="hidden" name="mode" value="label">';
@@ -292,7 +292,7 @@ $arrayoflabels = array();
 foreach (array_keys($_Avery_Labels) as $codecards)
 {
     $labeltoshow = $_Avery_Labels[$codecards]['name'];
-    //$labeltoshow.=' ('.$_Avery_Labels[$row['code']]['paper-size'].')';
+    
 	$arrayoflabels[$codecards] = $labeltoshow;
 }
 asort($arrayoflabels);

@@ -227,7 +227,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				foreach ($objphoto->liste_photos($dir, 1) as $key => $obj)
 				{
 					$filename=$obj['photo'];
-					//if ($obj['photo_vignette']) $filename='thumbs/'.$obj['photo_vignette'];
+					
 					$realpath = $dir.$filename;
 					break;
 				}
@@ -244,8 +244,8 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 			$deja_regle = 0;
 			$amount_credit_notes_included = 0;
 			$amount_deposits_included = 0;
-			//$amount_credit_notes_included = $object->getSumCreditNotesUsed();
-            //$amount_deposits_included = $object->getSumDepositsUsed();
+			
+            
 
 			// Definition of $dir and $file
 			if ($object->specimen)
@@ -397,7 +397,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				            $pagenb++;
 				            if (!empty($tplidx)) $pdf->useTemplate($tplidx);
 				            if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
-				            // $this->_pagefoot($pdf,$object,$outputlangs,1);
+				            
 				            $pdf->setTopMargin($tab_top_newpage);
 				            // The only function to edit the bottom margin of current page to set it.
 				            $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
@@ -421,7 +421,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				            $pdf->setTopMargin($tab_top_newpage);
 				            // The only function to edit the bottom margin of current page to set it.
 				            $pdf->setPageOrientation('', 1, $heightforfooter + $heightforfreetext);
-				            //$posyafter = $tab_top_newpage;
+				            
 				        }
 
 
@@ -535,7 +535,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 					{
 						$curX = $this->posxpicture-1;
 						$pdf->Image($realpatharray[$i], $curX + (($this->posxtva-$this->posxpicture-$imglinesize['width'])/2), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300);	// Use 300 dpi
-						// $pdf->Image does not increase value return by getY, so we save it manually
+						
 						$posYAfterImage=$curY+$imglinesize['height'];
 					}
 					// Description of product line
@@ -551,7 +551,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 					    {
 					        $pdf->rollbackTransaction(true);
 					        $pageposafter=$pageposbefore;
-					        //print $pageposafter.'-'.$pageposbefore;exit;
+					        
 					        $pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 					        pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->getColumnContentWidth('desc'), 3, $this->getColumnContentXStart('desc'), $curY, $hideref, $hidedesc);
 					        $pageposafter=$pdf->getPage();
@@ -562,7 +562,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 					            {
 					                $pdf->AddPage('', '', true);
 					                if (! empty($tplidx)) $pdf->useTemplate($tplidx);
-					                //if (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD)) $this->_pagehead($pdf, $object, 0, $outputlangs);
+					                
 					                $pdf->setPage($pageposafter+1);
 					            }
 					        }
@@ -678,8 +678,8 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 					$vatrate=(string) $object->lines[$i]->tva_tx;
 
 					// Retrieve type from database for backward compatibility with old records
-					if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') // if tax type not defined
-					&& (! empty($localtax1_rate) || ! empty($localtax2_rate))) // and there is local tax
+					if ((! isset($localtax1_type) || $localtax1_type=='' || ! isset($localtax2_type) || $localtax2_type=='') 
+					&& (! empty($localtax1_rate) || ! empty($localtax2_rate))) 
 					{
 						$localtaxtmp_array=getLocalTaxesFromRate($vatrate, 0, $mysoc, $object->thirdparty);
 						$localtax1_type = $localtaxtmp_array[0];
@@ -703,7 +703,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 					{
 						$pdf->setPage($pageposafter);
 						$pdf->SetLineStyle(array('dash'=>'1,1', 'color'=>array(80,80,80)));
-						//$pdf->SetDrawColor(190,190,200);
+						
 						$pdf->line($this->marge_gauche, $nexY+1, $this->page_largeur - $this->marge_droite, $nexY+1);
 						$pdf->SetLineStyle(array('dash'=>0));
 					}
@@ -995,7 +995,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 		}
 		else
 		{
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX1_OPTION) && $conf->global->FACTURE_LOCAL_TAX1_OPTION=='localtax1on')
+			
 			//{
     			//Local tax 1
 			foreach ($this->localtax1 as $localtax_type => $localtax_rate)
@@ -1006,7 +1006,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				{
 					if ($tvakey != 0)    // On affiche pas taux 0
 					{
-						//$this->atleastoneratenotnull++;
+						
 
 						$index++;
 						$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1027,7 +1027,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				}
 			}
 
-			//if (! empty($conf->global->FACTURE_LOCAL_TAX2_OPTION) && $conf->global->FACTURE_LOCAL_TAX2_OPTION=='localtax2on')
+			
 			//{
     			//Local tax 2
 			foreach ($this->localtax2 as $localtax_type => $localtax_rate)
@@ -1038,7 +1038,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 				{
 					if ($tvakey != 0)    // On affiche pas taux 0
 					{
-						//$this->atleastoneratenotnull++;
+						
 
 						$index++;
 						$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
@@ -1075,9 +1075,9 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 
         $creditnoteamount = 0;
         $depositsamount = 0;
-		//$creditnoteamount=$object->getSumCreditNotesUsed();
-		//$depositsamount=$object->getSumDepositsUsed();
-		//print "x".$creditnoteamount."-".$depositsamount;exit;
+		
+		
+		
 		$resteapayer = price2num($total_ttc - $deja_regle - $creditnoteamount - $depositsamount, 'MT');
 		if (!empty($object->paye)) $resteapayer = 0;
 
@@ -1143,7 +1143,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 			$pdf->SetXY($this->page_largeur - $this->marge_droite - ($pdf->GetStringWidth($titre) + 3), $tab_top-4);
 			$pdf->MultiCell(($pdf->GetStringWidth($titre) + 3), 2, $titre);
 
-			//$conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR='230,230,230';
+			
 			if (! empty($conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR)) $pdf->Rect($this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_droite-$this->marge_gauche, 5, 'F', null, explode(',', $conf->global->MAIN_PDF_TITLE_BACKGROUND_COLOR));
 		}
 
@@ -1476,7 +1476,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 	     'rank' => $rank, // int : use for ordering columns
 	     'width' => 20, // the column width in mm
 	     'title' => array(
-	     'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
+	     'textkey' => 'yourLangKey', 
 	     'label' => ' ', // the final label : used fore final generated text
 	     'align' => 'L', // text alignement :  R,C,L
 	     'padding' => array(0.5,0.5,0.5,0.5), // Like css 0 => top , 1 => right, 2 => bottom, 3 => left
@@ -1488,13 +1488,13 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 	     );
 	     */
 
-	    $rank = 0; // do not use negative rank
+	    $rank = 0; 
 	    $this->cols['desc'] = array(
 	        'rank' => $rank,
 	        'width' => false, // only for desc
 	        'status' => true,
 	        'title' => array(
-	            'textkey' => 'Designation', // use lang key is usefull in somme case with module
+	            'textkey' => 'Designation', 
 	            'align' => 'L',
 	            // 'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
 	            // 'label' => ' ', // the final label
@@ -1681,7 +1681,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 	    $countFlexCol = 0;
 	    foreach ($this->cols as $colKey => &$colDef)
 	    {
-	        if (!$this->getColumnStatus($colKey)) continue; // continue if disabled
+	        if (!$this->getColumnStatus($colKey)) continue; 
 
 	        if (!empty($colDef['scale'])) {
 	            // In case of column widht is defined by percentage
@@ -1781,7 +1781,7 @@ class pdf_cornas extends ModelePDFSuppliersOrders
 	    // prepare wanted rank
 	    $rank = -1;
 
-	    // try to get rank from target column
+	    
 	    if (!empty($targetCol)) {
 	        $rank = $this->getColumnRank($targetCol);
 	        if ($rank >= 0 && $insertAfterTarget) { $rank++; }

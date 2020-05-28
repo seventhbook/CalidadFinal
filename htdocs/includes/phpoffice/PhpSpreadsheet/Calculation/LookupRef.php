@@ -516,9 +516,9 @@ class LookupRef
             $keySet = array_reverse(array_keys($lookupArray));
         }
 
-        // **
+        
         // find the match
-        // **
+        
 
         if ($matchType == 0 || $matchType == 1) {
             foreach ($lookupArray as $i => $lookupArrayValue) {
@@ -709,7 +709,7 @@ class LookupRef
 
         $rowNumber = $rowValue = false;
         foreach ($lookup_array as $rowKey => $rowData) {
-            // break if we have passed possible keys
+            
             if ((is_numeric($lookup_value) && is_numeric($rowData[$firstColumn]) && ($rowData[$firstColumn] > $lookup_value)) ||
                 (!is_numeric($lookup_value) && !is_numeric($rowData[$firstColumn]) && (strtolower($rowData[$firstColumn]) > strtolower($lookup_value)))) {
                 break;
@@ -735,7 +735,7 @@ class LookupRef
         }
 
         if ($rowNumber !== false) {
-            // return the appropriate value
+            
             return $lookup_array[$rowNumber][$returnColumn];
         }
 
@@ -779,7 +779,7 @@ class LookupRef
         $firstColumn = array_shift($f);
         $rowNumber = null;
         foreach ($lookup_array[$firstColumn] as $rowKey => $rowData) {
-            // break if we have passed possible keys
+            
             $bothNumeric = is_numeric($lookup_value) && is_numeric($rowData);
             $bothNotNumeric = !is_numeric($lookup_value) && !is_numeric($rowData);
             if (($bothNumeric && $rowData > $lookup_value) ||

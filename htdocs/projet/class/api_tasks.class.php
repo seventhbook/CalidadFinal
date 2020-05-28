@@ -112,7 +112,7 @@ class Tasks extends DolibarrApi
 
         $obj_ret = array();
 
-        // case of external user, $thirdparty_ids param is ignored and replaced by user's socid
+        
         $socids = DolibarrApiAccess::$user->socid ? DolibarrApiAccess::$user->socid : '';
 
         // If the internal user must only see his customers, force searching by him
@@ -214,14 +214,14 @@ class Tasks extends DolibarrApi
         return $this->task->id;
     }
 
-    // /**
-    //  * Get time spent of a task
-    //  *
-    //  * @param int   $id                     Id of task
-    //  * @return int
-    //  *
-    //  * @url	GET {id}/tasks
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function getLines($id, $includetimespent=0)
     {
@@ -239,7 +239,7 @@ class Tasks extends DolibarrApi
         }
         $this->project->getLinesArray(DolibarrApiAccess::$user);
         $result = array();
-        foreach ($this->project->lines as $line)      // $line is a task
+        foreach ($this->project->lines as $line)      
         {
             if ($includetimespent == 1)
             {
@@ -298,16 +298,16 @@ class Tasks extends DolibarrApi
     }
 
 
-    // /**
-    //  * Add a task to given project
-    //  *
-    //  * @param int   $id             Id of project to update
-    //  * @param array $request_data   Projectline data
-    //  *
-    //  * @url	POST {id}/tasks
-    //  *
-    //  * @return int
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function postLine($id, $request_data = null)
     {
@@ -360,17 +360,17 @@ class Tasks extends DolibarrApi
     }
     */
 
-    // /**
-    //  * Update a task to given project
-    //  *
-    //  * @param int   $id             Id of project to update
-    //  * @param int   $taskid         Id of task to update
-    //  * @param array $request_data   Projectline data
-    //  *
-    //  * @url	PUT {id}/tasks/{taskid}
-    //  *
-    //  * @return object
-    //  */
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /*
     public function putLine($id, $lineid, $request_data = null)
     {
@@ -585,7 +585,7 @@ class Tasks extends DolibarrApi
         unset($object->weekWorkLoad);
         unset($object->weekWorkLoad);
 
-        //unset($object->lines);            // for task we use timespent_lines, but for project we use lines
+        
 
         unset($object->total_ht);
         unset($object->total_tva);

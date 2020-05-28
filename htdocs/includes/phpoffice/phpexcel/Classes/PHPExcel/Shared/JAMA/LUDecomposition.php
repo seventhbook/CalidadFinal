@@ -117,7 +117,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::ArgumentTypeException);
 		}
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -138,7 +138,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 			}
 		}
 		return new PHPExcel_Shared_JAMA_Matrix($L);
-	}	//	function getL()
+	}	
 
 
 	/**
@@ -157,7 +157,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 			}
 		}
 		return new PHPExcel_Shared_JAMA_Matrix($U);
-	}	//	function getU()
+	}	
 
 
 	/**
@@ -167,7 +167,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 	 */
 	public function getPivot() {
 		return $this->piv;
-	}	//	function getPivot()
+	}	
 
 
 	/**
@@ -177,7 +177,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 	 */
 	public function getDoublePivot() {
 		return $this->getPivot();
-	}	//	function getDoublePivot()
+	}	
 
 
 	/**
@@ -192,7 +192,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 			}
 		}
 		return true;
-	}	//	function isNonsingular()
+	}	
 
 
 	/**
@@ -210,7 +210,7 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(PHPExcel_Shared_JAMA_Matrix::MatrixDimensionException);
 		}
-	}	//	function det()
+	}	
 
 
 	/**
@@ -253,6 +253,6 @@ class PHPExcel_Shared_JAMA_LUDecomposition {
 		} else {
 			throw new PHPExcel_Calculation_Exception(self::MatrixSquareException);
 		}
-	}	//	function solve()
+	}	
 
-}	//	class PHPExcel_Shared_JAMA_LUDecomposition
+}	

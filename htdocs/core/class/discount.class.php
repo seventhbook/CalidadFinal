@@ -54,9 +54,9 @@ class DiscountAbsolute
     public $fk_soc;
 
     public $discount_type; // 0 => customer discount, 1 => supplier discount
-    public $amount_ht; //
-    public $amount_tva; //
-    public $amount_ttc; //
+    public $amount_ht; 
+    public $amount_tva; 
+    public $amount_ttc; 
     public $multicurrency_amount_ht;
     public $multicurrency_amount_tva;
     public $multicurrency_amount_ttc;
@@ -288,7 +288,7 @@ class DiscountAbsolute
             $sql .= " WHERE (fk_facture_line IS NOT NULL"; // Not used as absolute simple discount
             $sql .= " OR fk_facture IS NOT NULL)"; // Not used as credit note and not used as deposit
             $sql .= " AND fk_facture_source = ".$this->fk_facture_source;
-            //$sql.=" AND rowid != ".$this->id;
+            
 
             dol_syslog(get_class($this)."::delete Check if we can remove discount", LOG_DEBUG);
             $resql = $this->db->query($sql);
@@ -316,7 +316,7 @@ class DiscountAbsolute
         	$sql .= " WHERE (fk_invoice_supplier_line IS NOT NULL"; // Not used as absolute simple discount
         	$sql .= " OR fk_invoice_supplier IS NOT NULL)"; // Not used as credit note and not used as deposit
         	$sql .= " AND fk_invoice_supplier_source = ".$this->fk_invoice_supplier_source;
-        	//$sql.=" AND rowid != ".$this->id;
+        	
 
         	dol_syslog(get_class($this)."::delete Check if we can remove discount", LOG_DEBUG);
         	$resql = $this->db->query($sql);
@@ -530,10 +530,10 @@ class DiscountAbsolute
         if ($resql)
         {
             $obj = $this->db->fetch_object($resql);
-            //while ($obj)
+            
             //{
-            //print 'zz'.$obj->amount;
-            //$obj = $this->db->fetch_object($resql);
+            
+            
             //}
             return $obj->amount;
         }

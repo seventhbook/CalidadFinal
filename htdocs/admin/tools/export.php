@@ -49,7 +49,7 @@ if (! $user->admin) accessforbidden();
 
 if ($file && ! $what)
 {
-    //print DOL_URL_ROOT.'/dolibarr_export.php';
+    
 	header("Location: ".DOL_URL_ROOT.'/admin/tools/dolibarr_export.php?msg='.urlencode($langs->trans("ErrorFieldRequired", $langs->transnoentities("ExportMethod"))).(GETPOST('page_y', 'int')?'&page_y='.GETPOST('page_y', 'int'):''));
     exit;
 }
@@ -98,10 +98,10 @@ if (!empty($MemoryLimit))
 $form=new Form($db);
 $formfile = new FormFile($db);
 
-//$help_url='EN:Backups|FR:Sauvegardes|ES:Copias_de_seguridad';
+
 //llxHeader('','',$help_url);
 
-//print load_fiche_titre($langs->trans("Backup"),'','title_setup');
+
 
 
 // Start with empty buffer

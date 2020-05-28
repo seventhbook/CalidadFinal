@@ -69,12 +69,12 @@ elseif ($conf->db->type == 'pgsql')
 }
 elseif ($conf->db->type == 'mssql')
 {
-	//$sqls[0] = "";
-	//$base=3;
+	
+	
 }
 elseif ($conf->db->type == 'sqlite' || $conf->db->type == 'sqlite3')
 {
-	//$sql = "SELECT name, type FROM sqlite_master";
+	
 	$base = 4;
 }
 

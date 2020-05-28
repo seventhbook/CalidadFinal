@@ -230,7 +230,7 @@ function societe_prepare_head(Societe $object)
             dol_print_error($db);
         }
 
-        //if (! empty($conf->stripe->enabled) && $nbBankAccount > 0) $nbBankAccount = '...';	// No way to know exact number
+        
 
         $head[$h][0] = DOL_URL_ROOT.'/societe/paymentmodes.php?socid='.$object->id;
         $head[$h][1] = $title;
@@ -270,8 +270,8 @@ function societe_prepare_head(Societe $object)
 
 	// Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, $object, $head, $h, 'thirdparty');
 
     if ($user->socid == 0)
@@ -392,8 +392,8 @@ function societe_admin_prepare_head()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, null, $head, $h, 'company_admin');
 
     $head[$h][0] = DOL_URL_ROOT.'/societe/admin/societe_extrafields.php';
@@ -1044,7 +1044,7 @@ function show_contacts($conf, $langs, $db, $object, $backtopage = '')
     $num = $db->num_rows($result);
 
     // Fields title search
-    // --------------------------------------------------------------------
+    
     print '<tr class="liste_titre">';
     foreach ($contactstatic->fields as $key => $val)
     {
@@ -1081,7 +1081,7 @@ function show_contacts($conf, $langs, $db, $object, $backtopage = '')
 
 
     // Fields title label
-    // --------------------------------------------------------------------
+    
     print '<tr class="liste_titre">';
     foreach ($contactstatic->fields as $key => $val)
     {

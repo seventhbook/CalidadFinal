@@ -428,7 +428,7 @@ if ($action == "create" || $action == "start")
 		print '<tr class="liste_titre">';
 		print '<td></td>';
 		print '<td class="center">'.$langs->trans("Cash");
-		//print '<br>'.$langs->trans("TheoricalAmount").'<br>'.$langs->trans("RealAmount");
+		
 		print '</td>';
 		$i = 0;
 		foreach ($arrayofpaymentmode as $key => $val)

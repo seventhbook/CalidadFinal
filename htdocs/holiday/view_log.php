@@ -55,8 +55,8 @@ if (empty($page) || $page == -1 || GETPOST('button_search', 'alpha') || GETPOST(
 $offset = $limit * $page;
 $pageprev = $page - 1;
 $pagenext = $page + 1;
-//if (! $sortfield) $sortfield="p.date_fin";
-//if (! $sortorder) $sortorder="DESC";
+
+
 
 
 // Protection if external user
@@ -71,7 +71,7 @@ $langs->load('users');
 // Initialize technical objects
 $object = new Holiday($db);
 $extrafields = new ExtraFields($db);
-//$diroutputmassaction = $conf->mymodule->dir_output . '/temp/massgeneration/'.$user->id;
+
 $hookmanager->initHooks(array('leavemovementlist'));     // Note that conf->hooks_modules contains array
 
 $arrayfields=array();
@@ -173,8 +173,8 @@ print "</div><br>\n";
 $moreforfilter='';
 
 $varpage=empty($contextpage)?$_SERVER["PHP_SELF"]:$contextpage;
-//$selectedfields=$form->multiSelectArrayWithCheckbox('selectedfields', $arrayfields, $varpage);	// This also change content of $arrayfields
-//$selectedfields.=(count($arrayofmassactions) ? $form->showCheckAddButtons('checkforselect', 1) : '');
+
+
 $selectedfields='';
 
 print '<div class="div-table-responsive">';

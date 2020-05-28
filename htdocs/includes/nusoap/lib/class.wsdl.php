@@ -32,14 +32,14 @@ class wsdl extends nusoap_base {
     var $status = '';
     var $documentation = false;
     var $endpoint = ''; 
-    // array of wsdl docs to import
+    
     var $import = array(); 
     // parser vars
     var $parser;
     var $position = 0;
     var $depth = 0;
     var $depth_array = array();
-	// for getting wsdl
+	
 	var $proxyhost = '';
     var $proxyport = '';
 	var $proxyusername = '';
@@ -48,7 +48,7 @@ class wsdl extends nusoap_base {
 	var $response_timeout = 30;
 	var $curl_options = array();	// User-specified cURL options
 	var $use_curl = false;			// whether to always try to use cURL
-	// for HTTP authentication
+	
 	var $username = '';				// Username for HTTP authentication
 	var $password = '';				// Password for HTTP authentication
 	var $authtype = '';				// Type of HTTP authentication
@@ -104,7 +104,7 @@ class wsdl extends nusoap_base {
     		// Schema imports
     		foreach ($this->schemas as $ns => $list) {
     			foreach ($list as $xs) {
-					$wsdlparts = parse_url($this->wsdl);	// this is bogusly simple!
+					$wsdlparts = parse_url($this->wsdl);	
 		            foreach ($xs->imports as $ns2 => $list2) {
 		                for ($ii = 0; $ii < count($list2); $ii++) {
 		                	if (! $list2[$ii]['loaded']) {
@@ -130,7 +130,7 @@ class wsdl extends nusoap_base {
     			}
     		}
     		// WSDL imports
-			$wsdlparts = parse_url($this->wsdl);	// this is bogusly simple!
+			$wsdlparts = parse_url($this->wsdl);	
             foreach ($this->import as $ns => $list) {
                 for ($ii = 0; $ii < count($list); $ii++) {
                 	if (! $list[$ii]['loaded']) {
@@ -217,10 +217,10 @@ class wsdl extends nusoap_base {
 			}
 			$tr->setEncoding('gzip, deflate');
 			$wsdl_string = $tr->send('', $this->timeout, $this->response_timeout);
-			//$this->debug("WSDL request\n" . $tr->outgoing_payload);
-			//$this->debug("WSDL response\n" . $tr->incoming_payload);
+			
+			
 			$this->appendDebug($tr->getDebug());
-			// catch errors
+			
 			if($err = $tr->getError() ){
 				$errstr = 'Getting ' . $wsdl . ' - HTTP ERROR: '.$err;
 				$this->debug($errstr);
@@ -231,7 +231,7 @@ class wsdl extends nusoap_base {
 			unset($tr);
 			$this->debug("got WSDL URL");
         } else {
-            // $wsdl is not http(s), so treat it as a file URL or plain file path
+            
         	if (isset($wsdl_props['scheme']) && ($wsdl_props['scheme'] == 'file') && isset($wsdl_props['path'])) {
         		$path = isset($wsdl_props['host']) ? ($wsdl_props['host'] . ':' . $wsdl_props['path']) : $wsdl_props['path'];
         	} else {
@@ -280,7 +280,7 @@ class wsdl extends nusoap_base {
 		// free the parser
         xml_parser_free($this->parser);
         $this->debug('Parsing WSDL done');
-		// catch wsdl parse errors
+		
 		if($this->getError()){
 			return false;
 		}
@@ -303,7 +303,7 @@ class wsdl extends nusoap_base {
             $this->currentSchema->clearDebug();
         } elseif (preg_match('/schema$/', $name)) {
         	$this->debug('Parsing WSDL schema');
-            // $this->debug("startElement for $name ($attrs[name]). status = $this->status (".$this->getLocalPart($name).")");
+            
             $this->status = 'schema';
             $this->currentSchema = new nusoap_xmlschema('', '', $this->namespaces);
             $this->currentSchema->schemaStartElement($parser, $name, $attrs);
@@ -461,9 +461,9 @@ class wsdl extends nusoap_base {
 				}
 				break;
 			//wait for schema
-			//case 'types':
-			//	$this->status = 'schema';
-			//	break;
+			
+			
+			
 			case 'message':
 				$this->status = 'message';
 				$this->messages[$attrs['name']] = array();
@@ -509,7 +509,7 @@ class wsdl extends nusoap_base {
 	* @access private 
 	*/
 	function end_element($parser, $name){ 
-		// unset schema status
+		
 		if (/*preg_match('/types$/', $name) ||*/ preg_match('/schema$/', $name)) {
 			$this->status = "";
             $this->appendDebug($this->currentSchema->getDebug());
@@ -526,7 +526,7 @@ class wsdl extends nusoap_base {
 		// end documentation
 		if ($this->documentation) {
 			//TODO: track the node to which documentation should be assigned; it can be a part, message, etc.
-			//$this->portTypes[$this->currentPortType][$this->currentPortOperation]['documentation'] = $this->documentation;
+			
 			$this->documentation = false;
 		} 
 	} 
@@ -599,8 +599,8 @@ class wsdl extends nusoap_base {
 				// binding type of port matches parameter
 				if ($portData['bindingType'] == $bindingType) {
 					$this->debug("getOperations found port $port bindingType $bindingType");
-					//$this->debug("port data: " . $this->varDump($portData));
-					//$this->debug("bindings: " . $this->varDump($this->bindings[ $portData['binding'] ]));
+					
+					
 					// merge bindings
 					if (isset($this->bindings[ $portData['binding'] ]['operations'])) {
 						$ops = array_merge ($ops, $this->bindings[ $portData['binding'] ]['operations']);
@@ -634,7 +634,7 @@ class wsdl extends nusoap_base {
 			// binding type of port matches parameter
 			if ($portData['bindingType'] == $bindingType) {
 				// get binding
-				//foreach($this->bindings[ $portData['binding'] ]['operations'] as $bOperation => $opData) {
+				
 				foreach(array_keys($this->bindings[ $portData['binding'] ]['operations']) as $bOperation) {
 					// note that we could/should also check the namespace here
 					if ($operation == $bOperation) {
@@ -820,7 +820,7 @@ class wsdl extends nusoap_base {
 		    return this
 		}
 		// A unit of measure that will be added when setting the position of a layer.
-		//var px = bw.ns4||window.opera?"":"px";
+		
 		function b_writeIt(text){
 		    if (bw.ns4){this.wref.write(text);this.wref.close()}
 		    else this.wref.innerHTML = text
@@ -835,7 +835,7 @@ class wsdl extends nusoap_base {
 		function popout(){ // Hides message
 		    if(oDesc) oDesc.css.visibility = "hidden"
 		}
-		//-->
+		
 		</script>
 		</head>
 		<body>
@@ -857,7 +857,7 @@ class wsdl extends nusoap_base {
 						    foreach($marie as $captain => $tenille){ // loop through data
 								if($captain == 'parts'){ // loop thru parts
 								    $b .= "&nbsp;&nbsp;$captain:<br>";
-					                //if(is_array($tenille)){
+					                
 								    	foreach($tenille as $joanie => $chachi){
 											$b .= "&nbsp;&nbsp;&nbsp;&nbsp;$joanie: $chachi<br>";
 								    	}
@@ -929,11 +929,11 @@ class wsdl extends nusoap_base {
 				$xml .= "\n<message name=\"" . $msgName . '">';
 				if(is_array($msgParts)){
 					foreach($msgParts as $partName => $partType) {
-						// print 'serializing '.$partType.', sv: '.$this->XMLSchemaVersion.'<br>';
+						
 						if (strpos($partType, ':')) {
 						    $typePrefix = $this->getPrefixFromNamespace($this->getPrefix($partType));
 						} elseif (isset($this->typemap[$this->namespaces['xsd']][$partType])) {
-						    // print 'checking typemap: '.$this->XMLSchemaVersion.'<br>';
+						    
 						    $typePrefix = 'xsd';
 						} else {
 						    foreach($this->typemap as $ns => $types) {
@@ -1173,7 +1173,7 @@ class wsdl extends nusoap_base {
 						$enc_style = false;
 					}
 					// NOTE: add error handling here
-					// if serializeType returns false, then catch global error and fault
+					
 					if ($parametersArrayType == 'arraySimple') {
 						$p = array_shift($parameters);
 						$this->debug('calling serializeType w/indexed param');
@@ -1254,7 +1254,7 @@ class wsdl extends nusoap_base {
 						$enc_style = false;
 					}
 					// NOTE: add error handling here
-					// if serializeType returns false, then catch global error and fault
+					
 					if ($parametersArrayType == 'arraySimple') {
 						$p = array_shift($parameters);
 						$this->debug('calling serializeType w/indexed param');
@@ -1296,7 +1296,7 @@ class wsdl extends nusoap_base {
 			$encodingStyle = ' SOAP-ENV:encodingStyle="' . $encodingStyle . '"';
 		}
 
-		// if a soapval has been supplied, let its type override the WSDL
+		
     	if (is_object($value) && get_class($value) == 'soapval') {
     		if ($value->type_ns) {
     			$type = $value->type_ns . ':' . $value->type;
@@ -1446,7 +1446,7 @@ class wsdl extends nusoap_base {
 		}
 		$phpType = $typeDef['phpType'];
 		$this->debug("in serializeType: uqType: $uqType, ns: $ns, phptype: $phpType, arrayType: " . (isset($typeDef['arrayType']) ? $typeDef['arrayType'] : '') ); 
-		// if php type == struct, map value to the <all> element names
+		
 		if ($phpType == 'struct') {
 			if (isset($typeDef['typeClass']) && $typeDef['typeClass'] == 'element') {
 				$elementName = $uqType;
@@ -1547,7 +1547,7 @@ class wsdl extends nusoap_base {
 				$contents = '';
 				foreach($value as $k => $v) {
 					$this->debug("serializing array element: $k, $v of type: $typeDef[arrayType]");
-					//if (strpos($typeDef['arrayType'], ':') ) {
+					
 					if (!in_array($typeDef['arrayType'],$this->typemap['http://www.w3.org/2001/XMLSchema'])) {
 					    $contents .= $this->serializeType('item', $typeDef['arrayType'], $v, $use);
 					} else {
@@ -1559,7 +1559,7 @@ class wsdl extends nusoap_base {
 				$contents = null;
 			}
 			// TODO: for now, an empty value will be serialized as a zero element
-			// array.  Revisit this when coding the handling of null/nil values.
+			
 			if ($use == 'literal') {
 				$xml = "<$name$elementNS>"
 					.$contents
@@ -1707,7 +1707,7 @@ class wsdl extends nusoap_base {
 						$this->debug('use default value of ' . $xvalue[$eName] . ' for element ' . $eName);
 					}
 				}
-				// if user took advantage of a minOccurs=0, then only serialize named parameters
+				
 				if (isset($optionals)
 				    && (!isset($xvalue[$eName])) 
 					&& ( (!isset($attrs['nillable'])) || $attrs['nillable'] != 'true')
@@ -1715,7 +1715,7 @@ class wsdl extends nusoap_base {
 					if (isset($attrs['minOccurs']) && $attrs['minOccurs'] <> '0') {
 						$this->debug("apparent error: no value provided for element $eName with minOccurs=" . $attrs['minOccurs']);
 					}
-					// do nothing
+					
 					$this->debug("no value provided for complexType element $eName and element is not nillable, so serialize nothing");
 				} else {
 					// get value
@@ -1743,7 +1743,7 @@ class wsdl extends nusoap_base {
 						}
 					} else {
 						if (is_null($v) && isset($attrs['minOccurs']) && $attrs['minOccurs'] == '0') {
-							// do nothing
+							
 						} elseif (is_null($v) && isset($attrs['nillable']) && $attrs['nillable'] == 'true') {
 							// TODO: serialize a nil correctly, but for now serialize schema-defined type
 						    $xml .= $this->serializeType($eName, isset($attrs['type']) ? $attrs['type'] : $attrs['ref'], $v, $use, $encodingStyle, $unqualified);

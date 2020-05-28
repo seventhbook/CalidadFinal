@@ -206,12 +206,12 @@ class mod_codeproduct_elephant extends ModeleProductCode
 		if ($type == 0)
 		{
 			$field = 'ref';
-			//$where = ' AND client in (1,2)';
+			
 		}
 		elseif ($type == 1)
 		{
 			$field = 'ref';
-			//$where = ' AND fournisseur = 1';
+			
 		}
 		else return -1;
 

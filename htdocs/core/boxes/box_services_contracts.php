@@ -141,7 +141,7 @@ class box_services_contracts extends ModeleBoxes
 					$thirdpartytmp->code_compta_fournisseur = $objp->code_compta_fournisseur;
 
 					// Multilangs
-					if (! empty($conf->global->MAIN_MULTILANGS) && $objp->product_id > 0) // if option multilang is on
+					if (! empty($conf->global->MAIN_MULTILANGS) && $objp->product_id > 0) 
 					{
 						$sqld = "SELECT label";
 						$sqld.= " FROM ".MAIN_DB_PREFIX."product_lang";
@@ -169,8 +169,8 @@ class box_services_contracts extends ModeleBoxes
 						if ($objp->plabel)
 						{
 							$text .= ' - ';
-							//$productstatic->ref=$objp->label;
-							//$text .= $productstatic->getNomUrl(0,'',16);
+							
+							
 							$text .= $objp->plabel;
 						}
 						$description = $objp->description;
@@ -178,7 +178,7 @@ class box_services_contracts extends ModeleBoxes
 						// Add description in form
 						if (! empty($conf->global->PRODUIT_DESC_IN_FORM))
 						{
-							//$text .= (! empty($objp->description) && $objp->description!=$objp->plabel)?'<br>'.dol_htmlentitiesbr($objp->description):'';
+							
 							$description = '';	// Already added into main visible desc
 						}
 

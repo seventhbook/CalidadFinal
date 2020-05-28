@@ -100,7 +100,7 @@ class ImportXlsx extends ModeleImports
 		global $conf, $langs;
 		$this->db = $db;
 
-		// this is used as an extension from the example file code, so we have to put xlsx here !!!
+		
 		$this->id = 'xlsx'; // Same value as xxx in file name export_xxx.modules.php
 		$this->label = 'Excel 2007'; // Label of driver
 		$this->desc = $langs->trans("Excel2007FormatDesc");
@@ -181,7 +181,7 @@ class ImportXlsx extends ModeleImports
 			$col++;
 		}
 
-		return ''; // final output will be generated in footer
+		return ''; 
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -202,7 +202,7 @@ class ImportXlsx extends ModeleImports
 			$col++;
 		}
 
-		return ''; // final output will be generated in footer
+		return ''; 
 	}
 
     // phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -215,7 +215,7 @@ class ImportXlsx extends ModeleImports
     public function write_footer_example($outputlangs)
 	{
         // phpcs:enable
-		// return the file content as a string
+		
 		$tempfile = tempnam(sys_get_temp_dir(), 'dol');
 		$objWriter = new PHPExcel_Writer_Excel2007($this->workbook);
 		$objWriter->save($tempfile);
@@ -408,7 +408,7 @@ class ImportXlsx extends ModeleImports
 				
 				}
 
-                // array of fields to column index
+                
                 $arrayfield = array();
                 foreach($sort_array_match_file_to_database as $key => $val) {
                     $arrayfield[$val] = ($key-1);
@@ -444,7 +444,7 @@ class ImportXlsx extends ModeleImports
 						    // We convert field if required
 						    if (!empty($objimport->array_import_convertvalue[0][$val]))
 						    {
-                                //print 'Must convert '.$newval.' with rule '.join(',',$objimport->array_import_convertvalue[0][$val]).'. ';
+                                
                                 if ($objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromcodeid'
                                 	|| $objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromref'
                                 	|| $objimport->array_import_convertvalue[0][$val]['rule'] == 'fetchidfromcodeorlabel'
@@ -743,7 +743,7 @@ class ImportXlsx extends ModeleImports
 							}
 
 							// Other tests
-							// ...
+							
 						}
 
 						// Define $listfields and $listvalues to build SQL request

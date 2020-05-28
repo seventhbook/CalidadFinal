@@ -394,7 +394,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 
 			// calculate start of <tbody>, <thead>
 			$tbodyStart = $rowMin;
-			$theadStart = $theadEnd   = 0; // default: no <thead>	no </thead>
+			$theadStart = $theadEnd   = 0; 
 			if ($sheet->getPageSetup()->isRowsToRepeatAtTopSet()) {
 				$rowsToRepeatAtTop = $sheet->getPageSetup()->getRowsToRepeatAtTop();
 
@@ -409,13 +409,13 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 			// Loop through cells
 			$row = $rowMin-1;
 			while($row++ < $rowMax) {
-				// <thead> ?
+				
 				if ($row == $theadStart) {
 					$html .= '		<thead>' . PHP_EOL;
                     $cellType = 'th';
 				}
 
-				// <tbody> ?
+				
 				if ($row == $tbodyStart) {
 					$html .= '		<tbody>' . PHP_EOL;
                     $cellType = 'td';
@@ -438,7 +438,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 					$html .= $this->_generateRow($sheet, $rowData, $row - 1, $cellType);
 				}
 
-				// </thead> ?
+				
 				if ($row == $theadEnd) {
 					$html .= '		</thead>' . PHP_EOL;
 				}
@@ -1264,7 +1264,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 						if (!$this->_useInlineCss) {
 							$html .= ' class="' . $cssClass . '"';
 						} else {
-							//** Necessary redundant code for the sake of PHPExcel_Writer_PDF **
+							
 							// We must explicitly write the width of the <td> element because TCPDF
 							// does not recognize e.g. <col style="width:42pt">
 							$width = 0;
@@ -1283,7 +1283,7 @@ class PHPExcel_Writer_HTML extends PHPExcel_Writer_Abstract implements PHPExcel_
 								$height = $this->_cssStyles['table.sheet' . $sheetIndex . ' tr.row' . $pRow]['height'];
 								$cssClass['height'] = $height;
 							}
-							//** end of redundant code **
+							
 
 							$html .= ' style="' . $this->_assembleCSS($cssClass) . '"';
 						}

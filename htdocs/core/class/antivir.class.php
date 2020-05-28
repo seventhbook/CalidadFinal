@@ -82,7 +82,7 @@ class AntiVir
 		}
 
 		$fullcommand=$this->getCliCommand($file);
-		//$fullcommand='"c:\Program Files (x86)\ClamWin\bin\clamscan.exe" --database="C:\Program Files (x86)\ClamWin\lib" "c:\temp\aaa.txt"';
+		
         $fullcommand.=' 2>&1';      // This is to get error output
 
 		$output=array();
@@ -95,7 +95,7 @@ class AntiVir
 
 		if (is_null($output)) $output=array();
 
-        //print "x".$lastline." - ".join(',',$output)." - ".$return_var."y";exit;
+        
 
 		/*
         $outputfile=$conf->admin->dir_temp.'/dol_avscan_file.out.'.session_id();
@@ -180,8 +180,8 @@ class AntiVir
 		if (preg_match("/\s/", $command)) $command=escapeshellarg($command);	// Use quotes on command. Using escapeshellcmd fails.
 
 		$ret=$command.' '.$param;
-		//$ret=$command.' '.$param.' 2>&1';
-        //print "xx".$ret."xx";exit;
+		
+        
 
 		return $ret;
 	}

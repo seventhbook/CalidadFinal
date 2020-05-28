@@ -49,8 +49,8 @@ llxHeader("", $langs->trans("SuppliersArea"));
 print load_fiche_titre($langs->trans("SuppliersArea"));
 
 
-//print '<table border="0" width="100%" class="notopnoleftnoright">';
-//print '<tr><td valign="top" width="30%" class="notopnoleft">';
+
+
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
@@ -218,7 +218,7 @@ if (!empty($conf->fournisseur->enabled) && $user->rights->fournisseur->facture->
 }
 
 
-//print '</td><td valign="top" width="70%" class="notopnoleftnoright">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 
@@ -307,7 +307,7 @@ if (count($companystatic->SupplierCategories))
 }
 
 
-//print "</td></tr></table>\n";
+
 print '</div></div></div>';
 
 // End of page

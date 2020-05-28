@@ -63,7 +63,7 @@ print "***** " . $script_file . " (" . $version . ") pid=" . dol_getmypid() . " 
 if ($conf->global->MAILING_LIMIT_SENDBYCLI == '-1') {}
 
 $user = new User($db);
-// for signature, we use user send as parameter
+
 if (! empty($login))
 	$user->fetch('', $login);
 
@@ -295,7 +295,7 @@ if ($resql) {
 								dol_print_error($db);
 								$error ++;
 							} else {
-								// if cheack read is use then update prospect contact status
+								
 								if (strpos($message, '__CHECK_READ__') !== false) {
 									// Update status communication of thirdparty prospect
 									$sqlx = "UPDATE " . MAIN_DB_PREFIX . "societe SET fk_stcomm=2 WHERE rowid IN (SELECT source_id FROM " . MAIN_DB_PREFIX . "mailing_cibles WHERE rowid=" . $obj->rowid . ")";

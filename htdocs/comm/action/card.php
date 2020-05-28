@@ -1775,7 +1775,7 @@ if ($id > 0)
 		print '</td></tr>';
 
 		// Object linked (if link is for thirdparty, contact, project it is a recording error. We should not have links in link table
-		// for such objects because there is already a dedicated field into table llx_actioncomm.
+		
 		if (!empty($object->fk_element) && !empty($object->elementtype) && !in_array($object->elementtype, array('societe', 'contact', 'project')))
 		{
 			include_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';

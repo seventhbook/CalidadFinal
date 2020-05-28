@@ -79,9 +79,9 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
      * protected api
      */
     public static $apiDescriptionSuffixSymbols = array(
-        0 => '&nbsp; <i class="icon-unlock-alt icon-large"></i>', //public api
+        0 => '&nbsp; <i class="icon-unlock-alt icon-large"></i>', 
         1 => '&nbsp; <i class="icon-adjust icon-large"></i>', //hybrid api
-        2 => '&nbsp; <i class="icon-lock icon-large"></i>', //protected api
+        2 => '&nbsp; <i class="icon-lock icon-large"></i>', 
     );
 
     /**
@@ -194,7 +194,7 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
     {
         $version = $this->restler->getRequestedApiVersion();
         if (empty($id)) {
-            //do nothing
+            
         } elseif (false !== ($pos = strpos($id, '-v'))) {
             $id = substr($id, 0, $pos);
         } elseif ($id[0] == 'v' && is_numeric($v = substr($id, 1))) {
@@ -597,7 +597,7 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
             : array();
         if (count($n) == 1) {
             if (isset($this->_models->{$n[0]->dataType})) {
-                // ============ custom class ===================
+                
                 $r = $n[0];
                 $c = $this->_models->{$r->dataType};
                 $a = $c->properties;
@@ -618,7 +618,7 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
                     . "\": \"\"\n}";
                 return $r;
             } elseif (false !== ($p = strpos($n[0]->dataType, '['))) {
-                // ============ array of custom class ===============
+                
                 $r = $n[0];
                 $t = substr($r->dataType, $p + 1, -1);
                 if ($c = Util::nestedValue($this->_models, $t)) {
@@ -645,7 +645,7 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
                     return $r;
                 }
             } elseif ($n[0]->dataType == 'Array') {
-                // ============ array ===============================
+                
                 $r = $n[0];
                 $r->description = "Paste JSON array data here"
                     . ($r->required ? ' (required) . ' : '. ')
@@ -654,7 +654,7 @@ class Resources implements iUseAuthentication, iProvideMultiVersionApi
                     . "property\" : \"\"\n    }\n]";
                 return $r;
             } elseif ($n[0]->dataType == 'Object') {
-                // ============ object ==============================
+                
                 $r = $n[0];
                 $r->description = "Paste JSON object data here"
                     . ($r->required ? ' (required) . ' : '. ')

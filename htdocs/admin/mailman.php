@@ -163,9 +163,9 @@ if (! empty($conf->global->ADHERENT_USE_MAILMAN))
 
     dol_fiche_head($head, 'mailman', $langs->trans("Setup"), -1, 'user');
 
-    //$link=img_picto($langs->trans("Active"),'tick').' ';
+    
     $link='<a class="reposition" href="'.$_SERVER["PHP_SELF"].'?action=unset&value=0&name=ADHERENT_USE_MAILMAN">';
-    //$link.=$langs->trans("Disable");
+    
     $link.=img_picto($langs->trans("Activated"), 'switch_on');
     $link.='</a>';
     // Edition des varibales globales
@@ -217,7 +217,7 @@ else
     dol_fiche_head($head, 'mailman', $langs->trans("Setup"), 0, 'user');
 
     $link='<a href="'.$_SERVER["PHP_SELF"].'?action=set&value=1&name=ADHERENT_USE_MAILMAN">';
-    //$link.=img_$langs->trans("Activate")
+    
     $link.=img_picto($langs->trans("Disabled"), 'switch_off');
     $link.='</a>';
     print load_fiche_titre($langs->trans('MailmanTitle'), $link, '');

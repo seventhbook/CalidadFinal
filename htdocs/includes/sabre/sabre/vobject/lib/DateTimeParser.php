@@ -516,7 +516,7 @@ class DateTimeParser {
                          '|---(?<date>\d\d)' .
                          ')$/';
 
-        // (\d\d(\d\d(\d\d)?)?|-\d\d(\d\d)?|--\d\d)(Z|[+\-]\d\d(\d\d)?)?
+        
         $valueTime = '/^(?J)(?:' .
                          '((?<hour>\d\d)((?<minute>\d\d)(?<second>\d\d)?)?' .
                          '|-(?<minute>\d\d)(?<second>\d\d)?' .
@@ -524,7 +524,7 @@ class DateTimeParser {
                          '(?<timezone>(Z|[+\-]\d\d(\d\d)?))?' .
                          ')$/';
 
-        // (\d{8}|--\d{4}|---\d\d)T\d\d(\d\d(\d\d)?)?(Z|[+\-]\d\d(\d\d?)?
+        
         $valueDateTime = '/^(?:' .
                          '((?<year0>\d{4})(?<month0>\d\d)(?<date0>\d\d)' .
                          '|--(?<month1>\d\d)(?<date1>\d\d)' .

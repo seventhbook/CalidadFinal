@@ -158,7 +158,7 @@ class Deplacement extends CommonObject
 
 		$sql = "INSERT INTO ".MAIN_DB_PREFIX."deplacement (";
 		$sql.= "datec";
-		//$sql.= ", dated";
+		
 		$sql.= ", entity";
 		$sql.= ", fk_user_author";
 		$sql.= ", fk_user";

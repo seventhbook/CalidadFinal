@@ -131,14 +131,14 @@ class PHPExcel_CalcEngine_Logger {
 				($this->_cellStack->count() > 0 ? ' => ' : '') . 
 				$message;
 		}
-	}	//	function _writeDebug()
+	}	
 
 	/**
 	 * Clear the calculation engine debug log
 	 */
 	public function clearLog() {
 		$this->_debugLog = array();
-	}	//	function flushLogger()
+	}	
 
 	/**
 	 * Return the calculation engine debug log
@@ -147,7 +147,7 @@ class PHPExcel_CalcEngine_Logger {
 	 */
 	public function getLog() {
 		return $this->_debugLog;
-	}	//	function flushLogger()
+	}	
 
-}	//	class PHPExcel_CalcEngine_Logger
+}	
 

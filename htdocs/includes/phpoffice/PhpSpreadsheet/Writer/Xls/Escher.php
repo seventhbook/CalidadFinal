@@ -71,7 +71,7 @@ class Escher
 
                 break;
             case DggContainer::class:
-                // this is a container record
+                
 
                 // initialize
                 $innerData = '';
@@ -125,7 +125,7 @@ class Escher
 
                 break;
             case BstoreContainer::class:
-                // this is a container record
+                
 
                 // initialize
                 $innerData = '';
@@ -153,7 +153,7 @@ class Escher
 
                 break;
             case BSE::class:
-                // this is a semi-container record
+                
 
                 // initialize
                 $innerData = '';
@@ -203,7 +203,7 @@ class Escher
 
                 break;
             case Blip::class:
-                // this is an atom record
+                
 
                 // write the record
                 switch ($this->object->getParent()->getBlipType()) {
@@ -265,7 +265,7 @@ class Escher
 
                 break;
             case DgContainer::class:
-                // this is a container record
+                
 
                 // initialize
                 $innerData = '';
@@ -318,7 +318,7 @@ class Escher
 
                 break;
             case SpgrContainer::class:
-                // this is a container record
+                
 
                 // initialize
                 $innerData = '';

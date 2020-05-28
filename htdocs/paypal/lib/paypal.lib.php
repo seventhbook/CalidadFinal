@@ -44,8 +44,8 @@ function paypaladmin_prepare_head()
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'paypaladmin');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'paypaladmin', 'remove');
@@ -332,7 +332,7 @@ function print_paypal_redirect($paymentAmount, $currencyCodeType, $paymentType, 
  */
 function callSetExpressCheckout($paymentAmount, $currencyCodeType, $paymentType, $returnURL, $cancelURL, $tag, $solutionType, $landingPage, $shipToName, $shipToStreet, $shipToCity, $shipToState, $shipToCountryCode, $shipToZip, $shipToStreet2, $phoneNum, $email = '', $desc = '')
 {
-    //------------------------------------------------------------------------------------------------------------------------------------
+    
     // Construct the parameter string that describes the SetExpressCheckout API call in the shortcut implementation
 
     //declaring of global variables
@@ -341,7 +341,7 @@ function callSetExpressCheckout($paymentAmount, $currencyCodeType, $paymentType,
     global $PAYPAL_API_USER, $PAYPAL_API_PASSWORD, $PAYPAL_API_SIGNATURE;
 
     $nvpstr = '';
-    //$nvpstr = $nvpstr . "&VERSION=".$API_version;				// Already added by hash_call
+    
     $nvpstr = $nvpstr."&RETURNURL=".urlencode($returnURL);
     $nvpstr = $nvpstr."&CANCELURL=".urlencode($cancelURL);
     if (!empty($conf->global->PAYPAL_ALLOW_NOTES))
@@ -364,7 +364,7 @@ function callSetExpressCheckout($paymentAmount, $currencyCodeType, $paymentType,
     }
 
     $paypalprefix = 'PAYMENTREQUEST_0_';
-    //$paypalprefix = '';
+    
 	if (!empty($paypalprefix) && $paymentType == 'Sole') $paymentType = 'Sale';
 
 	$nvpstr = $nvpstr."&AMT=".urlencode($paymentAmount); // Total for all elements
@@ -381,7 +381,7 @@ function callSetExpressCheckout($paymentAmount, $currencyCodeType, $paymentType,
     $nvpstr = $nvpstr."&".$paypalprefix."L_PAYMENTREQUEST_0_NUMBER0=0";
 
     $nvpstr = $nvpstr."&".$paypalprefix."SHIPTONAME=".urlencode($shipToName); // SHIPTONAME deprecated by paypal -> PAYMENTREQUEST_n_SHIPTONAME
-    $nvpstr = $nvpstr."&".$paypalprefix."SHIPTOSTREET=".urlencode($shipToStreet); //
+    $nvpstr = $nvpstr."&".$paypalprefix."SHIPTOSTREET=".urlencode($shipToStreet); 
     $nvpstr = $nvpstr."&".$paypalprefix."SHIPTOSTREET2=".urlencode($shipToStreet2);
     $nvpstr = $nvpstr."&".$paypalprefix."SHIPTOCITY=".urlencode($shipToCity);
     $nvpstr = $nvpstr."&".$paypalprefix."SHIPTOSTATE=".urlencode($shipToState);
@@ -398,7 +398,7 @@ function callSetExpressCheckout($paymentAmount, $currencyCodeType, $paymentType,
 	    // Define $urlwithroot
 	    $urlwithouturlroot = preg_replace('/'.preg_quote(DOL_URL_ROOT, '/').'$/i', '', trim($dolibarr_main_url_root));
 	    $urlwithroot = $urlwithouturlroot.DOL_URL_ROOT; // This is to use external domain name found into config file
-	    //$urlwithroot=DOL_MAIN_URL_ROOT;					// This is to use same domain name than current
+	    
 
 	    $urllogo = $urlwithroot."/viewimage.php?modulepart=mycompany&file=".urlencode('logos/'.$mysoc->logo);
 	    $nvpstr = $nvpstr."&LOGOIMG=".urlencode($urllogo);
@@ -639,7 +639,7 @@ function hash_call($methodName, $nvpStr)
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, 1);
 
-    //if USE_PROXY constant set to true in Constants.php, then only proxy will be enabled.
+    
     if ($USE_PROXY)
     {
         dol_syslog("Paypal API hash_call set proxy to ".$PROXY_HOST.":".$PROXY_PORT." - ".$PROXY_USER.":".$PROXY_PASS);
@@ -651,8 +651,8 @@ function hash_call($methodName, $nvpStr)
     //NVPRequest for submitting to server
     $nvpreq = "METHOD=".urlencode($methodName)."&VERSION=".urlencode($API_version)."&PWD=".urlencode($PAYPAL_API_PASSWORD)."&USER=".urlencode($PAYPAL_API_USER)."&SIGNATURE=".urlencode($PAYPAL_API_SIGNATURE).$nvpStr;
     $nvpreq .= "&LOCALECODE=".strtoupper($langs->getDefaultLang(1));
-    //$nvpreq.="&BRANDNAME=".urlencode();       // Override merchant name
-    //$nvpreq.="&NOTIFYURL=".urlencode();       // For Instant Payment Notification url
+    
+    
 
 
     dol_syslog("Paypal API hash_call nvpreq=".$nvpreq);

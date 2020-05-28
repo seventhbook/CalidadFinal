@@ -562,7 +562,7 @@ if (empty($reshook))
                             }
                         }
 
-                        // $object->clone_fournisseurs($originalId, $id);
+                        
 
                         $db->commit();
                         $db->close();
@@ -917,9 +917,9 @@ if (!empty($conf->barcode->enabled) && !empty($conf->global->BARCODE_PRODUCT_ADD
 
 if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 {
-	// -----------------------------------------
+	
 	// When used with CANVAS
-	// -----------------------------------------
+	
 	if (empty($object->error) && $id)
 	{
 		$object = new Product($db);
@@ -931,9 +931,9 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 }
 else
 {
-    // -----------------------------------------
+    
     // When used in standard mode
-    // -----------------------------------------
+    
 	if ($action == 'create' && $usercancreate)
     {
         //WYSIWYG Editor
@@ -1164,7 +1164,7 @@ else
         }
 
         // Note (private, no output on invoices, propales...)
-        //if (! empty($conf->global->MAIN_DISABLE_NOTES_TAB))       available in create mode
+        
         //{
             print '<tr><td class="tdtop">'.$langs->trans("NoteNotVisibleOnBill").'</td><td colspan="3">';
 
@@ -1333,7 +1333,7 @@ else
 
             $type = $langs->trans('Product');
             if ($object->isService()) $type = $langs->trans('Service');
-            //print load_fiche_titre($langs->trans('Modify').' '.$type.' : '.(is_object($object->oldcopy)?$object->oldcopy->ref:$object->ref), "");
+            
 
             // Main official, simple, and not duplicated code
             print '<form action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'" method="POST">'."\n";
@@ -2136,7 +2136,7 @@ if (!empty($conf->global->PRODUCT_ADD_FORM_ADD_TO) && $object->id && ($action ==
 {
     //Variable used to check if any text is going to be printed
     $html = '';
-	//print '<div class="fichecenter"><div class="fichehalfleft">';
+	
 
     // Propals
     if (!empty($conf->propal->enabled) && $user->rights->propale->creer)

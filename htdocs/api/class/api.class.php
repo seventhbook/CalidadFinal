@@ -65,8 +65,8 @@ class DolibarrApi
 
         $this->r->setBaseUrls($urlwithouturlroot, $urlwithouturlrootautodetect);
         $this->r->setAPIVersion(1);
-        //$this->r->setSupportedFormats('json');
-        //$this->r->setSupportedFormats('jsonFormat');
+        
+        
     }
 
     /**
@@ -273,8 +273,8 @@ class DolibarrApi
 	protected function _checkFilters($sqlfilters)
 	{
         // phpcs:enable
-	    //$regexstring='\(([^:\'\(\)]+:[^:\'\(\)]+:[^:\(\)]+)\)';
-	    //$tmp=preg_replace_all('/'.$regexstring.'/', '', $sqlfilters);
+	    
+	    
 	    $tmp=$sqlfilters;
 	    $ok=0;
 	    $i=0; $nb=strlen($tmp);

@@ -368,7 +368,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 	$result = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($result);
 
-	if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
@@ -596,10 +596,10 @@ if ($resql)
 	if (!empty($arrayfields['p.date']['checked']))
 	{
 		print '<td class="liste_titre nowraponall" align="center">';
-		//print $langs->trans('Month').': ';
+		
 		if (!empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) print '<input class="flat width25" type="text" maxlength="2" name="search_day" value="'.dol_escape_htmltag($search_day).'">';
 		print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="search_month" value="'.dol_escape_htmltag($search_month).'">';
-		//print '&nbsp;'.$langs->trans('Year').': ';
+		
 		$formother->select_year($search_year, 'search_year', 1, 20, 5);
 		print '</td>';
 	}
@@ -607,10 +607,10 @@ if ($resql)
 	if (!empty($arrayfields['p.fin_validite']['checked']))
 	{
 		print '<td class="liste_titre nowraponall" align="center">';
-		//print $langs->trans('Month').': ';
+		
 		if (!empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) print '<input class="flat width25" type="text" maxlength="2" name="search_dayfin" value="'.dol_escape_htmltag($search_dayfin).'">';
 		print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="search_month_end" value="'.dol_escape_htmltag($search_month_end).'">';
-		//print '&nbsp;'.$langs->trans('Year').': ';
+		
 		$formother->select_year($search_yearfin, 'search_yearfin', 1, 20, 5);
 		print '</td>';
 	}
@@ -618,10 +618,10 @@ if ($resql)
 	if (!empty($arrayfields['p.date_livraison']['checked']))
 	{
 		print '<td class="liste_titre nowraponall" align="center">';
-		//print $langs->trans('Month').': ';
+		
 		if (!empty($conf->global->MAIN_LIST_FILTER_ON_DAY)) print '<input class="flat width25" type="text" size="1" maxlength="2" name="search_daydelivery" value="'.dol_escape_htmltag($search_daydelivery).'">';
 		print '<input class="flat width25 valignmiddle" type="text" maxlength="2" name="search_monthdelivery" value="'.dol_escape_htmltag($search_monthdelivery).'">';
-		//print '&nbsp;'.$langs->trans('Year').': ';
+		
 		$formother->select_year($search_yeardelivery, 'search_yeardelivery', 1, 20, 5);
 		print '</td>';
 	}
@@ -1045,14 +1045,14 @@ if ($resql)
 						$userstatic->entity = $val['entity'];
 						$userstatic->photo = $val['photo'];
 
-						//print '<div class="float">':
+						
 						print $userstatic->getNomUrl(-2);
 						$j++;
 						if ($j < $nbofsalesrepresentative) print ' ';
-						//print '</div>';
+						
 					}
 				}
-				//else print $langs->trans("NoSalesRepresentativeAffected");
+				
 			}
 			else
 			{

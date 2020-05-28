@@ -266,7 +266,7 @@ if (!empty($conf->contrat->enabled) && $user->rights->contrat->lire)
 			$companystatic = new Societe($db);
 
 			$i = 0;
-			//$tot_ttc = 0;
+			
 			while ($i < $num)
 			{
 				$obj = $db->fetch_object($resql);
@@ -285,7 +285,7 @@ if (!empty($conf->contrat->enabled) && $user->rights->contrat->lire)
 				print $companystatic->getNomUrl(1, '', 16);
 				print '</td>';
 				print '</tr>';
-				//$tot_ttc+=$obj->total_ttc;
+				
 				$i++;
 			}
 		}

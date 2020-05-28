@@ -39,10 +39,10 @@ class nusoap_parser extends nusoap_base {
 	var $soapheader = NULL;		// parsed SOAP Header
 	var $responseHeaders = '';	// incoming SOAP headers (text)
 	var $body_position = 0;
-	// for multiref parsing:
-	// array of id => pos
+	
+	
 	var $ids = array();
-	// array of id => hrefs => pos
+	
 	var $multirefs = array();
 	// toggle for auto-decoding element content
 	var $decode_utf8 = true;
@@ -154,13 +154,13 @@ class nusoap_parser extends nusoap_base {
 		// position in a total number of elements, starting from 0
 		// update class level pos
 		$pos = $this->position++;
-		// and set mine
+		
 		$this->message[$pos] = array('pos' => $pos,'children'=>'','cdata'=>'');
 		// depth = how many levels removed from root?
 		// set mine as current global depth and increment global depth value
 		$this->message[$pos]['depth'] = $this->depth++;
 
-		// else add self as child to whoever the current parent is
+		
 		if($pos != 0){
 			$this->message[$this->parent]['children'] .= '|'.$pos;
 		}
@@ -206,7 +206,7 @@ class nusoap_parser extends nusoap_base {
 		foreach($attrs as $key => $value){
         	$key_prefix = $this->getPrefix($key);
 			$key_localpart = $this->getLocalPart($key);
-			// if ns declarations, add to class level array of valid namespaces
+			
             if($key_prefix == 'xmlns'){
 				if(preg_match('/^http:\/\/www.w3.org\/[0-9]{4}\/XMLSchema$/',$value)){
 					$this->XMLSchemaVersion = $value;
@@ -218,10 +218,10 @@ class nusoap_parser extends nusoap_base {
 				if($name == $this->root_struct_name){
 					$this->methodNamespace = $value;
 				}
-			// if it's a type declaration, set type
+			
         } elseif($key_localpart == 'type'){
         		if (isset($this->message[$pos]['type']) && $this->message[$pos]['type'] == 'array') {
-        			// do nothing: already processed arrayType
+        			
         		} else {
 	            	$value_prefix = $this->getPrefix($value);
 	                $value_localpart = $this->getLocalPart($value);
@@ -279,7 +279,7 @@ class nusoap_parser extends nusoap_base {
 				$this->root_struct = $pos;
 				$this->debug("found root struct $this->root_struct_name, pos $pos");
 			}
-            // for doclit
+            
             $attstr .= " $key=\"$value\"";
 		}
         // get namespace - must be done after namespace atts are processed
@@ -329,7 +329,7 @@ class nusoap_parser extends nusoap_base {
 				$this->message[$pos]['result'] =& $this->multirefs[$id][$pos];
             // build complexType values
 			} elseif($this->message[$pos]['children'] != ''){
-				// if result has already been generated (struct/array)
+				
 				if(!isset($this->message[$pos]['result'])){
 					$this->message[$pos]['result'] = $this->buildVal($pos);
 				}
@@ -352,7 +352,7 @@ class nusoap_parser extends nusoap_base {
 				$this->message[$pos]['result'] = $this->message[$pos]['xattrs'];
 			// set value of simpleType (or nil complexType)
 			} else {
-            	//$this->debug('adding data for scalar value '.$this->message[$pos]['name'].' of value '.$this->message[$pos]['cdata']);
+            	
 				if (isset($this->message[$pos]['nil']) && $this->message[$pos]['nil']) {
 					$this->message[$pos]['xattrs']['!'] = null;
 				} elseif (isset($this->message[$pos]['type'])) {
@@ -379,7 +379,7 @@ class nusoap_parser extends nusoap_base {
 			}
 		}
 		
-        // for doclit
+        
         if($this->status == 'header'){
         	if ($this->root_header != $pos) {
 	        	$this->responseHeaders .= "</" . (isset($prefix) ? $prefix . ':' : '') . "$name>";
@@ -387,7 +387,7 @@ class nusoap_parser extends nusoap_base {
         } elseif($pos >= $this->root_struct){
         	$this->document .= "</" . (isset($prefix) ? $prefix . ':' : '') . "$name>";
         }
-		// switch status
+		
 		if ($pos == $this->root_struct){
 			$this->status = 'body';
 			$this->root_struct_namespace = $this->message[$pos]['namespace'];
@@ -422,7 +422,7 @@ class nusoap_parser extends nusoap_base {
 			}
 		}
         $this->message[$pos]['cdata'] .= $data;
-        // for doclit
+        
         if($this->status == 'header'){
         	$this->responseHeaders .= $data;
         } else {
@@ -529,7 +529,7 @@ class nusoap_parser extends nusoap_base {
 			$this->message[$pos]['type'] = '';
 		}
 		$this->debug('in buildVal() for '.$this->message[$pos]['name']."(pos $pos) of type ".$this->message[$pos]['type']);
-		// if there are children...
+		
 		if($this->message[$pos]['children'] != ''){
 			$this->debug('in buildVal, there are children');
 			$children = explode('|',$this->message[$pos]['children']);
@@ -547,7 +547,7 @@ class nusoap_parser extends nusoap_base {
 						$r++;
 				    }
                 }
-            // array
+            
 			} elseif($this->message[$pos]['type'] == 'array' || $this->message[$pos]['type'] == 'Array'){
                 $this->debug('in buildVal, adding array '.$this->message[$pos]['name']);
                 foreach($children as $child_pos){
@@ -570,7 +570,7 @@ class nusoap_parser extends nusoap_base {
 				} else {
 					$notstruct = 0;
 	            }
-            	//
+            	
             	foreach($children as $child_pos){
             		if($notstruct){
             			$params[] = &$this->message[$child_pos]['result'];

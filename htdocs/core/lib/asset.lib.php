@@ -42,12 +42,12 @@ function asset_admin_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	//$this->tabs = array(
+	
 	//	'entity:+tabname:Title:@assets:/asset/mypage.php?id=__ID__'
-	//); // to add new tab
-	//$this->tabs = array(
+	
+	
 	//	'entity:-tabname:Title:@assets:/asset/mypage.php?id=__ID__'
-	//); // to remove a tab
+	
 	complete_head_from_modules($conf, $langs, null, $head, $h, 'assets_admin');
 
 	$head[$h][0] = DOL_URL_ROOT . '/asset/admin/assets_extrafields.php';
@@ -87,12 +87,12 @@ function asset_prepare_head(Asset $object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	//$this->tabs = array(
+	
 	//	'entity:+tabname:Title:@assets:/assets/mypage.php?id=__ID__'
-	//); // to add new tab
-	//$this->tabs = array(
+	
+	
 	//	'entity:-tabname:Title:@assets:/assets/mypage.php?id=__ID__'
-	//); // to remove a tab
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'assets');
 
 	require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
@@ -145,8 +145,8 @@ function asset_type_prepare_head(AssetType $object)
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'assettype');
 
 	complete_head_from_modules($conf, $langs, $object, $head, $h, 'assettype', 'remove');

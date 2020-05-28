@@ -289,7 +289,7 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -335,7 +335,7 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 					if (!empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) $socobject = $object->contact;
 					else {
                         $socobject = $object->thirdparty;
-                        // if we have a CUSTOMER contact and we dont use it as recipient we store the contact object for later use
+                        
                         $contactobject = $object->contact;
                     }
 				}
@@ -384,8 +384,8 @@ class doc_generic_proposal_odt extends ModelePDFPropales
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

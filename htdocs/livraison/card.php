@@ -346,7 +346,7 @@ else	// View
 			            $morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$expedition->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
 			        }
 			        if ($action == 'classify') {
-			            // $morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $expedition->id, $expedition->socid, $expedition->fk_project, 'projectid', 0, 0, 1, 1);
+			            
 			            $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$expedition->id.'">';
 			            $morehtmlref .= '<input type="hidden" name="action" value="classin">';
 			            $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -391,7 +391,7 @@ else	// View
 				print '<tr><td width="20%">'.$langs->trans("RefSending").'</td>';
 				print '<td colspan="3">';
 				// Nav is hidden because on a delivery receipt of a shipment, if we go on next shipment, we may find no tab (a shipment may not have delivery receipt yet)
-				//print $form->showrefnav($expedition, 'refshipment', $linkback, 1, 'ref', 'ref');
+				
 				print $form->showrefnav($expedition, 'refshipment', $linkback, 0, 'ref', 'ref');
 				print '</td></tr>';
 			}
@@ -590,7 +590,7 @@ else	// View
 						$text .= ' '.$object->lines[$i]->product_ref.'</a>';
 						$text .= ' - '.$label;
 						$description = (!empty($conf->global->PRODUIT_DESC_IN_FORM) ? '' : dol_htmlentitiesbr($object->lines[$i]->description));
-						//print $description;
+						
 						print $form->textwithtooltip($text, $description, 3, '', '', $i);
 						print_date_range($object->lines[$i]->date_start, $object->lines[$i]->date_end);
 						if (!empty($conf->global->PRODUIT_DESC_IN_FORM))
@@ -645,8 +645,8 @@ else	// View
 
             dol_fiche_end();
 
-			//if ($object->statut == 0)	// only if draft
-			//	print '<div class="center"><input type="submit" class="button" value="'.$langs->trans("Save").'"></div>';
+			
+			
 
 			print '</form>';
 
@@ -708,7 +708,7 @@ else	// View
 				$shipment->fetch($object->origin_id);
 
     			// Show links to link elements
-    			//$linktoelem = $form->showLinkToObjectBlock($object, null, array('order'));
+    			
     			$somethingshown = $form->showLinkedObjectBlock($object, '');
 			}
 

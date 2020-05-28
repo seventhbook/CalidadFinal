@@ -85,8 +85,8 @@ function ldap_prepare_head()
 
 	// Show more tabs from modules
 	// Entries must be declared in modules descriptor with line
-	// $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-	// $this->tabs = array('entity:-tabname);   												to remove a tab
+	
+	
 	complete_head_from_modules($conf, $langs, '', $head, $h, 'ldap');
 
 	return $head;
@@ -106,7 +106,7 @@ function ldap_prepare_head()
 function show_ldap_test_button($butlabel, $testlabel, $key, $dn, $objectclass)
 {
 	global $langs, $conf, $user;
-	//print 'key='.$key.' dn='.$dn.' objectclass='.$objectclass;
+	
 
 	print '<br>';
 	if (!function_exists("ldap_connect"))

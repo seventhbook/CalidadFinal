@@ -75,7 +75,7 @@ $form = new Form($db);
 llxHeader('', $langs->trans("Margins").' - '.$langs->trans("Clients"));
 
 $text = $langs->trans("Margins");
-//print load_fiche_titre($text);
+
 
 // Show tabs
 $head = marges_prepare_head($user);
@@ -239,7 +239,7 @@ if ($client) $sql .= " GROUP BY s.rowid, s.nom, s.code_client, s.client, f.rowid
 else $sql .= " GROUP BY s.rowid, s.nom, s.code_client, s.client";
 $sql .= $db->order($sortfield, $sortorder);
 // TODO: calculate total to display then restore pagination
-//$sql.= $db->plimit($conf->liste_limit +1, $offset);
+
 
 dol_syslog('margin::customerMargins.php', LOG_DEBUG);
 $result = $db->query($sql);

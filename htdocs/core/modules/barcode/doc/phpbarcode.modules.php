@@ -93,7 +93,7 @@ class modPhpbarcode extends ModeleBarCode
 	public function encodingIsSupported($encoding)
 	{
 		global $genbarcode_loc;
-        //print 'genbarcode_loc='.$genbarcode_loc.' encoding='.$encoding;exit;
+        
 
 		$supported=0;
 		if ($encoding == 'EAN13') $supported=1;
@@ -168,7 +168,7 @@ class modPhpbarcode extends ModeleBarCode
 
 		$file=$conf->barcode->dir_temp.'/barcode_'.$code.'_'.$encoding.'.png';
 
-		$filebarcode=$file;	// global var to be used in barcode_outimage called by barcode_print in buildBarCode
+		$filebarcode=$file;	
 
 		$result=$this->buildBarCode($code, $encoding, $readable, $scale, $nooutputiferror);
 

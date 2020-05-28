@@ -70,7 +70,7 @@ function dolDispatchToDo($order_id)
     }
 
     return ($todispatch ? true : false);
-    //return true;
+    
 }
 
 /**
@@ -137,7 +137,7 @@ function ordered($product_id)
 		if ($exists)
 		{
 			$obj = $db->fetch_array($resql);
-			return $obj['qty']; //. ' ' . img_picto('','tick');
+			return $obj['qty']; 
 		} else {
 			return null; //img_picto('', 'stcomm-1');
 		}

@@ -53,8 +53,8 @@ llxHeader("", $langs->trans("Stocks"), $help_url);
 print load_fiche_titre($langs->trans("StocksArea"));
 
 
-//print '<table border="0" width="100%" class="notopnoleftnoright">';
-//print '<tr><td valign="top" width="30%" class="notopnoleft">';
+
+
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
@@ -128,7 +128,7 @@ else
 }
 
 
-//print '</td><td valign="top" width="70%" class="notopnoleftnoright">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 
@@ -213,7 +213,7 @@ if ($resql)
 	dol_print_error($db);
 }
 
-//print '</td></tr></table>';
+
 print '</div></div></div>';
 
 $parameters = array('user' => $user);

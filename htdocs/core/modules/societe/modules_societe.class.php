@@ -343,8 +343,8 @@ abstract class ModeleAccountancyCode
         $s='';
         if ($type == -1) $s.=$langs->trans("Name").': <b>'.$this->name.'</b><br>';
         if ($type == -1) $s.=$langs->trans("Version").': <b>'.$this->getVersion().'</b><br>';
-        //$s.='<br>';
-        //$s.='<u>'.$langs->trans("ThisIsModuleRules").':</u><br>';
+        
+        
         $s.='<br>';
         if ($type == 0 || $type == -1)
         {

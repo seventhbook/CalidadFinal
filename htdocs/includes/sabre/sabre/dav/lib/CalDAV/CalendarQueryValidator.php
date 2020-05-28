@@ -88,7 +88,7 @@ class CalendarQueryValidator {
             }
 
             // If there are sub-filters, we need to find at least one component
-            // for which the subfilters hold true.
+            
             foreach ($parent->{$filter['name']} as $subComponent) {
 
                 if (
@@ -157,7 +157,7 @@ class CalendarQueryValidator {
             }
 
             // If there are sub-filters, we need to find at least one property
-            // for which the subfilters hold true.
+            
             foreach ($parent->{$filter['name']} as $subComponent) {
 
                 if (
@@ -218,7 +218,7 @@ class CalendarQueryValidator {
             }
 
             // If there are sub-filters, we need to find at least one parameter
-            // for which the subfilters hold true.
+            
             foreach ($parent[$filter['name']]->getParts() as $paramPart) {
 
                 if ($this->validateTextMatch($paramPart, $filter['text-match'])) {
@@ -294,7 +294,7 @@ class CalendarQueryValidator {
 
                 // If the valarm is wrapped in a recurring event, we need to
                 // expand the recursions, and validate each.
-                //
+                
                 // Our datamodel doesn't easily allow us to do this straight
                 // in the VALARM component code, so this is a hack, and an
                 // expensive one too.
@@ -335,7 +335,7 @@ class CalendarQueryValidator {
                         }
                         if (is_null($firstAlarm)) {
                             // No alarm was found.
-                            //
+                            
                             // Or technically: No alarm that will change for
                             // every instance of the recurrence was found,
                             // which means we can assume there was no match.

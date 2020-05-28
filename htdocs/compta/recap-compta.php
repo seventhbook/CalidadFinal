@@ -59,7 +59,7 @@ if (!$sortorder) $sortorder = "DESC";
 
 $arrayfields = array(
     'f.datef'=>array('label'=>"Date", 'checked'=>1),
-    //...
+    
 );
 
 // Initialize technical object to manage hooks of page. Note that conf->hooks_modules contains array of hook context

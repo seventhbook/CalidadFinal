@@ -70,7 +70,7 @@ function resolve($basePath, $newPath) {
     foreach ($pathParts as $pathPart) {
 
         switch ($pathPart) {
-            //case '' :
+            
             case '.' :
                 break;
             case '..' :
@@ -182,7 +182,7 @@ function parse($uri) {
 
     // Normally a URI must be ASCII, however. However, often it's not and
     // parse_url might corrupt these strings.
-    //
+    
     // For that reason we take any non-ascii characters from the uri and
     // uriencode them first.
     $uri = preg_replace_callback(
@@ -303,7 +303,7 @@ function _parse_fallback($uri) {
 
     // Normally a URI must be ASCII, however. However, often it's not and
     // parse_url might corrupt these strings.
-    //
+    
     // For that reason we take any non-ascii characters from the uri and
     // uriencode them first.
     $uri = preg_replace_callback(
@@ -341,16 +341,16 @@ function _parse_fallback($uri) {
         list($uri, $result['query']) = explode('?', $uri, 2);
     }
 
-    if (substr($uri, 0, 3) === '///') {
+    if (substr($uri, 0, 3) === '
       // The triple slash uris are a bit unusual, but we have special handling
-      // for them.
+      
       $result['path'] = substr($uri, 2);
       $result['host'] = '';
     } elseif (substr($uri, 0, 2) === '//') {
         // Uris that have an authority part.
         $regex = '
           %^
-            //
+            
             (?: (?<user> [^:@]+) (: (?<pass> [^@]+)) @)?
             (?<host> ( [^:/]* | \[ [^\]]+ \] ))
             (?: : (?<port> [0-9]+))?

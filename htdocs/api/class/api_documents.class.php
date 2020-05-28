@@ -78,7 +78,7 @@ class Documents extends DolibarrApi
 			throw new RestException(400, 'bad value for parameter original_file');
 		}
 
-		//--- Finds and returns the document
+		
 		$entity = $conf->entity;
 
 		$check_access = dol_check_secure_access_document($modulepart, $original_file, $entity, DolibarrApiAccess::$user, '', 'read');
@@ -145,7 +145,7 @@ class Documents extends DolibarrApi
 			$outputlangs->setDefaultLang($langcode);
 		}
 
-		//--- Finds and returns the document
+		
 		$entity = $conf->entity;
 
 		$check_access = dol_check_secure_access_document($modulepart, $original_file, $entity, DolibarrApiAccess::$user, '', 'write');
@@ -160,7 +160,7 @@ class Documents extends DolibarrApi
 			throw new RestException(401);
 		}
 
-		// --- Generates the document
+		
 		$hidedetails = empty($conf->global->MAIN_GENERATE_DOCUMENTS_HIDE_DETAILS) ? 0 : 1;
 		$hidedesc = empty($conf->global->MAIN_GENERATE_DOCUMENTS_HIDE_DESC) ? 0 : 1;
 		$hideref = empty($conf->global->MAIN_GENERATE_DOCUMENTS_HIDE_REF) ? 0 : 1;
@@ -612,7 +612,7 @@ class Documents extends DolibarrApi
 				throw new RestException(500, 'This value of modulepart does not support yet usage of ref. Check modulepart parameter or try to use subdir parameter instead of ref.');
 			}
 		}
-		// $original_file here is still value of filename without any dir.
+		
 
 		$upload_dir = dol_sanitizePathName($upload_dir);
 
@@ -681,7 +681,7 @@ class Documents extends DolibarrApi
 	        throw new RestException(400, 'bad value for parameter original_file');
 	    }
 
-	    //--- Finds and returns the document
+	    
 	    $entity = $conf->entity;
 
 	    $check_access = dol_check_secure_access_document($modulepart, $original_file, $entity, DolibarrApiAccess::$user, '', 'read');

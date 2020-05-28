@@ -61,7 +61,7 @@ if ($sortfield == "")
 /*
 $search_date_start = dol_mktime(0, 0, 0, GETPOST('date_startmonth', 'int'), GETPOST('date_startday', 'int'), GETPOST('date_startyear', 'int'));
 $search_date_end = dol_mktime(0, 0, 0, GETPOST('date_endmonth', 'int'), GETPOST('date_endday', 'int'), GETPOST('date_endyear', 'int'));
-//$search_doc_type = GETPOST("search_doc_type",'alpha');
+
 $search_doc_ref = GETPOST("search_doc_ref",'alpha');
 */
 
@@ -75,7 +75,7 @@ if (GETPOST('button_removefilter_x','alpha') || GETPOST('button_removefilter.x',
 {
     $search_date_start = '';
     $search_date_end = '';
-	//$search_doc_type='';
+	
 	$search_doc_ref='';
 }
 */
@@ -83,7 +83,7 @@ if (GETPOST('button_removefilter_x','alpha') || GETPOST('button_removefilter.x',
 
 // Security check
 $socid = GETPOST("socid", 'int');
-// if ($user->socid) $socid=$user->socid;
+
 
 $lettering = new Lettering($db);
 $object = new Societe($db);
@@ -207,7 +207,7 @@ if ($resql) {
 
 	/*
     print '<tr class="liste_titre">';
-    //print '<td><input type="text" name="search_doc_type" value="' . $search_doc_type . '"></td>';
+    
 
     // Date
     print '<td class="liste_titre center">';
@@ -253,7 +253,7 @@ if ($resql) {
 
 		print '<tr class="oddeven">';
 
-		//print '<td>' . $obj->doc_type . '</td>' . "\n";
+		
 		print '<td class="center">' . dol_print_date($db->jdate($obj->doc_date), 'day') . '</td>';
 		print '<td>' . $obj->doc_ref . '</td>';
 		print '<td>' . $obj->label_compte . '</td>';

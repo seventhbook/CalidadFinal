@@ -83,7 +83,7 @@ if (preg_match('/api\/index\.php\/explorer/', $url) && ! empty($conf->global->AP
 
 
 // This 2 lines are usefull only if we want to exclude some Urls from the explorer
-//use Luracast\Restler\Explorer;
+
 //Explorer::$excludedPaths = array('/categories');
 
 
@@ -98,7 +98,7 @@ if (preg_match('/api\/index\.php\/explorer/', $url) && ! empty($conf->global->AP
 
 $reg=array();
 preg_match('/index\.php\/([^\/]+)(.*)$/', $url, $reg);
-// .../index.php/categories?sortfield=t.rowid&sortorder=ASC
+
 
 
 // When in production mode, a file api/temp/routes.php is created with the API available of current call.
@@ -135,7 +135,7 @@ if (! empty($conf->global->API_RESTRICT_ON_IP))
 		dol_syslog('Remote ip is '.$ipremote.', not into list '.$conf->global->API_RESTRICT_ON_IP);
 		print 'APIs are not allowed from the IP '.$ipremote;
 		header('HTTP/1.1 503 API not allowed from your IP '.$ipremote);
-		//print $conf->global->API_RESTRICT_ON_IP;
+		
 		exit(0);
 	}
 }
@@ -280,7 +280,7 @@ if (! empty($reg[1]) && ($reg[1] != 'explorer' || ($reg[2] != '/swagger.json' &&
 }
 
 //var_dump($api->r->apiVersionMap);
-//exit;
+
 
 // Call API (we suppose we found it).
 // The handle will use the file api/temp/routes.php to get data to run the API. If the file exists and the entry for API is not found, it will return 404.

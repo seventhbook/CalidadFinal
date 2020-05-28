@@ -96,7 +96,7 @@ print '<br>';
 print $langs->trans("ClickToDialUrlDesc").'<br>';
 print $langs->trans("Example").':<br>http://myphoneserver/mypage?login=__LOGIN__&password=__PASS__&caller=__PHONEFROM__&called=__PHONETO__';
 
-//if (! empty($user->clicktodial_url))
+
 //{
 	print '<br>';
 	print info_admin($langs->trans("ValueOverwrittenByUserSetup"));

@@ -63,7 +63,7 @@ class Reader extends XMLReader {
 
             // Really sorry about the silence operator, seems like I have no
             // choice. See:
-            //
+            
             // https://bugs.php.net/bug.php?id=64230
             while ($this->nodeType !== self::ELEMENT && @$this->read()) {
                 // noop
@@ -146,7 +146,7 @@ class Reader extends XMLReader {
 
             // Really sorry about the silence operator, seems like I have no
             // choice. See:
-            //
+            
             // https://bugs.php.net/bug.php?id=64230
             if (!@$this->read()) {
                 $errors = libxml_get_errors();

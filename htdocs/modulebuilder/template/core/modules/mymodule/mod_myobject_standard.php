@@ -147,7 +147,7 @@ class mod_myobject_standard extends ModeleNumRefMyObject
 			return -1;
 		}
 
-		//$date=time();
+		
 		$date=$object->date_creation;
 		$yymm = strftime("%y%m", $date);
 

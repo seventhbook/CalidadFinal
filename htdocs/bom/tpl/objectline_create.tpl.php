@@ -43,7 +43,7 @@ if (empty($forceall)) $forceall = 0;
 
 // Define colspan for the button 'Add'
 $colspan = 3; // Columns: total ht + col edit + col delete
-//print $object->element;
+
 
 // Lines for extrafield
 $objectline = new BOMLine($this->db);
@@ -58,7 +58,7 @@ if ($nolinesbefore) {
     }
     print '<td class="linecoldescription minwidth500imp">';
 	print '<div id="add"></div><span class="hideonsmartphone">'.$langs->trans('AddNewLine').'</span>';
-	// echo $langs->trans("FreeZone");
+	
 	print '</td>';
 	print '<td class="linecolqty right">'.$langs->trans('Qty').'</td>';
 	if ($conf->global->PRODUCT_USE_UNITS)
@@ -128,10 +128,10 @@ $coldisplay++;
 print '<td class="bordertop nobottom linecoldisablestockchange right"><input type="checkbox" name="disable_stock_change" id="disable_stock_change" class="flat right" value="1"'.(GETPOST("disable_stock_change", 'alpha') ? ' checked="checked"' : '').'">';
 print '</td>';
 
-//$coldisplay++;
-//print '<td class="bordertop nobottom nowrap linecollost right">';
-//print '<input type="text" size="1" name="efficiency" id="efficiency" class="flat right" value="'.(GETPOSTISSET("efficiency")?GETPOST("efficiency", 'alpha'):1).'">';
-//print '</td>';
+
+
+
+
 
 
 $coldisplay += $colspan;

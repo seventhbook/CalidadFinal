@@ -108,9 +108,9 @@ if ((! empty($foruserid) || ! empty($foruserlogin) || ! empty($mode)) && ! $mesg
                     {
                         $adherentstatic->array_options[$tmpkey] = $objp->$tmpkey;
                     }
-                    //if (!empty($objp->$key))
-                    //    $objp->array_options[$tmpkey] = $objp->$key;
-                    //$objp->array_options[$tmpkey] = $extrafields->showOutputField($key, $objp->$tmpkey, '', 1); //$objp->$tmpkey;
+                    
+                    
+                    
                 }
             }
 

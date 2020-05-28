@@ -40,7 +40,7 @@ function build_calfile($format, $title, $desc, $events_array, $outputfile)
 
     if (empty($outputfile))
     {
-        // -1 = error
+        
         return -1;
     }
 
@@ -247,7 +247,7 @@ function build_calfile($format, $title, $desc, $events_array, $outputfile)
                     $enddatef = dol_print_date($enddate+1, "dayxcard", false);
 
                     // Local time
-                    //$enddatef .= dol_print_date($enddate+1,"dayhourxcard",false);
+                    
                 }
 
                 fwrite($calfileh, "DTEND".$prefix.":".$enddatef."\n");
@@ -344,7 +344,7 @@ function build_rssfile($format, $title, $desc, $events_array, $outputfile, $filt
 
     if (empty($outputfile))
     {
-         // -1 = error
+         
         return -1;
     }
 
@@ -375,7 +375,7 @@ function build_rssfile($format, $title, $desc, $events_array, $outputfile, $filt
         $urlwithouturlroot = preg_replace("/".preg_quote(DOL_URL_ROOT, "/")."$/i", "", trim($dolibarr_main_url_root));
 
         $urlwithroot       = $urlwithouturlroot.DOL_URL_ROOT;   // This is to use external domain name found into config file
-        //$urlwithroot=DOL_MAIN_URL_ROOT;                       // This is to use same domain name than current
+        
 
         $url=$urlwithroot."/public/agenda/agendaexport.php?format=rss&exportkey=".urlencode($conf->global->MAIN_AGENDA_XCAL_EXPORTKEY);
 
@@ -402,7 +402,7 @@ function build_rssfile($format, $title, $desc, $events_array, $outputfile, $filt
             		$tmpevent['summary'] = $event->title;
             		$tmpevent['url'] = $event->urlpage.'.php';
             		$tmpevent['author'] = $event->author_alias ? $event->author_alias : 'unknown';
-            		//$tmpevent['category'] = '';
+            		
 
             		$event = $tmpevent;
             	}
@@ -432,7 +432,7 @@ function build_rssfile($format, $title, $desc, $events_array, $outputfile, $filt
 
                 if ($description)
                     fwrite($fichier, $description);
-                // else
+                
                 //     fwrite($fichier, "NoDesc");
 
                 fwrite($fichier, "]]></description>\n");

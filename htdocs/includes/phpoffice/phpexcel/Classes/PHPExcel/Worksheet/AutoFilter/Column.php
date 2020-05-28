@@ -38,7 +38,7 @@ class PHPExcel_Worksheet_AutoFilter_Column
 	const AUTOFILTER_FILTERTYPE_FILTER			= 'filters';
 	const AUTOFILTER_FILTERTYPE_CUSTOMFILTER	= 'customFilters';
 	//	Supports no more than 2 rules, with an And/Or join criteria
-	//		if more than 1 rule is defined
+	
 	const AUTOFILTER_FILTERTYPE_DYNAMICFILTER	= 'dynamicFilter';
 	//	Even though the filter rule is constant, the filtered data can vary
 	//		e.g. filtered by date = TODAY

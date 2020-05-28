@@ -43,7 +43,7 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
+
 $startyear=$year-1;
 $endyear=$year;
 
@@ -69,7 +69,7 @@ $stats = new DonationStats($db, $socid, '', ($userid>0?$userid:0));
 // Build graphic number of object
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);exit;
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 
 if (!$user->rights->societe->client->voir || $user->socid)
@@ -110,7 +110,7 @@ if (! $mesg)
 /*
 $data = $stats->getAmountByMonthWithPrevYear($endyear,$startyear);
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 if (!$user->rights->societe->client->voir || $user->socid)
 {
@@ -213,7 +213,7 @@ dol_fiche_head($head, 'byyear', $langs->trans("Statistics"), -1);
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
-//if (empty($socid))
+
 //{
 	// Show filter box
 	print '<form name="stats" method="POST" action="'.$_SERVER["PHP_SELF"].'">';

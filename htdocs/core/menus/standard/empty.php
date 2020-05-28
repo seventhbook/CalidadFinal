@@ -82,7 +82,7 @@ class MenuManager
 		$res = 'ErrorBadParameterForMode';
 
 		$noout = 0;
-		//if ($mode == 'jmobile') $noout=1;
+		
 
 		if ($mode == 'topnb')
 		{
@@ -148,11 +148,11 @@ class MenuManager
 
 		    $substitarray = getCommonSubstitutionArray($langs, 0, null, null);
 
-		    // $this->menu->liste is top menu
+		    
 		    //var_dump($this->menu->liste);exit;
 		    $lastlevel = array();
 		    print '<!-- Generate menu list from menu handler '.$this->name.' -->'."\n";
-		    foreach ($this->menu->liste as $key => $val)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+		    foreach ($this->menu->liste as $key => $val)		
 		    {
 		        print '<ul class="ulmenu" data-inset="true">';
 		        print '<li class="lilevel0">';
@@ -196,8 +196,8 @@ class MenuManager
 		            $submenu->add("/admin/dict.php?mainmenu=home", $langs->trans("DictionarySetup"), 1);
 		            $submenu->add("/admin/const.php?mainmenu=home", $langs->trans("OtherSetup"), 1);
 
-		            //if ($tmpmainmenu.'-'.$tmpleftmenu == 'home-all') { var_dump($submenu); exit; }
-		            //if ($tmpmainmenu=='accountancy') { var_dump($submenu->liste); exit; }
+		            
+		            
 		            $nexturl = dol_buildpath($submenu->liste[0]['url'], 1);
 
 		            $canonrelurl = preg_replace('/\?.*$/', '', $relurl);
@@ -238,7 +238,7 @@ class MenuManager
 		            }
 
 		            $lastlevel2 = array();
-		            foreach ($submenu->liste as $key2 => $val2)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+		            foreach ($submenu->liste as $key2 => $val2)		
 		            {
 		                $showmenu = true;
 		                if (!empty($conf->global->MAIN_MENU_HIDE_UNAUTHORIZED) && empty($val2['enabled'])) $showmenu = false;
@@ -278,7 +278,7 @@ class MenuManager
 		                        if ($val2['enabled'])	// Allowed
 		                        {
 		                            print '<a href="'.$relurl2.'"';
-		                            //print ' data-ajax="false"';
+		                            
 		                            print '>';
 		                            $lastlevel2[$val2['level']] = 'enabled';
 		                        }
@@ -329,7 +329,7 @@ class MenuManager
 		if ($mode == 'left')
 		{
 			// Put here left menu entries
-			// ***** START *****
+			
 
 			$langs->load("admin"); // Load translation file admin.lang
 			$this->menu->add("/admin/index.php?leftmenu=setup", $langs->trans("Setup"), 0);
@@ -350,9 +350,9 @@ class MenuManager
 			$this->menu->add("/admin/dict.php?mainmenu=home", $langs->trans("DictionarySetup"), 1);
 			$this->menu->add("/admin/const.php?mainmenu=home", $langs->trans("OtherSetup"), 1);
 
-			// ***** END *****
+			
 
-			// do not change code after this
+			
 
 			if (empty($noout))
 			{
@@ -452,7 +452,7 @@ class MenuManager
 		{
 			$substitarray = getCommonSubstitutionArray($langs, 0, null, null);
 
-			foreach($this->menu->liste as $key => $val)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+			foreach($this->menu->liste as $key => $val)		
 			{
 				print '<ul class="ulmenu" data-inset="true">';
 				print '<li class="lilevel0">';
@@ -467,9 +467,9 @@ class MenuManager
 					// Search submenu fot this entry
 					$tmpmainmenu=$val['mainmenu'];
 					$tmpleftmenu='all';
-					//$submenu=new Menu();
-					//$res=print_left_eldy_menu($this->db,$this->menu_array,$this->menu_array_after,$this->tabMenu,$submenu,1,$tmpmainmenu,$tmpleftmenu);
-					//$nexturl=dol_buildpath($submenu->liste[0]['url'],1);
+					
+					
+					
 					$submenu=$this->leftmenu;
 
 					$canonrelurl=preg_replace('/\?.*$/','',$relurl);
@@ -482,7 +482,7 @@ class MenuManager
 						// We add sub entry
 						print '<li><a href="'.$relurl.'">'.$langs->trans("MainArea").'-'.$val['titre'].'</a></li>'."\n";
 					}
-					foreach($submenu->liste as $key2 => $val2)		// $val['url','titre','level','enabled'=0|1|2,'target','mainmenu','leftmenu'
+					foreach($submenu->liste as $key2 => $val2)		
 					{
 	                	$val2['url'] = make_substitutions($val2['url'], $substitarray);
 
@@ -537,7 +537,7 @@ function print_start_menu_entry_empty($idsel, $classname, $showmode)
 	if ($showmode)
 	{
 		print '<li '.$classname.' id="mainmenutd_'.$idsel.'">';
-		//print '<div class="tmenuleft tmenusep"></div>';
+		
 		print '<div class="tmenucenter">';
 	}
 }

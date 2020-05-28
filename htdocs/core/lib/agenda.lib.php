@@ -58,7 +58,7 @@ function print_actions_filter($form, $canedit, $status, $year, $month, $day, $sh
 	$formactions=new FormActions($db);
 
 	// Filters
-	//print '<form name="listactionsfilter" class="listactionsfilter" action="' . $_SERVER["PHP_SELF"] . '" method="get">';
+	
 	print '<input type="hidden" name="token" value="' . newToken() . '">';
 	print '<input type="hidden" name="year" value="' . $year . '">';
 	print '<input type="hidden" name="month" value="' . $month . '">';
@@ -199,7 +199,7 @@ function print_actions_filter($form, $canedit, $status, $year, $month, $day, $sh
 	print '</div>';	// Close fichecenter
 	print '<div style="clear:both"></div>';
 
-	//print '</form>';
+	
 }
 
 
@@ -261,7 +261,7 @@ function show_array_actions_to_do($max = 5)
             $staticaction->id=$obj->id;
             print '<td>'.$staticaction->getNomUrl(1, 34).'</td>';
 
-            // print '<td>'.dol_trunc($obj->label,22).'</td>';
+            
 
             print '<td>';
             if ($obj->rowid > 0)
@@ -358,7 +358,7 @@ function show_array_last_actions_done($max = 5)
 			$staticaction->id=$obj->id;
 			print '<td>'.$staticaction->getNomUrl(1, 34).'</td>';
 
-            //print '<td>'.dol_trunc($obj->label,24).'</td>';
+            
 
 			print '<td>';
 			if ($obj->rowid > 0)
@@ -536,7 +536,7 @@ function calendars_prepare_head($param)
     $head[$h][2] = 'cardday';
     $h++;
 
-    //if (! empty($conf->global->AGENDA_USE_EVENT_TYPE))
+    
     if (! empty($conf->global->AGENDA_SHOW_PERTYPE))
     {
         $head[$h][0] = DOL_URL_ROOT.'/comm/action/pertype.php'.($param?'?'.$param:'');
@@ -555,8 +555,8 @@ function calendars_prepare_head($param)
 
     // Show more tabs from modules
     // Entries must be declared in modules descriptor with line
-    // $this->tabs = array('entity:+tabname:Title:@mymodule:/mymodule/mypage.php?id=__ID__');   to add new tab
-    // $this->tabs = array('entity:-tabname);   												to remove a tab
+    
+    
     complete_head_from_modules($conf, $langs, null, $head, $h, 'agenda');
 
     complete_head_from_modules($conf, $langs, null, $head, $h, 'agenda', 'remove');

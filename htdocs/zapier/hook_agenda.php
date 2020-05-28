@@ -53,9 +53,9 @@ else
 $search_agenda_label = GETPOST('search_agenda_label');
 
 // Security check - Protection if external user
-//if ($user->socid > 0) accessforbidden();
-//if ($user->socid > 0) $socid = $user->socid;
-//$result = restrictedArea($user, 'mymodule', $id);
+
+
+
 
 $limit = GETPOST('limit', 'int') ?GETPOST('limit', 'int') : $conf->liste_limit;
 $sortfield = GETPOST("sortfield", 'alpha');
@@ -121,7 +121,7 @@ $form = new Form($db);
 if ($object->id > 0)
 {
 	$title = $langs->trans("Agenda");
-	//if (! empty($conf->global->MAIN_HTML_TITLE) && preg_match('/thirdpartynameonly/',$conf->global->MAIN_HTML_TITLE) && $object->name) $title=$object->name." - ".$title;
+	
 	$help_url = '';
 	llxHeader('', $title, $help_url);
 
@@ -132,7 +132,7 @@ if ($object->id > 0)
 	dol_fiche_head($head, 'agenda', $langs->trans("MyObject"), -1, 'myobject@mymodule');
 
 	// Object card
-	// ------------------------------------------------------------
+	
 	$linkback = '<a href="'.dol_buildpath('/mymodule/myobject_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
@@ -150,10 +150,10 @@ if ($object->id > 0)
 	 if ($user->rights->mymodule->creer)
 	 {
 	 if ($action != 'classify')
-	 	//$morehtmlref.='<a class="editfielda" href="' . $_SERVER['PHP_SELF'] . '?action=classify&amp;id=' . $object->id . '">' . img_edit($langs->transnoentitiesnoconv('SetProject')) . '</a> : ';
+	 	
 	 	$morehtmlref.=' : ';
 	 	if ($action == 'classify') {
-	 	//$morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+	 	
 	 	$morehtmlref.='<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
 	 	$morehtmlref.='<input type="hidden" name="action" value="classin">';
 	 	$morehtmlref.='<input type="hidden" name="token" value="'.newToken().'">';
@@ -201,12 +201,12 @@ if ($object->id > 0)
     $permok = $user->rights->agenda->myactions->create;
     if ((!empty($objthirdparty->id) || !empty($objcon->id)) && $permok)
     {
-        //$out.='<a href="'.DOL_URL_ROOT.'/comm/action/card.php?action=create';
+        
         if (get_class($objthirdparty) == 'Societe') $out .= '&amp;socid='.$objthirdparty->id;
         $out .= (!empty($objcon->id) ? '&amp;contactid='.$objcon->id : '').'&amp;backtopage=1&amp;percentage=-1';
-    	//$out.=$langs->trans("AddAnAction").' ';
-    	//$out.=img_picto($langs->trans("AddAnAction"),'filenew');
-    	//$out.="</a>";
+    	
+    	
+    	
 	}
 
 

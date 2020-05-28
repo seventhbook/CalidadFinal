@@ -229,7 +229,7 @@ elseif ($action == 'renamefile' && GETPOST('renamefilesave', 'alpha'))
 				            	}
 
 				                // TODO Add revert function of addThumbs to remove thumbs with old name
-				                //$object->delThumbs($srcpath);
+				                
 			            	}
 
 			                setEventMessages($langs->trans("FileRenamed"), null);

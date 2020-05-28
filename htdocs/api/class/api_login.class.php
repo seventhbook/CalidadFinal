@@ -129,7 +129,7 @@ class Login
             $token = $tmpuser->api_key;
 		}
 
-		//return token
+		
 		return array(
 			'success' => array(
 				'code' => 200,

@@ -141,7 +141,7 @@ class AggregatedCollector implements DataCollectorInterface, ArrayAccess
         return $this->name;
     }
 
-    // --------------------------------------------
+    
     // ArrayAccess implementation
 
     public function offsetSet($key, $value)

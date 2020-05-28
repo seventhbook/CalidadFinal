@@ -22,10 +22,10 @@
  */
 
 
-// $action must be defined
-// $arrayofparameters must be set for action 'update'
-// $nomessageinupdate can be set to 1
-// $nomessageinsetmoduleoptions can be set to 1
+
+
+
+
 
 if ($action == 'update' && is_array($arrayofparameters))
 {

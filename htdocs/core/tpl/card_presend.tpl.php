@@ -198,7 +198,7 @@ if ($action == 'presend')
 	$formmail->withdeliveryreceipt = 1;
 	$formmail->withcancel = 1;
 
-	//$arrayoffamiliestoexclude=array('system', 'mycompany', 'object', 'objectamount', 'date', 'user', ...);
+	
 	if (! isset($arrayoffamiliestoexclude)) $arrayoffamiliestoexclude=null;
 
 	// Make substitution in email content

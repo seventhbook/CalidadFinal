@@ -51,7 +51,7 @@ class PHPExcel_Shared_File
 	 */
 	public static function setUseUploadTempDirectory($useUploadTempDir = FALSE) {
 		self::$_useUploadTempDirectory = (boolean) $useUploadTempDir;
-	}	//	function setUseUploadTempDirectory()
+	}	
 
 
 	/**
@@ -61,7 +61,7 @@ class PHPExcel_Shared_File
 	 */
 	public static function getUseUploadTempDirectory() {
 		return self::$_useUploadTempDirectory;
-	}	//	function getUseUploadTempDirectory()
+	}	
 
 
 	/**
@@ -135,7 +135,7 @@ class PHPExcel_Shared_File
 	public static function sys_get_temp_dir()
 	{
 		if (self::$_useUploadTempDirectory) {
-			//  use upload-directory when defined to allow running on environments having very restricted
+			
 			//      open_basedir configs
 			if (ini_get('upload_tmp_dir') !== FALSE) {
 				if ($temp = ini_get('upload_tmp_dir')) {
@@ -169,7 +169,7 @@ class PHPExcel_Shared_File
 			return null;
 		}
 
-		// use ordinary built-in PHP function
+		
 		//	There should be no problem with the 5.2.4 Suhosin realpath() bug, because this line should only
 		//		be called if we're running 5.2.1 or earlier
 		return realpath(sys_get_temp_dir());

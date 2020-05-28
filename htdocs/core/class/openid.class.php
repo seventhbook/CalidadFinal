@@ -486,7 +486,7 @@ class SimpleOpenID
         {
             $s = str_replace('sreg_', 'sreg.', $arr_signed[$i]);
             $c = $_GET['openid_' . $arr_signed[$i]];
-            // if ($c != ""){
+            
             $params['openid.' . $s] = urlencode($c);
             // }
         }
@@ -531,7 +531,7 @@ class SimpleOpenID
         $response = getURLContent($url, 'GET', '', 1, $addheaders);
         /* response should like this:
         <?xml version="1.0" encoding="UTF-8"?>
-        <xrds:XRDS xmlns:xrds="xri://$xrds" xmlns="xri://$xrd*($v*2.0)">
+        <xrds:XRDS xmlns:xrds="xri:
         <XRD>
         <Service priority="0">
         <Type>http://specs.openid.net/auth/2.0/server</Type>

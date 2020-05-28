@@ -22,10 +22,10 @@
  */
 
 
-// $action must be defined
-// $db must be defined
-// $conf must be defined
-// $object must be defined (object is loaded in this file with fetch)
+
+
+
+
 
 // Save selection
 if (GETPOST('formfilteraction', 'none') == 'listafterchangingselectedfields')
@@ -41,6 +41,6 @@ if (GETPOST('formfilteraction', 'none') == 'listafterchangingselectedfields')
 
     $result = dol_set_user_param($db, $conf, $user, $tabparam);
 
-    //$action='list';
+    
     //var_dump($tabparam);exit;
 }

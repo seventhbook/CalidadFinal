@@ -16,17 +16,17 @@ print 'Files has been created. Check its name from your explorer'."\n";
 <?php
 */
 
-//============================================================+
+
 // File name   : example_038.php
 // Begin       : 2008-09-15
 // Last Update : 2010-08-08
-//
+
 // Description : Example 038 for TCPDF class
 //               CID-0 CJK unembedded font
-//
+
 // Author: Nicola Asuni
-//
-// (c) Copyright:
+
+
 //               Nicola Asuni
 //               Tecnick.com s.r.l.
 //               Via Della Pace, 11
@@ -34,7 +34,7 @@ print 'Files has been created. Check its name from your explorer'."\n";
 //               ITALY
 //               www.tecnick.com
 //               info@tecnick.com
-//============================================================+
+
 
 /**
  * Creates an example PDF TEST document using TCPDF
@@ -79,12 +79,12 @@ $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
 
 //set image scale factor
-//$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
 
 //set some language-dependent strings
 $pdf->setLanguageArray($l);
 
-// ---------------------------------------------------------
+
 
 // set font
 $pdf->SetFont('arialunicid0', '', 20);
@@ -97,11 +97,11 @@ To display extended text you must have CJK fonts for your PDF reader: こんに�
 
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
-// ---------------------------------------------------------
+
 
 //Close and output PDF document
 $pdf->Output('example.pdf', 'F');
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

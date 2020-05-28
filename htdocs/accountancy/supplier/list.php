@@ -288,7 +288,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -410,7 +410,7 @@ if ($result) {
 		$objp = $db->fetch_object($result);
 
 		// product_type: 0 = service ? 1 = product
-		// if product does not exist we use the value of product_type provided in facturedet to define if this is a product or service
+		
 		// issue : if we change product_type value in product DB it should differ from the value stored in facturedet DB !
 		$objp->code_buy_l = '';
 		$objp->code_buy_p = '';
@@ -446,8 +446,8 @@ if ($result) {
 		}
 		if (empty($objp->code_buy_l) && empty($objp->code_buy_p)) $code_buy_p_notset = 'color:red';
 
-		// $objp->code_buy_p is now code of product/service
-		// $objp->code_buy_l is now default code of product/service
+		
+		
 
 		print '<tr class="oddeven">';
 

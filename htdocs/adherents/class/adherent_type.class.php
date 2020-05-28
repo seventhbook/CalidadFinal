@@ -134,7 +134,7 @@ class AdherentType extends CommonObject
         if ($result) {
             while ($obj = $this->db->fetch_object($result))
             {
-                //print 'lang='.$obj->lang.' current='.$current_lang.'<br>';
+                
                 if ($obj->lang == $current_lang)  // si on a les traduct. dans la langue courante on les charge en infos principales.
                 {
                     $this->label        = $obj->label;
@@ -177,7 +177,7 @@ class AdherentType extends CommonObject
 
                 $result = $this->db->query($sql);
 
-                if ($this->db->num_rows($result)) // if there is already a description line for this language
+                if ($this->db->num_rows($result)) 
                 {
                     $sql2 = "UPDATE ".MAIN_DB_PREFIX."adherent_type_lang";
                     $sql2 .= " SET ";
@@ -213,7 +213,7 @@ class AdherentType extends CommonObject
 
                 $result = $this->db->query($sql);
 
-                if ($this->db->num_rows($result)) // if there is already a description line for this language
+                if ($this->db->num_rows($result)) 
                 {
                     $sql2 = "UPDATE ".MAIN_DB_PREFIX."adherent_type_lang";
                     $sql2 .= " SET ";
@@ -640,7 +640,7 @@ class AdherentType extends CommonObject
 		if ($morphy == 'phy') { return $langs->trans("Physical"); }
 		elseif ($morphy == 'mor') { return $langs->trans("Moral"); }
         else return $langs->trans("MorPhy");
-		//return $morphy;
+		
 	}
 
     /**

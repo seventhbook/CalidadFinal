@@ -426,7 +426,7 @@ if (empty($reshook))
 						    {
 						        while($objcontact = $db->fetch_object($resqlcontact))
 						        {
-						            //print $objcontact->code.'-'.$objcontact->fk_socpeople."\n";
+						            
 						            $object->add_contact($objcontact->fk_socpeople, $objcontact->code);
 						        }
 						    }
@@ -1958,8 +1958,8 @@ if ($action == 'create' && $usercancreate)
 				if ($conf->browser->name == 'ie') $forcecombo = 1; // There is a bug in IE10 that make combo inside popup crazy
 				$formquestion = array(
 					// 'text' => $langs->trans("ConfirmClone"),
-					// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-					// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' => 1),
+					
+					
 					array('type' => 'other', 'name' => 'idwarehouse', 'label' => $langs->trans("SelectWarehouseForStockDecrease"), 'value' => $formproduct->selectWarehouses(GETPOST('idwarehouse', 'int') ?GETPOST('idwarehouse', 'int') : 'ifone', 'idwarehouse', '', 1, 0, 0, '', 0, $forcecombo))
 				);
 			}
@@ -1991,8 +1991,8 @@ if ($action == 'create' && $usercancreate)
 				if ($conf->browser->name == 'ie') $forcecombo = 1; // There is a bug in IE10 that make combo inside popup crazy
 				$formquestion = array(
 					// 'text' => $langs->trans("ConfirmClone"),
-					// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-					// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' => 1),
+					
+					
 					array('type' => 'other', 'name' => 'idwarehouse', 'label' => $langs->trans("SelectWarehouseForStockIncrease"), 'value' => $formproduct->selectWarehouses(GETPOST('idwarehouse') ?GETPOST('idwarehouse') : 'ifone', 'idwarehouse', '', 1, 0, 0, '', 0, $forcecombo))
 				);
 			}
@@ -2033,8 +2033,8 @@ if ($action == 'create' && $usercancreate)
 				if ($conf->browser->name == 'ie') $forcecombo = 1; // There is a bug in IE10 that make combo inside popup crazy
 				$formquestion = array(
 					// 'text' => $langs->trans("ConfirmClone"),
-					// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-					// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' => 1),
+					
+					
 					array('type' => 'other', 'name' => 'idwarehouse', 'label' => $langs->trans("SelectWarehouseForStockIncrease"), 'value' => $formproduct->selectWarehouses(GETPOST('idwarehouse') ?GETPOST('idwarehouse') : 'ifone', 'idwarehouse', '', 1, 0, 0, '', 0, $forcecombo))
 				);
 			}
@@ -2660,7 +2660,7 @@ if ($action == 'create' && $usercancreate)
 			if ($usercancreate
 			    && $object->statut == Commande::STATUS_DRAFT)
 			{
-			    $compatibleImportElementsList = array('commande', 'propal'); // import from linked elements
+			    $compatibleImportElementsList = array('commande', 'propal'); 
 			}
 			$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem, $compatibleImportElementsList);
 

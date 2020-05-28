@@ -54,7 +54,7 @@ class modMyModule extends DolibarrModules
         // Module position in the family on 2 digits ('01', '10', '20', ...)
         $this->module_position = '90';
         // Gives the possibility for the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-        //$this->familyinfo = array('myownfamily' => array('position' => '01', 'label' => $langs->trans("MyOwnFamily")));
+        
         // Module label (no space allowed), used if translation string 'ModuleMyModuleName' not found (MyModule is name of module).
         $this->name = preg_replace('/^mod/i', '', get_class($this));
         // Module description, used if translation string 'ModuleMyModuleDesc' not found (MyModule is name of module).
@@ -66,7 +66,7 @@ class modMyModule extends DolibarrModules
         // Possible values for version are: 'development', 'experimental', 'dolibarr', 'dolibarr_deprecated' or a version string like 'x.y.z'
         $this->version = '1.0';
         // Url to the file with your last numberversion of this module
-        //$this->url_last_version = 'http://www.example.com/versionmodule.txt';
+        
 
         // Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
         $this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
@@ -105,7 +105,7 @@ class modMyModule extends DolibarrModules
                 //   'data' => array(
                 //       'hookcontext1',
                 //       'hookcontext2',
-                //   ),
+                
                 //   'entity' => '0',
             ),
             // Set this to 1 if features of module are opened to external users
@@ -128,14 +128,14 @@ class modMyModule extends DolibarrModules
         $this->need_dolibarr_version = array(11, -3); // Minimum version of Dolibarr required by module
         $this->warnings_activation = array(); // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
         $this->warnings_activation_ext = array(); // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
-        //$this->automatic_activation = array('FR'=>'MyModuleWasAutomaticallyActivatedBecauseOfYourCountryChoice');
-        //$this->always_enabled = true;								// If true, can't be disabled
+        
+        
 
         // Constants
         // List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
         // Example: $this->const=array(1 => array('MYMODULE_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
         //                             2 => array('MYMODULE_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
-        // );
+        
         $this->const = array(
             // 1 => array('MYMODULE_MYCONSTANT', 'chaine', 'avalue', 'This is a constant to add', 1, 'allentities', 1)
         );
@@ -154,10 +154,10 @@ class modMyModule extends DolibarrModules
         // Array to add new pages in new tabs
         $this->tabs = array();
         // Example:
-        // $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@mymodule:$user->rights->mymodule->read:/mymodule/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-        // $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@mymodule:$user->rights->othermodule->read:/mymodule/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
-        // $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
-        //
+        
+        
+        
+        
         // Where objecttype can be
         // 'categories_x'	  to add a tab in category view (replace 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
         // 'contact'          to add a tab in contact view
@@ -212,8 +212,8 @@ class modMyModule extends DolibarrModules
             //      'file' => 'mymodulewidget1.php@mymodule',
             //      'note' => 'Widget provided by MyModule',
             //      'enabledbydefaulton' => 'Home',
-            //  ),
-            //  ...
+            
+            
         );
 
         // Cronjobs (List of cron jobs entries to add when module is enabled)
@@ -232,12 +232,12 @@ class modMyModule extends DolibarrModules
             //      'status' => 0,
             //      'test' => '$conf->mymodule->enabled',
             //      'priority' => 50,
-            //  ),
+            
         );
         // Example: $this->cronjobs=array(
         //    0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>'$conf->mymodule->enabled', 'priority'=>50),
         //    1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>'$conf->mymodule->enabled', 'priority'=>50)
-        // );
+        
 
         // Permissions provided by this module
         $this->rights = array();
@@ -337,21 +337,21 @@ class modMyModule extends DolibarrModules
         // Define $this->export_fields_array, $this->export_TypeFields_array and $this->export_entities_array
         $keyforclass = 'MyObject'; $keyforclassfile='/mymobule/class/myobject.class.php'; $keyforelement='myobject@mymodule';
         include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-        //$this->export_fields_array[$r]['t.fieldtoadd']='FieldToAdd'; $this->export_TypeFields_array[$r]['t.fieldtoadd']='Text';
-        //unset($this->export_fields_array[$r]['t.fieldtoremove']);
-   		//$keyforclass = 'MyObjectLine'; $keyforclassfile='/mymodule/class/myobject.class.php'; $keyforelement='myobjectline@mymodule'; $keyforalias='tl';
-		//include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
+        
+        
+   		
+		
         $keyforselect='myobject'; $keyforaliasextra='extra'; $keyforelement='myobject@mymodule';
         include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-        //$keyforselect='myobjectline'; $keyforaliasextra='extraline'; $keyforelement='myobjectline@mymodule';
-        //include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-        //$this->export_dependencies_array[$r] = array('myobjectline'=>array('tl.rowid','tl.ref')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
-        //$this->export_special_array[$r] = array('t.field'=>'...');
-        //$this->export_examplevalues_array[$r] = array('t.field'=>'Example');
-        //$this->export_help_array[$r] = array('t.field'=>'FieldDescHelp');
+        
+        
+        
+        
+        
+        
         $this->export_sql_start[$r]='SELECT DISTINCT ';
         $this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'myobject as t';
-        //$this->export_sql_end[$r]  =' LEFT JOIN '.MAIN_DB_PREFIX.'myobject_line as tl ON tl.fk_myobject = t.rowid';
+        
         $this->export_sql_end[$r] .=' WHERE 1 = 1';
         $this->export_sql_end[$r] .=' AND t.entity IN ('.getEntity('myobject').')';
         $r++; */
@@ -369,7 +369,7 @@ class modMyModule extends DolibarrModules
          include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
          $keyforselect='myobject'; $keyforaliasextra='extra'; $keyforelement='myobject@mymodule';
          include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
-         //$this->export_dependencies_array[$r]=array('mysubobject'=>'ts.rowid', 't.myfield'=>array('t.myfield2','t.myfield3')); // To force to activate one or several fields if we select some fields that need same (like to select a unique key if we ask a field of a child to avoid the DISTINCT to discard them, or for computed field than need several other fields)
+         
          $this->export_sql_start[$r]='SELECT DISTINCT ';
          $this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'myobject as t';
          $this->export_sql_end[$r] .=' WHERE 1 = 1';
@@ -394,13 +394,13 @@ class modMyModule extends DolibarrModules
         if ($result < 0) return -1; // Do not activate module if error 'not allowed' returned when loading module SQL queries (the _load_table run sql with run_sql with the error allowed parameter set to 'default')
 
         // Create extrafields during init
-        //include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
-        //$extrafields = new ExtraFields($this->db);
-        //$result1=$extrafields->addExtraField('myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'mymodule@mymodule', '$conf->mymodule->enabled');
-        //$result2=$extrafields->addExtraField('myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'mymodule@mymodule', '$conf->mymodule->enabled');
-        //$result3=$extrafields->addExtraField('myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'mymodule@mymodule', '$conf->mymodule->enabled');
-        //$result4=$extrafields->addExtraField('myattr4', "New Attr 4 label", 'select',  1,  3, 'thirdparty',   0, 1, '', array('options'=>array('code1'=>'Val1','code2'=>'Val2','code3'=>'Val3')), 1,'', 0, 0, '', '', 'mymodule@mymodule', '$conf->mymodule->enabled');
-        //$result5=$extrafields->addExtraField('myattr5', "New Attr 5 label", 'text',    1, 10, 'user',         0, 0, '', '', 1, '', 0, 0, '', '', 'mymodule@mymodule', '$conf->mymodule->enabled');
+        
+        
+        
+        
+        
+        
+        
 
         // Permissions
         $this->remove($options);

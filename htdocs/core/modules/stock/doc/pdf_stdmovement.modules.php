@@ -317,7 +317,7 @@ class pdf_stdmovement extends ModelePDFMovement
 		{
 			$result = $db->query($sql);
 			$nbtotalofrecords = $db->num_rows($result);
-			if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+			if (($page * $limit) > $nbtotalofrecords)	
 			{
 				$page = 0;
 				$offset = 0;
@@ -525,7 +525,7 @@ class pdf_stdmovement extends ModelePDFMovement
 						{
 							$pdf->rollbackTransaction(true);
 							$pageposafter=$pageposbefore;
-							//print $pageposafter.'-'.$pageposbefore;exit;
+							
 							$pdf->setPageOrientation('', 1, $heightforfooter);	// The only function to edit the bottom margin of current page to set it.
 							pdf_writelinedesc($pdf, $object, $i, $outputlangs, $this->posxtva-$curX, 4, $curX, $curY, $hideref, $hidedesc);
 							$pageposafter=$pdf->getPage();
@@ -859,7 +859,7 @@ class pdf_stdmovement extends ModelePDFMovement
 	    $pdf->SetFont('', 'B', $default_font_size - 3);
 
 	    // Output Rect
-	    //$this->printRect($pdf,$this->marge_gauche, $tab_top, $this->page_largeur-$this->marge_gauche-$this->marge_droite, $tab_height, $hidetop, $hidebottom);	// Rect takes a length in 3rd parameter and 4th parameter
+	    
 
 		$pdf->SetLineStyle(array('dash'=>'0', 'color'=>array(220, 26, 26)));
 		$pdf->SetDrawColor(220, 26, 26);
@@ -871,7 +871,7 @@ class pdf_stdmovement extends ModelePDFMovement
 		//Ref mouv
 	    if (empty($hidetop))
 	    {
-	        //$pdf->line($this->marge_gauche, $tab_top+5, $this->page_largeur-$this->marge_droite, $tab_top+5);	// line takes a position y in 2nd parameter and 4th parameter
+	        
 	        $pdf->SetXY($this->posxidref, $tab_top + 1);
 	        $pdf->MultiCell($this->posxdatemouv - $this->posxdatemouv - 0.8, 3, $outputlangs->transnoentities("Ref"), '', 'L');
 	    }

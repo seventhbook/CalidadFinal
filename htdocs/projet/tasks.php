@@ -62,7 +62,7 @@ $search_timespend = GETPOST('search_timespend');
 $search_progresscalc = GETPOST('search_progresscalc');
 $search_progressdeclare = GETPOST('search_progressdeclare');
 
-//if (! $user->rights->projet->all->lire) $mine=1;	// Special for projects
+
 
 $object = new Project($db);
 $taskstatic = new Task($db);
@@ -80,7 +80,7 @@ $extrafields->fetch_name_optionals_label($taskstatic->table_element);
 
 // Security check
 $socid = 0;
-//if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+
 $result = restrictedArea($user, 'projet', $id, 'projet&project');
 
 $diroutputmassaction = $conf->projet->dir_output.'/tasks/temp/massgeneration/'.$user->id;
@@ -214,8 +214,8 @@ if ($action == 'createtask' && $user->rights->projet->creer)
 	$error = 0;
 
     // If we use user timezone, we must change also view/list to use user timezone everywhere
-    //$date_start = dol_mktime($_POST['dateohour'],$_POST['dateomin'],0,$_POST['dateomonth'],$_POST['dateoday'],$_POST['dateoyear'],'user');
-	//$date_end = dol_mktime($_POST['dateehour'],$_POST['dateemin'],0,$_POST['dateemonth'],$_POST['dateeday'],$_POST['dateeyear'],'user');
+    
+	
 	$date_start = dol_mktime($_POST['dateohour'], $_POST['dateomin'], 0, $_POST['dateomonth'], $_POST['dateoday'], $_POST['dateoyear']);
 	$date_end = dol_mktime($_POST['dateehour'], $_POST['dateemin'], 0, $_POST['dateemonth'], $_POST['dateeday'], $_POST['dateeyear']);
 

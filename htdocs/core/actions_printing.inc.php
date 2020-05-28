@@ -23,8 +23,8 @@
  */
 
 
-// $action must be defined
-// $db, $user, $conf, $langs must be defined
+
+
 // Filename to print must be provided into 'file' parameter
 
 // Print file
@@ -41,7 +41,7 @@ if ($action == 'print_file' && $user->rights->printing->read) {
             $langs->load($driver);
             $classname = 'printing_'.$driver;
             $printer = new $classname($db);
-            //print '<pre>'.print_r($printer, true).'</pre>';
+            
 
             if (! empty($conf->global->{$printer->active}))
             {
@@ -66,12 +66,12 @@ if ($action == 'print_file' && $user->rights->printing->read) {
                 try {
                     $ret = $printer->printFile(GETPOST('file', 'alpha'), $module, $subdir);
                     if ($ret > 0) {
-                        //print '<pre>'.print_r($printer->errors, true).'</pre>';
+                        
                         setEventMessages($printer->error, $printer->errors, 'errors');
                     }
                     if ($ret==0)
                     {
-                        //print '<pre>'.print_r($printer->errors, true).'</pre>';
+                        
                         setEventMessages($printer->error, $printer->errors);
                         setEventMessages($langs->transnoentitiesnoconv("FileWasSentToPrinter", basename(GETPOST('file', 'alpha'))).' '.$langs->transnoentitiesnoconv("ViaModule").' '.$printer->name, null);
                     }

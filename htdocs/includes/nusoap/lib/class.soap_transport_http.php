@@ -186,7 +186,7 @@ class soap_transport_http extends nusoap_base {
 			$port = $this->proxy['port'];
 		}
 
-		// use persistent connection
+		
 		if($this->persistentConnection && isset($this->fp) && is_resource($this->fp)){
 			if (!feof($this->fp)) {
 				$this->debug('Re-use persistent connection');
@@ -263,7 +263,7 @@ class soap_transport_http extends nusoap_base {
 		// init CURL
 		$this->ch = curl_init();
 		// set url
-		$hostURL = ($this->port != '') ? "$this->scheme://$this->host:$this->port" : "$this->scheme://$this->host";
+		$hostURL = ($this->port != '') ? "$this->scheme:
 		// add path
 		$hostURL .= $this->path;
 		$this->setCurlOption(CURLOPT_URL, $hostURL);
@@ -303,7 +303,7 @@ class soap_transport_http extends nusoap_base {
 		if ($this->scheme == 'https') {
 			$this->debug('set cURL SSL verify options');
 			// recent versions of cURL turn on peer/host checking by default,
-			// while PHP binaries are not compiled with a default location for the
+			
 			// CA cert bundle, so disable peer/host checking.		
 			$this->setCurlOption(CURLOPT_SSL_VERIFYPEER, 0);
 			$this->setCurlOption(CURLOPT_SSL_VERIFYHOST, 0);
@@ -475,14 +475,14 @@ class soap_transport_http extends nusoap_base {
 				$HA2 =  md5($A2);
 	
 				// KD(secret, data) = H(concat(secret, ":", data))
-				// if qop == auth:
+				
 				// request-digest  = <"> < KD ( H(A1),     unq(nonce-value)
 				//                              ":" nc-value
 				//                              ":" unq(cnonce-value)
 				//                              ":" unq(qop-value)
 				//                              ":" H(A2)
-				//                            ) <">
-				// if qop is missing,
+				
+				
 				// request-digest  = <"> < KD ( H(A1), unq(nonce-value) ":" H(A2) ) > <">
 	
 				$unhashedDigest = '';
@@ -507,7 +507,7 @@ class soap_transport_http extends nusoap_base {
 			$this->certRequest = $certRequest;
 			$this->debug('Authorization header not set for certificate');
 		} elseif ($authtype == 'ntlm') {
-			// do nothing
+			
 			$this->debug('Authorization header not set for ntlm');
 		}
 		$this->username = $username;
@@ -626,7 +626,7 @@ class soap_transport_http extends nusoap_base {
 		$temp = substr($buffer,0,$chunkend);
 		$chunk_size = hexdec( trim($temp) );
 		$chunkstart = $chunkend + strlen($lb);
-		// while (chunk-size > 0) {
+		
 		while ($chunk_size > 0) {
 			$this->debug("chunkstart: $chunkstart chunk_size: $chunk_size");
 			$chunkend = strpos( $buffer, $lb, $chunkstart + $chunk_size);
@@ -670,7 +670,7 @@ class soap_transport_http extends nusoap_base {
 	 */
 	function buildPayload($data, $cookie_str = '') {
 		// Note: for cURL connections, $this->outgoing_payload is ignored,
-		// as is the Content-Length header, but these are still created as
+		
 		// debugging guides.
 
 		// add content-length header
@@ -738,7 +738,7 @@ class soap_transport_http extends nusoap_base {
 		// cURL does say this should only be the verb, and in fact it
 		// turns out that the URI and HTTP version are appended to this, which
 		// some servers refuse to work with (so we no longer use this method!)
-		//$this->setCurlOption(CURLOPT_CUSTOMREQUEST, $this->outgoing_payload);
+		
 		$curl_headers = array();
 		foreach($this->outgoing_headers as $k => $v){
 			if ($k == 'Connection' || $k == 'Content-Length' || $k == 'Host' || $k == 'Authorization' || $k == 'Proxy-Authorization') {
@@ -817,7 +817,7 @@ class soap_transport_http extends nusoap_base {
 			if (isset($lb) && preg_match('/^HTTP\/1.1 100/',$data)) {
 				unset($lb);
 				$data = '';
-			}//
+			}
 		}
 		// store header data
 		$this->incoming_payload .= $data;
@@ -952,7 +952,7 @@ class soap_transport_http extends nusoap_base {
 		$this->debug('No cURL error, closing cURL');
 		curl_close($this->ch);
 		
-		// try removing skippable headers
+		
 		$savedata = $data;
 		while ($this->isSkippableCurlHeader($data)) {
 			$this->debug("Found HTTP header to skip");
@@ -1065,10 +1065,10 @@ class soap_transport_http extends nusoap_base {
 		// decode content-encoding
 		if(isset($this->incoming_headers['content-encoding']) && $this->incoming_headers['content-encoding'] != ''){
 			if(strtolower($this->incoming_headers['content-encoding']) == 'deflate' || strtolower($this->incoming_headers['content-encoding']) == 'gzip'){
-    			// if decoding works, use it. else assume data wasn't gzencoded
+    			
     			if(function_exists('gzinflate')){
 					// IIS 5 requires gzinflate instead of gzuncompress (similar to IE 5 and gzdeflate v. gzcompress)
-					// this means there are no Zlib headers, although there should be
+					
 					$this->debug('The gzinflate function exists');
 					$datalen = strlen($data);
 					if ($this->incoming_headers['content-encoding'] == 'deflate') {
@@ -1088,7 +1088,7 @@ class soap_transport_http extends nusoap_base {
 	    					$this->setError('Error using gzinflate to inflate the payload');
 	    				}
 					} elseif ($this->incoming_headers['content-encoding'] == 'gzip') {
-						if ($degzdata = @gzinflate(substr($data, 10))) {	// do our best
+						if ($degzdata = @gzinflate(substr($data, 10))) {	
 							$data = $degzdata;
 	    					$this->debug('The payload has been un-gzipped to ' . strlen($data) . ' bytes');
 	    					if (strlen($data) < $datalen) {

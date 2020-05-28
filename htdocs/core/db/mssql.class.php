@@ -31,15 +31,15 @@ require_once DOL_DOCUMENT_ROOT .'/core/db/DoliDB.class.php';
  */
 class DoliDBMssql extends DoliDB
 {
-	//! Database type
+	
 	public $type='mssql';
-	//! Database label
+	
 	const LABEL='MSSQL';
-	//! Charset used to force charset when creating database
+	
     public $forcecharset='latin1';      // Can't be static as it may be forced with a dynamic value
-	//! Collate used to force collate when creating database
+	
     public $forcecollate='latin1_swedish_ci';      // Can't be static as it may be forced with a dynamic value
-	//! Version min database
+	
 	const VERSIONMIN='2000';
 	/** @var resource Resultset of last query */
 	private $_results;
@@ -87,7 +87,7 @@ class DoliDBMssql extends DoliDB
 		if ($this->db)
 		{
 			// Si client connecte avec charset different de celui de la base Dolibarr
-			// (La base Dolibarr a ete forcee en this->forcecharset a l'install)
+			
 			$this->connected = true;
 			$this->ok = true;
 		}
@@ -240,7 +240,7 @@ class DoliDBMssql extends DoliDB
 
 	    if ($this->transaction_opened == 0)
 		{
-		    //return 1; //There is a mess with auto_commit and 'SET IMPLICIT_TRANSACTIONS ON' generate also a mess
+		    
 			$ret=mssql_query("SET IMPLICIT_TRANSACTIONS OFF;BEGIN TRANSACTION;", $this->db);
 			if ($ret)
 			{
@@ -267,7 +267,7 @@ class DoliDBMssql extends DoliDB
 
 		if ($this->transaction_opened == 1)
 		{
-		    //return 1; //There is a mess with auto_commit and 'SET IMPLICIT_TRANSACTION ON' generate also a mess
+		    
 			$ret=mssql_query("COMMIT TRANSACTION", $this->db);
 			if ($ret)
 			{
@@ -535,7 +535,7 @@ class DoliDBMssql extends DoliDB
 		// a pqsql qui prend un resultset
 		$rsRows = mssql_query("select @@rowcount as rows", $this->db);
 		return mssql_result($rsRows, 0, "rows");
-		//return mssql_affected_rows($this->db);
+		
 	}
 
 

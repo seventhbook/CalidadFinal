@@ -531,7 +531,7 @@ if (empty($reshook))
 
 			// Define special_code for special lines
 			$special_code = 0;
-			// if (empty($_POST['qty'])) $special_code=3; // Options should not exists on invoices
+			
 
 			// Ecrase $pu par celui du produit
 			// Ecrase $desc par celui du produit
@@ -1059,7 +1059,7 @@ if ($action == 'create')
 			print '<td>';
 			$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 			print $doleditor->Create(1);
-			// print '<textarea name="note_private" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'.</textarea>
+			
 			print '</td></tr>';
 		}
 
@@ -1516,7 +1516,7 @@ else
 
 		print '<tr><td colspan="2"><span class="fa fa-calendar"></span> '.$title.'</td></tr>';
 
-		// if "frequency" is empty or = 0, the reccurence is disabled
+		
 		print '<tr><td style="width: 50%">';
 		print '<table class="nobordernopadding" width="100%"><tr><td>';
 		print $langs->trans('Frequency');
@@ -1764,7 +1764,7 @@ else
 			}
 		}
 
-		//if ($object->statut == Facture::STATUS_DRAFT && $user->rights->facture->supprimer)
+		
 		if ($user->rights->facture->supprimer)
 		{
 			print '<div class="inline-block divButAction"><a class="butActionDelete" href="'.$_SERVER['PHP_SELF'].'?action=ask_deleteinvoice&id='.$object->id.'">'.$langs->trans('Delete').'</a></div>';

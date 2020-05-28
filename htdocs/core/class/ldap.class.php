@@ -1021,7 +1021,7 @@ class Ldap
 
 		dol_syslog(get_class($this)."::getRecords search=".$search." userDn=".$userDn." useridentifier=".$useridentifier." attributeArray=array(".join(',', $attributeArray).") activefilter=".$activefilter);
 
-		// if the directory is AD, then bind first with the search user first
+		
 		if ($this->serverType == "activedirectory")
 		{
 			$this->bindauth($this->searchUser, $this->searchPassword);
@@ -1144,7 +1144,7 @@ class Ldap
 		$criteria =  '('.$this->getUserIdentifier().'='.$ldapUser.')';
 		$justthese = array("objectsid");
 
-		// if the directory is AD, then bind first with the search user first
+		
 		if ($this->serverType == "activedirectory")
 		{
 			$this->bindauth($this->searchUser, $this->searchPassword);
@@ -1231,7 +1231,7 @@ class Ldap
 		$checkDn=$this->convFromOutputCharset($checkDn, $this->ldapcharset);
 		$filter=$this->convFromOutputCharset($filter, $this->ldapcharset);
 
-		// if the directory is AD, then bind first with the search user first
+		
 		if ($this->serverType == "activedirectory") {
 			$this->bindauth($this->searchUser, $this->searchPassword);
 		}
@@ -1264,7 +1264,7 @@ class Ldap
 	{
 		// Perform the search and get the entry handles
 
-		// if the directory is AD, then bind first with the search user first
+		
 		if ($this->serverType == "activedirectory") {
 			$this->bindauth($this->searchUser, $this->searchPassword);
 		}

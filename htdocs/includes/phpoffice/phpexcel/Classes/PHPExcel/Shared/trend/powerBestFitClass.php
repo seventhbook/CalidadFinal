@@ -55,7 +55,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 	 **/
 	public function getValueOfYForX($xValue) {
 		return $this->getIntersect() * pow(($xValue - $this->_Xoffset),$this->getSlope());
-	}	//	function getValueOfYForX()
+	}	
 
 
 	/**
@@ -66,7 +66,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 	 **/
 	public function getValueOfXForY($yValue) {
 		return pow((($yValue + $this->_Yoffset) / $this->getIntersect()),(1 / $this->getSlope()));
-	}	//	function getValueOfXForY()
+	}	
 
 
 	/**
@@ -80,7 +80,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 		$intersect = $this->getIntersect($dp);
 
 		return 'Y = '.$intersect.' * X^'.$slope;
-	}	//	function getEquation()
+	}	
 
 
 	/**
@@ -94,7 +94,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 			return round(exp($this->_intersect),$dp);
 		}
 		return exp($this->_intersect);
-	}	//	function getIntersect()
+	}	
 
 
 	/**
@@ -123,7 +123,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 		unset($value);
 
 		$this->_leastSquareFit($yValues, $xValues, $const);
-	}	//	function _power_regression()
+	}	
 
 
 	/**
@@ -137,6 +137,6 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 		if (parent::__construct($yValues, $xValues) !== False) {
 			$this->_power_regression($yValues, $xValues, $const);
 		}
-	}	//	function __construct()
+	}	
 
-}	//	class powerBestFit
+}	

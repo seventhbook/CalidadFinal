@@ -104,13 +104,13 @@ if ($resql)
     $dataseries = array();
     $vals = array();
     $bool = false;
-    // -1=Canceled, 0=Draft, 1=Validated, 2=Accepted/On process, 3=Closed (Sent/Received, billed or not)
+    
     while ($i < $num)
     {
         $row = $db->fetch_row($resql);
         if ($row)
         {
-            //if ($row[1]!=-1 && ($row[1]!=3 || $row[2]!=1))
+            
             {
                 $bool = (!empty($row[2]) ?true:false);
                 if (!isset($vals[$row[1].$bool])) $vals[$row[1].$bool] = 0;
@@ -166,8 +166,8 @@ if ($resql)
             else $bool = false;
         }
     }
-    //if ($totalinprocess != $total)
-    //print '<tr class="liste_total"><td>'.$langs->trans("Total").' ('.$langs->trans("CustomersOrdersRunning").')</td><td class="right">'.$totalinprocess.'</td></tr>';
+    
+    
     print '<tr class="liste_total"><td>'.$langs->trans("Total").'</td><td class="right">'.$total.'</td></tr>';
     print "</table></div><br>";
 }
@@ -235,7 +235,7 @@ $sql .= " ".MAIN_DB_PREFIX."societe as s";
 if (!$user->rights->societe->client->voir && !$socid) $sql .= ", ".MAIN_DB_PREFIX."societe_commerciaux as sc";
 $sql .= " WHERE f.entity IN (".getEntity('intervention').")";
 $sql .= " AND f.fk_soc = s.rowid";
-//$sql.= " AND c.fk_statut > 2";
+
 if ($socid) $sql .= " AND f.fk_soc = ".$socid;
 if (!$user->rights->societe->client->voir && !$socid) $sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".$user->id;
 $sql .= " ORDER BY f.tms DESC";

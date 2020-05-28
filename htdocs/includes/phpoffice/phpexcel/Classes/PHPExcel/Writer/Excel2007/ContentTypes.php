@@ -91,7 +91,7 @@ class PHPExcel_Writer_Excel2007_ContentTypes extends PHPExcel_Writer_Excel2007_W
 				$this->_writeOverrideContentType(
 					$objWriter, '/xl/workbook.xml', 'application/vnd.ms-excel.sheet.macroEnabled.main+xml'
 				);
-				//... and define a new type for the VBA project
+				
 				$this->_writeDefaultContentType(
 							$objWriter, 'bin', 'application/vnd.ms-office.vbaProject'
 						);

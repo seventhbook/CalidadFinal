@@ -184,7 +184,7 @@ $title = $langs->trans("ListOfWarehouses");
 
 
 // Build and execute select
-// --------------------------------------------------------------------
+
 $sql = 'SELECT ';
 foreach ($object->fields as $key => $val)
 {
@@ -265,13 +265,13 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$resql = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($resql);
-	if (($page * $limit) > $nbtotalofrecords)	// if total of record found is smaller than page * limit, goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
 	}
 }
-// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+
 if (is_numeric($nbtotalofrecords) && $limit > $nbtotalofrecords)
 {
 	$num = $nbtotalofrecords;
@@ -301,7 +301,7 @@ if ($num == 1 && !empty($conf->global->MAIN_SEARCH_DIRECT_OPEN_IF_ONLY_ONE) && $
 
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $title, $help_url);
 
@@ -374,7 +374,7 @@ print '<div class="div-table-responsive">'; // You can use div-table-responsive-
 print '<table class="tagtable nobottomiftotal liste'.($moreforfilter ? " listwithfilterbefore" : "").'">'."\n";
 
 // Fields title search
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre_filter">';
 
 foreach ($object->fields as $key => $val)
@@ -432,7 +432,7 @@ print '</td>';
 print '</tr>'."\n";
 
 // Fields title label
-// --------------------------------------------------------------------
+
 print '<tr class="liste_titre">';
 
 foreach ($object->fields as $key => $val)
@@ -478,7 +478,7 @@ print getTitleFieldOfList($selectedfields, 0, $_SERVER["PHP_SELF"], '', '', '', 
 print '</tr>'."\n";
 
 // Loop on record
-// --------------------------------------------------------------------
+
 $i = 0;
 if ($num)
 {

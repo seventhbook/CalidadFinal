@@ -102,7 +102,7 @@ class PaiementFourn extends Paiement
 			$sql.= ' AND p.rowid = '.$ref;
 		elseif ($fk_bank)
 			$sql.= ' AND p.fk_bank = '.$fk_bank;
-		//print $sql;
+		
 
 		$resql = $this->db->query($sql);
 		if ($resql)
@@ -236,9 +236,9 @@ class PaiementFourn extends Paiement
 							if ($closepaidinvoices)
 							{
 								$paiement = $invoice->getSommePaiement();
-								//$creditnotes=$invoice->getSumCreditNotesUsed();
+								
 								$creditnotes=0;
-								//$deposits=$invoice->getSumDepositsUsed();
+								
 								$deposits=0;
 								$alreadypayed=price2num($paiement + $creditnotes + $deposits, 'MT');
 								$remaintopay=price2num($invoice->total_ttc - $paiement - $creditnotes - $deposits, 'MT');

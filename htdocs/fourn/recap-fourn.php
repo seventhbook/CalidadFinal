@@ -152,7 +152,7 @@ if ($socid > 0)
                     while ($j < $nump)
                     {
                         $objp = $db->fetch_object($resqlp);
-                        //
+                        
                         print '<tr class="oddeven">';
                         print '<td class="center">'.dol_print_date($db->jdate($objp->dp))."</td>\n";
                         print '<td>';

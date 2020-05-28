@@ -136,7 +136,7 @@ class ActionsContactCardDefault extends ActionsContactCardCommon
         // phpcs:enable
         global $conf, $langs;
 
-        //$this->getFieldList();
+        
 
         $this->list_datas = array();
     }

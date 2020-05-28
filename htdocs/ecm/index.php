@@ -78,8 +78,8 @@ $error=0;
  */
 
 // TODO Replace sendit and confirm_deletefile with
-//$backtopage=$_SERVER["PHP_SELF"].'?file_manager=1&website='.$websitekey.'&pageid='.$pageid;	// used after a confirm_deletefile into actions_linkedfiles.inc.php
-//include DOL_DOCUMENT_ROOT.'/core/actions_linkedfiles.inc.php';
+
+
 
 // Upload file (code similar but different than actions_linkedfiles.inc.php)
 if (GETPOST("sendit", 'none') && ! empty($conf->global->MAIN_UPLOAD_DOC))
@@ -216,7 +216,7 @@ if ($action == 'refreshmanual')
         {
             $txt="Directory found on disk ".$dirdesc['fullname'].", not found into database so we add it";
             dol_syslog($txt);
-            //print $txt."<br>\n";
+            
 
             // We must first find the fk_parent of directory to create $dirdesc['fullname']
             $fk_parent=-1;
@@ -224,12 +224,12 @@ if ($action == 'refreshmanual')
             $relativepathtosearchparent=$relativepathmissing;
             //dol_syslog("Try to find parent id for directory ".$relativepathtosearchparent);
             if (preg_match('/\//', $relativepathtosearchparent))
-            //while (preg_match('/\//',$relativepathtosearchparent))
+            
             {
                 $relativepathtosearchparent=preg_replace('/\/[^\/]*$/', '', $relativepathtosearchparent);
                 $txt="Is relative parent path ".$relativepathtosearchparent." for ".$relativepathmissing." found in sql tree ?";
                 dol_syslog($txt);
-                //print $txt." -> ";
+                
                 $parentdirisindatabase=0;
                 foreach($sqltree as $dirsqldesc)
                 {
@@ -242,14 +242,14 @@ if ($action == 'refreshmanual')
                 if ($parentdirisindatabase > 0)
                 {
                     dol_syslog("Yes with id ".$parentdirisindatabase);
-                    //print "Yes with id ".$parentdirisindatabase."<br>\n";
+                    
                     $fk_parent=$parentdirisindatabase;
-                    //break;  // We found parent, we can stop the while loop
+                    
                 }
                 else
 				{
                     dol_syslog("No");
-                    //print "No<br>\n";
+                    
                 }
             }
             else
@@ -267,7 +267,7 @@ if ($action == 'refreshmanual')
 
                 $txt="We create directory ".$ecmdirtmp->label." with parent ".$fk_parent;
                 dol_syslog($txt);
-                //print $ecmdirtmp->cachenbofdoc."<br>\n";exit;
+                
                 $id = $ecmdirtmp->create($user);
                 if ($id > 0)
                 {
@@ -288,7 +288,7 @@ if ($action == 'refreshmanual')
             else {
                 $txt="Parent of ".$dirdesc['fullname']." not found";
                 dol_syslog($txt);
-                //print $txt."<br>\n";
+                
             }
         }
     }
@@ -301,7 +301,7 @@ if ($action == 'refreshmanual')
 		{
 			$ecmdirtmp->id=$dirdesc['id'];
 			$ecmdirtmp->delete($user, 'databaseonly');
-			//exit;
+			
 		}
     }
 
@@ -321,13 +321,13 @@ if ($action == 'refreshmanual')
  */
 
 // Define height of file area (depends on $_SESSION["dol_screenheight"])
-//print $_SESSION["dol_screenheight"];
+
 $maxheightwin=(isset($_SESSION["dol_screenheight"]) && $_SESSION["dol_screenheight"] > 466)?($_SESSION["dol_screenheight"]-136):660;	// Also into index_auto.php file
 
 $moreheadcss='';
 $moreheadjs='';
 
-//$morejs=array();
+
 $morejs=array('includes/jquery/plugins/blockUI/jquery.blockUI.js','core/js/blockUI.js');	// Used by ecm/tpl/enabledfiletreeajax.tpl.pgp
 if (empty($conf->global->MAIN_ECM_DISABLE_JS)) $morejs[]="includes/jquery/plugins/jqueryFileTree/jqueryFileTree.js";
 

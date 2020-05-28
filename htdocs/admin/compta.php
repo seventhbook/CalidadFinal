@@ -112,7 +112,7 @@ print '<input type="hidden" name="action" value="update">';
 
 print '<table class="noborder centpercent">';
 
-// case of the parameter ACCOUNTING_MODE
+
 
 print '<tr class="liste_titre">';
 print '<td>'.$langs->trans('OptionMode').'</td><td>'.$langs->trans('Description').'</td>';
@@ -120,15 +120,15 @@ print "</tr>\n";
 print '<tr class="oddeven"><td width="200"><input type="radio" name="accounting_mode" value="RECETTES-DEPENSES"'.($accounting_mode != 'CREANCES-DETTES' ? ' checked' : '').'> '.$langs->trans('OptionModeTrue').'</td>';
 print '<td colspan="2">'.nl2br($langs->trans('OptionModeTrueDesc'));
 // Write info on way to count VAT
-//if (! empty($conf->global->MAIN_MODULE_COMPTABILITE))
+
 //{
-//	//	print "<br>\n";
-//	//	print nl2br($langs->trans('OptionModeTrueInfoModuleComptabilite'));
+
+
 //}
-//else
+
 //{
-//	//	print "<br>\n";
-//	//	print nl2br($langs->trans('OptionModeTrueInfoExpert'));
+
+
 //}
 print "</td></tr>\n";
 print '<tr class="oddeven"><td width="200"><input type="radio" name="accounting_mode" value="CREANCES-DETTES"'.($accounting_mode == 'CREANCES-DETTES' ? ' checked' : '').'> '.$langs->trans('OptionModeVirtual').'</td>';

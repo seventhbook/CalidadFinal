@@ -95,7 +95,7 @@ function dol_json_encode($elements)
 		$output.= '}';
 	}
 
-	// return
+	
 	return $output;
 }
 
@@ -318,18 +318,18 @@ function utf162utf8($utf16)
 
 	switch(true) {
     	case ((0x7F & $bytes) == $bytes):
-			// this case should never be reached, because we are in ASCII range
+			
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
     	return chr($bytes);
 
     	case (0x07FF & $bytes) == $bytes:
-			// return a 2-byte UTF-8 character
+			
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
     	return chr(0xC0 | (($bytes >> 6) & 0x1F))
     	. chr(0x80 | ($bytes & 0x3F));
 
     	case (0xFFFF & $bytes) == $bytes:
-			// return a 3-byte UTF-8 character
+			
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
     	return chr(0xE0 | (($bytes >> 12) & 0x0F))
     	. chr(0x80 | (($bytes >> 6) & 0x3F))
@@ -359,17 +359,17 @@ function utf82utf16($utf8)
 
 	switch(strlen($utf8)) {
 		case 1:
-	        // this case should never be reached, because we are in ASCII range
+	        
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 			return $utf8;
 
 		case 2:
-			// return a UTF-16 character from a 2-byte UTF-8 char
+			
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 			return chr(0x07 & (ord($utf8[0]) >> 2)) . chr((0xC0 & (ord($utf8[0]) << 6)) | (0x3F & ord($utf8[1])));
 
 		case 3:
-			// return a UTF-16 character from a 3-byte UTF-8 char
+			
 			// see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 			return chr((0xF0 & (ord($utf8[0]) << 4)) | (0x0F & (ord($utf8[1]) >> 2))) . chr((0xC0 & (ord($utf8[1]) << 6)) | (0x7F & ord($utf8[2])));
 	}

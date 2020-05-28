@@ -25,7 +25,7 @@
 /**
  *  Class to manage ECM directories
  */
-class EcmDirectory // extends CommonObject
+class EcmDirectory 
 {
 	/**
 	 * @var string ID to identify managed object
@@ -35,7 +35,7 @@ class EcmDirectory // extends CommonObject
 	/**
 	 * @var string Name of table without prefix where object is stored
 	 */
-	//public $table_element='ecm_directories';
+	
 
 	/**
 	 * @var string String with name of icon for myobject. Must be the part after the 'object_' into object_myobject.png
@@ -143,7 +143,7 @@ class EcmDirectory // extends CommonObject
 			$relativepath=$parent->getRelativePath().$relativepath;
 		}
 		$relativepath=preg_replace('/([\/])+/i', '/', $relativepath);	// Avoid duplicate / or \
-		//print $relativepath.'<br>';
+		
 
 		$cat = new EcmDirectory($this->db);
 		$cate_arbo = $cat->get_full_arbo(1);
@@ -151,7 +151,7 @@ class EcmDirectory // extends CommonObject
 		foreach ($cate_arbo as $key => $categ)
 		{
 			$path=str_replace($this->forbiddencharsdir, '_', $categ['fullrelativename']);
-			//print $relativepath.' - '.$path.'<br>';
+			
 			if ($path == $relativepath)
 			{
 				$pathfound=1;
@@ -473,7 +473,7 @@ class EcmDirectory // extends CommonObject
 		global $langs;
 
 		$result='';
-        //$newref=str_replace('_',' ',$this->ref);
+        
         $newref=$this->ref;
         $label=$langs->trans("ShowECMSection").': '.$newref;
         $linkclose='"'.($more?' '.$more:'').' title="'.dol_escape_htmltag($label, 1).'" class="classfortooltip">';
@@ -484,7 +484,7 @@ class EcmDirectory // extends CommonObject
         if ($option == 'indexnotexpanded') $linkstart = '<a href="'.DOL_URL_ROOT.'/ecm/index.php?section='.$this->id.'&amp;sectionexpand=true'.$linkclose;
         $linkend='</a>';
 
-		//$picto=DOL_URL_ROOT.'/theme/common/treemenu/folder.gif';
+		
 		$picto='dir';
 
 		$result .= $linkstart;
@@ -519,7 +519,7 @@ class EcmDirectory // extends CommonObject
 					break;
 				}
 			}
-			//print "c=".$idtosearch."-".$cursorindex;
+			
 
 			if ($cursorindex >= 0)
 			{
@@ -670,12 +670,12 @@ class EcmDirectory // extends CommonObject
 					if (isset($this->cats[$obj->rowid]['id_children']) && is_array($this->cats[$obj->rowid]['id_children']))
 					{
 						$newelempos=count($this->cats[$obj->rowid]['id_children']);
-						//print "this->cats[$i]['id_children'] est deja un tableau de $newelem elements<br>";
+						
 						$this->cats[$obj->rowid]['id_children'][$newelempos]=$obj->rowid_fille;
 					}
 					else
 					{
-						//print "this->cats[".$obj->rowid."]['id_children'] n'est pas encore un tableau<br>";
+						
 						$this->cats[$obj->rowid]['id_children']=array($obj->rowid_fille);
 					}
 				}

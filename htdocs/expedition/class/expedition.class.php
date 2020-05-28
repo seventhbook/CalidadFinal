@@ -688,7 +688,7 @@ class Expedition extends CommonObject
 		
 
 		// Define new ref
-		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
 		{
 			$numref = $this->getNextNumRef($soc);
 		}
@@ -1258,7 +1258,7 @@ class Expedition extends CommonObject
 								break;
 							}
 						}
-						if ($error) break; // break for loop incase of error
+						if ($error) break; 
 					}
 				}
 			}
@@ -2755,7 +2755,7 @@ class ExpeditionLigne extends CommonObjectLine
 		$batch = null;
 		$batch_id = null;
 		$expedition_batch_id = null;
-		if (is_array($this->detail_batch)) 	// array of ExpeditionLineBatch
+		if (is_array($this->detail_batch)) 	
 		{
 			if (count($this->detail_batch) > 1)
 			{

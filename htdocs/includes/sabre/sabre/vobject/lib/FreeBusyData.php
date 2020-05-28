@@ -116,7 +116,7 @@ class FreeBusyData {
         ];
 
         // This is the amount of items that are completely overwritten by the
-        // new item.
+        
         $itemsToDelete = $currentIndex - $insertStartIndex;
         if ($this->data[$currentIndex]['end'] <= $end) $itemsToDelete++;
 

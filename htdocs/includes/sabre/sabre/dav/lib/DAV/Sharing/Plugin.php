@@ -204,7 +204,7 @@ class Plugin extends ServerPlugin {
                 $this->shareResource($path, $message->sharees);
                 $response->setStatus(200);
                 // Adding this because sending a response body may cause issues,
-                // and I wanted some type of indicator the response was handled.
+                
                 $response->setHeader('X-Sabre-Status', 'everything-went-well');
 
                 // Breaking the event chain

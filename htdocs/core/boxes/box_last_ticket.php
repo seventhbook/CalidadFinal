@@ -95,13 +95,13 @@ class box_last_ticket extends ModeleBoxes
             $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."societe as s ON s.rowid=t.fk_soc";
 
             $sql .= " WHERE t.entity = ".$conf->entity;
-            //          $sql.= " AND e.rowid = er.fk_event";
-            //if (!$user->rights->societe->client->voir && !$user->socid) $sql.= " WHERE s.rowid = sc.fk_soc AND sc.fk_user = " .$user->id;
+            
+            
             if ($user->socid) {
                 $sql .= " AND t.fk_soc= ".$user->socid;
             }
 
-            //$sql.= " AND t.fk_statut > 9";
+            
 
             $sql .= " ORDER BY t.datec DESC, t.rowid DESC ";
             $sql .= $this->db->plimit($max, 0);

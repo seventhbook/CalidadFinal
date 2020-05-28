@@ -923,12 +923,12 @@ if (count($listofextcals))
                     $datestart += +($offsettz * 3600);
                     $dateend += +($offsettz * 3600);
 
-                    // $buggedfile is set to uselocalandtznodaylight if conf->global->AGENDA_EXT_BUGGEDFILEx = 'uselocalandtznodaylight'
+                    
                     if ($buggedfile === 'uselocalandtznodaylight')	// unixtime is a local date that does not take daylight into account, TZID is +1 for example for 'Europe/Paris' in summer instead of 2
                     {
                     	
                     }
-                    // $buggedfile is set to uselocalandtzdaylight if conf->global->AGENDA_EXT_BUGGEDFILEx = 'uselocalandtzdaylight' (for example with bluemind)
+                    
                     if ($buggedfile === 'uselocalandtzdaylight')	// unixtime is a local date that does take daylight into account, TZID is +2 for example for 'Europe/Paris' in summer
                     {
                     	$localtzs = new DateTimeZone(preg_replace('/"/', '', $icalevent['DTSTART']['TZID']));
@@ -1483,7 +1483,7 @@ function show_day_events($db, $day, $month, $year, $monthshown, $style, &$eventa
                     
                     print '<table class="centpercent cal_event';
                     print (empty($event->transparency) ? ' cal_event_notbusy' : ' cal_event_busy');
-                    //if (empty($event->transparency) && empty($conf->global->AGENDA_NO_TRANSPARENT_ON_NOT_BUSY)) print ' opacitymedium';	// Not busy
+                    
                     print '" style="'.$h;
                     $colortouse = $color;
                     // If colortouse is similar than background, we force to change it.
@@ -1673,7 +1673,7 @@ function show_day_events($db, $day, $month, $year, $monthshown, $style, &$eventa
                     print ' +'.(count($eventarray[$daykey]) - $maxprint);
                     print '</a>';
                     break;
-                    //$ok=false;        // To avoid to show twice the link
+                    
                 }
             }
 
@@ -1776,7 +1776,7 @@ function sort_events_by_date($a, $b)
 function sort_events_by_percentage($a, $b)
 {
     // Sort events with no percentage before each other
-    // (usefull to sort holidays, sick days or similar on the top)
+    
 
     if ($a->percentage < 0)
     {

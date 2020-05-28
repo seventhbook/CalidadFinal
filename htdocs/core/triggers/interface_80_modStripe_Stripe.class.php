@@ -197,7 +197,7 @@ class InterfaceStripe
 									$isineec=isInEEC($object);
 									if ($object->country_code && $isineec)
 									{
-										//$taxids = $customer->allTaxIds($customer->id);
+										
 										$customer->createTaxId($customer->id, array('type'=>'eu_vat', 'value'=>$vatcleaned));
 									}
 								}

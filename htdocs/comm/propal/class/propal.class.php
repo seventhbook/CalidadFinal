@@ -536,7 +536,7 @@ class Propal extends CommonObject
 			$pu_ht_devise = price2num($pu_ht_devise);
 			$pu_ttc = price2num($pu_ttc);
 			if (!preg_match('/\((.*)\)/', $txtva)) {
-				$txtva = price2num($txtva); // $txtva can have format '5,1' or '5.1' or '5.1(XXX)', we must clean only if '5,1'
+				$txtva = price2num($txtva); 
 			}
 			$txlocaltax1 = price2num($txlocaltax1);
 			$txlocaltax2 = price2num($txlocaltax2);
@@ -1825,7 +1825,7 @@ class Propal extends CommonObject
 		$soc->fetch($this->socid);
 
 		// Define new ref
-		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) // empty should not happened, but when it occurs, the test save life
+		if (!$error && (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref))) 
 		{
 			$num = $this->getNextNumRef($soc);
 		}
@@ -2573,7 +2573,7 @@ class Propal extends CommonObject
 					$newlang = (GETPOST('lang_id', 'aZ09') ? GETPOST('lang_id', 'aZ09') : $this->thirdparty->default_lang);
 					$outputlangs->setDefaultLang($newlang);
 				}
-				//$ret=$object->fetch($id);    // Reload to get new records
+				
 				$this->generateDocument($modelpdf, $outputlangs);
 			}
 
@@ -3988,7 +3988,7 @@ class PropaleLigne extends CommonObjectLine
 		if (empty($this->multicurrency_total_tva)) $this->multicurrency_total_tva = 0;
 		if (empty($this->multicurrency_total_ttc)) $this->multicurrency_total_ttc = 0;
 
-	    // if buy price not defined, define buyprice as configured in margin admin
+	    
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)
@@ -4180,7 +4180,7 @@ class PropaleLigne extends CommonObjectLine
 		if (empty($this->subprice)) $this->subprice = 0;
 		if (empty($this->pa_ht)) $this->pa_ht = 0;
 
-		// if buy price not defined, define buyprice as configured in margin admin
+		
 		if ($this->pa_ht == 0 && $pa_ht_isemptystring)
 		{
 			if (($result = $this->defineBuyPrice($this->subprice, $this->remise_percent, $this->fk_product)) < 0)

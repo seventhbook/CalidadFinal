@@ -42,9 +42,9 @@ require_once DOL_DOCUMENT_ROOT . "/product/class/product.class.php";
 require_once DOL_DOCUMENT_ROOT . "/core/lib/files.lib.php";
 require_once DOL_DOCUMENT_ROOT . "/core/lib/images.lib.php";
 // After this $db, $mysoc, $langs, $conf and $hookmanager are defined (Opened $db handler to database will be closed at end of file).
-// $user is created but empty.
 
-// $langs->setDefaultLang('en_US'); // To change default language of $langs
+
+
 $langs->load("main"); // To load language file for default language
 
 // Global variables

@@ -64,7 +64,7 @@ foreach($modulesdir as $dir)
 
     			if ($modName)
     			{
-    				//print 'xx'.$dir.$file.'<br>';
+    				
 					if (in_array($file, $modules_files))
 					{
 						// File duplicate

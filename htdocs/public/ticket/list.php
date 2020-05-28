@@ -255,14 +255,14 @@ if ($action == "view_ticketlist")
             $param .= '&search_severity='.urlencode($search_severity);
         }
         if (!empty($search_fk_user_assign)) {
-            // -1 value = all so no filter
+            
             if ($search_fk_user_assign > 0) {
                 $filter['t.fk_user_assign'] = $search_fk_user_assign;
                 $param .= '&search_fk_user_assign='.urlencode($search_fk_user_assign);
             }
         }
         if (!empty($search_fk_user_create)) {
-            // -1 value = all so no filter
+            
             if ($search_fk_user_create > 0) {
                 $filter['t.fk_user_create'] = $search_fk_user_create;
                 $param .= '&search_fk_user_create='.urlencode($search_fk_user_create);

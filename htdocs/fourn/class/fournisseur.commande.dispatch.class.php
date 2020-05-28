@@ -56,7 +56,7 @@ class CommandeFournisseurDispatch extends CommonObject
 	/**
 	 * @var string Name of table without prefix where object is stored
 	 */
-	public $table_element='commande_fournisseur_dispatch';		//!< Name of table without prefix where object is stored
+	public $table_element='commande_fournisseur_dispatch';		
 	public $lines=array();
 
     /**
@@ -203,10 +203,10 @@ class CommandeFournisseurDispatch extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            // want this action calls a trigger.
 
-	            //// Call triggers
-	            //$result=$this->call_trigger('MYOBJECT_CREATE',$user);
-	            //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-	            //// End call triggers
+	            
+	            
+	            
+	            
 			}
         }
 
@@ -389,7 +389,7 @@ class CommandeFournisseurDispatch extends CommonObject
 	            // Uncomment this and change MYOBJECT to your own tag if you
 	            $result=$this->call_trigger('LINERECEPTION_UPDATE', $user);
 	            if ($result < 0) $error++;
-	            //// End call triggers
+	            
 			}
 		}
 
@@ -433,10 +433,10 @@ class CommandeFournisseurDispatch extends CommonObject
 				// Uncomment this and change MYOBJECT to your own tag if you
 		        // want this action calls a trigger.
 
-	            //// Call triggers
-	            //$result=$this->call_trigger('MYOBJECT_DELETE',$user);
-	            //if ($result < 0) { $error++; //Do also what you must do to rollback action if trigger fail}
-	            //// End call triggers
+	            
+	            
+	            
+	            
 			}
 		}
 
@@ -501,7 +501,7 @@ class CommandeFournisseurDispatch extends CommonObject
 		$object->statut=0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';

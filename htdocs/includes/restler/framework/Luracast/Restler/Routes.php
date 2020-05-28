@@ -239,7 +239,7 @@ class Routes
                 'metadata' => $metadata,
                 'accessLevel' => $accessLevel,
             );
-            // if manual route
+            
             if (preg_match_all(
                 '/@url\s+(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS)'
                 . '[ \t]*\/?(\S*)/s',
@@ -276,7 +276,7 @@ class Routes
                         }, $url);
                     static::addPath($url, $copy, $httpMethod, $version);
                 }
-                //if auto route enabled, do so
+                
             } elseif (Defaults::$autoRoutingEnabled) {
                 // no configuration found so use convention
                 if (preg_match_all(
@@ -386,10 +386,10 @@ class Routes
         $message = null;
         $methods = array();
         if (isset($p[$path][$httpMethod])) {
-            //================== static routes ==========================
+            
             return static::populate($p[$path][$httpMethod], $data);
         } elseif (isset($p['*'])) {
-            //================== wildcard routes ========================
+            
             uksort($p['*'], function ($a, $b) {
                 return strlen($b) - strlen($a);
             });
@@ -405,11 +405,11 @@ class Routes
                 }
             }
         }
-        //================== dynamic routes =============================
+        
         //add newline char if trailing slash is found
         if (substr($path, -1) == '/')
             $path .= PHP_EOL;
-        //if double slash is found fill in newline char;
+        
         $path = str_replace('//', '/' . PHP_EOL . '/', $path);
         ksort($p);
         foreach ($p as $key => $value) {
@@ -780,27 +780,27 @@ class Routes
         foreach ($tokens as $token) {
             if (is_string($token)) {
                 if ($reading && ',' == $token) {
-                    //===== STOP =====//
+                    
                     $reading = false;
                     if (!empty($namespace))
                         $imports[$alias] = trim($namespace, '\\');
-                    //===== START =====//
+                    
                     $reading = true;
                     $namespace = '';
                     $alias = '';
                 } else {
-                    //===== STOP =====//
+                    
                     $reading = false;
                     if (!empty($namespace))
                         $imports[$alias] = trim($namespace, '\\');
                 }
             } elseif (T_USE == $token[0]) {
-                //===== START =====//
+                
                 $reading = true;
                 $namespace = '';
                 $alias = '';
             } elseif ($reading) {
-                //echo token_name($token[0]) . ' ' . $token[1] . PHP_EOL;
+                
                 switch ($token[0]) {
                     case T_WHITESPACE:
                         continue 2;

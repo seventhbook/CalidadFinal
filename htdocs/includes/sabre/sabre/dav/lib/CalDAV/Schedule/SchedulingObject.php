@@ -125,7 +125,7 @@ class SchedulingObject extends \Sabre\CalDAV\CalendarObject implements IScheduli
     function getACL() {
 
         // An alternative acl may be specified in the object data.
-        //
+        
 
         if (isset($this->objectData['acl'])) {
             return $this->objectData['acl'];

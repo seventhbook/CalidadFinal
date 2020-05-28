@@ -444,8 +444,8 @@ class Don extends CommonObject
 
 		if (!$error && !empty($conf->global->MAIN_DISABLEDRAFTSTATUS))
         {
-            //$res = $this->setValid($user);
-            //if ($res < 0) $error++;
+            
+            
         }
 
         if (!$error)
@@ -1013,7 +1013,7 @@ class Don extends CommonObject
 		$modelpath = "core/modules/dons/";
 
 		// TODO Restore use of commonGenerateDocument instead of dedicated code here
-		//return $this->commonGenerateDocument($modelpath, $modele, $outputlangs, $hidedetails, $hidedesc, $hideref);
+		
 
 		// Increase limit for PDF build
 		$err = error_reporting();

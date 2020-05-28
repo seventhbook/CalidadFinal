@@ -477,10 +477,10 @@ class RRuleIterator implements Iterator {
             // If we made it all the way here, it means there were no
             // valid occurrences, and we need to advance to the next
             // month.
-            //
+            
             // This line does not currently work in hhvm. Temporary workaround
             // follows:
-            // $this->currentDate->modify('first day of this month');
+            
             $this->currentDate = new DateTimeImmutable($this->currentDate->format('Y-m-1 H:i:s'), $this->currentDate->getTimezone());
             // end of workaround
             $this->currentDate = $this->currentDate->modify('+ ' . $this->interval . ' months');
@@ -521,7 +521,7 @@ class RRuleIterator implements Iterator {
                     $counter++;
                     // Here we increase the year count by the interval, until
                     // we hit a date that's also in a leap year.
-                    //
+                    
                     // We could just find the next interval that's dividable by
                     // 4, but that would ignore the rule that there's no leap
                     // year every year that's dividable by a 100, but not by
@@ -543,7 +543,7 @@ class RRuleIterator implements Iterator {
                     foreach ($this->byDay as $byDay) {
                         $dayOffsets[] = $this->dayMap[$byDay];
                     }
-                } else {   // default is Monday
+                } else {   
                     $dayOffsets[] = 1;
                 }
 
@@ -569,7 +569,7 @@ class RRuleIterator implements Iterator {
                         return;
                     }
 
-                    // if there is no date found, check the next year
+                    
                     $currentYear += $this->interval;
                 }
             }
@@ -580,7 +580,7 @@ class RRuleIterator implements Iterator {
                     foreach ($this->byDay as $byDay) {
                         $dayOffsets[] = $this->dayMap[$byDay];
                     }
-                } else {   // default is Monday-Sunday
+                } else {   
                     $dayOffsets = [1,2,3,4,5,6,7];
                 }
 
@@ -609,7 +609,7 @@ class RRuleIterator implements Iterator {
                         return;
                     }
 
-                    // if there is no date found, check the next year
+                    
                     $currentYear += $this->interval;
                 }
             }
@@ -736,12 +736,12 @@ class RRuleIterator implements Iterator {
 
                     // In some cases events are generated with an UNTIL=
                     // parameter before the actual start of the event.
-                    //
+                    
                     // Not sure why this is happening. We assume that the
                     // intention was that the event only recurs once.
-                    //
+                    
                     // So we are modifying the parameter so our code doesn't
-                    // break.
+                    
                     if ($this->until < $this->startDate) {
                         $this->until = $this->startDate;
                     }
@@ -895,7 +895,7 @@ class RRuleIterator implements Iterator {
                     }
                 } else {
 
-                    // if it was negative we count from the end of the array
+                    
                     // might not exist, fx. -5th tuesday
                     if (isset($dayHits[count($dayHits) + $offset])) {
                         $byDayResults[] = $dayHits[count($dayHits) + $offset];
@@ -927,8 +927,8 @@ class RRuleIterator implements Iterator {
         }
 
         // If there was just byDay or just byMonthDay, they just specify our
-        // (almost) final list. If both were provided, then byDay limits the
-        // list.
+        
+        
         if ($this->byMonthDay && $this->byDay) {
             $result = array_intersect($byMonthDayResults, $byDayResults);
         } elseif ($this->byMonthDay) {

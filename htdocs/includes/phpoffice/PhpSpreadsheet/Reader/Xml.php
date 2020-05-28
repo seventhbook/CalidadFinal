@@ -64,7 +64,7 @@ class Xml extends BaseReader
         //    XML data type            xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
         //    MS-persist recordset    xmlns:rs="urn:schemas-microsoft-com:rowset"
         //    Rowset                    xmlns:z="#RowsetSchema"
-        //
+        
 
         $signature = [
             '<?xml version="1.0"',

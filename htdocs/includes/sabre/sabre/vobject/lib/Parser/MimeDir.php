@@ -358,7 +358,7 @@ class MimeDir extends Parser {
             ) (?=[;:,])
             /xi";
 
-        //echo $regex, "\n"; die();
+        
         preg_match_all($regex, $line, $matches,  PREG_SET_ORDER);
 
         $property = [
@@ -436,7 +436,7 @@ class MimeDir extends Parser {
 
         // vCard 2.1 states that parameters may appear without a name, and only
         // a value. We can deduce the value based on it's name.
-        //
+        
         // Our parser will get those as parameters without a value instead, so
         // we're filtering these parameters out first.
         $namedParameters = [];
@@ -660,7 +660,7 @@ class MimeDir extends Parser {
     private function extractQuotedPrintableValue() {
 
         // We need to parse the raw line again to get the start of the value.
-        //
+        
         // We are basically looking for the first colon (:), but we need to
         // skip over the parameters first, as they may contain one.
         $regex = '/^

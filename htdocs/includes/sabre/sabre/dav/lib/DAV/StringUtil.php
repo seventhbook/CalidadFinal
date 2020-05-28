@@ -29,7 +29,7 @@ class StringUtil {
         switch ($collation) {
 
             case 'i;ascii-casemap' :
-                // default strtolower takes locale into consideration
+                
                 // we don't want this.
                 $haystack = str_replace(range('a', 'z'), range('A', 'Z'), $haystack);
                 $needle = str_replace(range('a', 'z'), range('A', 'Z'), $needle);

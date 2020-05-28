@@ -181,7 +181,7 @@ if (empty($reshook))
 	elseif ($action == 'reopen' && $usercancreate) {
 		$result = $object->fetch($id);
 
-		if ($object->statut == Facture::STATUS_CLOSED || ($object->statut == Facture::STATUS_ABANDONED && ($object->close_code != 'replaced' || $object->getIdReplacingInvoice() == 0)) || ($object->statut == Facture::STATUS_VALIDATED && $object->paye == 1)) {    // ($object->statut == 1 && $object->paye == 1) should not happened but can be found when data are corrupted
+		if ($object->statut == Facture::STATUS_CLOSED || ($object->statut == Facture::STATUS_ABANDONED && ($object->close_code != 'replaced' || $object->getIdReplacingInvoice() == 0)) || ($object->statut == Facture::STATUS_VALIDATED && $object->paye == 1)) {    
 			$result = $object->set_unpaid($user);
 			if ($result > 0) {
 				header('Location: '.$_SERVER["PHP_SELF"].'?facid='.$id);
@@ -287,7 +287,7 @@ if (empty($reshook))
 			}
 
 			// Also negative lines should not be allowed on 'non Credit notes' invoices. A test is done when adding or updating lines but we must
-			// do it again in validation to avoid cases where invoice is created from another object that allow negative lines.
+			
 			// Note that we can accept the negative line if sum with other lines with same vat makes total positive: Because all the lines will be merged together
 			// when converted into 'available credit' and we will get a positive available credit line.
 			// Note: Other solution if you want to add a negative line on invoice, is to create a discount for customer and consumme it (but this is possible on standard invoice only).
@@ -1474,7 +1474,7 @@ if (empty($reshook))
 										0,
 										0,
 										0
-										//,$langs->trans('Deposit') //Deprecated
+										
 									);
 							}
 
@@ -1900,7 +1900,7 @@ if (empty($reshook))
 
 			// Define special_code for special lines
 			$special_code = 0;
-			// if (empty($_POST['qty'])) $special_code=3; // Options should not exists on invoices
+			
 
 			// Ecrase $pu par celui du produit
 			// Ecrase $desc par celui du produit
@@ -3286,7 +3286,7 @@ if ($action == 'create')
 
 	        $retained_warranty = GETPOST('retained_warranty', 'int');
 	        if(empty($retained_warranty)){
-                if(!empty($objectsrc->retained_warranty)){ // use previous situation value
+                if(!empty($objectsrc->retained_warranty)){ 
                     $retained_warranty = $objectsrc->retained_warranty;
                 }else{
                     $retained_warranty = $conf->global->INVOICE_SITUATION_DEFAULT_RETAINED_WARRANTY_PERCENT;
@@ -3301,7 +3301,7 @@ if ($action == 'create')
 	        $retained_warranty_fk_cond_reglement = GETPOST('retained_warranty_fk_cond_reglement', 'int');
 	        if(empty($retained_warranty_fk_cond_reglement)){
                 $retained_warranty_fk_cond_reglement = $conf->global->INVOICE_SITUATION_DEFAULT_RETAINED_WARRANTY_COND_ID;
-                if(!empty($objectsrc->retained_warranty_fk_cond_reglement)){ // use previous situation value
+                if(!empty($objectsrc->retained_warranty_fk_cond_reglement)){ 
                     $retained_warranty_fk_cond_reglement = $objectsrc->retained_warranty_fk_cond_reglement;
                 }else{
                     $retained_warranty_fk_cond_reglement = $conf->global->INVOICE_SITUATION_DEFAULT_RETAINED_WARRANTY_COND_ID;
@@ -3447,7 +3447,7 @@ if ($action == 'create')
 		print '<td valign="top" colspan="2">';
 		$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 		print $doleditor->Create(1);
-		// print '<textarea name="note_private" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'.</textarea>
+		
 		print '</td></tr>';
 	}
 
@@ -3645,8 +3645,8 @@ elseif ($id > 0 || !empty($ref))
 				if ($conf->browser->name == 'ie') $forcecombo = 1; // There is a bug in IE10 that make combo inside popup crazy
 				$formquestion = array(
 					// 'text' => $langs->trans("ConfirmClone"),
-					// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-					// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' => 1),
+					
+					
 					array('type' => 'other', 'name' => 'idwarehouse', 'label' => $label, 'value' => $formproduct->selectWarehouses(GETPOST('idwarehouse') ?GETPOST('idwarehouse') : 'ifone', 'idwarehouse', '', 1, 0, 0, $langs->trans("NoStockAction"), 0, $forcecombo))
 				);
 				$formconfirm = $form->formconfirm($_SERVER['PHP_SELF'].'?facid='.$object->id, $langs->trans('DeleteBill'), $text, 'confirm_delete', $formquestion, "yes", 1);
@@ -3728,10 +3728,10 @@ elseif ($id > 0 || !empty($ref))
 				}
 				$formquestion = array(
 									// 'text' => $langs->trans("ConfirmClone"),
-									// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' =>
+									
 									// 1),
-									// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value'
-									// => 1),
+									
+									
 									array('type' => 'other', 'name' => 'idwarehouse', 'label' => $label, 'value' => $value));
 			}
 		}
@@ -3773,10 +3773,10 @@ elseif ($id > 0 || !empty($ref))
 				}
 				$formquestion = array(
 									// 'text' => $langs->trans("ConfirmClone"),
-									// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' =>
+									
 									// 1),
-									// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value'
-									// => 1),
+									
+									
 									array('type' => 'other', 'name' => 'idwarehouse', 'label' => $label, 'value' => $value));
 			}
 		}
@@ -5233,7 +5233,7 @@ elseif ($id > 0 || !empty($ref))
 		    && $object->statut == Facture::STATUS_DRAFT
 		    && ($object->type == Facture::TYPE_STANDARD || $object->type == Facture::TYPE_REPLACEMENT || $object->type == Facture::TYPE_DEPOSIT || $object->type == Facture::TYPE_PROFORMA || $object->type == Facture::TYPE_SITUATION))
 		{
-		    $compatibleImportElementsList = array('commande', 'propal'); // import from linked elements
+		    $compatibleImportElementsList = array('commande', 'propal'); 
 		}
 		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem, $compatibleImportElementsList);
 

@@ -238,7 +238,7 @@ function _createStatusBadgeCss($statusName, $statusVarNamePrefix = '', $commentL
 
 		print $cssPrefix.".badge-status".$statusName.":focus, ".$cssPrefix.".badge-status".$statusName.":hover {\n";
 		print "    color: ".$thisBadgeTextColor." !important;\n";
-		//print "    background-color: " . colorDarker($thisBadgeBackgroundColor, 10) . ";\n";
+		
 		if (in_array($statusName, $TBadgeBorderOnly)) {
 			print "        border-color: ".colorDarker($thisBadgeBorderColor, 10).";\n";
 		}

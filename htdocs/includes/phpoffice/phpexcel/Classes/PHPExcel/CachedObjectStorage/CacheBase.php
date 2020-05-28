@@ -83,7 +83,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		//	This is maintained within the cache controller to facilitate re-attaching it to PHPExcel_Cell objects when
 		//		they are woken from a serialized state
 		$this->_parent = $parent;
-	}	//	function __construct()
+	}	
 
 
 	/**
@@ -108,7 +108,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		}
 		//	Check if the requested entry exists in the cache
 		return isset($this->_cellCache[$pCoord]);
-	}	//	function isDataSet()
+	}	
 
 
 	/**
@@ -129,7 +129,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		}
 
 		return TRUE;
-	}	//	function moveCell()
+	}	
 
 
     /**
@@ -141,7 +141,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
      */
 	public function updateCacheData(PHPExcel_Cell $cell) {
 		return $this->addCacheData($cell->getCoordinate(),$cell);
-	}	//	function updateCacheData()
+	}	
 
 
     /**
@@ -161,7 +161,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 			unset($this->_cellCache[$pCoord]);
 		}
 		$this->_currentCellIsDirty = false;
-	}	//	function deleteCacheData()
+	}	
 
 
 	/**
@@ -171,7 +171,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 	 */
 	public function getCellList() {
 		return array_keys($this->_cellCache);
-	}	//	function getCellList()
+	}	
 
 
 	/**
@@ -188,7 +188,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		ksort($sortKeys);
 
 		return array_values($sortKeys);
-	}	//	function sortCellList()
+	}	
 
 
 
@@ -331,7 +331,7 @@ abstract class PHPExcel_CachedObjectStorage_CacheBase {
 		if (($this->_currentObject !== NULL) && (is_object($this->_currentObject))) {
 			$this->_currentObject->attach($this);
 		}
-	}	//	function copyCellCollection()
+	}	
 
     /**
      * Remove a row, deleting all cells in that row

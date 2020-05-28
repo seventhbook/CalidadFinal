@@ -84,7 +84,7 @@ class Dolistore
 	    try {
 	        $this->api = new PrestaShopWebservice($conf->global->MAIN_MODULE_DOLISTORE_API_SRV, $conf->global->MAIN_MODULE_DOLISTORE_API_KEY, $this->debug_api);
 	        dol_syslog("Call API with MAIN_MODULE_DOLISTORE_API_SRV = ".$conf->global->MAIN_MODULE_DOLISTORE_API_SRV);
-	        // $conf->global->MAIN_MODULE_DOLISTORE_API_KEY is for the login of basic auth. There is no password as it is public data.
+	        
 
 	        // Here we set the option array for the Webservice : we want categories resources
 	        $opt              = array();
@@ -133,7 +133,7 @@ class Dolistore
 		try {
 			$this->api = new PrestaShopWebservice($conf->global->MAIN_MODULE_DOLISTORE_API_SRV, $conf->global->MAIN_MODULE_DOLISTORE_API_KEY, $this->debug_api);
 			dol_syslog("Call API with MAIN_MODULE_DOLISTORE_API_SRV = ".$conf->global->MAIN_MODULE_DOLISTORE_API_SRV);
-			// $conf->global->MAIN_MODULE_DOLISTORE_API_KEY is for the login of basic auth. There is no password as it is public data.
+			
 
 			// Here we set the option array for the Webservice : we want products resources
 			$opt             = array();
@@ -154,7 +154,7 @@ class Dolistore
 				}
 				$opt['filter[id]'] = '['.implode('|', $products).']';
 			} elseif ($this->categorie != 0) {   // We filter on category, so we first get list of product id in this category
-			    // $opt2['url'] is set by default to $this->url.'/api/'.$options['resource'];
+			    
 				$opt2['resource'] = 'categories';
 				$opt2['id']       = $this->categorie;
 
@@ -172,7 +172,7 @@ class Dolistore
 			$opt['sort']           = 'id_desc';
 			$opt['filter[active]'] = '[1]';
 			$opt['limit']          = "$this->start,$this->end";
-			// $opt['filter[id]'] contais list of product id that are result of search
+			
 
 			// Call API to get the detail
 			dol_syslog("Call API with opt = ".var_export($opt, true));
@@ -305,7 +305,7 @@ class Dolistore
 				$compatible = 'NotCompatible';
 			}
 
-			//.'<br><a class="inline-block valignmiddle" target="_blank" href="'.$this->shop_url.$product->id.'"><span class="details button">'.$langs->trans("SeeInMarkerPlace").'</span></a>
+			
 
 			//output template
 			$html .= '<tr class="app '.$parity.' '.$compatible.'">
@@ -430,7 +430,7 @@ class Dolistore
 				break;
 			}
 		}
-		//print join('.',$versionarray1).'('.count($versionarray1).') / '.join('.',$versionarray2).'('.count($versionarray2).') => '.$ret.'<br>'."\n";
+		
 		return $ret;
 	}
 }

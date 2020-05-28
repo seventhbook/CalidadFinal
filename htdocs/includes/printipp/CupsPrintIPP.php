@@ -52,9 +52,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         self::_initTags();
     }
 
-//
+
 // OPERATIONS
-//
+
     public function cupsGetDefaults($attributes=array("all"))
     {
         //The CUPS-Get-Default operation returns the default printer URI and attributes
@@ -462,9 +462,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         return $result;
     }
 
-//
+
 // SETUP
-//
+
     protected function _initTags ()
     {
         // override parent with specific cups attributes
@@ -503,9 +503,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         $this->job_tags = array_merge ($this->job_tags, $job_tags);
     }
 
-    //
+    
     // REQUEST BUILDING
-    //
+    
     protected function _enumBuild ($tag,$value)
     {
         $value_built = parent::_enumBuild($tag,$value);
@@ -549,9 +549,9 @@ class CupsPrintIPP extends ExtendedPrintIPP
         return $prepend.$value_built;
     }
 
-    //
+    
     // RESPONSE PARSING
-    //
+    
     private function _getAvailablePrinters ()
     {
         $this->available_printers = array();

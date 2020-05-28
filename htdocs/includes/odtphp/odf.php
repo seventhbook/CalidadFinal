@@ -107,14 +107,14 @@ class Odf
 		$this->file->close();
 
 
-		//print "tmpdir=".$tmpdir;
-		//print "filename=".$filename;
-		//print "tmpfile=".$tmpfile;
+		
+		
+		
 
 		copy($filename, $this->tmpfile);
 
 		// Now file has been loaded, we must move the [!-- BEGIN and [!-- END tags outside the
-		// <table:table-row tag and clean bad lines tags.
+		
 		$this->_moveRowSegments();
 	}
 
@@ -132,11 +132,11 @@ class Odf
 	{
 		$tag = $this->config['DELIMITER_LEFT'] . $key . $this->config['DELIMITER_RIGHT'];
 		// TODO Warning string may be:
-		// <text:span text:style-name="T13">{</text:span><text:span text:style-name="T12">aaa</text:span><text:span text:style-name="T13">}</text:span>
+		
 		// instead of {aaa} so we should enhance this function.
-		//print $key.'-'.$value.'-'.strpos($this->contentXml, $this->config['DELIMITER_LEFT'] . $key . $this->config['DELIMITER_RIGHT']).'<br>';
+		
 		if (strpos($this->contentXml, $tag) === false && strpos($this->stylesXml, $tag) === false) {
-			//if (strpos($this->contentXml, '">'. $key . '</text;span>') === false) {
+			
 			throw new OdfException("var $key not found in the document");
 			//}
 		}
@@ -176,8 +176,8 @@ class Odf
 			$value=preg_replace('/<br\s+[^<>\/]*>/i',"\n",$value);
 			$value=preg_replace('/<br\s+[^<>\/]*\/>/i',"\n",$value);
 
-			//$value=preg_replace('/<strong>/','__lt__text:p text:style-name=__quot__bold__quot____gt__',$value);
-			//$value=preg_replace('/<\/strong>/','__lt__/text:p__gt__',$value);
+			
+			
 
 			$value=dol_string_nohtmltag($value, 0);
 		}
@@ -195,9 +195,9 @@ class Odf
 	{
 		$value = str_replace("\n", "<text:line-break/>", $value);
 
-		//$value = str_replace("__lt__", "<", $value);
-		//$value = str_replace("__gt__", ">", $value);
-		//$value = str_replace("__quot__", '"', $value);
+		
+		
+		
 
 		return $value;
 	}
@@ -321,7 +321,7 @@ IMG;
 			if ($value)
 			{
 			    //dol_syslog("Var ".$key." is defined, we remove the IF, ELSE and ENDIF ");
-			    //$sav=$this->contentXml;
+			    
 				// Remove the IF tag
 				$this->contentXml = str_replace('[!-- IF '.$key.' --]', '', $this->contentXml);
 				// Remove everything between the ELSE tag (if it exists) and the ENDIF tag
@@ -337,7 +337,7 @@ IMG;
 			else
 			{
 			    //dol_syslog("Var ".$key." is not defined, we remove the IF, ELSE and ENDIF ");
-			    //$sav=$this->contentXml;
+			    
 				// Find all conditional blocks for this variable: from IF to ELSE and to ENDIF
 				$reg = '@\[!--\sIF\s' . $key . '\s--\](.*)(\[!--\sELSE\s' . $key . '\s--\](.*))?\[!--\sENDIF\s' . $key . '\s--\]@smU'; // U modifier = all quantifiers are non-greedy
 				preg_match_all($reg, $this->contentXml, $matches, PREG_SET_ORDER);
@@ -374,7 +374,7 @@ IMG;
 			throw new OdfException($segment->getName() . 'cannot be parsed, has it been set yet ?');
 		}
 		$string = $segment->getName();
-		// $reg = '@<text:p[^>]*>\[!--\sBEGIN\s' . $string . '\s--\](.*)\[!--.+END\s' . $string . '\s--\]<\/text:p>@smU';
+		
 		$reg = '@\[!--\sBEGIN\s' . $string . '\s--\](.*)\[!--.+END\s' . $string . '\s--\]@smU';
 		$this->contentXml = preg_replace($reg, $segment->getXmlParsed(), $this->contentXml);
 		return $this;
@@ -424,7 +424,7 @@ IMG;
 		if (array_key_exists($segment, $this->segments)) {
 			return $this->segments[$segment];
 		}
-		// $reg = "#\[!--\sBEGIN\s$segment\s--\]<\/text:p>(.*)<text:p\s.*>\[!--\sEND\s$segment\s--\]#sm";
+		
 		$reg = "#\[!--\sBEGIN\s$segment\s--\](.*)\[!--\sEND\s$segment\s--\]#sm";
 		if (preg_match($reg, html_entity_decode($this->contentXml), $m) == 0) {
 			throw new OdfException("'".$segment."' segment not found in the document. The tag [!-- BEGIN xxx --] or [!-- END xxx --] is not present into content file.");
@@ -466,7 +466,7 @@ IMG;
 		$this->_parse('meta');
 
 		$this->setMetaData();
-		//print $this->metaXml;exit;
+		
 
 		if (! $this->file->addFromString('content.xml', $this->contentXml)) {
 			throw new OdfException('Error during file export addFromString content');
@@ -609,11 +609,11 @@ IMG;
 			//DEBUG: Waiting for LibreOffice instance to exit
 
 			// If it fails:
-			// - set shell of user to bash instead of nologin.
-			// - set permission to read/write to user on home directory /var/www so user can create the libreoffice , dconf and .cache dir and files then set permission back
+			
+			
 
 			$command = $conf->global->MAIN_ODT_AS_PDF.' '.escapeshellcmd($name);
-			//$command = '/usr/bin/unoconv -vvv '.escapeshellcmd($name);
+			
 		}
 		else
 		{
@@ -631,8 +631,8 @@ IMG;
 			}
 		}
 
-		//$dirname=dirname($name);
-		//$command = DOL_DOCUMENT_ROOT.'/includes/odtphp/odt2pdf.sh '.$name.' '.$dirname;
+		
+		
 
 		dol_syslog(get_class($this).'::exportAsAttachedPDF $execmethod='.$execmethod.' Run command='.$command,LOG_DEBUG);
 		$retval=0; $output_arr=array();

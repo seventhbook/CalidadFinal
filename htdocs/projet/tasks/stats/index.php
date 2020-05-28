@@ -45,7 +45,7 @@ if ($user->socid > 0)
 }
 $nowyear = strftime("%Y", dol_now());
 $year = GETPOST('year') > 0 ?GETPOST('year') : $nowyear;
-//$startyear=$year-2;
+
 $startyear = $year - 1;
 $endyear = $year;
 
@@ -80,7 +80,7 @@ if (!empty($year)) $stats_tasks->year = $year;
 
 
 // Build graphic number of object
-// $data = array(array('Lib',val1,val2,val3),...)
+
 $data = $stats_tasks->getNbByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
 

@@ -53,7 +53,7 @@ if (empty($inputalsopricewithtax)) $inputalsopricewithtax = 0;
 $colspan = 3; // Columns: total ht + col edit + col delete
 if (!empty($conf->multicurrency->enabled) && $this->multicurrency_code != $conf->currency) $colspan++; //Add column for Total (currency) if required
 if (in_array($object->element, array('propal', 'commande', 'order', 'facture', 'facturerec', 'invoice', 'supplier_proposal', 'order_supplier', 'invoice_supplier'))) $colspan++; // With this, there is a column move button
-//print $object->element;
+
 // Lines for extrafield
 $objectline = null;
 if (!empty($extrafields))
@@ -92,7 +92,7 @@ if ($nolinesbefore) {
 			<td class="linecolnum center"></td>
 		<?php } ?>
 		<td class="linecoldescription minwidth500imp">
-			<div id="add"></div><span class="hideonsmartphone"><?php echo $langs->trans('AddNewLine'); ?></span><?php // echo $langs->trans("FreeZone"); ?>
+			<div id="add"></div><span class="hideonsmartphone"><?php echo $langs->trans('AddNewLine'); ?></span><?php 
 		</td>
 		<?php
 		if ($object->element == 'supplier_proposal' || $object->element == 'order_supplier' || $object->element == 'invoice_supplier')	// We must have same test in printObjectLines
@@ -179,7 +179,7 @@ if ($nolinesbefore) {
 			{
 				echo '<label for="prod_entry_mode_free">';
 				echo '<input type="radio" class="prod_entry_mode_free" name="prod_entry_mode" id="prod_entry_mode_free" value="free"';
-				//echo (GETPOST('prod_entry_mode')=='free' ? ' checked' : ((empty($forceall) && (empty($conf->product->enabled) || empty($conf->service->enabled)))?' checked':'') );
+				
 				echo (GETPOST('prod_entry_mode') == 'free' ? ' checked' : '');
 				echo '> ';
 				// Show type selector
@@ -257,7 +257,7 @@ if ($nolinesbefore) {
 			}
 			else
 			{
-				// $senderissupplier=2 is the same as 1 but disables test on minimum qty and disable autofill qty with minimum
+				
 				if ($senderissupplier != 2)
 				{
 					$ajaxoptions = array(

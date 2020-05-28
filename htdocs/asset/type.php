@@ -265,7 +265,7 @@ if (!$rowid && $action != 'create' && $action != 'edit')
 			print '<tr class="oddeven">';
 			print '<td>';
 			print $assettype->getNomUrl(1);
-			//<a href="'.$_SERVER["PHP_SELF"].'?rowid='.$objp->rowid.'">'.img_object($langs->trans("ShowType"),'group').' '.$objp->rowid.'</a>
+			
 			print '</td>';
 			print '<td>'.dol_escape_htmltag($objp->label).'</td>';
 
@@ -618,7 +618,7 @@ if ($rowid > 0)
 			{
 				if (isset($_POST["options_".$key])) {
 					if (is_array($_POST["options_".$key])) {
-						// $_POST["options"] is an array but following code expects a comma separated string
+						
 						$value = implode(",", $_POST["options_".$key]);
 					} else {
 						$value = $_POST["options_".$key];

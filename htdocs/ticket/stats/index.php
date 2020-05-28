@@ -45,7 +45,7 @@ if ($user->socid > 0)
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
+
 $startyear=$year-1;
 $endyear=$year;
 
@@ -77,7 +77,7 @@ if ($object_status != '' && $object_status >= -1) $stats->where .= ' AND fk_stat
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 
 if (!$user->rights->societe->client->voir || $user->socid)
@@ -119,7 +119,7 @@ if (! $mesg)
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 if (!$user->rights->societe->client->voir || $user->socid)
 {
@@ -262,10 +262,10 @@ print '<tr class="liste_titre" height="24">';
 print '<td class="center">'.$langs->trans("Year").'</td>';
 print '<td class="right">'.$langs->trans("NbOfTickets").'</td>';
 print '<td class="right">%</td>';
-//print '<td class="right">'.$langs->trans("AmountTotal").'</td>';
-//print '<td class="right">%</td>';
-//print '<td class="right">'.$langs->trans("AmountAverage").'</td>';
-//print '<td class="right">%</td>';
+
+
+
+
 print '</tr>';
 
 $oldyear=0;
@@ -280,10 +280,10 @@ foreach ($data as $val)
 		print '<td class="center"><a href="'.$_SERVER["PHP_SELF"].'?year='.$oldyear.($socid>0?'&socid='.$socid:'').($userid>0?'&userid='.$userid:'').'">'.$oldyear.'</a></td>';
 		print '<td class="right">0</td>';
 		print '<td class="right"></td>';
-		//print '<td class="right">0</td>';
-		//print '<td class="right"></td>';
-		//print '<td class="right">0</td>';
-		//print '<td class="right"></td>';
+		
+		
+		
+		
 		print '</tr>';
 	}
 
@@ -292,10 +292,10 @@ foreach ($data as $val)
 	print '<td class="center"><a href="'.$_SERVER["PHP_SELF"].'?year='.$year.($socid>0?'&socid='.$socid:'').($userid>0?'&userid='.$userid:'').'">'.$year.'</a></td>';
 	print '<td class="right">'.$val['nb'].'</td>';
 	print '<td class="right" style="'.(($val['nb_diff'] >= 0) ? 'color: green;':'color: red;').'">'.round($val['nb_diff']).'</td>';
-	//print '<td class="right">'.price(price2num($val['total'], 'MT'), 1).'</td>';
-	//print '<td class="right" style="'.(($val['total_diff'] >= 0) ? 'color: green;':'color: red;').'">'.round($val['total_diff']).'</td>';
-	//print '<td class="right">'.price(price2num($val['avg'], 'MT'), 1).'</td>';
-	//print '<td class="right" style="'.(($val['avg_diff'] >= 0) ? 'color: green;':'color: red;').'">'.round($val['avg_diff']).'</td>';
+	
+	
+	
+	
 	print '</tr>';
 	$oldyear=$year;
 }
@@ -313,9 +313,9 @@ if ($mesg) { print $mesg; }
 else {
     print $px1->show();
     print "<br>\n";
-    //print $px2->show();
-    //print "<br>\n";
-    //print $px3->show();
+    
+    
+    
 }
 print '</td></tr></table>';
 

@@ -259,7 +259,7 @@ if (empty($reshook))
     					$qty = "qtyl".$i.'_'.$j;
     				}
 
-    				$batch_line[$i]['detail'] = $sub_qty; // array of details
+    				$batch_line[$i]['detail'] = $sub_qty; 
     				$batch_line[$i]['qty'] = $subtotalqty;
     				$batch_line[$i]['ix_l'] = GETPOST($idl, 'int');
 
@@ -487,7 +487,7 @@ if (empty($reshook))
 
 	elseif ($action == 'setdate_livraison' && $user->rights->expedition->creer)
 	{
-	    //print "x ".$_POST['liv_month'].", ".$_POST['liv_day'].", ".$_POST['liv_year'];
+	    
 	    $datedelivery = dol_mktime(GETPOST('liv_hour', 'int'), GETPOST('liv_min', 'int'), 0, GETPOST('liv_month', 'int'), GETPOST('liv_day', 'int'), GETPOST('liv_year', 'int'));
 
 	    $object->fetch($id);
@@ -648,7 +648,7 @@ if (empty($reshook))
 						$batch_qty = GETPOST($qty, 'int');
 						if (!empty($batch_id) && ($batch_id != $detail_batch->fk_origin_stock || $batch_qty != $detail_batch->qty))
 						{
-							if ($lotStock->fetch($batch_id) > 0 && $line->fetch($detail_batch->fk_expeditiondet) > 0)	// $line is ExpeditionLine
+							if ($lotStock->fetch($batch_id) > 0 && $line->fetch($detail_batch->fk_expeditiondet) > 0)	
 							{
 								if ($lines[$i]->entrepot_id != 0)
 								{
@@ -967,8 +967,8 @@ if ($action == 'create')
             // Date delivery planned
             print '<tr><td>'.$langs->trans("DateDeliveryPlanned").'</td>';
             print '<td colspan="3">';
-            //print dol_print_date($object->date_livraison, "day");	// date_livraison come from order and will be stored into date_delivery planed.
-            $date_delivery = ($date_delivery ? $date_delivery : $object->date_livraison); // $date_delivery comes from GETPOST
+            
+            $date_delivery = ($date_delivery ? $date_delivery : $object->date_livraison); 
             print $form->selectDate($date_delivery ? $date_delivery : -1, 'date_delivery', 1, 1, 1);
             print "</td>\n";
             print '</tr>';
@@ -1263,7 +1263,7 @@ if ($action == 'create')
 
 										if ($tmpentrepot_id > 0 && $tmpentrepot_id == $warehouse_id)
 										{
-											//print $stock.' '.$quantityToBeDelivered;
+											
 											if ($stock < $quantityToBeDelivered)
 											{
 												print ' '.img_warning($langs->trans("StockTooLow")); // Stock too low for this $warehouse_id but you can change warehouse
@@ -1289,7 +1289,7 @@ if ($action == 'create')
 								{
 									foreach ($prods_arbo as $key => $value)
 									{
-										//print $value[0];
+										
 										$img = '';
 										if ($value['stock'] < $value['stock_alert'])
 										{
@@ -1325,7 +1325,7 @@ if ($action == 'create')
 							print '<input name="idl'.$indiceAsked.'" type="hidden" value="'.$line->id.'">';
 							if (is_object($product->stock_warehouse[$warehouse_id]) && count($product->stock_warehouse[$warehouse_id]->detail_batch))
 							{
-								foreach ($product->stock_warehouse[$warehouse_id]->detail_batch as $dbatch)	// $dbatch is instance of Productbatch
+								foreach ($product->stock_warehouse[$warehouse_id]->detail_batch as $dbatch)	
 								{
 									//var_dump($dbatch);
 									$batchStock = + $dbatch->qty; // To get a numeric
@@ -1392,7 +1392,7 @@ if ($action == 'create')
 							    }
 							}
 							$tmpwarehouseObject = new Entrepot($db);
-							foreach ($product->stock_warehouse as $warehouse_id=>$stock_warehouse)    // $stock_warehouse is product_stock
+							foreach ($product->stock_warehouse as $warehouse_id=>$stock_warehouse)    
 							{
 								$tmpwarehouseObject->fetch($warehouse_id);
 								if ($stock_warehouse->real > 0)
@@ -1446,7 +1446,7 @@ if ($action == 'create')
 								{
 									foreach ($prods_arbo as $key => $value)
 									{
-										//print $value[0];
+										
 										$img = '';
 										if ($value['stock'] < $value['stock_alert'])
 										{
@@ -1504,7 +1504,7 @@ if ($action == 'create')
 										print '<!-- Show details of lot -->';
 										print '<input name="batchl'.$indiceAsked.'_'.$subj.'" type="hidden" value="'.$dbatch->id.'">';
 
-										//print '|'.$line->fk_product.'|'.$dbatch->batch.'|<br>';
+										
 										print $langs->trans("Batch").': ';
 										$result = $productlotObject->fetch(0, $line->fk_product, $dbatch->batch);
 										if ($result > 0) print $productlotObject->getNomUrl(1);
@@ -1575,7 +1575,7 @@ if ($action == 'create')
 
 						$srcLine = new OrderLine($db);
 						$srcLine->fetch_optionals($line->id); // fetch extrafields also available in orderline
-						//$line->fetch_optionals($line->id);
+						
 						$line->array_options = array_merge($line->array_options, $srcLine->array_options);
 
 						print $expLine->showOptionals($extrafields, 'edit', array('style'=>'class="drag drop oddeven"', 'colspan'=>$colspan), $indiceAsked, '', empty($conf->global->MAIN_EXTRAFIELDS_IN_ONE_TD) ? 0 : 1);
@@ -1736,7 +1736,7 @@ elseif ($id || $ref)
                     $morehtmlref .= '<a class="editfielda" href="'.$_SERVER['PHP_SELF'].'?action=classify&amp;id='.$object->id.'">'.img_edit($langs->transnoentitiesnoconv('SetProject')).'</a> : ';
                 }
                 if ($action == 'classify') {
-                    // $morehtmlref.=$form->form_project($_SERVER['PHP_SELF'] . '?id=' . $object->id, $object->socid, $object->fk_project, 'projectid', 0, 0, 1, 1);
+                    
                     $morehtmlref .= '<form method="post" action="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'">';
                     $morehtmlref .= '<input type="hidden" name="action" value="classin">';
                     $morehtmlref .= '<input type="hidden" name="token" value="'.newToken().'">';
@@ -1914,7 +1914,7 @@ elseif ($id || $ref)
 		{
 			if ($calculatedVolume) print ' ('.$langs->trans("SumOfProductVolumes").': ';
 			print showDimensionInBestUnit($totalVolume, 0, "volume", $langs, isset($conf->global->MAIN_VOLUME_DEFAULT_ROUND)?$conf->global->MAIN_VOLUME_DEFAULT_ROUND:-1, isset($conf->global->MAIN_VOLUME_DEFAULT_UNIT)?$conf->global->MAIN_VOLUME_DEFAULT_UNIT:'no');
-			//if (empty($calculatedVolume)) print ' ('.$langs->trans("Calculated").')';
+			
 			if ($calculatedVolume) print ')';
 		}
 		print "</td>\n";
@@ -2083,7 +2083,7 @@ elseif ($id || $ref)
 		}
 		print '<td class="center linecolweight">'.$langs->trans("CalculatedWeight").'</td>';
 		print '<td class="center linecolvolume">'.$langs->trans("CalculatedVolume").'</td>';
-		//print '<td class="center">'.$langs->trans("Size").'</td>';
+		
 		if ($object->statut == 0)
 		{
 			print '<td class="linecoledit"></td>';
@@ -2113,19 +2113,19 @@ elseif ($id || $ref)
     		$sql = "SELECT obj.rowid, obj.fk_product, obj.label, obj.description, obj.product_type as fk_product_type, obj.qty as qty_asked, obj.date_start, obj.date_end";
     		$sql .= ", ed.rowid as shipmentline_id, ed.qty as qty_shipped, ed.fk_expedition as expedition_id, ed.fk_origin_line, ed.fk_entrepot";
     		$sql .= ", e.rowid as shipment_id, e.ref as shipment_ref, e.date_creation, e.date_valid, e.date_delivery, e.date_expedition";
-    		//if ($conf->livraison_bon->enabled) $sql .= ", l.rowid as livraison_id, l.ref as livraison_ref, l.date_delivery, ld.qty as qty_received";
+    		
     		$sql .= ', p.label as product_label, p.ref, p.fk_product_type, p.rowid as prodid, p.tobatch as product_tobatch';
     		$sql .= ', p.description as product_desc';
     		$sql .= " FROM ".MAIN_DB_PREFIX."expeditiondet as ed";
     		$sql .= ", ".MAIN_DB_PREFIX."expedition as e";
     		$sql .= ", ".MAIN_DB_PREFIX.$origin."det as obj";
-    		//if ($conf->livraison_bon->enabled) $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."livraison as l ON l.fk_expedition = e.rowid LEFT JOIN ".MAIN_DB_PREFIX."livraisondet as ld ON ld.fk_livraison = l.rowid  AND obj.rowid = ld.fk_origin_line";
+    		
     		$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."product as p ON obj.fk_product = p.rowid";
     		$sql .= " WHERE e.entity IN (".getEntity('expedition').")";
     		$sql .= " AND obj.fk_".$origin." = ".$origin_id;
     		$sql .= " AND obj.rowid = ed.fk_origin_line";
     		$sql .= " AND ed.fk_expedition = e.rowid";
-    		//if ($filter) $sql.= $filter;
+    		
     		$sql .= " ORDER BY obj.fk_product";
 
     		dol_syslog("get list of shipment lines", LOG_DEBUG);
@@ -2140,7 +2140,7 @@ elseif ($id || $ref)
         		    $obj = $db->fetch_object($resql);
         		    if ($obj)
         		    {
-        		        // $obj->rowid is rowid in $origin."det" table
+        		        
         		        $alreadysent[$obj->rowid][$obj->shipmentline_id] = array('shipment_ref'=>$obj->shipment_ref, 'shipment_id'=>$obj->shipment_id, 'warehouse'=>$obj->fk_entrepot, 'qty_shipped'=>$obj->qty_shipped, 'date_valid'=>$db->jdate($obj->date_valid), 'date_delivery'=>$db->jdate($obj->date_delivery));
         		    }
         		    $i++;
@@ -2389,7 +2389,7 @@ elseif ($id || $ref)
 							if ($lines[$i]->product_tobatch)
 							{
 								$detail = '';
-								foreach ($lines[$i]->detail_batch as $dbatch)	// $dbatch is instance of ExpeditionLineBatch
+								foreach ($lines[$i]->detail_batch as $dbatch)	
 								{
 									$detail .= $langs->trans("Batch").': '.$dbatch->batch;
 									$detail .= ' - '.$langs->trans("SellByDate").': '.dol_print_date($dbatch->sellby, "day");
@@ -2423,7 +2423,7 @@ elseif ($id || $ref)
 				print '</td>';
 
 				// Size
-				//print '<td class="center">'.$lines[$i]->volume*$lines[$i]->qty_shipped.' '.measuringUnitString(0, "volume", $lines[$i]->volume_units).'</td>';
+				
 
 				if ($action == 'editline' && $lines[$i]->id == $line_id)
 				{
@@ -2562,7 +2562,7 @@ elseif ($id || $ref)
 			{
 				if ($user->rights->expedition->creer && $object->statut > 0 && !$object->billed)
 				{
-					$label = "Close"; $paramaction = 'classifyclosed'; // = Transferred/Received
+					$label = "Close"; $paramaction = 'classifyclosed'; 
 					// Label here should be "Close" or "ClassifyBilled" if we decided to make bill on shipments instead of orders
 					if (!empty($conf->facture->enabled) && !empty($conf->global->WORKFLOW_BILL_ON_SHIPMENT))  // Quand l'option est on, il faut avoir le bouton en plus et non en remplacement du Close ?
 					{
@@ -2603,7 +2603,7 @@ elseif ($id || $ref)
 
 
 		// Show links to link elements
-		//$linktoelem = $form->showLinkToObjectBlock($object, null, array('order'));
+		
 		$somethingshown = $form->showLinkedObjectBlock($object, '');
 
 

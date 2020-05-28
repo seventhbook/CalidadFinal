@@ -150,12 +150,12 @@ class Dolresource extends CommonObject
     	{
     		if (!$notrigger)
     		{
-    			//// Call triggers
+    			
     			include_once DOL_DOCUMENT_ROOT.'/core/class/interfaces.class.php';
     			$interface = new Interfaces($this->db);
     			$result = $interface->run_triggers('RESOURCE_CREATE', $this, $user, $langs, $conf);
     			if ($result < 0) { $error++; $this->errors = $interface->errors; }
-    			//// End call triggers
+    			
     		}
     	}
 

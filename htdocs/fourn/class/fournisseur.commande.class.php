@@ -98,9 +98,9 @@ class CommandeFournisseur extends CommonOrder
     public $ref_supplier;
     public $brouillon;
     public $statut; // 0=Draft -> 1=Validated -> 2=Approved -> 3=Ordered/Process runing -> 4=Received partially -> 5=Received totally -> (reopen) 4=Received partially
-    //                                                                                          -> 7=Canceled/Never received -> (reopen) 3=Process runing
-    //									                            -> 6=Canceled -> (reopen) 2=Approved
-    //  		                                      -> 9=Refused  -> (reopen) 1=Validated
+    
+    
+    
     //  Note: billed or not is on another field "billed"
     public $statuts; // List of status
 
@@ -442,7 +442,7 @@ class CommandeFournisseur extends CommonOrder
     public function fetch_lines($only_product = 0)
     {
         // phpcs:enable
-    	//$result=$this->fetch_lines();
+    	
     	$this->lines = array();
 
     	$sql = "SELECT l.rowid, l.ref as ref_supplier, l.fk_product, l.product_type, l.label, l.description, l.qty,";
@@ -458,7 +458,7 @@ class CommandeFournisseur extends CommonOrder
     	$sql .= " WHERE l.fk_commande = ".$this->id;
     	if ($only_product) $sql .= ' AND p.fk_product_type = 0';
     	$sql .= " ORDER BY l.rang, l.rowid";
-    	//print $sql;
+    	
 
     	dol_syslog(get_class($this)."::fetch get lines", LOG_DEBUG);
     	$result = $this->db->query($sql);
@@ -568,7 +568,7 @@ class CommandeFournisseur extends CommonOrder
             $soc->fetch($this->fourn_id);
 
             // Check if object has a temporary ref
-            if (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) // empty should not happened, but when it occurs, the test save life
+            if (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) 
             {
                 $num = $this->getNextNumRef($soc);
             }
@@ -816,8 +816,8 @@ class CommandeFournisseur extends CommonOrder
         		$result .= '<a href="'.DOL_URL_ROOT.'/fourn/commande/note.php?id='.$this->id.'" class="classfortooltip" title="'.dol_escape_htmltag($notetoshow).'">';
         		$result .= img_picto('', 'note');
         		$result .= '</a>';
-        		//$result.=img_picto($langs->trans("ViewNote"),'object_generic');
-        		//$result.='</a>';
+        		
+        		
         		$result .= '</span>';
         	}
         }
@@ -952,7 +952,7 @@ class CommandeFournisseur extends CommonOrder
             $soc->fetch($this->fourn_id);
 
             // Check if object has a temporary ref
-            if (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) // empty should not happened, but when it occurs, the test save life
+            if (preg_match('/^[\(]?PROV/i', $this->ref) || empty($this->ref)) 
             {
                 $num = $this->getNextNumRef($soc);
             }
@@ -999,7 +999,7 @@ class CommandeFournisseur extends CommonOrder
             	if (!empty($conf->global->SUPPLIER_ORDER_AUTOADD_USER_CONTACT))
 	            {
 					$result = $this->add_contact($user->id, 'SALESREPFOLL', 'internal', 1);
-					if ($result < 0 && $result != -2)	// -2 means already exists
+					if ($result < 0 && $result != -2)	
 					{
 						$error++;
 					}
@@ -1355,7 +1355,7 @@ class CommandeFournisseur extends CommonOrder
 	                    $this->lines[$i]->localtax2_tx,
 	                    $this->lines[$i]->fk_product,
 	                    0,
-	                    $this->lines[$i]->ref_fourn, // $this->lines[$i]->ref_fourn comes from field ref into table of lines. Value may ba a ref that does not exists anymore, so we first try with value of product
+	                    $this->lines[$i]->ref_fourn, 
 	                    $this->lines[$i]->remise_percent,
 	                    'HT',
 	                    0,
@@ -1369,7 +1369,7 @@ class CommandeFournisseur extends CommonOrder
 	                );
 	                if ($result < 0)
 	                {
-	                    dol_syslog(get_class($this)."::create ".$this->error, LOG_WARNING); // do not use dol_print_error here as it may be a functionnal error
+	                    dol_syslog(get_class($this)."::create ".$this->error, LOG_WARNING); 
 	                    $this->db->rollback();
 	                    return -1;
 	                }
@@ -1598,7 +1598,7 @@ class CommandeFournisseur extends CommonOrder
 			$pu_ht_devise = price2num($pu_ht_devise);
 			$pu_ttc = price2num($pu_ttc);
 			if (!preg_match('/\((.*)\)/', $txtva)) {
-				$txtva = price2num($txtva); // $txtva can have format '5.0(XXX)' or '5'
+				$txtva = price2num($txtva); 
 			}
 			$txlocaltax1 = price2num($txlocaltax1);
 			$txlocaltax2 = price2num($txlocaltax2);
@@ -1658,8 +1658,8 @@ class CommandeFournisseur extends CommonOrder
                             $this->error = "Ref ".$prod->ref." ".$langs->trans("ErrorQtyTooLowForThisSupplier");
                             $this->db->rollback();
                             dol_syslog(get_class($this)."::addline we did not found supplier price, so we can't guess unit price");
-                            //$pu    = $prod->fourn_pu;     // We do not overwrite unit price
-                            //$ref   = $prod->ref_fourn;    // We do not overwrite ref supplier price
+                            
+                            
                             return -1;
                         }
                         if ($result == -1)
@@ -1898,7 +1898,7 @@ class CommandeFournisseur extends CommonOrder
                 $mouv = new MouvementStock($this->db);
                 if ($product > 0)
                 {
-                	// $price should take into account discount (except if option STOCK_EXCLUDE_DISCOUNT_FOR_PMP is on)
+                	
                 	$mouv->origin = &$this;
 					$result = $mouv->reception($user, $product, $entrepot, $qty, $price, $comment, $eatby, $sellby, $batch);
                     if ($result < 0)
@@ -2645,7 +2645,7 @@ class CommandeFournisseur extends CommonOrder
             $this->line->context = $this->context;
 
             $this->line->fk_commande = $this->id;
-            //$this->line->label=$label;
+            
             $this->line->desc = $desc;
             $this->line->qty = $qty;
 			$this->line->ref_supplier = $ref_supplier;
@@ -3187,7 +3187,7 @@ class CommandeFournisseur extends CommonOrder
     				{
     					if ($closeopenorder)
     					{
-        					//$ret=$this->setStatus($user,5);
+        					
     						$ret = $this->Livraison($user, $date_liv, 'tot', $comment); // GETPOST("type") is 'tot', 'par', 'nev', 'can'
         					if ($ret < 0) {
         						return -1;
@@ -3197,7 +3197,7 @@ class CommandeFournisseur extends CommonOrder
     					else
     					{
     					    //Diff => received partially
-    					    //$ret=$this->setStatus($user,4);
+    					    
     						$ret = $this->Livraison($user, $date_liv, 'par', $comment); // GETPOST("type") is 'tot', 'par', 'nev', 'can'
     					    if ($ret < 0) {
     					        return -1;
@@ -3216,7 +3216,7 @@ class CommandeFournisseur extends CommonOrder
 						    //scan the array of results
 						    foreach ($diff_array as $key => $value)
 						    {
-                                //if the quantity delivered is greater or equal to wish quantity
+                                
 							    if ($qtydelivered[$key] >= $qtywished[$key])
 							    {
 								    $close++;
@@ -3622,7 +3622,7 @@ class CommandeFournisseurLigne extends CommonOrderLine
         $sql .= "  description='".$this->db->escape($this->desc)."'";
         $sql .= ", ref='".$this->db->escape($this->ref_supplier)."'";
         $sql .= ", subprice='".price2num($this->subprice)."'";
-        //$sql.= ",remise='".price2num($remise)."'";
+        
         $sql .= ", remise_percent='".price2num($this->remise_percent)."'";
 
 		$sql .= ", vat_src_code = '".(empty($this->vat_src_code) ? '' : $this->vat_src_code)."'";

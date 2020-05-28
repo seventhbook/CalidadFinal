@@ -392,7 +392,7 @@ if ($action == 'setreexport') {
 
 // Build and execute select (used by page and export action)
 // must de set after the action that set $filter
-// --------------------------------------------------------------------
+
 
 $sql = 'SELECT';
 $sql .= ' t.rowid,';
@@ -534,13 +534,13 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
 	$resql = $db->query($sql);
 	$nbtotalofrecords = $db->num_rows($resql);
-	if (($page * $limit) > $nbtotalofrecords)	// if total of record found is smaller than page * limit, goto and load page 0
+	if (($page * $limit) > $nbtotalofrecords)	
 	{
 		$page = 0;
 		$offset = 0;
 	}
 }
-// if total of record found is smaller than limit, no need to do paging and to restart another select with limits set.
+
 if (is_numeric($nbtotalofrecords) && $limit > $nbtotalofrecords)
 {
 	$num = $nbtotalofrecords;
@@ -561,7 +561,7 @@ else
 
 
 // Output page
-// --------------------------------------------------------------------
+
 
 llxHeader('', $title_page);
 
@@ -611,7 +611,7 @@ if ($action == 'delbookkeepingyear') {
 	print $formconfirm;
 }
 
-//$param='';	param started before
+
 if (!empty($contextpage) && $contextpage != $_SERVER["PHP_SELF"]) $param .= '&contextpage='.$contextpage;
 if ($limit > 0 && $limit != $conf->liste_limit) $param .= '&limit='.$limit;
 
@@ -701,7 +701,7 @@ if (!empty($arrayfields['t.subledger_account']['checked']))
 	print '<td class="liste_titre">';
 	print '<div class="nowrap">';
 	print $langs->trans('From').' ';
-	// use setup of keypress to select thirdparty and this hang browser on large database.
+	
 	if (!empty($conf->global->ACCOUNTANCY_COMBO_FOR_AUX))
 	{
 		print $formaccounting->select_auxaccount($search_accountancy_aux_code_start, 'search_accountancy_aux_code_start', 1);
@@ -837,7 +837,7 @@ print "</tr>\n";
 $line = new BookKeepingLine();
 
 // Loop on record
-// --------------------------------------------------------------------
+
 $i = 0;
 $totalarray = array();
 while ($i < min($num, $limit))

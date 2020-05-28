@@ -50,7 +50,7 @@ $arrayofjs=array(
 	'/includes/jstz/jstz.min.js'.(empty($conf->dol_use_jmobile)?'':'?version='.urlencode(DOL_VERSION)),
 	'/core/js/dst.js'.(empty($conf->dol_use_jmobile)?'':'?version='.urlencode(DOL_VERSION))
 );
-$titleofloginpage=$langs->trans('Login').' @ '.$titletruedolibarrversion;	// $titletruedolibarrversion is defined by dol_loginfunction in security2.lib.php. We must keep the @, some tools use it to know it is login page and find true dolibarr version.
+$titleofloginpage=$langs->trans('Login').' @ '.$titletruedolibarrversion;	
 
 $disablenofollow=1;
 if (! preg_match('/'.constant('DOL_APPLICATION_TITLE').'/', $title)) $disablenofollow=0;
@@ -248,7 +248,7 @@ if (isset($conf->file->main_authentication) && preg_match('/openid/', $conf->fil
 {
 	$langs->load("users");
 
-	//if (! empty($conf->global->MAIN_OPENIDURL_PERUSER)) $url=
+	
 	echo '<br>';
 	echo '<div class="center" style="margin-top: 4px;">';
 
@@ -368,7 +368,7 @@ if (! empty($conf->google->enabled) && ! empty($conf->global->MAIN_GOOGLE_AD_CLI
 			google_ad_slot = "<?php echo $conf->global->MAIN_GOOGLE_AD_SLOT ?>";
 			google_ad_width = <?php echo $conf->global->MAIN_GOOGLE_AD_WIDTH ?>;
 			google_ad_height = <?php echo $conf->global->MAIN_GOOGLE_AD_HEIGHT ?>;
-			//-->
+			
 		</script>
 		<script type="text/javascript"
 			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">

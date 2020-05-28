@@ -139,7 +139,7 @@ class pdf_espadon extends ModelePdfExpedition
 		$this->emetteur = $mysoc;
 		if (!$this->emetteur->country_code) $this->emetteur->country_code = substr($langs->defaultlang, -2); // By default if not defined
 
-		$this->tabTitleHeight = 5; // default height
+		$this->tabTitleHeight = 5; 
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -455,7 +455,7 @@ class pdf_espadon extends ModelePdfExpedition
 					    if (!empty($this->cols['photo']) && isset($imglinesize['width']) && isset($imglinesize['height']))
 					    {
 					        $pdf->Image($realpatharray[$i], $this->getColumnContentXStart('photo'), $curY, $imglinesize['width'], $imglinesize['height'], '', '', '', 2, 300);	// Use 300 dpi
-					        // $pdf->Image does not increase value return by getY, so we save it manually
+					        
 					        $posYAfterImage=$curY+$imglinesize['height'];
 					    }
 					}
@@ -956,7 +956,7 @@ class pdf_espadon extends ModelePdfExpedition
 			$result=$linkedobject->fetch($origin_id);
 			if ($result >= 0)
 			{
-			    //$linkedobject->fetchObjectLinked()   Get all linked object to the $linkedobject (commonly order) into $linkedobject->linkedObjects
+			    
 
 				$pdf->SetFont('', '', $default_font_size - 2);
 				$text=$linkedobject->ref;
@@ -1128,13 +1128,13 @@ class pdf_espadon extends ModelePdfExpedition
 	
 	
 
-	    $rank = 0; // do not use negative rank
+	    $rank = 0; 
 	    $this->cols['desc'] = array(
 	        'rank' => $rank,
 	        'width' => false, // only for desc
 	        'status' => true,
 	        'title' => array(
-	            'textkey' => 'Designation', // use lang key is usefull in somme case with module
+	            'textkey' => 'Designation', 
 	            'align' => 'L',
 	            // 'textkey' => 'yourLangKey', // if there is no label, yourLangKey will be translated to replace label
 	            // 'label' => ' ', // the final label

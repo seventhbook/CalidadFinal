@@ -844,7 +844,7 @@ class PrintIPP extends BasicIPP
         $this->meta->job_uri = chr(0x45) // type uri
                              . chr(0x00).chr(0x07) // name-length
                              . "job-uri"
-                             //. chr(0x00).chr(strlen($job_uri))
+                             
                              . self::_giveMeStringLength($job_uri)
                              . $job_uri;
         

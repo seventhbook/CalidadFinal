@@ -267,7 +267,7 @@ class pdf_standard extends ModelePDFProduct
 				$tab_height = 130;
 				$tab_height_newpage = 150;
 
-				//
+				
 				$pdf->SetFont('', 'B', $default_font_size);
 				$pdf->writeHTMLCell(190, 3, $this->marge_gauche, $tab_top, dol_htmlentitiesbr($object->label), 0, 1);
 				$nexY = $pdf->GetY();

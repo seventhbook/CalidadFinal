@@ -108,8 +108,8 @@ if ($id > 0)
 			print $form->showphoto('memberphoto', $object, 64);
 			print '</td></tr>'."\n";
 		}
-		//  foreach($extrafields->attributes[$object->table_element]['label'] as $key=>$value){
-		//    print "<tr><td>$value</td><td>".$object->array_options["options_$key"]."&nbsp;</td></tr>\n";
+		
+		
 		//  }
 
 		print '<tr><td class="tdtop">'.$langs->trans("Comments").'</td><td>'.nl2br($object->note_public).'</td></tr>';

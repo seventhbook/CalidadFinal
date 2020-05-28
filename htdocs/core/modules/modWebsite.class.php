@@ -75,7 +75,7 @@ class modWebsite extends DolibarrModules
        	$this->const = array();
 
         // New pages on tabs
-       	//$this->tabs[] = array();  					// To add a new tab identified by code tabname1
+       	
 
         // Boxes
         $this->boxes = array();
@@ -132,8 +132,8 @@ class modWebsite extends DolibarrModules
         $this->export_icon[$r]='globe';
         $keyforclass = 'WebsitePage'; $keyforclassfile='/website/class/websitepage.class.php'; $keyforelement='Website';
         include DOL_DOCUMENT_ROOT.'/core/commonfieldsinexport.inc.php';
-        //$keyforselect='myobject'; $keyforelement='myobject'; $keyforaliasextra='extra';
-        //include DOL_DOCUMENT_ROOT.'/core/extrafieldsinexport.inc.php';
+        
+        
         $this->export_sql_start[$r]='SELECT DISTINCT ';
         $this->export_sql_end[$r]  =' FROM '.MAIN_DB_PREFIX.'website_page as t, '.MAIN_DB_PREFIX.'website as p';
         $this->export_sql_end[$r] .=' WHERE t.fk_website = p.rowid';

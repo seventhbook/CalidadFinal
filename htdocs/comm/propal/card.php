@@ -886,7 +886,7 @@ if (empty($reshook))
 
 			$db->begin();
 
-			// $tva_tx can be 'x.x (XXX)'
+			
 
 			// Ecrase $pu par celui du produit
 			// Ecrase $desc par celui du produit
@@ -1711,7 +1711,7 @@ if ($action == 'create')
 		$note_private = $object->getDefaultCreateValueFor('note_private', ((!empty($origin) && !empty($originid) && is_object($objectsrc)) ? $objectsrc->note_private : null));
 		$doleditor = new DolEditor('note_private', $note_private, '', 80, 'dolibarr_notes', 'In', 0, false, true, ROWS_3, '90%');
 		print $doleditor->Create(1);
-		// print '<textarea name="note_private" wrap="soft" cols="70" rows="'.ROWS_3.'">'.$note_private.'.</textarea>
+		
 		print '</td></tr>';
 	}
 
@@ -1862,8 +1862,8 @@ if ($action == 'create')
 		// Create an array for form
 		$formquestion = array(
 							// 'text' => $langs->trans("ConfirmClone"),
-							// array('type' => 'checkbox', 'name' => 'clone_content', 'label' => $langs->trans("CloneMainAttributes"), 'value' => 1),
-							// array('type' => 'checkbox', 'name' => 'update_prices', 'label' => $langs->trans("PuttingPricesUpToDate"), 'value' =>
+							
+							
 							// 1),
 							array('type' => 'other', 'name' => 'socid', 'label' => $langs->trans("SelectThirdParty"), 'value' => $form->select_company(GETPOST('socid', 'int'), 'socid', '(s.client=1 OR s.client=2 OR s.client=3)')));
 		if (!empty($conf->global->PROPAL_CLONE_DATE_DELIVERY) && !empty($object->date_livraison)) {
@@ -2584,7 +2584,7 @@ if ($action == 'create')
 		$compatibleImportElementsList = false;
 		if ($user->rights->propal->creer && $object->statut == Propal::STATUS_DRAFT)
 		{
-		    $compatibleImportElementsList = array('commande', 'propal'); // import from linked elements
+		    $compatibleImportElementsList = array('commande', 'propal'); 
 		}
 		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem, $compatibleImportElementsList);
 

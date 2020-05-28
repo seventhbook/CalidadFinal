@@ -89,7 +89,7 @@ class mod_codecompta_aquarium extends ModeleAccountancyCode
 		$texte .= $langs->trans("ModuleCompanyCodeSupplier".$this->name, $s1)."<br>\n";
 		$texte .= "<br>\n";
 		if (!isset($conf->global->COMPANY_AQUARIUM_REMOVE_SPECIAL) || !empty($conf->global->$conf->global->COMPANY_AQUARIUM_REMOVE_SPECIAL)) $texte .= $langs->trans('RemoveSpecialChars').' = '.yn(1)."<br>\n";
-		//if (! empty($conf->global->COMPANY_AQUARIUM_REMOVE_ALPHA)) $texte.=$langs->trans('COMPANY_AQUARIUM_REMOVE_ALPHA').' = '.yn($conf->global->COMPANY_AQUARIUM_REMOVE_ALPHA)."<br>\n";
+		
 		if (!empty($conf->global->COMPANY_AQUARIUM_CLEAN_REGEX))  $texte .= $langs->trans('COMPANY_AQUARIUM_CLEAN_REGEX').' = '.$conf->global->COMPANY_AQUARIUM_CLEAN_REGEX."<br>\n";
 		$texte .= '</td>';
 		$texte .= '<td class="right"><input type="submit" class="button" value="'.$langs->trans("Modify").'" name="Button"></td>';
@@ -153,7 +153,7 @@ class mod_codecompta_aquarium extends ModeleAccountancyCode
 			return -1;
 		}
 
-		//$conf->global->COMPANY_AQUARIUM_CLEAN_REGEX='^..(..)..';
+		
 
 		// Remove special char if COMPANY_AQUARIUM_REMOVE_SPECIAL is set to 1 or not set (default)
 		if (!isset($conf->global->COMPANY_AQUARIUM_REMOVE_SPECIAL) || !empty($conf->global->COMPANY_AQUARIUM_REMOVE_SPECIAL)) $codetouse = preg_replace('/([^a-z0-9])/i', '', $codetouse);

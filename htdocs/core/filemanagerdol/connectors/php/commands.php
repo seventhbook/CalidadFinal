@@ -184,7 +184,7 @@ function CreateFolder($resourceType, $currentFolder)
 }
 
 // @CHANGE
-//function FileUpload( $resourceType, $currentFolder, $sCommand )
+
 /**
  * FileUpload
  *
@@ -312,7 +312,7 @@ function FileUpload($resourceType, $currentFolder, $sCommand, $CKEcallback = '')
 	//SendUploadResults( $sErrorNumber, $sFileUrl, $sFileName );
 	if($CKEcallback == '')
     {
-        // this line already exists so wrap the if block around it
+        
         SendUploadResults($sErrorNumber, $sFileUrl, $sFileName);
     }
     else

@@ -299,7 +299,7 @@ class doc_generic_invoice_odt extends ModelePDFFactures
 						$socobject = $object->contact;
 					else {
 						$socobject = $object->thirdparty;
-						// if we have a BILLING contact and we dont use it as recipient we store the contact object for later use
+						
 						$contactobject = $object->contact;
 					}
 				} else {

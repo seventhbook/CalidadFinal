@@ -118,7 +118,7 @@ if ($object->id > 0)
     foreach ($modulesdir as $dir)
     {
         // Load modules attributes in arrays (name, numero, orders) from dir directory
-        //print $dir."\n<br>";
+        
         $handle = @opendir(dol_osencode($dir));
         if (is_resource($handle))
         {

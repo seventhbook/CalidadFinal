@@ -245,17 +245,17 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 			return (bool)$c->v;
 		}
 		return $value;
-	}	//	function _castToBool()
+	}	
 
 
 	private static function _castToError($c) {
 		return isset($c->v) ? (string) $c->v : NULL;
-	}	//	function _castToError()
+	}	
 
 
 	private static function _castToString($c) {
 		return isset($c->v) ? (string) $c->v : NULL;
-	}	//	function _castToString()
+	}	
 
 
 	private function _castToFormula($c,$r,&$cellDataType,&$value,&$calculatedValue,&$sharedFormulas,$castBaseType) {
@@ -385,8 +385,8 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 						$docProps = $excel->getProperties();
 						$docProps->setCreator((string) self::array_item($xmlCore->xpath("dc:creator")));
 						$docProps->setLastModifiedBy((string) self::array_item($xmlCore->xpath("cp:lastModifiedBy")));
-						$docProps->setCreated(strtotime(self::array_item($xmlCore->xpath("dcterms:created")))); //! respect xsi:type
-						$docProps->setModified(strtotime(self::array_item($xmlCore->xpath("dcterms:modified")))); //! respect xsi:type
+						$docProps->setCreated(strtotime(self::array_item($xmlCore->xpath("dcterms:created")))); 
+						$docProps->setModified(strtotime(self::array_item($xmlCore->xpath("dcterms:modified")))); 
 						$docProps->setTitle((string) self::array_item($xmlCore->xpath("dc:title")));
 						$docProps->setDescription((string) self::array_item($xmlCore->xpath("dc:description")));
 						$docProps->setSubject((string) self::array_item($xmlCore->xpath("dc:subject")));
@@ -615,7 +615,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 							$docSheet = $excel->createSheet();
 							//	Use false for $updateFormulaCellReferences to prevent adjustment of worksheet
 							//		references in formula cells... during the load, all formulae should be correct,
-							//		and we're simply bringing the worksheet name in line with the formula, not the
+							
 							//		reverse
 							$docSheet->setTitle((string) $eleSheet["name"],false);
 							$fileWorksheet = $worksheets[(string) self::array_item($eleSheet->attributes("http://schemas.openxmlformats.org/officeDocument/2006/relationships"), "id")];

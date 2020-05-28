@@ -34,7 +34,7 @@ class box_project extends ModeleBoxes
     public $boxcode="project";
     public $boximg="object_projectpub";
     public $boxlabel;
-    //var $depends = array("projet");
+    
 
     /**
      * @var DoliDB Database handler.
@@ -84,13 +84,13 @@ class box_project extends ModeleBoxes
         $textHead = $langs->trans("OpenedProjects");
         $this->info_box_head = array('text' => $textHead, 'limit'=> dol_strlen($textHead));
 
-        // list the summary of the orders
+        
         if ($user->rights->projet->lire) {
             include_once DOL_DOCUMENT_ROOT.'/projet/class/project.class.php';
             $projectstatic = new Project($this->db);
 
             $socid=0;
-            //if ($user->socid > 0) $socid = $user->socid;    // For external user, no check is done on company because readability is managed by public status of project and assignement.
+            
 
             // Get list of project id allowed to user (in a string list separated by coma)
             $projectsListId='';
@@ -100,10 +100,10 @@ class box_project extends ModeleBoxes
             $sql.= " FROM ".MAIN_DB_PREFIX."projet as p";
             $sql.= " WHERE p.entity IN (".getEntity('project').")"; // Only current entity or severals if permission ok
 			$sql.= " AND p.fk_statut = 1"; // Only open projects
-            if (! $user->rights->projet->all->lire) $sql.= " AND p.rowid IN (".$projectsListId.")"; // public and assigned to, or restricted to company for external users
+            if (! $user->rights->projet->all->lire) $sql.= " AND p.rowid IN (".$projectsListId.")"; 
 
             $sql.= " ORDER BY p.datec DESC";
-            //$sql.= $this->db->plimit($max, 0);
+            
 
             $result = $this->db->query($sql);
 

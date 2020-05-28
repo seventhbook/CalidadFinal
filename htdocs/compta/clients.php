@@ -127,7 +127,7 @@ if ($socid)
 }
 $sql.= " ORDER BY $sortfield $sortorder ";
 $sql.= $db->plimit($conf->liste_limit+1, $offset);
-//print $sql;
+
 
 $resql = $db->query($sql);
 if ($resql)

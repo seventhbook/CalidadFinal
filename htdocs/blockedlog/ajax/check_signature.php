@@ -56,5 +56,5 @@ $hash = $auth->getBlockchainHash();
 $url = $conf->global->BLOCKEDLOG_AUTHORITY_URL.'/blockedlog/ajax/authority.php?s='.$auth->signature.'&h='.$hash;
 
 $res = file_get_contents($url);
-//echo $url;
+
 echo $res;

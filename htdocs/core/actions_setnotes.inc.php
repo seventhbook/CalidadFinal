@@ -22,10 +22,10 @@
  */
 
 
-// $action must be defined
-// $permissionnote must be defined to permission to edit object
-// $object must be defined (object is loaded in this file with fetch)
-// $id must be defined (object is loaded in this file with fetch)
+
+
+
+
 
 // Set public note
 if ($action == 'setnote_public' && ! empty($permissionnote) && ! GETPOST('cancel', 'alpha'))

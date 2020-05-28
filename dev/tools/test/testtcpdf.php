@@ -1,15 +1,15 @@
 <?php
-//============================================================+
+
 // File name   : example_016.php
 // Begin       : 2008-03-04
 // Last Update : 2010-10-19
-//
+
 // Description : Example 016 for TCPDF class
 //               Document Encryption / Security
-//
+
 // Author: Nicola Asuni
-//
-// (c) Copyright:
+
+
 //               Nicola Asuni
 //               Tecnick.com s.r.l.
 //               Via Della Pace, 11
@@ -17,7 +17,7 @@
 //               ITALY
 //               www.tecnick.com
 //               info@tecnick.com
-//============================================================+
+
 
 /**
  * Creates an example PDF TEST document using TCPDF
@@ -34,7 +34,7 @@ require_once '../../htdocs/includes/tecnickcom/tcpdf/tcpdf.php';
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 
-// *** Set PDF protection (encryption) *********************
+
 
 /*
   The permission array is composed of values taken from the following ones (specify the ones you want to block):
@@ -73,9 +73,9 @@ $pdf->SetProtection($permissions, $user_pass, $owner_pass, $mode, $pubkeys);
 
 // Example with public-key
 // To open the document you need to install the private key (tcpdf.p12) on the Acrobat Reader. The password is: 1234
-//$pdf->SetProtection($permissions=array('print', 'copy'), $user_pass='', $owner_pass=null, $mode=1, $pubkeys=array(array('c' => 'file://../tcpdf.crt', 'p' => array('print'))));
 
-// *********************************************************
+
+
 
 
 // set document information
@@ -109,7 +109,7 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 //set some language-dependent strings
 $pdf->setLanguageArray($l);
 
-// ---------------------------------------------------------
+
 
 // set font
 $pdf->SetFont('times', '', 16);
@@ -124,15 +124,15 @@ Encryption Example
 Consult the source code documentation for the SetProtection() method.
 EOD;
 
-// print a block of text using Write()
+
 $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
 
 
-// ---------------------------------------------------------
+
 
 //Close and output PDF document
 $pdf->Output('example_016.pdf', 'F');
 
-//============================================================+
+
 // END OF FILE
-//============================================================+
+

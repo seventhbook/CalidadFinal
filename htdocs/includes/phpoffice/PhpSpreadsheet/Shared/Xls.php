@@ -19,7 +19,7 @@ class Xls
      */
     public static function sizeCol($sheet, $col = 'A')
     {
-        // default font of the workbook
+        
         $font = $sheet->getParent()->getDefaultStyle()->getFont();
 
         $columnDimensions = $sheet->getColumnDimensions();
@@ -62,7 +62,7 @@ class Xls
      */
     public static function sizeRow($sheet, $row = 1)
     {
-        // default font of the workbook
+        
         $font = $sheet->getParent()->getDefaultStyle()->getFont();
 
         $rowDimensions = $sheet->getRowDimensions();

@@ -381,7 +381,7 @@ class SMTPs
                 preg_replace('@tls://@i', '', $this->getHost()),       // Host to 'hit', IP or domain
                 $this->getPort(),       // which Port number to use
                 $this->errno,           // actual system level error
-                $this->errstr,          // and any text that goes with the error
+                $this->errstr,          
                 $this->_smtpTimeout     // timeout for reading/writing data over the socket
             )) {
                 // Fix from PHP SMTP class by 'Chris Ryan'
@@ -596,7 +596,7 @@ class SMTPs
 
                 // 'RCPT TO:' must be given a single address, so this has to loop
                 // through the list of addresses, regardless of TO, CC or BCC
-                // and send it out "single file"
+                
                 foreach ($this->get_RCPT_list() as $_address)
                 {
                     /* Note:
@@ -634,10 +634,10 @@ class SMTPs
         return $_retVal;
     }
 
-    // =============================================================
-    // ** Setter & Getter methods
+    
+    
 
-    // ** Basic System configuration
+    
 
     /**
      * setConfig() is used to populate select class properties from either
@@ -672,7 +672,7 @@ class SMTPs
          */
         $_retVal = true;
 
-        // if we have a path...
+        
         if ( ! empty($_strConfigPath) )
         {
             // If the path is not valid, this will NOT generate an error,
@@ -925,7 +925,7 @@ class SMTPs
     }
 
 
-    // ** Message Construction
+    
 
     /**
      * FROM Address from which mail will be sent
@@ -1007,7 +1007,7 @@ class SMTPs
         // Only run this if we have something
         if ( !empty($_addrList))
         {
-            // $_addrList can be a STRING or an array
+            
             if ( is_string($_addrList) )
             {
                 // This could be a COMMA delimited string
@@ -1433,11 +1433,11 @@ class SMTPs
             // We need to define a content message Boundary
             // NOTE: This was 'multipart/alternative', but Windows based mail servers have issues with this.
 
-            //$content = 'Content-Type: multipart/related; boundary="' . $this->_getBoundary() . '"'   . "\r\n";
+            
             $content = 'Content-Type: multipart/mixed; boundary="' . $this->_getBoundary('mixed') . '"'   . "\r\n";
 
-            //                     . "\r\n"
-            //                     . 'This is a multi-part message in MIME format.' . "\r\n";
+            
+            
             $content .= "Content-Transfer-Encoding: 8bit\r\n";
             $content .= "\r\n";
 
@@ -1803,8 +1803,8 @@ class SMTPs
         return $this->server_parse($this->socket, $_returnCode);
     }
 
-    // =============================================================
-    // ** Error handling methods
+    
+    
 
     /**
      * Defines errors codes and messages for Class
@@ -1843,8 +1843,8 @@ class SMTPs
 }
 
 
-// =============================================================
-// ** CSV Version Control Info
+
+
 
 /**
  * Revision      2011/09/12 07:49:59  eldy

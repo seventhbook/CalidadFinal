@@ -527,7 +527,7 @@ class pdf_merou extends ModelePdfExpedition
 		$Xoff = 90;
 		$Yoff = 0;
 
-		//*********************LOGO****************************
+		
 		$pdf->SetXY(11, 7);
 		$logo = $conf->mycompany->dir_output.'/logos/'.$this->emetteur->logo;
 		if ($this->emetteur->logo)
@@ -551,7 +551,7 @@ class pdf_merou extends ModelePdfExpedition
 			$pdf->MultiCell(70, 3, $outputlangs->convToOutputCharset($text), 0, 'L');
 		}
 
-		//*********************Entete****************************
+		
 		//Document name
 		$pdf->SetXY($Xoff, 7);
 		$pdf->SetFont('', 'B', $default_font_size + 2);

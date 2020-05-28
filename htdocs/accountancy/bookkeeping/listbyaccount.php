@@ -332,7 +332,7 @@ while ($i < min($num, $limit))
 	$total_credit += $line->credit;
 
 	$accountg = length_accountg($line->numero_compte);
-	//if (empty($accountg)) $accountg = '-';
+	
 
 	// Is it a break ?
 	if ($accountg != $displayed_account_number || ! isset($displayed_account_number)) {
@@ -354,7 +354,7 @@ while ($i < min($num, $limit))
 		print '</tr>';
 
 		$displayed_account_number = $accountg;
-		//if (empty($displayed_account_number)) $displayed_account_number='-';
+		
 		$sous_total_debit = 0;
 		$sous_total_credit = 0;
 	}
@@ -366,8 +366,8 @@ while ($i < min($num, $limit))
 
 	// TODO Add a link according to doc_type and fk_doc
 	print '<td class="nowrap">';
-	//if ($line->doc_type == 'supplier_invoice')
-	//if ($line->doc_type == 'customer_invoice')
+	
+	
 	print $line->doc_ref;
 	print '</td>';
 

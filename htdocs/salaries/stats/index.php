@@ -43,7 +43,7 @@ $result = restrictedArea($user, 'salaries', '', '', '');
 
 $nowyear=strftime("%Y", dol_now());
 $year = GETPOST('year')>0?GETPOST('year'):$nowyear;
-//$startyear=$year-2;
+
 $startyear=$year-1;
 $endyear=$year;
 
@@ -70,8 +70,8 @@ $stats = new SalariesStats($db, $socid, $useridtofilter);
 
 
 // Build graphic number of object
-// $data = array(array('Lib',val1,val2,val3),...)
-//print "$endyear, $startyear";
+
+
 $data = $stats->getNbByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
 
@@ -105,7 +105,7 @@ if (! $mesg)
 // Build graphic amount of object
 $data = $stats->getAmountByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
-// $data = array(array('Lib',val1,val2,val3),...)
+
 
 $filenameamount = $dir."/salariesamountinyear-".$year.".png";
 $fileurlamount = DOL_URL_ROOT.'/viewimage.php?modulepart=salariesstats&amp;file=salariesamountinyear-'.$year.'.png';

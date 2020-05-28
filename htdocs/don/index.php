@@ -189,7 +189,7 @@ $max = 10;
 $sql = "SELECT c.rowid, c.ref, c.fk_statut, c.societe, c.lastname, c.firstname, c.tms as datem, c.amount";
 $sql .= " FROM ".MAIN_DB_PREFIX."don as c";
 $sql .= " WHERE c.entity = ".$conf->entity;
-//$sql.= " AND c.fk_statut > 2";
+
 $sql .= " ORDER BY c.tms DESC";
 $sql .= $db->plimit($max, 0);
 

@@ -228,9 +228,9 @@ if ($resql)
 		print $obj->label;
 		print "</td><td>\n";
 		print $langs->trans('BarcodeDesc'.$obj->encoding);
-		//print "L'EAN se compose de 8 caracteres, 7 chiffres plus une cle de controle.<br>";
-		//print "L'utilisation des symbologies EAN8 impose la souscription et l'abonnement aupres d'organisme tel que GENCOD.<br>";
-		//print "Codes numeriques utilises exclusivement a l'identification des produits susceptibles d'etre vendus au grand public.";
+		
+		
+		
 		print '</td>';
 
 		// Show example
@@ -262,7 +262,7 @@ if ($resql)
 					    $result = $module->writeBarCode($obj->example, $obj->encoding, 'Y');
 						// Generate on the fly and output barcode with generator
 						$url = DOL_URL_ROOT.'/viewimage.php?modulepart=barcode&amp;generator='.urlencode($obj->coder).'&amp;code='.urlencode($obj->example).'&amp;encoding='.urlencode($obj->encoding);
-						//print $url;
+						
 						print '<img src="'.$url.'" title="'.$obj->example.'" border="0">';
 					}
 					else
@@ -431,7 +431,7 @@ if ($conf->product->enabled)
 	print "</table>\n";
 }
 
-//print '</form>';
+
 
 print "<br>";
 

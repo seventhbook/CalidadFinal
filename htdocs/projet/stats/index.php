@@ -45,7 +45,7 @@ if ($user->socid > 0)
 }
 $nowyear = strftime("%Y", dol_now());
 $year = GETPOST('year') > 0 ?GETPOST('year') : $nowyear;
-//$startyear=$year-2;
+
 $startyear = $year - 1;
 $endyear = $year;
 
@@ -140,7 +140,7 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 
 
 // Build graphic number of object
-// $data = array(array('Lib',val1,val2,val3),...)
+
 $data = $stats_project->getNbByMonthWithPrevYear($endyear, $startyear);
 //var_dump($data);
 
@@ -177,7 +177,7 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 	// Build graphic amount of object
 	$data = $stats_project->getAmountByMonthWithPrevYear($endyear, $startyear);
 	//var_dump($data);
-	// $data = array(array('Lib',val1,val2,val3),...)
+	
 
 	$filenamenb = $conf->project->dir_output."/stats/projectamountprevyear-".$year.".png";
 	$fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=projectstats&amp;file=projectamountprevyear-'.$year.'.png';
@@ -213,7 +213,7 @@ if (!empty($conf->global->PROJECT_USE_OPPORTUNITIES))
 	// Build graphic with transformation rate
 	$data = $stats_project->getWeightedAmountByMonthWithPrevYear($endyear, $startyear, 0, 0);
 	//var_dump($data);
-	// $data = array(array('Lib',val1,val2,val3),...)
+	
 
 	$filenamenb = $conf->project->dir_output."/stats/projecttransrateprevyear-".$year.".png";
 	$fileurlnb = DOL_URL_ROOT.'/viewimage.php?modulepart=projectstats&amp;file=projecttransrateprevyear-'.$year.'.png';

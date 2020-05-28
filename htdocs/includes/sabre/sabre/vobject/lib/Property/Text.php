@@ -77,7 +77,7 @@ class Text extends Property {
         // There's two types of multi-valued text properties:
         // 1. multivalue properties.
         // 2. structured value properties
-        //
+        
         // The former is always separated by a comma, the latter by semi-colon.
         if (in_array($name, $this->structuredValues)) {
             $this->delimiter = ';';
@@ -117,7 +117,7 @@ class Text extends Property {
         // Quoted printable only appears in vCard 2.1, and the only character
         // that may be escaped there is ;. So we are simply splitting on just
         // that.
-        //
+        
         // We also don't have to unescape \\, so all we need to look for is a ;
         // that's not preceeded with a \.
         $regex = '# (?<!\\\\) ; #x';
@@ -175,7 +175,7 @@ class Text extends Property {
     function getJsonValue() {
 
         // Structured text values should always be returned as a single
-        // array-item. Multi-value text should be returned as multiple items in
+        
         // the top-array.
         if (in_array($this->name, $this->structuredValues)) {
             return [$this->getParts()];
@@ -314,7 +314,7 @@ class Text extends Property {
         switch ($this->name) {
 
             // Special-casing the REQUEST-STATUS property.
-            //
+            
             // See:
             // http://tools.ietf.org/html/rfc6321#section-3.4.1.3
             case 'REQUEST-STATUS':

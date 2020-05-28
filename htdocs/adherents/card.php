@@ -96,7 +96,7 @@ if ($id > 0)
 	// Define variables to know what current user can do on properties of user linked to edited member
 	if ($object->user_id)
 	{
-		// $User is the user who edits, $object->user_id is the id of the related user in the edited member
+		
 		$caneditfielduser = ((($user->id == $object->user_id) && $user->rights->user->self->creer)
 				|| (($user->id != $object->user_id) && $user->rights->user->user->creer));
 		$caneditpassworduser = ((($user->id == $object->user_id) && $user->rights->user->self->password)
@@ -310,14 +310,14 @@ if (empty($reshook))
 					$object->socialnetworks[$key] = trim(GETPOST($key, 'alphanohtml'));
 				}
 			}
-			//$object->skype       = trim(GETPOST("skype", 'alpha'));
-			//$object->twitter     = trim(GETPOST("twitter", 'alpha'));
-			//$object->facebook    = trim(GETPOST("facebook", 'alpha'));
-			//$object->linkedin    = trim(GETPOST("linkedin", 'alpha'));
+			
+			
+			
+			
 			$object->birth       = $birthdate;
 
 			$object->typeid      = GETPOST("typeid", 'int');
-			//$object->note        = trim(GETPOST("comment","alpha"));
+			
 			$object->morphy      = GETPOST("morphy", 'alpha');
 
 			if (GETPOST('deletephoto', 'alpha')) $object->photo = '';
@@ -456,15 +456,15 @@ if (empty($reshook))
 		$phone = GETPOST("phone", 'alpha');
 		$phone_perso = GETPOST("phone_perso", 'alpha');
 		$phone_mobile = GETPOST("phone_mobile", 'alpha');
-		// $skype=GETPOST("member_skype", 'alpha');
-		// $twitter=GETPOST("member_twitter", 'alpha');
-		// $facebook=GETPOST("member_facebook", 'alpha');
-        // $linkedin=GETPOST("member_linkedin", 'alpha');
+		
+		
+		
+        
 		$email = preg_replace('/\s+/', '', GETPOST("member_email", 'alpha'));
 		$login = GETPOST("member_login", 'alpha');
 		$pass = GETPOST("password", 'alpha');
 		$photo = GETPOST("photo", 'alpha');
-		//$comment=GETPOST("comment",'none');
+		
 		$morphy = GETPOST("morphy", 'alpha');
 		$subscription = GETPOST("subscription", 'alpha');
 		$public = GETPOST("public", 'alpha');
@@ -495,10 +495,10 @@ if (empty($reshook))
 			}
 		}
 
-		// $object->skype       = $skype;
-		// $object->twitter     = $twitter;
-		// $object->facebook    = $facebook;
-		// $object->linkedin    = $linkedin;
+		
+		
+		
+		
 
 		$object->email       = $email;
 		$object->login       = $login;
@@ -506,7 +506,7 @@ if (empty($reshook))
 		$object->birth       = $birthdate;
 		$object->photo       = $photo;
 		$object->typeid      = $typeid;
-		//$object->note        = $comment;
+		
 		$object->morphy      = $morphy;
 		$object->user_id     = $userid;
 		$object->socid = $socid;
@@ -846,9 +846,9 @@ $countrynotdefined = $langs->trans("ErrorSetACountryFirst").' ('.$langs->trans("
 
 if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 {
-	// -----------------------------------------
+	
 	// When used with CANVAS
-	// -----------------------------------------
+	
 	if (empty($object->error) && $id)
 	{
 		$object = new Adherent($db);
@@ -860,9 +860,9 @@ if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 }
 else
 {
-	// -----------------------------------------
+	
 	// When used in standard mode
-	// -----------------------------------------
+	
 
 	if ($action == 'create')
 	{
@@ -1267,7 +1267,7 @@ else
 		print '</td></tr>';
 
 		// Country
-		//$object->country_id=$object->country_id?$object->country_id:$mysoc->country_id;    // In edit mode we don't force to company country if not defined
+		
 		print '<tr><td>'.$langs->trans('Country').'</td><td>';
 		print $form->select_country(isset($_POST["country_id"]) ? $_POST["country_id"] : $object->country_id, 'country_id');
 		if ($user->admin) print info_admin($langs->trans("YouCanChangeValuesForThisListFromDictionarySetup"), 1);
@@ -1922,8 +1922,8 @@ else
 
 			// Documents generes
 			$filename = dol_sanitizeFileName($object->ref);
-			//$filename =  'tmp_cards.php';
-			//$filedir = $conf->adherent->dir_output . '/' . get_exdir($object->id, 2, 0, 0, $object, 'member') . dol_sanitizeFileName($object->ref);
+			
+			
 			$filedir = $conf->adherent->dir_output.'/'.get_exdir(0, 0, 0, 0, $object, 'member');
 			$urlsource = $_SERVER['PHP_SELF'].'?id='.$object->id;
 			$genallowed = $user->rights->adherent->lire;
@@ -1933,8 +1933,8 @@ else
 			$somethingshown = $formfile->numoffiles;
 
 			// Show links to link elements
-			//$linktoelem = $form->showLinkToObjectBlock($object, null, array('subscription'));
-			//$somethingshown = $form->showLinkedObjectBlock($object, '');
+			
+			
 
 			// Show links to link elements
 			/*$linktoelem = $form->showLinkToObjectBlock($object,array('order'));

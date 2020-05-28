@@ -55,7 +55,7 @@ class modTakePos extends DolibarrModules
 		// Module position in the family on 2 digits ('01', '10', '20', ...)
 		$this->module_position = '60';
 		// Gives the possibility to the module, to provide his own family info and position of this family (Overwrite $this->family and $this->module_position. Avoid this)
-		//$this->familyinfo = array('myownfamily' => array('position' => '01', 'label' => $langs->trans("MyOwnFamily")));
+		
 
 		// Module label (no space allowed), used if translation string 'ModuleTakePosName' not found (MyModue is name of module).
 		$this->name = preg_replace('/^mod/i', '', get_class($this));
@@ -74,9 +74,9 @@ class modTakePos extends DolibarrModules
 		$this->picto='list';
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
-		// for default path (eg: /takepos/core/xxxxx) (0=disable, 1=enable)
-		// for specific path of parts (eg: /takepos/core/modules/barcode)
-		// for specific css file (eg: /takepos/css/takepos.css.php)
+		
+		
+		
 		$this->module_parts = array(
 		                        	'triggers' => 0,                                 	// Set this to 1 if module has its own trigger directory (core/triggers)
 									'login' => 0,                                    	// Set this to 1 if module has its own login method file (core/login)
@@ -106,14 +106,14 @@ class modTakePos extends DolibarrModules
 		$this->need_dolibarr_version = array(4,0);	// Minimum version of Dolibarr required by module
 		$this->warnings_activation = array('FR'=>'WarningNoteModulePOSForFrenchLaw');                     // Warning to show when we activate module. array('always'='text') or array('FR'='text')
 		$this->warnings_activation_ext = array();                 // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
-		//$this->automatic_activation = array('FR'=>'TakePosWasAutomaticallyActivatedBecauseOfYourCountryChoice');
-		//$this->always_enabled = true;								// If true, can't be disabled
+		
+		
 
 		// Constants
 		// List of particular constants to add when module is enabled (key, 'chaine', value, desc, visible, 'current' or 'allentities', deleteonunactive)
 		// Example: $this->const=array(0=>array('TAKEPOS_MYNEWCONST1','chaine','myvalue','This is a constant to add',1),
 		//                             1=>array('TAKEPOS_MYNEWCONST2','chaine','myvalue','This is another constant to add',0, 'current', 1)
-		// );
+		
 		$this->const = array(
 			//1=>array('TAKEPOS_MYCONSTANT', 'chaine', 'avalue', 'This is a constant to add', 1, 'allentities', 1)
 		);
@@ -129,10 +129,10 @@ class modTakePos extends DolibarrModules
 		// Array to add new pages in new tabs
         $this->tabs = array();
 		// Example:
-		// $this->tabs[] = array('data'=>'objecttype:+tabname1:Title1:mylangfile@takepos:$user->rights->takepos->read:/takepos/mynewtab1.php?id=__ID__');  					// To add a new tab identified by code tabname1
-        // $this->tabs[] = array('data'=>'objecttype:+tabname2:SUBSTITUTION_Title2:mylangfile@takepos:$user->rights->othermodule->read:/takepos/mynewtab2.php?id=__ID__',  	// To add another new tab identified by code tabname2. Label will be result of calling all substitution functions on 'Title2' key.
-        // $this->tabs[] = array('data'=>'objecttype:-tabname:NU:conditiontoremove');                                                     										// To remove an existing tab identified by code tabname
-        //
+		
+        
+        
+        
         // Where objecttype can be
 		// 'categories_x'	  to add a tab in category view (replace 'x' by type of category (0=product, 1=supplier, 2=customer, 3=member)
 		// 'contact'          to add a tab in contact view
@@ -189,7 +189,7 @@ class modTakePos extends DolibarrModules
 		);
 		// Example: $this->cronjobs=array(0=>array('label'=>'My label', 'jobtype'=>'method', 'class'=>'/dir/class/file.class.php', 'objectname'=>'MyClass', 'method'=>'myMethod', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>2, 'unitfrequency'=>3600, 'status'=>0, 'test'=>true),
 		//                                1=>array('label'=>'My label', 'jobtype'=>'command', 'command'=>'', 'parameters'=>'param1, param2', 'comment'=>'Comment', 'frequency'=>1, 'unitfrequency'=>3600*24, 'status'=>0, 'test'=>true)
-		// );
+		
 
 
 		// Permissions

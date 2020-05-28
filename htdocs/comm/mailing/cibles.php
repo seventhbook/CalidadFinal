@@ -79,7 +79,7 @@ if ($action == 'add')
 	foreach ($modulesdir as $dir)
 	{
 	    // Load modules attributes in arrays (name, numero, orders) from dir directory
-	    //print $dir."\n<br>";
+	    
 	    dol_syslog("Scan directory ".$dir." for modules");
 
 	    // Loading Class
@@ -259,7 +259,7 @@ if ($object->fetch($id) >= 0)
 			print dol_print_email($object->email_from, 0, 0, 0, 0, 1);
 		}
 	}
-	//print dol_print_email($object->email_from, 0, 0, 0, 0, 1);
+	
 	//var_dump($object->email_from);
 	print '</td></tr>';
 
@@ -327,20 +327,20 @@ if ($object->fetch($id) >= 0)
 	{
 		print load_fiche_titre($langs->trans("ToAddRecipientsChooseHere"), ($user->admin ?info_admin($langs->trans("YouCanAddYourOwnPredefindedListHere"), 1) : ''), 'generic');
 
-		//print '<table class="noborder centpercent">';
+		
 		print '<div class="tagtable centpercent liste_titre_bydiv borderbottom" id="tablelines">';
 
-		//print '<tr class="liste_titre">';
+		
 		print '<div class="tagtr liste_titre">';
-		//print '<td class="liste_titre">'.$langs->trans("RecipientSelectionModules").'</td>';
+		
 		print '<div class="tagtd">'.$langs->trans("RecipientSelectionModules").'</div>';
-		//print '<td class="liste_titre" align="center">'.$langs->trans("NbOfUniqueEMails").'</td>';
+		
 		print '<div class="tagtd" align="center">'.$langs->trans("NbOfUniqueEMails").'</div>';
-		//print '<td class="liste_titre" align="left">'.$langs->trans("Filter").'</td>';
+		
 		print '<div class="tagtd left">'.$langs->trans("Filter").'</div>';
-		//print '<td class="liste_titre" align="center">&nbsp;</td>';
+		
 		print '<div class="tagtd">&nbsp;</div>';
-		//print "</tr>\n";
+		
 		print '</div>';
 
 		clearstatcache();
@@ -350,7 +350,7 @@ if ($object->fetch($id) >= 0)
 		    $modulenames = array();
 
 		    // Load modules attributes in arrays (name, numero, orders) from dir directory
-		    //print $dir."\n<br>";
+		    
 		    dol_syslog("Scan directory ".$dir." for modules");
 		    $handle = @opendir($dir);
 			if (is_resource($handle))
@@ -391,7 +391,7 @@ if ($object->fetch($id) >= 0)
 					if (!$conf->$key->enabled || (!$user->admin && $obj->require_admin))
 					{
 						$qualified = 0;
-						//print "Les prerequis d'activation du module mailing ne sont pas respectes. Il ne sera pas actif";
+						
 						break;
 					}
 				}
@@ -460,7 +460,7 @@ if ($object->fetch($id) >= 0)
 					else
 					{
 					    print '<input type="submit" class="button disabled" disabled="disabled" name="button_'.$modulename.'" value="'.$langs->trans("Add").'">';
-						//print $langs->trans("MailNoChangePossible");
+						
 						print "&nbsp;";
 					}
 					print '</div>';
@@ -494,14 +494,14 @@ if ($object->fetch($id) >= 0)
 	{
 	    $result = $db->query($sql);
 	    $nbtotalofrecords = $db->num_rows($result);
-	    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+	    if (($page * $limit) > $nbtotalofrecords)	
 	    {
 	    	$page = 0;
 	    	$offset = 0;
 	    }
 	}
 
-	//$nbtotalofrecords=$object->nbemail;     // nbemail is a denormalized field storing nb of targets
+	
 	$sql .= $db->plimit($limit + 1, $offset);
 
 	$resql = $db->query($sql);
@@ -510,7 +510,7 @@ if ($object->fetch($id) >= 0)
 		$num = $db->num_rows($resql);
 
 		$param = "&id=".$object->id;
-		//if (! empty($contextpage) && $contextpage != $_SERVER["PHP_SELF"]) $param.='&contextpage='.urlencode($contextpage);
+		
 		if ($limit > 0 && $limit != $conf->liste_limit) $param .= '&limit='.urlencode($limit);
 		if ($search_lastname)  $param .= "&search_lastname=".urlencode($search_lastname);
 		if ($search_firstname) $param .= "&search_firstname=".urlencode($search_firstname);

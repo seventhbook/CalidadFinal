@@ -119,7 +119,7 @@ class dolReceiptPrinter extends Printer
     const CONNECTOR_FILE_PRINT = 2;
     const CONNECTOR_NETWORK_PRINT = 3;
     const CONNECTOR_WINDOWS_PRINT = 4;
-    //const CONNECTOR_JAVA = 5;
+    
 
     /**
      * @var DoliDB Database handler.
@@ -515,7 +515,7 @@ class dolReceiptPrinter extends Printer
         global $conf;
         $error = 0;
         $img = EscposImage::load(DOL_DOCUMENT_ROOT.'/theme/dolibarr_logo_bw.png');
-        //$this->profile = CapabilityProfile::load("TM-T88IV");
+        
         $ret = $this->initPrinter($printerid);
         if ($ret>0) {
             setEventMessages($this->error, $this->errors, 'errors');
@@ -525,11 +525,11 @@ class dolReceiptPrinter extends Printer
                 $this->printer->text("Hello World!\n");
                 $testStr = "1234567890";
                 $this->printer->barcode($testStr);
-                //$this->printer->qrcode($testStr, Printer::QR_ECLEVEL_M, 5, Printer::QR_MODEL_1);
+                
                 $this->printer->text("Most simple example\n");
                 $this->printer->feed();
                 $this->printer->cut();
-                //print '<pre>'.print_r($this->connector, true).'</pre>';
+                
                 $this->printer->close();
             } catch (Exception $e) {
                 $this->errors[] = $e->getMessage();
@@ -596,9 +596,9 @@ class dolReceiptPrinter extends Printer
         $p = xml_parser_create();
         xml_parse_into_struct($p, $this->template, $vals, $index);
         xml_parser_free($p);
-        //print '<pre>'.print_r($index, true).'</pre>';
-        //print '<pre>'.print_r($vals, true).'</pre>';
-        // print ticket
+        
+        
+        
         $level = 0;
         $nbcharactbyline = 48;
         $ret = $this->initPrinter($printerid);
@@ -666,10 +666,10 @@ class dolReceiptPrinter extends Printer
                         $this->printer->pulse();
                         break;
                     case 'DOL_ACTIVATE_BUZZER':
-                        //$this->printer->buzzer();
+                        
                         break;
                     case 'DOL_PRINT_BARCODE':
-                        // $vals[$tplline]['value'] -> barcode($content, $type)
+                        
                         // var_dump($vals[$tplline]['value']);
                         try {
                             $this->printer->barcode($vals[$tplline]['value']);
@@ -687,7 +687,7 @@ class dolReceiptPrinter extends Printer
                         $this->printer->bitImage($img);
                         break;
                     case 'DOL_PRINT_QRCODE':
-                        // $vals[$tplline]['value'] -> qrCode($content, $ec, $size, $model)
+                        
                         $this->printer->qrcode($vals[$tplline]['value']);
                         break;
                     case 'DOL_CUT_PAPER_FULL':
@@ -715,7 +715,7 @@ class dolReceiptPrinter extends Printer
             }
             // Close and print
             // uncomment next line to see content sent to printer
-            //print '<pre>'.print_r($this->connector, true).'</pre>';
+            
             $this->printer->close();
         }
         return $error;

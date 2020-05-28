@@ -177,7 +177,7 @@ foreach($modulesdir as $dir)
     	            {
     	                $ret=$objMod->insert_permissions(0, $entity);
     	                $modules[$objMod->rights_class]=$objMod;
-    	                //print "modules[".$objMod->rights_class."]=$objMod;";
+    	                
     	            }
     	        }
     	    }
@@ -290,7 +290,7 @@ if (($caneditperms && empty($objMod->rights_admin_allowed)) || empty($object->ad
 print '<td>'.$langs->trans("Permissions").'</td>';
 print '</tr>'."\n";
 
-//print "xx".$conf->global->MAIN_USE_ADVANCED_PERMS;
+
 $sql = "SELECT r.id, r.libelle as label, r.module, r.module_position";
 $sql.= " FROM ".MAIN_DB_PREFIX."rights_def as r";
 $sql.= " WHERE r.libelle NOT LIKE 'tou%'";    // On ignore droits "tous"

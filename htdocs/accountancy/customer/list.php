@@ -287,7 +287,7 @@ if (empty($conf->global->MAIN_DISABLE_FULL_SCANLIST))
 {
     $result = $db->query($sql);
     $nbtotalofrecords = $db->num_rows($result);
-    if (($page * $limit) > $nbtotalofrecords)	// if total resultset is smaller then paging size (filtering), goto and load page 0
+    if (($page * $limit) > $nbtotalofrecords)	
     {
     	$page = 0;
     	$offset = 0;
@@ -488,8 +488,8 @@ if ($result) {
 		}
 		if (empty($objp->code_sell_l) && empty($objp->code_sell_p)) $code_sell_p_notset = 'color:red';
 
-		// $objp->code_sell_l is now default code of product/service
-		// $objp->code_sell_p is now code of product/service
+		
+		
 
 		print '<tr class="oddeven">';
 
@@ -554,7 +554,7 @@ if ($result) {
 		print '</td>';
 
 		// Suggested accounting account
-		// $objp->code_sell_l = default (it takes the country into consideration), $objp->code_sell_p is value for product (it takes the country into consideration too)
+		
 		print '<td>';
 		$suggestedid = $objp->aarowid_suggest;
 		

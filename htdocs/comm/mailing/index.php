@@ -50,12 +50,12 @@ llxHeader('', 'EMailing', $help_url);
 
 print load_fiche_titre($langs->trans("MailingArea"));
 
-//print '<table class="notopnoleftnoright" width="100%">';
-//print '<tr><td valign="top" width="30%" class="notopnoleft">';
+
+
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
 
-//if (! empty($conf->global->MAIN_SEARCH_FORM_ON_HOME_AREAS))     // This is useless due to the global search combo
+
 //{
     // Recherche emails
     print '<form method="post" action="'.DOL_URL_ROOT.'/comm/mailing/list.php">';
@@ -103,7 +103,7 @@ if (is_resource($handle))
                     if (!$conf->$key->enabled || (!$user->admin && $mailmodule->require_admin))
                     {
                         $qualified = 0;
-                        //print "Les pr�requis d'activation du module mailing ne sont pas respect�s. Il ne sera pas actif";
+                        
                         break;
                     }
                 }
@@ -147,7 +147,7 @@ if (is_resource($handle))
 print "</table><br>";
 
 
-//print '</td><td valign="top" width="70%" class="notopnoleftnoright">';
+
 print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
 
 
@@ -204,7 +204,7 @@ else
 }
 
 
-//print '</td></tr></table>';
+
 print '</div></div></div>';
 
 

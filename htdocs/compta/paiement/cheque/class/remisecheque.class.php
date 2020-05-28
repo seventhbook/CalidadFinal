@@ -50,7 +50,7 @@ class RemiseCheque extends CommonObject
 
 	public $num;
 	public $intitule;
-	//! Numero d'erreur Plage 1024-1279
+	
 	public $errno;
 
 	public $amount;
@@ -799,7 +799,7 @@ class RemiseCheque extends CommonObject
 		$this->db->begin();
 
 		// Not conciliated, we can delete it
-		//$bankline->delete($user);    // We delete
+		
 
 		$bankaccount = $payment->fk_account;
 

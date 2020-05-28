@@ -4,12 +4,12 @@
 $remoteUrl = 'http://example.org/';
 
 // The url we're proxying from. Please note that this must be a relative url,
-// and basically acts as the base url.
-//
+
+
 // If your $remoteUrl doesn't end with a slash, this one probably shouldn't
 // either.
 $myBaseUrl = '/reverseproxy.php';
-// $myBaseUrl = '/~evert/sabre/http/examples/reverseproxy.php/';
+
 
 use Sabre\HTTP\Client;
 use Sabre\HTTP\Sapi;

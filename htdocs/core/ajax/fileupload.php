@@ -34,7 +34,7 @@ error_reporting(E_ALL | E_STRICT);
 
 //print_r($_POST);
 //print_r($_GET);
-//print 'upload_dir='.GETPOST('upload_dir');
+
 
 $fk_element = GETPOST('fk_element', 'int');
 $element = GETPOST('element', 'alpha');

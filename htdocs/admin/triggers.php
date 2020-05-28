@@ -75,7 +75,7 @@ foreach ($triggers as $trigger)
 	print '<td class="tdtop">';
 	$text = $trigger['info'];
 	$text .= "<br>\n<strong>".$langs->trans("File")."</strong>:<br>\n".$trigger['relpath'];
-	//$text.="\n".$langs->trans("ExternalModule",$trigger['isocreorexternal']);
+	
 	print $form->textwithpicto('', $text);
 	print '</td>';
 	print '</tr>';

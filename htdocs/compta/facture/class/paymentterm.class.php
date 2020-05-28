@@ -25,7 +25,7 @@
 /**
  *	Class to manage payment terms records in dictionary
  */
-class PaymentTerm // extends CommonObject
+class PaymentTerm 
 {
 	/**
      * @var DoliDB Database handler.
@@ -42,8 +42,8 @@ class PaymentTerm // extends CommonObject
 	 */
 	public $errors = array();
 
-	//public  $element='c_payment_term';			//!< Id that identify managed objects
-	//public  $table_element='c_payment_term';	//!< Name of table without prefix where object is stored
+	
+	
 	public $context =array();
 
     /**
@@ -138,12 +138,12 @@ class PaymentTerm // extends CommonObject
 	        // want this action call a trigger.
 			
 
-	        //    // Call triggers
 	        
-	        //    $interface=new Interfaces($this->db);
-	        //    $result=$interface->run_triggers('MYOBJECT_CREATE',$this,$user,$langs,$conf);
-	        //    if ($result < 0) { $error++; $this->errors=$interface->errors; }
-	        //    // End call triggers
+	        
+	        
+	        
+	        
+	        
 			
         }
 
@@ -312,9 +312,9 @@ class PaymentTerm // extends CommonObject
 		
 				// Call triggers
 				
-				//$interface=new Interfaces($this->db);
-				//$result=$interface->run_triggers('MYOBJECT_MODIFY',$this,$user,$langs,$conf);
-				//if ($result < 0) { $error++; $this->errors=$interface->errors; }
+				
+				
+				
 				// End call triggers
 		
 
@@ -361,12 +361,12 @@ class PaymentTerm // extends CommonObject
 		// Uncomment this and change MYOBJECT to your own tag if you
 		// want this action call a trigger.
 		
-		        //// Call triggers
 		        
-		        //$interface=new Interfaces($this->db);
-		        //$result=$interface->run_triggers('MYOBJECT_DELETE',$this,$user,$langs,$conf);
-		        //if ($result < 0) { $error++; $this->errors=$interface->errors; }
-		        //// End call triggers
+		        
+		        
+		        
+		        
+		        
 		
 
         // Commit or rollback
@@ -410,7 +410,7 @@ class PaymentTerm // extends CommonObject
 		$object->statut=0;
 
 		// Clear fields
-		// ...
+		
 
 		// Create clone
 		$object->context['createfromclone'] = 'createfromclone';

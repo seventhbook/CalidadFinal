@@ -169,7 +169,7 @@ class printing_printipp extends PrintingDriver
         $html .= '<td>'.$langs->trans('IPP_State_reason1').'</td>';
         $html .= '<td>'.$langs->trans('IPP_BW').'</td>';
         $html .= '<td>'.$langs->trans('IPP_Color').'</td>';
-        //$html.= '<td>'.$langs->trans('IPP_Device').'</td>';
+        
         $html .= '<td>'.$langs->trans('IPP_Media').'</td>';
         $html .= '<td>'.$langs->trans('IPP_Supported').'</td>';
         $html .= '<td class="center">'.$langs->trans("Select").'</td>';
@@ -179,14 +179,14 @@ class printing_printipp extends PrintingDriver
             $printer_det = $this->getPrinterDetail($value);
             $html .= '<tr class="oddeven">';
             $html .= '<td>'.$value.'</td>';
-            //$html.= '<td><pre>'.print_r($printer_det,true).'</pre></td>';
+            
             $html .= '<td>'.$printer_det->printer_name->_value0.'</td>';
             $html .= '<td>'.$langs->trans('STATE_IPP_'.$printer_det->printer_state->_value0).'</td>';
             $html .= '<td>'.$langs->trans('STATE_IPP_'.$printer_det->printer_state_reasons->_value0).'</td>';
             $html .= '<td>'.(!empty($printer_det->printer_state_reasons->_value1) ? $langs->trans('STATE_IPP_'.$printer_det->printer_state_reasons->_value1) : '').'</td>';
             $html .= '<td>'.$langs->trans('IPP_COLOR_'.$printer_det->printer_type->_value2).'</td>';
             $html .= '<td>'.$langs->trans('IPP_COLOR_'.$printer_det->printer_type->_value3).'</td>';
-            //$html.= '<td>'.$printer_det->device_uri->_value0.'</td>';
+            
             $html .= '<td>'.$printer_det->media_default->_value0.'</td>';
             $html .= '<td>'.$langs->trans('MEDIA_IPP_'.$printer_det->media_type_supported->_value1).'</td>';
             // Defaut
@@ -299,7 +299,7 @@ class printing_printipp extends PrintingDriver
         $html .= '</tr>'."\n";
         $jobs = $ipp->jobs_attributes;
 
-        //$html .= '<pre>'.print_r($jobs,true).'</pre>';
+        
         foreach ($jobs as $value) {
             $html .= '<tr class="oddeven">';
             $html .= '<td>'.$value->job_id->_value0.'</td>';

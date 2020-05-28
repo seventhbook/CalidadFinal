@@ -60,7 +60,7 @@ if ($cotis==1)
 	$sql .= " AND datefin > '".$db->idate($now)."'";
 }
 $sql.= $db->order($sortfield, $sortorder);
-//$sql.=$db->plimit($conf->liste_limit, $offset);
+
 
 $resql = $db->query($sql);
 if ($resql)

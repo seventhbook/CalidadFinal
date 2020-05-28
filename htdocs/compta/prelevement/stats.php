@@ -101,7 +101,7 @@ if ($resql)
 		print '<tr class="oddeven"><td>';
 
 		print $ligne->LibStatut($row[2], 1);
-		//print $st[$row[2]];
+		
 		print '</td><td align="center">';
 		print $row[1];
 

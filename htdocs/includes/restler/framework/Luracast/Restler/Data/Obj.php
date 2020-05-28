@@ -75,7 +75,7 @@ class Obj
     public static function toArray($object,
                                    $forceObjectTypeWhenEmpty = false)
     {
-        //if ($object instanceof JsonSerializable) { //wont work on PHP < 5.4
+        
         if (is_object($object)) {
             if (method_exists($object, 'jsonSerialize')) {
                 $object = $object->jsonSerialize();

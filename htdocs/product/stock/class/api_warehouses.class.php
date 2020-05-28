@@ -256,7 +256,7 @@ class Warehouses extends DolibarrApi
         $object = parent::_cleanObjectDatas($object);
 
         // Remove the subscriptions because they are handled as a subresource.
-        //unset($object->subscriptions);
+        
 
         return $object;
     }

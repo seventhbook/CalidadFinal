@@ -32,7 +32,7 @@ class ActionsCardService
     public $canvas;
     public $card;
 
-    //! Template container
+    
 	public $tpl = array();
 
 	// List of fiels for action=list

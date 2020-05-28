@@ -38,12 +38,12 @@ $version='1.7';
 $error=0;
 
 
-// -------------------- START OF YOUR CODE HERE --------------------
+
 // Include Dolibarr environment
 require_once $path."../../htdocs/master.inc.php";
 // After this $db, $mysoc, $langs and $conf->entity are defined. Opened handler to database will be closed at end of file.
 
-//$langs->setDefaultLang('en_US'); 	// To change default language of $langs
+
 $langs->load("main");				// To load language file for default language
 @set_time_limit(0);
 
@@ -62,7 +62,7 @@ require_once DOL_DOCUMENT_ROOT."/compta/facture/class/facture.class.php";
 
 // Create invoice object
 $obj = new Facture($db);
-//$obj->initAsSpecimen();
+
 
 $obj->ref            = 'ABCDE';
 $obj->socid          = 4;	// Put id of third party (rowid in llx_societe table)
@@ -99,7 +99,7 @@ else
 }
 
 
-// -------------------- END OF YOUR CODE --------------------
+
 
 if (! $error)
 {

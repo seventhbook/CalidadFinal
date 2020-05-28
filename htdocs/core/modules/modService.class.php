@@ -116,7 +116,7 @@ class modService extends DolibarrModules
         $r++;
 
 		// Menus
-		//-------
+		
 		$this->menu = 1; // This module add menu entries. They are coded into menu manager.
 		/* We can't enable this here because it must be enabled in both product and service module and this creates duplicate inserts
 		 
@@ -134,7 +134,7 @@ class modService extends DolibarrModules
 		 */
 
         // Exports
-		//--------
+		
 		$r=0;
 
 		$r++;
@@ -221,7 +221,7 @@ class modService extends DolibarrModules
 					'pr.tva_tx'=>'PriceLevelVATRate',
 					'pr.date_price'=>'DateCreation');
 				if (is_object($mysoc) && $mysoc->useNPR()) $this->export_fields_array[$r]['pr.recuperableonly']='NPR';
-				//$this->export_TypeFields_array[$r]=array(
+				
 				//	'p.ref'=>"Text",'p.label'=>"Text",'p.description'=>"Text",'p.url'=>"Text",'p.accountancy_code_sell'=>"Text",'p.accountancy_code_buy'=>"Text",
 				//	'p.note'=>"Text",'p.length'=>"Numeric",'p.surface'=>"Numeric",'p.volume'=>"Numeric",'p.weight'=>"Numeric",'p.customcode'=>'Text',
 				//	'p.price_base_type'=>"Text",'p.price'=>"Numeric",'p.price_ttc'=>"Numeric",'p.tva_tx'=>'Numeric','p.tosell'=>"Boolean",'p.tobuy'=>"Boolean",
@@ -327,7 +327,7 @@ class modService extends DolibarrModules
 		}
 
 		// Imports
-		//--------
+		
 		$r=0;
 
 		// Import list of services
@@ -378,7 +378,7 @@ class modService extends DolibarrModules
         	'p.datec' => 'DateCreation',
         	'p.cost_price' => "CostPrice",
 		);
-        if (!empty($conf->stock->enabled)) {//if Stock module enabled
+        if (!empty($conf->stock->enabled)) {
         	$this->import_fields_array[$r] = array_merge($this->import_fields_array[$r], array(
         		'p.seuil_stock_alerte' => 'StockLimit', //lower limit for warning
         		'p.pmp' => 'PMPValue', //weighted average price

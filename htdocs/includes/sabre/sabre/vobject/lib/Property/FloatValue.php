@@ -85,7 +85,7 @@ class FloatValue extends Property {
         $val = array_map('floatval', $this->getParts());
 
         // Special-casing the GEO property.
-        //
+        
         // See:
         // http://tools.ietf.org/html/draft-ietf-jcardcal-jcal-04#section-3.4.1.2
         if ($this->name === 'GEO') {
@@ -122,7 +122,7 @@ class FloatValue extends Property {
     protected function xmlSerializeValue(Xml\Writer $writer) {
 
         // Special-casing the GEO property.
-        //
+        
         // See:
         // http://tools.ietf.org/html/rfc6321#section-3.4.1.2
         if ($this->name === 'GEO') {

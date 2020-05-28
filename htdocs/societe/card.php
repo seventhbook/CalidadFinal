@@ -894,17 +894,17 @@ $countrynotdefined = $langs->trans("ErrorSetACountryFirst").' ('.$langs->trans("
 
 if (is_object($objcanvas) && $objcanvas->displayCanvasExists($action))
 {
-    // -----------------------------------------
+    
     // When used with CANVAS
-    // -----------------------------------------
+    
    	$objcanvas->assign_values($action, $object->id, $object->ref); // Set value for templates
     $objcanvas->display_canvas($action); // Show template
 }
 else
 {
-    // -----------------------------------------
+    
     // When used in standard mode
-    // -----------------------------------------
+    
     if ($action == 'create')
     {
         /*

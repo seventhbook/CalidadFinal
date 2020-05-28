@@ -416,7 +416,7 @@ class PHPExcel_Calculation_FormulaParser {
 				continue;
 			}
 
-			// function, subexpression, or array parameters, or operand unions
+			
 			if ($this->_formula{$index} == PHPExcel_Calculation_FormulaParser::COMMA) {
 				if (strlen($value) > 0) {
 					$tokens1[] = new PHPExcel_Calculation_FormulaToken($value, PHPExcel_Calculation_FormulaToken::TOKEN_TYPE_OPERAND);

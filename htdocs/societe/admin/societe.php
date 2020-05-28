@@ -253,7 +253,7 @@ if ($action == 'setprofid')
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
 		
-		//exit;
+		
 	}
 	else
 	{
@@ -270,7 +270,7 @@ if ($action == 'setprofidmandatory')
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
 		
-		//exit;
+		
 	}
 	else
 	{
@@ -287,7 +287,7 @@ if ($action == 'setprofidinvoicemandatory')
 	if (dolibarr_set_const($db, $idprof, $status, 'chaine', 0, '', $conf->entity) > 0)
 	{
 		
-		//exit;
+		
 	}
 	else
 	{
@@ -596,15 +596,15 @@ foreach ($dirsociete as $dirroot)
 					if (in_array($name, $def))
 					{
 						print "<td class=\"center\">\n";
-						//if ($conf->global->COMPANY_ADDON_PDF != "$name")
+						
 						//{
 							print '<a href="'.$_SERVER["PHP_SELF"].'?action=del&value='.$name.'&scan_dir='.$module->scandir.'&label='.urlencode($module->name).'">';
 							print img_picto($langs->trans("Enabled"), 'switch_on');
 							print '</a>';
 						//}
-						//else
+						
 						//{
-						//	print img_picto($langs->trans("Enabled"),'on');
+						
 						//}
 						print "</td>";
 					}

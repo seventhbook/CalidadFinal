@@ -133,7 +133,7 @@ class box_contracts extends ModeleBoxes
     				$thirdpartytmp->code_compta_fournisseur = $objp->code_compta_fournisseur;
 
     				// fin_validite is no more on contract but on services
-    				// if ($objp->fk_statut == 1 && $dateterm < ($now - $conf->contrat->cloture->warning_delay)) { $late = img_warning($langs->trans("Late")); }
+    				
 
                     $this->info_box_contents[$line][] = array(
                         'td' => 'class="nowraponall"',

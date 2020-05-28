@@ -32,12 +32,12 @@ print '<td>'.$this->tpl['label'].'</td>';
 print '<td class="right">'.$this->tpl['qty'].'</td>';
 print '<td class="center">'.($this->tpl['qty_frozen'] ? yn($this->tpl['qty_frozen']) : '').'</td>';
 print '<td class="center">'.($this->tpl['disable_stock_change'] ? yn($this->tpl['disable_stock_change']) : '').'</td>';
-//print '<td class="right">'.$this->tpl['efficiency'].'</td>';
+
 
 $selected=1;
 if (!empty($selectedLines) && !in_array($this->tpl['id'], $selectedLines)) $selected=0;
 print '<td class="center">';
-//print '<input id="cb'.$this->tpl['id'].'" class="flat checkforselect" type="checkbox" name="toselect[]" value="'.$this->tpl['id'].'"'.($selected?' checked="checked"':'').'>';
+
 print '</td>';
 print '</tr>'."\n";
 ?>

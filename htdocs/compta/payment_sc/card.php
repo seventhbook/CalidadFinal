@@ -41,7 +41,7 @@ $action=GETPOST('action', 'aZ09');
 $confirm=GETPOST('confirm');
 if ($user->socid) $socid=$user->socid;
 // TODO ajouter regle pour restreindre acces paiement
-//$result = restrictedArea($user, 'facture', $id,'');
+
 
 $object = new PaymentSocialContribution($db);
 if ($id > 0)

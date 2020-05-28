@@ -39,11 +39,11 @@ if (isset($_SESSION['serObjFacturation']))
 }
 else
 {
-	// ... sinon, c'est une nouvelle vente
+	
 	$obj_facturation = new Facturation();
 }
 
-// $obj_facturation contains data for all invoice total + selection of current product
+
 
 $obj_facturation->calculTotaux();	// Redefine prix_total_ttc, prix_total_ht et montant_tva from $_SESSION['poscart']
 

@@ -61,9 +61,9 @@ $extrafields->fetch_name_optionals_label($object->table_element);
 
 // Add file in email form
 if (GETPOST('addfile', 'alpha') && !GETPOST('add', 'alpha')) {
-    ////$res = $object->fetch('','',GETPOST('track_id'));
-    ////if($res > 0)
-    ////{
+    
+    
+    
     include_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
 
     // Set tmp directory TODO Use a dedicated directory for temp mails files
@@ -75,7 +75,7 @@ if (GETPOST('addfile', 'alpha') && !GETPOST('add', 'alpha')) {
 
     dol_add_file_process($upload_dir_tmp, 0, 0, 'addedfile', '', null, '', 0);
     $action = 'create_ticket';
-    ////}
+    
 }
 
 // Remove file

@@ -724,7 +724,7 @@ function createOrder($authentication, $order)
 
 		foreach ($arrayoflines as $key => $line)
 		{
-			// $key can be 'line' or '0','1',...
+			
 			$newline = new OrderLine($db);
 
 			$newline->type = $line['type'];

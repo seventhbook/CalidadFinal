@@ -103,13 +103,13 @@ if (empty($action) || (empty($idc) && empty($ids) && empty($ida))) {
         $adherent->array_options['options_datapolicy_consentement'] = 1;
         $adherent->array_options['options_datapolicy_opposition_traitement'] = 0;
         $adherent->array_options['options_datapolicy_opposition_prospection'] = 0;
-        //$adherent->array_options['options_datapolicy_date'] = date('Y-m-d', time());
+        
         $return = $conf->global->$acc;
     } elseif ($action == 2) {
         $adherent->array_options['options_datapolicy_consentement'] = 0;
         $adherent->array_options['options_datapolicy_opposition_traitement'] = 1;
         $adherent->array_options['options_datapolicy_opposition_prospection'] = 1;
-        //$adherent->array_options['options_datapolicy_date'] = date('Y-m-d', time());
+        
 
         $return = $conf->global->$ref;
     }

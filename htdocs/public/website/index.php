@@ -141,7 +141,7 @@ if (!empty($conf->global->MAIN_APPLICATION_TITLE)) $appli=$conf->global->MAIN_AP
  * View
  */
 
-//print 'Directory with '.$appli.' websites.<br>';
+
 
 
 // Security: Delete string ../ into $original_file
@@ -151,8 +151,8 @@ if ($pageid == 'css')   // No more used ?
 {
     header('Content-type: text/css');
     // Important: Following code is to avoid page request by browser and PHP CPU at each Dolibarr page access.
-    //if (empty($dolibarr_nocache)) header('Cache-Control: max-age=3600, public, must-revalidate');
-    //else
+    
+    
     header('Cache-Control: no-cache');
     $original_file=$dolibarr_main_data_root.'/website/'.$websitekey.'/styles.css.php';
 }

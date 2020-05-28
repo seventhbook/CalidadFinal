@@ -256,7 +256,7 @@ if (($action == 'create' || $action == 'add') && !$error)
 										if ($discountid > 0)
 										{
 											$result = $object->insert_discount($discountid);
-											//$result=$discount->link_to_invoice($lineid,$id);
+											
 										}
 										else
 										{
@@ -724,7 +724,7 @@ if (($action != 'create' && $action != 'add') || ($action == 'create' && $error)
 		print '<input type="hidden" name="socid" value="'.$socid.'">';
 		print '<input type="hidden" name="action" value="create">';
 		print '<input type="hidden" name="origin" value="commande"><br>';
-		//print '<a class="butAction" href="index.php">'.$langs->trans("GoBack").'</a>';
+		
 		print '<input type="submit" class="butAction" value="'.$langs->trans("GenerateBill").'">';
 		print '</div>';
 		print '</div>';

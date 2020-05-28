@@ -35,7 +35,7 @@ $action=GETPOST('action', 'aZ09');
 $confirm=GETPOST('confirm');
 if ($user->socid) $socid=$user->socid;
 // TODO ajouter regle pour restreindre acces paiement
-//$result = restrictedArea($user, 'facture', $id,'');
+
 
 $payment = new PaymentLoan($db);
 if ($id > 0)
@@ -214,7 +214,7 @@ if ($resql)
 	print '<tr class="liste_titre">';
 	print '<td>'.$langs->trans('Loan').'</td>';
 	print '<td>'.$langs->trans('Label').'</td>';
-	// print '<td class="right">'.$langs->trans('ExpectedToPay').'</td>';
+	
 	print '<td class="center">'.$langs->trans('Status').'</td>';
 	print '<td class="right">'.$langs->trans('PayedByThisPayment').'</td>';
 	print "</tr>\n";
@@ -234,7 +234,7 @@ if ($resql)
 			// Label
 			print '<td>'.$objp->label.'</td>';
 			// Expected to pay
-			// print '<td class="right">'.price($objp->capital).'</td>';
+			
 			// Status
 			print '<td class="center">'.$loan->getLibStatut(4, $objp->amount_capital).'</td>';
 			// Amount payed

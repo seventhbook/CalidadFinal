@@ -128,7 +128,7 @@ if ($dirins && $action == 'initmodule' && $modulename)
 				$langs->load("errors");
 				setEventMessages($langs->trans("ErrorFailToCopyDir", $srcdir, $destdir), null, 'errors');
 			}
-			else	// $result == 0
+			else	
 			{
 				setEventMessages($langs->trans("AllFilesDidAlreadyExist", $srcdir, $destdir), null, 'warnings');
 			}
@@ -703,7 +703,7 @@ if ($dirins && $action == 'initobject' && $module && GETPOST('createtablearray',
 			if (in_array($fieldname, array('ref_ext', 'model_pdf', 'note_public', 'note_private'))) $visible = 0;
 			// enabled
 			$enabled = 1;
-			// default
+			
 			$default = '';
 			if ($fieldname == 'entity') $default=1;
 			// position
@@ -828,7 +828,7 @@ if ($dirins && $action == 'initobject' && $module && $objectname)
 					$langs->load("errors");
 					setEventMessages($langs->trans("ErrorFailToCopyFile", $srcdir.'/'.$srcfile, $destdir.'/'.$destfile), null, 'errors');
 				}
-				else	// $result == 0
+				else	
 				{
 					setEventMessages($langs->trans("FileAlreadyExists", $destfile), null, 'warnings');
 				}
@@ -1493,7 +1493,7 @@ foreach($dirsrootforscan as $dirread)
     	}
     }
 
-    if ($forceddirread && empty($listofmodules))    // $forceddirread is 1 if we forced dir to read with dirins=... or with module=...@mydir
+    if ($forceddirread && empty($listofmodules))    
     {
     	$listofmodules[strtolower($module)] = array(
     	    'modulenamewithcase'=>$module,

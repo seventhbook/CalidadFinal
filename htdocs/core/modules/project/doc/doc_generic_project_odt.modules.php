@@ -243,14 +243,14 @@ class doc_generic_project_odt extends ModelePDFProjects
 				$ret[$pc.$efkey] = $efval; // add nothing else because it already comes as 'options_XX'
 			}
 		} elseif ($contact['source'] == 'internal') {
-			$ret[$pc.'isInternal'] = '1'; // this is an internal user
+			$ret[$pc.'isInternal'] = '1'; 
 
 			$ct = new User($this->db);
 			$ct->fetch($contact['id']);
 			$ret[$pc.'phone_pro'] = $ct->office_phone;
 			$ret[$pc.'phone_perso'] = '';
 			$ret[$pc.'phone_mobile'] = $ct->user_mobile;
-			// do internal users have extrafields ?
+			
 		}
 		return $ret;
 	}
@@ -529,7 +529,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 
 			if (file_exists($dir))
 			{
-				//print "srctemplatepath=".$srctemplatepath;	// Src filename
+				
 				$newfile = basename($srctemplatepath);
 				$newfiletmp = preg_replace('/\.od(t|s)/i', '', $newfile);
 				$newfiletmp = preg_replace('/template_/i', '', $newfiletmp);
@@ -569,7 +569,7 @@ class doc_generic_project_odt extends ModelePDFProjects
 				$contactobject = null;
 				if (!empty($usecontact))
 				{
-        			// if we have a PROJECTLEADER contact and we dont use it as recipient we store the contact object for later use
+        			
         			$contactobject = $object->contact;
 				}
 
@@ -603,8 +603,8 @@ class doc_generic_project_odt extends ModelePDFProjects
 					return -1;
 				}
 				// After construction $odfHandler->contentXml contains content and
-				// [!-- BEGIN row.lines --]*[!-- END row.lines --] has been replaced by
-				// [!-- BEGIN lines --]*[!-- END lines --]
+				
+				
 				
 				
 

@@ -85,7 +85,7 @@ class modMailmanSpip extends DolibarrModules
 		$this->rights_class = 'clicktodial';
 
 		// Menus
-		//-------
+		
 		$this->menu = 1;        // This module add menu entries. They are coded into menu manager.
 	}
 }

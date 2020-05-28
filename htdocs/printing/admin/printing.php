@@ -64,7 +64,7 @@ if ($action == 'setconst' && $user->admin)
     $error = 0;
     $db->begin();
     foreach ($_POST['setupdriver'] as $setupconst) {
-        //print '<pre>'.print_r($setupconst, true).'</pre>';
+        
         $result = dolibarr_set_const($db, $setupconst['varname'], $setupconst['value'], 'chaine', 0, '', $conf->entity);
         if (!$result > 0) $error++;
     }
@@ -209,8 +209,8 @@ if ($mode == 'setup' && $user->admin)
                 {
                     //var_dump($tokenobj);
                     print $tokenobj->getAccessToken().'<br>';
-                    //print 'Refresh: '.$tokenobj->getRefreshToken().'<br>';
-                    //print 'EndOfLife: '.$tokenobj->getEndOfLife().'<br>';
+                    
+                    
                     //var_dump($tokenobj->getExtraParams());
                     /*print '<br>Extra: <br><textarea class="quatrevingtpercent">';
                     print ''.join(',',$tokenobj->getExtraParams());
@@ -259,7 +259,7 @@ if ($mode == 'config' && $user->admin)
         $classname = 'printing_'.$driver;
         $langs->load($driver);
         $printer = new $classname($db);
-        //print '<pre>'.print_r($printer, true).'</pre>';
+        
 
         print '<tr class="oddeven">';
         print '<td>'.img_picto('', $printer->picto).' '.$langs->trans($printer->desc).'</td>';
@@ -302,7 +302,7 @@ if ($mode == 'test' && $user->admin)
         $classname = 'printing_'.$driver;
         $langs->load($driver);
         $printer = new $classname($db);
-        //print '<pre>'.print_r($printer, true).'</pre>';
+        
         if (count($printer->getlistAvailablePrinters())) {
             if ($printer->listAvailablePrinters() == 0) {
                 print $printer->resprint;
